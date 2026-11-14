@@ -104,14 +104,16 @@ flowchart BT
 | ADR-001 | FastAPI + SQLite + React/TS/Tailwind (đúng gợi ý spec Part 12) | Dự án greenfield; 1 người dùng; offline | Có thể chuyển PostgreSQL khi nhiều người dùng |
 | ADR-002 | `sqlite3` chuẩn, SQL tập trung trong `repo.py`, không ORM | Ít phụ thuộc, dễ đọc; repository pattern vẫn tách UI/logic/DB | Migration hiện bằng `CREATE … IF NOT EXISTS`; thêm `PRAGMA user_version` khi đổi schema có dữ liệu |
 | ADR-003 | Lớp RAW = bảng `raw_records` với trigger chặn UPDATE/DELETE | Ràng buộc ở DB, không phụ thuộc code | Sửa dữ liệu chỉ ở lớp NORMALIZED |
-| ADR-004 | NORMALIZED vs CURATED phân biệt bằng `verification_status`; chỉ API Review (người dùng) đặt `verified` | Tránh nhân bản bảng; một nguồn sự thật | "Curated bank" = `WHERE verification_status='verified'` |
+| ADR-004 | NORMALIZED vs CURATED phân biệt bằng `verification_status`; cột `verified_by` (`ai` / `user` / `pending_user`) ghi ai xác minh (sửa đổi ở phiên 2, xem ADR-013) | Tránh nhân bản bảng; một nguồn sự thật | "Curated bank" = `WHERE verification_status='verified'` |
 | ADR-005 | Flashcard chưa xác minh vẫn học được, có nhãn | Quyết định của người dùng (phiên 1) | Đề thi chỉ dùng câu đã xác minh |
 | ADR-006 | Đề PDF có font CID hỏng → chép bằng AI từ ảnh trang, `needs_review`, đáp án lấy từ 正解 và bị kiểm tra chéo khi import | Không có text layer dùng được; không bịa | Người dùng đối chiếu ảnh gốc trên màn hình Duyệt |
-| ADR-007 | AI rà soát chỉ tạo `validation_issues` (origin=ai_review) + `suggestion`, không sửa dữ liệu | Spec §11.5: phân biệt nội dung AI và dữ liệu đã xác minh | Người dùng bấm "Điền gợi ý" rồi Duyệt |
+| ADR-007 | ~~AI rà soát chỉ đề xuất, không sửa dữ liệu~~ — **thay bằng ADR-013** | Phiên 1 | — |
 | ADR-008 | Website bên thứ ba: chỉ đăng ký + kiểm tra truy cập HTTP | Spec §2.2: không vượt rào, không thay câu hỏi bằng AI | Trích xuất từng site cần đánh giá điều khoản sử dụng trước |
 | ADR-009 | Phát âm dùng Web Speech API, ghi rõ "giọng máy" | Không có audio gốc cho từ vựng | Không bao giờ gán nhãn audio gốc |
 | ADR-010 | Điều hướng bằng hash, không thêm router | 5 trang; ít phụ thuộc | Thêm react-router khi cần route lồng nhau |
-| ADR-011 | ID từ vựng `VOC_xxxxxx` cấp theo thứ tự import (tệp sắp xếp theo tên, dòng theo thứ tự); file AI review chỉ áp khi `id` **và** `word` khớp | Ổn định khi import lại; an toàn nếu ID lệch | Thêm khoá nội dung nếu bổ sung nhiều nguồn mới |
+| ADR-011 | ID từ vựng `VOC_xxxxxx` cấp theo thứ tự import (tệp sắp xếp theo tên, dòng theo thứ tự); bản sửa chỉ áp khi `id`, `raw_word` (mặt trước CSV gốc) **và** `old_value` đều khớp | Ổn định khi import lại; an toàn nếu ID lệch | Thêm khoá nội dung nếu bổ sung nhiều nguồn mới |
+| ADR-012 | Từ điển tham chiếu offline: JMdict + KANJIDIC2 (EDRDG, CC BY-SA 4.0) dựng thành `data/reference/reference.sqlite` (`python -m hub build-reference`, tự tải). Nhóm động từ lấy từ lớp chia động từ của thể từ điển; `HV_OVERRIDES` bổ sung các âm Hán-Việt mà KANJIDIC2 ghi sai (鶏 KÊ, 着 TRƯỚC, 晩 VÃN…) | Spec §6.1 cấm suy nhóm từ ます; Hán-Việt cần nguồn kiểm chứng | Tệp từ điển không commit (≈50 MB); thêm override chỉ khi chắc chắn |
+| ADR-013 | Theo yêu cầu người dùng (phiên 2), AI **được sửa** dữ liệu từ vựng, với điều kiện: 2 vòng rà soát độc lập, có bằng chứng từ điển, người duyệt cuối xét từng đề xuất, rồi ghi vào `data/normalized/corrections/vocabulary_corrections.json`. Khi áp: RAW không đổi, mỗi thay đổi ghi vào `review_actions` (`ai_correction`). Mục chỉ được `verified_by='ai'` khi đã audit và không còn lỗi/cảnh báo. Người dùng sửa hoặc duyệt thì luôn thắng (`pending_user`/`user` → automation không động vào) | Dữ liệu CSV do AI miễn phí tạo, nhiều lỗi; người dùng không muốn tự duyệt 963 mục | Có thể hoàn tác từng mục bằng "Trích xuất lại từ RAW" |
 
 ## 6. Thời gian & điểm thi
 - Thời gian đề hiện hành (20/40/30 phút) sẽ dùng cho đề mock; đề mẫu chính thức giữ `duration_minutes = null` vì tài liệu gốc không ghi.

@@ -10,9 +10,12 @@ const STATUS: Record<string, [string, string]> = {
   raw: ['RAW', 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300'],
 }
 
-export function StatusBadge({ status }: { status: Status | string }) {
-  const [label, cls] = STATUS[status] ?? [status, 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300']
-  return <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium whitespace-nowrap ${cls}`}>{label}</span>
+export function StatusBadge({ status, by }: { status: Status | string; by?: string | null }) {
+  const [base, cls] = STATUS[status] ?? [status, 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300']
+  const label = status === 'verified' && by ? `${base} · ${by === 'user' ? 'bạn' : 'AI + từ điển'}` : base
+  const title = status === 'verified' && by === 'ai'
+    ? 'Đã qua 2 vòng rà soát AI độc lập, đối chiếu JMdict/KANJIDIC2 và các luật kiểm tra tự động' : undefined
+  return <span title={title} className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium whitespace-nowrap ${cls}`}>{label}</span>
 }
 
 export function Tag({ children, tone = 'slate' }: { children: ReactNode; tone?: 'slate' | 'indigo' | 'amber' | 'rose' | 'emerald' }) {

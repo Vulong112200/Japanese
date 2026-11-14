@@ -66,7 +66,7 @@ export default function Vocabulary() {
                     <td className="hidden px-3 py-2 text-xs text-slate-500 md:table-cell">{v.han_viet}</td>
                     <td className="px-3 py-2">{v.meaning_vi}</td>
                     <td className="hidden px-3 py-2 text-slate-500 sm:table-cell">{v.lesson_number ?? v.deck.slice(0, 12)}</td>
-                    <td className="px-3 py-2"><StatusBadge status={v.verification_status} /></td>
+                    <td className="px-3 py-2"><StatusBadge status={v.verification_status} by={v.verified_by} /></td>
                   </tr>
                 ))}
                 {data.items.length === 0 && <tr><td colSpan={6} className="px-3 py-6 text-center text-slate-500">Không có kết quả.</td></tr>}
@@ -113,10 +113,16 @@ export function VocabDrawer({ id, onClose }: { id: string; onClose: () => void }
               <div className="mt-1 flex flex-wrap gap-1.5 text-sm text-slate-500">
                 {v.romaji && <span>{v.romaji}</span>}
                 {v.han_viet && <Tag>{v.han_viet}</Tag>}
-                <StatusBadge status={v.verification_status} />
+                <StatusBadge status={v.verification_status} by={v.verified_by} />
               </div>
             </div>
             <p className="text-lg">{v.meaning_vi}</p>
+            {v.part_of_speech && (
+              <p className="text-sm text-slate-500">
+                {POS_LABEL[v.part_of_speech] ?? v.part_of_speech}
+                {v.verb_group && <> · Nhóm {v.verb_group}{v.dictionary_form && <> · thể từ điển <span className="jp">{v.dictionary_form}</span></>}</>}
+              </p>
+            )}
             {v.example_jp && (
               <Panel title="Ví dụ">
                 <p className="jp text-base">{v.example_jp} <SpeakButton text={v.example_jp} /></p>
@@ -124,10 +130,20 @@ export function VocabDrawer({ id, onClose }: { id: string; onClose: () => void }
                 {v.example_vi && <p className="mt-1 text-sm">{v.example_vi}</p>}
               </Panel>
             )}
-            {v.part_of_speech === 'verb' && !v.verb_group && (
-              <p className="text-xs text-slate-500">Nhóm động từ: chưa xác định (dữ liệu chỉ có thể ます; không suy đoán từ đuôi ます).</p>
-            )}
             <Panel title="Vấn đề phát hiện"><IssueList issues={v.issues} /></Panel>
+            {v.history.length > 0 && (
+              <Panel title="Lịch sử chỉnh sửa">
+                <ul className="space-y-2 text-xs">
+                  {v.history.map((h, i) => (
+                    <li key={i} className="rounded-lg bg-slate-50 p-2 dark:bg-slate-800/60">
+                      <div className="text-slate-500">{HISTORY_LABEL[h.action] ?? h.action} · {h.acted_at.slice(0, 16).replace('T', ' ')}</div>
+                      {h.note && <div>{h.note}</div>}
+                      {h.action === 'ai_correction' && <Diff before={h.before_json} after={h.after_json} />}
+                    </li>
+                  ))}
+                </ul>
+              </Panel>
+            )}
             <Panel title="Nguồn gốc (lớp RAW)">
               <ul className="space-y-2 text-xs">
                 {v.raw.map(r => (
@@ -144,6 +160,31 @@ export function VocabDrawer({ id, onClose }: { id: string; onClose: () => void }
       </aside>
     </div>
   )
+}
+
+const POS_LABEL: Record<string, string> = {
+  noun: 'Danh từ', verb: 'Động từ', i_adjective: 'Tính từ đuôi い', na_adjective: 'Tính từ đuôi な', adverb: 'Phó từ',
+  pronoun: 'Đại từ', expression: 'Cụm từ / mẫu câu', interjection: 'Thán từ', numeral: 'Số từ', counter: 'Trợ số từ',
+  suffix: 'Hậu tố', prefix: 'Tiền tố', particle: 'Trợ từ', conjunction: 'Liên từ', prenominal: 'Liên thể từ',
+}
+const HISTORY_LABEL: Record<string, string> = {
+  ai_correction: 'AI sửa (đã đối chiếu)', approve: 'Bạn duyệt', reject: 'Bạn loại', edit: 'Bạn sửa',
+  ambiguous: 'Đánh dấu mơ hồ', reextract: 'Trích xuất lại từ RAW', archive: 'Lưu trữ', unarchive: 'Bỏ lưu trữ',
+}
+
+function Diff({ before, after }: { before: string | null; after: string | null }) {
+  try {
+    const b = JSON.parse(before ?? '{}'), a = JSON.parse(after ?? '{}')
+    return (
+      <div className="jp mt-1">
+        {Object.keys(b).map(k => (
+          <div key={k}><span className="text-slate-500">{k}: </span>
+            <del className="text-rose-600">{String(b[k] || '∅')}</del> → <ins className="text-emerald-700 no-underline dark:text-emerald-300">{String(a[k] || '∅')}</ins>
+          </div>
+        ))}
+      </div>
+    )
+  } catch { return null }
 }
 
 export function formatRaw(content: string) {

@@ -1,142 +1,212 @@
 # DATA QUALITY REPORT
 
-Tạo tự động lúc 2026-11-14T11:55:32+07:00.
+Tạo tự động lúc 2026-11-14T16:28:27+07:00.
 
-Hai lớp kiểm tra, **không lớp nào tự sửa dữ liệu**:
-1. **Luật tự động** (`origin=rule`): kana hợp lệ, romaji ↔ kana, số âm Hán-Việt ↔ số kanji, mã hoá, trùng lặp, động từ thiếu thể từ điển.
-2. **AI rà soát** (`origin=ai_review`, nhãn AI_GENERATED): đọc toàn bộ 963 mục, chỉ báo lỗi rõ ràng (độ tin cậy high/medium) kèm đề xuất. Lưu ở `data/normalized/ai_review/vocabulary_ai_review.json`.
+## Quy trình xác minh từ vựng
+1. **Luật tự động**: kana hợp lệ, romaji ↔ kana, mã hoá, trùng lặp.
+2. **Đối chiếu từ điển** (EDRDG, CC BY-SA 4.0):
+   - Cách đọc, từ loại và nhóm động từ lấy từ **JMdict**. Nhóm động từ suy từ thể từ điển, không suy từ đuôi ます.
+   - Hán-Việt lấy từ **KANJIDIC2**, kèm bảng bổ sung `HV_OVERRIDES` cho các chữ mà KANJIDIC2 ghi sai.
+3. **Rà soát AI hai vòng độc lập**, mỗi vòng có 4 lượt đọc, phủ toàn bộ 963 mục:
+   - Vòng 2 có kèm bằng chứng từ điển.
+   - Sau đó người duyệt cuối (Claude) xét từng đề xuất.
+4. **Áp bản sửa**: chỉ sửa lớp NORMALIZED, nguồn ở `data/normalized/corrections/vocabulary_corrections.json`.
+   - Lớp RAW giữ nguyên.
+   - Mỗi thay đổi ghi vào `review_actions` (`ai_correction`) kèm giá trị trước/sau.
+   - Có thể hoàn tác bằng "Trích xuất lại từ RAW".
+5. **Điều kiện xác minh**: chỉ đặt `verified` (`verified_by=ai`) khi mục đã qua audit **và** không còn lỗi hay cảnh báo nào từ luật hoặc từ điển.
+   - Mục bạn đã sửa hoặc duyệt (`verified_by=user|pending_user`) không bị tự động thay đổi.
 
-Đề mẫu: AI đối chiếu 29/29 đáp án 正解 với nội dung câu hỏi — **29/29 nhất quán** (`EXAM_N5_OFFICIAL_SAMPLE.ai_review.json`). Giải thích tiếng Việt được gắn nhãn AI_GENERATED.
+Đề mẫu: AI đối chiếu 29/29 đáp án 正解 với nội dung câu hỏi, kết quả **29/29 nhất quán**. Câu hỏi vẫn ở trạng thái `needs_review` cho đến khi được đối chiếu với ảnh trang gốc.
+
+## Trạng thái từ vựng
+| Trạng thái | Xác minh bởi | Số mục |
+|---|---|---|
+| verified | ai | 963 |
+
+## Bản sửa đã áp (167): han_viet 59, example_romaji 40, example_jp 14, romaji 14, word 13, reading 11, example_vi 9, meaning_vi 7
+| ID | Từ | Trường | Trước (CSV gốc) | Sau | Lý do |
+|---|---|---|---|---|---|
+| VOC_000019 | 銀行員 | example_jp | わかりさんは 銀行員ですか。 | 田中さんは 銀行員ですか。 | 'わかりさん' không phải tên người; thay bằng tên thông dụng. |
+| VOC_000019 | 銀行員 | example_romaji | Wakari-san wa ginkōin desu ka. | Tanaka-san wa ginkouin desu ka. | Khớp với câu ví dụ đã sửa. |
+| VOC_000019 | 銀行員 | example_vi | Anh Wakari có phải là nhân viên ngân hàng không? | Anh Tanaka có phải là nhân viên ngân hàng không? | Khớp với câu ví dụ đã sửa. |
+| VOC_000022 | エンジニア | example_jp | ギプタさんは エンジニアです。 | グプタさんは エンジニアです。 | Tên Gupta viết katakana là グプタ (nhân vật trong Minna) |
+| VOC_000022 | エンジニア | example_romaji | Giputa-san wa enjinia desu. | Guputa-san wa enjinia desu. | Khớp với グプタ |
+| VOC_000024 | 電気 | meaning_vi | Điện, đèn điện / Công ty điện | Điện, đèn điện | 'Công ty điện' không phải nghĩa của 電気. |
+| VOC_000037 | インド | example_jp | ギプタさんは インド人です。 | グプタさんは インド人です。 | Tên Gupta viết katakana là グプタ (nhân vật trong Minna) |
+| VOC_000037 | インド | example_romaji | Giputa-san wa Indo-jin desu. | Guputa-san wa Indo-jin desu. | Khớp với グプタ |
+| VOC_000050 | 男の人 | han_viet | NAM NHÂN NHÂN | NAM NHÂN | Thừa một âm: 男 = NAM, 人 = NHÂN |
+| VOC_000051 | 女の人 | han_viet | NỮ NHÂN NHÂN | NỮ NHÂN | Thừa một âm: 女 = NỮ, 人 = NHÂN |
+| VOC_000052 | 男の子 | han_viet | NAM NHÂN TỬ | NAM TỬ | Thừa âm NHÂN: 男 = NAM, 子 = TỬ |
+| VOC_000053 | 女の子 | han_viet | NỮ NHÂN TỬ | NỮ TỬ | Thừa âm NHÂN: 女 = NỮ, 子 = TỬ |
+| VOC_000063 | テーブル | example_romaji | Heya no chuuuou ni teeburu ga arimasu. | Heya no chuuou ni teeburu ga arimasu. | Lỗi romaji: 中央 = chuuou |
+| VOC_000072 | 喫茶店 | han_viet | NGẠT TRÀ ĐIẾM | KHIẾT TRÀ ĐIẾM | 喫 = KHIẾT (không phải NGẠT) |
+| VOC_000075 | 県 | han_viet | HUYỆN / TỈNH | HUYỆN | 県 = HUYỆN; TỈNH là nghĩa, không phải âm Hán-Việt của chữ này |
+| VOC_000088 | いちばん～ | han_viet | NHẤT | ∅ | Từ viết bằng kana; chữ Hán 一番 = NHẤT PHIÊN nên chỉ ghi NHẤT là thiếu |
+| VOC_000095 | 東京ディズニーランド | han_viet | ĐÔNG KINH ディズニーランド | ĐÔNG KINH | Katakana không có âm Hán-Việt |
+| VOC_000096 | 掛かります | example_jp | 駅から bưu điện まで 15分 かかります。 | 駅から 郵便局まで 15分 かかります。 | Lẫn tiếng Việt 'bưu điện' trong câu tiếng Nhật |
+| VOC_000096 | 掛かります | example_romaji | Eki kara buu dien made juu-go-fun kakarimasu. | Eki kara yuubinkyoku made juu-go-fun kakarimasu. | Khớp với câu ví dụ đã sửa (郵便局 = yuubinkyoku) |
+| VOC_000101 | 二つ | example_romaji | Mikan o futatsu kayimashita. | Mikan o futatsu kaimashita. | Lỗi romaji: 買いました = kaimashita |
+| VOC_000104 | 五つ | example_romaji | Sekken o itsutsu kayimashita. | Sekken o itsutsu kaimashita. | Lỗi romaji: 買いました = kaimashita |
+| VOC_000106 | 七つ | example_romaji | Pan o nanatsu kayimashita. | Pan o nanatsu kaimashita. | Lỗi romaji: 買いました = kaimashita |
+| VOC_000109 | 十 | example_jp | 鞄に 本が 十 あります。 | りんごが 十 あります。 | Sách đếm bằng 冊, không dùng とお; đổi sang vật đếm được bằng ～つ |
+| VOC_000109 | 十 | example_romaji | Kaban ni hon ga too arimasu. | Ringo ga too arimasu. | Khớp với câu ví dụ đã sửa |
+| VOC_000109 | 十 | example_vi | Trong cặp có mười cuốn sách. | Có mười quả táo. | Khớp với câu ví dụ đã sửa |
+| VOC_000110 | いくつ | example_romaji | Tamago o ikutsu kayimashita ka. | Tamago o ikutsu kaimashita ka. | Lỗi romaji: 買いました = kaimashita |
+| VOC_000115 | ～枚 | example_romaji | Shatsu o san-mai kayimashita. | Shatsu o san-mai kaimashita. | Lỗi romaji: 買いました = kaimashita |
+| VOC_000118 | みかん | example_romaji | Amai mikan o yottsu kayimashita. | Amai mikan o yottsu kaimashita. | Lỗi romaji: 買いました = kaimashita |
+| VOC_000120 | カレー | example_vi | Tôi thích món cà rêu cay. | Tôi thích món cà ri cay. | Sai chính tả: 'cà rêu' -> 'cà ri' |
+| VOC_000120 | カレー | meaning_vi | món cà rêu, cơm cà rêu (カレーライス) | món cà ri, cơm cà ri (カレーライス) | Sai chính tả: 'cà rêu' -> 'cà ri' |
+| VOC_000122 | 切手 | example_romaji | Hachi-juu-yon-en no kitte o ni-mai kayimashita. | Hachi-juu-yon-en no kitte o ni-mai kaimashita. | Lỗi chính tả romaji: "kayimashita" → "kaimashita" (買いました). |
+| VOC_000128 | 姉 | example_romaji | Ane wa ginkou de hatarake imasu. | Ane wa ginkou de hataraite imasu. | Romaji sai: 働いています là "hataraite imasu", không phải "hatarake imasu". |
+| VOC_000147 | 簡単 | han_viet | ĐƠN GIẢN | GIẢN ĐƠN | Sai thứ tự: 簡 = GIẢN, 単 = ĐƠN. |
+| VOC_000155 | 暖かい | han_viet | ÔN | NOÃN | 暖 có âm Hán-Việt là NOÃN; ÔN là của chữ 温. |
+| VOC_000157 | 甘い | example_vi | Cái bánh cake này ngọt. | Chiếc bánh ga-tô này ngọt. | "bánh cake" lẫn tiếng Anh; ケーキ = bánh ga-tô / bánh ngọt. |
+| VOC_000175 | すき焼き | han_viet | ∅ | THIÊU | Từ có chữ Hán 焼 = THIÊU nhưng han_viet đang để trống. |
+| VOC_000176 | 刺身 | han_viet | THỨ THÂN | THÍCH THÂN | 刺 trong 刺身 đọc Hán-Việt chuẩn là THÍCH (THÍCH THÂN); THỨ là âm của 刺史. |
+| VOC_000178 | 天ぷら | han_viet | THIÊN PHỤ LA | THIÊN | Từ chỉ có một chữ Hán 天 = THIÊN; ぷら là kana nên không có âm Hán-Việt. |
+| VOC_000179 | 豚肉 | example_romaji | Butaniku o kayimasu. | Butaniku o kaimasu. | Lỗi chính tả romaji: "kayimasu" → "kaimasu" (買います). |
+| VOC_000179 | 豚肉 | han_viet | ĐỐN NHỤC | ĐỒN NHỤC | 豚 = ĐỒN, không phải ĐỐN. |
+| VOC_000194 | 迎えます | example_jp | 駅へ友達を迎えます。 | 駅へ友達を迎えに行きます。 | Trợ từ へ cần động từ chuyển động; 駅へ…迎えます sai ngữ pháp. Dùng mẫu 〜に行きます (bài 13), khớp với câu dịch. |
+| VOC_000194 | 迎えます | example_romaji | Eki e tomodachi o mukaemasu. | Eki e tomodachi o mukae ni ikimasu. | Sửa theo example_jp đã chỉnh. |
+| VOC_000198 | 遊びます | han_viet | GIẢI | DU | 遊 = DU; GIẢI không phải âm Hán-Việt của chữ này. |
+| VOC_000200 | 買い物します | example_jp | デパートへ買い物します。 | デパートで買い物します。 | Sai trợ từ: nơi diễn ra hành động 買い物します dùng で, không dùng へ. |
+| VOC_000200 | 買い物します | example_romaji | Depāto e kaimono shimasu. | Depāto de kaimono shimasu. | Sửa theo example_jp đã chỉnh (へ → で). |
+| VOC_000212 | お腹が空きました | reading | おなかがあきました | おなかがすきました | 空きました trong cụm này đọc là すきました (romaji đã ghi đúng "sukimashita"), không phải あきました. |
+| VOC_000216 | ご注文は？ | han_viet | TRÚNG CHÚ | CHÚ VĂN | 注 = CHÚ, 文 = VĂN; "TRÚNG CHÚ" sai. |
+| VOC_000217 | 牛丼 | han_viet | NGƯU ĐỔNG | NGƯU ĐẢM | 丼 = ĐẢM; ĐỔNG không phải âm Hán-Việt của chữ này. |
+| VOC_000240 | 降ります | han_viet | HÀNG | GIÁNG | 降 trong 降ります (mưa rơi) là GIÁNG; HÀNG là âm trong nghĩa "đầu hàng". |
+| VOC_000243 | パソコン | example_romaji | Atarashii pasokon o kayimashita. | Atarashii pasokon o kaimashita. | Lỗi chính tả romaji: "kayimashita" → "kaimashita". |
+| VOC_000267 | 降ります | han_viet | GIÁNG / HẠ | GIÁNG | Mỗi chữ Hán một âm: 降 = GIÁNG; HẠ là âm của 下, không phải của 降. |
+| VOC_000285 | お寺 | example_romaji | Kyoto de otera o mimasu. | Kyouto de otera o mimasu. | 京都 = きょうと, romaji phải có trường âm: Kyouto. |
+| VOC_000309 | 払います | example_romaji | Okanes o haraimasu. | Okane o haraimasu. | Lỗi chính tả romaji: "Okanes" → "Okane". |
+| VOC_000328 | 先生 | meaning_vi | Bác sĩ (xưng呼 với bác sĩ), Thầy/Cô giáo | Bác sĩ (cách xưng hô với bác sĩ), Thầy/Cô giáo | Lẫn chữ Hán "呼" trong nghĩa tiếng Việt ("xưng呼" → "xưng hô"). |
+| VOC_000333 | のどが痛いです | reading | のどがいたい | のどがいたいです | Cách đọc thiếu です so với từ のどが痛いです (romaji đã có "desu"). |
+| VOC_000360 | 相撲 | han_viet | TƯƠNG BỘC | TƯƠNG PHÁC | 撲 = PHÁC (相撲 = TƯƠNG PHÁC); BỘC không phải âm chuẩn. |
+| VOC_000373 | 手帳 | han_viet | THỦ TRƯƠNG | THỦ TRƯỚNG | 帳 đọc Hán-Việt là TRƯỚNG, không phải TRƯƠNG (張). |
+| VOC_000388 | 机 | han_viet | TRƠN | KỶ | TRƠN không phải âm Hán-Việt; 机 đọc là KỶ. |
+| VOC_000389 | 椅子 | han_viet | Y TỬ | Ỷ TỬ | 椅 với nghĩa 'ghế' đọc là Ỷ (椅子 = Ỷ TỬ). |
+| VOC_000420 | みんなで | han_viet | CHÚNG | ∅ | Từ viết bằng kana; chữ Hán của みんな là 皆 (GIAI), CHÚNG (衆) là sai. |
+| VOC_000424 | 調べます | han_viet | ĐIỀU/ĐIỆU | ĐIỀU | Mỗi chữ Hán một âm; 調 trong 調べる (điều tra) đọc là ĐIỀU. |
+| VOC_000433 | 役に立ちます | reading | やくだちます | やくにたちます | Cách đọc của 役に立ちます. |
+| VOC_000433 | 役に立ちます | romaji | yakudachimasu | yaku ni tachimasu | Romaji theo cách đọc やくにたちます. |
+| VOC_000433 | 役に立ちます | word | 役立つ | 役に立ちます | Từ vựng Minna bài 21 là 役に立ちます (thể ます), khớp với câu ví dụ. |
+| VOC_000435 | 勝ちます | word | 勝つ | 勝ちます | Cách đọc ở thể ます nên từ phải ở thể ます như trong Minna. |
+| VOC_000444 | 気をつけます | word | 気をつける | 気をつけます | Cách đọc ở thể ます nên từ phải ở thể ます như trong Minna. |
+| VOC_000452 | 動きます | example_vi | Đồng時計 đang chạy. | Đồng hồ chạy. | Lẫn chữ Hán 時計 trong câu tiếng Việt. |
+| VOC_000452 | 動きます | word | 動く | 動きます | Cách đọc ở thể ます nên từ phải ở thể ます như trong Minna. |
+| VOC_000456 | やめます | word | やめる | やめます | Cách đọc ở thể ます nên từ phải ở thể ます như trong Minna. |
+| VOC_000458 | 留学します | word | 留学する | 留学します | Cách đọc ở thể ます nên từ phải ở thể ます như trong Minna. |
+| VOC_000462 | むだ | example_romaji | Okanemuda ni tsukawanaide kudasai. | Okane o muda ni tsukawanaide kudasai. | Thiếu trợ từ を (o) và dấu cách: お金をむだに. |
+| VOC_000463 | 首相 | han_viet | THỦ TƯƠNG | THỦ TƯỚNG | 相 trong 首相 đọc là TƯỚNG (thủ tướng). |
+| VOC_000467 | 負けます | word | 負ける | 負けます | Cách đọc ở thể ます nên từ phải ở thể ます như trong Minna. |
+| VOC_000473 | 放送 | han_viet | PHÁP TỐNG | PHÓNG TỐNG | 放 đọc là PHÓNG; PHÁP là 法. |
+| VOC_000508 | ~目 | example_romaji | Futatsume no kado o megarimasu. | Futatsume no kado o magarimasu. | 曲がります đọc là magarimasu, không phải megarimasu. |
+| VOC_000510 | お湯 | han_viet | THỦY | THANG | 湯 đọc là THANG; THỦY là 水. |
+| VOC_000515 | 交差点 | example_romaji | Kousaten o migi e megarimasu. | Kousaten o migi e magarimasu. | 曲がります đọc là magarimasu. |
+| VOC_000515 | 交差点 | example_vi | Rẽ右 tại ngã tư. | Rẽ phải ở ngã tư. | Lẫn chữ Hán 右 trong câu tiếng Việt. |
+| VOC_000518 | 角 | example_romaji | Kado o hidari e megarimasu. | Kado o hidari e magarimasu. | 曲がります đọc là magarimasu. |
+| VOC_000526 | 電気屋 | han_viet | ĐIỆN ỐC | ĐIỆN KHÍ ỐC | Thiếu âm của chữ 気 (KHÍ). |
+| VOC_000528 | 法隆寺 | han_viet | PHÁP TRUNG TỰ | PHÁP LONG TỰ | 隆 đọc là LONG, không phải TRUNG. |
+| VOC_000531 | 出ます | example_vi | Tiền thừa chui ra. | Tiền thừa chạy ra. | 'Chui ra' không tự nhiên khi nói về tiền thừa từ máy. |
+| VOC_000531 | 出ます | meaning_vi | Chui ra, xuất hiện (tiền thừa) | Ra, chạy ra (tiền thừa) | 'Chui ra' không dùng cho tiền thừa; nghĩa trong Minna bài 23 là 'ra, chạy ra [tiền thừa]'. |
+| VOC_000541 | くれます | han_viet | NGÔ | ∅ | くれます luôn viết bằng kana; chữ 呉 hầu như không dùng nên âm NGÔ gây hiểu nhầm. |
+| VOC_000549 | 全部 | example_romaji | Kare wa okaane o zenbu haratte kuremashita. | Kare wa okane o zenbu haratte kuremashita. | お金 đọc là okane, không phải okaane. |
+| VOC_000552 | ホームステイ | example_romaji | Hoomustei no kazoku wa watashi ni shinsetsu ni shite kuremashita. | Hoomusutei no kazoku wa watashi ni shinsetsu ni shite kuremashita. | Thiếu âm ス (su) trong hoomusutei. |
+| VOC_000552 | ホームステイ | romaji | hoomustei | hoomusutei | Thiếu âm ス (su): ホームステイ = hoomusutei. |
+| VOC_000553 | 自分で | example_romaji | Shokudai wa jibun de yaranakereba narimasen. | Shukudai wa jibun de yaranakereba narimasen. | 宿題 đọc là shukudai, không phải shokudai. |
+| VOC_000554 | 大使館 | han_viet | ĐẠI SỬ QUÁN | ĐẠI SỨ QUÁN | 使 trong 大使館 đọc là SỨ (đại sứ quán). |
+| VOC_000557 | 転勤 | reading | てんきん [～します] | てんきん | Ô cách đọc lẫn ghi chú; chỉ giữ cách đọc của 転勤. |
+| VOC_000557 | 転勤 | romaji | tenkin [~shimasu] | tenkin | Romaji lẫn ghi chú; chỉ giữ romaji của てんきん. |
+| VOC_000560 | どうぞお元気で | example_romaji | Kuni e kaeritemo, douzo ogenki de. | Kuni e kaettemo, douzo ogenki de. | 帰っても đọc là kaettemo, không phải kaeritemo. |
+| VOC_000563 | 考えます | example_romaji | Kore kara dou suru ka kangarete imasu. | Kore kara dou suru ka kangaete imasu. | 考えて đọc là kangaete, không phải kangarete. |
+| VOC_000563 | 考えます | word | 考える | 考えます | Cách đọc ở thể ます nên từ phải ở thể ます như trong Minna. |
+| VOC_000564 | 年を取ります | han_viet | THỦ / TUẾ | NIÊN THỦ | Mỗi chữ Hán một âm theo thứ tự: 年 = NIÊN, 取 = THỦ. |
+| VOC_000564 | 年を取ります | reading | とります [としを～] | としをとります | Ô cách đọc lẫn ghi chú; cách đọc của 年を取ります. |
+| VOC_000564 | 年を取ります | romaji | torimasu [toshi o~] | toshi o torimasu | Romaji lẫn ghi chú; theo cách đọc としをとります. |
+| VOC_000564 | 年を取ります | word | 取る | 年を取ります | Nghĩa 'thêm tuổi, có tuổi' là của cụm 年を取ります (Minna bài 25: [年を～] 取ります), ở thể ます. |
+| VOC_000566 | 留学します | word | 留学する | 留学します | Cách đọc ở thể ます nên từ phải ở thể ます như trong Minna. |
+| VOC_000567 | 億 | meaning_vi | 一億 (100 triệu) | Trăm triệu (100.000.000) | Nghĩa tiếng Việt lẫn chữ Nhật 一億. |
+| VOC_000569 | 着きます | word | 着く | 着きます | Cách đọc ở thể ます nên từ phải ở thể ます như trong Minna. |
+| VOC_000581 | 国 | reading | くに / おくに | くに | おくに là cách đọc của お国, không phải của 国. |
+| VOC_000581 | 国 | romaji | kuni / okuni | kuni | Romaji theo cách đọc くに. |
+| VOC_000582 | エスカレーター | example_romaji | Esukarātā wa ikkai desu. | Esukarētā wa ikkai desu. | レー đọc là rē, không phải rā. |
+| VOC_000582 | エスカレーター | romaji | esukarātā | esukarētā | レー đọc là rē, không phải rā. |
+| VOC_000585 | トイレ | han_viet | THỦ TẨY | ∅ | トイレ là từ katakana, không có chữ Hán; THỦ TẨY là của お手洗い. |
+| VOC_000585 | トイレ | reading | トイレ / おてあらい | トイレ | おてあらい là từ khác (お手洗い), không phải cách đọc của トイレ. |
+| VOC_000585 | トイレ | romaji | toire / otearai | toire | Romaji theo cách đọc トイレ. |
+| VOC_000592 | エレベーター | example_romaji | Erebātā wa soko desu. | Erebētā wa soko desu. | ベー đọc là bē, không phải bā. |
+| VOC_000592 | エレベーター | romaji | erebātā | erebētā | ベー đọc là bē, không phải bā. |
+| VOC_000595 | 円 | example_romaji | Kono tokei wa hachisen yonhyaku en desu. | Kono tokei wa hassen yonhyaku en desu. | 8.000 đọc là はっせん (hassen), không phải hachisen. |
+| VOC_000595 | 円 | han_viet | YÊN | VIÊN | Âm Hán-Việt của 円 là VIÊN; 'Yên' chỉ là tên đơn vị tiền tệ. |
+| VOC_000598 | うち | example_vi | Số điện thoại nhà bạn là số mấy? | Số điện thoại nhà mình là số mấy? | うち chỉ nhà của người nói (nhà mình), không phải nhà của người nghe. |
+| VOC_000607 | 百 | example_jp | これは ５００円です。 | これは 百円です。 | Ví dụ cũ (５００円) không chứa từ 百 |
+| VOC_000607 | 百 | example_romaji | Kore wa gohyaku en desu. | Kore wa hyaku en desu. | Khớp với câu ví dụ đã sửa |
+| VOC_000607 | 百 | example_vi | Cái này giá 500 Yên. | Cái này giá 100 Yên. | Khớp với câu ví dụ đã sửa |
+| VOC_000620 | 美術館 | example_jp | 美術館は 月曜日 休みに なります。 | 美術館は 月曜日 休みです。 | '休みに なります' không tự nhiên ở trình độ bài 4; câu chuẩn là 休みです. |
+| VOC_000620 | 美術館 | example_romaji | Bijutsukan wa Getsuyoubi yasumi ni narimasu. | Bijutsukan wa getsuyoubi yasumi desu. | Khớp với câu ví dụ đã sửa. |
+| VOC_000630 | 昼 | han_viet | TRƯA | TRÚ | TRƯA là từ thuần Việt; âm Hán-Việt của 昼 là TRÚ |
+| VOC_000639 | 昼休み | example_romaji | Hirusumi wa juu-ni-ji kara ichi-ji made desu. | Hiruyasumi wa juu-ni-ji kara ichi-ji made desu. | Thiếu âm tiết 'ya' (ひるやすみ) |
+| VOC_000639 | 昼休み | han_viet | TRƯA HƯU | TRÚ HƯU | TRƯA là từ thuần Việt; 昼 = TRÚ |
+| VOC_000639 | 昼休み | romaji | hirusumi | hiruyasumi | Thiếu âm tiết 'ya' (ひるやすみ) |
+| VOC_000652 | 日曜日 | example_jp | 日曜日は 働きますん。 | 日曜日は 働きません。 | Lỗi chính tả: 働きますん → 働きません |
+| VOC_000682 | 一昨日 | han_viet | NHẤT TRÁC NHẬT | NHẤT TẠC NHẬT | 昨 = TẠC, không phải TRÁC |
+| VOC_000682 | 一昨日 | reading | おとtoi | おととい | Cách đọc lẫn chữ Latin (おとtoi) |
+| VOC_000690 | 学校 | han_viet | HỌC GIÁO | HỌC HIỆU | 校 = HIỆU, không phải GIÁO |
+| VOC_000717 | 撮ります | han_viet | TÁT | TOÁT | 撮 = TOÁT, không phải TÁT |
+| VOC_000719 | 庭 | example_jp | 庭で茶を飲みます。 | 庭でお茶を飲みます。 | Thiếu お (romaji là 'ocha'; お茶 tự nhiên hơn) |
+| VOC_000751 | 教えます | example_jp | わたしは　さんとうさんに　にほんごを　教えます。 | わたしは　サントスさんに　にほんごを　教えます。 | Tên riêng sai: さんとうさん → サントスさん (romaji/dịch là Santos) |
+| VOC_000752 | 習います | example_jp | わたしは　いーさんに　ちゅうごくごを　習います。 | わたしは　イーさんに　ちゅうごくごを　習います。 | Tên nước ngoài phải viết katakana: イーさん |
+| VOC_000757 | あげます | example_jp | わたしは　きむらに　はなを　あげます。 | わたしは　きむらさんに　はなを　あげます。 | Thiếu さん sau tên người (bản dịch là 'anh Kimura') |
+| VOC_000757 | あげます | example_romaji | Watashi wa Kimura ni hana o agemasu. | Watashi wa Kimura-san ni hana o agemasu. | Khớp với câu ví dụ đã sửa (thêm -san) |
+| VOC_000762 | 箸 | han_viet | TRỢ | TRỨ | 箸 (đũa) có âm Hán-Việt chuẩn là TRỨ. |
+| VOC_000797 | 綺麗 | han_viet | KỲ LỆ | Ỷ LỆ | 綺 = Ỷ, không phải KỲ |
+| VOC_000799 | ハンサム | example_romaji | Mirā-san wa hansomu desu. | Mirā-san wa hansamu desu. | ハンサム = hansamu, không phải hansomu |
+| VOC_000799 | ハンサム | romaji | Hansomu | Hansamu | ハンサム = hansamu, không phải hansomu |
+| VOC_000818 | 易しい | han_viet | DỊCH | DỊ | 易 nghĩa 'dễ' (易しい) đọc là DỊ; DỊCH là nghĩa 'trao đổi' (貿易) |
+| VOC_000825 | 楽しい | han_viet | LẠC / NHẠC | LẠC | Mỗi kanji một âm; 楽 trong 楽しい (vui) là LẠC, NHẠC là nghĩa 'âm nhạc' |
+| VOC_000838 | お仕事 | han_viet | SỰ CÔNG | SĨ SỰ | 仕事 = SĨ SỰ; SỰ CÔNG sai chữ và sai thứ tự |
+| VOC_000847 | 日本の生活に慣れましたか | han_viet | NHẬT BẢN - SINH HOẠT - QUÁN | NHẬT BẢN SINH HOẠT QUÁN | Bỏ dấu gạch ngang thừa, mỗi kanji một âm Hán-Việt |
+| VOC_000848 | もう一杯いかがですか | han_viet | NHẤT BỔI | NHẤT BÔI | 杯 = BÔI (không phải BỔI) |
+| VOC_000861 | クラシック | reading | くらしく | くらしっく | Thiếu âm ngắt っ: クラシック = くらしっく |
+| VOC_000870 | ローマ字 | meaning_vi | Chữ Rōmaji (chữ La-tông) | Chữ Rōmaji (chữ La-tinh) | Sai chính tả: 'La-tông' -> 'La-tinh' |
+| VOC_000873 | 分かります | word | 分かる | 分かります | Cách đọc ở thể ます nên từ phải ở thể ます (theo Minna) |
+| VOC_000874 | あります | word | ある | あります | Cách đọc ở thể ます nên từ phải ở thể ます (theo Minna) |
+| VOC_000885 | 夫 | han_viet | CHỦ NHÂN | PHU | 夫 = PHU (CHỦ NHÂN là của 主人) |
+| VOC_000885 | 夫 | reading | おっと (PHU) / しゅじん | おっと | Ô cách đọc lẫn ghi chú; 夫 đọc là おっと |
+| VOC_000885 | 夫 | romaji | otto / shujin | otto | Romaji phải khớp cách đọc おっと |
+| VOC_000887 | 妻 | han_viet | GIA NỘI | THÊ | 妻 = THÊ (GIA NỘI là của 家内) |
+| VOC_000887 | 妻 | reading | つま (THÊ) / かない | つま | Ô cách đọc lẫn ghi chú; 妻 đọc là つま |
+| VOC_000887 | 妻 | romaji | tsuma / kanai | tsuma | Romaji phải khớp cách đọc つま |
+| VOC_000893 | 全然 | han_viet | HOÀN NHIÊN | TOÀN NHIÊN | 全 = TOÀN (không phải HOÀN) |
+| VOC_000894 | 早く | han_viet | TẢO / TỐC | TẢO | Từ chỉ có một kanji 早 = TẢO (TỐC là của 速) |
+| VOC_000920 | また今度お願いします | han_viet | KIM ĐỘ NGUỆN | KIM ĐỘ NGUYỆN | Sai chính tả Hán-Việt: 願 = NGUYỆN |
+| VOC_000922 | どうぞ よろしく お願いします | han_viet | NGUỆN | NGUYỆN | Sai chính tả Hán-Việt: 願 = NGUYỆN |
+| VOC_000923 | こちらこそ よろしく お願いします | han_viet | NGUỆN | NGUYỆN | Sai chính tả Hán-Việt: 願 = NGUYỆN |
+| VOC_000928 | お疲れ様でした | han_viet | BÃI TƯỢNG | BÌ DẠNG | 疲 = BÌ, 様 = DẠNG |
+| VOC_000933 | もう 一度 お願いします | han_viet | NHẤT ĐỘ NGUỆN | NHẤT ĐỘ NGUYỆN | Sai chính tả Hán-Việt: 願 = NGUYỆN |
+| VOC_000945 | お願い します | han_viet | NGUỆN | NGUYỆN | Sai chính tả Hán-Việt: 願 = NGUYỆN |
+| VOC_000950 | こんばんは | han_viet | VÃN | ∅ | Từ viết bằng kana; chữ Hán thường dùng 今晩は = KIM VÃN nên chỉ ghi VÃN là thiếu |
+| VOC_000951 | こんにちは | han_viet | KIM | ∅ | Từ viết bằng kana; chữ Hán thường dùng 今日は = KIM NHẬT nên chỉ ghi KIM là thiếu |
+| VOC_000953 | お気をつけて | example_romaji | Ame ga futte imasu kara, okitsukete. | Ame ga futte imasu kara, oki o tsukete. | Thiếu trợ từ を (o): お気をつけて = oki o tsukete |
+| VOC_000953 | お気をつけて | romaji | Okitsukete | Oki o tsukete | Thiếu trợ từ を (o): おきをつけて |
+| VOC_000961 | お気をつけください | example_romaji | Dansa ga arimasu node, oki o tsukete kudasai. | Dansa ga arimasu node, oki o tsuke kudasai. | Romaji không khớp câu ví dụ: お気をつけください |
+| VOC_000961 | お気をつけください | romaji | Oki o tsukete kudasai | Oki o tsuke kudasai | Romaji không khớp: おきをつけください (không có て) |
+| VOC_000962 | お世話に なります | example_romaji | Itsumo osewa ni nattorimasu. | Itsumo osewa ni natte orimasu. | Lỗi romaji: なっております = natte orimasu |
+| VOC_000962 | お世話に なります | meaning_vi | Cảm ơn anh/chị luôn giúp đỡ tôi (câu chào giao tiếp công việc) | Mong được anh/chị giúp đỡ; cảm ơn anh/chị đã giúp đỡ (câu chào trong giao tiếp công việc) | お世話になります là lời chào/nhờ vả; nghĩa 'luôn giúp đỡ' là của お世話になっております. |
 
 ## Thống kê vấn đề mở
 | Thực thể | Nguồn kiểm tra | Mã | Mức | Số lượng |
 |---|---|---|---|---|
-| vocabulary | rule | reading_not_kana | error | 5 |
-| vocabulary | ai_review | ai_han_viet | warning | 35 |
 | question | rule | transcription_unverified | warning | 29 |
-| vocabulary | ai_review | ai_reading | warning | 22 |
-| vocabulary | rule | duplicate_reading_conflict | warning | 10 |
-| vocabulary | rule | han_viet_count | warning | 10 |
-| vocabulary | rule | romaji_mismatch | warning | 10 |
-| vocabulary | ai_review | ai_example_jp | warning | 6 |
-| vocabulary | ai_review | ai_meaning_vi | warning | 3 |
-| vocabulary | rule | kana_word_reading_differs | warning | 3 |
-| vocabulary | ai_review | ai_example_vi | warning | 2 |
 | question | rule | options_image_only | warning | 1 |
-| vocabulary | rule | needs_dictionary_form | info | 153 |
-| vocabulary | rule | duplicate_same_word | info | 101 |
-| vocabulary | rule | han_viet_without_kanji | info | 21 |
+| vocabulary | rule | duplicate_same_word | info | 108 |
 | raw | rule | unstructured_format | info | 16 |
+| vocabulary | rule | han_viet_without_kanji | info | 15 |
 | question | rule | audio_timestamp_missing | info | 8 |
-| vocabulary | rule | han_viet_missing | info | 1 |
+| vocabulary | rule | homograph | info | 8 |
 | vocabulary | rule | latin_word | info | 1 |
 
 ## Danh sách mục từ vựng cần duyệt (error/warning)
 | ID | Từ | Đọc | Hán-Việt | Nguồn | Mã | Vấn đề | Đề xuất |
 |---|---|---|---|---|---|---|---|
-| VOC_000013 | ～人 | ～じん | NHÂN | rule | duplicate_reading_conflict | Cùng từ '～人' nhưng cách đọc khác ở: VOC_000113 |  |
-| VOC_000050 | 男の人 | おとこのひと | NAM NHÂN NHÂN | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] Thừa một chữ NHÂN; 男の人 chỉ có 2 kanji 男, 人. | NAM NHÂN |
-| VOC_000050 | 男の人 | おとこのひと | NAM NHÂN NHÂN | rule | han_viet_count | Hán-Việt 'NAM NHÂN NHÂN' có 3 âm tiết nhưng từ có 2 chữ kanji |  |
-| VOC_000051 | 女の人 | おんなのひと | NỮ NHÂN NHÂN | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] Thừa một chữ NHÂN; 女の人 chỉ có 2 kanji 女, 人. | NỮ NHÂN |
-| VOC_000051 | 女の人 | おんなのひと | NỮ NHÂN NHÂN | rule | han_viet_count | Hán-Việt 'NỮ NHÂN NHÂN' có 3 âm tiết nhưng từ có 2 chữ kanji |  |
-| VOC_000052 | 男の子 | おとこのこ | NAM NHÂN TỬ | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] Thừa chữ NHÂN; 男の子 gồm 男, 子. | NAM TỬ |
-| VOC_000052 | 男の子 | おとこのこ | NAM NHÂN TỬ | rule | han_viet_count | Hán-Việt 'NAM NHÂN TỬ' có 3 âm tiết nhưng từ có 2 chữ kanji |  |
-| VOC_000053 | 女の子 | おんなのこ | NỮ NHÂN TỬ | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] Thừa chữ NHÂN; 女の子 gồm 女, 子. | NỮ TỬ |
-| VOC_000053 | 女の子 | おんなのこ | NỮ NHÂN TỬ | rule | han_viet_count | Hán-Việt 'NỮ NHÂN TỬ' có 3 âm tiết nhưng từ có 2 chữ kanji |  |
-| VOC_000072 | 喫茶店 | きっさてん | NGẠT TRÀ ĐIẾM | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] Âm Hán-Việt của 喫 là KHIẾT, không phải NGẠT. | KHIẾT TRÀ ĐIẾM |
-| VOC_000075 | 県 | けん | HUYỆN / TỈNH | ai_review | ai_han_viet | [AI rà soát, độ tin cậy medium] Âm Hán-Việt của 県 là HUYỆN; 'TỈNH' là nghĩa, không phải âm Hán-Việt, dễ gây nhầm. | HUYỆN |
-| VOC_000095 | 東京ディズニーランド | とうきょうディズニーランド | ĐÔNG KINH ディズニーランド | rule | han_viet_count | Hán-Việt 'ĐÔNG KINH ディズニーランド' có 3 âm tiết nhưng từ có 2 chữ kanji |  |
-| VOC_000096 | 掛かります | かかります | QUẢI | ai_review | ai_example_jp | [AI rà soát, độ tin cậy high] Câu ví dụ tiếng Nhật lẫn chữ tiếng Việt 'bưu điện'. | 駅から 郵便局まで 15分 かかります。 |
-| VOC_000113 | ～人 | ～にん | NHÂN | rule | duplicate_reading_conflict | Cùng từ '～人' nhưng cách đọc khác ở: VOC_000013 |  |
-| VOC_000120 | カレー | カレー |  | ai_review | ai_meaning_vi | [AI rà soát, độ tin cậy high] Viết sai chính tả: 'cà rêu' phải là 'cà ri' (cả trong example_vi). | món cà ri, cơm cà ri (カレーライス) / ví dụ: Tôi thích món cà ri cay. |
-| VOC_000147 | 簡単 | かんたん | ĐƠN GIẢN | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] Đảo thứ tự: 簡 = GIẢN, 単 = ĐƠN. | GIẢN ĐƠN |
-| VOC_000155 | 暖かい | あたたかい | ÔN | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] Âm Hán-Việt của 暖 là NOÃN; ÔN là của 温. | NOÃN |
-| VOC_000178 | 天ぷら | てんぷら | THIÊN PHỤ LA | ai_review | ai_han_viet | [AI rà soát, độ tin cậy medium] Từ chỉ có 1 kanji 天 (ぷら là kana); 'PHỤ LA' không ứng với kanji nào trong từ. | THIÊN |
-| VOC_000178 | 天ぷら | てんぷら | THIÊN PHỤ LA | rule | han_viet_count | Hán-Việt 'THIÊN PHỤ LA' có 3 âm tiết nhưng từ có 1 chữ kanji |  |
-| VOC_000179 | 豚肉 | ぶたにく | ĐỐN NHỤC | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] Sai dấu: 豚 là ĐỒN, không phải ĐỐN. | ĐỒN NHỤC |
-| VOC_000194 | 迎えます | むかえます | NGHÊNH | ai_review | ai_example_jp | [AI rà soát, độ tin cậy medium] '駅へ友達を迎えます' không tự nhiên và không khớp bản dịch 'đi đến nhà ga để đón bạn'; cần mẫu ～に行きます (Bài 13). | 駅へ友達を迎えに行きます。 |
-| VOC_000198 | 遊びます | あそびます | GIẢI | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] Âm Hán-Việt của 遊 là DU, không phải GIẢI. | DU |
-| VOC_000200 | 買い物します | かいものします | MÃI VẬT | ai_review | ai_example_jp | [AI rà soát, độ tin cậy high] Sai trợ từ: 'デパートへ買い物します' không đúng ngữ pháp; dùng で, hoặc へ…に行きます. | デパートで買い物します。 |
-| VOC_000212 | お腹が空きました | おなかがあきました | PHÚC KHÔNG | ai_review | ai_reading | [AI rà soát, độ tin cậy high] 空きました trong cụm này đọc là すきました, không phải あきました. | おなかがすきました |
-| VOC_000212 | お腹が空きました | おなかがあきました | PHÚC KHÔNG | rule | romaji_mismatch | Romaji 'Onaka ga sukimashita' không khớp cách đọc 'おなかがあきました' |  |
-| VOC_000216 | ご注文は？ | ごちゅうもんは？ | TRÚNG CHÚ | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] 注文 đọc Hán-Việt là CHÚ VĂN; 'TRÚNG CHÚ' sai. | CHÚ VĂN |
-| VOC_000217 | 牛丼 | ぎゅうどん | NGƯU ĐỔNG | ai_review | ai_han_viet | [AI rà soát, độ tin cậy medium] 丼 có âm Hán-Việt là TỈNH/ĐẢM; 'ĐỔNG' là phiên theo âm Nhật どん. | NGƯU TỈNH |
-| VOC_000240 | 降ります | ふります | HÀNG | rule | duplicate_reading_conflict | Cùng từ '降ります' nhưng cách đọc khác ở: VOC_000267 |  |
-| VOC_000267 | 降ります | おります | GIÁNG / HẠ | rule | duplicate_reading_conflict | Cùng từ '降ります' nhưng cách đọc khác ở: VOC_000240 |  |
-| VOC_000328 | 先生 | せんせい | TIÊN SINH | ai_review | ai_meaning_vi | [AI rà soát, độ tin cậy high] Nghĩa tiếng Việt lẫn chữ Hán '呼' ('xưng呼'). | Bác sĩ (cách xưng hô với bác sĩ), Thầy/Cô giáo |
-| VOC_000329 | 2、3日 | にさんにち | NHỊ TAM NHẬT | rule | han_viet_count | Hán-Việt 'NHỊ TAM NHẬT' có 3 âm tiết nhưng từ có 1 chữ kanji |  |
-| VOC_000333 | のどが痛いです | のどがいたい | THỐNG | ai_review | ai_reading | [AI rà soát, độ tin cậy high] Cách đọc thiếu 'です' so với từ. | のどがいたいです |
-| VOC_000333 | のどが痛いです | のどがいたい | THỐNG | rule | romaji_mismatch | Romaji 'nodo ga itai desu' không khớp cách đọc 'のどがいたい' |  |
-| VOC_000388 | 机 | つくえ | TRƠN | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] 'TRƠN' không phải âm Hán-Việt của 机; âm đúng là CƠ (KỶ). | CƠ |
-| VOC_000396 | 何 | なん | HÀ | rule | duplicate_reading_conflict | Cùng từ '何' nhưng cách đọc khác ở: VOC_000734 |  |
-| VOC_000420 | みんなで | みんなで | CHÚNG | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] みんな viết bằng chữ 皆, âm Hán-Việt là GIAI; CHÚNG là âm của 衆. | GIAI |
-| VOC_000433 | 役立つ | やくだちます | DỊCH LẬP | ai_review | ai_reading | [AI rà soát, độ tin cậy medium] Từ ghi ở thể từ điển nhưng cách đọc lại ở thể ます, không khớp với từ. Ngoài ra câu ví dụ dùng 役に立ちます chứ không dùng 役立つ. | やくだつ (hoặc đổi từ thành 役に立ちます / やくにたちます) |
-| VOC_000435 | 勝つ | かちます | THẮNG | ai_review | ai_reading | [AI rà soát, độ tin cậy medium] Từ ghi ở thể từ điển nhưng cách đọc lại ở thể ます, không khớp với từ. | かつ |
-| VOC_000444 | 気をつける | きをつけます | KHÍ | ai_review | ai_reading | [AI rà soát, độ tin cậy medium] Từ ghi ở thể từ điển nhưng cách đọc lại ở thể ます, không khớp với từ. | きをつける |
-| VOC_000452 | 動く | うごきます | ĐỘNG | ai_review | ai_example_vi | [AI rà soát, độ tin cậy high] Câu dịch lẫn chữ Hán '時計' vào giữa tiếng Việt. | Đồng hồ đang chạy. |
-| VOC_000452 | 動く | うごきます | ĐỘNG | ai_review | ai_reading | [AI rà soát, độ tin cậy medium] Từ ghi ở thể từ điển nhưng cách đọc lại ở thể ます, không khớp với từ. | うごく |
-| VOC_000456 | やめる | やめます |  | ai_review | ai_reading | [AI rà soát, độ tin cậy medium] Từ ghi ở thể từ điển nhưng cách đọc lại ở thể ます, không khớp với từ. | やめる |
-| VOC_000456 | やめる | やめます |  | rule | kana_word_reading_differs | Từ viết bằng kana nhưng khác cách đọc: やめる / やめます |  |
-| VOC_000457 | アルバイト | アルバイト |  | rule | duplicate_reading_conflict | Cùng từ 'アルバイト' nhưng cách đọc khác ở: VOC_000883 |  |
-| VOC_000458 | 留学する | りゅうがくします | LƯU HỌC | ai_review | ai_reading | [AI rà soát, độ tin cậy medium] Từ ghi ở thể từ điển nhưng cách đọc lại ở thể ます, không khớp với từ. | りゅうがくする |
-| VOC_000467 | 負ける | まけます | PHỤ | ai_review | ai_reading | [AI rà soát, độ tin cậy medium] Từ ghi ở thể từ điển nhưng cách đọc lại ở thể ます, không khớp với từ. | まける |
-| VOC_000473 | 放送 | ほうそう | PHÁP TỐNG | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] 放 đọc Hán-Việt là PHÓNG, không phải PHÁP. | PHÓNG TỐNG |
-| VOC_000508 | ~目 | ~め | MỤC | rule | reading_not_kana | Cách đọc có ký tự không phải kana: ~め |  |
-| VOC_000510 | お湯 | おゆ | THỦY | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] 湯 đọc Hán-Việt là THANG, không phải THỦY (THỦY là 水). | THANG |
-| VOC_000515 | 交差点 | こうさてん | GIAO SAI ĐIỂM | ai_review | ai_example_vi | [AI rà soát, độ tin cậy high] Bản dịch còn sót chữ Hán 右 thay vì 'phải'. | Rẽ phải ở ngã tư. |
-| VOC_000526 | 電気屋 | でんきや | ĐIỆN ỐC | rule | han_viet_count | Hán-Việt 'ĐIỆN ỐC' có 2 âm tiết nhưng từ có 3 chữ kanji |  |
-| VOC_000528 | 法隆寺 | ほうりゅうじ | PHÁP TRUNG TỰ | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] 隆 đọc Hán-Việt là LONG, không phải TRUNG. | PHÁP LONG TỰ |
-| VOC_000552 | ホームステイ | ホームステイ |  | rule | romaji_mismatch | Romaji 'hoomustei' không khớp cách đọc 'ホームステイ' |  |
-| VOC_000563 | 考える | かんがえます | KHẢO | ai_review | ai_reading | [AI rà soát, độ tin cậy medium] Từ ghi dạng từ điển 考える nhưng cách đọc lại là dạng ます. | かんがえる (hoặc đổi word thành 考えます) |
-| VOC_000564 | 取る | とります [としを～] | THỦ / TUẾ | ai_review | ai_reading | [AI rà soát, độ tin cậy medium] Từ ghi dạng từ điển 取る nhưng cách đọc là dạng ます とります. | とる (hoặc đổi word thành 取ります) |
-| VOC_000566 | 留学する | りゅうがくします | LƯU HỌC | ai_review | ai_reading | [AI rà soát, độ tin cậy medium] Từ ghi dạng する nhưng cách đọc là dạng ます. | りゅうがくする (hoặc đổi word thành 留学します) |
-| VOC_000569 | 着く | つきます | TRƯỚC | ai_review | ai_reading | [AI rà soát, độ tin cậy medium] Từ ghi dạng từ điển 着く nhưng cách đọc là dạng ます. | つく (hoặc đổi word thành 着きます) |
-| VOC_000582 | エスカレーター | エスカレーター |  | rule | romaji_mismatch | Romaji 'esukarātā' không khớp cách đọc 'エスカレーター' |  |
-| VOC_000592 | エレベーター | エレベーター |  | rule | romaji_mismatch | Romaji 'erebātā' không khớp cách đọc 'エレベーター' |  |
-| VOC_000595 | 円 | えん | YÊN | ai_review | ai_han_viet | [AI rà soát, độ tin cậy medium] Âm Hán-Việt của 円(圓) là VIÊN; 'Yên' là tên gọi đơn vị tiền tệ trong tiếng Việt chứ không phải âm Hán-Việt. | VIÊN |
-| VOC_000620 | 美術館 | びじゅつかん | MỸ THUẬT QUÁN | ai_review | ai_example_jp | [AI rà soát, độ tin cậy medium] '月曜日 休みに なります' không tự nhiên (nghĩa là 'trở thành ngày nghỉ'); câu chuẩn là 月曜日は休みです / 月曜日が休みです. | 美術館は 月曜日が 休みです。 |
-| VOC_000630 | 昼 | ひる | TRƯA | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] 昼 đọc Hán-Việt là TRÚ; 'TRƯA' là từ thuần Việt. | TRÚ |
-| VOC_000632 | 一昨日 | おととい | NHẤT TẠC NHẬT | rule | duplicate_reading_conflict | Cùng từ '一昨日' nhưng cách đọc khác ở: VOC_000682 |  |
-| VOC_000639 | 昼休み | ひるやすみ | TRƯA HƯU | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] 昼 đọc Hán-Việt là TRÚ, không phải TRƯA. | TRÚ HƯU |
-| VOC_000639 | 昼休み | ひるやすみ | TRƯA HƯU | rule | romaji_mismatch | Romaji 'hirusumi' không khớp cách đọc 'ひるやすみ' |  |
-| VOC_000652 | 日曜日 | にちようび | NHẬT DIỆU NHẬT | ai_review | ai_example_jp | [AI rà soát, độ tin cậy high] Lỗi chính tả: '働きますん' không tồn tại, phải là 働きません. | 日曜日は 働きません。 |
-| VOC_000673 | バス | ばす |  | ai_review | ai_reading | [AI rà soát, độ tin cậy medium] Từ katakana nhưng cách đọc ghi bằng hiragana (các từ ngoại lai khác đều ghi katakana). | バス |
-| VOC_000681 | タクシー | たくしー |  | ai_review | ai_reading | [AI rà soát, độ tin cậy medium] Từ katakana nhưng cách đọc ghi bằng hiragana. | タクシー |
-| VOC_000682 | 一昨日 | おとtoi | NHẤT TRÁC NHẬT | ai_review | ai_reading | [AI rà soát, độ tin cậy high] Cách đọc bị lỗi, lẫn romaji 'toi'. | おととい |
-| VOC_000682 | 一昨日 | おとtoi | NHẤT TRÁC NHẬT | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] 昨 đọc Hán-Việt là TẠC, không phải TRÁC (dòng VOC_000632 ghi đúng). | NHẤT TẠC NHẬT |
-| VOC_000682 | 一昨日 | おとtoi | NHẤT TRÁC NHẬT | rule | reading_not_kana | Cách đọc có ký tự không phải kana: おとtoi |  |
-| VOC_000682 | 一昨日 | おとtoi | NHẤT TRÁC NHẬT | rule | duplicate_reading_conflict | Cùng từ '一昨日' nhưng cách đọc khác ở: VOC_000632 |  |
-| VOC_000687 | スーパー | すーぱー |  | ai_review | ai_reading | [AI rà soát, độ tin cậy medium] Từ katakana nhưng cách đọc ghi bằng hiragana. | スーパー |
-| VOC_000690 | 学校 | がっこう | HỌC GIÁO | ai_review | ai_han_viet | [AI rà soát, độ tin cậy medium] 校 trong 学校 đọc Hán-Việt là HIỆU (học hiệu); GIÁO là âm hiếm dùng với nghĩa khác. | HỌC HIỆU |
-| VOC_000717 | 撮ります | とります | TÁT | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] 撮 đọc Hán-Việt là TOÁT, không phải TÁT. | TOÁT |
-| VOC_000734 | 何 | なに / なん | HÀ | rule | duplicate_reading_conflict | Cùng từ '何' nhưng cách đọc khác ở: VOC_000396 |  |
-| VOC_000751 | 教えます | おしえます | GIÁO | ai_review | ai_example_jp | [AI rà soát, độ tin cậy medium] 'さんとうさん' không phải tên Santos (Minna: サントスさん) trong khi bản dịch ghi 'anh Santos'. | わたしは　サントスさんに　にほんごを　教えます。 |
-| VOC_000799 | ハンサム | ハンサム |  | rule | romaji_mismatch | Romaji 'Hansomu' không khớp cách đọc 'ハンサム' |  |
-| VOC_000838 | お仕事 | おしごと | SỰ CÔNG | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] 仕事 đọc Hán-Việt là SĨ SỰ (仕=SĨ, 事=SỰ); 'SỰ CÔNG' sai. | SĨ SỰ |
-| VOC_000861 | クラシック | くらしく |  | ai_review | ai_reading | [AI rà soát, độ tin cậy high] Thiếu っ nhỏ: クラシック = くらしっく. | くらしっく |
-| VOC_000861 | クラシック | くらしく |  | rule | romaji_mismatch | Romaji 'kurashikku' không khớp cách đọc 'くらしく' |  |
-| VOC_000861 | クラシック | くらしく |  | rule | kana_word_reading_differs | Từ viết bằng kana nhưng khác cách đọc: クラシック / くらしく |  |
-| VOC_000870 | ローマ字 | ろーまじ | TỰ | ai_review | ai_meaning_vi | [AI rà soát, độ tin cậy high] Lỗi chính tả: 'La-tông' phải là 'La-tinh'. | Chữ Rōmaji (chữ La-tinh) |
-| VOC_000873 | 分かる | わかります | PHÂN | ai_review | ai_reading | [AI rà soát, độ tin cậy high] Từ ở thể từ điển 分かる nhưng cách đọc lại ghi thể ます; không khớp. | わかる |
-| VOC_000874 | ある | あります |  | ai_review | ai_reading | [AI rà soát, độ tin cậy high] Từ ở thể từ điển ある nhưng cách đọc ghi あります; không khớp. | ある |
-| VOC_000874 | ある | あります |  | rule | kana_word_reading_differs | Từ viết bằng kana nhưng khác cách đọc: ある / あります |  |
-| VOC_000883 | アルバイト | あるばいと |  | rule | duplicate_reading_conflict | Cùng từ 'アルバイト' nhưng cách đọc khác ở: VOC_000457 |  |
-| VOC_000885 | 夫 | おっと (PHU) / しゅじん | CHỦ NHÂN | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] 夫 có Hán-Việt là PHU; 'CHỦ NHÂN' là của 主人, không phải của 夫. | PHU |
-| VOC_000885 | 夫 | おっと (PHU) / しゅじん | CHỦ NHÂN | ai_review | ai_reading | [AI rà soát, độ tin cậy medium] Ô cách đọc lẫn Hán-Việt '(PHU)' và cách đọc của từ khác (しゅじん = 主人). | おっと |
-| VOC_000885 | 夫 | おっと (PHU) / しゅじん | CHỦ NHÂN | rule | reading_not_kana | Cách đọc có ký tự không phải kana: おっと (PHU) / しゅじん |  |
-| VOC_000885 | 夫 | おっと (PHU) / しゅじん | CHỦ NHÂN | rule | han_viet_count | Hán-Việt 'CHỦ NHÂN' có 2 âm tiết nhưng từ có 1 chữ kanji |  |
-| VOC_000887 | 妻 | つま (THÊ) / かない | GIA NỘI | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] 妻 có Hán-Việt là THÊ; 'GIA NỘI' là của 家内, không phải của 妻. | THÊ |
-| VOC_000887 | 妻 | つま (THÊ) / かない | GIA NỘI | ai_review | ai_reading | [AI rà soát, độ tin cậy medium] Ô cách đọc lẫn Hán-Việt '(THÊ)' và cách đọc của từ khác (かない = 家内). | つま |
-| VOC_000887 | 妻 | つま (THÊ) / かない | GIA NỘI | rule | reading_not_kana | Cách đọc có ký tự không phải kana: つま (THÊ) / かない |  |
-| VOC_000887 | 妻 | つま (THÊ) / かない | GIA NỘI | rule | han_viet_count | Hán-Việt 'GIA NỘI' có 2 âm tiết nhưng từ có 1 chữ kanji |  |
-| VOC_000893 | 全然 | ぜんぜん | HOÀN NHIÊN | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] 全 là TOÀN, không phải HOÀN. | TOÀN NHIÊN |
-| VOC_000894 | 早く | はやく | TẢO / TỐC | ai_review | ai_han_viet | [AI rà soát, độ tin cậy medium] 早 chỉ đọc là TẢO; TỐC là âm của chữ 速 (速く), không phải 早. | TẢO |
-| VOC_000902 | ～はちょっと… | ～はちょっと… |  | rule | reading_not_kana | Cách đọc có ký tự không phải kana: ～はちょっと… |  |
-| VOC_000920 | また今度お願いします | またこんどおねがいします | KIM ĐỘ NGUỆN | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] Lỗi chính tả: 'NGUỆN' phải là 'NGUYỆN' (願). | KIM ĐỘ NGUYỆN |
-| VOC_000922 | どうぞ よろしく お願いします | どうぞ よろしく おねがいします | NGUỆN | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] Lỗi chính tả: 'NGUỆN' phải là 'NGUYỆN' (願). | NGUYỆN |
-| VOC_000923 | こちらこそ よろしく お願いします | こちらこそ よろしく おねがいします | NGUỆN | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] Lỗi chính tả: 'NGUỆN' phải là 'NGUYỆN' (願). | NGUYỆN |
-| VOC_000928 | お疲れ様でした | おつかれさまでした | BÃI TƯỢNG | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] 疲 = BÌ, 様 = DẠNG; 'BÃI TƯỢNG' sai cả hai âm. | BÌ DẠNG |
-| VOC_000933 | もう 一度 お願いします | もう いちど おねがいします | NHẤT ĐỘ NGUỆN | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] Lỗi chính tả: 'NGUỆN' phải là 'NGUYỆN' (願). | NHẤT ĐỘ NGUYỆN |
-| VOC_000945 | お願い します | おねがい します | NGUỆN | ai_review | ai_han_viet | [AI rà soát, độ tin cậy high] Lỗi chính tả: 'NGUỆN' phải là 'NGUYỆN' (願). | NGUYỆN |
-| VOC_000953 | お気をつけて | おきをつけて | KHÍ | rule | romaji_mismatch | Romaji 'Okitsukete' không khớp cách đọc 'おきをつけて' |  |
-| VOC_000961 | お気をつけください | おきをつけください | KHÍ | rule | romaji_mismatch | Romaji 'Oki o tsukete kudasai' không khớp cách đọc 'おきをつけください' |  |

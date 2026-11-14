@@ -13,6 +13,7 @@ from .db import DEFAULT_DB, ROOT, connect
 from .ingestion import flashcards_csv as fc
 from .ingestion import pipeline
 from .learning import srs
+from .validation import reference as ref
 
 _conn = None
 
@@ -129,8 +130,11 @@ def vocab_detail(conn, vid: str) -> dict:
     v["raw"] = repo.raw_by_ids(conn, v["raw_ids"])
     v["issues"] = repo.issues_for(conn, "vocabulary", vid)
     v["sources"] = [repo.get_source(conn, s) for s in v["source_ids"]]
+    v["dictionary"] = {"reading": ref.check_reading(v["word"], v["reading"] or ""),
+                       "han_viet": ref.check_han_viet(v["word"], v["han_viet"])} if ref.available() else None
     v["history"] = repo.rows(conn.execute(
-        "SELECT action, note, acted_at FROM review_actions WHERE entity_type='vocabulary' AND entity_id=? "
+        "SELECT action, note, acted_at, before_json, after_json FROM review_actions "
+        "WHERE entity_type='vocabulary' AND entity_id=? "
         "ORDER BY action_id DESC", (vid,)))
     return v
 
@@ -162,11 +166,9 @@ def apply_edit(conn, vid: str, edit: VocabEdit, note: str | None) -> dict:
     fields = edit.model_dump(exclude_unset=True)
     if not fields:
         raise HTTPException(400, "Không có thay đổi")
-    repo.update_vocab(conn, vid, **fields)
-    # an edited item must be re-checked by a human; drop to needs_review then re-run rules
-    repo.update_vocab(conn, vid, verification_status="needs_review")
+    # an item edited by hand waits for the user's own approval (automation will not re-verify it)
+    repo.update_vocab(conn, vid, **fields, verification_status="needs_review", verified_by="pending_user")
     pipeline.revalidate_vocab(conn, vid)
-    repo.update_vocab(conn, vid, verification_status="needs_review")
     repo.log_action(conn, "vocabulary", vid, "edit", note, before, repo.get_vocab(conn, vid))
     conn.commit()
     return vocab_detail(conn, vid)
@@ -229,8 +231,8 @@ def review(entity: Literal["vocabulary", "question"], entity_id: str, body: Revi
     before = dict(before)
 
     def set_status(status: str, notes: str | None = None) -> None:
-        conn.execute(f"UPDATE {table} SET verification_status=?, review_notes=COALESCE(?, review_notes) WHERE {key}=?",
-                     (status, notes, entity_id))
+        conn.execute(f"UPDATE {table} SET verification_status=?, verified_by='user', "
+                     f"review_notes=COALESCE(?, review_notes) WHERE {key}=?", (status, notes, entity_id))
 
     if body.action == "approve":
         errors = conn.execute("SELECT COUNT(*) FROM validation_issues WHERE entity_type=? AND entity_id=? "
@@ -259,7 +261,7 @@ def review(entity: Literal["vocabulary", "question"], entity_id: str, body: Revi
                               romaji=fields.get("romaji"), han_viet=fields.get("han_viet"),
                               meaning_vi=fields["meaning_vi"], example_jp=fields.get("example_jp"),
                               example_romaji=fields.get("example_romaji"), example_vi=fields.get("example_vi"),
-                              verification_status="normalized")
+                              verification_status="needs_review", verified_by="pending_user")
             pipeline.revalidate_vocab(conn, entity_id)
         else:
             set_status("needs_review", body.note)

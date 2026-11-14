@@ -55,24 +55,27 @@ def test_srs_session_and_dashboard(client):
 
 
 def test_review_approve_reject_edit(client):
+    v = client.get("/api/vocabulary", params={"q": "病院"}).json()["items"][0]
+    assert v["verification_status"] == "verified" and v["verified_by"] == "ai"
+
+    # a hand edit takes the item away from automation until the user approves it
+    r = client.post(f"/api/review/vocabulary/{v['id']}",
+                    json={"action": "edit", "note": "thử sửa", "edit": {"reading": "びょうinn"}}).json()
+    assert r["verification_status"] == "needs_review" and r["verified_by"] == "pending_user"
+    assert any(i["code"] == "reading_not_kana" for i in r["issues"])
+    assert client.post(f"/api/review/vocabulary/{v['id']}", json={"action": "approve"}).status_code == 409
     q = client.get("/api/review/queue", params={"entity": "vocabulary"}).json()
-    assert q["total"] > 0
-    assert q["items"][0]["issue_count"] > 0                       # flagged items surface first
-    clean = client.get("/api/review/queue", params={"entity": "vocabulary", "status": "normalized"}).json()["items"][0]
-    assert clean["issue_count"] == 0
-    r = client.post(f"/api/review/vocabulary/{clean['id']}", json={"action": "approve", "note": "ok"}).json()
-    assert r["verification_status"] == "verified" and r["history"][0]["action"] == "approve"
+    assert q["total"] >= 1 and q["items"][0]["id"] == v["id"]
+    r = client.post(f"/api/review/vocabulary/{v['id']}",
+                    json={"action": "edit", "edit": {"reading": "びょういん"}}).json()
+    r = client.post(f"/api/review/vocabulary/{v['id']}", json={"action": "approve", "note": "ok"}).json()
+    assert r["verification_status"] == "verified" and r["verified_by"] == "user"
+    assert r["history"][0]["action"] == "approve"
+    assert "病院" in r["raw"][0]["content"]
 
-    bad = client.get("/api/vocabulary", params={"q": "おとtoi"}).json()["items"][0]
-    assert client.post(f"/api/review/vocabulary/{bad['id']}", json={"action": "approve"}).status_code == 409
-    r = client.post(f"/api/review/vocabulary/{bad['id']}",
-                    json={"action": "edit", "note": "sửa cách đọc", "edit": {"reading": "おととい"}}).json()
-    assert r["reading"] == "おととい" and r["verification_status"] == "needs_review"
-    assert not any(i["code"] == "reading_not_kana" for i in r["issues"])
-    assert r["raw"][0]["content"].find("おとtoi") >= 0          # RAW untouched
-
-    rej = client.post(f"/api/review/vocabulary/{q['items'][-1]['id']}", json={"action": "reject"}).json()
-    assert rej["verification_status"] == "rejected"
+    other = client.get("/api/vocabulary", params={"q": "切手"}).json()["items"][0]
+    rej = client.post(f"/api/review/vocabulary/{other['id']}", json={"action": "reject"}).json()
+    assert rej["verification_status"] == "rejected" and rej["verified_by"] == "user"
 
 
 def test_reextract_restores_from_raw(client):
@@ -131,7 +134,14 @@ def test_reimport_keeps_user_decisions(client, imported):
 def test_online_check_with_stub(imported):
     conn, _ = imported
     from hub.ingestion import pipeline
-    res = pipeline.check_online(conn, checker=lambda url: ("accessible", "HTTP 200"))
+    seen = []
+
+    def stub(url):
+        seen.append(url)
+        return ("requires_auth", "login") if "notebook.google.com/notebook" in url else ("accessible", "HTTP 200")
+    res = pipeline.check_online(conn, checker=stub)
     by = {r["source_id"]: r["access_status"] for r in res}
-    assert by["SRC_LESSON_002"] == "requires_auth" and by["SRC_NBLM_001"] == "manual_export"
-    assert by["SRC_EXAM_001"] == "accessible"
+    assert by["SRC_NBLM_001"] == "manual_export"            # loads, but content needs an export
+    assert by["SRC_NOTEBOOK_001"] == "requires_auth"
+    assert by["SRC_EXAM_001"] == "accessible" and by["SRC_LESSON_002"] == "accessible"
+    assert any(u.endswith("/export?format=txt") for u in seen)   # Google Doc checked via its text export

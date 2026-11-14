@@ -175,7 +175,7 @@ def due_cards(conn, direction: str, new_limit: int = 20, lesson: int | None = No
     t = iso()
     lesson_sql, la = ("AND v.lesson_number=?", [lesson]) if lesson is not None else ("", [])
     base = ("SELECT c.*, v.word, v.reading, v.romaji, v.han_viet, v.meaning_vi, v.example_jp, v.example_romaji, "
-            "v.example_vi, v.lesson_number, v.deck, v.verification_status FROM srs_cards c "
+            "v.example_vi, v.lesson_number, v.deck, v.verification_status, v.verified_by, v.verb_group FROM srs_cards c "
             "JOIN vocabulary v ON v.id=c.entity_id AND c.entity_type='vocabulary' "
             "WHERE v.archived=0 AND v.verification_status!='rejected' AND c.direction=? ")
     due = rows(conn.execute(base + f"AND c.due_at IS NOT NULL AND c.due_at<=? {lesson_sql} ORDER BY c.due_at LIMIT ?",
@@ -224,6 +224,8 @@ def dashboard(conn) -> dict:
     return {
         "level": "N5",
         "vocabulary_by_status": kv("SELECT verification_status, COUNT(*) FROM vocabulary WHERE archived=0 GROUP BY 1"),
+        "vocabulary_verified_by": kv("SELECT COALESCE(verified_by,'none'), COUNT(*) FROM vocabulary "
+                                     "WHERE archived=0 AND verification_status='verified' GROUP BY 1"),
         "cards_by_status": kv("SELECT status, COUNT(*) FROM srs_cards WHERE direction='jp_vi' GROUP BY 1"),
         "cards_by_status_vi_jp": kv("SELECT status, COUNT(*) FROM srs_cards WHERE direction='vi_jp' GROUP BY 1"),
         "due_now": kv("SELECT direction, COUNT(*) FROM srs_cards WHERE due_at IS NOT NULL AND due_at<=? GROUP BY 1", iso()),

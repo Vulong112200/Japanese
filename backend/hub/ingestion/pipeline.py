@@ -11,6 +11,7 @@ from pathlib import Path
 
 from .. import repo
 from ..db import ROOT
+from ..validation import reference as ref
 from ..validation import vocabulary as vrules
 from . import flashcards_csv as fc
 
@@ -129,7 +130,17 @@ def inventory(conn, dirs=(EXAM_DIR, FLASHCARD_DIR)) -> list[dict]:
 
 
 # ---------------- online sources ----------------
-AUTH_TYPES = {"google_drive": "requires_auth", "google_doc": "requires_auth", "notebooklm": "manual_export"}
+# NotebookLM share links open a page whose content is rendered client-side behind Google sign-in:
+# the HTTP check passes but nothing can be read without an export.
+AUTH_TYPES = {"notebooklm": "manual_export"}
+
+
+def probe_url(url: str, source_type: str) -> str:
+    """URL actually fetched for the check: a public Google Doc is checked through its text export."""
+    m = re.match(r"https://docs\.google\.com/document/d/([^/]+)", url)
+    if source_type == "google_doc" and m:
+        return f"https://docs.google.com/document/d/{m.group(1)}/export?format=txt"
+    return url
 
 
 def register_online(conn) -> int:
@@ -147,6 +158,8 @@ def check_url(url: str, timeout: float = 15) -> tuple[str, str]:
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (compatible; LearningHub/0.1)"})
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
+            if "accounts.google.com" in r.geturl():
+                return "requires_auth", "chuyển hướng tới trang đăng nhập Google"
             body = r.read(200_000).decode("utf-8", "replace")
             js_only = len(re.sub(r"<script.*?</script>|<[^>]+>|\s+", "", body, flags=re.S)) < 300
             return "accessible", f"HTTP {r.status}" + ("; nội dung chủ yếu render bằng JavaScript" if js_only else "")
@@ -161,9 +174,9 @@ def check_online(conn, checker=check_url) -> list[dict]:
     for s in repo.list_sources(conn):
         if not s["url"]:
             continue
-        status, detail = checker(s["url"])
+        status, detail = checker(probe_url(s["url"], s["source_type"]))
         forced = AUTH_TYPES.get(s["source_type"])
-        if forced:  # page may load, but the learning content needs the user's account or an export
+        if forced and status == "accessible":
             detail += f"; nội dung cần {'đăng nhập Google' if forced == 'requires_auth' else 'export thủ công'}"
             status = forced
         repo.update_source(conn, s["source_id"], access_status=status, checked_at=repo.iso(),
@@ -237,33 +250,124 @@ def import_flashcards(conn, directory: Path = FLASHCARD_DIR) -> dict:
                                imported_at=repo.iso(), error=None)
         except Exception as e:
             repo.update_source(conn, sid, processing_status="failed", error=str(e))
+    stats["corrections"] = apply_vocab_corrections(conn)
     revalidate_all(conn)
     repo.ensure_cards(conn)
     conn.commit()
     return stats
 
 
-def revalidate_vocab(conn, vid: str, dupes: dict[str, list[str]] | None = None) -> list:
+VOCAB_CORRECTIONS = ROOT / "data" / "normalized" / "corrections" / "vocabulary_corrections.json"
+USER_OWNED = ("user", "pending_user")     # a person decided or is editing: automation keeps its hands off
+
+
+def _raw_word(conn, v: dict) -> str:
+    raw = repo.raw_by_ids(conn, json.loads(v["raw_ids"])[:1])
+    return _norm(json.loads(raw[0]["content"])[0]) if raw else ""
+
+
+def load_corrections(path: Path = VOCAB_CORRECTIONS) -> dict:
+    if not path.exists():
+        return {"audit": {"items": {}}, "corrections": [], "open_questions": []}
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def apply_vocab_corrections(conn, path: Path = VOCAB_CORRECTIONS) -> dict:
+    """Apply reviewed corrections to the NORMALIZED layer. RAW rows are never touched; every change is
+    logged in review_actions (action=ai_correction) with before/after, so it can be traced and undone
+    ("Trích xuất lại từ RAW" on the review screen)."""
+    data = load_corrections(path)
+    stats = {"applied": 0, "already_applied": 0, "conflict": 0, "skipped": 0}
+    conn.execute("DELETE FROM validation_issues WHERE entity_type='vocabulary' AND origin='ai_review'")
+    for c in data["corrections"]:
+        v = repo.get_vocab(conn, c["id"])
+        if not v or _raw_word(conn, v) != _norm(c["raw_word"]) or v["verified_by"] in USER_OWNED:
+            stats["skipped"] += 1
+            continue
+        cur, new = v[c["field"]] or "", c["new_value"] or ""
+        if cur == new:
+            stats["already_applied"] += 1
+        elif cur == (c["old_value"] or ""):
+            repo.update_vocab(conn, c["id"], **{c["field"]: new or None})
+            repo.log_action(conn, "vocabulary", c["id"], "ai_correction", c["reason_vi"],
+                            {c["field"]: cur}, {c["field"]: new, "basis": c.get("basis")})
+            stats["applied"] += 1
+        else:
+            stats["conflict"] += 1            # value differs from both old and new: leave it alone
+    for q in data.get("open_questions", []):
+        v = repo.get_vocab(conn, q["id"])
+        if v and _raw_word(conn, v) == _norm(q["raw_word"]) and v["verified_by"] not in USER_OWNED:
+            repo.add_issue(conn, "vocabulary", q["id"], "ai_open_question", "warning", q["question_vi"],
+                           q.get("suggestion"), origin="ai_review")
+    return stats
+
+
+def dictionary_check(v: dict) -> tuple[list, dict]:
+    """Issues from JMdict / KANJIDIC2 plus fields the dictionary can fill in (POS, verb group)."""
+    if not ref.available():
+        return [], {}
+    issues, enrich = [], {}
+    a = ref.check_reading(v["word"], v["reading"] or "")
+    if a["status"] == "mismatch":
+        issues.append(("dict_reading_mismatch", "warning",
+                       f"JMdict: '{v['word']}' đọc là {' / '.join(a['expected'][:4])}; dữ liệu ghi '{v['reading']}'",
+                       a["expected"][0]))
+    elif a["status"] == "confirmed":
+        # verb_group / dictionary_form are always overwritten (also with NULL) so stale guesses disappear
+        enrich = {"verb_group": a.get("verb_group"), "dictionary_form": a.get("dictionary_form")}
+        if a.get("pos"):
+            enrich["part_of_speech"] = a["pos"]
+    elif v.get("part_of_speech") == "verb":
+        enrich = {"part_of_speech": "expression", "verb_group": None}   # ます phrase, not a dictionary verb
+    b = ref.check_han_viet(v["word"], v["han_viet"])
+    if b["status"] == "mismatch":
+        allowed = "; ".join(f"{p['kanji']} = {', '.join(p['allowed'][:4]) or '?'}" for p in b["per_kanji"])
+        issues.append(("dict_han_viet_mismatch", "warning",
+                       f"Hán-Việt '{v['han_viet']}' không khớp từ điển ({allowed})", None))
+    return issues, enrich
+
+
+def revalidate_vocab(conn, vid: str, dupes: dict[str, list[str]] | None = None,
+                     audited: dict[str, str] | None = None) -> list:
+    """Re-run every automatic check and set the status.
+    verified (verified_by=ai) needs ALL of: covered by the AI audit, no error/warning from the rules,
+    reading and Hán-Việt not contradicted by the dictionaries. Items a person approved or edited keep
+    their status."""
     v = repo.get_vocab(conn, vid)
+    owned = v["verified_by"] in USER_OWNED
+    dict_issues, enrich = dictionary_check(v)
+    if enrich and not owned:
+        repo.update_vocab(conn, vid, **enrich)
+        v = repo.get_vocab(conn, vid)
     issues = vrules.validate(v)
+    if ref.available():        # the dictionary check supersedes the cruder syllable count
+        issues = [i for i in issues if i[0] != "han_viet_count"]
+    issues += dict_issues
     others = [o for o in (dupes or {}).get(_norm(v["word"]), []) if o != vid]
     if others:
         diff_reading = [o for o in others if _norm(repo.get_vocab(conn, o)["reading"]) != _norm(v["reading"])]
-        if diff_reading:
-            issues.append(("duplicate_reading_conflict", "warning",
-                           f"Cùng từ '{v['word']}' nhưng cách đọc khác ở: {', '.join(diff_reading)}", None))
+        if diff_reading:   # each reading is checked against JMdict on its own (～人 じん/にん, 降ります ふ/お)
+            issues.append(("homograph", "info",
+                           f"Cùng cách viết '{v['word']}' nhưng cách đọc khác ở {', '.join(diff_reading)}", None))
         else:
             issues.append(("duplicate_same_word", "info",
-                           f"Từ '{v['word']}' còn xuất hiện ở {', '.join(others)} với nghĩa diễn đạt khác "
-                           "(có thể là đa nghĩa hoặc trùng lặp)", None))
+                           f"Từ '{v['word']}' còn xuất hiện ở {', '.join(others)} "
+                           "(đa nghĩa hoặc trùng lặp giữa các bài)", None))
     repo.replace_issues(conn, "vocabulary", vid, issues)
-    if v["verification_status"] == "verified":   # human decision stands; re-runs must not reopen issues
-        conn.execute("UPDATE validation_issues SET resolved=1 WHERE entity_type='vocabulary' AND entity_id=?", (vid,))
-    if v["verification_status"] not in ("verified", "rejected"):
-        other_open = conn.execute(
-            "SELECT COUNT(*) FROM validation_issues WHERE entity_type='vocabulary' AND entity_id=? "
-            "AND origin!='rule' AND resolved=0 AND severity!='info'", (vid,)).fetchone()[0]
-        repo.update_vocab(conn, vid, verification_status="needs_review" if other_open else vrules.status_for(issues))
+    if v["verification_status"] == "rejected" or owned:
+        if v["verification_status"] == "verified":     # a person's approval stands; do not reopen issues
+            conn.execute("UPDATE validation_issues SET resolved=1 WHERE entity_type='vocabulary' AND entity_id=?",
+                         (vid,))
+        return issues
+    blocking = any(sev in ("error", "warning") for _, sev, _, _ in issues) or conn.execute(
+        "SELECT COUNT(*) FROM validation_issues WHERE entity_type='vocabulary' AND entity_id=? "
+        "AND origin!='rule' AND resolved=0 AND severity!='info'", (vid,)).fetchone()[0]
+    if blocking:
+        repo.update_vocab(conn, vid, verification_status="needs_review", verified_by=None)
+    elif audited and _norm(audited.get(vid, "\0")) == _raw_word(conn, v):
+        repo.update_vocab(conn, vid, verification_status="verified", verified_by="ai")
+    else:
+        repo.update_vocab(conn, vid, verification_status="normalized", verified_by=None)
     return issues
 
 
@@ -271,8 +375,9 @@ def revalidate_all(conn) -> None:
     dupes: dict[str, list[str]] = {}
     for r in conn.execute("SELECT id, word FROM vocabulary WHERE archived=0"):
         dupes.setdefault(_norm(r["word"]), []).append(r["id"])
+    audited = load_corrections()["audit"]["items"]
     for vid in [r[0] for r in conn.execute("SELECT id FROM vocabulary")]:
-        revalidate_vocab(conn, vid, dupes)
+        revalidate_vocab(conn, vid, dupes, audited)
 
 
 # ---------------- sample exam ----------------
@@ -393,39 +498,9 @@ def import_sample_exam(conn, exam_json: Path = EXAM_JSON, exam_dir: Path | None 
             "page_images": sum(len(v) for v in pages.values())}
 
 
-VOCAB_AI_REVIEW = ROOT / "data" / "normalized" / "ai_review" / "vocabulary_ai_review.json"
-
-
-def apply_vocab_ai_review(conn, path: Path = VOCAB_AI_REVIEW) -> dict:
-    """Attach AI audit findings as issues (origin=ai_review). Data itself is never changed."""
-    if not path.exists():
-        return {"applied": 0, "skipped": 0}
-    findings = json.loads(path.read_text(encoding="utf-8"))
-    by_id: dict[str, list] = {}
-    skipped = 0
-    for f in findings:
-        v = repo.get_vocab(conn, f["id"])
-        if not v or _norm(v["word"]) != _norm(f["word"]):   # ids are only trusted with a matching word
-            skipped += 1
-            continue
-        by_id.setdefault(f["id"], []).append(f)
-    for vid, fs in by_id.items():
-        if repo.get_vocab(conn, vid)["verification_status"] in ("verified", "rejected"):
-            continue                                   # already decided by the user
-        repo.replace_issues(conn, "vocabulary", vid, [(
-            f"ai_{f['field']}", "warning",
-            f"[AI rà soát, độ tin cậy {f['confidence']}] {f['problem_vi']}", f.get("suggestion")) for f in fs],
-            origin="ai_review")
-        if repo.get_vocab(conn, vid)["verification_status"] == "normalized":
-            repo.update_vocab(conn, vid, verification_status="needs_review")
-    conn.commit()
-    return {"applied": sum(len(v) for v in by_id.values()), "items": len(by_id), "skipped": skipped}
-
-
 def run_all(conn, check_network: bool = False) -> dict:
     out = {"inventory": len(inventory(conn)), "online_registered": register_online(conn)}
     out["flashcards"] = import_flashcards(conn)
-    out["vocab_ai_review"] = apply_vocab_ai_review(conn)
     out["exam"] = import_sample_exam(conn)
     if check_network:
         out["online_check"] = check_online(conn)

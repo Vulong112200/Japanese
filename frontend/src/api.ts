@@ -59,6 +59,8 @@ export interface Vocab {
   source_ids: string[]
   raw_ids: number[]
   verification_status: Status
+  verified_by: 'ai' | 'user' | 'pending_user' | null
+  dictionary_form: string | null
   review_notes: string | null
   archived: number
   issue_count?: number
@@ -68,7 +70,7 @@ export interface VocabDetail extends Vocab {
   raw: RawRecord[]
   issues: Issue[]
   sources: Source[]
-  history: { action: string; note: string | null; acted_at: string }[]
+  history: { action: string; note: string | null; acted_at: string; before_json: string | null; after_json: string | null }[]
 }
 
 export interface Card {

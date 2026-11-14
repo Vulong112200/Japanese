@@ -79,15 +79,45 @@ def data_quality(conn) -> str:
         "SELECT v.id, v.word, v.reading, v.han_viet, i.origin, i.code, i.message, i.suggestion FROM validation_issues i "
         "JOIN vocabulary v ON v.id=i.entity_id AND i.entity_type='vocabulary' WHERE i.resolved=0 AND i.severity!='info' "
         "ORDER BY v.id, i.origin"))
+    status = repo.rows(conn.execute(
+        "SELECT verification_status, COALESCE(verified_by,'-') verified_by, COUNT(*) n FROM vocabulary "
+        "WHERE archived=0 GROUP BY 1,2 ORDER BY 3 DESC"))
+    fixes = repo.rows(conn.execute(
+        "SELECT a.entity_id, v.word, a.before_json, a.after_json, a.note FROM review_actions a "
+        "JOIN vocabulary v ON v.id=a.entity_id WHERE a.action='ai_correction' ORDER BY a.entity_id, a.action_id"))
+    by_field: dict[str, int] = {}
+    fix_rows = []
+    for f in fixes:
+        b, a = json.loads(f["before_json"]), json.loads(f["after_json"])
+        field = next(iter(b))
+        by_field[field] = by_field.get(field, 0) + 1
+        fix_rows.append([f["entity_id"], f["word"], field, b[field] or "∅", a[field] or "∅", f["note"]])
     return f"""# DATA QUALITY REPORT
 
 Tạo tự động lúc {repo.iso()}.
 
-Hai lớp kiểm tra, **không lớp nào tự sửa dữ liệu**:
-1. **Luật tự động** (`origin=rule`): kana hợp lệ, romaji ↔ kana, số âm Hán-Việt ↔ số kanji, mã hoá, trùng lặp, động từ thiếu thể từ điển.
-2. **AI rà soát** (`origin=ai_review`, nhãn AI_GENERATED): đọc toàn bộ 963 mục, chỉ báo lỗi rõ ràng (độ tin cậy high/medium) kèm đề xuất. Lưu ở `data/normalized/ai_review/vocabulary_ai_review.json`.
+## Quy trình xác minh từ vựng
+1. **Luật tự động**: kana hợp lệ, romaji ↔ kana, mã hoá, trùng lặp.
+2. **Đối chiếu từ điển** (EDRDG, CC BY-SA 4.0):
+   - Cách đọc, từ loại và nhóm động từ lấy từ **JMdict**. Nhóm động từ suy từ thể từ điển, không suy từ đuôi ます.
+   - Hán-Việt lấy từ **KANJIDIC2**, kèm bảng bổ sung `HV_OVERRIDES` cho các chữ mà KANJIDIC2 ghi sai.
+3. **Rà soát AI hai vòng độc lập**, mỗi vòng có 4 lượt đọc, phủ toàn bộ 963 mục:
+   - Vòng 2 có kèm bằng chứng từ điển.
+   - Sau đó người duyệt cuối (Claude) xét từng đề xuất.
+4. **Áp bản sửa**: chỉ sửa lớp NORMALIZED, nguồn ở `data/normalized/corrections/vocabulary_corrections.json`.
+   - Lớp RAW giữ nguyên.
+   - Mỗi thay đổi ghi vào `review_actions` (`ai_correction`) kèm giá trị trước/sau.
+   - Có thể hoàn tác bằng "Trích xuất lại từ RAW".
+5. **Điều kiện xác minh**: chỉ đặt `verified` (`verified_by=ai`) khi mục đã qua audit **và** không còn lỗi hay cảnh báo nào từ luật hoặc từ điển.
+   - Mục bạn đã sửa hoặc duyệt (`verified_by=user|pending_user`) không bị tự động thay đổi.
 
-Đề mẫu: AI đối chiếu 29/29 đáp án 正解 với nội dung câu hỏi — **29/29 nhất quán** (`EXAM_N5_OFFICIAL_SAMPLE.ai_review.json`). Giải thích tiếng Việt được gắn nhãn AI_GENERATED.
+Đề mẫu: AI đối chiếu 29/29 đáp án 正解 với nội dung câu hỏi, kết quả **29/29 nhất quán**. Câu hỏi vẫn ở trạng thái `needs_review` cho đến khi được đối chiếu với ảnh trang gốc.
+
+## Trạng thái từ vựng
+{_table(["Trạng thái", "Xác minh bởi", "Số mục"], [list(r.values()) for r in status])}
+
+## Bản sửa đã áp ({len(fix_rows)}): {", ".join(f"{k} {v}" for k, v in sorted(by_field.items(), key=lambda x: -x[1]))}
+{_table(["ID", "Từ", "Trường", "Trước (CSV gốc)", "Sau", "Lý do"], fix_rows)}
 
 ## Thống kê vấn đề mở
 {_table(["Thực thể", "Nguồn kiểm tra", "Mã", "Mức", "Số lượng"], [list(r.values()) for r in by_code])}

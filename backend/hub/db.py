@@ -69,7 +69,9 @@ CREATE TABLE IF NOT EXISTS vocabulary (
     ('raw','extracted','normalized','needs_review','verified','rejected')),
   review_notes TEXT,
   archived INTEGER NOT NULL DEFAULT 0,
-  updated_at TEXT
+  updated_at TEXT,
+  dictionary_form TEXT,                   -- from JMdict; basis for verb_group
+  verified_by TEXT                        -- NULL | ai (audit + dictionaries) | user | pending_user (edited, awaiting approval)
 );
 CREATE INDEX IF NOT EXISTS vocab_lesson ON vocabulary(lesson_number);
 CREATE INDEX IF NOT EXISTS vocab_word ON vocabulary(word);
@@ -197,4 +199,8 @@ def connect(path: Path | str = DEFAULT_DB) -> sqlite3.Connection:
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
     conn.executescript(SCHEMA)
+    for table, column in (("vocabulary", "dictionary_form TEXT"), ("vocabulary", "verified_by TEXT"),
+                          ("questions", "verified_by TEXT")):       # databases created before these columns
+        if column.split()[0] not in {r[1] for r in conn.execute(f"PRAGMA table_info({table})")}:
+            conn.execute(f"ALTER TABLE {table} ADD COLUMN {column}")
     return conn

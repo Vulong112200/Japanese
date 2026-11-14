@@ -40,9 +40,13 @@ def test_every_raw_row_preserved(imported):
     assert n == 991
 
 
-def test_nothing_auto_verified(imported):
+def test_verification_provenance(imported):
+    """Vocabulary may be verified only by the audited pipeline (verified_by='ai'); exam questions stay
+    needs_review until a person checks them against the page images."""
     conn, _ = imported
-    assert conn.execute("SELECT COUNT(*) FROM vocabulary WHERE verification_status='verified'").fetchone()[0] == 0
+    by = dict(conn.execute("SELECT COALESCE(verified_by,'-'), COUNT(*) FROM vocabulary "
+                           "WHERE verification_status='verified' GROUP BY 1").fetchall())
+    assert set(by) <= {"ai"}
     assert conn.execute("SELECT COUNT(*) FROM questions WHERE verification_status='verified'").fetchone()[0] == 0
 
 
@@ -67,23 +71,56 @@ def test_sources_schema(imported):
         jsonschema.validate({k: v for k, v in dict(r).items() if v is not None or k == "access_status"}, sch)
 
 
-def test_known_data_errors_are_flagged(imported):
-    """Errors found in the user's CSV must be in needs_review, never silently normalized."""
-    conn, _ = imported
-    for word in ("お腹が空きました", "昼休み", "クラシック", "一昨日", "女の子"):
-        st = conn.execute("SELECT verification_status FROM vocabulary WHERE word=?", (word,)).fetchone()[0]
-        assert st == "needs_review", word
+KNOWN_FIXES = {   # word -> (field, wrong value in the user's CSV, corrected value)
+    "お腹が空きました": ("reading", "おなかがあきました", "おなかがすきました"),
+    "昼休み": ("han_viet", "TRƯA HƯU", "TRÚ HƯU"),
+    "クラシック": ("reading", "くらしく", "くらしっく"),
+    "一昨日": ("reading", "おとtoi", "おととい"),
+    "女の子": ("han_viet", "NỮ NHÂN TỬ", "NỮ TỬ"),
+    "放送": ("han_viet", "PHÁP TỐNG", "PHÓNG TỐNG"),
+}
 
 
-def test_ai_review_attached_not_applied(imported):
+def test_known_errors_corrected_raw_preserved(imported):
     conn, r = imported
-    assert r["vocab_ai_review"]["skipped"] == 0
-    row = conn.execute("SELECT han_viet, verification_status FROM vocabulary WHERE word='放送'").fetchone()
-    assert row["verification_status"] == "needs_review"
-    assert row["han_viet"] == "PHÁP TỐNG"           # original value kept; suggestion lives in the issue
-    sug = conn.execute("SELECT suggestion FROM validation_issues i JOIN vocabulary v ON v.id=i.entity_id "
-                       "WHERE v.word='放送' AND i.origin='ai_review'").fetchone()[0]
-    assert "PHÓNG" in sug
+    assert r["flashcards"]["corrections"]["conflict"] == 0 and r["flashcards"]["corrections"]["skipped"] == 0
+    for word, (field, wrong, fixed) in KNOWN_FIXES.items():
+        rows = conn.execute("SELECT * FROM vocabulary WHERE word=?", (word,)).fetchall()
+        assert rows and all(v[field] == fixed for v in rows), word
+        corrected = 0
+        for v in rows:
+            log = conn.execute("SELECT before_json, after_json FROM review_actions WHERE entity_id=? "
+                               "AND action='ai_correction'", (v["id"],)).fetchall()
+            if any(json.loads(b).get(field) == wrong and json.loads(a_).get(field) == fixed for b, a_ in log):
+                raw = " ".join(x[0] for x in conn.execute(
+                    f"SELECT content FROM raw_records WHERE raw_id IN ({','.join(map(str, json.loads(v['raw_ids'])))})"))
+                assert wrong in raw, word                             # original CSV text untouched
+                corrected += 1
+        assert corrected >= 1, word
+
+
+def test_corrections_idempotent(imported):
+    conn, _ = imported
+    again = pipeline.apply_vocab_corrections(conn)
+    assert again["applied"] == 0 and again["conflict"] == 0
+    conn.rollback()
+
+
+def test_verb_groups_from_dictionary_form(imported):
+    """Spec §6.1 examples: the group comes from the dictionary form, never from the ます ending."""
+    conn, _ = imported
+    from hub.validation import reference
+    if not reference.available():
+        pytest.skip("reference.sqlite not built")
+    expected = {"見ます": 2, "起きます": 2, "借ります": 2, "浴びます": 2, "着ます": 2,
+                "切ります": 1, "帰ります": 1, "入ります": 1, "来ます": 3, "勉強します": 3}
+    for word, group in expected.items():
+        groups = {r[0] for r in conn.execute("SELECT verb_group FROM vocabulary WHERE word=?", (word,))}
+        assert groups == {group}, (word, groups)
+    rows = dict(conn.execute("SELECT reading, verb_group FROM vocabulary WHERE word='降ります'").fetchall())
+    assert rows == {"おります": 2, "ふります": 1}
+    assert conn.execute("SELECT COUNT(*) FROM vocabulary WHERE part_of_speech='verb' "
+                        "AND verb_group IS NULL").fetchone()[0] == 0
 
 
 # ---------- exam ----------

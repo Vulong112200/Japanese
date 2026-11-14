@@ -82,7 +82,7 @@ def romaji_matches(reading: str, romaji: str) -> bool:
     return normalize_romaji(to_romaji(reading)) == normalize_romaji(romaji)
 
 
-KANA_RE = re.compile(r"^[぀-ゟ゠-ヿー\s　～〜・、。？！?!]+$")
+KANA_RE = re.compile(r"^[぀-ゟ゠-ヿー\s　～〜~…・、。？！?!]+$")
 KANJI_RE = re.compile(r"[一-鿿]")
 JAPANESE_RE = re.compile(r"[぀-ヿ一-鿿]")
 

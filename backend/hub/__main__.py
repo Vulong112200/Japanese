@@ -1,4 +1,4 @@
-"""python -m hub [serve|import|check-online|report]"""
+"""python -m hub [serve|import|check-online|report|build-reference]"""
 import json
 import sys
 
@@ -19,6 +19,9 @@ def main(argv: list[str]) -> None:
         pipeline.register_online(conn)
         for r in pipeline.check_online(conn):
             print(f"{r['source_id']:<20} {r['access_status']:<14} {r['detail']}")
+    elif cmd == "build-reference":
+        from .validation import reference
+        print(reference.build())
     elif cmd == "report":
         from .reports import write_reports
         print("\n".join(write_reports(connect())))

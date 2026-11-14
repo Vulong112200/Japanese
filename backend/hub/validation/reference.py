@@ -19,7 +19,15 @@ REF_DIR = ROOT / "data" / "reference"
 REF_DB = REF_DIR / "reference.sqlite"
 
 
+EDRDG = "http://ftp.edrdg.org/pub/Nihongo/"
+
+
 def build(ref_dir: Path = REF_DIR, out: Path = REF_DB) -> dict:
+    import urllib.request
+    ref_dir.mkdir(parents=True, exist_ok=True)
+    for name in ("JMdict_e.gz", "kanjidic2.xml.gz"):
+        if not (ref_dir / name).exists():
+            urllib.request.urlretrieve(EDRDG + name, ref_dir / name)
     out.unlink(missing_ok=True)
     db = sqlite3.connect(out)
     db.executescript("""
@@ -31,7 +39,7 @@ def build(ref_dir: Path = REF_DIR, out: Path = REF_DB) -> dict:
     rows = []
     for entry in text.split("<entry>")[1:]:
         kebs = re.findall(r"<keb>(.*?)</keb>", entry)
-        pos = " ".join(sorted(set(re.findall(r"<pos>&(.*?);</pos>", entry))))
+        pos = " ".join(dict.fromkeys(re.findall(r"<pos>&(.*?);</pos>", entry)))   # JMdict order, unique
         common = int("_pri>" in entry)
         for r_ele in re.findall(r"<r_ele>(.*?)</r_ele>", entry, flags=re.S):
             reb = re.search(r"<reb>(.*?)</reb>", r_ele).group(1)
@@ -198,6 +206,9 @@ HV_OVERRIDES = {
 }
 
 
+DIGITS = {d: k for ds in ("0123456789", "０１２３４５６７８９") for d, k in zip(ds, "〇一二三四五六七八九")}
+
+
 def kanji_han_viet(kanji: str) -> list[str]:
     r = _db().execute("SELECT han_viet FROM kd WHERE kanji=?", (kanji,)).fetchone()
     return HV_OVERRIDES.get(kanji, []) + (json.loads(r[0]) if r else [])
@@ -212,6 +223,8 @@ def kanji_sequence(word: str, expand_repeat: bool = True) -> list[str]:
                 out.append(out[-1])
         elif KANJI_RE.match(c):
             out.append(c)
+        elif c in DIGITS:
+            out.append(DIGITS[c])
     return out
 
 
@@ -242,16 +255,18 @@ def check_han_viet(word: str, han_viet: str | None) -> dict:
     return {"status": "ok", "per_kanji": per}
 
 
-POS_VI = [("v", "verb"), ("adj-i", "i_adjective"), ("adj-ix", "i_adjective"), ("adj-na", "na_adjective"),
-          ("adv", "adverb"), ("n", "noun"), ("pn", "pronoun"), ("ctr", "counter"), ("conj", "conjunction"),
-          ("int", "interjection"), ("prt", "particle"), ("exp", "expression"), ("suf", "suffix"), ("pref", "prefix")]
+POS_NAMES = {"adj-i": "i_adjective", "adj-ix": "i_adjective", "adj-na": "na_adjective", "adv": "adverb",
+             "adv-to": "adverb", "n": "noun", "pn": "pronoun", "ctr": "counter", "conj": "conjunction",
+             "int": "interjection", "prt": "particle", "exp": "expression", "suf": "suffix", "n-suf": "suffix",
+             "pref": "prefix", "n-pref": "prefix", "adj-no": "noun", "adj-pn": "prenominal", "num": "numeral"}
+VERB_CLASS = re.compile(r"^(v1|v5|vk|vz|vs-[is])")      # conjugation classes; vt/vi/vs alone are not verbs
 
 
 def simple_pos(pos: str) -> str | None:
-    tags = pos.split()
-    if any(t.startswith("v") and t not in ("vs",) for t in tags):
-        return "verb"
-    for tag, name in POS_VI[1:]:
-        if tag in tags:
-            return name
-    return "noun" if "vs" in tags else None
+    """Primary part of speech = first JMdict tag we can name (勉強: n vs vt → noun; 分かる: v5r vi → verb)."""
+    for tag in pos.split():
+        if VERB_CLASS.match(tag):
+            return "verb"
+        if tag in POS_NAMES:
+            return POS_NAMES[tag]
+    return None
