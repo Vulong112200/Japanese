@@ -1,13 +1,13 @@
 # IMPORT REPORT
 
-Tạo tự động bởi `python -m hub report` lúc 2026-11-14T21:29:21+07:00. Số liệu đọc từ `data/database/hub.sqlite`.
+Tạo tự động bởi `python -m hub report` lúc 2026-11-14T21:53:08+07:00. Số liệu đọc từ `data/database/hub.sqlite`.
 
 Thư mục đã kiểm tra: `D:\Japanese\docs\N5\Exam`, `D:\Japanese\docs\N5\flashcards` (truy cập trực tiếp từ Windows, không qua WSL/Docker).
 
 ## Tóm tắt
 - Tệp cục bộ đã đăng ký: **41**
 - Từ vựng (lớp NORMALIZED): {"verified": 1253} — **0 mục được tự động xác minh**.
-- Câu hỏi đề mẫu: {"needs_review": 29}
+- Câu hỏi đề mẫu: {"needs_review": 29, "rejected": 271, "verified": 475}
 - Trạng thái xử lý `needs_review` = đã nhập nhưng còn chờ người dùng duyệt (không phải lỗi).
 
 ## Chi tiết từng tệp
@@ -52,8 +52,8 @@ Thư mục đã kiểm tra: `D:\Japanese\docs\N5\Exam`, `D:\Japanese\docs\N5\fla
 | N5-script.pdf | pdf | 757940 | docs/N5/Exam/20260705/N5-script.pdf | pdf | 3 | 8 |  | raw 3 / từ vựng 0 | needs_review |  |  |
 | N5-seikai.pdf | pdf | 34996 | docs/N5/Exam/20260705/N5-seikai.pdf | pdf | 1 | 29 |  | raw 1 / từ vựng 0 | needs_review |  |  |
 | JLPT N5 word list (tanos.co.uk via elzup/jlpt-word-list) | csv |  | data/reference/jlpt_n5_words.csv | csv |  |  |  | raw 158 / từ vựng 158 | verified |  |  |
-| JMdict (EDRDG) | gz |  | data/reference/JMdict_e.gz | dictionary |  |  |  | raw 0 / từ vựng 0 | verified |  |  |
-| KANJIDIC2 (EDRDG) | gz |  | data/reference/kanjidic2.xml.gz | dictionary |  |  |  | raw 0 / từ vựng 0 | verified |  |  |
+| JMdict (EDRDG) | gz |  | data/reference/JMdict_e.gz | dictionary |  | 746 |  | raw 0 / từ vựng 0 | verified |  |  |
+| KANJIDIC2 (EDRDG) | gz |  | data/reference/kanjidic2.xml.gz | dictionary |  | 746 |  | raw 0 / từ vựng 0 | verified |  |  |
 
 ## Ghi chú trích xuất
 - **PDF đề thi**: text layer hỏng (font CID không có ToUnicode) → trích `get_text()` chỉ lấy được tiêu đề. Câu hỏi được chép lại bằng AI từ ảnh trang (`ai_vision_transcription`), lưu ở `data/normalized/exams/EXAM_N5_OFFICIAL_SAMPLE.json`, trạng thái `needs_review`. Ảnh trang gốc lưu ở `data/raw/<source_id>/pages/`.

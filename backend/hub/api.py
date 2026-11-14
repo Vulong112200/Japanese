@@ -1,6 +1,8 @@
 """HTTP API (thin layer: validation of input, then repo / pipeline / srs)."""
 import json
 import os
+import random
+from datetime import datetime
 from pathlib import Path
 from typing import Literal
 
@@ -12,6 +14,7 @@ from . import repo
 from .db import DEFAULT_DB, ROOT, connect
 from .ingestion import flashcards_csv as fc
 from .ingestion import pipeline
+from .learning import exam as examlib
 from .learning import srs
 from .validation import reference as ref
 
@@ -358,6 +361,224 @@ def srs_answer(card_id: int, body: Answer, conn=Depends(get_conn)):
 @router.get("/stats/dashboard")
 def stats(conn=Depends(get_conn)):
     return repo.dashboard(conn)
+
+
+# ---------- mock exam (spec Part 9, 10) ----------
+PUBLIC_EXTRA = ("target", "star_position", "options_are_glyph_images", "options_are_pictures", "options_audio_only",
+                "has_illustration")
+REVEAL_EXTRA = ("option_explanations", "expected_sequence", "expected_sequence_note")
+
+
+class AttemptStart(BaseModel):
+    mode: Literal["exam", "practice"] = "exam"
+    exam_id: str | None = None                       # Mode A/B: a stored exam, original order
+    section: Literal["vocabulary", "grammar_reading", "listening"] | None = None   # Mode C
+    mondai_type: str | None = Field(None, max_length=50)                              # Mode D
+    source: Literal["all", "official", "generated"] = "all"
+    mistakes_only: bool = False                      # Mode E
+    limit: int = Field(20, ge=1, le=200)             # Mode F
+    timing: Literal["none", "original", "current", "custom"] = "original"
+    time_limit_min: int | None = Field(None, ge=1, le=300)
+
+
+class AnswerSave(BaseModel):
+    answer: list[str] | None = Field(None, max_length=4)
+    flagged: bool = False
+
+
+def _sections_for(questions: list[dict], body: AttemptStart, exam: dict | None) -> list[dict]:
+    """Group questions by section (exam order) and freeze each section's time limit."""
+    meta = {s["section_id"]: s for s in (exam or {}).get("sections", [])}
+    groups: dict[str, list[dict]] = {}
+    for q in questions:
+        groups.setdefault(q["section"], []).append(q)
+    order = sorted(groups, key=lambda s: examlib.SECTION_ORDER.index(s) if s in examlib.SECTION_ORDER else 9)
+    total = len(questions)
+    out = []
+    for s in order:
+        qs = groups[s]
+        m = meta.get(qs[0]["section_id"], {})
+        if body.mode == "practice" or body.timing == "none":
+            dur = None
+        elif body.timing == "original":
+            dur = m["duration_minutes"] * 60 if m.get("duration_minutes") else None   # historical paper: as recorded
+        elif body.timing == "current":
+            dur = examlib.CURRENT_TIMING_MIN.get(s, 30) * 60
+        else:
+            dur = round(body.time_limit_min * 60 * len(qs) / total)
+        out.append({"section_id": qs[0]["section_id"] or s, "section": s,
+                    "name": m.get("name") or examlib.SECTION_NAMES.get(s, s), "duration_sec": dur,
+                    "question_ids": [q["question_id"] for q in qs]})
+    return out
+
+
+@router.get("/exams")
+def exams(conn=Depends(get_conn)):
+    return repo.exam_overview(conn)
+
+
+@router.post("/attempts", status_code=201)
+def start_attempt(body: AttemptStart, conn=Depends(get_conn)):
+    if body.timing == "custom" and not body.time_limit_min:
+        raise HTTPException(422, "timing=custom cần time_limit_min")
+    exam = None
+    if body.exam_id:
+        row = conn.execute("SELECT * FROM exams WHERE exam_id=?", (body.exam_id,)).fetchone()
+        if not row:
+            raise HTTPException(404, "Không có đề này")
+        exam = json.loads(row["data_json"])
+        qs = repo.questions_where(conn, exam_id=body.exam_id, section=body.section)
+        title = row["title"] + (f" · {examlib.SECTION_NAMES.get(body.section, body.section)}" if body.section else "")
+    else:
+        ids = repo.mistake_question_ids(conn) if body.mistakes_only else None
+        qs = repo.questions_where(conn, section=body.section, mondai_type=body.mondai_type, ids=ids,
+                                  official={"all": None, "official": True, "generated": False}[body.source])
+        qs = sorted(random.sample(qs, min(body.limit, len(qs))), key=lambda q: (
+            examlib.SECTION_ORDER.index(q["section"]) if q["section"] in examlib.SECTION_ORDER else 9,
+            q["mondai_no"] or 0, q["exam_id"], q["number"] or 0))
+        parts = ["Ôn câu sai" if body.mistakes_only else "Luyện tập",
+                 examlib.SECTION_NAMES.get(body.section or "", ""), body.mondai_type or ""]
+        title = " · ".join(p for p in parts if p) + f" ({len(qs)} câu)"
+    if not qs:
+        raise HTTPException(404, "Không có câu hỏi phù hợp")
+    attempt_id = f"ATT_{repo.now():%Y%m%d_%H%M%S}_{os.urandom(2).hex()}"
+    config = {"filter": body.model_dump(), "sections": _sections_for(qs, body, exam)}
+    repo.create_attempt(conn, attempt_id, body.exam_id, title, body.mode, config)
+    conn.commit()
+    return attempt_view(conn, attempt_id)
+
+
+@router.get("/attempts")
+def attempts(conn=Depends(get_conn)):
+    return repo.list_attempts(conn)
+
+
+def _section_of(a: dict, qid: str) -> int:
+    return next((i for i, s in enumerate(a["config"]["sections"]) if qid in s["question_ids"]), -1)
+
+
+def _remaining(a: dict) -> int | None:
+    if a["mode"] != "exam" or a["submitted_at"]:
+        return None
+    sec = a["config"]["sections"][a["current_section"]]
+    return examlib.remaining_seconds(sec["duration_sec"], datetime.fromisoformat(a["section_started_at"]), repo.now())
+
+
+def public_question(q: dict, reveal: bool) -> dict:
+    q = decode(q)
+    extra = q.get("extra_json") or {}
+    out = {k: q[k] for k in ("question_id", "exam_id", "section", "section_id", "mondai_no", "mondai_type", "number",
+                             "question_text", "instruction", "passage_id", "options", "answer_type", "audio_asset_id",
+                             "image_asset_id", "explanation_origin", "verification_status")}
+    out["extra"] = {k: extra[k] for k in PUBLIC_EXTRA if k in extra}
+    out["lesson_number"] = extra.get("lesson_number")
+    if reveal:
+        out.update(correct_answer=q["correct_answer"], explanation_vi=q["explanation_vi"], transcript=q["transcript"])
+        out["extra"].update({k: extra[k] for k in REVEAL_EXTRA if k in extra})
+    elif extra.get("options_audio_only"):       # choices exist only in the audio: never show their text in advance
+        out["options"] = [{"option_id": o["option_id"], "text": ""} for o in out["options"]]
+    return out
+
+
+def attempt_view(conn, attempt_id: str) -> dict:
+    a = repo.get_attempt(conn, attempt_id)
+    if not a:
+        raise HTTPException(404)
+    answers = repo.attempt_answers(conn, attempt_id)
+    ids = [qid for s in a["config"]["sections"] for qid in s["question_ids"]]
+    by_id = {q["question_id"]: q for q in repo.questions_where(conn, ids=ids)}
+    by_id.update({r["question_id"]: dict(r) for r in conn.execute(      # rejected after the attempt: keep history
+        f"SELECT * FROM questions WHERE question_id IN ({','.join('?' * len(ids))})", ids) if r["question_id"] not in by_id})
+    done = bool(a["submitted_at"])
+
+    def reveal(qid):
+        return done or (a["mode"] == "practice" and bool((answers.get(qid) or {}).get("answer")))
+    questions = [public_question(dict(by_id[q]), reveal(q)) for q in ids if q in by_id]
+    if not done and a["mode"] == "exam":
+        answers = {k: {**v, "is_correct": None} for k, v in answers.items()}
+    pids = {q["passage_id"] for q in questions if q["passage_id"]}
+    passages = {r["passage_id"]: dict(r) for r in conn.execute(
+        f"SELECT passage_id, text, image_asset_id FROM passages WHERE passage_id IN ({','.join('?' * len(pids)) or 'NULL'})",
+        list(pids))}
+    cur = a["current_section"]
+    sections = [{**s, "status": "done" if done or (a["mode"] == "exam" and i < cur) else
+                 "current" if a["mode"] == "practice" or i == cur else "upcoming"}
+                for i, s in enumerate(a["config"]["sections"])]
+    return {**{k: a[k] for k in ("attempt_id", "exam_id", "title", "mode", "started_at", "submitted_at",
+                                 "current_section", "result")},
+            "filter": a["config"]["filter"], "sections": sections, "remaining_sec": _remaining(a),
+            "questions": questions, "passages": passages, "answers": answers}
+
+
+@router.get("/attempts/{attempt_id}")
+def attempt(attempt_id: str, conn=Depends(get_conn)):
+    return attempt_view(conn, attempt_id)
+
+
+def _open_attempt(conn, attempt_id: str) -> dict:
+    a = repo.get_attempt(conn, attempt_id)
+    if not a:
+        raise HTTPException(404)
+    if a["submitted_at"]:
+        raise HTTPException(409, "Bài đã nộp")
+    return a
+
+
+@router.put("/attempts/{attempt_id}/answers/{qid}")
+def save_answer(attempt_id: str, qid: str, body: AnswerSave, conn=Depends(get_conn)):
+    a = _open_attempt(conn, attempt_id)
+    idx = _section_of(a, qid)
+    if idx < 0:
+        raise HTTPException(404, "Câu hỏi không thuộc lượt thi này")
+    prev = repo.attempt_answers(conn, attempt_id).get(qid, {})
+    if a["mode"] == "exam":
+        if idx != a["current_section"]:
+            raise HTTPException(409, "Phần này đã đóng" if idx < a["current_section"] else "Phần này chưa bắt đầu")
+        sec = a["config"]["sections"][idx]
+        started = datetime.fromisoformat(a["section_started_at"])
+        if sec["duration_sec"] is not None and (repo.now() - started).total_seconds() > sec["duration_sec"] + examlib.GRACE_SEC:
+            raise HTTPException(409, "Hết giờ cho phần này")
+    elif prev.get("answer") and body.answer != prev["answer"]:
+        raise HTTPException(409, "Chế độ luyện tập: đã trả lời câu này")
+    q = repo.get_question(conn, qid)
+    options = {o["option_id"] for o in json.loads(q["options"])}
+    if body.answer and not set(body.answer) <= options:
+        raise HTTPException(422, "Lựa chọn không hợp lệ")
+    ok = examlib.is_correct(body.answer, json.loads(q["correct_answer"]))
+    repo.save_answer(conn, attempt_id, qid, body.answer, body.flagged, ok)
+    conn.commit()
+    out = {"question_id": qid, "answer": body.answer, "flagged": body.flagged}
+    if a["mode"] == "practice" and body.answer:
+        out.update(is_correct=ok, question=public_question(dict(q), True))
+    return out
+
+
+@router.post("/attempts/{attempt_id}/advance")
+def advance(attempt_id: str, conn=Depends(get_conn)):
+    a = _open_attempt(conn, attempt_id)
+    if a["mode"] != "exam":
+        raise HTTPException(409, "Chỉ chế độ thi mới chia phần")
+    if a["current_section"] + 1 >= len(a["config"]["sections"]):
+        raise HTTPException(409, "Đây là phần cuối; hãy nộp bài")
+    repo.advance_section(conn, attempt_id, a["current_section"] + 1)
+    conn.commit()
+    return attempt_view(conn, attempt_id)
+
+
+@router.post("/attempts/{attempt_id}/submit")
+def submit(attempt_id: str, conn=Depends(get_conn)):
+    a = _open_attempt(conn, attempt_id)
+    ids = [qid for s in a["config"]["sections"] for qid in s["question_ids"]]
+    qs = []
+    for r in conn.execute(f"SELECT * FROM questions WHERE question_id IN ({','.join('?' * len(ids))})", ids):
+        q = decode(dict(r))
+        qs.append({**q, "lesson_number": (q["extra_json"] or {}).get("lesson_number")})
+    answers = {k: v["answer"] for k, v in repo.attempt_answers(conn, attempt_id).items()}
+    result = examlib.score(qs, answers)
+    result["readiness"] = examlib.readiness(result["by_section"])
+    repo.finish_attempt(conn, attempt_id, result)
+    conn.commit()
+    return attempt_view(conn, attempt_id)
 
 
 # ---------- assets ----------

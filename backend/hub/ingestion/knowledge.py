@@ -159,7 +159,7 @@ def import_grammar(conn, path: Path = GRAMMAR) -> dict:
         return {"grammar": 0}
     stats = {"grammar": 0, "verified": 0}
     keep = ("usage", "restrictions", "formality", "similar_patterns", "common_mistakes", "examples",
-            "handbook_refs", "handbook_errors", "level_note")
+            "handbook_refs", "handbook_errors", "level_note", "review_log")
     for g in data["entries"]:
         cur = conn.execute("SELECT verified_by, verification_status FROM grammar WHERE id=?", (g["id"],)).fetchone()
         if cur and cur["verified_by"] in USER_OWNED:
@@ -242,3 +242,62 @@ def import_kanji(conn, path: Path = KANJI) -> dict:
 
 def kata_norm(s: str) -> str:
     return kata_to_hira(re.sub(r"\s", "", s or ""))
+
+
+# ------------------------------------------------------------------ generated questions (spec §11.5)
+GEN_EXAM = "BANK_N5_GENERATED"
+GEN_INSTRUCTION = {1: "＿＿＿の ことばは どう よみますか。1・2・3・4から いちばん いい ものを ひとつ えらんで ください。",
+                   2: "＿＿＿の ことばは どう かきますか。1・2・3・4から いちばん いい ものを ひとつ えらんで ください。"}
+
+
+def valid_readings(word: str) -> set[str]:
+    return {kata_to_hira(r) for r, _, _ in ref.lookup(word)} | {c[1] for c in ref.masu_candidates(word)}
+
+
+def is_word(text: str) -> bool:
+    return bool(ref.lookup(text) or ref.masu_candidates(text))
+
+
+def import_generated_questions(conn) -> dict:
+    """Rebuild the rule-based question bank from verified vocabulary and verified N5 kanji. Stable ids; questions that
+    can no longer be generated become 'rejected' (attempt history may reference them), never deleted."""
+    from ..learning import question_gen
+    if not ref.available():
+        return {"generated": 0, "note": "reference dictionary missing (run build-reference)"}
+    vocab = repo.rows(conn.execute("SELECT id, word, reading, meaning_vi, lesson_number, example_jp FROM vocabulary "
+                                   "WHERE verification_status='verified' AND archived=0"))
+    kanji = repo.rows(conn.execute("SELECT kanji, han_viet, onyomi, kunyomi FROM kanji WHERE verification_status='verified'"))
+    pool = {k["kanji"]: question_gen.kanji_reading_set(json.loads(k["onyomi"]), json.loads(k["kunyomi"])) for k in kanji}
+    db, cache = ref._db(), {}
+
+    def readings_of(ch: str) -> set[str]:          # KANJIDIC2 readings of any kanji (N5 or not)
+        if ch not in cache:
+            row = db.execute("SELECT onyomi, kunyomi FROM kd WHERE kanji=?", (ch,)).fetchone()
+            cache[ch] = question_gen.kanji_reading_set(json.loads(row[0]), json.loads(row[1])) if row else set()
+        return cache[ch]
+    qs = question_gen.make_questions(vocab, valid_readings, readings_of, pool, is_word,
+                                     {k["kanji"]: k["han_viet"] for k in kanji})
+    conn.execute("INSERT OR REPLACE INTO exams (exam_id, title, level, exam_type, source_type, is_official, "
+                 "duration_minutes, data_json, source_ids, verification_status) VALUES (?,?,?,?,?,?,?,?,?,?)",
+                 (GEN_EXAM, "Ngân hàng câu luyện tập sinh tự động (AI_GENERATED)", "N5", "question_bank",
+                  "AI_GENERATED", 0, None, json.dumps({"generator": "hub.learning.question_gen", "note":
+                  "Sinh bằng luật từ từ vựng/kanji đã verified; không phải câu hỏi JLPT chính thức."}, ensure_ascii=False),
+                  json.dumps(["SRC_REF_JMDICT", "SRC_REF_KANJIDIC2"]), "verified"))
+    for q in qs:
+        extra = {k: q[k] for k in ("target", "target_entity", "option_explanations", "lesson_number")}
+        extra["generator"] = "rule:" + q["mondai_type"]
+        conn.execute(
+            "INSERT OR REPLACE INTO questions (question_id, exam_id, section, section_id, mondai_no, mondai_type, number, "
+            "question_text, instruction, options, correct_answer, answer_type, extra_json, explanation_vi, "
+            "explanation_origin, level, source_ids, extraction_method, verification_status, verified_by) "
+            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            (q["question_id"], GEN_EXAM, q["section"], q["section_id"], q["mondai_no"], q["mondai_type"], None,
+             q["question_text"], GEN_INSTRUCTION[q["mondai_no"]], json.dumps(q["options"], ensure_ascii=False),
+             json.dumps(q["correct_answer"]), "single_choice", json.dumps(extra, ensure_ascii=False),
+             q["explanation_vi"], "AI_GENERATED", "N5", json.dumps(["SRC_REF_JMDICT", "SRC_REF_KANJIDIC2"]),
+             "rule_generated", "verified", "generator"))
+    ids = [q["question_id"] for q in qs]
+    conn.execute(f"UPDATE questions SET verification_status='rejected' WHERE exam_id=? "
+                 f"AND question_id NOT IN ({','.join('?' * len(ids))})", [GEN_EXAM, *ids])
+    return {"generated": len(qs), "kanji_reading": sum(q["mondai_no"] == 1 for q in qs),
+            "orthography": sum(q["mondai_no"] == 2 for q in qs)}

@@ -225,6 +225,29 @@ CREATE TABLE IF NOT EXISTS questions (
     ('raw','extracted','normalized','needs_review','verified','rejected')),
   review_notes TEXT
 );
+
+-- Mock exam engine (spec Part 9). An attempt freezes its question list and section timing at start.
+CREATE TABLE IF NOT EXISTS exam_attempts (
+  attempt_id TEXT PRIMARY KEY,            -- ATT_20261114_153000_ab12
+  exam_id TEXT,                           -- NULL for practice sets built from the question bank
+  title TEXT NOT NULL,
+  mode TEXT NOT NULL CHECK (mode IN ('exam','practice')),
+  config_json TEXT NOT NULL,              -- {filter, sections:[{section_id,name,section,duration_sec|null,question_ids}]}
+  current_section INTEGER NOT NULL DEFAULT 0,
+  section_started_at TEXT,
+  started_at TEXT NOT NULL,
+  submitted_at TEXT,
+  result_json TEXT
+);
+CREATE TABLE IF NOT EXISTS attempt_answers (
+  attempt_id TEXT NOT NULL REFERENCES exam_attempts(attempt_id),
+  question_id TEXT NOT NULL,
+  answer TEXT,                            -- JSON list of option_ids; NULL = not answered
+  flagged INTEGER NOT NULL DEFAULT 0,
+  is_correct INTEGER,
+  answered_at TEXT,
+  PRIMARY KEY (attempt_id, question_id)
+);
 """
 
 

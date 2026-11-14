@@ -84,6 +84,30 @@ export default function Dashboard() {
         </Panel>
       </div>
 
+      <div className="grid gap-4 md:grid-cols-2">
+        <Panel title="Thi thử" action={<a href="#/exam" className="text-sm text-indigo-600 hover:underline dark:text-indigo-300">Mở trang thi →</a>}>
+          <dl className="grid grid-cols-2 gap-2 text-sm">
+            <dt className="text-slate-500">Lượt đã nộp</dt><dd className="tabular-nums font-medium">{d.exam.attempts_submitted}</dd>
+            <dt className="text-slate-500">Lượt gần nhất</dt>
+            <dd className="font-medium">{d.exam.last
+              ? <a href={`#/exam?id=${d.exam.last.attempt_id}`} className="hover:underline">{d.exam.last.correct}/{d.exam.last.total} câu ({d.exam.last.accuracy ?? 0}%)</a>
+              : 'Chưa có'}</dd>
+            <dt className="text-slate-500">Câu sai chờ ôn</dt><dd className="tabular-nums font-medium">{d.exam.mistakes_pending}</dd>
+            <dt className="text-slate-500">Ngân hàng câu hỏi</dt><dd className="tabular-nums font-medium">{d.exam.bank_questions}</dd>
+          </dl>
+        </Panel>
+        <Panel title="Kiến thức N5 đã xác minh">
+          <dl className="grid grid-cols-2 gap-2 text-sm">
+            {([['Từ vựng', d.vocabulary_by_status, '#/vocabulary'], ['Ngữ pháp', d.grammar_by_status, '#/grammar'],
+              ['Kanji', d.kanji_by_status, '#/kanji']] as const).map(([l, m, href]) => (
+              <div key={l} className="contents">
+                <dt><a href={href} className="text-slate-500 hover:underline">{l}</a></dt>
+                <dd className="tabular-nums font-medium">{m.verified ?? 0}/{Object.values(m).reduce((a, b) => a + b, 0)}</dd>
+              </div>))}
+          </dl>
+        </Panel>
+      </div>
+
       <Panel title="Bài có tỉ lệ quên cao nhất">
         {d.weak_lessons.length === 0
           ? <p className="text-sm text-slate-500">Chưa đủ dữ liệu: cần có lượt trả lời "Lại" trong phần ôn tập.</p>

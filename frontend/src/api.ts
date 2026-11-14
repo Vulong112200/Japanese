@@ -135,6 +135,107 @@ export interface Dashboard {
   sources_by_access: Record<string, number>
   open_issues: Record<string, number>
   weak_lessons: { lesson_number: number | null; deck: string; wrong: number; right: number }[]
+  grammar_by_status: Record<string, number>
+  kanji_by_status: Record<string, number>
+  exam: {
+    attempts_submitted: number
+    mistakes_pending: number
+    bank_questions: number
+    last: { attempt_id: string; title: string; mode: string; submitted_at: string; accuracy: number | null; correct: number; total: number } | null
+  }
+}
+
+// ---------- mock exam ----------
+export type Section = 'vocabulary' | 'grammar_reading' | 'listening'
+
+export interface ExamQuestion {
+  question_id: string
+  exam_id: string
+  section: Section
+  section_id: string
+  mondai_no: number | null
+  mondai_type: string | null
+  number: number | null
+  question_text: string | null
+  instruction: string | null
+  passage_id: string | null
+  options: { option_id: string; text: string | null; image_asset_id?: string }[]
+  answer_type: string
+  audio_asset_id: string | null
+  image_asset_id: string | null
+  explanation_origin: string | null
+  verification_status: Status
+  lesson_number: number | null
+  extra: {
+    target?: string; star_position?: number; options_are_glyph_images?: boolean; options_are_pictures?: boolean
+    options_audio_only?: boolean; has_illustration?: boolean
+    option_explanations?: Record<string, string>; expected_sequence?: unknown; expected_sequence_note?: string
+  }
+  // only after submission (exam) or after answering (practice)
+  correct_answer?: string[]
+  explanation_vi?: string | null
+  transcript?: string | null
+}
+
+export interface Bucket { total: number; correct: number; incorrect: number; unanswered: number; accuracy: number | null }
+
+export interface Readiness {
+  label: string
+  language_knowledge_reading: number | null
+  listening: number | null
+  total: number | null
+  likely_pass: boolean | null
+  thresholds: { total: number; language_knowledge_reading: number; listening: number }
+  notes: string[]
+  disclaimer: string
+}
+
+export interface ExamResult extends Bucket {
+  by_section: Record<string, Bucket>
+  by_mondai: (Bucket & { section: string; mondai_no: number | null; mondai_type: string | null })[]
+  listening_accuracy: number | null
+  weak_vocabulary_lessons: (Bucket & { lesson_number: number })[]
+  per_question: Record<string, 'correct' | 'incorrect' | 'unanswered'>
+  readiness: Readiness
+}
+
+export interface Attempt {
+  attempt_id: string
+  exam_id: string | null
+  title: string
+  mode: 'exam' | 'practice'
+  started_at: string
+  submitted_at: string | null
+  current_section: number
+  remaining_sec: number | null
+  sections: { section_id: string; section: Section; name: string; duration_sec: number | null; question_ids: string[]; status: 'done' | 'current' | 'upcoming' }[]
+  questions: ExamQuestion[]
+  passages: Record<string, { passage_id: string; text: string; image_asset_id: string | null }>
+  answers: Record<string, { answer: string[] | null; flagged: boolean; is_correct: number | boolean | null }>
+  result: ExamResult | null
+}
+
+export interface AttemptSummary {
+  attempt_id: string; title: string; mode: 'exam' | 'practice'; started_at: string; submitted_at: string | null
+  question_count: number; summary: Bucket | null; readiness: Readiness | null
+}
+
+export interface ExamOverview {
+  exams: { exam_id: string; title: string; exam_type: string; source_type: string; is_official: number; duration_minutes: number | null; verification_status: Status; question_count: number }[]
+  bank: { section: Section; mondai_no: number; mondai_type: string; is_official: number; n: number }[]
+  mistakes: number
+}
+
+export interface AttemptStart {
+  mode: 'exam' | 'practice'
+  exam_id?: string
+  section?: Section
+  mondai_type?: string
+  source?: 'all' | 'official' | 'generated'
+  mistakes_only?: boolean
+  limit?: number
+  timing?: 'none' | 'original' | 'current' | 'custom'
+  time_limit_min?: number
 }
 
 export interface GrammarItem {
@@ -220,4 +321,13 @@ export const api = {
   grammar: (q?: string, lesson?: number) => req<GrammarItem[]>(`/grammar?${qs({ q, lesson })}`),
   grammarItem: (id: string) => req<GrammarDetail>(`/grammar/${id}`),
   kanji: () => req<KanjiItem[]>('/kanji'),
+  exams: () => req<ExamOverview>('/exams'),
+  attempts: () => req<AttemptSummary[]>('/attempts'),
+  attempt: (id: string) => req<Attempt>(`/attempts/${id}`),
+  startAttempt: (body: AttemptStart) => req<Attempt>('/attempts', { method: 'POST', body: JSON.stringify(body) }),
+  saveAnswer: (id: string, qid: string, answer: string[] | null, flagged: boolean) =>
+    req<{ question_id: string; is_correct?: boolean; question?: ExamQuestion }>(`/attempts/${id}/answers/${qid}`,
+      { method: 'PUT', body: JSON.stringify({ answer, flagged }) }),
+  advance: (id: string) => req<Attempt>(`/attempts/${id}/advance`, { method: 'POST' }),
+  submit: (id: string) => req<Attempt>(`/attempts/${id}/submit`, { method: 'POST' }),
 }

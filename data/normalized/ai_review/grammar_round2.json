@@ -1,0 +1,523 @@
+{
+ "round": 2,
+ "reviewed_at": "2026-11-14",
+ "method": "4 agent độc lập, chia lô theo id mod 4 (khác cách chia theo bài lúc soạn); người duyệt cuối xét từng đề xuất",
+ "entries_checked": 135,
+ "proposals": [
+  {
+   "id": "GRA_000076",
+   "field": "examples",
+   "new_value": [
+    {
+     "jp": "ここでたばこを吸ってはいけません。",
+     "hiragana": "ここでたばこをすってはいけません。",
+     "romaji": "Koko de tabako o sutte wa ikemasen.",
+     "vi": "Không được hút thuốc lá ở đây."
+    },
+    {
+     "jp": "「ここに車を止めてもいいですか。」「いいえ、いけません。」",
+     "hiragana": "「ここにくるまをとめてもいいですか。」「いいえ、いけません。」",
+     "romaji": "\"Koko ni kuruma o tomete mo ii desu ka.\" \"Iie, ikemasen.\"",
+     "vi": "\"Tôi đỗ xe ở đây được không?\" \"Không, không được.\""
+    },
+    {
+     "jp": "美術館で写真を撮ってはいけません。",
+     "hiragana": "びじゅつかんでしゃしんをとってはいけません。",
+     "romaji": "Bijutsukan de shashin o totte wa ikemasen.",
+     "vi": "Không được chụp ảnh trong bảo tàng mỹ thuật."
+    }
+   ],
+   "reason_vi": "Romaji tách từ sai: 'tometemo' phải viết 'tomete mo' (trợ từ も tách riêng). Chỉ sửa romaji, giữ nguyên các trường khác.",
+   "confidence": "high",
+   "batch": "0",
+   "decision": "rejected",
+   "decision_note": "Chỉ đổi kiểu viết romaji (ou→ō); romaji_matches chấp nhận cả hai. Không áp từng phần để tránh lệch kiểu; chuẩn hoá romaji toàn bộ là việc riêng."
+  },
+  {
+   "id": "GRA_000088",
+   "field": "examples",
+   "new_value": [
+    {
+     "jp": "会議は5時までに終わります。",
+     "hiragana": "かいぎはごじまでにおわります。",
+     "romaji": "Kaigi wa goji made ni owarimasu.",
+     "vi": "Cuộc họp sẽ kết thúc trước 5 giờ."
+    },
+    {
+     "jp": "金曜日までにレポートを出してください。",
+     "hiragana": "きんようびまでにレポートをだしてください。",
+     "romaji": "Kin'yōbi made ni repōto o dashite kudasai.",
+     "vi": "Hãy nộp báo cáo trước thứ Sáu."
+    },
+    {
+     "jp": "9時までに来てください。",
+     "hiragana": "くじまでにきてください。",
+     "romaji": "Kuji made ni kite kudasai.",
+     "vi": "Hãy đến trước 9 giờ."
+    },
+    {
+     "jp": "私は5時まで働きます。",
+     "hiragana": "わたしはごじまではたらきます。",
+     "romaji": "Watashi wa goji made hatarakimasu.",
+     "vi": "Tôi làm việc đến 5 giờ. (so sánh: まで)"
+    }
+   ],
+   "reason_vi": "Romaji viết kiểu bàn phím (ou/oo/uu/aa/ii) không theo Hepburn có dấu trường âm (ō, ū, ā, ī) như các mục khác. Chỉ sửa romaji, giữ nguyên các trường khác.",
+   "confidence": "high",
+   "batch": "0",
+   "decision": "rejected",
+   "decision_note": "Chỉ đổi kiểu viết romaji (ou→ō); romaji_matches chấp nhận cả hai. Không áp từng phần để tránh lệch kiểu; chuẩn hoá romaji toàn bộ là việc riêng."
+  },
+  {
+   "id": "GRA_000092",
+   "field": "examples",
+   "new_value": [
+    {
+     "jp": "日本へ来るまえに、日本語を勉強しました。",
+     "hiragana": "にほんへくるまえに、にほんごをべんきょうしました。",
+     "romaji": "Nihon e kuru mae ni, Nihongo o benkyō shimashita.",
+     "vi": "Trước khi đến Nhật, tôi đã học tiếng Nhật."
+    },
+    {
+     "jp": "寝るまえに、本を読みます。",
+     "hiragana": "ねるまえに、ほんをよみます。",
+     "romaji": "Neru mae ni, hon o yomimasu.",
+     "vi": "Trước khi ngủ tôi đọc sách."
+    },
+    {
+     "jp": "食事のまえに、手を洗います。",
+     "hiragana": "しょくじのまえに、てをあらいます。",
+     "romaji": "Shokuji no mae ni, te o araimasu.",
+     "vi": "Trước bữa ăn tôi rửa tay."
+    },
+    {
+     "jp": "田中さんは1時間まえに出かけました。",
+     "hiragana": "たなかさんはいちじかんまえにでかけました。",
+     "romaji": "Tanaka-san wa ichijikan mae ni dekakemashita.",
+     "vi": "Anh Tanaka đã ra ngoài cách đây 1 tiếng."
+    }
+   ],
+   "reason_vi": "Romaji viết kiểu bàn phím (ou/oo/uu/aa/ii) không theo Hepburn có dấu trường âm (ō, ū, ā, ī) như các mục khác. Chỉ sửa romaji, giữ nguyên các trường khác.",
+   "confidence": "high",
+   "batch": "0",
+   "decision": "rejected",
+   "decision_note": "Chỉ đổi kiểu viết romaji (ou→ō); romaji_matches chấp nhận cả hai. Không áp từng phần để tránh lệch kiểu; chuẩn hoá romaji toàn bộ là việc riêng."
+  },
+  {
+   "id": "GRA_000096",
+   "field": "examples",
+   "new_value": [
+    {
+     "jp": "日曜日はテニスをしたり、映画を見たりします。",
+     "hiragana": "にちようびはテニスをしたり、えいがをみたりします。",
+     "romaji": "Nichiyōbi wa tenisu o shitari, eiga o mitari shimasu.",
+     "vi": "Chủ nhật tôi chơi tennis, xem phim, v.v."
+    },
+    {
+     "jp": "昨日は買い物をしたり、友達に会ったりしました。",
+     "hiragana": "きのうはかいものをしたり、ともだちにあったりしました。",
+     "romaji": "Kinō wa kaimono o shitari, tomodachi ni attari shimashita.",
+     "vi": "Hôm qua tôi đi mua sắm, gặp bạn bè, v.v."
+    },
+    {
+     "jp": "夏休みは泳いだり、山に登ったりしたいです。",
+     "hiragana": "なつやすみはおよいだり、やまにのぼったりしたいです。",
+     "romaji": "Natsuyasumi wa oyoidari, yama ni nobottari shitai desu.",
+     "vi": "Kỳ nghỉ hè tôi muốn đi bơi, leo núi, v.v."
+    }
+   ],
+   "reason_vi": "Romaji viết kiểu bàn phím (ou/oo/uu/aa/ii) không theo Hepburn có dấu trường âm (ō, ū, ā, ī) như các mục khác. Chỉ sửa romaji, giữ nguyên các trường khác.",
+   "confidence": "high",
+   "batch": "0",
+   "decision": "rejected",
+   "decision_note": "Chỉ đổi kiểu viết romaji (ou→ō); romaji_matches chấp nhận cả hai. Không áp từng phần để tránh lệch kiểu; chuẩn hoá romaji toàn bộ là việc riêng."
+  },
+  {
+   "id": "GRA_000100",
+   "field": "examples",
+   "new_value": [
+    {
+     "jp": "明日はいい天気になると思います。",
+     "hiragana": "あしたはいいてんきになるとおもいます。",
+     "romaji": "Ashita wa ii tenki ni naru to omoimasu.",
+     "vi": "Tôi nghĩ ngày mai trời sẽ đẹp."
+    },
+    {
+     "jp": "日本は物価が高いと思います。",
+     "hiragana": "にほんはぶっかがたかいとおもいます。",
+     "romaji": "Nihon wa bukka ga takai to omoimasu.",
+     "vi": "Tôi nghĩ vật giá ở Nhật đắt."
+    },
+    {
+     "jp": "田中さんは来ないと思います。",
+     "hiragana": "たなかさんはこないとおもいます。",
+     "romaji": "Tanaka-san wa konai to omoimasu.",
+     "vi": "Tôi nghĩ anh Tanaka sẽ không đến."
+    },
+    {
+     "jp": "「新しい空港についてどう思いますか。」「きれいですが、交通が不便だと思います。」",
+     "hiragana": "「あたらしいくうこうについてどうおもいますか。」「きれいですが、こうつうがふべんだとおもいます。」",
+     "romaji": "\"Atarashii kūkō ni tsuite dō omoimasu ka.\" \"Kirei desu ga, kōtsū ga fuben da to omoimasu.\"",
+     "vi": "\"Bạn nghĩ thế nào về sân bay mới?\" \"Đẹp nhưng tôi nghĩ đi lại bất tiện.\""
+    }
+   ],
+   "reason_vi": "Romaji viết kiểu bàn phím (ou/oo/uu/aa/ii) không theo Hepburn có dấu trường âm (ō, ū, ā, ī) như các mục khác. Chỉ sửa romaji, giữ nguyên các trường khác.",
+   "confidence": "high",
+   "batch": "0",
+   "decision": "rejected",
+   "decision_note": "Chỉ đổi kiểu viết romaji (ou→ō); romaji_matches chấp nhận cả hai. Không áp từng phần để tránh lệch kiểu; chuẩn hoá romaji toàn bộ là việc riêng."
+  },
+  {
+   "id": "GRA_000104",
+   "field": "examples",
+   "new_value": [
+    {
+     "jp": "会議で何か意見を言いましたか。",
+     "hiragana": "かいぎで なにか いけんを いいましたか。",
+     "romaji": "Kaigi de nanika iken o iimashita ka.",
+     "vi": "Trong cuộc họp, anh có nói ý kiến gì không?"
+    },
+    {
+     "jp": "旅行でたくさん写真を撮りました。",
+     "hiragana": "りょこうで たくさん しゃしんを とりました。",
+     "romaji": "Ryokō de takusan shashin o torimashita.",
+     "vi": "Trong chuyến du lịch tôi đã chụp rất nhiều ảnh."
+    },
+    {
+     "jp": "パーティーで新しい友達に会いました。",
+     "hiragana": "パーティーで あたらしい ともだちに あいました。",
+     "romaji": "Pātī de atarashii tomodachi ni aimashita.",
+     "vi": "Tôi đã gặp một người bạn mới ở bữa tiệc."
+    }
+   ],
+   "reason_vi": "Romaji viết kiểu bàn phím (ou/oo/uu/aa/ii) không theo Hepburn có dấu trường âm (ō, ū, ā, ī) như các mục khác. Chỉ sửa romaji, giữ nguyên các trường khác.",
+   "confidence": "high",
+   "batch": "0",
+   "decision": "rejected",
+   "decision_note": "Chỉ đổi kiểu viết romaji (ou→ō); romaji_matches chấp nhận cả hai. Không áp từng phần để tránh lệch kiểu; chuẩn hoá romaji toàn bộ là việc riêng."
+  },
+  {
+   "id": "GRA_000108",
+   "field": "examples",
+   "new_value": [
+    {
+     "jp": "私は朝ご飯を食べる時間がありません。",
+     "hiragana": "わたしは あさごはんを たべる じかんが ありません。",
+     "romaji": "Watashi wa asagohan o taberu jikan ga arimasen.",
+     "vi": "Tôi không có thời gian ăn sáng."
+    },
+    {
+     "jp": "今晩は友達と映画を見る約束があります。",
+     "hiragana": "こんばんは ともだちと えいがを みる やくそくが あります。",
+     "romaji": "Konban wa tomodachi to eiga o miru yakusoku ga arimasu.",
+     "vi": "Tối nay tôi có hẹn đi xem phim với bạn."
+    },
+    {
+     "jp": "市役所へ行く用事があります。",
+     "hiragana": "しやくしょへ いく ようじが あります。",
+     "romaji": "Shiyakusho e iku yōji ga arimasu.",
+     "vi": "Tôi có việc phải đến ủy ban thành phố."
+    },
+    {
+     "jp": "昨日は忙しくて、寝る時間がありませんでした。",
+     "hiragana": "きのうは いそがしくて、ねる じかんが ありませんでした。",
+     "romaji": "Kinō wa isogashikute, neru jikan ga arimasen deshita.",
+     "vi": "Hôm qua bận quá nên không có thời gian ngủ."
+    }
+   ],
+   "reason_vi": "Romaji viết kiểu bàn phím (ou/oo/uu/aa/ii) không theo Hepburn có dấu trường âm (ō, ū, ā, ī) như các mục khác. Chỉ sửa romaji, giữ nguyên các trường khác.",
+   "confidence": "high",
+   "batch": "0",
+   "decision": "rejected",
+   "decision_note": "Chỉ đổi kiểu viết romaji (ou→ō); romaji_matches chấp nhận cả hai. Không áp từng phần để tránh lệch kiểu; chuẩn hoá romaji toàn bộ là việc riêng."
+  },
+  {
+   "id": "GRA_000112",
+   "field": "examples",
+   "new_value": [
+    {
+     "jp": "このつまみを回すと、音が大きくなります。",
+     "hiragana": "この つまみを まわすと、おとが おおきく なります。",
+     "romaji": "Kono tsumami o mawasu to, oto ga ōkiku narimasu.",
+     "vi": "Vặn núm này thì âm thanh to lên."
+    },
+    {
+     "jp": "今日は風が強いですね。",
+     "hiragana": "きょうは かぜが つよいですね。",
+     "romaji": "Kyō wa kaze ga tsuyoi desu ne.",
+     "vi": "Hôm nay gió mạnh nhỉ."
+    },
+    {
+     "jp": "今雨が降っています。",
+     "hiragana": "いま あめが ふって います。",
+     "romaji": "Ima ame ga futte imasu.",
+     "vi": "Bây giờ trời đang mưa."
+    }
+   ],
+   "reason_vi": "Romaji viết kiểu bàn phím (ou/oo/uu/aa/ii) không theo Hepburn có dấu trường âm (ō, ū, ā, ī) như các mục khác. Chỉ sửa romaji, giữ nguyên các trường khác.",
+   "confidence": "high",
+   "batch": "0",
+   "decision": "rejected",
+   "decision_note": "Chỉ đổi kiểu viết romaji (ou→ō); romaji_matches chấp nhận cả hai. Không áp từng phần để tránh lệch kiểu; chuẩn hoá romaji toàn bộ là việc riêng."
+  },
+  {
+   "id": "GRA_000116",
+   "field": "examples",
+   "new_value": [
+    {
+     "jp": "だれが手伝ってくれましたか。…鈴木さんが手伝ってくれました。",
+     "hiragana": "だれが てつだって くれましたか。…すずきさんが てつだって くれました。",
+     "romaji": "Dare ga tetsudatte kuremashita ka. ... Suzuki-san ga tetsudatte kuremashita.",
+     "vi": "Ai đã giúp bạn vậy? — Anh Suzuki đã giúp tôi."
+    },
+    {
+     "jp": "箱の中に何がありますか。",
+     "hiragana": "はこの なかに なにが ありますか。",
+     "romaji": "Hako no naka ni nani ga arimasu ka.",
+     "vi": "Trong hộp có cái gì?"
+    },
+    {
+     "jp": "どれがミラーさんのかばんですか。",
+     "hiragana": "どれが ミラーさんの かばんですか。",
+     "romaji": "Dore ga Mirā-san no kaban desu ka.",
+     "vi": "Cái nào là cặp của anh Miller?"
+    }
+   ],
+   "reason_vi": "Romaji viết kiểu bàn phím (ou/oo/uu/aa/ii) không theo Hepburn có dấu trường âm (ō, ū, ā, ī) như các mục khác. Chỉ sửa romaji, giữ nguyên các trường khác.",
+   "confidence": "high",
+   "batch": "0",
+   "decision": "rejected",
+   "decision_note": "Chỉ đổi kiểu viết romaji (ou→ō); romaji_matches chấp nhận cả hai. Không áp từng phần để tránh lệch kiểu; chuẩn hoá romaji toàn bộ là việc riêng."
+  },
+  {
+   "id": "GRA_000120",
+   "field": "examples",
+   "new_value": [
+    {
+     "jp": "もし1億円あったら、何をしますか。",
+     "hiragana": "もし いちおくえん あったら、なにを しますか。",
+     "romaji": "Moshi ichiokuen attara, nani o shimasu ka.",
+     "vi": "Nếu có 100 triệu yên, bạn sẽ làm gì?"
+    },
+    {
+     "jp": "もし雨が降ったら、試合はありません。",
+     "hiragana": "もし あめが ふったら、しあいは ありません。",
+     "romaji": "Moshi ame ga futtara, shiai wa arimasen.",
+     "vi": "Nếu trời mưa thì sẽ không có trận đấu."
+    },
+    {
+     "jp": "いくら考えても、わかりません。",
+     "hiragana": "いくら かんがえても、わかりません。",
+     "romaji": "Ikura kangaete mo, wakarimasen.",
+     "vi": "Dù nghĩ bao nhiêu tôi cũng không hiểu."
+    },
+    {
+     "jp": "いくら高くても、このパソコンを買いたいです。",
+     "hiragana": "いくら たかくても、この パソコンを かいたいです。",
+     "romaji": "Ikura takakute mo, kono pasokon o kaitai desu.",
+     "vi": "Dù đắt đến đâu tôi cũng muốn mua chiếc máy tính này."
+    }
+   ],
+   "reason_vi": "Romaji viết kiểu bàn phím (ou/oo/uu/aa/ii) không theo Hepburn có dấu trường âm (ō, ū, ā, ī) như các mục khác; tách trợ từ も: 'kangaete mo', 'takakute mo'. Chỉ sửa romaji, giữ nguyên các trường khác.",
+   "confidence": "high",
+   "batch": "0",
+   "decision": "rejected",
+   "decision_note": "Chỉ đổi kiểu viết romaji (ou→ō); romaji_matches chấp nhận cả hai. Không áp từng phần để tránh lệch kiểu; chuẩn hoá romaji toàn bộ là việc riêng."
+  },
+  {
+   "id": "GRA_000124",
+   "field": "examples",
+   "new_value": [
+    {
+     "jp": "図書館で勉強します。",
+     "hiragana": "としょかんで べんきょう します。",
+     "romaji": "Toshokan de benkyō shimasu.",
+     "vi": "Tôi học ở thư viện."
+    },
+    {
+     "jp": "田中さんは今銀行にいます。",
+     "hiragana": "たなかさんは いま ぎんこうに います。",
+     "romaji": "Tanaka-san wa ima ginkō ni imasu.",
+     "vi": "Anh Tanaka bây giờ đang ở ngân hàng."
+    },
+    {
+     "jp": "私は東京に住んでいます。東京で働いています。",
+     "hiragana": "わたしは とうきょうに すんで います。とうきょうで はたらいて います。",
+     "romaji": "Watashi wa Tōkyō ni sunde imasu. Tōkyō de hataraite imasu.",
+     "vi": "Tôi sống ở Tokyo. Tôi làm việc ở Tokyo."
+    },
+    {
+     "jp": "居間でテレビを見ます。",
+     "hiragana": "いまで テレビを みます。",
+     "romaji": "Ima de terebi o mimasu.",
+     "vi": "Tôi xem tivi ở phòng khách."
+    }
+   ],
+   "reason_vi": "Romaji viết kiểu bàn phím (ou/oo/uu/aa/ii) không theo Hepburn có dấu trường âm (ō, ū, ā, ī) như các mục khác. Chỉ sửa romaji, giữ nguyên các trường khác.",
+   "confidence": "high",
+   "batch": "0",
+   "decision": "rejected",
+   "decision_note": "Chỉ đổi kiểu viết romaji (ou→ō); romaji_matches chấp nhận cả hai. Không áp từng phần để tránh lệch kiểu; chuẩn hoá romaji toàn bộ là việc riêng."
+  },
+  {
+   "id": "GRA_000128",
+   "field": "examples",
+   "new_value": [
+    {
+     "jp": "財布に1000円しかありません。",
+     "hiragana": "さいふに せんえんしか ありません。",
+     "romaji": "Saifu ni sen-en shika arimasen.",
+     "vi": "Trong ví chỉ có 1000 yên thôi."
+    },
+    {
+     "jp": "朝はコーヒーしか飲みません。",
+     "hiragana": "あさは コーヒーしか のみません。",
+     "romaji": "Asa wa kōhī shika nomimasen.",
+     "vi": "Buổi sáng tôi chỉ uống cà phê thôi."
+    },
+    {
+     "jp": "日曜日しか休みがありません。",
+     "hiragana": "にちようびしか やすみが ありません。",
+     "romaji": "Nichiyōbi shika yasumi ga arimasen.",
+     "vi": "Tôi chỉ được nghỉ mỗi Chủ nhật."
+    },
+    {
+     "jp": "このクラスには学生が3人しかいません。",
+     "hiragana": "この クラスには がくせいが さんにんしか いません。",
+     "romaji": "Kono kurasu ni wa gakusei ga sannin shika imasen.",
+     "vi": "Lớp này chỉ có 3 học sinh."
+    }
+   ],
+   "reason_vi": "Romaji viết kiểu bàn phím (ou/oo/uu/aa/ii) không theo Hepburn có dấu trường âm (ō, ū, ā, ī) như các mục khác. Chỉ sửa romaji, giữ nguyên các trường khác.",
+   "confidence": "high",
+   "batch": "0",
+   "decision": "rejected",
+   "decision_note": "Chỉ đổi kiểu viết romaji (ou→ō); romaji_matches chấp nhận cả hai. Không áp từng phần để tránh lệch kiểu; chuẩn hoá romaji toàn bộ là việc riêng."
+  },
+  {
+   "id": "GRA_000132",
+   "field": "examples",
+   "new_value": [
+    {
+     "jp": "明日は早く起きます。",
+     "hiragana": "あしたは はやく おきます。",
+     "romaji": "Ashita wa hayaku okimasu.",
+     "vi": "Ngày mai tôi sẽ dậy sớm."
+    },
+    {
+     "jp": "図書館では静かにしてください。",
+     "hiragana": "としょかんでは しずかに して ください。",
+     "romaji": "Toshokan de wa shizuka ni shite kudasai.",
+     "vi": "Ở thư viện xin hãy giữ yên lặng."
+    },
+    {
+     "jp": "名前をきれいに書いてください。",
+     "hiragana": "なまえを きれいに かいて ください。",
+     "romaji": "Namae o kirei ni kaite kudasai.",
+     "vi": "Xin hãy viết tên cho đẹp, rõ ràng."
+    },
+    {
+     "jp": "ミラーさんは日本語を上手に話します。",
+     "hiragana": "ミラーさんは にほんごを じょうずに はなします。",
+     "romaji": "Mirā-san wa Nihongo o jōzu ni hanashimasu.",
+     "vi": "Anh Miller nói tiếng Nhật giỏi."
+    }
+   ],
+   "reason_vi": "Romaji viết kiểu bàn phím (ou/oo/uu/aa/ii) không theo Hepburn có dấu trường âm (ō, ū, ā, ī) như các mục khác. Chỉ sửa romaji, giữ nguyên các trường khác.",
+   "confidence": "high",
+   "batch": "0",
+   "decision": "rejected",
+   "decision_note": "Chỉ đổi kiểu viết romaji (ou→ō); romaji_matches chấp nhận cả hai. Không áp từng phần để tránh lệch kiểu; chuẩn hoá romaji toàn bộ là việc riêng."
+  },
+  {
+   "id": "GRA_000056",
+   "field": "common_mistakes",
+   "new_value": [
+    "Dùng や nối tính từ/động từ.",
+    "Dùng や khi danh sách đã đầy đủ, chỉ có đúng những thứ được nêu (khi đó dùng と).",
+    "Bẫy JLPT: phân biệt と (đầy đủ) và や (còn thứ khác) theo ngữ cảnh 'còn nhiều thứ khác'."
+   ],
+   "reason_vi": "Câu cũ dễ hiểu nhầm là や không dùng được với hai danh từ (trong khi chính các ví dụ đều dùng や với hai danh từ). Tiêu chí đúng là liệt kê đầy đủ hay không, không phải số lượng.",
+   "confidence": "medium",
+   "batch": "0",
+   "decision": "accepted"
+  },
+  {
+   "id": "GRA_000060",
+   "field": "explanation_vi",
+   "new_value": "だけ gắn ngay sau từ cần giới hạn, cho biết phạm vi chỉ dừng ở đó, không hơn: 'chỉ một người', 'chỉ chủ nhật'. Khác với しか, だけ không bắt buộc vị ngữ phủ định; thường đi với vị ngữ khẳng định. Vị trí của だけ quyết định ý nghĩa, vì nó chỉ giới hạn từ đứng ngay trước nó.",
+   "reason_vi": "Câu cũ khẳng định vị ngữ của だけ luôn ở thể khẳng định, mâu thuẫn với chính mục restrictions (1人だけ 来ませんでした là câu đúng). Sửa thành: だけ không bắt buộc phủ định, thường đi với khẳng định.",
+   "confidence": "medium",
+   "batch": "0",
+   "decision": "accepted"
+  },
+  {
+   "id": "GRA_000069",
+   "field": "examples",
+   "new_value": [
+    {
+     "jp": "冬休みはどこかへ行きましたか。",
+     "hiragana": "ふゆやすみはどこかへいきましたか。",
+     "romaji": "Fuyuyasumi wa dokoka e ikimashita ka.",
+     "vi": "Kỳ nghỉ đông bạn có đi đâu không?"
+    },
+    {
+     "jp": "いいえ、どこへも行きませんでした。",
+     "hiragana": "いいえ、どこへもいきませんでした。",
+     "romaji": "Iie, doko e mo ikimasen deshita.",
+     "vi": "Không, tôi không đi đâu cả."
+    },
+    {
+     "jp": "のどが渇きましたから、何か飲みたいです。",
+     "hiragana": "のどがかわきましたから、なにかのみたいです。",
+     "romaji": "Nodo ga kawakimashita kara, nanika nomitai desu.",
+     "vi": "Tôi khát nên muốn uống cái gì đó."
+    },
+    {
+     "jp": "「何か食べましたか。」「いいえ、何も食べませんでした。」",
+     "hiragana": "「なにかたべましたか。」「いいえ、なにもたべませんでした。」",
+     "romaji": "\"Nanika tabemashita ka.\" \"Iie, nani mo tabemasen deshita.\"",
+     "vi": "\"Bạn có ăn gì không?\" \"Không, tôi không ăn gì cả.\""
+    }
+   ],
+   "reason_vi": "Ví dụ 4 dịch 何か食べましたか…いいえ、何も食べませんでした thành \"đã ăn gì chưa? – Chưa, tôi chưa ăn gì cả\": \"chưa\" ứng với まだ～ていません (xem GRA_000125, chính dữ liệu này cảnh báo không dùng ～ませんでした cho nghĩa \"chưa\"). Sửa thành \"Bạn có ăn gì không? – Không, tôi không ăn gì cả.\"",
+   "confidence": "medium",
+   "batch": "1",
+   "decision": "accepted"
+  },
+  {
+   "id": "GRA_000030",
+   "field": "restrictions",
+   "new_value": [
+    "会います dùng に: × 友達を 会います.",
+    "わかります／できます／好き／上手／ほしい dùng が (Bài 9, 13, 18)."
+   ],
+   "reason_vi": "Mốc bài sai: N が できます học ở Bài 18 (Minna), không phải Bài 9 hay 13; thêm Bài 18 vào chú thích.",
+   "confidence": "medium",
+   "batch": "2",
+   "decision": "accepted"
+  },
+  {
+   "id": "GRA_000031",
+   "field": "formation",
+   "new_value": "N + を + します. N có thể là: thể thao, trò chơi (サッカー, テニス, トランプ); sự kiện (パーティー, 会議); hoạt động khác (宿題, 仕事, 電話). Danh từ chỉ hành động (勉強, 散歩, 買い物...) có hai cách: 勉強します hoặc N の勉強を します.",
+   "reason_vi": "買い物 (かいもの) là từ thuần Nhật, không phải gốc Hán; bỏ chữ \"gốc Hán\" để không sai về nguồn gốc từ.",
+   "confidence": "medium",
+   "batch": "3",
+   "decision": "accepted"
+  },
+  {
+   "id": "GRA_000063",
+   "field": "common_mistakes",
+   "new_value": [
+    "Gắn より sai bên: muốn nói \"xe này to hơn xe kia\" mà nói この 車より あの 車は 大きいです thì nghĩa bị đảo thành \"xe kia to hơn xe này\" (câu đúng ngữ pháp nhưng sai ý) → この 車は あの 車より 大きいです.",
+    "Thêm từ thừa dịch từ 'hơn' tiếng Việt.",
+    "Bẫy JLPT (đọc hiểu): xác định đúng vật nào lớn/nhỏ hơn trong câu có より."
+   ],
+   "reason_vi": "Câu この 車より あの 車は 大きいです đúng ngữ pháp (nghĩa: xe kia to hơn xe này), đánh dấu × là gây hiểu nhầm; sửa thành lỗi đảo nghĩa và đưa câu đúng.",
+   "confidence": "medium",
+   "batch": "3",
+   "decision": "accepted"
+  }
+ ]
+}

@@ -234,6 +234,7 @@ def dashboard(conn) -> dict:
                                       (today,)).fetchone()[0],
         "streak_days": study_streak(conn),
         "questions_by_status": kv("SELECT verification_status, COUNT(*) FROM questions GROUP BY 1"),
+        "exam": exam_stats(conn),
         "grammar_by_status": kv("SELECT verification_status, COUNT(*) FROM grammar GROUP BY 1"),
         "kanji_by_status": kv("SELECT verification_status, COUNT(*) FROM kanji GROUP BY 1"),
         "sources_by_access": kv("SELECT COALESCE(access_status,'unchecked'), COUNT(*) FROM sources GROUP BY 1"),
@@ -272,3 +273,108 @@ def review_queue(conn, entity: str, status: str | None = None, limit: int = 50, 
         f"ORDER BY issue_count DESC, {order} LIMIT ? OFFSET ?",
         [entity, *statuses, limit, offset]))
     return items, total
+
+
+# ---------- mock exam (spec Part 9) ----------
+LIVE_Q = "verification_status != 'rejected'"
+
+
+def exam_overview(conn) -> dict:
+    exams = rows(conn.execute(
+        f"SELECT e.exam_id, e.title, e.exam_type, e.source_type, e.is_official, e.duration_minutes, e.verification_status, "
+        f"(SELECT COUNT(*) FROM questions q WHERE q.exam_id=e.exam_id AND q.{LIVE_Q}) AS question_count "
+        f"FROM exams e WHERE e.exam_type != 'question_bank' ORDER BY e.exam_id"))
+    bank = rows(conn.execute(
+        f"SELECT q.section, q.mondai_no, q.mondai_type, e.is_official, COUNT(*) AS n FROM questions q "
+        f"JOIN exams e ON e.exam_id=q.exam_id WHERE q.{LIVE_Q} GROUP BY 1,2,3,4 ORDER BY 1,2"))
+    return {"exams": exams, "bank": bank, "mistakes": len(mistake_question_ids(conn))}
+
+
+def questions_where(conn, exam_id=None, section=None, mondai_type=None, official=None, ids=None) -> list[dict]:
+    sql, args = f"SELECT q.* FROM questions q JOIN exams e ON e.exam_id=q.exam_id WHERE q.{LIVE_Q}", []
+    for col, val in (("q.exam_id", exam_id), ("q.section", section), ("q.mondai_type", mondai_type),
+                     ("e.is_official", None if official is None else int(official))):
+        if val is not None:
+            sql += f" AND {col}=?"
+            args.append(val)
+    if ids is not None:
+        sql += f" AND q.question_id IN ({','.join('?' * len(ids)) or 'NULL'})"
+        args += list(ids)
+    return rows(conn.execute(sql + " ORDER BY q.section_id, q.mondai_no, q.number, q.question_id", args))
+
+
+def mistake_question_ids(conn) -> list[str]:
+    """Questions whose most recent answer in a submitted attempt was wrong (spec §9.1 Mode E)."""
+    last: dict[str, int] = {}
+    for qid, ok in conn.execute(
+            "SELECT a.question_id, a.is_correct FROM attempt_answers a JOIN exam_attempts t USING (attempt_id) "
+            "WHERE t.submitted_at IS NOT NULL AND a.answer IS NOT NULL ORDER BY t.submitted_at, a.answered_at"):
+        last[qid] = ok
+    return [q for q, ok in last.items() if ok == 0]
+
+
+def create_attempt(conn, attempt_id: str, exam_id, title: str, mode: str, config: dict) -> None:
+    ts = iso()
+    conn.execute("INSERT INTO exam_attempts (attempt_id, exam_id, title, mode, config_json, current_section, "
+                 "section_started_at, started_at) VALUES (?,?,?,?,?,0,?,?)",
+                 (attempt_id, exam_id, title, mode, json.dumps(config, ensure_ascii=False), ts, ts))
+
+
+def get_attempt(conn, attempt_id: str) -> dict | None:
+    r = conn.execute("SELECT * FROM exam_attempts WHERE attempt_id=?", (attempt_id,)).fetchone()
+    if not r:
+        return None
+    a = dict(r)
+    a["config"] = json.loads(a.pop("config_json"))
+    a["result"] = json.loads(a.pop("result_json")) if a["result_json"] else None
+    return a
+
+
+def list_attempts(conn, limit: int = 50) -> list[dict]:
+    out = []
+    for r in rows(conn.execute("SELECT * FROM exam_attempts ORDER BY started_at DESC LIMIT ?", (limit,))):
+        res = json.loads(r.pop("result_json")) if r["result_json"] else None
+        cfg = json.loads(r.pop("config_json"))
+        r["question_count"] = sum(len(s["question_ids"]) for s in cfg["sections"])
+        r["summary"] = {k: res[k] for k in ("total", "correct", "incorrect", "unanswered", "accuracy")} if res else None
+        r["readiness"] = res.get("readiness") if res else None
+        out.append(r)
+    return out
+
+
+def attempt_answers(conn, attempt_id: str) -> dict[str, dict]:
+    return {r["question_id"]: {"answer": json.loads(r["answer"]) if r["answer"] else None, "flagged": bool(r["flagged"]),
+                               "is_correct": r["is_correct"]}
+            for r in conn.execute("SELECT * FROM attempt_answers WHERE attempt_id=?", (attempt_id,))}
+
+
+def save_answer(conn, attempt_id: str, qid: str, answer, flagged: bool, is_correct) -> None:
+    conn.execute("INSERT INTO attempt_answers (attempt_id, question_id, answer, flagged, is_correct, answered_at) "
+                 "VALUES (?,?,?,?,?,?) ON CONFLICT (attempt_id, question_id) DO UPDATE SET answer=excluded.answer, "
+                 "flagged=excluded.flagged, is_correct=excluded.is_correct, answered_at=excluded.answered_at",
+                 (attempt_id, qid, json.dumps(answer) if answer else None, int(flagged),
+                  None if is_correct is None else int(is_correct), iso()))
+
+
+def advance_section(conn, attempt_id: str, to_index: int) -> None:
+    conn.execute("UPDATE exam_attempts SET current_section=?, section_started_at=? WHERE attempt_id=?",
+                 (to_index, iso(), attempt_id))
+
+
+def finish_attempt(conn, attempt_id: str, result: dict) -> None:
+    conn.execute("UPDATE exam_attempts SET submitted_at=?, result_json=? WHERE attempt_id=?",
+                 (iso(), json.dumps(result, ensure_ascii=False), attempt_id))
+
+
+def exam_stats(conn) -> dict:
+    last = conn.execute("SELECT attempt_id, title, mode, submitted_at, result_json FROM exam_attempts "
+                        "WHERE submitted_at IS NOT NULL ORDER BY submitted_at DESC LIMIT 1").fetchone()
+    res = json.loads(last["result_json"]) if last else None
+    return {
+        "attempts_submitted": conn.execute("SELECT COUNT(*) FROM exam_attempts WHERE submitted_at IS NOT NULL").fetchone()[0],
+        "last": {"attempt_id": last["attempt_id"], "title": last["title"], "mode": last["mode"],
+                 "submitted_at": last["submitted_at"], "accuracy": res["accuracy"], "correct": res["correct"],
+                 "total": res["total"]} if last else None,
+        "mistakes_pending": len(mistake_question_ids(conn)),
+        "bank_questions": conn.execute(f"SELECT COUNT(*) FROM questions WHERE {LIVE_Q}").fetchone()[0],
+    }

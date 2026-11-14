@@ -48,7 +48,11 @@ def test_verification_provenance(imported):
     by = dict(conn.execute("SELECT COALESCE(verified_by,'-'), COUNT(*) FROM vocabulary "
                            "WHERE verification_status='verified' GROUP BY 1").fetchall())
     assert set(by) <= {"ai"}
-    assert conn.execute("SELECT COUNT(*) FROM questions WHERE verification_status='verified'").fetchone()[0] == 0
+    assert conn.execute("SELECT COUNT(*) FROM questions WHERE verification_status='verified' "
+                        "AND exam_id='EXAM_N5_OFFICIAL_SAMPLE'").fetchone()[0] == 0
+    # the only automatically verified questions are rule-generated ones in the non-official bank
+    assert conn.execute("SELECT COUNT(*) FROM questions q JOIN exams e USING (exam_id) WHERE q.verification_status="
+                        "'verified' AND (q.verified_by!='generator' OR e.is_official=1)").fetchone()[0] == 0
 
 
 def test_vocabulary_schema_and_traceability(imported):
@@ -133,7 +137,8 @@ SEIKAI = {"vocabulary": [1, 4, 4, 2, 1, 3, 3, 2],
 def test_answer_key_matches_seikai(imported):
     conn, _ = imported
     got = {"vocabulary": [], "grammar_reading": [], "listening": []}
-    for r in conn.execute("SELECT section, correct_answer FROM questions ORDER BY section_id, mondai_no, number"):
+    for r in conn.execute("SELECT section, correct_answer FROM questions WHERE exam_id='EXAM_N5_OFFICIAL_SAMPLE' "
+                         "ORDER BY section_id, mondai_no, number"):
         got[r["section"]].append(int(json.loads(r["correct_answer"])[0]))
     assert got == SEIKAI
 

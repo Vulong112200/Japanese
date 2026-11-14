@@ -110,6 +110,12 @@ Nhật ký: `ai_correction` (bản sửa đã duyệt, kèm `basis`), approve, r
   - `extra_json` chứa các cờ: `options_audio_only`, `options_are_pictures`, `options_are_glyph_images`, `star_position`, `expected_sequence` (do AI suy luận, có ghi chú), `raw_id`.
   - `explanation_vi` kèm `explanation_origin = AI_GENERATED`.
   - `transcript`: script nghe.
+  - Câu sinh tự động (`exam_id='BANK_N5_GENERATED'`): `extraction_method='rule_generated'`, `verified_by='generator'`, `explanation_origin='AI_GENERATED'`; `extra_json` có `target` (chữ được gạch chân), `target_entity` (VOC id), `lesson_number`, `option_explanations` {option_id: lý do}, `generator`.
+
+### exam_attempts, attempt_answers (thi thử)
+- **exam_attempts**: `attempt_id` (`ATT_<thời gian>_<ngẫu nhiên>`), `exam_id` (NULL nếu tổ hợp từ ngân hàng), `title`, `mode` (`exam` | `practice`), `config_json` = `{filter, sections:[{section_id, section, name, duration_sec|null, question_ids}]}` đóng băng lúc bắt đầu, `current_section`, `section_started_at`, `started_at`, `submitted_at`, `result_json` (kết quả `score()` + `readiness`).
+- **attempt_answers**: khoá (`attempt_id`, `question_id`); `answer` JSON danh sách option_id (NULL = chưa làm), `flagged`, `is_correct` (tính lúc lưu, chỉ trả về sau khi nộp ở chế độ thi), `answered_at`.
+- Ôn câu sai = câu có lần trả lời gần nhất (trong lượt đã nộp) là sai.
 
 ## Tệp dữ liệu
 | Đường dẫn | Lớp | Nội dung |
@@ -127,6 +133,7 @@ Nhật ký: `ai_correction` (bản sửa đã duyệt, kèm `basis`), approve, r
 | `data/raw/SRC_LESSON_002/ocr/*.json` | RAW | Kết quả OCR (Tesseract) của các PDF Drive; không commit |
 | `docs/N5/SourceDocs/*.docx` | nguồn gốc | Cẩm nang ngữ pháp của bạn (`SRC_LOCAL_GRAMMAR_DOCX`) |
 | `data/normalized/ai_review/vocabulary_ai_review.json` | AI_GENERATED | Rà soát vòng 1 (68 phát hiện), giữ làm bằng chứng |
+| `data/normalized/ai_review/grammar_round2.json` | AI_GENERATED | Rà soát ngữ pháp vòng 2 (4 agent, 135 điểm): 19 đề xuất, mỗi đề xuất có `decision` (6 nhận, 13 loại kèm lý do) |
 | `data/sources_online.json` | registry | 24 nguồn trực tuyến trong spec |
 | `data/reference/reference.sqlite` | tham chiếu | JMdict + KANJIDIC2 đã dựng (không commit; `python -m hub build-reference`) |
 | `data/raw/SRC_GDOC_001/grammar_handbook.txt` | RAW | Google Doc ngữ pháp (export txt), không commit |

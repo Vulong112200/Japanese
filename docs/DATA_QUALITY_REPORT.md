@@ -1,6 +1,6 @@
 # DATA QUALITY REPORT
 
-Tạo tự động lúc 2026-11-14T21:29:21+07:00.
+Tạo tự động lúc 2026-11-14T21:53:08+07:00.
 
 ## Độ phủ N5
 - **Từ vựng**: 1253 mục (bổ sung theo danh sách JLPT N5: 158; bổ sung từ Minna (PDF Drive, OCR): 132; flashcard của bạn (CSV): 963). Có đủ 25 bài Minna. So với danh sách JLPT N5 (718 từ): toàn bộ đã có. 19 từ khớp qua dạng khác (後→後で, 結婚→結婚します…); ～がる là ngữ pháp N4.
