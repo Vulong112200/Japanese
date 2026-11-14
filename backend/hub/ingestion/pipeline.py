@@ -17,6 +17,8 @@ from . import flashcards_csv as fc
 
 EXAM_DIR = ROOT / "docs" / "N5" / "Exam"
 FLASHCARD_DIR = ROOT / "docs" / "N5" / "flashcards"
+SOURCEDOCS_DIR = ROOT / "docs" / "N5" / "SourceDocs"
+DRIVE_DIR = ROOT / "data" / "raw" / "SRC_LESSON_002"
 ONLINE_SOURCES = ROOT / "data" / "sources_online.json"
 EXAM_JSON = ROOT / "data" / "normalized" / "exams" / "EXAM_N5_OFFICIAL_SAMPLE.json"
 EXAM_AI_REVIEW = ROOT / "data" / "normalized" / "exams" / "EXAM_N5_OFFICIAL_SAMPLE.ai_review.json"
@@ -51,6 +53,10 @@ def source_id_for(path: Path) -> str:
         return "SRC_LOCAL_FC_KAIWA"
     if "Số Đếm" in stem or "So Dem" in stem:
         return "SRC_LOCAL_FC_SODEM"
+    if path.parent == DRIVE_DIR:                      # PDFs downloaded from the public Drive folder
+        return "SRC_DRIVE_" + re.sub(r"[^A-Z0-9]+", "_", path.stem.upper()).strip("_")[:30]
+    if path.suffix.lower() == ".docx" and "Ngữ Pháp" in path.stem:
+        return "SRC_LOCAL_GRAMMAR_DOCX"
     return "SRC_LOCAL_" + hashlib.sha1(rel(path).encode()).hexdigest()[:8].upper()
 
 
@@ -80,7 +86,7 @@ def pdf_pages(path: Path) -> int | None:
 
 
 # ---------------- inventory ----------------
-def inventory(conn, dirs=(EXAM_DIR, FLASHCARD_DIR)) -> list[dict]:
+def inventory(conn, dirs=(EXAM_DIR, FLASHCARD_DIR, SOURCEDOCS_DIR, DRIVE_DIR)) -> list[dict]:
     """Register every supported file. Records size, hash, pages/duration. Flags exact duplicates."""
     report = []
     seen: dict[str, str] = {r["content_hash"]: r["source_id"] for r in repo.list_sources(conn) if r["content_hash"]}
@@ -88,7 +94,9 @@ def inventory(conn, dirs=(EXAM_DIR, FLASHCARD_DIR)) -> list[dict]:
         if not Path(d).exists():
             report.append({"location": rel(Path(d)), "error": "directory not accessible"})
             continue
-        for p in sorted(Path(d).rglob("*")):
+        # data/raw holds derived files (OCR json, page images) next to downloaded PDFs: register PDFs only
+        files = Path(d).glob("*.pdf") if Path(d) == DRIVE_DIR else Path(d).rglob("*")
+        for p in sorted(files):
             if not p.is_file():
                 continue
             kind = TYPE_BY_EXT.get(p.suffix.lower())
@@ -106,7 +114,8 @@ def inventory(conn, dirs=(EXAM_DIR, FLASHCARD_DIR)) -> list[dict]:
                 existing = repo.get_source(conn, sid)
                 notes = f"Trùng nội dung với {dup}" if dup and dup != sid else None
                 reliability = ("OFFICIAL" if sid in EXAM_PURPOSE else
-                               "USER_CREATED" if sid.startswith("SRC_LOCAL_FC_") else "PRIMARY")
+                               "USER_CREATED" if sid.startswith(("SRC_LOCAL_FC_", "SRC_LOCAL_GRAMMAR")) else
+                               "EDUCATIONAL" if sid.startswith("SRC_DRIVE_") else "PRIMARY")
                 src = {**entry, "reliability": reliability, "access_status": "local", "level": "N5",
                        "purpose": EXAM_PURPOSE.get(sid) or ("Flashcard do người dùng xuất" if kind == "csv" else None),
                        "notes": notes}
@@ -263,7 +272,10 @@ USER_OWNED = ("user", "pending_user")     # a person decided or is editing: auto
 
 def _raw_word(conn, v: dict) -> str:
     raw = repo.raw_by_ids(conn, json.loads(v["raw_ids"])[:1])
-    return _norm(json.loads(raw[0]["content"])[0]) if raw else ""
+    if not raw:
+        return ""
+    content = json.loads(raw[0]["content"])        # CSV row: [front, back]; OCR/reference row: {"word": ...}
+    return _norm(content.get("word") if isinstance(content, dict) else content[0])
 
 
 def load_corrections(path: Path = VOCAB_CORRECTIONS) -> dict:
@@ -375,7 +387,8 @@ def revalidate_all(conn) -> None:
     dupes: dict[str, list[str]] = {}
     for r in conn.execute("SELECT id, word FROM vocabulary WHERE archived=0"):
         dupes.setdefault(_norm(r["word"]), []).append(r["id"])
-    audited = load_corrections()["audit"]["items"]
+    from . import knowledge
+    audited = {**load_corrections()["audit"]["items"], **knowledge.supplement_audited(conn)}
     for vid in [r[0] for r in conn.execute("SELECT id FROM vocabulary")]:
         revalidate_vocab(conn, vid, dupes, audited)
 
@@ -500,8 +513,15 @@ def import_sample_exam(conn, exam_json: Path = EXAM_JSON, exam_dir: Path | None 
 
 def run_all(conn, check_network: bool = False) -> dict:
     out = {"inventory": len(inventory(conn)), "online_registered": register_online(conn)}
-    out["flashcards"] = import_flashcards(conn)
+    from . import knowledge
+    out["flashcards"] = import_flashcards(conn)          # CSV first: keeps VOC ids of the user's cards stable
+    out["vocab_supplement"] = knowledge.import_supplement(conn)
+    revalidate_all(conn)
+    repo.ensure_cards(conn)
+    out["grammar"] = knowledge.import_grammar(conn)
+    out["kanji"] = knowledge.import_kanji(conn)
     out["exam"] = import_sample_exam(conn)
+    conn.commit()
     if check_network:
         out["online_check"] = check_online(conn)
     return out

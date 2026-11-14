@@ -1,18 +1,24 @@
 # IMPORT REPORT
 
-Tạo tự động bởi `python -m hub report` lúc 2026-11-14T16:28:27+07:00. Số liệu đọc từ `data/database/hub.sqlite`.
+Tạo tự động bởi `python -m hub report` lúc 2026-11-14T21:29:21+07:00. Số liệu đọc từ `data/database/hub.sqlite`.
 
 Thư mục đã kiểm tra: `D:\Japanese\docs\N5\Exam`, `D:\Japanese\docs\N5\flashcards` (truy cập trực tiếp từ Windows, không qua WSL/Docker).
 
 ## Tóm tắt
-- Tệp cục bộ đã đăng ký: **31**
-- Từ vựng (lớp NORMALIZED): {"verified": 963} — **0 mục được tự động xác minh**.
+- Tệp cục bộ đã đăng ký: **41**
+- Từ vựng (lớp NORMALIZED): {"verified": 1253} — **0 mục được tự động xác minh**.
 - Câu hỏi đề mẫu: {"needs_review": 29}
 - Trạng thái xử lý `needs_review` = đã nhập nhưng còn chờ người dùng duyệt (không phải lỗi).
 
 ## Chi tiết từng tệp
 | Tệp | Đuôi | Bytes | Vị trí | Loại | Số trang | Câu hỏi | Audio | Bản ghi | Trạng thái xử lý | Trùng lặp | Lỗi |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| 120-Kanji-co-ban-so-cap.pdf | pdf | 2791010 | data/raw/SRC_LESSON_002/120-Kanji-co-ban-so-cap.pdf | pdf | 23 |  |  | raw 0 / từ vựng 0 | pending |  |  |
+| 160-kanji-n5-n4.pdf | pdf | 14916244 | data/raw/SRC_LESSON_002/160-kanji-n5-n4.pdf | pdf | 191 |  |  | raw 0 / từ vựng 0 | pending |  |  |
+| 214-bo-thu-bang-hinh-anh.pdf | pdf | 13292972 | data/raw/SRC_LESSON_002/214-bo-thu-bang-hinh-anh.pdf | pdf | 14 |  |  | raw 0 / từ vựng 0 | pending |  |  |
+| pho-tu-tu-dong-tu-tha-dong-tu.pdf | pdf | 1736346 | data/raw/SRC_LESSON_002/pho-tu-tu-dong-tu-tha-dong-tu.pdf | pdf | 47 |  |  | raw 0 / từ vựng 0 | pending |  |  |
+| Tong-hop-tu-vung-N5.pdf | pdf | 14864620 | data/raw/SRC_LESSON_002/Tong-hop-tu-vung-N5.pdf | pdf | 39 |  |  | raw 132 / từ vựng 132 | pending |  |  |
+| Tu-vung-N5.pdf | pdf | 51362733 | data/raw/SRC_LESSON_002/Tu-vung-N5.pdf | pdf | 63 |  |  | raw 0 / từ vựng 0 | pending |  |  |
 | flashcards_Bai1.csv | csv | 12032 | docs/N5/flashcards/flashcards_Bai1.csv | csv |  |  |  | raw 45 / từ vựng 45 | needs_review |  |  |
 | flashcards_Bai2.csv | csv | 11877 | docs/N5/flashcards/flashcards_Bai2.csv | csv |  |  |  | raw 46 / từ vựng 46 | needs_review |  |  |
 | flashcards_Bai3.csv | csv | 9332 | docs/N5/flashcards/flashcards_Bai3.csv | csv |  |  |  | raw 40 / từ vựng 40 | needs_review |  |  |
@@ -39,11 +45,15 @@ Thư mục đã kiểm tra: `D:\Japanese\docs\N5\Exam`, `D:\Japanese\docs\N5\fla
 | flashcards_Bai25.csv | csv | 4779 | docs/N5/flashcards/flashcards_Bai25.csv | csv |  |  |  | raw 16 / từ vựng 16 | needs_review |  |  |
 | flashcards_Từ Vựng Kaiwa-Hội thoại giao tiếp.csv | csv | 21781 | docs/N5/flashcards/flashcards_Từ Vựng Kaiwa-Hội thoại giao tiếp.csv | csv |  |  |  | raw 60 / từ vựng 60 | needs_review |  |  |
 | flashcards_Chuyên Đề Số Đếm & Ngày Tháng N5.csv | csv | 1901 | docs/N5/flashcards/flashcards_Chuyên Đề Số Đếm & Ngày Tháng N5.csv | csv |  |  |  | raw 16 / từ vựng 0 / RAW-only 16 | needs_review |  |  |
+| Cẩm Nang Hệ Thống Ngữ Pháp JLPT N5 Toàn Diện (Bài 1 - 25).docx | docx | 24240 | docs/N5/SourceDocs/Cẩm Nang Hệ Thống Ngữ Pháp JLPT N5 Toàn Diện (Bài 1 - 25).docx | docx |  |  |  | raw 0 / từ vựng 0 | pending |  |  |
 | N5Sample.mp3 | mp3 | 7584313 | docs/N5/Exam/20260705/N5Sample.mp3 | audio |  | 8 | 1 | raw 0 / từ vựng 0 | needs_review |  |  |
 | N5-kaitou.pdf | pdf | 371599 | docs/N5/Exam/20260705/N5-kaitou.pdf | pdf | 3 |  |  | raw 3 / từ vựng 0 | needs_review |  |  |
 | N5-mondai.pdf | pdf | 4443728 | docs/N5/Exam/20260705/N5-mondai.pdf | pdf | 22 | 29 |  | raw 51 / từ vựng 0 | needs_review |  |  |
 | N5-script.pdf | pdf | 757940 | docs/N5/Exam/20260705/N5-script.pdf | pdf | 3 | 8 |  | raw 3 / từ vựng 0 | needs_review |  |  |
 | N5-seikai.pdf | pdf | 34996 | docs/N5/Exam/20260705/N5-seikai.pdf | pdf | 1 | 29 |  | raw 1 / từ vựng 0 | needs_review |  |  |
+| JLPT N5 word list (tanos.co.uk via elzup/jlpt-word-list) | csv |  | data/reference/jlpt_n5_words.csv | csv |  |  |  | raw 158 / từ vựng 158 | verified |  |  |
+| JMdict (EDRDG) | gz |  | data/reference/JMdict_e.gz | dictionary |  |  |  | raw 0 / từ vựng 0 | verified |  |  |
+| KANJIDIC2 (EDRDG) | gz |  | data/reference/kanjidic2.xml.gz | dictionary |  |  |  | raw 0 / từ vựng 0 | verified |  |  |
 
 ## Ghi chú trích xuất
 - **PDF đề thi**: text layer hỏng (font CID không có ToUnicode) → trích `get_text()` chỉ lấy được tiêu đề. Câu hỏi được chép lại bằng AI từ ảnh trang (`ai_vision_transcription`), lưu ở `data/normalized/exams/EXAM_N5_OFFICIAL_SAMPLE.json`, trạng thái `needs_review`. Ảnh trang gốc lưu ở `data/raw/<source_id>/pages/`.

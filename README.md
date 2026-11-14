@@ -9,7 +9,12 @@ python -m venv backend\.venv
 backend\.venv\Scripts\python -m pip install fastapi uvicorn pymupdf jsonschema pytest httpx
 cd frontend; npm install; npm run build; cd ..
 ```
-Tuỳ chọn: cài `ffprobe` (FFmpeg) để đo thời lượng audio.
+Tuỳ chọn:
+- Cài `ffprobe` (FFmpeg) để đo thời lượng audio.
+- OCR cho PDF scan:
+  1. Chạy `winget install UB-Mannheim.TesseractOCR`.
+  2. Tải `jpn`, `jpn_vert`, `vie`, `eng` `.traineddata` từ https://github.com/tesseract-ocr/tessdata_best vào `data/reference/tessdata/`.
+  3. Chạy `backend\.venv\Scripts\python -m pip install numpy pillow`.
 
 ## Chạy
 ```powershell

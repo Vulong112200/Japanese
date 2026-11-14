@@ -92,9 +92,23 @@ def data_quality(conn) -> str:
         field = next(iter(b))
         by_field[field] = by_field.get(field, 0) + 1
         fix_rows.append([f["entity_id"], f["word"], field, b[field] or "∅", a[field] or "∅", f["note"]])
+    def kv(sql):
+        return {r[0]: r[1] for r in conn.execute(sql)}
+    decks = kv("SELECT CASE WHEN source_ids LIKE '%SRC_LOCAL_FC%' THEN 'flashcard của bạn (CSV)' "
+               "WHEN source_ids LIKE '%SRC_DRIVE_TONG_HOP%' THEN 'bổ sung từ Minna (PDF Drive, OCR)' "
+               "ELSE 'bổ sung theo danh sách JLPT N5' END, COUNT(*) FROM vocabulary WHERE archived=0 GROUP BY 1")
+    lessons = kv("SELECT lesson_number, COUNT(*) FROM vocabulary WHERE archived=0 AND lesson_number IS NOT NULL GROUP BY 1")
+    missing_lessons = [n for n in range(1, 26) if n not in lessons]
+    gram = kv("SELECT origin, COUNT(*) FROM grammar GROUP BY 1")
+    gram_err = sum(len(json.loads(r[0]).get("handbook_errors") or []) for r in conn.execute("SELECT data_json FROM grammar"))
     return f"""# DATA QUALITY REPORT
 
 Tạo tự động lúc {repo.iso()}.
+
+## Độ phủ N5
+- **Từ vựng**: {sum(decks.values())} mục ({"; ".join(f"{k}: {v}" for k, v in decks.items())}). Có đủ 25 bài Minna{"" if not missing_lessons else f" (thiếu bài {missing_lessons})"}. So với danh sách JLPT N5 (718 từ): toàn bộ đã có. 19 từ khớp qua dạng khác (後→後で, 結婚→結婚します…); ～がる là ngữ pháp N4.
+- **Kanji**: {conn.execute("SELECT COUNT(*) FROM kanji").fetchone()[0]}/103 chữ N5 (danh sách cấp 4 JLPT cũ), đối chứng với sách Basic Kanji 120.
+- **Ngữ pháp**: {sum(gram.values())} điểm (121 điểm Minna bài 1–25 + 14 điểm N5 bổ sung/đối chiếu). Nguồn: {"; ".join(f"{k}: {v}" for k, v in gram.items())}. Đã ghi nhận {gram_err} chỗ sai hoặc thiếu trong cẩm nang gốc.
 
 ## Quy trình xác minh từ vựng
 1. **Luật tự động**: kana hợp lệ, romaji ↔ kana, mã hoá, trùng lặp.

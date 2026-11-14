@@ -153,6 +153,42 @@ CREATE TABLE IF NOT EXISTS exams (
   verification_status TEXT NOT NULL DEFAULT 'needs_review'
 );
 
+CREATE TABLE IF NOT EXISTS grammar (
+  id TEXT PRIMARY KEY,                    -- GRA_000001
+  pattern TEXT NOT NULL,
+  lesson_number INTEGER,                  -- Minna lesson; NULL = N5 point outside Minna 1–25
+  grammar_name_vi TEXT,
+  meaning_vi TEXT NOT NULL,
+  formation TEXT NOT NULL,
+  explanation_vi TEXT,
+  data_json TEXT NOT NULL,                -- usage, restrictions, formality, similar_patterns, common_mistakes,
+                                          -- examples, handbook_refs, handbook_errors, level_note
+  origin TEXT NOT NULL,                   -- handbook | handbook+ai | ai
+  level TEXT NOT NULL DEFAULT 'N5',
+  source_ids TEXT NOT NULL DEFAULT '[]',
+  verification_status TEXT NOT NULL DEFAULT 'needs_review' CHECK (verification_status IN
+    ('raw','extracted','normalized','needs_review','verified','rejected')),
+  verified_by TEXT,
+  review_notes TEXT
+);
+
+CREATE TABLE IF NOT EXISTS kanji (
+  id TEXT PRIMARY KEY,                    -- KAN_000001
+  kanji TEXT NOT NULL UNIQUE,
+  han_viet TEXT,
+  meaning_vi TEXT NOT NULL,
+  onyomi TEXT NOT NULL DEFAULT '[]',
+  kunyomi TEXT NOT NULL DEFAULT '[]',
+  stroke_count INTEGER,
+  example_words TEXT NOT NULL DEFAULT '[]',
+  level TEXT NOT NULL DEFAULT 'N5',
+  source_ids TEXT NOT NULL DEFAULT '[]',
+  verification_status TEXT NOT NULL DEFAULT 'needs_review' CHECK (verification_status IN
+    ('raw','extracted','normalized','needs_review','verified','rejected')),
+  verified_by TEXT,
+  review_notes TEXT
+);
+
 CREATE TABLE IF NOT EXISTS passages (
   passage_id TEXT PRIMARY KEY,
   exam_id TEXT REFERENCES exams(exam_id),

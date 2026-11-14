@@ -192,7 +192,7 @@ def archive_vocabulary(vid: str, conn=Depends(get_conn)):
 
 # ---------- data review ----------
 @router.get("/review/queue")
-def review_queue(entity: Literal["vocabulary", "question"] = "vocabulary", status: str | None = None,
+def review_queue(entity: Literal["vocabulary", "question", "grammar", "kanji"] = "vocabulary", status: str | None = None,
                  limit: int = Query(50, le=500), offset: int = 0, conn=Depends(get_conn)):
     items, total = repo.review_queue(conn, entity, status, limit, offset)
     return {"total": total, "items": [decode(i) for i in items]}
@@ -210,9 +210,66 @@ def question_detail(conn, qid: str) -> dict:
     return q
 
 
+def grammar_detail(conn, gid: str) -> dict:
+    g = conn.execute("SELECT * FROM grammar WHERE id=?", (gid,)).fetchone()
+    if not g:
+        raise HTTPException(404)
+    g = dict(g)
+    g.update(json.loads(g.pop("data_json")))
+    g["source_ids"] = json.loads(g["source_ids"])
+    g["issues"] = repo.issues_for(conn, "grammar", gid)
+    return g
+
+
+def kanji_detail(conn, kid: str) -> dict:
+    k = conn.execute("SELECT * FROM kanji WHERE id=? OR kanji=?", (kid, kid)).fetchone()
+    if not k:
+        raise HTTPException(404)
+    k = dict(k)
+    for f in ("onyomi", "kunyomi", "example_words", "source_ids"):
+        k[f] = json.loads(k[f])
+    k["issues"] = repo.issues_for(conn, "kanji", k["id"])
+    return k
+
+
+@router.get("/grammar")
+def grammar_list(q: str | None = None, lesson: int | None = None, conn=Depends(get_conn)):
+    sql, args = "SELECT id, pattern, lesson_number, grammar_name_vi, meaning_vi, origin, verification_status, verified_by "                 "FROM grammar WHERE 1=1", []
+    if q:
+        sql += " AND (pattern LIKE ? OR grammar_name_vi LIKE ? OR meaning_vi LIKE ? OR data_json LIKE ?)"
+        args += [f"%{q}%"] * 4
+    if lesson is not None:
+        sql += " AND lesson_number=?"
+        args.append(lesson)
+    return repo.rows(conn.execute(sql + " ORDER BY COALESCE(lesson_number, 999), id", args))
+
+
+@router.get("/grammar/{gid}")
+def grammar_item(gid: str, conn=Depends(get_conn)):
+    return grammar_detail(conn, gid)
+
+
+@router.get("/kanji")
+def kanji_list(conn=Depends(get_conn)):
+    out = repo.rows(conn.execute("SELECT * FROM kanji ORDER BY id"))
+    for k in out:
+        for f in ("onyomi", "kunyomi", "example_words", "source_ids"):
+            k[f] = json.loads(k[f])
+    return out
+
+
+@router.get("/kanji/{kid}")
+def kanji_item(kid: str, conn=Depends(get_conn)):
+    return kanji_detail(conn, kid)
+
+
 @router.get("/questions/{qid}")
 def question(qid: str, conn=Depends(get_conn)):
     return question_detail(conn, qid)
+
+
+DETAIL = {"vocabulary": lambda c, i: vocab_detail(c, i), "question": lambda c, i: question_detail(c, i),
+          "grammar": lambda c, i: grammar_detail(c, i), "kanji": lambda c, i: kanji_detail(c, i)}
 
 
 class ReviewDecision(BaseModel):
@@ -223,8 +280,9 @@ class ReviewDecision(BaseModel):
 
 
 @router.post("/review/{entity}/{entity_id}")
-def review(entity: Literal["vocabulary", "question"], entity_id: str, body: ReviewDecision, conn=Depends(get_conn)):
-    table, key = ("vocabulary", "id") if entity == "vocabulary" else ("questions", "question_id")
+def review(entity: Literal["vocabulary", "question", "grammar", "kanji"], entity_id: str, body: ReviewDecision,
+           conn=Depends(get_conn)):
+    table, key, _ = repo.ENTITY_TABLES[entity]
     before = conn.execute(f"SELECT * FROM {table} WHERE {key}=?", (entity_id,)).fetchone()
     if not before:
         raise HTTPException(404)
@@ -270,7 +328,7 @@ def review(entity: Literal["vocabulary", "question"], entity_id: str, body: Revi
     after = dict(conn.execute(f"SELECT * FROM {table} WHERE {key}=?", (entity_id,)).fetchone())
     repo.log_action(conn, entity, entity_id, body.action, body.note, before, after)
     conn.commit()
-    return vocab_detail(conn, entity_id) if entity == "vocabulary" else question_detail(conn, entity_id)
+    return DETAIL[entity](conn, entity_id)
 
 
 # ---------- SRS ----------

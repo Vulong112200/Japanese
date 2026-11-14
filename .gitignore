@@ -9,6 +9,7 @@ frontend/dist/
 data/database/
 data/reference/*.gz
 data/reference/*.sqlite
+data/reference/tessdata/
 
 # Tài liệu có bản quyền của bên thứ ba: KHÔNG đưa lên repo công khai
 # (đề mẫu JLPT + audio, ảnh trang đề, bản chép đề, PDF tải từ Google Drive)

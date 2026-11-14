@@ -137,6 +137,46 @@ export interface Dashboard {
   weak_lessons: { lesson_number: number | null; deck: string; wrong: number; right: number }[]
 }
 
+export interface GrammarItem {
+  id: string
+  pattern: string
+  lesson_number: number | null
+  grammar_name_vi: string | null
+  meaning_vi: string
+  origin: string
+  verification_status: Status
+  verified_by: string | null
+}
+
+export interface GrammarDetail extends GrammarItem {
+  formation: string
+  explanation_vi: string | null
+  usage: string[]
+  restrictions: string[]
+  formality: string | null
+  similar_patterns: { pattern: string; difference_vi: string }[]
+  common_mistakes: string[]
+  examples: { jp: string; hiragana?: string; romaji?: string; vi: string }[]
+  handbook_refs: string[]
+  handbook_errors: { quote: string; problem_vi: string; correction_vi: string }[]
+  level_note: string | null
+  source_ids: string[]
+  issues: Issue[]
+}
+
+export interface KanjiItem {
+  id: string
+  kanji: string
+  han_viet: string
+  meaning_vi: string
+  onyomi: string[]
+  kunyomi: string[]
+  stroke_count: number
+  example_words: { vocab_id: string | null; word: string; reading: string; meaning_vi: string }[]
+  verification_status: Status
+  verified_by: string | null
+}
+
 async function req<T>(path: string, init?: RequestInit): Promise<T> {
   const r = await fetch(`/api${path}`, {
     ...init,
@@ -177,4 +217,7 @@ export const api = {
   checkOnline: () => req<unknown[]>('/sources/check-online', { method: 'POST' }),
   reprocess: (id: string) => req<unknown>(`/sources/${id}/reprocess`, { method: 'POST' }),
   assetUrl: (id: string) => `/api/assets/${id}`,
+  grammar: (q?: string, lesson?: number) => req<GrammarItem[]>(`/grammar?${qs({ q, lesson })}`),
+  grammarItem: (id: string) => req<GrammarDetail>(`/grammar/${id}`),
+  kanji: () => req<KanjiItem[]>('/kanji'),
 }

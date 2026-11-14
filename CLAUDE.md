@@ -19,22 +19,30 @@ backend/hub/                FastAPI + SQLite (sqlite3 chuẩn, SQL tập trung �
   db.py                     schema DDL + migration cột (ALTER TABLE khi thiếu)
   repo.py                   toàn bộ SQL (repository)
   api.py                    REST /api/* (mỏng) + phục vụ frontend/dist
-  ingestion/pipeline.py     inventory, nguồn online, nhập CSV, áp bản sửa, kiểm định, nhập đề mẫu
+  ingestion/pipeline.py     inventory, nguồn online, nhập CSV, áp bản sửa, kiểm định, nhập đề mẫu, run_all
+  ingestion/knowledge.py    từ vựng bổ sung, ngữ pháp, kanji N5 + kiểm tra tự động cho từng loại
+  ingestion/ocr.py          Tesseract OCR (bảng theo cột, xoá đường kẻ); dùng cho PDF scan
   ingestion/flashcards_csv.py  parser 3 định dạng CSV (hàm thuần)
   validation/kana.py        kana→romaji, regex kana/kanji
   validation/vocabulary.py  luật kiểm tra từ vựng (hàm thuần)
   validation/reference.py   tra JMdict/KANJIDIC2 (data/reference/reference.sqlite), nhóm động từ, Hán-Việt
   learning/srs.py           SM-2 (hàm thuần)
   reports.py                sinh docs/IMPORT_REPORT.md, SOURCE_CATALOG.md, DATA_QUALITY_REPORT.md
-backend/tests/              pytest: test_units (thuần), test_data (dữ liệu thật), test_api (end-to-end)
-frontend/src/               React + TS + Tailwind; pages/: Dashboard, Vocabulary, Flashcards, Review, Library
+backend/scripts/ocr_batch.py OCR hàng loạt PDF Drive → data/raw/SRC_LESSON_002/ocr/*.json (bố cục cột từng file)
+backend/tests/              pytest: test_units (thuần), test_data (dữ liệu thật), test_api (end-to-end), test_knowledge
+frontend/src/               React + TS + Tailwind; pages/: Dashboard, Vocabulary, Grammar, Kanji, Flashcards, Review, Library
 schemas/*.schema.json       định dạng trao đổi JSON (được test kiểm)
 data/
   sources_online.json       registry nguồn trực tuyến
-  normalized/corrections/vocabulary_corrections.json   bản sửa từ vựng đã duyệt + danh sách mục đã audit
+  normalized/corrections/vocabulary_corrections.json   bản sửa từ vựng CSV đã duyệt + danh sách mục đã audit
+  normalized/supplements/vocabulary_supplement.json    290 từ bổ sung (Minna thiếu + JLPT N5), nguồn + review_log
+  normalized/grammar/n5_grammar_checklist.json         khung 135 điểm ngữ pháp N5 (đo độ phủ)
+  normalized/grammar/grammar.json                      nội dung 135 điểm (origin handbook/handbook+ai/ai)
+  normalized/kanji/kanji_n5.json                       103 kanji N5
   normalized/ai_review/     kết quả rà soát AI vòng 1 (bằng chứng)
   normalized/exams/         đề mẫu đã chép (bản chép không commit, xem .gitignore) + AI đối chiếu đáp án
-  raw/ reference/ database/ sinh ra trên máy, không commit
+  reference/jlpt_n5_words.csv  danh sách JLPT N5 (718 từ) để đo độ phủ
+  raw/ reference/*.gz,*.sqlite,tessdata/ database/   sinh ra trên máy, không commit
 docs/                       PROGRESS (tiến độ), ARCHITECTURE (sơ đồ + ADR), DATA_DICTIONARY, báo cáo sinh tự động
 docs/N5/                    dữ liệu gốc của người dùng: CHỈ ĐỌC
 ```
@@ -44,6 +52,8 @@ Môi trường là Windows và Git Bash. Python nằm trong `backend/.venv`. Đ�
 ```bash
 cd backend
 .venv/Scripts/python -m hub build-reference   # tải + dựng từ điển (lần đầu, ~1 phút)
+# OCR (chỉ khi cần đọc PDF scan): winget install UB-Mannheim.TesseractOCR, rồi tải jpn/jpn_vert/vie/eng
+# .traineddata (tessdata_best) vào data/reference/tessdata/. hub/ingestion/ocr.py dùng thư mục đó.
 .venv/Scripts/python -m hub import            # nhập/cập nhật toàn bộ, an toàn khi chạy lại
 .venv/Scripts/python -m hub serve             # http://127.0.0.1:8000
 .venv/Scripts/python -m hub check-online      # kiểm tra truy cập nguồn online
@@ -65,7 +75,15 @@ cd ../frontend && npm run build               # tsc + vite build → frontend/di
 - **Đề thi**: đáp án chỉ lấy từ 正解 chính thức. Không bịa câu hỏi. Không tạo audio thay thế. Lựa chọn chỉ có trong audio thì phải ẩn ở chế độ thi.
 - **Bản quyền**: không commit đề JLPT (PDF/MP3), ảnh trang, bản chép đề, hay PDF tải từ Drive (`.gitignore` đã chặn). Kiểm `git diff --cached --name-only` trước khi push.
 
-## 6. Quy trình rà soát nội dung (đã dùng cho từ vựng, dùng lại cho kanji/ngữ pháp)
+- **Từ vựng bổ sung / ngữ pháp / kanji**: nguồn chuẩn là các file trong `data/normalized/` ở trên.
+  - Sửa nội dung bằng cách sửa file: đổi trường cần sửa, ghi `review_log`, giữ `audited: true`. Sau đó chạy `import`.
+  - Importer đồng bộ các dòng DB theo file, trừ mục người dùng đã sửa hoặc duyệt.
+  - Mục bị loại thì đặt `excluded: true` (DB sẽ lưu trữ mục đó, không xoá).
+  - Từ loại của từ vựng do JMdict quyết định, không lấy từ file.
+- **Độ phủ N5 đã đạt** (phiên 3): từ vựng phủ danh sách JLPT N5 và đủ 25 bài Minna; 103/103 kanji; 135 điểm ngữ pháp. **Không cần thu thập thêm tài liệu kiến thức.** Việc tiếp theo là tính năng (thi thử, luyện tập), không phải dữ liệu.
+  - **Còn dở**: rà soát vòng 2 cho ngữ pháp, nên 135 điểm vẫn ở `needs_review`. Áp kết quả bằng `backend/scripts/apply_grammar_review.py` (xem docs/PROGRESS.md).
+
+## 6. Quy trình rà soát nội dung (đã dùng cho từ vựng, kanji và ngữ pháp)
 1. Dump dữ liệu kèm bằng chứng từ điển ra TSV (scratchpad), chia khoảng 4 lô.
 2. Chạy agent song song. Mỗi agent đọc toàn bộ lô của mình và trả về JSON gồm `{id, word, field, old_value, new_value, reason_vi, confidence}`.
 3. Chạy vòng thứ hai với cách chia lô khác. Người duyệt cuối xem từng đề xuất, loại những đề xuất sai.

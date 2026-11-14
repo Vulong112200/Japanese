@@ -151,7 +151,7 @@ def masu_candidates(word: str) -> list[tuple[str, str, int | None, int]]:
         if not base:
             out.append(("する", "します", 3, 1))
         for reading, pos, common in lookup(base):
-            if "vs" in pos.split() or "n" in pos.split():
+            if any(t == "vs" or t.startswith("vs-") for t in pos.split()):   # only nouns that take する
                 out.append((base + "する", _hira(reading) + "します", 3, common))
     return sorted(set(out), key=str)
 
@@ -170,6 +170,11 @@ def check_reading(word: str, reading: str) -> dict:
         match = [c for c in cands if c[1] == given[0]]
         if match:
             match = [c for c in match if c[3]] or match          # prefer common entries (借りる over 借る)
+            stem_ru = clean_word(word)[:-2] + "る"
+            if len({c[2] for c in match}) > 1 and any(c[0] == stem_ru and c[2] == 2 for c in match):
+                # 足ります: 足りる (group 2, modern) and 足る (group 1, literary) both conjugate to たります.
+                # Group-1 verbs in -ri (切る, 帰る, 入る) have no "-riru" dictionary entry, so this cannot misfire.
+                match = [c for c in match if c[0] == stem_ru]
             groups = {c[2] for c in match}
             return {"status": "confirmed", "dictionary_form": sorted({c[0] for c in match})[0],
                     "verb_group": groups.pop() if len(groups) == 1 else None, "pos": "verb"}
@@ -203,6 +208,7 @@ def hv_key(syllable: str) -> tuple[str, str]:
 HV_OVERRIDES = {
     "鶏": ["KÊ"], "着": ["TRƯỚC"], "晩": ["VÃN"], "両": ["LƯỠNG"], "桜": ["ANH"], "伝": ["TRUYỀN"],
     "払": ["PHẤT"], "県": ["HUYỆN"], "住": ["TRÚ"], "画": ["HỌA"], "政": ["CHÍNH"], "領": ["LÃNH"],
+    "予": ["DỰ"],                     # 予 = shinjitai of 豫 (予約 DỰ ƯỚC, 予定 DỰ ĐỊNH)
 }
 
 

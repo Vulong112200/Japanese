@@ -23,7 +23,8 @@ def client(imported):
 
 def test_dashboard_reflects_real_counts(client):
     d = client.get("/api/stats/dashboard").json()
-    assert sum(d["vocabulary_by_status"].values()) == 963 - 0   # all imported, none archived yet
+    assert sum(d["vocabulary_by_status"].values()) >= 1200      # user's 963 cards + verified N5 supplement
+    assert d["vocabulary_by_status"].get("verified") == sum(d["vocabulary_by_status"].values())
     assert d["questions_by_status"] == {"needs_review": 29}
     assert d["streak_days"] == 0 and d["reviews_today"] == 0
 

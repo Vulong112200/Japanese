@@ -36,7 +36,8 @@ def test_reimport_is_idempotent(imported):
 
 def test_every_raw_row_preserved(imported):
     conn, _ = imported
-    n = conn.execute("SELECT COUNT(*) FROM raw_records WHERE extraction_method='csv_row'").fetchone()[0]
+    n = conn.execute("SELECT COUNT(*) FROM raw_records WHERE extraction_method='csv_row' "
+                     "AND source_id LIKE 'SRC_LOCAL_FC_%'").fetchone()[0]
     assert n == 991
 
 

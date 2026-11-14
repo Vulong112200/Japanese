@@ -81,6 +81,25 @@ Nhật ký: `ai_correction` (bản sửa đã duyệt, kèm `basis`), approve, r
 - `AUD_N5S_001`: tệp MP3 gốc. Tham chiếu tới đường dẫn gốc, không sao chép.
 - Có `transcript_status`.
 
+### grammar
+| Cột | Ý nghĩa |
+|---|---|
+| id | `GRA_000001`…`GRA_000135` (theo `data/normalized/grammar/n5_grammar_checklist.json`) |
+| pattern, lesson_number | Mẫu câu; bài Minna (NULL = điểm N5 ngoài Minna 1–25 hoặc điểm đối chiếu) |
+| grammar_name_vi, meaning_vi, formation, explanation_vi | Nội dung tiếng Việt |
+| data_json | `usage`, `restrictions`, `formality`, `similar_patterns`, `common_mistakes`, `examples` [{jp, hiragana, romaji, vi}], `handbook_refs` (trích nguyên văn cẩm nang), `handbook_errors` (chỗ cẩm nang sai và cách sửa), `level_note` (ranh giới N5/N4) |
+| origin | `handbook` / `handbook+ai` / `ai` |
+| verification_status, verified_by | Chỉ `verified` khi `audited: true` trong file **và** kiểm tra tự động không ra lỗi/cảnh báo |
+
+### kanji
+| Cột | Ý nghĩa |
+|---|---|
+| id, kanji | `KAN_000001`…, chữ (UNIQUE) |
+| han_viet, meaning_vi | Hán-Việt chuẩn (kiểm với KANJIDIC2 + HV_OVERRIDES), nghĩa tiếng Việt |
+| onyomi, kunyomi | JSON. Tập con trong KANJIDIC2, chỉ giữ âm cần cho N5–N4 |
+| stroke_count | Kiểm với KANJIDIC2 |
+| example_words | JSON [{vocab_id (NULL nếu ngoài kho từ vựng), word, reading, meaning_vi}]; cách đọc kiểm với JMdict |
+
 ### exams, passages, questions
 - **exams**: `data_json` giữ nguyên cấu trúc section và mondai như đã chép.
 - **passages**: đoạn văn dùng chung cho nhiều câu.
@@ -100,6 +119,13 @@ Nhật ký: `ai_correction` (bản sửa đã duyệt, kèm `basis`), approve, r
 | `data/normalized/exams/EXAM_N5_OFFICIAL_SAMPLE.json` | NORMALIZED | 29 câu chép bằng AI từ ảnh kèm bảng 正解 |
 | `data/normalized/exams/EXAM_N5_OFFICIAL_SAMPLE.ai_review.json` | AI_GENERATED | Đối chiếu đáp án và giải thích |
 | `data/normalized/corrections/vocabulary_corrections.json` | NORMALIZED (bản sửa) | `audit.items` (963 mục đã audit, khoá theo `raw_word`), `corrections` (167 bản sửa: id, raw_word, field, old_value, new_value, reason_vi, basis), `open_questions` |
+| `data/normalized/supplements/vocabulary_supplement.json` | NORMALIZED | 290 từ bổ sung. Mỗi mục có `source_id` (`SRC_DRIVE_TONG_HOP_TU_VUNG_N5` = OCR PDF Minna, `SRC_REF_JLPT_N5` = danh sách JLPT), `raw` + `raw_locator` (dòng OCR/CSV gốc), các trường từ vựng, `review_log`, `audited`, và tuỳ chọn `excluded` / `separate_sense` |
+| `data/normalized/grammar/n5_grammar_checklist.json` | khung | 135 điểm ngữ pháp N5, dùng để đo độ phủ |
+| `data/normalized/grammar/grammar.json` | NORMALIZED | Nội dung 135 điểm (xem bảng grammar), `audited`, `review_log` |
+| `data/normalized/kanji/kanji_n5.json` | NORMALIZED | 103 kanji N5, `audited`, `review_log` |
+| `data/reference/jlpt_n5_words.csv` | tham chiếu | Danh sách JLPT N5, 718 từ (tanos.co.uk qua elzup/jlpt-word-list) |
+| `data/raw/SRC_LESSON_002/ocr/*.json` | RAW | Kết quả OCR (Tesseract) của các PDF Drive; không commit |
+| `docs/N5/SourceDocs/*.docx` | nguồn gốc | Cẩm nang ngữ pháp của bạn (`SRC_LOCAL_GRAMMAR_DOCX`) |
 | `data/normalized/ai_review/vocabulary_ai_review.json` | AI_GENERATED | Rà soát vòng 1 (68 phát hiện), giữ làm bằng chứng |
 | `data/sources_online.json` | registry | 24 nguồn trực tuyến trong spec |
 | `data/reference/reference.sqlite` | tham chiếu | JMdict + KANJIDIC2 đã dựng (không commit; `python -m hub build-reference`) |

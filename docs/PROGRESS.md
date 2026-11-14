@@ -1,12 +1,21 @@
 # PROGRESS — Japanese N5 Learning Hub
 
-Cập nhật: 2026-11-14, kết thúc phiên 2. Trạng thái dựa trên kết quả kiểm thử: **57/57 test pass**, frontend build sạch.
+Cập nhật: 2026-11-14, kết thúc phiên 3. Trạng thái dựa trên kết quả kiểm thử: **68/68 test pass**, frontend build sạch.
 
 ## Tóm tắt các phiên
 | Phiên | Nội dung | Kết quả |
 |---|---|---|
-| 1 | Audit (greenfield); schema; DB; Source Library; nhập CSV + đề mẫu; luật kiểm tra; SRS; màn hình Duyệt; báo cáo | 56 test pass |
-| 2 | Tự tải nguồn online; dựng từ điển JMdict/KANJIDIC2; **rà soát và sửa toàn bộ từ vựng** (2 vòng AI + từ điển + người duyệt cuối); nhóm động từ theo thể từ điển; push GitHub | 963/963 từ vựng `verified` (AI); 167 bản sửa; 57 test pass |
+| 1 | Audit (greenfield); schema; DB; Source Library; nhập CSV + đề mẫu; luật kiểm tra; SRS; màn hình Duyệt | 56 test |
+| 2 | Tự tải nguồn online; JMdict/KANJIDIC2; rà soát + sửa 963 từ vựng (167 bản sửa); CLAUDE.md | 963/963 từ vựng verified (AI); 57 test |
+| 3 | Cài OCR Tesseract; OCR PDF Drive; **hoàn thiện kiến thức N5**: +290 từ vựng (bài 15, 18, từ Minna bị thiếu, danh sách JLPT N5), 103 kanji, 135 điểm ngữ pháp; trang Ngữ pháp + Kanji (có luyện đọc) | 1.253 từ vựng + 103 kanji verified; 135 ngữ pháp chờ rà soát vòng 2; 68 test |
+
+## Độ phủ kiến thức N5: ĐÃ ĐỦ, không cần thu thập thêm tài liệu
+| Mảng | Độ phủ | Trạng thái xác minh |
+|---|---|---|
+| Từ vựng | 1.253 mục, đủ 25 bài Minna; phủ toàn bộ danh sách JLPT N5 (718 từ: 699 khớp trực tiếp, 19 khớp qua dạng khác như 後→後で; riêng ～がる là N4) | 1.253/1.253 verified (AI): rà soát 2 vòng + JMdict/KANJIDIC2 |
+| Kanji | 103/103 chữ N5 (danh sách cấp 4 JLPT cũ), đối chứng với sách Basic Kanji 120 | 103/103 verified (AI): 2 vòng + KANJIDIC2/JMdict |
+| Ngữ pháp | 135 điểm: 121 điểm Minna 1–25 + 14 điểm N5 bổ sung/đối chiếu (は/が, に/で, もう/まだ, しか, ながら, でしょう…); 75 điểm từ cẩm nang của bạn (đã sửa 20 chỗ sai), 60 điểm AI soạn mới | **needs_review**: vòng 2 bị dừng do hết hạn mức API, chạy lại ở phiên sau (xem "Việc tiếp theo") |
+| Đề mẫu | 29 câu chính thức, đáp án khớp 正解 29/29 | needs_review (chờ đối chiếu ảnh trang) |
 
 ## Ma trận module
 
@@ -14,58 +23,45 @@ Ký hiệu trạng thái:
 - ✅ **Hoàn thành**: có test.
 - 🟡 **Một phần**: làm được một phần.
 - ⬜ **Chưa làm**.
-- 🔒 **Bị chặn**: cần đăng nhập hoặc export từ phía người dùng.
+- 🔒 **Bị chặn**: cần đăng nhập.
 
 | Module (spec) | Trạng thái | Ghi chú |
 |---|---|---|
-| M01 Source Library | ✅ | Đăng ký URL, quét thư mục, sha256/trùng lặp, trạng thái xử lý và truy cập, xử lý lại, export. Chưa có: upload tệp qua UI, ZIP, preview. |
-| M02 Ingestion CSV | ✅ | 3 định dạng, idempotent, RAW bất biến |
-| M02 Ingestion PDF | 🟡 | Render ảnh trang, text layer. Đề mẫu chép bằng AI (vision). PDF scan cần OCR (chưa có tesseract). |
-| M02 Ingestion Audio | 🟡 | Phát, tua (HTTP 206), thời lượng. Chưa có timestamp từng câu. |
-| M02 Website | 🟡 | Kiểm tra truy cập đúng thực tế. Tải được Google Docs (export txt) và Drive công khai. Chưa trích nội dung website bên thứ ba (ADR-008). |
-| Từ điển tham chiếu | ✅ | JMdict (đọc, từ loại, nhóm động từ), KANJIDIC2 (Hán-Việt) kèm `HV_OVERRIDES` |
-| Data quality §11 | ✅ | Luật, từ điển, rà soát AI 2 vòng, bản sửa có truy vết, màn hình Duyệt, quy tắc người dùng luôn thắng |
-| Vocabulary §7.1 | ✅ | 963 mục đã xác minh. Có tìm kiếm/lọc, chi tiết (từ loại, nhóm, thể từ điển, lịch sử sửa, RAW), phát âm giọng máy. Chưa có: lọc theo từ loại/chủ đề trên UI, từ liên quan. |
-| SRS §8 | ✅ | SM-2, 2 chiều, giới hạn thẻ mới/ngày, mastered ≥3 lần liên tiếp và ≥21 ngày |
-| Dashboard §13 | 🟡 | Có số liệu thật về từ vựng/SRS/chất lượng. Chưa có kanji/ngữ pháp/kết quả thi. |
-| Grammar §7.3 | 🟡 | Đã tải nguồn: Google Doc "Cẩm nang ngữ pháp N5 Minna bài 1–25" (389 dòng) ở `data/raw/SRC_GDOC_001/`. **Chưa** parse/nhập/rà soát. |
-| Kanji §7.2 | 🟡 | Đã tải PDF Drive: 160 kanji N5–N4, 214 bộ thủ. Đây là PDF scan, cần OCR. Có thể dựng danh sách kanji N5 từ KANJIDIC2 (cờ jlpt_old) kèm từ ví dụ trong từ vựng đã xác minh. |
-| Kaiwa §7.4 | ⬜ | Đã có từ vựng Kaiwa (60 dòng) |
-| Mock Exam §9 | ⬜ | Đã có dữ liệu 29 câu đề mẫu chính thức (needs_review), audio, đáp án, giải thích. Chưa có giao diện thi. |
-| Listening §10 | 🟡 | Audio và script hiện trên màn hình Duyệt. Chưa có chế độ thi/học. |
-| Analytics §14 | ⬜ | Đã có review_log |
-| Backup/restore | 🟡 | Copy `data/database/hub.sqlite` (README). Chưa có UI. |
-| Offline | ✅ | Chạy trên localhost, không dùng CDN |
+| M01 Source Library | ✅ | Gồm cả PDF Drive, docx SourceDocs và nguồn tham chiếu (JLPT list, JMdict, KANJIDIC2). Chưa có: upload tệp qua UI, ZIP, preview. |
+| M02 Ingestion CSV / docx | ✅ | |
+| M02 OCR | ✅ | Tesseract 5.4 jpn/vie. OCR bảng theo cột, xoá đường kẻ. Đã OCR: Tong-hop-tu-vung-N5 (39 trang), Tu-vung-N5 (63), Basic Kanji 120 (23). Kết quả lưu ở `data/raw/SRC_LESSON_002/ocr/`. |
+| M02 Audio | 🟡 | Phát và tua được. Chưa có timestamp từng câu. |
+| M02 Website | 🟡 | Kiểm tra truy cập; tải được Google Docs và Drive công khai |
+| Data quality §11 | ✅ | Luật tự động, từ điển, rà soát AI 2 vòng, truy vết bản sửa, màn hình Duyệt (từ vựng / câu hỏi / ngữ pháp / kanji qua API) |
+| Vocabulary §7.1 | ✅ | |
+| Kanji §7.2 | ✅ | Lưới 103 chữ, thẻ chi tiết (Hán-Việt, on/kun, số nét, ví dụ), luyện đọc trắc nghiệm |
+| Grammar §7.3 | 🟡 | Có trang tra cứu theo bài (cấu trúc, giải thích, ví dụ, lỗi thường gặp, mẫu tương tự, chỗ sửa so với cẩm nang). Chưa xong rà soát vòng 2. Chưa có bài tập ngữ pháp. |
+| SRS §8 | ✅ | Hiện chỉ áp dụng cho từ vựng (2.506 thẻ) |
+| Dashboard §13 | 🟡 | Chưa hiện số liệu ngữ pháp/kanji, kết quả thi |
+| Kaiwa §7.4 | ⬜ | |
+| Mock Exam §9 / Listening §10 | ⬜ | Dữ liệu 29 câu đề mẫu đã sẵn sàng |
+| Analytics §14 | ⬜ | |
+| Backup/restore | 🟡 | Copy file sqlite |
+| Offline | ✅ | |
 
-## Dữ liệu (đã import vào DB)
-- **Từ vựng**: 991 dòng CSV → 963 mục.
-  - 12 dòng trùng hoàn toàn được gộp; 16 dòng hỏi–đáp của bộ Số Đếm chỉ giữ ở RAW.
-  - **963 mục `verified` bởi AI**.
-  - 167 bản sửa: han_viet 59, example_romaji 40, example_jp 14, romaji 14, word 13, reading 11, example_vi 9, meaning_vi 7.
-  - Chi tiết từng bản sửa: `docs/DATA_QUALITY_REPORT.md`.
-- **Nhóm động từ**: 143 động từ đều có nhóm (nhóm 1: 77, nhóm 2: 41, nhóm 3: 25), lấy từ thể từ điển.
-- **Đề mẫu**: 29 câu, 4 đoạn văn, 29 ảnh trang, 1 audio. Đáp án khớp 正解 29/29. Bản chép câu hỏi vẫn ở trạng thái `needs_review`.
-- **Thiếu**: không có `flashcards_Bai15.csv`; `flashcards_Bai18.csv` chỉ có 1 dòng.
-
-## Nguồn trực tuyến (kiểm tra 2026-11-14)
-- **Đã tải về** (lưu ở `data/raw/`, không commit):
-  - Google Docs ngữ pháp, dạng txt.
-  - Thư mục Drive "Kho tài liệu N5": Tong-hop-tu-vung-N5.pdf, Tu-vung-N5.pdf, 160-kanji-n5-n4.pdf, 214 bộ thủ, phó từ/tự-tha động từ.
-  - Riêng file "120 Kanji" tải lỗi; 4 thư mục con (đề 2017, kanji, kaiwa video, tài liệu thêm) chưa tải.
-- **Truy cập được**: Migii, Nihonez, NHK, Riki (render bằng JS), YouTube (đã lấy metadata oEmbed), jlpt.jp ×2, VTI Mirai, GoJapan (có 10 đề, cần đánh giá điều khoản trước khi trích).
-- **Không đọc được**: tailieuhoctiengnhat (bị chặn bởi trang xác minh chống bot, không vượt), HanoiLink (lúc timeout, lúc tải được, chưa phân tích).
-- **Cần đăng nhập Google**: NotebookLM (10 link) và Google Notebook. Các link chia sẻ đều chuyển về trang yêu cầu đăng nhập, nội dung render phía client nên không đọc được.
+## Đánh giá các nguồn không tải được
+| Nguồn | Có cần không? | Lý do |
+|---|---|---|
+| 10 link NotebookLM + Google Notebook | **Không cần** | Đây là bài trắc nghiệm ngữ pháp do NotebookLM (AI) sinh từ chính cẩm nang ngữ pháp mà ta đã có. Phải đăng nhập mới xem được, và nội dung không phải đề chính thức. Bài luyện ngữ pháp sẽ được sinh có kiểm soát từ 135 điểm đã chuẩn hoá. |
+| tailieuhoctiengnhat (Minna vocab) | **Không cần** | Bị chặn bởi trang xác minh chống bot. Nội dung (từ vựng Minna 1–25) đã có đủ từ 2 PDF Drive (OCR) cộng flashcard của bạn. |
+| HanoiLink (từ vựng N5) | **Không cần** | Đã đo độ phủ bằng danh sách JLPT N5 (718 từ), toàn bộ đã có. |
+| GoJapan / Migii / Nihonez (đề thi thử) | Tuỳ chọn, chưa cần | Đề của bên thứ ba có bản quyền; spec cấm trích tự động khi chưa xét điều khoản. Đề luyện sẽ dùng đề mẫu chính thức + câu hỏi tự sinh có nhãn AI_GENERATED. |
+| Thư mục con trên Drive (Đề thi N5 2017, video kaiwa) | Có ích cho phần thi thử | Có thể tải được (thư mục công khai). Làm khi xây Mock Exam. |
 
 ## Việc tiếp theo (theo thứ tự)
-1. **Ngữ pháp (Phase 3)**:
-   - Parse `data/raw/SRC_GDOC_001/grammar_handbook.txt` thành bảng `grammar` theo `schemas/grammar.schema.json`.
-   - Rà soát theo quy trình ở CLAUDE.md §6.
-   - Làm UI tra cứu và học ngữ pháp.
+1. **Rà soát ngữ pháp vòng 2** (đang dở dang vì hết hạn mức API):
+   - Chia `data/normalized/grammar/grammar.json` thành 2 lô, khác cách chia lúc soạn.
+   - Chạy 2 agent theo CLAUDE.md §6. Mỗi agent trả về `{id, field, new_value, reason_vi, confidence}`.
+   - Người duyệt cuối xét các đề xuất.
+   - Chạy `python scripts/apply_grammar_review.py r1.json r2.json`, rồi `python -m hub import` và `pytest`.
 2. **Mock Exam Engine (Phase 5)**:
-   - Thi theo section/mondai bằng 29 câu đề mẫu.
-   - Timer theo section; đề mẫu không có thời gian gốc nên cho người dùng tự chọn.
-   - Ẩn đáp án và lựa chọn chỉ có trong audio ở chế độ thi.
-   - Lưu bài làm; tách kết quả luyện tập với ước lượng sẵn sàng.
-   - Trước đó cần xác minh bản chép 29 câu với ảnh trang (vòng vision thứ 2).
-3. **Kanji**: danh sách N5 từ KANJIDIC2 (jlpt_old=4, khoảng 80 chữ) kèm từ ví dụ từ vựng đã xác minh. Cân nhắc OCR các PDF Drive.
-4. Tải nốt các thư mục con trên Drive (đề N5 2017 nếu có audio và đáp án); upload tệp/ZIP qua UI; backup/restore qua UI.
+   - Thi theo section/mondai với timer, auto-save, chấm điểm, kết quả. Tách kết quả luyện tập với ước lượng sẵn sàng.
+   - Bộ đề gồm 29 câu đề mẫu (cần đối chiếu ảnh trang trước) và câu hỏi tự sinh từ từ vựng/kanji/ngữ pháp đã xác minh, gắn nhãn AI_GENERATED.
+   - Tải thư mục "Đề thi N5_2017" trên Drive để xem có đề kèm audio và đáp án không.
+3. Bài tập ngữ pháp + SRS cho ngữ pháp/kanji; dashboard thêm ngữ pháp/kanji.
+4. Upload/ZIP qua UI, backup/restore qua UI, Kaiwa, Analytics.

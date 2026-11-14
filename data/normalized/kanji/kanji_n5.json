@@ -1,0 +1,3743 @@
+{
+ "description": "103 kanji N5 (danh sách cấp 4 JLPT cũ trong KANJIDIC2; đối chứng: Basic Kanji 120 — Meguro Language Center). meaning_vi/han_viet/ví dụ: AI_GENERATED, kiểm bằng KANJIDIC2 + JMdict.",
+ "origin": "AI_GENERATED",
+ "entries": [
+  {
+   "kanji": "一",
+   "han_viet": "NHẤT",
+   "han_viet_note": null,
+   "meaning_vi": "một",
+   "onyomi": [
+    "イチ",
+    "イツ"
+   ],
+   "kunyomi": [
+    "ひと.つ",
+    "ひと-"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000100",
+     "word": "一つ",
+     "reading": "ひとつ",
+     "meaning_vi": "một cái (đếm đồ vật chung)"
+    },
+    {
+     "vocab_id": "VOC_000111",
+     "word": "一人",
+     "reading": "ひとり",
+     "meaning_vi": "một người"
+    },
+    {
+     "vocab_id": "VOC_000357",
+     "word": "一度",
+     "reading": "いちど",
+     "meaning_vi": "Một lần"
+    },
+    {
+     "vocab_id": "VOC_000725",
+     "word": "一緒に",
+     "reading": "いっしょに",
+     "meaning_vi": "Cùng nhau"
+    }
+   ],
+   "stroke_count": 1,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "九",
+   "han_viet": "CỬU",
+   "han_viet_note": null,
+   "meaning_vi": "chín",
+   "onyomi": [
+    "キュウ",
+    "ク"
+   ],
+   "kunyomi": [
+    "ここの.つ",
+    "ここの"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000108",
+     "word": "九つ",
+     "reading": "ここのつ",
+     "meaning_vi": "chín cái (đếm đồ vật chung)"
+    },
+    {
+     "vocab_id": null,
+     "word": "九時",
+     "reading": "くじ",
+     "meaning_vi": "9 giờ"
+    },
+    {
+     "vocab_id": null,
+     "word": "九十",
+     "reading": "きゅうじゅう",
+     "meaning_vi": "chín mươi"
+    }
+   ],
+   "stroke_count": 2,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "七",
+   "han_viet": "THẤT",
+   "han_viet_note": null,
+   "meaning_vi": "bảy",
+   "onyomi": [
+    "シチ"
+   ],
+   "kunyomi": [
+    "なな",
+    "なな.つ",
+    "なの"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000106",
+     "word": "七つ",
+     "reading": "ななつ",
+     "meaning_vi": "bảy cái (đếm đồ vật chung)"
+    },
+    {
+     "vocab_id": null,
+     "word": "七時",
+     "reading": "しちじ",
+     "meaning_vi": "7 giờ"
+    },
+    {
+     "vocab_id": null,
+     "word": "七日",
+     "reading": "なのか",
+     "meaning_vi": "ngày mùng 7; 7 ngày"
+    }
+   ],
+   "stroke_count": 2,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "十",
+   "han_viet": "THẬP",
+   "han_viet_note": null,
+   "meaning_vi": "mười",
+   "onyomi": [
+    "ジュウ",
+    "ジュッ",
+    "ジッ"
+   ],
+   "kunyomi": [
+    "とお",
+    "と"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000109",
+     "word": "十",
+     "reading": "とお",
+     "meaning_vi": "mười cái (đếm đồ vật chung)"
+    },
+    {
+     "vocab_id": null,
+     "word": "十月",
+     "reading": "じゅうがつ",
+     "meaning_vi": "tháng Mười"
+    },
+    {
+     "vocab_id": null,
+     "word": "十日",
+     "reading": "とおか",
+     "meaning_vi": "ngày mùng 10; 10 ngày"
+    }
+   ],
+   "stroke_count": 2,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "人",
+   "han_viet": "NHÂN",
+   "han_viet_note": null,
+   "meaning_vi": "người",
+   "onyomi": [
+    "ジン",
+    "ニン"
+   ],
+   "kunyomi": [
+    "ひと",
+    "-り"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000697",
+     "word": "人",
+     "reading": "ひと",
+     "meaning_vi": "Người"
+    },
+    {
+     "vocab_id": "VOC_000013",
+     "word": "～人",
+     "reading": "～じん",
+     "meaning_vi": "Người (hậu tố chỉ quốc tịch)"
+    },
+    {
+     "vocab_id": "VOC_000113",
+     "word": "～人",
+     "reading": "～にん",
+     "meaning_vi": "~ người (từ 3 người trở lên: Số + 人)"
+    },
+    {
+     "vocab_id": "VOC_000111",
+     "word": "一人",
+     "reading": "ひとり",
+     "meaning_vi": "một người"
+    }
+   ],
+   "stroke_count": 2,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "二",
+   "han_viet": "NHỊ",
+   "han_viet_note": null,
+   "meaning_vi": "hai",
+   "onyomi": [
+    "ニ"
+   ],
+   "kunyomi": [
+    "ふた.つ",
+    "ふた"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000101",
+     "word": "二つ",
+     "reading": "ふたつ",
+     "meaning_vi": "hai cái (đếm đồ vật chung)"
+    },
+    {
+     "vocab_id": "VOC_000112",
+     "word": "二人",
+     "reading": "ふたり",
+     "meaning_vi": "hai người"
+    },
+    {
+     "vocab_id": null,
+     "word": "二月",
+     "reading": "にがつ",
+     "meaning_vi": "tháng Hai"
+    }
+   ],
+   "stroke_count": 2,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "入",
+   "han_viet": "NHẬP",
+   "han_viet_note": null,
+   "meaning_vi": "vào; cho vào",
+   "onyomi": [
+    "ニュウ"
+   ],
+   "kunyomi": [
+    "はい.る",
+    "い.れる",
+    "い.る"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000238",
+     "word": "入ります",
+     "reading": "はいります",
+     "meaning_vi": "Vào (quán giải khát, bồn tắm...)"
+    },
+    {
+     "vocab_id": "VOC_000264",
+     "word": "入れます",
+     "reading": "いれます",
+     "meaning_vi": "Cho vào, bỏ vào"
+    },
+    {
+     "vocab_id": null,
+     "word": "入口",
+     "reading": "いりぐち",
+     "meaning_vi": "lối vào"
+    },
+    {
+     "vocab_id": null,
+     "word": "入学",
+     "reading": "にゅうがく",
+     "meaning_vi": "nhập học"
+    }
+   ],
+   "stroke_count": 2,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "八",
+   "han_viet": "BÁT",
+   "han_viet_note": null,
+   "meaning_vi": "tám",
+   "onyomi": [
+    "ハチ"
+   ],
+   "kunyomi": [
+    "や.つ",
+    "やっ.つ",
+    "や",
+    "よう"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000107",
+     "word": "八つ",
+     "reading": "やっつ",
+     "meaning_vi": "tám cái (đếm đồ vật chung)"
+    },
+    {
+     "vocab_id": null,
+     "word": "八時",
+     "reading": "はちじ",
+     "meaning_vi": "8 giờ"
+    },
+    {
+     "vocab_id": null,
+     "word": "八日",
+     "reading": "ようか",
+     "meaning_vi": "ngày mùng 8; 8 ngày"
+    }
+   ],
+   "stroke_count": 2,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "下",
+   "han_viet": "HẠ",
+   "han_viet_note": null,
+   "meaning_vi": "dưới; xuống",
+   "onyomi": [
+    "カ",
+    "ゲ"
+   ],
+   "kunyomi": [
+    "した",
+    "さ.がる",
+    "さ.げる",
+    "くだ.さる",
+    "お.りる",
+    "お.ろす"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000077",
+     "word": "下",
+     "reading": "した",
+     "meaning_vi": "Phía dưới, dưới"
+    },
+    {
+     "vocab_id": "VOC_000666",
+     "word": "地下鉄",
+     "reading": "ちかてつ",
+     "meaning_vi": "Tàu điện ngầm"
+    },
+    {
+     "vocab_id": "VOC_000297",
+     "word": "下ろします",
+     "reading": "おろします",
+     "meaning_vi": "Rút (tiền)"
+    },
+    {
+     "vocab_id": "VOC_000875",
+     "word": "下手",
+     "reading": "へた",
+     "meaning_vi": "Dở, kém, vụng"
+    }
+   ],
+   "stroke_count": 3,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "口",
+   "han_viet": "KHẨU",
+   "han_viet_note": null,
+   "meaning_vi": "miệng; cửa (ra vào)",
+   "onyomi": [
+    "コウ"
+   ],
+   "kunyomi": [
+    "くち"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000270",
+     "word": "口",
+     "reading": "くち",
+     "meaning_vi": "Miệng"
+    },
+    {
+     "vocab_id": null,
+     "word": "出口",
+     "reading": "でぐち",
+     "meaning_vi": "lối ra"
+    },
+    {
+     "vocab_id": null,
+     "word": "人口",
+     "reading": "じんこう",
+     "meaning_vi": "dân số"
+    }
+   ],
+   "stroke_count": 3,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "三",
+   "han_viet": "TAM",
+   "han_viet_note": null,
+   "meaning_vi": "ba",
+   "onyomi": [
+    "サン"
+   ],
+   "kunyomi": [
+    "み.つ",
+    "みっ.つ",
+    "み"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000102",
+     "word": "三つ",
+     "reading": "みっつ",
+     "meaning_vi": "ba cái (đếm đồ vật chung)"
+    },
+    {
+     "vocab_id": null,
+     "word": "三月",
+     "reading": "さんがつ",
+     "meaning_vi": "tháng Ba"
+    },
+    {
+     "vocab_id": null,
+     "word": "三日",
+     "reading": "みっか",
+     "meaning_vi": "ngày mùng 3; 3 ngày"
+    }
+   ],
+   "stroke_count": 3,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "山",
+   "han_viet": "SƠN",
+   "han_viet_note": null,
+   "meaning_vi": "núi",
+   "onyomi": [
+    "サン"
+   ],
+   "kunyomi": [
+    "やま"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000830",
+     "word": "山",
+     "reading": "やま",
+     "meaning_vi": "Núi, ngọn núi"
+    },
+    {
+     "vocab_id": null,
+     "word": "富士山",
+     "reading": "ふじさん",
+     "meaning_vi": "núi Phú Sĩ"
+    }
+   ],
+   "stroke_count": 3,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "子",
+   "han_viet": "TỬ",
+   "han_viet_note": null,
+   "meaning_vi": "con; trẻ con",
+   "onyomi": [
+    "シ",
+    "ス"
+   ],
+   "kunyomi": [
+    "こ"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000888",
+     "word": "子ども",
+     "reading": "こども",
+     "meaning_vi": "Con cái, trẻ em"
+    },
+    {
+     "vocab_id": "VOC_000052",
+     "word": "男の子",
+     "reading": "おとこのこ",
+     "meaning_vi": "Cậu bé, bé trai"
+    },
+    {
+     "vocab_id": "VOC_000482",
+     "word": "帽子",
+     "reading": "ぼうし",
+     "meaning_vi": "Mũ, nón"
+    },
+    {
+     "vocab_id": "VOC_000389",
+     "word": "椅子",
+     "reading": "いす",
+     "meaning_vi": "Ghế"
+    }
+   ],
+   "stroke_count": 3,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "女",
+   "han_viet": "NỮ",
+   "han_viet_note": null,
+   "meaning_vi": "nữ, phụ nữ",
+   "onyomi": [
+    "ジョ",
+    "ニョ"
+   ],
+   "kunyomi": [
+    "おんな"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000051",
+     "word": "女の人",
+     "reading": "おんなのひと",
+     "meaning_vi": "Người phụ nữ"
+    },
+    {
+     "vocab_id": "VOC_000053",
+     "word": "女の子",
+     "reading": "おんなのこ",
+     "meaning_vi": "Cô bé, bé gái"
+    },
+    {
+     "vocab_id": "VOC_000663",
+     "word": "彼女",
+     "reading": "かのじょ",
+     "meaning_vi": "Cô ấy, bạn gái"
+    },
+    {
+     "vocab_id": null,
+     "word": "女性",
+     "reading": "じょせい",
+     "meaning_vi": "nữ giới, phụ nữ"
+    }
+   ],
+   "stroke_count": 3,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "小",
+   "han_viet": "TIỂU",
+   "han_viet_note": null,
+   "meaning_vi": "nhỏ",
+   "onyomi": [
+    "ショウ"
+   ],
+   "kunyomi": [
+    "ちい.さい",
+    "こ-",
+    "お-"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000809",
+     "word": "小さい",
+     "reading": "ちいさい",
+     "meaning_vi": "Nhỏ, bé"
+    },
+    {
+     "vocab_id": null,
+     "word": "小学校",
+     "reading": "しょうがっこう",
+     "meaning_vi": "trường tiểu học"
+    },
+    {
+     "vocab_id": null,
+     "word": "小鳥",
+     "reading": "ことり",
+     "meaning_vi": "chim nhỏ"
+    }
+   ],
+   "stroke_count": 3,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "上",
+   "han_viet": "THƯỢNG",
+   "han_viet_note": null,
+   "meaning_vi": "trên; lên",
+   "onyomi": [
+    "ジョウ"
+   ],
+   "kunyomi": [
+    "うえ",
+    "うわ-",
+    "あ.がる",
+    "あ.げる",
+    "のぼ.る"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000076",
+     "word": "上",
+     "reading": "うえ",
+     "meaning_vi": "Phía trên, trên"
+    },
+    {
+     "vocab_id": "VOC_000326",
+     "word": "上着",
+     "reading": "うわぎ",
+     "meaning_vi": "Áo khoác"
+    },
+    {
+     "vocab_id": "VOC_000855",
+     "word": "上手",
+     "reading": "じょうず",
+     "meaning_vi": "Giỏi, khéo"
+    },
+    {
+     "vocab_id": "VOC_000790",
+     "word": "どうぞ お上がりください",
+     "reading": "どうぞ おあがりください",
+     "meaning_vi": "Mời bạn vào nhà"
+    }
+   ],
+   "stroke_count": 3,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "千",
+   "han_viet": "THIÊN",
+   "han_viet_note": null,
+   "meaning_vi": "nghìn",
+   "onyomi": [
+    "セン"
+   ],
+   "kunyomi": [],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000576",
+     "word": "千",
+     "reading": "せん",
+     "meaning_vi": "Nghìn (1.000)"
+    },
+    {
+     "vocab_id": null,
+     "word": "三千",
+     "reading": "さんぜん",
+     "meaning_vi": "ba nghìn"
+    }
+   ],
+   "stroke_count": 3,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "川",
+   "han_viet": "XUYÊN",
+   "han_viet_note": null,
+   "meaning_vi": "sông",
+   "onyomi": [],
+   "kunyomi": [
+    "かわ"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000206",
+     "word": "川",
+     "reading": "かわ",
+     "meaning_vi": "Sông, dòng sông"
+    },
+    {
+     "vocab_id": null,
+     "word": "小川",
+     "reading": "おがわ",
+     "meaning_vi": "suối, sông nhỏ"
+    }
+   ],
+   "stroke_count": 3,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "大",
+   "han_viet": "ĐẠI",
+   "han_viet_note": null,
+   "meaning_vi": "to, lớn",
+   "onyomi": [
+    "ダイ",
+    "タイ"
+   ],
+   "kunyomi": [
+    "おお.きい",
+    "おお-"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000808",
+     "word": "大きい",
+     "reading": "おおきい",
+     "meaning_vi": "To, lớn"
+    },
+    {
+     "vocab_id": "VOC_000023",
+     "word": "大学",
+     "reading": "だいがく",
+     "meaning_vi": "Trường đại học"
+    },
+    {
+     "vocab_id": "VOC_000202",
+     "word": "大変",
+     "reading": "たいへん",
+     "meaning_vi": "Vất vả, khó khăn"
+    },
+    {
+     "vocab_id": "VOC_000502",
+     "word": "大勢",
+     "reading": "おおぜい",
+     "meaning_vi": "Đông người, nhiều người"
+    }
+   ],
+   "stroke_count": 3,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "土",
+   "han_viet": "THỔ",
+   "han_viet_note": null,
+   "meaning_vi": "đất",
+   "onyomi": [
+    "ド",
+    "ト"
+   ],
+   "kunyomi": [
+    "つち"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000651",
+     "word": "土曜日",
+     "reading": "どようび",
+     "meaning_vi": "Thứ Bảy"
+    },
+    {
+     "vocab_id": null,
+     "word": "土",
+     "reading": "つち",
+     "meaning_vi": "đất"
+    }
+   ],
+   "stroke_count": 3,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "円",
+   "han_viet": "VIÊN",
+   "han_viet_note": null,
+   "meaning_vi": "yên (tiền Nhật); tròn",
+   "onyomi": [
+    "エン"
+   ],
+   "kunyomi": [
+    "まる.い"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000595",
+     "word": "円",
+     "reading": "えん",
+     "meaning_vi": "Đồng Yên (đơn vị tiền tệ của Nhật Bản)"
+    },
+    {
+     "vocab_id": null,
+     "word": "千円",
+     "reading": "せんえん",
+     "meaning_vi": "một nghìn yên"
+    }
+   ],
+   "stroke_count": 4,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "火",
+   "han_viet": "HỎA",
+   "han_viet_note": null,
+   "meaning_vi": "lửa",
+   "onyomi": [
+    "カ"
+   ],
+   "kunyomi": [
+    "ひ",
+    "-び"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000647",
+     "word": "火曜日",
+     "reading": "かようび",
+     "meaning_vi": "Thứ Ba"
+    },
+    {
+     "vocab_id": null,
+     "word": "火",
+     "reading": "ひ",
+     "meaning_vi": "lửa"
+    },
+    {
+     "vocab_id": null,
+     "word": "花火",
+     "reading": "はなび",
+     "meaning_vi": "pháo hoa"
+    }
+   ],
+   "stroke_count": 4,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "月",
+   "han_viet": "NGUYỆT",
+   "han_viet_note": null,
+   "meaning_vi": "tháng; mặt trăng",
+   "onyomi": [
+    "ゲツ",
+    "ガツ"
+   ],
+   "kunyomi": [
+    "つき"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000464",
+     "word": "月",
+     "reading": "つき",
+     "meaning_vi": "Mặt Trăng"
+    },
+    {
+     "vocab_id": "VOC_000646",
+     "word": "月曜日",
+     "reading": "げつようび",
+     "meaning_vi": "Thứ Hai"
+    },
+    {
+     "vocab_id": "VOC_000660",
+     "word": "今月",
+     "reading": "こんげつ",
+     "meaning_vi": "Tháng này"
+    },
+    {
+     "vocab_id": "VOC_000193",
+     "word": "お正月",
+     "reading": "おしょうがつ",
+     "meaning_vi": "Tết, Năm mới"
+    }
+   ],
+   "stroke_count": 4,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "五",
+   "han_viet": "NGŨ",
+   "han_viet_note": null,
+   "meaning_vi": "năm (số 5)",
+   "onyomi": [
+    "ゴ"
+   ],
+   "kunyomi": [
+    "いつ.つ",
+    "いつ"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000104",
+     "word": "五つ",
+     "reading": "いつつ",
+     "meaning_vi": "năm cái (đếm đồ vật chung)"
+    },
+    {
+     "vocab_id": null,
+     "word": "五月",
+     "reading": "ごがつ",
+     "meaning_vi": "tháng Năm"
+    },
+    {
+     "vocab_id": null,
+     "word": "五日",
+     "reading": "いつか",
+     "meaning_vi": "ngày mùng 5; 5 ngày"
+    }
+   ],
+   "stroke_count": 4,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "手",
+   "han_viet": "THỦ",
+   "han_viet_note": null,
+   "meaning_vi": "tay",
+   "onyomi": [
+    "シュ"
+   ],
+   "kunyomi": [
+    "て"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000761",
+     "word": "手",
+     "reading": "て",
+     "meaning_vi": "Tay, bàn tay"
+    },
+    {
+     "vocab_id": "VOC_000747",
+     "word": "手紙",
+     "reading": "てがみ",
+     "meaning_vi": "Thư, lá thư"
+    },
+    {
+     "vocab_id": "VOC_000779",
+     "word": "切手",
+     "reading": "きって",
+     "meaning_vi": "Tem, con tem"
+    },
+    {
+     "vocab_id": null,
+     "word": "歌手",
+     "reading": "かしゅ",
+     "meaning_vi": "ca sĩ"
+    }
+   ],
+   "stroke_count": 4,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "水",
+   "han_viet": "THỦY",
+   "han_viet_note": null,
+   "meaning_vi": "nước",
+   "onyomi": [
+    "スイ"
+   ],
+   "kunyomi": [
+    "みず"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000713",
+     "word": "水",
+     "reading": "みず",
+     "meaning_vi": "Nước"
+    },
+    {
+     "vocab_id": "VOC_000648",
+     "word": "水曜日",
+     "reading": "すいようび",
+     "meaning_vi": "Thứ Tư"
+    }
+   ],
+   "stroke_count": 4,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "中",
+   "han_viet": "TRUNG",
+   "han_viet_note": null,
+   "meaning_vi": "trong; giữa",
+   "onyomi": [
+    "チュウ"
+   ],
+   "kunyomi": [
+    "なか"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000082",
+     "word": "中",
+     "reading": "なか",
+     "meaning_vi": "Bên trong, trong"
+    },
+    {
+     "vocab_id": "VOC_000041",
+     "word": "中国",
+     "reading": "ちゅうごく",
+     "meaning_vi": "Trung Quốc"
+    },
+    {
+     "vocab_id": null,
+     "word": "中学校",
+     "reading": "ちゅうがっこう",
+     "meaning_vi": "trường trung học cơ sở"
+    }
+   ],
+   "stroke_count": 4,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "天",
+   "han_viet": "THIÊN",
+   "han_viet_note": null,
+   "meaning_vi": "trời",
+   "onyomi": [
+    "テン"
+   ],
+   "kunyomi": [],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000166",
+     "word": "天気",
+     "reading": "てんき",
+     "meaning_vi": "Thời tiết"
+    },
+    {
+     "vocab_id": "VOC_000178",
+     "word": "天ぷら",
+     "reading": "てんぷら",
+     "meaning_vi": "Món chiên tẩm bột Tempura"
+    }
+   ],
+   "stroke_count": 4,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "日",
+   "han_viet": "NHẬT",
+   "han_viet_note": null,
+   "meaning_vi": "ngày; mặt trời",
+   "onyomi": [
+    "ニチ",
+    "ジツ"
+   ],
+   "kunyomi": [
+    "ひ",
+    "-び",
+    "-か"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000645",
+     "word": "毎日",
+     "reading": "まいにち",
+     "meaning_vi": "Mỗi ngày, hàng ngày"
+    },
+    {
+     "vocab_id": "VOC_000043",
+     "word": "日本",
+     "reading": "にほん",
+     "meaning_vi": "Nhật Bản"
+    },
+    {
+     "vocab_id": "VOC_000341",
+     "word": "日",
+     "reading": "ひ",
+     "meaning_vi": "Ngày, mặt trời"
+    },
+    {
+     "vocab_id": "VOC_000646",
+     "word": "月曜日",
+     "reading": "げつようび",
+     "meaning_vi": "Thứ Hai"
+    }
+   ],
+   "stroke_count": 4,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "木",
+   "han_viet": "MỘC",
+   "han_viet_note": null,
+   "meaning_vi": "cây; gỗ",
+   "onyomi": [
+    "モク",
+    "ボク"
+   ],
+   "kunyomi": [
+    "き"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000058",
+     "word": "木",
+     "reading": "き",
+     "meaning_vi": "Cây, gỗ"
+    },
+    {
+     "vocab_id": "VOC_000649",
+     "word": "木曜日",
+     "reading": "もくようび",
+     "meaning_vi": "Thứ Năm"
+    }
+   ],
+   "stroke_count": 4,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "六",
+   "han_viet": "LỤC",
+   "han_viet_note": null,
+   "meaning_vi": "sáu",
+   "onyomi": [
+    "ロク"
+   ],
+   "kunyomi": [
+    "む.つ",
+    "むっ.つ",
+    "む",
+    "むい"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000105",
+     "word": "六つ",
+     "reading": "むっつ",
+     "meaning_vi": "sáu cái (đếm đồ vật chung)"
+    },
+    {
+     "vocab_id": null,
+     "word": "六時",
+     "reading": "ろくじ",
+     "meaning_vi": "6 giờ"
+    },
+    {
+     "vocab_id": null,
+     "word": "六日",
+     "reading": "むいか",
+     "meaning_vi": "ngày mùng 6; 6 ngày"
+    }
+   ],
+   "stroke_count": 4,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "右",
+   "han_viet": "HỮU",
+   "han_viet_note": null,
+   "meaning_vi": "bên phải",
+   "onyomi": [
+    "ウ",
+    "ユウ"
+   ],
+   "kunyomi": [
+    "みぎ"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000080",
+     "word": "右",
+     "reading": "みぎ",
+     "meaning_vi": "Bên phải"
+    },
+    {
+     "vocab_id": null,
+     "word": "右手",
+     "reading": "みぎて",
+     "meaning_vi": "tay phải"
+    }
+   ],
+   "stroke_count": 5,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "左",
+   "han_viet": "TẢ",
+   "han_viet_note": null,
+   "meaning_vi": "bên trái",
+   "onyomi": [
+    "サ"
+   ],
+   "kunyomi": [
+    "ひだり"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000081",
+     "word": "左",
+     "reading": "ひだり",
+     "meaning_vi": "Bên trái"
+    },
+    {
+     "vocab_id": null,
+     "word": "左手",
+     "reading": "ひだりて",
+     "meaning_vi": "tay trái"
+    }
+   ],
+   "stroke_count": 5,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "四",
+   "han_viet": "TỨ",
+   "han_viet_note": null,
+   "meaning_vi": "bốn",
+   "onyomi": [
+    "シ"
+   ],
+   "kunyomi": [
+    "よん",
+    "よ",
+    "よ.つ",
+    "よっ.つ"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000103",
+     "word": "四つ",
+     "reading": "よっつ",
+     "meaning_vi": "bốn cái (đếm đồ vật chung)"
+    },
+    {
+     "vocab_id": null,
+     "word": "四月",
+     "reading": "しがつ",
+     "meaning_vi": "tháng Tư"
+    },
+    {
+     "vocab_id": null,
+     "word": "四日",
+     "reading": "よっか",
+     "meaning_vi": "ngày mùng 4; 4 ngày"
+    }
+   ],
+   "stroke_count": 5,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "出",
+   "han_viet": "XUẤT",
+   "han_viet_note": null,
+   "meaning_vi": "ra; đưa ra",
+   "onyomi": [
+    "シュツ"
+   ],
+   "kunyomi": [
+    "で.る",
+    "だ.す"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000239",
+     "word": "出ます",
+     "reading": "でます",
+     "meaning_vi": "Ra, rời khỏi (quán...)"
+    },
+    {
+     "vocab_id": "VOC_000299",
+     "word": "出します",
+     "reading": "だします",
+     "meaning_vi": "Lấy ra, rút (tiền), gửi (thư)"
+    },
+    {
+     "vocab_id": "VOC_000316",
+     "word": "出張します",
+     "reading": "しゅっちょうします",
+     "meaning_vi": "Đi công tác"
+    },
+    {
+     "vocab_id": "VOC_000310",
+     "word": "出かけます",
+     "reading": "でかけます",
+     "meaning_vi": "Đi ra ngoài"
+    }
+   ],
+   "stroke_count": 5,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "生",
+   "han_viet": "SINH",
+   "han_viet_note": null,
+   "meaning_vi": "sống; sinh ra; tươi sống (chưa nấu)",
+   "onyomi": [
+    "セイ",
+    "ショウ"
+   ],
+   "kunyomi": [
+    "い.きる",
+    "う.まれる",
+    "なま"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000016",
+     "word": "学生",
+     "reading": "がくせい",
+     "meaning_vi": "Học sinh, sinh viên"
+    },
+    {
+     "vocab_id": "VOC_000694",
+     "word": "誕生日",
+     "reading": "たんじょうび",
+     "meaning_vi": "Ngày sinh nhật"
+    },
+    {
+     "vocab_id": "VOC_000479",
+     "word": "生まれます",
+     "reading": "うまれます",
+     "meaning_vi": "Được sinh ra"
+    },
+    {
+     "vocab_id": "VOC_000183",
+     "word": "生け花",
+     "reading": "いけばな",
+     "meaning_vi": "Nghệ thuật cắm hoa"
+    }
+   ],
+   "stroke_count": 5,
+   "confidence": "high",
+   "audited": true,
+   "review_log": [
+    {
+     "field": "meaning_vi",
+     "reason_vi": "tránh lặp từ 'sống' gây mơ hồ",
+     "confidence": "medium"
+    }
+   ]
+  },
+  {
+   "kanji": "白",
+   "han_viet": "BẠCH",
+   "han_viet_note": null,
+   "meaning_vi": "trắng",
+   "onyomi": [
+    "ハク"
+   ],
+   "kunyomi": [
+    "しろ",
+    "しろ.い"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000826",
+     "word": "白い",
+     "reading": "しろい",
+     "meaning_vi": "Màu trắng"
+    },
+    {
+     "vocab_id": "VOC_000822",
+     "word": "面白い",
+     "reading": "おもしろい",
+     "meaning_vi": "Thú vị, hay"
+    }
+   ],
+   "stroke_count": 5,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "本",
+   "han_viet": "BẢN",
+   "han_viet_note": "Cũng đọc BỔN; BẢN là âm phổ biến (日本 Nhật Bản).",
+   "meaning_vi": "sách; gốc; (đếm vật dài)",
+   "onyomi": [
+    "ホン"
+   ],
+   "kunyomi": [
+    "もと"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000369",
+     "word": "本",
+     "reading": "ほん",
+     "meaning_vi": "Sách"
+    },
+    {
+     "vocab_id": "VOC_000043",
+     "word": "日本",
+     "reading": "にほん",
+     "meaning_vi": "Nhật Bản"
+    },
+    {
+     "vocab_id": "VOC_000449",
+     "word": "本当に",
+     "reading": "ほんとうに",
+     "meaning_vi": "Thật sự, quả thực"
+    },
+    {
+     "vocab_id": null,
+     "word": "一本",
+     "reading": "いっぽん",
+     "meaning_vi": "một (cây, chai...)"
+    }
+   ],
+   "stroke_count": 5,
+   "confidence": "medium",
+   "audited": true
+  },
+  {
+   "kanji": "目",
+   "han_viet": "MỤC",
+   "han_viet_note": null,
+   "meaning_vi": "mắt; thứ (thứ tự)",
+   "onyomi": [
+    "モク"
+   ],
+   "kunyomi": [
+    "め"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000283",
+     "word": "目",
+     "reading": "め",
+     "meaning_vi": "Mắt"
+    },
+    {
+     "vocab_id": "VOC_000508",
+     "word": "~目",
+     "reading": "~め",
+     "meaning_vi": "Thứ ~ (hậu tố chỉ thứ tự)"
+    },
+    {
+     "vocab_id": null,
+     "word": "目的",
+     "reading": "もくてき",
+     "meaning_vi": "mục đích"
+    }
+   ],
+   "stroke_count": 5,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "立",
+   "han_viet": "LẬP",
+   "han_viet_note": null,
+   "meaning_vi": "đứng; dựng",
+   "onyomi": [
+    "リツ"
+   ],
+   "kunyomi": [
+    "た.つ",
+    "た.てる"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000237",
+     "word": "立ちます",
+     "reading": "たちます",
+     "meaning_vi": "Đứng"
+    },
+    {
+     "vocab_id": "VOC_000433",
+     "word": "役に立ちます",
+     "reading": "やくにたちます",
+     "meaning_vi": "Giúp ích, có ích"
+    },
+    {
+     "vocab_id": null,
+     "word": "国立",
+     "reading": "こくりつ",
+     "meaning_vi": "quốc lập"
+    }
+   ],
+   "stroke_count": 5,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "気",
+   "han_viet": "KHÍ",
+   "han_viet_note": null,
+   "meaning_vi": "khí; tinh thần, tâm trạng",
+   "onyomi": [
+    "キ",
+    "ケ"
+   ],
+   "kunyomi": [],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000166",
+     "word": "天気",
+     "reading": "てんき",
+     "meaning_vi": "Thời tiết"
+    },
+    {
+     "vocab_id": "VOC_000804",
+     "word": "元気",
+     "reading": "げんき",
+     "meaning_vi": "Khỏe mạnh"
+    },
+    {
+     "vocab_id": "VOC_000325",
+     "word": "病気",
+     "reading": "びょうき",
+     "meaning_vi": "Bệnh, ốm"
+    },
+    {
+     "vocab_id": "VOC_000444",
+     "word": "気をつけます",
+     "reading": "きをつけます",
+     "meaning_vi": "Chú ý, cẩn trọng"
+    }
+   ],
+   "stroke_count": 6,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "休",
+   "han_viet": "HƯU",
+   "han_viet_note": null,
+   "meaning_vi": "nghỉ",
+   "onyomi": [
+    "キュウ"
+   ],
+   "kunyomi": [
+    "やす.む"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000099",
+     "word": "休みます",
+     "reading": "やすみます",
+     "meaning_vi": "nghỉ, nghỉ ngơi, nghỉ làm/học"
+    },
+    {
+     "vocab_id": "VOC_000638",
+     "word": "休み",
+     "reading": "やすみ",
+     "meaning_vi": "Nghỉ, ngày nghỉ"
+    },
+    {
+     "vocab_id": "VOC_000639",
+     "word": "昼休み",
+     "reading": "ひるやすみ",
+     "meaning_vi": "Nghỉ trưa"
+    },
+    {
+     "vocab_id": null,
+     "word": "休日",
+     "reading": "きゅうじつ",
+     "meaning_vi": "ngày nghỉ"
+    }
+   ],
+   "stroke_count": 6,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "耳",
+   "han_viet": "NHĨ",
+   "han_viet_note": null,
+   "meaning_vi": "tai",
+   "onyomi": [
+    "ジ"
+   ],
+   "kunyomi": [
+    "みみ"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000290",
+     "word": "耳",
+     "reading": "みみ",
+     "meaning_vi": "Tai"
+    },
+    {
+     "vocab_id": null,
+     "word": "右耳",
+     "reading": "みぎみみ",
+     "meaning_vi": "tai phải"
+    }
+   ],
+   "stroke_count": 6,
+   "confidence": "high",
+   "audited": true,
+   "review_log": [
+    {
+     "field": "example_words",
+     "reason_vi": "耳鼻科 vượt N4, không có từ ジ đơn giản thay thế",
+     "confidence": "high"
+    },
+    {
+     "field": "example_words",
+     "reason_vi": "Bổ sung ví dụ thứ 2 đơn giản (chữ N5)",
+     "confidence": "high"
+    }
+   ]
+  },
+  {
+   "kanji": "先",
+   "han_viet": "TIÊN",
+   "han_viet_note": null,
+   "meaning_vi": "trước",
+   "onyomi": [
+    "セン"
+   ],
+   "kunyomi": [
+    "さき"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000014",
+     "word": "先生",
+     "reading": "せんせい",
+     "meaning_vi": "Thầy giáo, cô giáo (dùng để gọi xưng hô)"
+    },
+    {
+     "vocab_id": "VOC_000695",
+     "word": "先週",
+     "reading": "せんしゅう",
+     "meaning_vi": "Tuần trước"
+    },
+    {
+     "vocab_id": "VOC_000692",
+     "word": "先月",
+     "reading": "せんげつ",
+     "meaning_vi": "Tháng trước"
+    },
+    {
+     "vocab_id": null,
+     "word": "先に",
+     "reading": "さきに",
+     "meaning_vi": "trước (làm trước)"
+    }
+   ],
+   "stroke_count": 6,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "年",
+   "han_viet": "NIÊN",
+   "han_viet_note": null,
+   "meaning_vi": "năm",
+   "onyomi": [
+    "ネン"
+   ],
+   "kunyomi": [
+    "とし"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000679",
+     "word": "来年",
+     "reading": "らいねん",
+     "meaning_vi": "Năm sau"
+    },
+    {
+     "vocab_id": "VOC_000683",
+     "word": "去年",
+     "reading": "きょねん",
+     "meaning_vi": "Năm ngoái"
+    },
+    {
+     "vocab_id": "VOC_000564",
+     "word": "年を取ります",
+     "reading": "としをとります",
+     "meaning_vi": "Thêm tuổi, có tuổi"
+    }
+   ],
+   "stroke_count": 6,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "百",
+   "han_viet": "BÁCH",
+   "han_viet_note": null,
+   "meaning_vi": "trăm",
+   "onyomi": [
+    "ヒャク",
+    "ビャク"
+   ],
+   "kunyomi": [],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000607",
+     "word": "百",
+     "reading": "ひゃく",
+     "meaning_vi": "Trăm (100)"
+    },
+    {
+     "vocab_id": null,
+     "word": "三百",
+     "reading": "さんびゃく",
+     "meaning_vi": "ba trăm"
+    },
+    {
+     "vocab_id": null,
+     "word": "六百",
+     "reading": "ろっぴゃく",
+     "meaning_vi": "sáu trăm"
+    }
+   ],
+   "stroke_count": 6,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "名",
+   "han_viet": "DANH",
+   "han_viet_note": null,
+   "meaning_vi": "tên; nổi tiếng",
+   "onyomi": [
+    "メイ",
+    "ミョウ"
+   ],
+   "kunyomi": [
+    "な"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000245",
+     "word": "名前",
+     "reading": "なまえ",
+     "meaning_vi": "Tên"
+    },
+    {
+     "vocab_id": "VOC_000802",
+     "word": "有名",
+     "reading": "ゆうめい",
+     "meaning_vi": "Nổi tiếng"
+    },
+    {
+     "vocab_id": "VOC_000374",
+     "word": "名刺",
+     "reading": "めいし",
+     "meaning_vi": "Danh thiếp"
+    },
+    {
+     "vocab_id": null,
+     "word": "名字",
+     "reading": "みょうじ",
+     "meaning_vi": "họ"
+    }
+   ],
+   "stroke_count": 6,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "花",
+   "han_viet": "HOA",
+   "han_viet_note": null,
+   "meaning_vi": "hoa",
+   "onyomi": [
+    "カ"
+   ],
+   "kunyomi": [
+    "はな"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000773",
+     "word": "花",
+     "reading": "はな",
+     "meaning_vi": "Hoa"
+    },
+    {
+     "vocab_id": "VOC_000742",
+     "word": "お花見",
+     "reading": "おはなみ",
+     "meaning_vi": "Việc ngắm hoa anh đào"
+    },
+    {
+     "vocab_id": "VOC_000183",
+     "word": "生け花",
+     "reading": "いけばな",
+     "meaning_vi": "Nghệ thuật cắm hoa"
+    },
+    {
+     "vocab_id": null,
+     "word": "花瓶",
+     "reading": "かびん",
+     "meaning_vi": "bình hoa"
+    }
+   ],
+   "stroke_count": 7,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "見",
+   "han_viet": "KIẾN",
+   "han_viet_note": null,
+   "meaning_vi": "nhìn, xem",
+   "onyomi": [
+    "ケン"
+   ],
+   "kunyomi": [
+    "み.る",
+    "み.せる",
+    "み.える"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000739",
+     "word": "見ます",
+     "reading": "みます",
+     "meaning_vi": "Xem, nhìn"
+    },
+    {
+     "vocab_id": "VOC_000235",
+     "word": "見せます",
+     "reading": "みせます",
+     "meaning_vi": "Cho xem, cho thấy"
+    },
+    {
+     "vocab_id": "VOC_000446",
+     "word": "意見",
+     "reading": "いけん",
+     "meaning_vi": "Ý kiến"
+    },
+    {
+     "vocab_id": "VOC_000260",
+     "word": "見学します",
+     "reading": "けんがくします",
+     "meaning_vi": "Tham quan, kiến tập"
+    }
+   ],
+   "stroke_count": 7,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "車",
+   "han_viet": "XA",
+   "han_viet_note": null,
+   "meaning_vi": "xe",
+   "onyomi": [
+    "シャ"
+   ],
+   "kunyomi": [
+    "くるま"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000833",
+     "word": "車",
+     "reading": "くるま",
+     "meaning_vi": "Ô tô, xe hơi"
+    },
+    {
+     "vocab_id": "VOC_000696",
+     "word": "電車",
+     "reading": "でんしゃ",
+     "meaning_vi": "Tàu điện"
+    },
+    {
+     "vocab_id": "VOC_000685",
+     "word": "自転車",
+     "reading": "じてんしゃ",
+     "meaning_vi": "Xe đạp"
+    }
+   ],
+   "stroke_count": 7,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "足",
+   "han_viet": "TÚC",
+   "han_viet_note": null,
+   "meaning_vi": "chân; đủ",
+   "onyomi": [
+    "ソク"
+   ],
+   "kunyomi": [
+    "あし",
+    "た.りる",
+    "た.す"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000296",
+     "word": "足",
+     "reading": "あし",
+     "meaning_vi": "Chân"
+    },
+    {
+     "vocab_id": null,
+     "word": "足ります",
+     "reading": "たります",
+     "meaning_vi": "đủ"
+    },
+    {
+     "vocab_id": null,
+     "word": "一足",
+     "reading": "いっそく",
+     "meaning_vi": "một đôi (giày, tất)"
+    }
+   ],
+   "stroke_count": 7,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "男",
+   "han_viet": "NAM",
+   "han_viet_note": null,
+   "meaning_vi": "nam, đàn ông",
+   "onyomi": [
+    "ダン",
+    "ナン"
+   ],
+   "kunyomi": [
+    "おとこ"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000050",
+     "word": "男の人",
+     "reading": "おとこのひと",
+     "meaning_vi": "Người đàn ông"
+    },
+    {
+     "vocab_id": "VOC_000052",
+     "word": "男の子",
+     "reading": "おとこのこ",
+     "meaning_vi": "Cậu bé, bé trai"
+    },
+    {
+     "vocab_id": null,
+     "word": "男性",
+     "reading": "だんせい",
+     "meaning_vi": "nam giới"
+    }
+   ],
+   "stroke_count": 7,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "雨",
+   "han_viet": "VŨ",
+   "han_viet_note": null,
+   "meaning_vi": "mưa",
+   "onyomi": [
+    "ウ"
+   ],
+   "kunyomi": [
+    "あめ",
+    "あま-"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000167",
+     "word": "雨",
+     "reading": "あめ",
+     "meaning_vi": "Mưa"
+    },
+    {
+     "vocab_id": null,
+     "word": "大雨",
+     "reading": "おおあめ",
+     "meaning_vi": "mưa to"
+    }
+   ],
+   "stroke_count": 8,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "学",
+   "han_viet": "HỌC",
+   "han_viet_note": null,
+   "meaning_vi": "học",
+   "onyomi": [
+    "ガク"
+   ],
+   "kunyomi": [
+    "まな.ぶ"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000023",
+     "word": "大学",
+     "reading": "だいがく",
+     "meaning_vi": "Trường đại học"
+    },
+    {
+     "vocab_id": "VOC_000016",
+     "word": "学生",
+     "reading": "がくせい",
+     "meaning_vi": "Học sinh, sinh viên"
+    },
+    {
+     "vocab_id": "VOC_000690",
+     "word": "学校",
+     "reading": "がっこう",
+     "meaning_vi": "Trường học"
+    },
+    {
+     "vocab_id": "VOC_000458",
+     "word": "留学します",
+     "reading": "りゅうがくします",
+     "meaning_vi": "Du học"
+    }
+   ],
+   "stroke_count": 8,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "金",
+   "han_viet": "KIM",
+   "han_viet_note": null,
+   "meaning_vi": "vàng; tiền",
+   "onyomi": [
+    "キン"
+   ],
+   "kunyomi": [
+    "かね"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000777",
+     "word": "お金",
+     "reading": "おかね",
+     "meaning_vi": "Tiền"
+    },
+    {
+     "vocab_id": "VOC_000650",
+     "word": "金曜日",
+     "reading": "きんようび",
+     "meaning_vi": "Thứ Sáu"
+    }
+   ],
+   "stroke_count": 8,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "空",
+   "han_viet": "KHÔNG",
+   "han_viet_note": null,
+   "meaning_vi": "bầu trời; trống, rỗng",
+   "onyomi": [
+    "クウ"
+   ],
+   "kunyomi": [
+    "そら",
+    "あ.く",
+    "す.く",
+    "から"
+   ],
+   "example_words": [
+    {
+     "vocab_id": null,
+     "word": "空",
+     "reading": "そら",
+     "meaning_vi": "bầu trời"
+    },
+    {
+     "vocab_id": "VOC_000171",
+     "word": "空港",
+     "reading": "くうこう",
+     "meaning_vi": "Sân bay"
+    },
+    {
+     "vocab_id": "VOC_000212",
+     "word": "お腹が空きました",
+     "reading": "おなかがすきました",
+     "meaning_vi": "Tôi đói rồi"
+    }
+   ],
+   "stroke_count": 8,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "校",
+   "han_viet": "HIỆU",
+   "han_viet_note": null,
+   "meaning_vi": "trường học",
+   "onyomi": [
+    "コウ"
+   ],
+   "kunyomi": [],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000690",
+     "word": "学校",
+     "reading": "がっこう",
+     "meaning_vi": "Trường học"
+    },
+    {
+     "vocab_id": null,
+     "word": "高校",
+     "reading": "こうこう",
+     "meaning_vi": "trường trung học phổ thông"
+    },
+    {
+     "vocab_id": null,
+     "word": "校長",
+     "reading": "こうちょう",
+     "meaning_vi": "hiệu trưởng"
+    }
+   ],
+   "stroke_count": 10,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "万",
+   "han_viet": "VẠN",
+   "han_viet_note": null,
+   "meaning_vi": "vạn, mười nghìn",
+   "onyomi": [
+    "マン",
+    "バン"
+   ],
+   "kunyomi": [],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000577",
+     "word": "万",
+     "reading": "まん",
+     "meaning_vi": "Mười nghìn, vạn (10.000)"
+    },
+    {
+     "vocab_id": "VOC_000488",
+     "word": "万里の長城",
+     "reading": "ばんりのちょうじょう",
+     "meaning_vi": "Vạn Lý Trường Thành"
+    }
+   ],
+   "stroke_count": 3,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "午",
+   "han_viet": "NGỌ",
+   "han_viet_note": null,
+   "meaning_vi": "trưa",
+   "onyomi": [
+    "ゴ"
+   ],
+   "kunyomi": [],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000627",
+     "word": "午前",
+     "reading": "ごぜん",
+     "meaning_vi": "Buổi sáng, trước 12 giờ trưa (AM)"
+    },
+    {
+     "vocab_id": "VOC_000628",
+     "word": "午後",
+     "reading": "ごご",
+     "meaning_vi": "Buổi chiều, sau 12 giờ trưa (PM)"
+    }
+   ],
+   "stroke_count": 4,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "今",
+   "han_viet": "KIM",
+   "han_viet_note": null,
+   "meaning_vi": "bây giờ; nay",
+   "onyomi": [
+    "コン"
+   ],
+   "kunyomi": [
+    "いま"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000621",
+     "word": "今",
+     "reading": "いま",
+     "meaning_vi": "Bây giờ"
+    },
+    {
+     "vocab_id": "VOC_000660",
+     "word": "今月",
+     "reading": "こんげつ",
+     "meaning_vi": "Tháng này"
+    },
+    {
+     "vocab_id": "VOC_000637",
+     "word": "今晩",
+     "reading": "こんばん",
+     "meaning_vi": "Tối nay"
+    },
+    {
+     "vocab_id": "VOC_000698",
+     "word": "今週",
+     "reading": "こんしゅう",
+     "meaning_vi": "Tuần này"
+    }
+   ],
+   "stroke_count": 4,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "少",
+   "han_viet": "THIỂU",
+   "han_viet_note": null,
+   "meaning_vi": "ít",
+   "onyomi": [
+    "ショウ"
+   ],
+   "kunyomi": [
+    "すく.ない",
+    "すこ.し"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000892",
+     "word": "少し",
+     "reading": "すこし",
+     "meaning_vi": "Một chút, ít"
+    },
+    {
+     "vocab_id": "VOC_000154",
+     "word": "少ない",
+     "reading": "すくない",
+     "meaning_vi": "Ít"
+    },
+    {
+     "vocab_id": "VOC_000218",
+     "word": "少々お待ちください",
+     "reading": "しょうしょうおまちください",
+     "meaning_vi": "Xin vui lòng đợi một chút"
+    }
+   ],
+   "stroke_count": 4,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "父",
+   "han_viet": "PHỤ",
+   "han_viet_note": null,
+   "meaning_vi": "bố, cha",
+   "onyomi": [
+    "フ"
+   ],
+   "kunyomi": [
+    "ちち"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000781",
+     "word": "父",
+     "reading": "ちち",
+     "meaning_vi": "Bố (của mình)"
+    },
+    {
+     "vocab_id": "VOC_000783",
+     "word": "お父さん",
+     "reading": "おとうさん",
+     "meaning_vi": "Bố (của người khác / xưng hô)"
+    },
+    {
+     "vocab_id": null,
+     "word": "祖父",
+     "reading": "そふ",
+     "meaning_vi": "ông (của mình)"
+    }
+   ],
+   "stroke_count": 4,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "分",
+   "han_viet": "PHÂN",
+   "han_viet_note": null,
+   "meaning_vi": "phút; phần; hiểu",
+   "onyomi": [
+    "フン",
+    "ブン"
+   ],
+   "kunyomi": [
+    "わ.かる",
+    "わ.ける"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000626",
+     "word": "何分",
+     "reading": "なんぷん",
+     "meaning_vi": "Mấy phút?"
+    },
+    {
+     "vocab_id": "VOC_000553",
+     "word": "自分で",
+     "reading": "じぶんで",
+     "meaning_vi": "Tự mình"
+    },
+    {
+     "vocab_id": "VOC_000873",
+     "word": "分かります",
+     "reading": "わかります",
+     "meaning_vi": "Hiểu, nắm được"
+    },
+    {
+     "vocab_id": null,
+     "word": "五分",
+     "reading": "ごふん",
+     "meaning_vi": "5 phút"
+    }
+   ],
+   "stroke_count": 4,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "友",
+   "han_viet": "HỮU",
+   "han_viet_note": null,
+   "meaning_vi": "bạn",
+   "onyomi": [
+    "ユウ"
+   ],
+   "kunyomi": [
+    "とも"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000677",
+     "word": "友達",
+     "reading": "ともだち",
+     "meaning_vi": "Bạn, bạn bè"
+    },
+    {
+     "vocab_id": null,
+     "word": "友人",
+     "reading": "ゆうじん",
+     "meaning_vi": "bạn bè"
+    }
+   ],
+   "stroke_count": 4,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "外",
+   "han_viet": "NGOẠI",
+   "han_viet_note": null,
+   "meaning_vi": "ngoài",
+   "onyomi": [
+    "ガイ"
+   ],
+   "kunyomi": [
+    "そと",
+    "ほか"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000083",
+     "word": "外",
+     "reading": "そと",
+     "meaning_vi": "Bên ngoài, ngoài"
+    },
+    {
+     "vocab_id": "VOC_000134",
+     "word": "外国",
+     "reading": "がいこく",
+     "meaning_vi": "nước ngoài"
+    },
+    {
+     "vocab_id": null,
+     "word": "外国人",
+     "reading": "がいこくじん",
+     "meaning_vi": "người nước ngoài"
+    }
+   ],
+   "stroke_count": 5,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "古",
+   "han_viet": "CỔ",
+   "han_viet_note": null,
+   "meaning_vi": "cũ",
+   "onyomi": [
+    "コ"
+   ],
+   "kunyomi": [
+    "ふる.い"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000811",
+     "word": "古い",
+     "reading": "ふるい",
+     "meaning_vi": "Cũ (không dùng cho người)"
+    },
+    {
+     "vocab_id": null,
+     "word": "古本",
+     "reading": "ふるほん",
+     "meaning_vi": "sách cũ"
+    }
+   ],
+   "stroke_count": 5,
+   "confidence": "high",
+   "audited": true,
+   "review_log": [
+    {
+     "field": "example_words",
+     "reason_vi": "中古 vượt N4; thay bằng từ thông dụng dễ hơn",
+     "confidence": "high"
+    }
+   ]
+  },
+  {
+   "kanji": "半",
+   "han_viet": "BÁN",
+   "han_viet_note": null,
+   "meaning_vi": "nửa",
+   "onyomi": [
+    "ハン"
+   ],
+   "kunyomi": [
+    "なか.ば"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000624",
+     "word": "半",
+     "reading": "はん",
+     "meaning_vi": "Nửa, rưỡi (chỉ 30 phút)"
+    },
+    {
+     "vocab_id": null,
+     "word": "半分",
+     "reading": "はんぶん",
+     "meaning_vi": "một nửa"
+    },
+    {
+     "vocab_id": null,
+     "word": "三時半",
+     "reading": "さんじはん",
+     "meaning_vi": "3 giờ rưỡi"
+    }
+   ],
+   "stroke_count": 5,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "母",
+   "han_viet": "MẪU",
+   "han_viet_note": null,
+   "meaning_vi": "mẹ",
+   "onyomi": [
+    "ボ"
+   ],
+   "kunyomi": [
+    "はは"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000782",
+     "word": "母",
+     "reading": "はは",
+     "meaning_vi": "Mẹ (của mình)"
+    },
+    {
+     "vocab_id": "VOC_000784",
+     "word": "お母さん",
+     "reading": "おかあさん",
+     "meaning_vi": "Mẹ (của người khác / xưng hô)"
+    },
+    {
+     "vocab_id": "VOC_000539",
+     "word": "母の日",
+     "reading": "ははのひ",
+     "meaning_vi": "Ngày của Mẹ"
+    },
+    {
+     "vocab_id": null,
+     "word": "祖母",
+     "reading": "そぼ",
+     "meaning_vi": "bà (của mình)"
+    }
+   ],
+   "stroke_count": 5,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "北",
+   "han_viet": "BẮC",
+   "han_viet_note": null,
+   "meaning_vi": "phía bắc",
+   "onyomi": [
+    "ホク"
+   ],
+   "kunyomi": [
+    "きた"
+   ],
+   "example_words": [
+    {
+     "vocab_id": null,
+     "word": "北",
+     "reading": "きた",
+     "meaning_vi": "phía bắc"
+    },
+    {
+     "vocab_id": null,
+     "word": "東北",
+     "reading": "とうほく",
+     "meaning_vi": "vùng Đông Bắc (Tohoku)"
+    },
+    {
+     "vocab_id": null,
+     "word": "北海道",
+     "reading": "ほっかいどう",
+     "meaning_vi": "Hokkaido"
+    }
+   ],
+   "stroke_count": 5,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "会",
+   "han_viet": "HỘI",
+   "han_viet_note": null,
+   "meaning_vi": "gặp; hội",
+   "onyomi": [
+    "カイ"
+   ],
+   "kunyomi": [
+    "あ.う"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000709",
+     "word": "会います",
+     "reading": "あいます",
+     "meaning_vi": "Gặp"
+    },
+    {
+     "vocab_id": "VOC_000608",
+     "word": "会社",
+     "reading": "かいしゃ",
+     "meaning_vi": "Công ty"
+    },
+    {
+     "vocab_id": "VOC_000641",
+     "word": "会議",
+     "reading": "かいぎ",
+     "meaning_vi": "Cuộc họp, hội nghị"
+    }
+   ],
+   "stroke_count": 6,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "行",
+   "han_viet": "HÀNH, HÀNG",
+   "han_viet_note": null,
+   "meaning_vi": "đi; thực hiện; hàng",
+   "onyomi": [
+    "コウ",
+    "ギョウ"
+   ],
+   "kunyomi": [
+    "い.く",
+    "ゆ.く",
+    "おこな.う"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000662",
+     "word": "行きます",
+     "reading": "いきます",
+     "meaning_vi": "Đi"
+    },
+    {
+     "vocab_id": "VOC_000617",
+     "word": "銀行",
+     "reading": "ぎんこう",
+     "meaning_vi": "Ngân hàng"
+    },
+    {
+     "vocab_id": "VOC_000860",
+     "word": "旅行",
+     "reading": "りょこう",
+     "meaning_vi": "Du lịch, chuyến đi"
+    },
+    {
+     "vocab_id": "VOC_000676",
+     "word": "飛行機",
+     "reading": "ひこうき",
+     "meaning_vi": "Máy bay"
+    }
+   ],
+   "stroke_count": 6,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "西",
+   "han_viet": "TÂY",
+   "han_viet_note": null,
+   "meaning_vi": "phía tây",
+   "onyomi": [
+    "セイ",
+    "サイ"
+   ],
+   "kunyomi": [
+    "にし"
+   ],
+   "example_words": [
+    {
+     "vocab_id": null,
+     "word": "西",
+     "reading": "にし",
+     "meaning_vi": "phía tây"
+    },
+    {
+     "vocab_id": null,
+     "word": "関西",
+     "reading": "かんさい",
+     "meaning_vi": "vùng Kansai"
+    },
+    {
+     "vocab_id": null,
+     "word": "西洋",
+     "reading": "せいよう",
+     "meaning_vi": "phương Tây"
+    }
+   ],
+   "stroke_count": 6,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "多",
+   "han_viet": "ĐA",
+   "han_viet_note": null,
+   "meaning_vi": "nhiều",
+   "onyomi": [
+    "タ"
+   ],
+   "kunyomi": [
+    "おお.い"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000153",
+     "word": "多い",
+     "reading": "おおい",
+     "meaning_vi": "Nhiều (người/vật)"
+    },
+    {
+     "vocab_id": null,
+     "word": "多分",
+     "reading": "たぶん",
+     "meaning_vi": "có lẽ"
+    }
+   ],
+   "stroke_count": 6,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "毎",
+   "han_viet": "MỖI",
+   "han_viet_note": null,
+   "meaning_vi": "mỗi",
+   "onyomi": [
+    "マイ"
+   ],
+   "kunyomi": [],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000645",
+     "word": "毎日",
+     "reading": "まいにち",
+     "meaning_vi": "Mỗi ngày, hàng ngày"
+    },
+    {
+     "vocab_id": "VOC_000643",
+     "word": "毎朝",
+     "reading": "まいあさ",
+     "meaning_vi": "Mỗi sáng, hàng sáng"
+    },
+    {
+     "vocab_id": "VOC_000644",
+     "word": "毎晩",
+     "reading": "まいばん",
+     "meaning_vi": "Mỗi tối, hàng tối"
+    }
+   ],
+   "stroke_count": 6,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "何",
+   "han_viet": "HÀ",
+   "han_viet_note": null,
+   "meaning_vi": "cái gì; mấy",
+   "onyomi": [],
+   "kunyomi": [
+    "なに",
+    "なん"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000210",
+     "word": "何か",
+     "reading": "なにか",
+     "meaning_vi": "Cái gì đó"
+    },
+    {
+     "vocab_id": "VOC_000625",
+     "word": "何時",
+     "reading": "なんじ",
+     "meaning_vi": "Mấy giờ?"
+    },
+    {
+     "vocab_id": "VOC_000004",
+     "word": "何歳",
+     "reading": "なんさい",
+     "meaning_vi": "Mấy tuổi"
+    },
+    {
+     "vocab_id": "VOC_000653",
+     "word": "何曜日",
+     "reading": "なんようび",
+     "meaning_vi": "Thứ mấy?"
+    }
+   ],
+   "stroke_count": 7,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "言",
+   "han_viet": "NGÔN",
+   "han_viet_note": null,
+   "meaning_vi": "nói; lời",
+   "onyomi": [
+    "ゲン",
+    "ゴン"
+   ],
+   "kunyomi": [
+    "い.う",
+    "こと"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000434",
+     "word": "言います",
+     "reading": "いいます",
+     "meaning_vi": "Nói"
+    },
+    {
+     "vocab_id": "VOC_000407",
+     "word": "言葉",
+     "reading": "ことば",
+     "meaning_vi": "Từ ngữ, ngôn ngữ, lời nói"
+    },
+    {
+     "vocab_id": null,
+     "word": "言語",
+     "reading": "げんご",
+     "meaning_vi": "ngôn ngữ"
+    }
+   ],
+   "stroke_count": 7,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "社",
+   "han_viet": "XÃ",
+   "han_viet_note": null,
+   "meaning_vi": "công ty; đền thờ",
+   "onyomi": [
+    "シャ"
+   ],
+   "kunyomi": [],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000608",
+     "word": "会社",
+     "reading": "かいしゃ",
+     "meaning_vi": "Công ty"
+    },
+    {
+     "vocab_id": "VOC_000018",
+     "word": "社員",
+     "reading": "しゃいん",
+     "meaning_vi": "Nhân viên công ty (dùng kèm tên công ty)"
+    },
+    {
+     "vocab_id": "VOC_000295",
+     "word": "神社",
+     "reading": "じんじゃ",
+     "meaning_vi": "Đền thờ Đạo Thần (Shinto)"
+    }
+   ],
+   "stroke_count": 7,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "来",
+   "han_viet": "LAI",
+   "han_viet_note": null,
+   "meaning_vi": "đến",
+   "onyomi": [
+    "ライ"
+   ],
+   "kunyomi": [
+    "く.る",
+    "き",
+    "こ"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000688",
+     "word": "来ます",
+     "reading": "きます",
+     "meaning_vi": "Đến"
+    },
+    {
+     "vocab_id": "VOC_000679",
+     "word": "来年",
+     "reading": "らいねん",
+     "meaning_vi": "Năm sau"
+    },
+    {
+     "vocab_id": "VOC_000670",
+     "word": "来週",
+     "reading": "らいしゅう",
+     "meaning_vi": "Tuần sau"
+    },
+    {
+     "vocab_id": null,
+     "word": "来ない",
+     "reading": "こない",
+     "meaning_vi": "không đến"
+    }
+   ],
+   "stroke_count": 7,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "国",
+   "han_viet": "QUỐC",
+   "han_viet_note": null,
+   "meaning_vi": "nước, quốc gia",
+   "onyomi": [
+    "コク"
+   ],
+   "kunyomi": [
+    "くに"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000581",
+     "word": "国",
+     "reading": "くに",
+     "meaning_vi": "Đất nước, nước"
+    },
+    {
+     "vocab_id": "VOC_000041",
+     "word": "中国",
+     "reading": "ちゅうごく",
+     "meaning_vi": "Trung Quốc"
+    },
+    {
+     "vocab_id": "VOC_000134",
+     "word": "外国",
+     "reading": "がいこく",
+     "meaning_vi": "nước ngoài"
+    }
+   ],
+   "stroke_count": 8,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "長",
+   "han_viet": "TRƯỜNG, TRƯỞNG",
+   "han_viet_note": null,
+   "meaning_vi": "dài; người đứng đầu",
+   "onyomi": [
+    "チョウ"
+   ],
+   "kunyomi": [
+    "なが.い"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000294",
+     "word": "長い",
+     "reading": "ながい",
+     "meaning_vi": "Dài"
+    },
+    {
+     "vocab_id": null,
+     "word": "社長",
+     "reading": "しゃちょう",
+     "meaning_vi": "giám đốc"
+    },
+    {
+     "vocab_id": "VOC_000488",
+     "word": "万里の長城",
+     "reading": "ばんりのちょうじょう",
+     "meaning_vi": "Vạn Lý Trường Thành"
+    }
+   ],
+   "stroke_count": 8,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "店",
+   "han_viet": "ĐIẾM",
+   "han_viet_note": null,
+   "meaning_vi": "cửa hàng, tiệm",
+   "onyomi": [
+    "テン"
+   ],
+   "kunyomi": [
+    "みせ"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000730",
+     "word": "店",
+     "reading": "みせ",
+     "meaning_vi": "Cửa hàng, tiệm"
+    },
+    {
+     "vocab_id": "VOC_000072",
+     "word": "喫茶店",
+     "reading": "きっさてん",
+     "meaning_vi": "Quán giải khát, quán cà phê"
+    },
+    {
+     "vocab_id": null,
+     "word": "店員",
+     "reading": "てんいん",
+     "meaning_vi": "nhân viên cửa hàng"
+    }
+   ],
+   "stroke_count": 8,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "東",
+   "han_viet": "ĐÔNG",
+   "han_viet_note": null,
+   "meaning_vi": "phía đông",
+   "onyomi": [
+    "トウ"
+   ],
+   "kunyomi": [
+    "ひがし"
+   ],
+   "example_words": [
+    {
+     "vocab_id": null,
+     "word": "東",
+     "reading": "ひがし",
+     "meaning_vi": "phía đông"
+    },
+    {
+     "vocab_id": null,
+     "word": "東京",
+     "reading": "とうきょう",
+     "meaning_vi": "Tokyo"
+    },
+    {
+     "vocab_id": "VOC_000095",
+     "word": "東京ディズニーランド",
+     "reading": "とうきょうディズニーランド",
+     "meaning_vi": "Công viên Tokyo Disneyland"
+    }
+   ],
+   "stroke_count": 8,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "後",
+   "han_viet": "HẬU",
+   "han_viet_note": null,
+   "meaning_vi": "sau",
+   "onyomi": [
+    "ゴ",
+    "コウ"
+   ],
+   "kunyomi": [
+    "うし.ろ",
+    "あと",
+    "のち"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000079",
+     "word": "後ろ",
+     "reading": "うしろ",
+     "meaning_vi": "Phía sau, sau"
+    },
+    {
+     "vocab_id": "VOC_000256",
+     "word": "後で",
+     "reading": "あとで",
+     "meaning_vi": "Sau, để sau"
+    },
+    {
+     "vocab_id": "VOC_000628",
+     "word": "午後",
+     "reading": "ごご",
+     "meaning_vi": "Buổi chiều, sau 12 giờ trưa (PM)"
+    }
+   ],
+   "stroke_count": 9,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "食",
+   "han_viet": "THỰC",
+   "han_viet_note": null,
+   "meaning_vi": "ăn",
+   "onyomi": [
+    "ショク"
+   ],
+   "kunyomi": [
+    "た.べる"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000731",
+     "word": "食べます",
+     "reading": "たべます",
+     "meaning_vi": "Ăn"
+    },
+    {
+     "vocab_id": "VOC_000832",
+     "word": "食べ物",
+     "reading": "たべもの",
+     "meaning_vi": "Đồ ăn, thức ăn"
+    },
+    {
+     "vocab_id": "VOC_000571",
+     "word": "食堂",
+     "reading": "しょくどう",
+     "meaning_vi": "Nhà ăn, căng tin"
+    },
+    {
+     "vocab_id": "VOC_000201",
+     "word": "食事します",
+     "reading": "しょくじします",
+     "meaning_vi": "Ăn cơm, dùng bữa"
+    }
+   ],
+   "stroke_count": 9,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "前",
+   "han_viet": "TIỀN",
+   "han_viet_note": null,
+   "meaning_vi": "trước",
+   "onyomi": [
+    "ゼン"
+   ],
+   "kunyomi": [
+    "まえ"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000078",
+     "word": "前",
+     "reading": "まえ",
+     "meaning_vi": "Phía trước, trước"
+    },
+    {
+     "vocab_id": "VOC_000245",
+     "word": "名前",
+     "reading": "なまえ",
+     "meaning_vi": "Tên"
+    },
+    {
+     "vocab_id": "VOC_000627",
+     "word": "午前",
+     "reading": "ごぜん",
+     "meaning_vi": "Buổi sáng, trước 12 giờ trưa (AM)"
+    }
+   ],
+   "stroke_count": 9,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "南",
+   "han_viet": "NAM",
+   "han_viet_note": null,
+   "meaning_vi": "phía nam",
+   "onyomi": [
+    "ナン"
+   ],
+   "kunyomi": [
+    "みなみ"
+   ],
+   "example_words": [
+    {
+     "vocab_id": null,
+     "word": "南",
+     "reading": "みなみ",
+     "meaning_vi": "phía nam"
+    },
+    {
+     "vocab_id": null,
+     "word": "南口",
+     "reading": "みなみぐち",
+     "meaning_vi": "cửa phía nam"
+    },
+    {
+     "vocab_id": null,
+     "word": "東南アジア",
+     "reading": "とうなんアジア",
+     "meaning_vi": "Đông Nam Á"
+    }
+   ],
+   "stroke_count": 9,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "高",
+   "han_viet": "CAO",
+   "han_viet_note": null,
+   "meaning_vi": "cao; đắt",
+   "onyomi": [
+    "コウ"
+   ],
+   "kunyomi": [
+    "たか.い"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000819",
+     "word": "高い",
+     "reading": "たかい",
+     "meaning_vi": "Cao, đắt"
+    },
+    {
+     "vocab_id": null,
+     "word": "高校",
+     "reading": "こうこう",
+     "meaning_vi": "trường trung học phổ thông"
+    }
+   ],
+   "stroke_count": 10,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "時",
+   "han_viet": "THỜI",
+   "han_viet_note": "Cũng đọc THÌ; THỜI phổ biến hơn (時間 thời gian).",
+   "meaning_vi": "thời gian; giờ",
+   "onyomi": [
+    "ジ"
+   ],
+   "kunyomi": [
+    "とき"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000622",
+     "word": "～時",
+     "reading": "～じ",
+     "meaning_vi": "~ giờ (dùng đếm giờ)"
+    },
+    {
+     "vocab_id": "VOC_000880",
+     "word": "時間",
+     "reading": "じかん",
+     "meaning_vi": "Thời gian"
+    },
+    {
+     "vocab_id": "VOC_000749",
+     "word": "時々",
+     "reading": "ときどき",
+     "meaning_vi": "Thỉnh thoảng"
+    }
+   ],
+   "stroke_count": 10,
+   "confidence": "medium",
+   "audited": true
+  },
+  {
+   "kanji": "書",
+   "han_viet": "THƯ",
+   "han_viet_note": null,
+   "meaning_vi": "viết; sách",
+   "onyomi": [
+    "ショ"
+   ],
+   "kunyomi": [
+    "か.く"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000701",
+     "word": "書きます",
+     "reading": "かきます",
+     "meaning_vi": "Viết"
+    },
+    {
+     "vocab_id": "VOC_000370",
+     "word": "辞書",
+     "reading": "じしょ",
+     "meaning_vi": "Từ điển"
+    },
+    {
+     "vocab_id": "VOC_000619",
+     "word": "図書館",
+     "reading": "としょかん",
+     "meaning_vi": "Thư viện"
+    }
+   ],
+   "stroke_count": 10,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "魚",
+   "han_viet": "NGƯ",
+   "han_viet_note": null,
+   "meaning_vi": "cá",
+   "onyomi": [
+    "ギョ"
+   ],
+   "kunyomi": [
+    "さかな",
+    "うお"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000733",
+     "word": "魚",
+     "reading": "さかな",
+     "meaning_vi": "Cá"
+    },
+    {
+     "vocab_id": null,
+     "word": "金魚",
+     "reading": "きんぎょ",
+     "meaning_vi": "cá vàng"
+    }
+   ],
+   "stroke_count": 11,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "週",
+   "han_viet": "CHU",
+   "han_viet_note": null,
+   "meaning_vi": "tuần",
+   "onyomi": [
+    "シュウ"
+   ],
+   "kunyomi": [],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000698",
+     "word": "今週",
+     "reading": "こんしゅう",
+     "meaning_vi": "Tuần này"
+    },
+    {
+     "vocab_id": "VOC_000670",
+     "word": "来週",
+     "reading": "らいしゅう",
+     "meaning_vi": "Tuần sau"
+    },
+    {
+     "vocab_id": "VOC_000196",
+     "word": "週末",
+     "reading": "しゅうまつ",
+     "meaning_vi": "Cuối tuần"
+    }
+   ],
+   "stroke_count": 11,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "間",
+   "han_viet": "GIAN",
+   "han_viet_note": null,
+   "meaning_vi": "khoảng; giữa",
+   "onyomi": [
+    "カン",
+    "ケン"
+   ],
+   "kunyomi": [
+    "あいだ",
+    "ま"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000086",
+     "word": "間",
+     "reading": "あいだ",
+     "meaning_vi": "Ở giữa"
+    },
+    {
+     "vocab_id": "VOC_000880",
+     "word": "時間",
+     "reading": "じかん",
+     "meaning_vi": "Thời gian"
+    },
+    {
+     "vocab_id": null,
+     "word": "人間",
+     "reading": "にんげん",
+     "meaning_vi": "con người"
+    },
+    {
+     "vocab_id": null,
+     "word": "間に合う",
+     "reading": "まにあう",
+     "meaning_vi": "kịp giờ"
+    }
+   ],
+   "stroke_count": 12,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "道",
+   "han_viet": "ĐẠO",
+   "han_viet_note": null,
+   "meaning_vi": "đường; đạo",
+   "onyomi": [
+    "ドウ"
+   ],
+   "kunyomi": [
+    "みち"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000529",
+     "word": "道",
+     "reading": "みち",
+     "meaning_vi": "Đường, con đường"
+    },
+    {
+     "vocab_id": null,
+     "word": "水道",
+     "reading": "すいどう",
+     "meaning_vi": "nước máy"
+    },
+    {
+     "vocab_id": null,
+     "word": "柔道",
+     "reading": "じゅうどう",
+     "meaning_vi": "judo (nhu đạo)"
+    }
+   ],
+   "stroke_count": 12,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "買",
+   "han_viet": "MÃI",
+   "han_viet_note": null,
+   "meaning_vi": "mua",
+   "onyomi": [
+    "バイ"
+   ],
+   "kunyomi": [
+    "か.う"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000716",
+     "word": "買います",
+     "reading": "かいます",
+     "meaning_vi": "Mua"
+    },
+    {
+     "vocab_id": "VOC_000200",
+     "word": "買い物します",
+     "reading": "かいものします",
+     "meaning_vi": "Mua sắm"
+    }
+   ],
+   "stroke_count": 12,
+   "confidence": "high",
+   "audited": true,
+   "review_log": [
+    {
+     "field": "example_words",
+     "reason_vi": "売買 vượt N4, không có từ バイ đơn giản hơn",
+     "confidence": "high"
+    }
+   ]
+  },
+  {
+   "kanji": "新",
+   "han_viet": "TÂN",
+   "han_viet_note": null,
+   "meaning_vi": "mới",
+   "onyomi": [
+    "シン"
+   ],
+   "kunyomi": [
+    "あたら.しい"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000810",
+     "word": "新しい",
+     "reading": "あたらしい",
+     "meaning_vi": "Mới"
+    },
+    {
+     "vocab_id": "VOC_000371",
+     "word": "新聞",
+     "reading": "しんぶん",
+     "meaning_vi": "Tờ báo"
+    },
+    {
+     "vocab_id": "VOC_000689",
+     "word": "新幹線",
+     "reading": "しんかんせん",
+     "meaning_vi": "Tàu siêu tốc Shinkansen"
+    }
+   ],
+   "stroke_count": 13,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "電",
+   "han_viet": "ĐIỆN",
+   "han_viet_note": null,
+   "meaning_vi": "điện",
+   "onyomi": [
+    "デン"
+   ],
+   "kunyomi": [],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000024",
+     "word": "電気",
+     "reading": "でんき",
+     "meaning_vi": "Điện, đèn điện"
+    },
+    {
+     "vocab_id": "VOC_000599",
+     "word": "電話",
+     "reading": "でんわ",
+     "meaning_vi": "Điện thoại"
+    },
+    {
+     "vocab_id": "VOC_000696",
+     "word": "電車",
+     "reading": "でんしゃ",
+     "meaning_vi": "Tàu điện"
+    }
+   ],
+   "stroke_count": 13,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "話",
+   "han_viet": "THOẠI",
+   "han_viet_note": null,
+   "meaning_vi": "nói chuyện; câu chuyện",
+   "onyomi": [
+    "ワ"
+   ],
+   "kunyomi": [
+    "はな.す",
+    "はなし"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000232",
+     "word": "話します",
+     "reading": "はなします",
+     "meaning_vi": "Nói chuyện"
+    },
+    {
+     "vocab_id": "VOC_000432",
+     "word": "話",
+     "reading": "はなし",
+     "meaning_vi": "Câu chuyện, nói chuyện"
+    },
+    {
+     "vocab_id": "VOC_000599",
+     "word": "電話",
+     "reading": "でんわ",
+     "meaning_vi": "Điện thoại"
+    }
+   ],
+   "stroke_count": 13,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "語",
+   "han_viet": "NGỮ",
+   "han_viet_note": null,
+   "meaning_vi": "ngôn ngữ, tiếng",
+   "onyomi": [
+    "ゴ"
+   ],
+   "kunyomi": [
+    "かた.る"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000394",
+     "word": "日本語",
+     "reading": "にほんご",
+     "meaning_vi": "Tiếng Nhật"
+    },
+    {
+     "vocab_id": "VOC_000393",
+     "word": "英語",
+     "reading": "えいご",
+     "meaning_vi": "Tiếng Anh"
+    },
+    {
+     "vocab_id": null,
+     "word": "物語",
+     "reading": "ものがたり",
+     "meaning_vi": "truyện, câu chuyện"
+    }
+   ],
+   "stroke_count": 14,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "読",
+   "han_viet": "ĐỘC",
+   "han_viet_note": null,
+   "meaning_vi": "đọc",
+   "onyomi": [
+    "ドク"
+   ],
+   "kunyomi": [
+    "よ.む"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000744",
+     "word": "読みます",
+     "reading": "よみます",
+     "meaning_vi": "Đọc"
+    },
+    {
+     "vocab_id": "VOC_000251",
+     "word": "読み方",
+     "reading": "よみかた",
+     "meaning_vi": "Cách đọc"
+    },
+    {
+     "vocab_id": null,
+     "word": "読書",
+     "reading": "どくしょ",
+     "meaning_vi": "đọc sách"
+    }
+   ],
+   "stroke_count": 14,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "聞",
+   "han_viet": "VĂN",
+   "han_viet_note": null,
+   "meaning_vi": "nghe; hỏi",
+   "onyomi": [
+    "ブン"
+   ],
+   "kunyomi": [
+    "き.く",
+    "き.こえる"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000707",
+     "word": "聞きます",
+     "reading": "ききます",
+     "meaning_vi": "Nghe"
+    },
+    {
+     "vocab_id": "VOC_000517",
+     "word": "聞きます",
+     "reading": "ききます",
+     "meaning_vi": "Hỏi (thầy cô / người khác)"
+    },
+    {
+     "vocab_id": "VOC_000371",
+     "word": "新聞",
+     "reading": "しんぶん",
+     "meaning_vi": "Tờ báo"
+    },
+    {
+     "vocab_id": null,
+     "word": "聞こえます",
+     "reading": "きこえます",
+     "meaning_vi": "nghe thấy"
+    }
+   ],
+   "stroke_count": 14,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "安",
+   "han_viet": "AN",
+   "han_viet_note": null,
+   "meaning_vi": "rẻ; yên ổn",
+   "onyomi": [
+    "アン"
+   ],
+   "kunyomi": [
+    "やす.い"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000820",
+     "word": "安い",
+     "reading": "やすい",
+     "meaning_vi": "Rẻ"
+    },
+    {
+     "vocab_id": null,
+     "word": "安心",
+     "reading": "あんしん",
+     "meaning_vi": "yên tâm"
+    }
+   ],
+   "stroke_count": 6,
+   "confidence": "high",
+   "audited": true
+  },
+  {
+   "kanji": "飲",
+   "han_viet": "ẨM",
+   "han_viet_note": null,
+   "meaning_vi": "uống",
+   "onyomi": [
+    "イン"
+   ],
+   "kunyomi": [
+    "の.む"
+   ],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000722",
+     "word": "飲みます",
+     "reading": "のみます",
+     "meaning_vi": "Uống"
+    },
+    {
+     "vocab_id": "VOC_000876",
+     "word": "飲み物",
+     "reading": "のみもの",
+     "meaning_vi": "Đồ uống, thức uống"
+    }
+   ],
+   "stroke_count": 12,
+   "confidence": "high",
+   "audited": true,
+   "review_log": [
+    {
+     "field": "example_words",
+     "reason_vi": "飲食 vượt N4 (N2), không có từ イン đơn giản hơn",
+     "confidence": "medium"
+    }
+   ]
+  },
+  {
+   "kanji": "駅",
+   "han_viet": "DỊCH",
+   "han_viet_note": null,
+   "meaning_vi": "nhà ga",
+   "onyomi": [
+    "エキ"
+   ],
+   "kunyomi": [],
+   "example_words": [
+    {
+     "vocab_id": "VOC_000691",
+     "word": "駅",
+     "reading": "えき",
+     "meaning_vi": "Nhà ga"
+    },
+    {
+     "vocab_id": null,
+     "word": "駅員",
+     "reading": "えきいん",
+     "meaning_vi": "nhân viên nhà ga"
+    }
+   ],
+   "stroke_count": 14,
+   "confidence": "high",
+   "audited": true
+  }
+ ]
+}

@@ -234,6 +234,8 @@ def dashboard(conn) -> dict:
                                       (today,)).fetchone()[0],
         "streak_days": study_streak(conn),
         "questions_by_status": kv("SELECT verification_status, COUNT(*) FROM questions GROUP BY 1"),
+        "grammar_by_status": kv("SELECT verification_status, COUNT(*) FROM grammar GROUP BY 1"),
+        "kanji_by_status": kv("SELECT verification_status, COUNT(*) FROM kanji GROUP BY 1"),
         "sources_by_access": kv("SELECT COALESCE(access_status,'unchecked'), COUNT(*) FROM sources GROUP BY 1"),
         "open_issues": kv("SELECT severity, COUNT(*) FROM validation_issues WHERE resolved=0 GROUP BY 1"),
         "weak_lessons": rows(conn.execute(
@@ -250,13 +252,18 @@ def get_question(conn, qid: str) -> dict | None:
     return dict(r) if r else None
 
 
+ENTITY_TABLES = {   # entity -> (table, key column, queue order)
+    "vocabulary": ("vocabulary", "id", "COALESCE(lesson_number,999), id"),
+    "question": ("questions", "question_id", "section_id, mondai_no, number"),
+    "grammar": ("grammar", "id", "COALESCE(lesson_number,999), id"),
+    "kanji": ("kanji", "id", "id"),
+}
+
+
 def review_queue(conn, entity: str, status: str | None = None, limit: int = 50, offset: int = 0) -> tuple[list[dict], int]:
     statuses = [status] if status else ["needs_review", "normalized", "extracted"]
     ph = ",".join("?" * len(statuses))
-    if entity == "question":
-        table, key, order = "questions", "question_id", "section_id, mondai_no, number"
-    else:
-        table, key, order = "vocabulary", "id", "COALESCE(lesson_number,999), id"
+    table, key, order = ENTITY_TABLES[entity]
     where = f"verification_status IN ({ph})" + (" AND archived=0" if table == "vocabulary" else "")
     total = conn.execute(f"SELECT COUNT(*) FROM {table} WHERE {where}", statuses).fetchone()[0]
     items = rows(conn.execute(
