@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "grammar.schema.json",
+  "title": "grammar",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^GRA_\\d{6}$"
+    },
+    "pattern": {
+      "type": "string",
+      "minLength": 1
+    },
+    "grammar_name_vi": {
+      "type": "string"
+    },
+    "meaning_vi": {
+      "type": "string",
+      "minLength": 1
+    },
+    "formation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "explanation_vi": {
+      "type": "string"
+    },
+    "usage": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "restrictions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "formality": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "common_mistakes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "jp": {
+            "type": "string"
+          },
+          "hiragana": {
+            "type": "string"
+          },
+          "romaji": {
+            "type": "string"
+          },
+          "vi": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "jp",
+          "vi"
+        ]
+      }
+    },
+    "related_grammar_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lesson_number": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "jlpt_level": {
+      "type": "string",
+      "enum": [
+        "N5",
+        "N4",
+        "N3",
+        "N2",
+        "N1"
+      ]
+    },
+    "source_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "verification_status": {
+      "enum": [
+        "raw",
+        "extracted",
+        "normalized",
+        "needs_review",
+        "verified",
+        "rejected"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "pattern",
+    "meaning_vi",
+    "formation",
+    "jlpt_level",
+    "verification_status"
+  ]
+}

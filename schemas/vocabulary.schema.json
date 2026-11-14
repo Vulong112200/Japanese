@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "vocabulary.schema.json",
+  "title": "vocabulary",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^VOC_\\d{6}$"
+    },
+    "word": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reading": {
+      "type": "string",
+      "minLength": 1
+    },
+    "romaji": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "han_viet": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "meaning_vi": {
+      "type": "string",
+      "minLength": 1
+    },
+    "part_of_speech": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "verb_group": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "enum": [
+        1,
+        2,
+        3,
+        null
+      ]
+    },
+    "lesson_number": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "level": {
+      "type": "string",
+      "enum": [
+        "N5",
+        "N4",
+        "N3",
+        "N2",
+        "N1"
+      ]
+    },
+    "topic": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "example_jp": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "example_romaji": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "example_vi": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "raw_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "verification_status": {
+      "enum": [
+        "raw",
+        "extracted",
+        "normalized",
+        "needs_review",
+        "verified",
+        "rejected"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "word",
+    "reading",
+    "meaning_vi",
+    "level",
+    "source_ids",
+    "verification_status"
+  ]
+}

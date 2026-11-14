@@ -1,0 +1,682 @@
+[
+ {
+  "id": "VOC_000050",
+  "word": "男の人",
+  "field": "han_viet",
+  "problem_vi": "Thừa một chữ NHÂN; 男の人 chỉ có 2 kanji 男, 人.",
+  "suggestion": "NAM NHÂN",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000051",
+  "word": "女の人",
+  "field": "han_viet",
+  "problem_vi": "Thừa một chữ NHÂN; 女の人 chỉ có 2 kanji 女, 人.",
+  "suggestion": "NỮ NHÂN",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000052",
+  "word": "男の子",
+  "field": "han_viet",
+  "problem_vi": "Thừa chữ NHÂN; 男の子 gồm 男, 子.",
+  "suggestion": "NAM TỬ",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000053",
+  "word": "女の子",
+  "field": "han_viet",
+  "problem_vi": "Thừa chữ NHÂN; 女の子 gồm 女, 子.",
+  "suggestion": "NỮ TỬ",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000072",
+  "word": "喫茶店",
+  "field": "han_viet",
+  "problem_vi": "Âm Hán-Việt của 喫 là KHIẾT, không phải NGẠT.",
+  "suggestion": "KHIẾT TRÀ ĐIẾM",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000075",
+  "word": "県",
+  "field": "han_viet",
+  "problem_vi": "Âm Hán-Việt của 県 là HUYỆN; 'TỈNH' là nghĩa, không phải âm Hán-Việt, dễ gây nhầm.",
+  "suggestion": "HUYỆN",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000096",
+  "word": "掛かります",
+  "field": "example_jp",
+  "problem_vi": "Câu ví dụ tiếng Nhật lẫn chữ tiếng Việt 'bưu điện'.",
+  "suggestion": "駅から 郵便局まで 15分 かかります。",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000120",
+  "word": "カレー",
+  "field": "meaning_vi",
+  "problem_vi": "Viết sai chính tả: 'cà rêu' phải là 'cà ri' (cả trong example_vi).",
+  "suggestion": "món cà ri, cơm cà ri (カレーライス) / ví dụ: Tôi thích món cà ri cay.",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000147",
+  "word": "簡単",
+  "field": "han_viet",
+  "problem_vi": "Đảo thứ tự: 簡 = GIẢN, 単 = ĐƠN.",
+  "suggestion": "GIẢN ĐƠN",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000155",
+  "word": "暖かい",
+  "field": "han_viet",
+  "problem_vi": "Âm Hán-Việt của 暖 là NOÃN; ÔN là của 温.",
+  "suggestion": "NOÃN",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000178",
+  "word": "天ぷら",
+  "field": "han_viet",
+  "problem_vi": "Từ chỉ có 1 kanji 天 (ぷら là kana); 'PHỤ LA' không ứng với kanji nào trong từ.",
+  "suggestion": "THIÊN",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000179",
+  "word": "豚肉",
+  "field": "han_viet",
+  "problem_vi": "Sai dấu: 豚 là ĐỒN, không phải ĐỐN.",
+  "suggestion": "ĐỒN NHỤC",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000194",
+  "word": "迎えます",
+  "field": "example_jp",
+  "problem_vi": "'駅へ友達を迎えます' không tự nhiên và không khớp bản dịch 'đi đến nhà ga để đón bạn'; cần mẫu ～に行きます (Bài 13).",
+  "suggestion": "駅へ友達を迎えに行きます。",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000198",
+  "word": "遊びます",
+  "field": "han_viet",
+  "problem_vi": "Âm Hán-Việt của 遊 là DU, không phải GIẢI.",
+  "suggestion": "DU",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000200",
+  "word": "買い物します",
+  "field": "example_jp",
+  "problem_vi": "Sai trợ từ: 'デパートへ買い物します' không đúng ngữ pháp; dùng で, hoặc へ…に行きます.",
+  "suggestion": "デパートで買い物します。",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000212",
+  "word": "お腹が空きました",
+  "field": "reading",
+  "problem_vi": "空きました trong cụm này đọc là すきました, không phải あきました.",
+  "suggestion": "おなかがすきました",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000216",
+  "word": "ご注文は？",
+  "field": "han_viet",
+  "problem_vi": "注文 đọc Hán-Việt là CHÚ VĂN; 'TRÚNG CHÚ' sai.",
+  "suggestion": "CHÚ VĂN",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000217",
+  "word": "牛丼",
+  "field": "han_viet",
+  "problem_vi": "丼 có âm Hán-Việt là TỈNH/ĐẢM; 'ĐỔNG' là phiên theo âm Nhật どん.",
+  "suggestion": "NGƯU TỈNH",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000328",
+  "word": "先生",
+  "field": "meaning_vi",
+  "problem_vi": "Nghĩa tiếng Việt lẫn chữ Hán '呼' ('xưng呼').",
+  "suggestion": "Bác sĩ (cách xưng hô với bác sĩ), Thầy/Cô giáo",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000333",
+  "word": "のどが痛いです",
+  "field": "reading",
+  "problem_vi": "Cách đọc thiếu 'です' so với từ.",
+  "suggestion": "のどがいたいです",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000388",
+  "word": "机",
+  "field": "han_viet",
+  "problem_vi": "'TRƠN' không phải âm Hán-Việt của 机; âm đúng là CƠ (KỶ).",
+  "suggestion": "CƠ",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000420",
+  "word": "みんなで",
+  "field": "han_viet",
+  "problem_vi": "みんな viết bằng chữ 皆, âm Hán-Việt là GIAI; CHÚNG là âm của 衆.",
+  "suggestion": "GIAI",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000433",
+  "word": "役立つ",
+  "field": "reading",
+  "problem_vi": "Từ ghi ở thể từ điển nhưng cách đọc lại ở thể ます, không khớp với từ. Ngoài ra câu ví dụ dùng 役に立ちます chứ không dùng 役立つ.",
+  "suggestion": "やくだつ (hoặc đổi từ thành 役に立ちます / やくにたちます)",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000435",
+  "word": "勝つ",
+  "field": "reading",
+  "problem_vi": "Từ ghi ở thể từ điển nhưng cách đọc lại ở thể ます, không khớp với từ.",
+  "suggestion": "かつ",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000444",
+  "word": "気をつける",
+  "field": "reading",
+  "problem_vi": "Từ ghi ở thể từ điển nhưng cách đọc lại ở thể ます, không khớp với từ.",
+  "suggestion": "きをつける",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000452",
+  "word": "動く",
+  "field": "example_vi",
+  "problem_vi": "Câu dịch lẫn chữ Hán '時計' vào giữa tiếng Việt.",
+  "suggestion": "Đồng hồ đang chạy.",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000452",
+  "word": "動く",
+  "field": "reading",
+  "problem_vi": "Từ ghi ở thể từ điển nhưng cách đọc lại ở thể ます, không khớp với từ.",
+  "suggestion": "うごく",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000456",
+  "word": "やめる",
+  "field": "reading",
+  "problem_vi": "Từ ghi ở thể từ điển nhưng cách đọc lại ở thể ます, không khớp với từ.",
+  "suggestion": "やめる",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000458",
+  "word": "留学する",
+  "field": "reading",
+  "problem_vi": "Từ ghi ở thể từ điển nhưng cách đọc lại ở thể ます, không khớp với từ.",
+  "suggestion": "りゅうがくする",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000467",
+  "word": "負ける",
+  "field": "reading",
+  "problem_vi": "Từ ghi ở thể từ điển nhưng cách đọc lại ở thể ます, không khớp với từ.",
+  "suggestion": "まける",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000473",
+  "word": "放送",
+  "field": "han_viet",
+  "problem_vi": "放 đọc Hán-Việt là PHÓNG, không phải PHÁP.",
+  "suggestion": "PHÓNG TỐNG",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000510",
+  "word": "お湯",
+  "field": "han_viet",
+  "problem_vi": "湯 đọc Hán-Việt là THANG, không phải THỦY (THỦY là 水).",
+  "suggestion": "THANG",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000515",
+  "word": "交差点",
+  "field": "example_vi",
+  "problem_vi": "Bản dịch còn sót chữ Hán 右 thay vì 'phải'.",
+  "suggestion": "Rẽ phải ở ngã tư.",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000528",
+  "word": "法隆寺",
+  "field": "han_viet",
+  "problem_vi": "隆 đọc Hán-Việt là LONG, không phải TRUNG.",
+  "suggestion": "PHÁP LONG TỰ",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000563",
+  "word": "考える",
+  "field": "reading",
+  "problem_vi": "Từ ghi dạng từ điển 考える nhưng cách đọc lại là dạng ます.",
+  "suggestion": "かんがえる (hoặc đổi word thành 考えます)",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000564",
+  "word": "取る",
+  "field": "reading",
+  "problem_vi": "Từ ghi dạng từ điển 取る nhưng cách đọc là dạng ます とります.",
+  "suggestion": "とる (hoặc đổi word thành 取ります)",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000566",
+  "word": "留学する",
+  "field": "reading",
+  "problem_vi": "Từ ghi dạng する nhưng cách đọc là dạng ます.",
+  "suggestion": "りゅうがくする (hoặc đổi word thành 留学します)",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000569",
+  "word": "着く",
+  "field": "reading",
+  "problem_vi": "Từ ghi dạng từ điển 着く nhưng cách đọc là dạng ます.",
+  "suggestion": "つく (hoặc đổi word thành 着きます)",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000595",
+  "word": "円",
+  "field": "han_viet",
+  "problem_vi": "Âm Hán-Việt của 円(圓) là VIÊN; 'Yên' là tên gọi đơn vị tiền tệ trong tiếng Việt chứ không phải âm Hán-Việt.",
+  "suggestion": "VIÊN",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000620",
+  "word": "美術館",
+  "field": "example_jp",
+  "problem_vi": "'月曜日 休みに なります' không tự nhiên (nghĩa là 'trở thành ngày nghỉ'); câu chuẩn là 月曜日は休みです / 月曜日が休みです.",
+  "suggestion": "美術館は 月曜日が 休みです。",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000630",
+  "word": "昼",
+  "field": "han_viet",
+  "problem_vi": "昼 đọc Hán-Việt là TRÚ; 'TRƯA' là từ thuần Việt.",
+  "suggestion": "TRÚ",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000639",
+  "word": "昼休み",
+  "field": "han_viet",
+  "problem_vi": "昼 đọc Hán-Việt là TRÚ, không phải TRƯA.",
+  "suggestion": "TRÚ HƯU",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000652",
+  "word": "日曜日",
+  "field": "example_jp",
+  "problem_vi": "Lỗi chính tả: '働きますん' không tồn tại, phải là 働きません.",
+  "suggestion": "日曜日は 働きません。",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000673",
+  "word": "バス",
+  "field": "reading",
+  "problem_vi": "Từ katakana nhưng cách đọc ghi bằng hiragana (các từ ngoại lai khác đều ghi katakana).",
+  "suggestion": "バス",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000681",
+  "word": "タクシー",
+  "field": "reading",
+  "problem_vi": "Từ katakana nhưng cách đọc ghi bằng hiragana.",
+  "suggestion": "タクシー",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000682",
+  "word": "一昨日",
+  "field": "reading",
+  "problem_vi": "Cách đọc bị lỗi, lẫn romaji 'toi'.",
+  "suggestion": "おととい",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000682",
+  "word": "一昨日",
+  "field": "han_viet",
+  "problem_vi": "昨 đọc Hán-Việt là TẠC, không phải TRÁC (dòng VOC_000632 ghi đúng).",
+  "suggestion": "NHẤT TẠC NHẬT",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000687",
+  "word": "スーパー",
+  "field": "reading",
+  "problem_vi": "Từ katakana nhưng cách đọc ghi bằng hiragana.",
+  "suggestion": "スーパー",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000690",
+  "word": "学校",
+  "field": "han_viet",
+  "problem_vi": "校 trong 学校 đọc Hán-Việt là HIỆU (học hiệu); GIÁO là âm hiếm dùng với nghĩa khác.",
+  "suggestion": "HỌC HIỆU",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000717",
+  "word": "撮ります",
+  "field": "han_viet",
+  "problem_vi": "撮 đọc Hán-Việt là TOÁT, không phải TÁT.",
+  "suggestion": "TOÁT",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000751",
+  "word": "教えます",
+  "field": "example_jp",
+  "problem_vi": "'さんとうさん' không phải tên Santos (Minna: サントスさん) trong khi bản dịch ghi 'anh Santos'.",
+  "suggestion": "わたしは　サントスさんに　にほんごを　教えます。",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000838",
+  "word": "お仕事",
+  "field": "han_viet",
+  "problem_vi": "仕事 đọc Hán-Việt là SĨ SỰ (仕=SĨ, 事=SỰ); 'SỰ CÔNG' sai.",
+  "suggestion": "SĨ SỰ",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000861",
+  "word": "クラシック",
+  "field": "reading",
+  "problem_vi": "Thiếu っ nhỏ: クラシック = くらしっく.",
+  "suggestion": "くらしっく",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000870",
+  "word": "ローマ字",
+  "field": "meaning_vi",
+  "problem_vi": "Lỗi chính tả: 'La-tông' phải là 'La-tinh'.",
+  "suggestion": "Chữ Rōmaji (chữ La-tinh)",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000873",
+  "word": "分かる",
+  "field": "reading",
+  "problem_vi": "Từ ở thể từ điển 分かる nhưng cách đọc lại ghi thể ます; không khớp.",
+  "suggestion": "わかる",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000874",
+  "word": "ある",
+  "field": "reading",
+  "problem_vi": "Từ ở thể từ điển ある nhưng cách đọc ghi あります; không khớp.",
+  "suggestion": "ある",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000885",
+  "word": "夫",
+  "field": "han_viet",
+  "problem_vi": "夫 có Hán-Việt là PHU; 'CHỦ NHÂN' là của 主人, không phải của 夫.",
+  "suggestion": "PHU",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000885",
+  "word": "夫",
+  "field": "reading",
+  "problem_vi": "Ô cách đọc lẫn Hán-Việt '(PHU)' và cách đọc của từ khác (しゅじん = 主人).",
+  "suggestion": "おっと",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000887",
+  "word": "妻",
+  "field": "han_viet",
+  "problem_vi": "妻 có Hán-Việt là THÊ; 'GIA NỘI' là của 家内, không phải của 妻.",
+  "suggestion": "THÊ",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000887",
+  "word": "妻",
+  "field": "reading",
+  "problem_vi": "Ô cách đọc lẫn Hán-Việt '(THÊ)' và cách đọc của từ khác (かない = 家内).",
+  "suggestion": "つま",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000893",
+  "word": "全然",
+  "field": "han_viet",
+  "problem_vi": "全 là TOÀN, không phải HOÀN.",
+  "suggestion": "TOÀN NHIÊN",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000894",
+  "word": "早く",
+  "field": "han_viet",
+  "problem_vi": "早 chỉ đọc là TẢO; TỐC là âm của chữ 速 (速く), không phải 早.",
+  "suggestion": "TẢO",
+  "confidence": "medium",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000920",
+  "word": "また今度お願いします",
+  "field": "han_viet",
+  "problem_vi": "Lỗi chính tả: 'NGUỆN' phải là 'NGUYỆN' (願).",
+  "suggestion": "KIM ĐỘ NGUYỆN",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000922",
+  "word": "どうぞ よろしく お願いします",
+  "field": "han_viet",
+  "problem_vi": "Lỗi chính tả: 'NGUỆN' phải là 'NGUYỆN' (願).",
+  "suggestion": "NGUYỆN",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000923",
+  "word": "こちらこそ よろしく お願いします",
+  "field": "han_viet",
+  "problem_vi": "Lỗi chính tả: 'NGUỆN' phải là 'NGUYỆN' (願).",
+  "suggestion": "NGUYỆN",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000928",
+  "word": "お疲れ様でした",
+  "field": "han_viet",
+  "problem_vi": "疲 = BÌ, 様 = DẠNG; 'BÃI TƯỢNG' sai cả hai âm.",
+  "suggestion": "BÌ DẠNG",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000933",
+  "word": "もう 一度 お願いします",
+  "field": "han_viet",
+  "problem_vi": "Lỗi chính tả: 'NGUỆN' phải là 'NGUYỆN' (願).",
+  "suggestion": "NHẤT ĐỘ NGUYỆN",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ },
+ {
+  "id": "VOC_000945",
+  "word": "お願い します",
+  "field": "han_viet",
+  "problem_vi": "Lỗi chính tả: 'NGUỆN' phải là 'NGUYỆN' (願).",
+  "suggestion": "NGUYỆN",
+  "confidence": "high",
+  "origin": "AI_GENERATED",
+  "reviewed_at": "2026-11-14"
+ }
+]

@@ -1,0 +1,39 @@
+{
+  "vocabulary": {
+    "id": "VOC_000001", "word": "学校", "reading": "がっこう", "romaji": "gakkou", "han_viet": "HỌC HIỆU",
+    "meaning_vi": "Trường học", "part_of_speech": "noun", "verb_group": null, "lesson_number": 1, "level": "N5",
+    "topic": ["education"], "example_jp": "わたしは学校へ行きます。", "example_romaji": "Watashi wa gakkou e ikimasu.",
+    "example_vi": "Tôi đi đến trường.", "source_ids": ["SRC_LESSON_001"], "verification_status": "verified"
+  },
+  "kanji": {
+    "id": "KAN_000001", "kanji": "日", "meaning_vi": "Ngày, mặt trời", "han_viet": "NHẬT",
+    "onyomi": ["ニチ", "ジツ"], "kunyomi": ["ひ", "か"], "common_readings": ["にち", "ひ"],
+    "example_words": [{"word": "日本", "reading": "にほん", "meaning_vi": "Nhật Bản"},
+                      {"word": "日曜日", "reading": "にちようび", "meaning_vi": "Chủ nhật"}],
+    "stroke_count": 4, "jlpt_level": "N5", "source_ids": [], "verification_status": "verified"
+  },
+  "grammar": {
+    "id": "GRA_000001", "pattern": "N は N です", "grammar_name_vi": "Câu khẳng định với です", "meaning_vi": "A là B",
+    "formation": "Danh từ 1 + は + Danh từ 2 + です", "explanation_vi": "Dùng để giới thiệu hoặc xác nhận một thông tin.",
+    "usage": ["Giới thiệu bản thân", "Xác định một sự vật hoặc người"],
+    "examples": [{"jp": "わたしは学生です。", "hiragana": "わたしはがくせいです。", "romaji": "Watashi wa gakusei desu.", "vi": "Tôi là học sinh."}],
+    "common_mistakes": [], "related_grammar_ids": [], "lesson_number": 1, "jlpt_level": "N5", "source_ids": [],
+    "verification_status": "verified"
+  },
+  "question": {
+    "question_id": "Q_N5_000001", "exam_id": "EXAM_N5_001", "section": "vocabulary", "mondai_type": "kanji_reading",
+    "question_text": "学校へ行きます。", "instruction": "学校の読み方を選んでください。", "passage_id": null,
+    "options": [{"option_id": "A", "text": "がっこう"}, {"option_id": "B", "text": "がこう"},
+                {"option_id": "C", "text": "かっこう"}, {"option_id": "D", "text": "かこう"}],
+    "correct_answer": ["A"], "answer_type": "single_choice", "audio_asset_id": null, "image_asset_id": null,
+    "source_ids": ["SRC_SPEC_SAMPLE"], "verification_status": "verified"
+  },
+  "examination": {
+    "exam_id": "EXAM_N5_001", "title": "JLPT N5 Mock Examination 01", "level": "N5", "exam_type": "mock",
+    "source_type": "AI_GENERATED", "is_official": false, "duration_minutes": 90,
+    "sections": [{"section_id": "SEC_01", "name": "Vocabulary", "duration_minutes": 20},
+                 {"section_id": "SEC_02", "name": "Grammar and Reading", "duration_minutes": 40},
+                 {"section_id": "SEC_03", "name": "Listening", "duration_minutes": 30}],
+    "source_ids": []
+  }
+}

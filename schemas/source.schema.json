@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "source.schema.json",
+  "title": "source",
+  "type": "object",
+  "properties": {
+    "source_id": {
+      "type": "string",
+      "pattern": "^SRC_[A-Z0-9_]+$"
+    },
+    "source_type": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "location": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^https?://"
+    },
+    "reliability": {
+      "enum": [
+        "OFFICIAL",
+        "PRIMARY",
+        "EDUCATIONAL",
+        "SUPPLEMENTARY",
+        "AI_GENERATED",
+        "USER_CREATED"
+      ]
+    },
+    "content_hash": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "processing_status": {
+      "enum": [
+        "pending",
+        "importing",
+        "extracting",
+        "normalizing",
+        "validating",
+        "verified",
+        "needs_review",
+        "failed",
+        "registered"
+      ]
+    },
+    "access_status": {
+      "enum": [
+        "local",
+        "accessible",
+        "requires_auth",
+        "manual_export",
+        "unreachable",
+        "unchecked",
+        null
+      ]
+    }
+  },
+  "required": [
+    "source_id",
+    "source_type",
+    "name",
+    "reliability",
+    "processing_status"
+  ]
+}

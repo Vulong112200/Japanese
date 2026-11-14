@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kanji.schema.json",
+  "title": "kanji",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^KAN_\\d{6}$"
+    },
+    "kanji": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1
+    },
+    "meaning_vi": {
+      "type": "string"
+    },
+    "han_viet": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "onyomi": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[゠-ヿ]+$"
+      }
+    },
+    "kunyomi": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[぀-ゟ.\\-]+$"
+      }
+    },
+    "common_readings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "example_words": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "word": {
+            "type": "string"
+          },
+          "reading": {
+            "type": "string"
+          },
+          "meaning_vi": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "word",
+          "reading"
+        ]
+      }
+    },
+    "stroke_count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "jlpt_level": {
+      "type": "string",
+      "enum": [
+        "N5",
+        "N4",
+        "N3",
+        "N2",
+        "N1"
+      ]
+    },
+    "source_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "verification_status": {
+      "enum": [
+        "raw",
+        "extracted",
+        "normalized",
+        "needs_review",
+        "verified",
+        "rejected"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "kanji",
+    "onyomi",
+    "kunyomi",
+    "jlpt_level",
+    "verification_status"
+  ]
+}

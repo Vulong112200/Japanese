@@ -1,0 +1,13 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Segoe UI", system-ui, "Noto Sans JP", "Yu Gothic UI", "Meiryo", sans-serif;
+  --font-jp: "Noto Sans JP", "Yu Gothic", "YuGothic", "Meiryo", "Hiragino Sans", sans-serif;
+}
+
+html { color-scheme: light; }
+html.dark { color-scheme: dark; }
+body { @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 antialiased; }
+.jp { font-family: var(--font-jp); line-height: 1.7; }
+:focus-visible { @apply outline-2 outline-offset-2 outline-indigo-500; }

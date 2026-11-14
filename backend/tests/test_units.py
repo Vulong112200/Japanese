@@ -1,0 +1,158 @@
+import sqlite3
+from datetime import datetime, timezone
+
+import pytest
+
+from hub import repo
+from hub.ingestion import flashcards_csv as fc
+from hub.learning import srs
+from hub.validation import vocabulary as vr
+from hub.validation.kana import romaji_matches, to_romaji
+
+
+# ---------- kana / romaji ----------
+@pytest.mark.parametrize("kana,romaji", [
+    ("がっこう", "gakkou"), ("きって", "kitte"), ("まっちゃ", "matcha"), ("びょういん", "byouin"),
+    ("しゅくだい", "shukudai"), ("コーヒー", "koohii"), ("パーティー", "paatii"), ("ちょっと", "chotto"),
+])
+def test_to_romaji(kana, romaji):
+    assert to_romaji(kana) == romaji
+
+
+def test_romaji_match_tolerates_conventions():
+    assert romaji_matches("びょういん", "Byōin")
+    assert romaji_matches("わたしは", "watashi wa")
+    assert romaji_matches("こんばんは", "Konbanwa")
+    assert not romaji_matches("ひるやすみ", "hirusumi")
+    assert not romaji_matches("おなかがあきました", "Onaka ga sukimashita")
+
+
+# ---------- CSV parsing: all three real formats ----------
+def test_parse_numbered_format():
+    f = fc.parse_back("1. Đọc: びょういん - BỆNH VIỆN\n2. Rōmaji: Byōin\n3. Nghĩa: Bệnh viện\n"
+                      "4. Ví dụ: 神戸病院の 医者です。\n5. Rōmaji ví dụ: Kōbe Byōin no isha desu.\n"
+                      "6. Dịch ví dụ: Bác sĩ của bệnh viện Kobe.")
+    assert f["reading"] == "びょういん" and f["han_viet"] == "BỆNH VIỆN"
+    assert f["meaning_vi"] == "Bệnh viện" and f["example_jp"] == "神戸病院の 医者です。"
+    assert f["example_romaji"].startswith("Kōbe") and f["example_vi"].startswith("Bác sĩ")
+
+
+def test_parse_unnumbered_format():
+    f = fc.parse_back("Đọc: くつ - NGOA\nRōmaji: kutsu\nNghĩa: Giày\nVí dụ: これは 日本の 靴です。")
+    assert (f["reading"], f["han_viet"], f["meaning_vi"]) == ("くつ", "NGOA", "Giày")
+
+
+def test_parse_freeform_returns_none():
+    assert fc.parse_back("ひとつ (hitotsu)") is None
+
+
+@pytest.mark.parametrize("raw,expected", [
+    ("おでかけですか (XUẤT)", ("おでかけですか", "XUẤT")),
+    ("サイズ (Không có âm Hán-Việt)", ("サイズ", None)),
+    ("トイレ / おてあらい (お手洗い - THỦ TẨY)", ("トイレ / おてあらい", "THỦ TẨY")),
+    ("ぜんぶ", ("ぜんぶ", None)),
+])
+def test_split_reading_variants(raw, expected):
+    assert fc.split_reading(raw) == expected
+
+
+def test_deck_info_from_filename():
+    from pathlib import Path
+    assert fc.deck_info(Path("flashcards_Bai14.csv")) == ("Bai14", 14, [])
+    assert fc.deck_info(Path("flashcards_Từ Vựng Kaiwa-Hội thoại giao tiếp.csv"))[2] == ["kaiwa"]
+
+
+def test_verb_group_never_inferred():
+    v = {"word": "見ます", "reading": "みます", "meaning_vi": "xem", "part_of_speech": fc.guess_pos("見ます")}
+    codes = [c for c, *_ in vr.validate(v)]
+    assert "needs_dictionary_form" in codes and v.get("verb_group") is None
+
+
+# ---------- validation rules ----------
+def codes(v):
+    return {c for c, *_ in vr.validate(v)}
+
+
+def test_valid_item_has_no_warnings():
+    v = {"word": "病院", "reading": "びょういん", "romaji": "Byōin", "han_viet": "BỆNH VIỆN", "meaning_vi": "Bệnh viện"}
+    assert vr.status_for(vr.validate(v)) == "normalized"
+
+
+def test_vietnamese_tilde_is_not_mojibake():
+    assert "encoding" not in codes({"word": "会社", "reading": "かいしゃ", "han_viet": "HỘI XÃ", "meaning_vi": "Công ty"})
+    assert "encoding" in codes({"word": "会社", "reading": "かいしゃ", "meaning_vi": "CÃ´ng ty"})
+
+
+def test_detects_real_errors():
+    assert "reading_not_kana" in codes({"word": "一昨日", "reading": "おとtoi", "meaning_vi": "hôm kia"})
+    assert "han_viet_count" in codes({"word": "女の子", "reading": "おんなのこ", "han_viet": "NỮ NHÂN TỬ", "meaning_vi": "bé gái"})
+    assert "han_viet_count" not in codes({"word": "日曜日", "reading": "にちようび", "han_viet": "NHẬT DIỆU NHẬT", "meaning_vi": "CN"})
+    assert "romaji_mismatch" in codes({"word": "昼休み", "reading": "ひるやすみ", "romaji": "hirusumi", "meaning_vi": "nghỉ trưa"})
+    assert "kana_word_reading_differs" in codes({"word": "クラシック", "reading": "くらしく", "meaning_vi": "cổ điển"})
+
+
+def test_multiple_readings_are_accepted():
+    assert "reading_not_kana" not in codes({"word": "何", "reading": "なに / なん", "romaji": "nani / nan", "meaning_vi": "cái gì"})
+
+
+# ---------- SRS ----------
+NOW = datetime(2026, 11, 14, 9, 0, tzinfo=timezone.utc)
+
+
+def test_never_mastered_after_one_answer():
+    c, _ = srs.schedule(srs.Card(), "easy", NOW)
+    assert c.status != "mastered"
+
+
+def test_mastery_requires_streak_and_interval():
+    c, t = srs.Card(), NOW
+    for _ in range(6):
+        c, t = srs.schedule(c, "good", t)
+    assert c.status == "mastered" and c.interval_days >= 21 and c.reps >= 3
+
+
+def test_again_resets_and_counts_lapse():
+    c = srs.Card()
+    for _ in range(3):
+        c, _ = srs.schedule(c, "good", NOW)
+    c, due = srs.schedule(c, "again", NOW)
+    assert c.reps == 0 and c.interval_days == 0 and c.lapses == 1 and c.status == "learning"
+    assert (due - NOW).total_seconds() == 600
+
+
+def test_ease_floor_and_needs_attention():
+    c = srs.Card()
+    c, _ = srs.schedule(c, "good", NOW)
+    for _ in range(10):
+        c, _ = srs.schedule(c, "again", NOW)
+    assert c.ease == pytest.approx(srs.MIN_EASE) and c.status == "needs_attention"
+
+
+def test_intervals_grow():
+    c, t = srs.Card(), NOW
+    intervals = []
+    for _ in range(4):
+        c, t = srs.schedule(c, "good", t)
+        intervals.append(c.interval_days)
+    assert intervals == sorted(intervals) and intervals[:2] == [1, 6]
+
+
+def test_invalid_rating():
+    with pytest.raises(ValueError):
+        srs.schedule(srs.Card(), "perfect", NOW)
+
+
+# ---------- RAW immutability (DB-level) ----------
+def test_raw_records_are_immutable(conn):
+    repo.upsert_source(conn, {"source_id": "S1", "source_type": "csv", "name": "x", "reliability": "USER_CREATED"})
+    rid = repo.insert_raw(conn, "S1", "row:1", "original", "csv_row")
+    with pytest.raises(sqlite3.DatabaseError, match="immutable"):
+        conn.execute("UPDATE raw_records SET content='changed' WHERE raw_id=?", (rid,))
+    with pytest.raises(sqlite3.DatabaseError, match="immutable"):
+        conn.execute("DELETE FROM raw_records WHERE raw_id=?", (rid,))
+    assert repo.insert_raw(conn, "S1", "row:1", "original", "csv_row") == rid   # idempotent
+
+
+def test_reliability_constraint(conn):
+    with pytest.raises(sqlite3.IntegrityError):
+        repo.upsert_source(conn, {"source_id": "S2", "source_type": "pdf", "name": "x", "reliability": "MAYBE"})

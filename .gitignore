@@ -1,0 +1,17 @@
+# Môi trường / build
+backend/.venv/
+__pycache__/
+.pytest_cache/
+frontend/node_modules/
+frontend/dist/
+
+# Dữ liệu sinh ra trên máy (tạo lại bằng `python -m hub import` / `build-reference`)
+data/database/
+data/reference/*.gz
+data/reference/*.sqlite
+
+# Tài liệu có bản quyền của bên thứ ba: KHÔNG đưa lên repo công khai
+# (đề mẫu JLPT + audio, ảnh trang đề, bản chép đề, PDF tải từ Google Drive)
+docs/N5/Exam/
+data/raw/
+data/normalized/exams/EXAM_N5_OFFICIAL_SAMPLE.json
