@@ -199,23 +199,47 @@ def _card_view(r: dict) -> dict:
     return r
 
 
-def due_cards(conn, direction: str, new_limit: int = 20, lesson: int | None = None, limit: int = 100,
-              entity: str = "vocabulary") -> list[dict]:
+def _srs_base(entity: str, lesson_from: int | None, lesson_to: int | None) -> tuple[str, list, str]:
+    """SELECT ... WHERE active AND entity AND direction AND lesson range; params after: [entity, direction, *lesson]."""
     cols, join, active, order = SRS_ENTITIES[entity]
     alias = join.split()[1]
-    t = iso()
-    lesson_sql, la = (f"AND {alias}.lesson_number=?", [lesson]) if lesson is not None and entity != "kanji" else ("", [])
-    base = (f"SELECT c.*, {cols} FROM srs_cards c JOIN {join} AND c.entity_type=? "
-            f"WHERE {active} AND c.direction=? ")
-    due = rows(conn.execute(base + f"AND c.due_at IS NOT NULL AND c.due_at<=? {lesson_sql} ORDER BY c.due_at LIMIT ?",
-                            [entity, direction, t, *la, limit]))
+    sql = (f"SELECT c.*, {cols} FROM srs_cards c JOIN {join} AND c.entity_type=? "
+           f"WHERE {active} AND c.direction=? ")
+    la: list = []
+    if entity != "kanji" and (lesson_from is not None or lesson_to is not None):   # kanji have no lesson
+        sql += f"AND {alias}.lesson_number BETWEEN ? AND ? "
+        la = [lesson_from if lesson_from is not None else 0, lesson_to if lesson_to is not None else 999]
+    return sql, la, order
+
+
+def due_cards(conn, direction: str, new_limit: int = 20, lesson_from: int | None = None,
+              lesson_to: int | None = None, limit: int = 1000, entity: str = "vocabulary",
+              shuffle: bool = False) -> list[dict]:
+    base, la, order = _srs_base(entity, lesson_from, lesson_to)
+    due = rows(conn.execute(base + "AND c.due_at IS NOT NULL AND c.due_at<=? ORDER BY c.due_at LIMIT ?",
+                            [entity, direction, *la, iso(), limit]))
     new_today = conn.execute(
         "SELECT COUNT(*) FROM srs_cards WHERE entity_type=? AND direction=? AND first_studied>=?",
         (entity, direction, iso(now().replace(hour=0, minute=0, second=0, microsecond=0)))).fetchone()[0]
     remaining_new = max(0, new_limit - new_today)
-    new = rows(conn.execute(base + f"AND c.due_at IS NULL {lesson_sql} ORDER BY {order} LIMIT ?",
+    new = rows(conn.execute(base + f"AND c.due_at IS NULL ORDER BY {'RANDOM()' if shuffle else order} LIMIT ?",
                             [entity, direction, *la, remaining_new])) if remaining_new else []
     return [_card_view(r) for r in due + new]
+
+
+CRAM_SOURCES = {   # source -> (extra filter, order): off-schedule review before the exam (ADR-027)
+    "studied": ("AND c.first_studied IS NOT NULL ", "RANDOM()"),
+    "weak": ("AND c.incorrect_count>0 ", "c.lapses + c.incorrect_count DESC, RANDOM()"),
+    "all": ("", "RANDOM()"),
+}
+
+
+def cram_cards(conn, entity: str, direction: str, source: str, n: int,
+               lesson_from: int | None = None, lesson_to: int | None = None) -> list[dict]:
+    base, la, _ = _srs_base(entity, lesson_from, lesson_to)
+    where, order = CRAM_SOURCES[source]
+    return [_card_view(r) for r in rows(conn.execute(base + where + f"ORDER BY {order} LIMIT ?",
+                                                     [entity, direction, *la, n]))]
 
 
 def get_card(conn, card_id: int) -> dict | None:

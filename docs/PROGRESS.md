@@ -1,6 +1,6 @@
 # PROGRESS — Japanese N5 Learning Hub
 
-Cập nhật: 2026-11-15, kết thúc phiên 10. Trạng thái dựa trên kết quả kiểm thử: **102/102 test pass**, frontend build sạch.
+Cập nhật: 2026-11-15, kết thúc phiên 11. Trạng thái dựa trên kết quả kiểm thử: **103/103 test pass**, frontend build sạch.
 
 ## Tóm tắt các phiên
 | Phiên | Nội dung | Kết quả |
@@ -15,6 +15,7 @@ Cập nhật: 2026-11-15, kết thúc phiên 10. Trạng thái dựa trên kết
 | 8 | **Dashboard §13 + Thống kê §14** (ADR-022): mục tiêu ngày (`settings.daily_goal`, sửa tại chỗ; tính lượt ôn thẻ + câu trả lời), thời gian học ước tính từ dấu thời gian; streak tính cả ngày chỉ làm bài; khung **"Học gì tiếp"** (gợi ý theo dữ liệu thật: thẻ đến hạn → câu sai → điểm ngữ pháp yếu → thi thử → thẻ mới); **luyện câu theo 1 điểm ngữ pháp** (nút "Luyện" ở Dashboard, Thống kê, chi tiết Ngữ pháp). Trang **Thống kê**: cột lượt học 30 ngày, tổng thời gian, tỉ lệ nhớ SRS theo loại, lịch sử thi theo phần, mondai yếu, điểm ngữ pháp yếu, câu sai ≥ 2 lần. Sửa lỗi có sẵn: "lượt gần nhất" sai thứ tự khi nộp cùng giây (thêm `rowid`) | 90 test |
 | 9 | **Kaiwa §7.4** (ADR-023): 27 hội thoại (9 chủ đề × 3, 251 lượt lời) do 3 agent soạn chỉ từ từ vựng/ngữ pháp verified; luật `check_kaiwa` (kana của câu khớp thứ tự dòng hiragana, từ tham chiếu verified + có trong câu + cách đọc có trong dòng đọc, ngữ pháp verified, kanji ngoài N5 = info); 2 vòng rà soát độc lập (chia nửa / chia chẵn-lẻ) → 41 đề xuất: 30 nhận, 7 trùng giữa 2 vòng, 2 gộp, 2 thay thế; + 4 sửa của người duyệt cuối. Trang **Hội thoại**: bật/tắt hiragana và bản dịch, giọng máy từng câu, link ngữ pháp. **Sao lưu/khôi phục qua UI** (ADR-024): tải file sqlite, khôi phục có kiểm tra toàn vẹn + tự lưu bản trước khi ghi đè | 27/27 hội thoại verified; 97 test |
 | 10 | **Mốc thời gian từng câu nghe** (ADR-025): chạy thêm Whisper cho 2017-07, 2024-07, đề mẫu; script `listening_timestamps.py` căn ASR với script giấy (theo thứ tự đề, tìm lại trong cả mondai khi đề in đảo thứ tự) → 148 câu có mốc; nút "▶ Nghe câu này" tự dừng cuối câu. **Ngân hàng bài đọc do agent soạn** (ADR-026): 4 agent soạn 68 bài / 142 câu (24 文章の文法, 24 短文, 12 中文, 8 情報検索); luật `check_reading_group` 0 lỗi; 2 lượt giải mù A/B → 142/142 key = A = B; người duyệt cuối: sửa 2 bài (409 thay từ vượt N5; 203 sửa câu gượng + nêu rõ chủ ngữ để loại もらいます, giải mù lại 3 lần), giữ 6 bài có ghi chú mức N4 (mẫu nằm trong 135 điểm). Lấy mẫu luyện tập không cắt rời bài đọc. Sửa lỗi có sẵn: câu ngân hàng ngữ pháp bị gắn nhãn "Đề chính thức" | 142/142 câu đọc verified; 6/6 đề thật có mốc nghe (144/144 câu); 102 test |
+| 11 | **Flashcard ôn tổng hợp** (ADR-027): thẻ mới/ngày tối đa 500 (trước 200), 1000 thẻ đến hạn mỗi lần tải; lọc khoảng bài; thứ tự Theo bài / Ngẫu nhiên; chế độ **Ôn tổng hợp** (từ đã học / từ hay quên / tất cả, lật ngẫu nhiên ngoài lịch; Quên → đưa lại vào SRS, Nhớ → không ghi). Phím số trong ô nhập không còn bị hiểu là chấm điểm | 103 test |
 
 ## Độ phủ kiến thức N5: ĐÃ ĐỦ, không cần thu thập thêm tài liệu
 | Mảng | Độ phủ | Trạng thái xác minh |
@@ -47,7 +48,7 @@ Ký hiệu trạng thái:
 | Vocabulary §7.1 | ✅ | |
 | Kanji §7.2 | ✅ | |
 | Grammar §7.3 | ✅ | Tra cứu đủ, đã verified. Bài tập: 399 câu 文の文法1/2 trong Thi thử (nguồn "Sinh tự động", lọc theo mondai); kết quả thi + Dashboard báo điểm ngữ pháp cần ôn. SRS 1 chiều (mẫu → nghĩa). |
-| SRS §8 | ✅ | Từ vựng (2 chiều), ngữ pháp + kanji (1 chiều), ADR-021 |
+| SRS §8 | ✅ | Từ vựng (2 chiều), ngữ pháp + kanji (1 chiều), ADR-021. Lọc khoảng bài, xáo trộn, chế độ Ôn tổng hợp (ADR-027). |
 | Mock Exam §9 | ✅ | Mode A (đề + giờ JLPT 20/40/30), B (đề gốc, giữ cấu trúc/thời gian gốc), C (theo phần), D (theo mondai), E (ôn câu sai), F (tuỳ chỉnh số câu/thời gian/nguồn). Giao diện §9.2 đủ (điều hướng, cờ, trước/sau, tiến độ, đồng hồ, audio, xác nhận nộp). Kết quả §9.3 + ước lượng tách riêng (§4.3). Có 1 đề mẫu chính thức + 6 đề thật các năm (giờ gốc 25/50/30 trước 2020, 20/40/30 từ 2020). Ngân hàng: từ vựng (問題1/2, sinh bằng luật) + ngữ pháp (文の文法1/2, agent soạn) + bài đọc (文章の文法, 短文, 中文, 情報検索; agent soạn, ADR-026). Chưa có câu sinh cho nghe (không tạo audio thay thế). |
 | Listening §10 | ✅ | Chế độ thi: không lộ script/lựa chọn audio-only; luyện tập: tốc độ phát, script sau khi trả lời; nút nghe đúng đoạn của câu (ADR-025). Nguồn nghe = 7 đề có audio gốc (không tạo audio thay thế). |
 | Dashboard §13 | ✅ | Cấp độ, mục tiêu ngày, streak, mức độ thuộc 3 loại, thẻ đến hạn, lượt thi gần nhất, ngữ pháp/bài yếu, "Học gì tiếp" (ADR-022). |

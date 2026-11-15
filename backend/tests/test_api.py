@@ -80,6 +80,36 @@ def test_srs_grammar_and_kanji_cards(client, imported):
     assert d2["cards_by_entity"]["grammar"].get("reviewing") == 3 and d2["cards_by_status"] == d["cards_by_status"]
 
 
+def test_srs_limits_lesson_range_shuffle_and_cram(client, imported):
+    conn, _ = imported
+    p = {"direction": "vi_jp"}                           # vi_jp is untouched by the other SRS tests
+    assert client.get("/api/srs/due", params={**p, "new_limit": 501}).status_code == 422
+    r = client.get("/api/srs/due", params={**p, "new_limit": 400, "lesson_from": 3, "lesson_to": 5}).json()
+    assert r and {c["lesson_number"] for c in r} <= {3, 4, 5}
+    s = client.get("/api/srs/due", params={**p, "new_limit": 400, "lesson_from": 3, "lesson_to": 5,
+                                           "shuffle": True}).json()
+    assert sorted(c["card_id"] for c in s) == sorted(c["card_id"] for c in r)
+
+    assert client.get("/api/srs/cram", params=p).json() == []          # nothing studied in vi_jp yet
+    ids = [c["card_id"] for c in r[:4]]
+    for i in ids[:3]:
+        client.post(f"/api/srs/cards/{i}/answer", json={"rating": "good"})
+    for _ in range(2):                                                  # ids[0] forgotten twice
+        client.post(f"/api/srs/cards/{ids[0]}/answer", json={"rating": "again"})
+    client.post(f"/api/srs/cards/{ids[3]}/answer", json={"rating": "again"})
+    due_before = dict(conn.execute("SELECT card_id, due_at FROM srs_cards WHERE direction='vi_jp'").fetchall())
+
+    studied = client.get("/api/srs/cram", params={**p, "source": "studied"}).json()
+    assert sorted(c["card_id"] for c in studied) == sorted(ids)
+    weak = client.get("/api/srs/cram", params={**p, "source": "weak"}).json()
+    assert [c["card_id"] for c in weak] == [ids[0], ids[3]]             # most-forgotten first
+    assert len(client.get("/api/srs/cram", params={**p, "source": "all", "n": 7}).json()) == 7
+    assert len(client.get("/api/srs/cram", params={**p, "source": "all", "lesson_from": 3, "lesson_to": 3}).json()) \
+        and all(c["lesson_number"] == 3 for c in client.get(
+            "/api/srs/cram", params={**p, "source": "all", "lesson_from": 3, "lesson_to": 3}).json())
+    assert due_before == dict(conn.execute("SELECT card_id, due_at FROM srs_cards WHERE direction='vi_jp'").fetchall())
+
+
 def test_review_approve_reject_edit(client):
     v = client.get("/api/vocabulary", params={"q": "病院"}).json()["items"][0]
     assert v["verification_status"] == "verified" and v["verified_by"] == "ai"

@@ -363,8 +363,8 @@ export const api = {
   decks: () => req<{ deck: string; lesson_number: number | null; n: number }[]>('/vocabulary/decks'),
   vocabItem: (id: string) => req<VocabDetail>(`/vocabulary/${id}`),
   archive: (id: string) => req<{ archived: boolean }>(`/vocabulary/${id}/archive`, { method: 'POST' }),
-  due: (direction: string, newLimit: number, entity: SrsEntity = 'vocabulary') =>
-    req<Card[]>(`/srs/due?${qs({ direction, new_limit: newLimit, entity })}`),
+  due: (p: Record<string, string | number | undefined | null>) => req<Card[]>(`/srs/due?${qs(p)}`),
+  cram: (p: Record<string, string | number | undefined | null>) => req<Card[]>(`/srs/cram?${qs(p)}`),
   answer: (cardId: number, rating: string) =>
     req<Card>(`/srs/cards/${cardId}/answer`, { method: 'POST', body: JSON.stringify({ rating }) }),
   queue: (entity: string, status?: string, offset = 0) =>

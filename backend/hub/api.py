@@ -368,10 +368,19 @@ def review(entity: Literal["vocabulary", "question", "grammar", "kanji"], entity
 
 # ---------- SRS ----------
 @router.get("/srs/due")
-def srs_due(direction: Literal["jp_vi", "vi_jp"] = "jp_vi", new_limit: int = Query(20, ge=0, le=200),
-            lesson: int | None = None, entity: Literal["vocabulary", "grammar", "kanji"] = "vocabulary",
-            conn=Depends(get_conn)):
-    return repo.due_cards(conn, direction, new_limit, lesson, entity=entity)
+def srs_due(direction: Literal["jp_vi", "vi_jp"] = "jp_vi", new_limit: int = Query(20, ge=0, le=500),
+            lesson_from: int | None = None, lesson_to: int | None = None, shuffle: bool = False,
+            entity: Literal["vocabulary", "grammar", "kanji"] = "vocabulary", conn=Depends(get_conn)):
+    return repo.due_cards(conn, direction, new_limit, lesson_from, lesson_to, entity=entity, shuffle=shuffle)
+
+
+@router.get("/srs/cram")
+def srs_cram(source: Literal["studied", "weak", "all"] = "studied", n: int = Query(50, ge=1, le=500),
+             direction: Literal["jp_vi", "vi_jp"] = "jp_vi", lesson_from: int | None = None,
+             lesson_to: int | None = None, entity: Literal["vocabulary", "grammar", "kanji"] = "vocabulary",
+             conn=Depends(get_conn)):
+    """Random off-schedule cards; read-only — the client writes only 'again' back via /answer (ADR-027)."""
+    return repo.cram_cards(conn, entity, direction, source, n, lesson_from, lesson_to)
 
 
 class Answer(BaseModel):

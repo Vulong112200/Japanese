@@ -8,6 +8,19 @@ const RATINGS = [
   { id: 'good', label: 'Được', key: '3', cls: 'bg-emerald-600 hover:bg-emerald-500' },
   { id: 'easy', label: 'Dễ', key: '4', cls: 'bg-sky-600 hover:bg-sky-500' },
 ] as const
+// Ôn tổng hợp (ADR-027): only "Quên" is written back to SRS; "Nhớ" leaves the schedule alone
+const CRAM_RATINGS = [
+  { id: 'again', label: 'Quên', key: '1', cls: 'bg-rose-600 hover:bg-rose-500' },
+  { id: 'good', label: 'Nhớ', key: '3', cls: 'bg-emerald-600 hover:bg-emerald-500' },
+] as const
+const CRAM_SOURCES = [['studied', 'Từ đã học'], ['weak', 'Từ hay quên'], ['all', 'Tất cả']] as const
+
+function shuffled<T>(a: T[]): T[] {
+  const b = [...a]
+  for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[b[i], b[j]] = [b[j], b[i]] }
+  return b
+}
+const numOrNull = (v: string) => (v === '' ? null : Math.max(1, Number(v) || 1))
 
 function readPref<T>(k: string, d: T): T {
   try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d } catch { return d }
@@ -27,16 +40,28 @@ export default function Flashcards() {
   const [vocabDirection, setDirection] = useState<'jp_vi' | 'vi_jp'>(() => readPref('srs.direction', 'jp_vi'))
   const direction = entity === 'vocabulary' ? vocabDirection : 'jp_vi'   // grammar/kanji: one direction (ADR-021)
   const [newLimit, setNewLimit] = useState<number>(() => readPref('srs.newLimit', 20))
+  const [mode, setMode] = useState<'srs' | 'cram'>(() => readPref('srs.mode', 'srs'))
+  const [lessonFrom, setLessonFrom] = useState<number | null>(() => readPref('srs.lessonFrom', null))
+  const [lessonTo, setLessonTo] = useState<number | null>(() => readPref('srs.lessonTo', null))
+  const [shuffle, setShuffle] = useState<boolean>(() => readPref('srs.shuffle', false))
+  const [cramSource, setCramSource] = useState<string>(() => readPref('srs.cramSource', 'studied'))
+  const [cramN, setCramN] = useState<number>(() => readPref('srs.cramN', 50))
   const [queue, setQueue] = useState<Card[] | null>(null)
   const [shown, setShown] = useState(false)
   const [done, setDone] = useState(0)
+  const [forgot, setForgot] = useState(0)
   const [busy, setBusy] = useState(false)
   const [err, setErr] = useState<unknown>(null)
+  const cram = mode === 'cram'
+  const ratings = cram ? CRAM_RATINGS : RATINGS
 
   const load = useCallback(() => {
-    setQueue(null); setShown(false)
-    api.due(direction, newLimit, entity).then(setQueue).catch(setErr)
-  }, [direction, newLimit, entity])
+    setQueue(null); setShown(false); setDone(0); setForgot(0)
+    const p = { direction, entity, lesson_from: lessonFrom, lesson_to: lessonTo }
+    const req = cram ? api.cram({ ...p, source: cramSource, n: cramN })
+      : api.due({ ...p, new_limit: newLimit, shuffle: shuffle ? 'true' : undefined }).then(q => (shuffle ? shuffled(q) : q))
+    req.then(setQueue).catch(setErr)
+  }, [direction, newLimit, entity, cram, lessonFrom, lessonTo, shuffle, cramSource, cramN])
   useEffect(() => { load() }, [load])
 
   const card = queue?.[0]
@@ -44,24 +69,26 @@ export default function Flashcards() {
     if (!card || busy) return
     setBusy(true)
     try {
-      const updated = await api.answer(card.card_id, rating)
+      // cram "Nhớ" is not an on-schedule review, so it is not sent to SM-2
+      const updated = cram && rating !== 'again' ? {} : await api.answer(card.card_id, rating)
       setDone(n => n + 1)
+      if (rating === 'again') setForgot(n => n + 1)
       // "again" cards come back in this session (due in 10 min) — requeue at the end
       setQueue(q => (q ? [...q.slice(1), ...(rating === 'again' ? [{ ...card, ...updated }] : [])] : q))
       setShown(false)
     } catch (e) { setErr(e) } finally { setBusy(false) }
-  }, [card, busy])
+  }, [card, busy, cram])
 
   useEffect(() => {
     const on = (e: KeyboardEvent) => {
-      if ((e.target as HTMLElement)?.tagName === 'SELECT') return
+      if (['SELECT', 'INPUT'].includes((e.target as HTMLElement)?.tagName)) return
       if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); setShown(true) }
-      const r = RATINGS.find(r => r.key === e.key)
+      const r = ratings.find(r => r.key === e.key)
       if (r && shown) answer(r.id)
     }
     addEventListener('keydown', on)
     return () => removeEventListener('keydown', on)
-  }, [shown, answer])
+  }, [shown, answer, ratings])
 
   if (err) return <ErrorBox error={err} />
   const front = card && (
@@ -84,23 +111,53 @@ export default function Flashcards() {
             <option value="jp_vi">Nhật → Việt</option>
             <option value="vi_jp">Việt → Nhật</option>
           </select>}
-          <label className="flex items-center gap-1">Thẻ mới/ngày
-            <input type="number" min={0} max={200} value={newLimit} aria-label="Số thẻ mới mỗi ngày"
-              className="w-16 rounded-lg border border-slate-300 bg-white px-2 py-1 dark:border-slate-700 dark:bg-slate-900"
-              onChange={e => { const v = Math.max(0, Math.min(200, Number(e.target.value) || 0)); setNewLimit(v); writePref('srs.newLimit', v) }} />
-          </label>
+          <select aria-label="Chế độ" className="rounded-lg border border-slate-300 bg-white px-2 py-1 dark:border-slate-700 dark:bg-slate-900"
+            value={mode} onChange={e => { const v = e.target.value as 'srs' | 'cram'; setMode(v); writePref('srs.mode', v) }}>
+            <option value="srs">Theo lịch SRS</option>
+            <option value="cram">Ôn tổng hợp</option>
+          </select>
         </div>
+      </div>
+      <div className="flex flex-wrap items-center justify-end gap-2 text-sm">
+        {entity !== 'kanji' && <label className="flex items-center gap-1">Bài
+          <input type="number" min={1} value={lessonFrom ?? ''} placeholder="đầu" aria-label="Từ bài" className="w-16 rounded-lg border border-slate-300 bg-white px-2 py-1 dark:border-slate-700 dark:bg-slate-900"
+            onChange={e => { const v = numOrNull(e.target.value); setLessonFrom(v); writePref('srs.lessonFrom', v) }} />–
+          <input type="number" min={1} value={lessonTo ?? ''} placeholder="cuối" aria-label="Đến bài" className="w-16 rounded-lg border border-slate-300 bg-white px-2 py-1 dark:border-slate-700 dark:bg-slate-900"
+            onChange={e => { const v = numOrNull(e.target.value); setLessonTo(v); writePref('srs.lessonTo', v) }} />
+        </label>}
+        {cram ? <>
+          <select aria-label="Nguồn thẻ" className="rounded-lg border border-slate-300 bg-white px-2 py-1 dark:border-slate-700 dark:bg-slate-900"
+            value={cramSource} onChange={e => { setCramSource(e.target.value); writePref('srs.cramSource', e.target.value) }}>
+            {CRAM_SOURCES.map(([k, l]) => <option key={k} value={k}>{l}</option>)}
+          </select>
+          <label className="flex items-center gap-1">Số thẻ
+            <input type="number" min={1} max={500} value={cramN} aria-label="Số thẻ mỗi lượt" className="w-16 rounded-lg border border-slate-300 bg-white px-2 py-1 dark:border-slate-700 dark:bg-slate-900"
+              onChange={e => { const v = Math.max(1, Math.min(500, Number(e.target.value) || 1)); setCramN(v); writePref('srs.cramN', v) }} />
+          </label>
+        </> : <>
+          <select aria-label="Thứ tự" className="rounded-lg border border-slate-300 bg-white px-2 py-1 dark:border-slate-700 dark:bg-slate-900"
+            value={shuffle ? 'random' : 'lesson'} onChange={e => { const v = e.target.value === 'random'; setShuffle(v); writePref('srs.shuffle', v) }}>
+            <option value="lesson">Theo bài</option>
+            <option value="random">Ngẫu nhiên</option>
+          </select>
+          <label className="flex items-center gap-1">Thẻ mới/ngày
+            <input type="number" min={0} max={500} value={newLimit} aria-label="Số thẻ mới mỗi ngày" className="w-16 rounded-lg border border-slate-300 bg-white px-2 py-1 dark:border-slate-700 dark:bg-slate-900"
+              onChange={e => { const v = Math.max(0, Math.min(500, Number(e.target.value) || 0)); setNewLimit(v); writePref('srs.newLimit', v) }} />
+          </label>
+        </>}
       </div>
 
       {!queue ? <Loading /> : !card ? (
         <Panel>
-          <p className="text-center">{done ? `Xong! Bạn đã ôn ${done} lượt trong phiên này.` : 'Không có thẻ đến hạn và đã hết hạn mức thẻ mới hôm nay.'}</p>
-          <div className="mt-3 flex justify-center"><Button onClick={load}>Tải lại</Button></div>
+          <p className="text-center">{cram
+            ? (done ? `Xong lượt! Nhớ ${done - forgot} · Quên ${forgot} (thẻ quên đã được đưa lại vào lịch SRS).` : 'Không có thẻ nào khớp bộ lọc. "Từ đã học" chỉ gồm thẻ bạn đã học ở chế độ SRS.')
+            : (done ? `Xong! Bạn đã ôn ${done} lượt trong phiên này.` : 'Không có thẻ đến hạn và đã hết hạn mức thẻ mới hôm nay.')}</p>
+          <div className="mt-3 flex justify-center"><Button onClick={load}>{cram ? 'Lượt mới' : 'Tải lại'}</Button></div>
         </Panel>
       ) : (
         <>
           <div className="flex justify-between text-xs text-slate-500">
-            <span>Còn {queue.length} thẻ · đã ôn {done}</span>
+            <span>Còn {queue.length} thẻ · {cram ? `nhớ ${done - forgot} · quên ${forgot}` : `đã ôn ${done}`}</span>
             <span>{card.lesson_number ? `Bài ${card.lesson_number}` : card.deck ?? ''} · {card.status === 'new' ? 'thẻ mới' : `khoảng ${card.interval_days} ngày`}</span>
           </div>
           <section className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm dark:border-slate-800 dark:bg-slate-900" aria-live="polite">
@@ -154,8 +211,8 @@ export default function Flashcards() {
             )}
           </section>
           {shown && (
-            <div className="grid grid-cols-4 gap-2">
-              {RATINGS.map(r => (
+            <div className={`grid gap-2 ${cram ? 'grid-cols-2' : 'grid-cols-4'}`}>
+              {ratings.map(r => (
                 <button key={r.id} type="button" disabled={busy} onClick={() => answer(r.id)}
                   className={`rounded-xl py-3 text-sm font-semibold text-white disabled:opacity-50 ${r.cls}`}>
                   {r.label} <span className="opacity-70">({r.key})</span>
@@ -163,7 +220,7 @@ export default function Flashcards() {
               ))}
             </div>
           )}
-          <p className="text-center text-xs text-slate-500">Phím tắt: Space hiện đáp án · 1–4 chấm điểm. Nhãn "Chưa xác minh"/"Cần duyệt" = dữ liệu chưa được bạn duyệt.</p>
+          <p className="text-center text-xs text-slate-500">Phím tắt: Space hiện đáp án · {cram ? '1 Quên · 3 Nhớ' : '1–4 chấm điểm'}. Nhãn "Chưa xác minh"/"Cần duyệt" = dữ liệu chưa được bạn duyệt.</p>
         </>
       )}
     </div>
