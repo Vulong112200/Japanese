@@ -161,6 +161,24 @@ export interface Dashboard {
     bank_questions: number
     last: { attempt_id: string; title: string; mode: string; submitted_at: string; accuracy: number | null; correct: number; total: number } | null
   }
+  daily_goal: number
+  done_today: number
+  study_seconds_today: number
+  recommendations: Recommendation[]
+}
+
+export interface Recommendation { kind: string; title: string; reason: string; href?: string; start?: AttemptStart }
+
+export interface Analytics {
+  daily: { date: string; reviews: number; reviews_correct: number; answers: number; answers_correct: number; seconds: number }[]
+  study_seconds_total: number
+  study_seconds_period: number
+  srs_retention: Partial<Record<SrsEntity, { reviews: number; remembered: number; retention: number }>>
+  attempts: { attempt_id: string; title: string; mode: string; submitted_at: string; accuracy: number | null; total: number; by_section: Record<string, number | null> }[]
+  by_section: Record<string, Bucket>
+  by_mondai: (Bucket & { section: Section; mondai_no: number | null; mondai_type: string | null })[]
+  weak_grammar_points: Dashboard['weak_grammar_points']
+  repeated_mistakes: { question_id: string; wrong: number; section: Section; mondai_type: string | null; question_text: string | null; grammar_id: string | null; grammar_pattern: string | null }[]
 }
 
 // ---------- mock exam ----------
@@ -253,6 +271,7 @@ export interface AttemptStart {
   mondai_type?: string
   source?: 'all' | 'official' | 'past' | 'generated'
   mistakes_only?: boolean
+  grammar_id?: string
   limit?: number
   timing?: 'none' | 'original' | 'current' | 'custom'
   time_limit_min?: number
@@ -319,6 +338,8 @@ const qs = (p: Record<string, string | number | undefined | null>) =>
 
 export const api = {
   dashboard: () => req<Dashboard>('/stats/dashboard'),
+  analytics: () => req<Analytics>('/stats/analytics'),
+  saveSettings: (s: { daily_goal: number }) => req<{ daily_goal: number }>('/settings', { method: 'PUT', body: JSON.stringify(s) }),
   vocab: (p: Record<string, string | number | undefined>) => req<{ total: number; items: Vocab[] }>(`/vocabulary?${qs(p)}`),
   decks: () => req<{ deck: string; lesson_number: number | null; n: number }[]>('/vocabulary/decks'),
   vocabItem: (id: string) => req<VocabDetail>(`/vocabulary/${id}`),

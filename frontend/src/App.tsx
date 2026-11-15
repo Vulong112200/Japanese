@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Analytics from './pages/Analytics'
 import Dashboard from './pages/Dashboard'
 import Exam from './pages/Exam'
 import Flashcards from './pages/Flashcards'
@@ -16,6 +17,7 @@ const ROUTES = [
   { id: 'kanji', label: 'Kanji', el: Kanji },
   { id: 'flashcards', label: 'Ôn tập SRS', el: Flashcards },
   { id: 'exam', label: 'Thi thử', el: Exam },
+  { id: 'analytics', label: 'Thống kê', el: Analytics },
   { id: 'review', label: 'Duyệt dữ liệu', el: Review },
   { id: 'library', label: 'Thư viện nguồn', el: Library },
 ] as const

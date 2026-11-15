@@ -14,6 +14,7 @@ from . import repo
 from .db import DEFAULT_DB, ROOT, connect
 from .ingestion import flashcards_csv as fc
 from .ingestion import pipeline
+from .learning import analytics
 from .learning import exam as examlib
 from .learning import srs
 from .validation import reference as ref
@@ -361,14 +362,66 @@ def srs_answer(card_id: int, body: Answer, conn=Depends(get_conn)):
     return repo.get_card(conn, card_id)
 
 
+def _latest_score(conn) -> dict:
+    """examlib.score over the latest answer of each question in submitted attempts (ADR-021)."""
+    latest = repo.latest_answers(conn)
+    return examlib.score(_scoring_questions(conn, list(latest)), {k: v["answer"] for k, v in latest.items()})
+
+
+DEFAULT_GOAL = 30
+
+
 @router.get("/stats/dashboard")
 def stats(conn=Depends(get_conn)):
     d = repo.dashboard(conn)
-    # grammar points to review: latest answer per question across submitted attempts (ADR-021)
-    latest = repo.latest_answers(conn)
-    qs = [q for q in _scoring_questions(conn, list(latest)) if q["grammar_id"]]
-    d["weak_grammar_points"] = examlib.score(qs, {k: v["answer"] for k, v in latest.items()})["weak_grammar_points"]
+    d["weak_grammar_points"] = _latest_score(conn)["weak_grammar_points"]
+    today = repo.activity(conn, repo.now().date().isoformat())
+    d["daily_goal"] = int(repo.get_setting(conn, "daily_goal", str(DEFAULT_GOAL)))
+    d["done_today"] = len(today)
+    d["study_seconds_today"] = analytics.active_seconds([e["t"] for e in today])
+    last = d["exam"]["last"]
+    d["recommendations"] = analytics.recommend({
+        "due": {"vocabulary": sum(d["due_now"].values()), "grammar": d["due_by_entity"].get("grammar", 0),
+                "kanji": d["due_by_entity"].get("kanji", 0)},
+        "mistakes_pending": d["exam"]["mistakes_pending"],
+        "weak_grammar_points": d["weak_grammar_points"],
+        "days_since_last_exam": (repo.now() - datetime.fromisoformat(last["submitted_at"])).days if last else None,
+        "new_cards_left": sum(v for m in (d["cards_by_status"], d["cards_by_status_vi_jp"],
+                                          *d["cards_by_entity"].values()) for k, v in m.items() if k == "new")})
     return d
+
+
+@router.get("/stats/analytics")
+def analytics_view(days: int = Query(30, ge=7, le=365), conn=Depends(get_conn)):
+    daily = repo.daily_activity(conn, days)
+    s = _latest_score(conn)
+    return {
+        "daily": daily,
+        "study_seconds_total": analytics.active_seconds([e["t"] for e in repo.activity(conn)]),
+        "study_seconds_period": sum(x["seconds"] for x in daily),
+        "srs_retention": repo.srs_retention(conn, daily[0]["date"]),
+        "attempts": repo.attempt_trend(conn),
+        "by_section": s["by_section"],
+        "by_mondai": s["by_mondai"],
+        "weak_grammar_points": s["weak_grammar_points"],
+        "repeated_mistakes": repo.repeated_mistakes(conn),
+    }
+
+
+class Settings(BaseModel):
+    daily_goal: int = Field(ge=5, le=500)
+
+
+@router.get("/settings")
+def get_settings(conn=Depends(get_conn)):
+    return {"daily_goal": int(repo.get_setting(conn, "daily_goal", str(DEFAULT_GOAL)))}
+
+
+@router.put("/settings")
+def put_settings(body: Settings, conn=Depends(get_conn)):
+    repo.set_setting(conn, "daily_goal", str(body.daily_goal))
+    conn.commit()
+    return body.model_dump()
 
 
 # ---------- mock exam (spec Part 9, 10) ----------
@@ -387,6 +440,7 @@ class AttemptStart(BaseModel):
     mondai_type: str | None = Field(None, max_length=50)                              # Mode D
     source: Literal["all", "official", "past", "generated"] = "all"
     mistakes_only: bool = False                      # Mode E
+    grammar_id: str | None = Field(None, pattern=r"^GRA_\d{6}$")   # questions of one grammar point
     limit: int = Field(20, ge=1, le=200)             # Mode F
     timing: Literal["none", "original", "current", "custom"] = "original"
     time_limit_min: int | None = Field(None, ge=1, le=300)
@@ -443,12 +497,14 @@ def start_attempt(body: AttemptStart, conn=Depends(get_conn)):
     else:
         ids = repo.mistake_question_ids(conn) if body.mistakes_only else None
         qs = repo.questions_where(conn, section=body.section, mondai_type=body.mondai_type, ids=ids,
-                                  exam_type=SOURCE_EXAM_TYPE.get(body.source))
+                                  exam_type=SOURCE_EXAM_TYPE.get(body.source), grammar_id=body.grammar_id)
         qs = sorted(random.sample(qs, min(body.limit, len(qs))), key=lambda q: (
             examlib.SECTION_ORDER.index(q["section"]) if q["section"] in examlib.SECTION_ORDER else 9,
             q["mondai_no"] or 0, q["exam_id"], q["number"] or 0))
         parts = ["Ôn câu sai" if body.mistakes_only else "Luyện tập",
-                 examlib.SECTION_NAMES.get(body.section or "", ""), body.mondai_type or ""]
+                 examlib.SECTION_NAMES.get(body.section or "", ""), body.mondai_type or "",
+                 (json.loads(qs[0]["extra_json"]).get("grammar_pattern") or body.grammar_id)
+                 if body.grammar_id and qs else ""]
         title = " · ".join(p for p in parts if p) + f" ({len(qs)} câu)"
     if not qs:
         raise HTTPException(404, "Không có câu hỏi phù hợp")

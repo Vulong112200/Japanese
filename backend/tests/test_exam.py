@@ -352,3 +352,40 @@ def test_dashboard_suggests_grammar_points_until_answered_right(client):
 
     redo_mistakes_correctly()
     assert c.get("/api/stats/dashboard").json()["weak_grammar_points"] == []
+
+
+# ---------- Dashboard goal / analytics / practice by grammar point (ADR-022) ----------
+def test_settings_daily_goal(client):
+    c, _ = client
+    assert c.get("/api/settings").json() == {"daily_goal": 30}
+    assert c.put("/api/settings", json={"daily_goal": 50}).json() == {"daily_goal": 50}
+    assert c.get("/api/stats/dashboard").json()["daily_goal"] == 50
+    assert c.put("/api/settings", json={"daily_goal": 3}).status_code == 422
+
+
+def test_practice_by_grammar_point_and_activity_analytics(client):
+    c, conn = client
+    gid = conn.execute("SELECT json_extract(extra_json,'$.grammar_id') FROM questions WHERE exam_id='BANK_N5_GRAMMAR_AI' "
+                       "AND verification_status='verified' GROUP BY 1 HAVING COUNT(*)=2 LIMIT 1").fetchone()[0]
+    assert c.post("/api/attempts", json={"mode": "practice", "grammar_id": "x"}).status_code == 422
+    before = c.get("/api/stats/dashboard").json()["done_today"]
+    for _ in range(2):                                    # same point answered wrong twice → repeated mistakes
+        a = c.post("/api/attempts", json={"mode": "practice", "grammar_id": gid, "limit": 2}).json()
+        qids = [q["question_id"] for q in a["questions"]]
+        assert len(qids) == 2 and {json.loads(repo.get_question(conn, q)["extra_json"])["grammar_id"] for q in qids} == {gid}
+        for q in a["questions"]:
+            wrong = next(o["option_id"] for o in q["options"] if [o["option_id"]] != _correct(conn, q["question_id"]))
+            c.put(f"/api/attempts/{a['attempt_id']}/answers/{q['question_id']}", json={"answer": [wrong]})
+        c.post(f"/api/attempts/{a['attempt_id']}/submit")
+
+    d = c.get("/api/stats/dashboard").json()
+    assert d["done_today"] == before + 4 and d["streak_days"] >= 1     # exam-only day counts for the streak
+    kinds = {r["kind"]: r for r in d["recommendations"]}
+    assert "mistakes" in kinds and "exam" not in kinds                # just submitted → no "take an exam" nudge
+    assert any(w["grammar_id"] == gid for w in d["weak_grammar_points"])
+
+    an = c.get("/api/stats/analytics").json()
+    assert len(an["daily"]) == 30 and an["daily"][-1]["reviews"] + an["daily"][-1]["answers"] == d["done_today"]
+    assert an["attempts"][-1]["attempt_id"] == a["attempt_id"] and "grammar_reading" in an["attempts"][-1]["by_section"]
+    assert set(qids) <= {m["question_id"] for m in an["repeated_mistakes"] if m["wrong"] >= 2}
+    assert c.get("/api/stats/analytics", params={"days": 3}).status_code == 422

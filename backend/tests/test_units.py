@@ -156,3 +156,25 @@ def test_raw_records_are_immutable(conn):
 def test_reliability_constraint(conn):
     with pytest.raises(sqlite3.IntegrityError):
         repo.upsert_source(conn, {"source_id": "S2", "source_type": "pdf", "name": "x", "reliability": "MAYBE"})
+
+
+# ---------- analytics (ADR-022) ----------
+def test_active_seconds_counts_only_short_gaps():
+    from hub.learning.analytics import active_seconds
+    t = ["2026-01-01T10:00:00+07:00", "2026-01-01T10:01:00+07:00", "2026-01-01T10:30:00+07:00",
+         "2026-01-01T10:30:20+07:00"]
+    assert active_seconds(t) == 80 and active_seconds(list(reversed(t))) == 80
+    assert active_seconds([]) == 0 and active_seconds(t[:1]) == 0
+
+
+def test_recommend_priority_and_no_data():
+    from hub.learning.analytics import recommend
+    base = {"due": {"vocabulary": 0, "grammar": 0, "kanji": 0}, "mistakes_pending": 0, "weak_grammar_points": [],
+            "days_since_last_exam": 1, "new_cards_left": 0}
+    assert recommend(base) == []
+    r = recommend({**base, "due": {"vocabulary": 2, "grammar": 5, "kanji": 0}, "mistakes_pending": 3,
+                   "weak_grammar_points": [{"grammar_id": "GRA_000001", "pattern": "は", "correct": 0, "total": 2}],
+                   "days_since_last_exam": None, "new_cards_left": 10})
+    assert [x["kind"] for x in r] == ["srs_due", "mistakes", "grammar_point", "exam"]
+    assert r[0]["href"] == "#/flashcards?entity=grammar" and r[2]["start"]["grammar_id"] == "GRA_000001"
+    assert [x["kind"] for x in recommend({**base, "new_cards_left": 5, "days_since_last_exam": 8})] == ["exam", "srs_new"]

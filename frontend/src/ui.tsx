@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react'
-import type { Issue, Status } from './api'
+import { useState, type ReactNode } from 'react'
+import { api, type AttemptStart, type Issue, type Status } from './api'
 
 const STATUS: Record<string, [string, string]> = {
   verified: ['Đã xác minh', 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-200'],
@@ -116,5 +116,27 @@ export function SpeakButton({ text }: { text: string }) {
       aria-label={`Phát âm ${text} (giọng máy)`}>
       🔊<span className="ml-1 text-[10px] align-middle">giọng máy</span>
     </button>
+  )
+}
+
+/** "1 giờ 5 phút" / "12 phút" / "< 1 phút". */
+export function fmtDuration(sec: number) {
+  const m = Math.round(sec / 60)
+  if (m < 1) return '< 1 phút'
+  return m < 60 ? `${m} phút` : `${Math.floor(m / 60)} giờ${m % 60 ? ` ${m % 60} phút` : ''}`
+}
+
+/** Starts a practice/exam attempt and opens it on the exam page. */
+export function StartButton({ body, children, kind = 'default' }: { body: AttemptStart; children: ReactNode; kind?: 'default' | 'primary' }) {
+  const [busy, setBusy] = useState(false)
+  const [err, setErr] = useState<unknown>(null)
+  return (
+    <span className="inline-flex items-center gap-2">
+      <Button kind={kind} disabled={busy} onClick={async () => {
+        setBusy(true); setErr(null)
+        try { location.hash = `#/exam?id=${(await api.startAttempt(body)).attempt_id}` } catch (e) { setErr(e) } finally { setBusy(false) }
+      }}>{children}</Button>
+      {err ? <span role="alert" className="text-xs text-rose-600">{err instanceof Error ? err.message : String(err)}</span> : null}
+    </span>
   )
 }

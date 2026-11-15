@@ -2,10 +2,10 @@ import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } fro
 import { api, type Attempt, type AttemptStart, type AttemptSummary, type ExamOverview, type ExamQuestion, type Section } from '../api'
 import { Button, ErrorBox, Loading, Panel, Tag } from '../ui'
 
-const SECTION_LABEL: Record<string, string> = {
+export const SECTION_LABEL: Record<string, string> = {
   vocabulary: 'Từ vựng 文字・語彙', grammar_reading: 'Ngữ pháp・Đọc 文法・読解', listening: 'Nghe 聴解',
 }
-const MONDAI_LABEL: Record<string, string> = {
+export const MONDAI_LABEL: Record<string, string> = {
   kanji_reading: '漢字読み · đọc kanji', orthography: '表記 · cách viết', contextual: '文脈規定 · chọn từ theo ngữ cảnh',
   paraphrase: '言い換え類義 · câu đồng nghĩa', grammar_form: '文の文法1 · chọn mẫu ngữ pháp',
   sentence_composition: '文の文法2 · sắp xếp câu ★', text_grammar: '文章の文法 · ngữ pháp đoạn văn',
@@ -470,10 +470,10 @@ function Result({ a }: { a: Attempt }) {
   )
 }
 
-function BucketTable({ title, rows }: { title: string; rows: [string, { total: number; correct: number; incorrect: number; unanswered: number; accuracy: number | null }][] }) {
+export function BucketTable({ title, rows }: { title: string; rows: [string, { total: number; correct: number; incorrect: number; unanswered: number; accuracy: number | null }][] }) {
   return (
     <div>
-      <h3 className="mb-1 text-xs font-semibold text-slate-500">{title}</h3>
+      {title && <h3 className="mb-1 text-xs font-semibold text-slate-500">{title}</h3>}
       <table className="w-full text-sm">
         <thead className="text-left text-xs text-slate-500"><tr><th className="py-1"></th><th className="text-right">Đúng</th><th className="text-right">Sai</th><th className="text-right">Bỏ</th><th className="text-right">%</th></tr></thead>
         <tbody>{rows.map(([l, b]) => (

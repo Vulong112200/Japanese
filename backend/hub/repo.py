@@ -4,6 +4,8 @@ import json
 import sqlite3
 from datetime import datetime, timedelta, timezone
 
+from .learning.analytics import active_seconds
+
 TZ = timezone(timedelta(hours=7))  # learner's timezone (Vietnam)
 
 
@@ -232,8 +234,19 @@ def save_card(conn, card_id: int, card, due_at: datetime, rating: str, prev_inte
                  (card_id, rating, t, prev_interval, card.interval_days))
 
 
+# Study activity = SRS reviews + answered exam/practice questions (ADR-022).
+ACTIVITY_SQL = ("SELECT reviewed_at AS t, 'review' AS kind, rating!='again' AS ok FROM review_log "
+                "UNION ALL SELECT answered_at, 'answer', is_correct FROM attempt_answers "
+                "WHERE answer IS NOT NULL AND answered_at IS NOT NULL")
+
+
+def activity(conn, since: str = "") -> list[dict]:
+    """[{t, kind, ok}] since an ISO date/time; is_correct stays NULL until the attempt is submitted."""
+    return rows(conn.execute(f"SELECT * FROM ({ACTIVITY_SQL}) WHERE t>=? ORDER BY t", (since,)))
+
+
 def study_streak(conn) -> int:
-    days = {r[0] for r in conn.execute("SELECT DISTINCT SUBSTR(reviewed_at,1,10) FROM review_log")}
+    days = {r[0] for r in conn.execute(f"SELECT DISTINCT SUBSTR(t,1,10) FROM ({ACTIVITY_SQL})")}
     d, streak = now().date(), 0
     if d.isoformat() not in days:
         d -= timedelta(days=1)       # streak survives until the end of today
@@ -324,10 +337,11 @@ def exam_overview(conn) -> dict:
     return {"exams": exams, "bank": bank, "mistakes": len(mistake_question_ids(conn))}
 
 
-def questions_where(conn, exam_id=None, section=None, mondai_type=None, exam_type=None, ids=None) -> list[dict]:
+def questions_where(conn, exam_id=None, section=None, mondai_type=None, exam_type=None, ids=None,
+                    grammar_id=None) -> list[dict]:
     sql, args = f"SELECT q.* FROM questions q JOIN exams e ON e.exam_id=q.exam_id WHERE q.{LIVE_Q}", []
     for col, val in (("q.exam_id", exam_id), ("q.section", section), ("q.mondai_type", mondai_type),
-                     ("e.exam_type", exam_type)):
+                     ("e.exam_type", exam_type), ("json_extract(q.extra_json,'$.grammar_id')", grammar_id)):
         if val is not None:
             sql += f" AND {col}=?"
             args.append(val)
@@ -370,7 +384,7 @@ def get_attempt(conn, attempt_id: str) -> dict | None:
 
 def list_attempts(conn, limit: int = 50) -> list[dict]:
     out = []
-    for r in rows(conn.execute("SELECT * FROM exam_attempts ORDER BY started_at DESC LIMIT ?", (limit,))):
+    for r in rows(conn.execute("SELECT * FROM exam_attempts ORDER BY started_at DESC, rowid DESC LIMIT ?", (limit,))):
         res = json.loads(r.pop("result_json")) if r["result_json"] else None
         cfg = json.loads(r.pop("config_json"))
         r["question_count"] = sum(len(s["question_ids"]) for s in cfg["sections"])
@@ -406,7 +420,7 @@ def finish_attempt(conn, attempt_id: str, result: dict) -> None:
 
 def exam_stats(conn) -> dict:
     last = conn.execute("SELECT attempt_id, title, mode, submitted_at, result_json FROM exam_attempts "
-                        "WHERE submitted_at IS NOT NULL ORDER BY submitted_at DESC LIMIT 1").fetchone()
+                        "WHERE submitted_at IS NOT NULL ORDER BY submitted_at DESC, rowid DESC LIMIT 1").fetchone()
     res = json.loads(last["result_json"]) if last else None
     return {
         "attempts_submitted": conn.execute("SELECT COUNT(*) FROM exam_attempts WHERE submitted_at IS NOT NULL").fetchone()[0],
@@ -416,3 +430,64 @@ def exam_stats(conn) -> dict:
         "mistakes_pending": len(mistake_question_ids(conn)),
         "bank_questions": conn.execute(f"SELECT COUNT(*) FROM questions WHERE {LIVE_Q}").fetchone()[0],
     }
+
+
+# ---------- settings ----------
+def get_setting(conn, key: str, default: str) -> str:
+    r = conn.execute("SELECT value FROM settings WHERE key=?", (key,)).fetchone()
+    return r[0] if r else default
+
+
+def set_setting(conn, key: str, value: str) -> None:
+    conn.execute("INSERT INTO settings (key, value) VALUES (?,?) ON CONFLICT (key) DO UPDATE SET value=excluded.value",
+                 (key, value))
+
+
+# ---------- analytics (spec §14) ----------
+def daily_activity(conn, days: int = 30) -> list[dict]:
+    """One row per local day (oldest first): reviews/answers with correct counts and estimated active seconds."""
+    start = now().date() - timedelta(days=days - 1)
+    out = {(start + timedelta(days=i)).isoformat(): {"reviews": 0, "reviews_correct": 0, "answers": 0,
+                                                    "answers_correct": 0, "ts": []} for i in range(days)}
+    for e in activity(conn, start.isoformat()):
+        d = out.get(e["t"][:10])
+        if d is None:
+            continue
+        d["ts"].append(e["t"])
+        k = "reviews" if e["kind"] == "review" else "answers"
+        d[k] += 1
+        d[k + "_correct"] += bool(e["ok"])
+    return [{"date": k, **{f: v for f, v in d.items() if f != "ts"}, "seconds": active_seconds(d["ts"])}
+            for k, d in out.items()]
+
+
+def srs_retention(conn, since: str) -> dict:
+    """entity_type -> {reviews, remembered, retention%} over review_log since a date (rating != again)."""
+    out = {}
+    for r in conn.execute("SELECT c.entity_type, COUNT(*), SUM(l.rating!='again') FROM review_log l "
+                          "JOIN srs_cards c USING (card_id) WHERE l.reviewed_at>=? GROUP BY 1", (since,)):
+        out[r[0]] = {"reviews": r[1], "remembered": r[2], "retention": round(100 * r[2] / r[1], 1)}
+    return out
+
+
+def attempt_trend(conn, limit: int = 30) -> list[dict]:
+    """Submitted attempts oldest first with accuracy per section (exam history over time)."""
+    out = []
+    for r in conn.execute("SELECT attempt_id, title, mode, submitted_at, result_json FROM exam_attempts "
+                          "WHERE submitted_at IS NOT NULL ORDER BY submitted_at DESC, rowid DESC LIMIT ?", (limit,)):
+        res = json.loads(r["result_json"])
+        out.append({"attempt_id": r["attempt_id"], "title": r["title"], "mode": r["mode"],
+                    "submitted_at": r["submitted_at"], "accuracy": res["accuracy"], "total": res["total"],
+                    "by_section": {k: v["accuracy"] for k, v in res["by_section"].items()}})
+    return out[::-1]
+
+
+def repeated_mistakes(conn, min_wrong: int = 2, limit: int = 20) -> list[dict]:
+    """Questions answered wrong at least min_wrong times across submitted attempts."""
+    return rows(conn.execute(
+        "SELECT a.question_id, COUNT(*) AS wrong, q.section, q.mondai_type, q.question_text, "
+        "json_extract(q.extra_json,'$.grammar_id') AS grammar_id, "
+        "json_extract(q.extra_json,'$.grammar_pattern') AS grammar_pattern FROM attempt_answers a "
+        "JOIN exam_attempts t USING (attempt_id) JOIN questions q USING (question_id) "
+        "WHERE t.submitted_at IS NOT NULL AND a.is_correct=0 GROUP BY a.question_id HAVING wrong>=? "
+        "ORDER BY wrong DESC, a.question_id LIMIT ?", (min_wrong, limit)))

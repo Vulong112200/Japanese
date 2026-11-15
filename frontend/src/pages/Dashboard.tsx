@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { api, type Dashboard as D } from '../api'
-import { ErrorBox, Loading, Panel } from '../ui'
+import { Button, ErrorBox, fmtDuration, Loading, Panel, StartButton } from '../ui'
 
 const CARD_STATUS: [string, string, string][] = [
   ['new', 'Mới', 'bg-slate-300 dark:bg-slate-600'],
@@ -36,6 +36,41 @@ function StackBar({ data, total }: { data: Record<string, number>; total: number
   )
 }
 
+function GoalCard({ d, onSaved }: { d: D; onSaved: (goal: number) => void }) {
+  const [edit, setEdit] = useState<string | null>(null)
+  const [err, setErr] = useState('')
+  const pct = Math.min(100, Math.round((d.done_today / d.daily_goal) * 100))
+  const save = async () => {
+    const n = Number(edit)
+    if (!Number.isInteger(n) || n < 5 || n > 500) { setErr('Từ 5 đến 500'); return }
+    try { onSaved((await api.saveSettings({ daily_goal: n })).daily_goal); setEdit(null); setErr('') } catch (e) { setErr(String(e)) }
+  }
+  return (
+    <div className="rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+      <div className="flex items-center justify-between text-xs text-slate-500">
+        <span>Mục tiêu hôm nay</span>
+        {edit === null && <button type="button" className="hover:underline" onClick={() => setEdit(String(d.daily_goal))}>Sửa</button>}
+      </div>
+      {edit === null
+        ? <div className="mt-1 text-2xl font-semibold tabular-nums">{d.done_today}<span className="text-base text-slate-500">/{d.daily_goal}</span></div>
+        : <form className="mt-1 flex items-center gap-1" onSubmit={e => { e.preventDefault(); save() }}>
+          <input type="number" min={5} max={500} value={edit} onChange={e => setEdit(e.target.value)} aria-label="Số lượt học mỗi ngày"
+            className="w-20 rounded-md border border-slate-300 bg-white px-2 py-1 text-sm dark:border-slate-700 dark:bg-slate-800" autoFocus />
+          <Button type="submit" kind="primary">Lưu</Button>
+          <Button onClick={() => { setEdit(null); setErr('') }}>Huỷ</Button>
+        </form>}
+      {err && <p role="alert" className="text-xs text-rose-600">{err}</p>}
+      <div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800" role="progressbar"
+        aria-valuenow={d.done_today} aria-valuemin={0} aria-valuemax={d.daily_goal} aria-label="Tiến độ mục tiêu hôm nay">
+        <div className={pct >= 100 ? 'h-full bg-emerald-500' : 'h-full bg-indigo-500'} style={{ width: `${pct}%` }} />
+      </div>
+      <div className="mt-1 text-xs text-slate-500">
+        {pct >= 100 ? 'Đã đạt mục tiêu ✓' : 'Lượt ôn thẻ + câu trả lời'} · {fmtDuration(d.study_seconds_today)} (ước tính)
+      </div>
+    </div>
+  )
+}
+
 export default function Dashboard() {
   const [d, setD] = useState<D | null>(null)
   const [err, setErr] = useState<unknown>(null)
@@ -43,13 +78,11 @@ export default function Dashboard() {
   if (err) return <ErrorBox error={err} />
   if (!d) return <Loading />
 
-  const vocabTotal = Object.values(d.vocabulary_by_status).reduce((a, b) => a + b, 0)
   const sum = (m: Record<string, number>) => Object.values(m).reduce((a, b) => a + b, 0)
   const dueVocab = (d.due_now.jp_vi ?? 0) + (d.due_now.vi_jp ?? 0)
   const dueGrammar = d.due_by_entity.grammar ?? 0
   const dueKanji = d.due_by_entity.kanji ?? 0
   const due = dueVocab + dueGrammar + dueKanji
-  const verified = d.vocabulary_by_status.verified ?? 0
   const accuracy = d.reviews_today ? Math.round((d.correct_today / d.reviews_today) * 100) : null
 
   return (
@@ -66,10 +99,28 @@ export default function Dashboard() {
 
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
         <Stat label="Chuỗi ngày học" value={`${d.streak_days} ngày`} />
-        <Stat label="Lượt ôn hôm nay" value={d.reviews_today} hint={accuracy !== null ? `Nhớ đúng ${accuracy}%` : 'Chưa ôn hôm nay'} />
+        <GoalCard d={d} onSaved={g => setD({ ...d, daily_goal: g })} />
         <Stat label="Thẻ đến hạn" value={due} hint={`Từ vựng ${dueVocab} · Ngữ pháp ${dueGrammar} · Kanji ${dueKanji}`} />
-        <Stat label="Từ vựng đã xác minh" value={`${verified}/${vocabTotal}`} hint="Còn lại: học được, có nhãn 'Chưa xác minh'" />
+        <Stat label="Lượt ôn thẻ hôm nay" value={d.reviews_today} hint={accuracy !== null ? `Nhớ đúng ${accuracy}%` : 'Chưa ôn hôm nay'} />
       </div>
+
+      <Panel title="Học gì tiếp" action={<a href="#/analytics" className="text-sm text-indigo-600 hover:underline dark:text-indigo-300">Xem thống kê →</a>}>
+        {d.recommendations.length === 0
+          ? <p className="text-sm text-slate-500">Không có việc gợi ý: hôm nay không có thẻ đến hạn, câu sai hay điểm ngữ pháp yếu.</p>
+          : <ol className="divide-y divide-slate-100 text-sm dark:divide-slate-800">
+            {d.recommendations.map(r => (
+              <li key={r.kind} className="flex flex-wrap items-center justify-between gap-2 py-2">
+                <div>
+                  <div className="jp font-medium">{r.title}</div>
+                  <div className="text-xs text-slate-500">{r.reason}</div>
+                </div>
+                {r.start
+                  ? <StartButton body={r.start}>Bắt đầu</StartButton>
+                  : <a href={r.href} className="rounded-lg border border-slate-300 px-3 py-1.5 text-sm font-medium hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-800">Mở</a>}
+              </li>))}
+          </ol>}
+        <p className="mt-2 text-xs text-slate-500">Gợi ý tính từ dữ liệu học của bạn (thẻ đến hạn, câu sai gần nhất, điểm ngữ pháp yếu, lần thi gần nhất).</p>
+      </Panel>
 
       <div className="grid gap-4 md:grid-cols-2">
         <Panel title="Mức độ thuộc (thẻ SRS)">
@@ -126,7 +177,10 @@ export default function Dashboard() {
               {d.weak_grammar_points.map(w => (
                 <li key={w.grammar_id} className="flex items-center justify-between gap-2 py-1.5">
                   <a href={`#/grammar?id=${w.grammar_id}`} className="jp hover:underline">{w.pattern ?? w.grammar_id}</a>
-                  <span className="shrink-0 tabular-nums text-slate-500">đúng {w.correct}/{w.total}</span>
+                  <span className="flex shrink-0 items-center gap-2">
+                    <span className="tabular-nums text-slate-500">đúng {w.correct}/{w.total}</span>
+                    <StartButton body={{ mode: 'practice', grammar_id: w.grammar_id, limit: 10 }}>Luyện</StartButton>
+                  </span>
                 </li>
               ))}
             </ul>

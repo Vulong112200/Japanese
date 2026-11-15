@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { api, type GrammarDetail, type GrammarItem } from '../api'
-import { ErrorBox, IssueList, Loading, Panel, SpeakButton, StatusBadge, Tag } from '../ui'
+import { ErrorBox, IssueList, Loading, Panel, SpeakButton, StartButton, StatusBadge, Tag } from '../ui'
 
 const ORIGIN: Record<string, string> = {
   handbook: 'Cẩm nang của bạn',
@@ -83,6 +83,7 @@ function GrammarView({ id }: { id: string }) {
           <StatusBadge status={g.verification_status} by={g.verified_by} />
           <Tag tone={g.origin === 'ai' ? 'indigo' : 'slate'}>{ORIGIN[g.origin] ?? g.origin}</Tag>
           {g.lesson_number && <Tag>Bài {g.lesson_number}</Tag>}
+          <span className="ml-auto"><StartButton body={{ mode: 'practice', grammar_id: g.id, limit: 10 }}>Luyện câu điểm này</StartButton></span>
         </div>
         {g.grammar_name_vi && <p className="mt-1 font-medium">{g.grammar_name_vi}</p>}
         <p className="mt-2"><b>Ý nghĩa:</b> {g.meaning_vi}</p>

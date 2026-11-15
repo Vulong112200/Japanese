@@ -248,6 +248,10 @@ CREATE TABLE IF NOT EXISTS attempt_answers (
   answered_at TEXT,
   PRIMARY KEY (attempt_id, question_id)
 );
+CREATE TABLE IF NOT EXISTS settings (     -- learner preferences, e.g. daily_goal (ADR-022)
+  key TEXT PRIMARY KEY,
+  value TEXT NOT NULL
+);
 """
 
 

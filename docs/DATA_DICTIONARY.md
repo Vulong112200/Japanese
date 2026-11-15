@@ -115,6 +115,9 @@ Nhật ký: `ai_correction` (bản sửa đã duyệt, kèm `basis`), approve, r
 ### exam_attempts, attempt_answers (thi thử)
 - **exam_attempts**: `attempt_id` (`ATT_<thời gian>_<ngẫu nhiên>`), `exam_id` (NULL nếu tổ hợp từ ngân hàng), `title`, `mode` (`exam` | `practice`), `config_json` = `{filter, sections:[{section_id, section, name, duration_sec|null, question_ids}]}` đóng băng lúc bắt đầu, `current_section`, `section_started_at`, `started_at`, `submitted_at`, `result_json` (kết quả `score()` + `readiness`).
 - **attempt_answers**: khoá (`attempt_id`, `question_id`); `answer` JSON danh sách option_id (NULL = chưa làm), `flagged`, `is_correct` (tính lúc lưu, chỉ trả về sau khi nộp ở chế độ thi), `answered_at`.
+
+### settings
+- Khoá/giá trị tuỳ chọn người học. Hiện có `daily_goal` (số lượt học mỗi ngày, 5–500, mặc định 30; ADR-022). API `GET/PUT /api/settings`.
 - Ôn câu sai = câu có lần trả lời gần nhất (trong lượt đã nộp) là sai.
 
 ## Tệp dữ liệu

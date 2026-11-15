@@ -1,6 +1,6 @@
 # PROGRESS — Japanese N5 Learning Hub
 
-Cập nhật: 2026-11-15, kết thúc phiên 7. Trạng thái dựa trên kết quả kiểm thử: **86/86 test pass**, frontend build sạch.
+Cập nhật: 2026-11-15, kết thúc phiên 8. Trạng thái dựa trên kết quả kiểm thử: **90/90 test pass**, frontend build sạch.
 
 ## Tóm tắt các phiên
 | Phiên | Nội dung | Kết quả |
@@ -12,6 +12,7 @@ Cập nhật: 2026-11-15, kết thúc phiên 7. Trạng thái dựa trên kết 
 | 5 | Tìm đề thật: internet không có nguồn hợp lệ (JLPT không công bố đề cũ). Nhập **6 đề JLPT N5 thật** từ thư mục Drive "ĐỀ THI" (2012-12, 2013-07, 2017-07, 2018, 2021-12, 2024-07; file "2010-2011" thực ra trùng đề 2017-07 nên bỏ). Mỗi đề: AI chép từ ảnh trang, đáp án cộng đồng (参考答案/正答表/Yuuki Bùi), 2 agent giải độc lập (A giải + giải thích, B giải từ ảnh + soát bản chép); verified chỉ khi key = A = B (ADR-019). Importer chung `import_exam()`; bộ lọc nguồn "Đề thi thật các năm" | 490/490 câu đề thật verified (488 key = A = B, 2 người dùng quyết theo căn cứ); 80 test |
 | 6 | **Ngân hàng câu ngữ pháp do agent soạn** (ADR-020): 4 agent soạn 405 câu (mỗi điểm 2 câu 文の文法1 + 1 câu 文の文法2 ★); luật tự động (`check_grammar_question`); 2 lượt giải mù độc lập A/B (chia lô khác) → 403/405 key = A = B, 13 câu gắn cờ; người duyệt cuối: sửa 3 (giải mù lại, khớp), loại 6 (5 câu ★ có 2 thứ tự hợp lệ, 1 câu trùng), giữ 4. Kết quả thi có `weak_grammar_points`; luyện tập hiện thứ tự đúng + điểm ngữ pháp | 399/399 câu verified (269 文法1 + 130 文法2); 84 test |
 | 7 | **SRS cho ngữ pháp + kanji** (ADR-021): chung `srs_cards`/SM-2, 1 chiều, hạn mức thẻ mới riêng từng loại; trang Ôn tập SRS có chọn loại thẻ (mặt sau ngữ pháp: nghĩa, cách dùng, 2 ví dụ, link chi tiết; kanji: Hán-Việt, 音/訓, từ ví dụ). **Dashboard**: thẻ đến hạn + mức độ thuộc cho 3 loại; khung **"Ngữ pháp cần ôn"** từ câu trả lời mới nhất của mỗi câu (link sang trang Ngữ pháp `#/grammar?id=`). Sửa lỗi có sẵn: hai lượt nộp cùng giây làm sai thứ tự "câu trả lời mới nhất" (Mode E) | 135 thẻ ngữ pháp + 103 thẻ kanji; 86 test |
+| 8 | **Dashboard §13 + Thống kê §14** (ADR-022): mục tiêu ngày (`settings.daily_goal`, sửa tại chỗ; tính lượt ôn thẻ + câu trả lời), thời gian học ước tính từ dấu thời gian; streak tính cả ngày chỉ làm bài; khung **"Học gì tiếp"** (gợi ý theo dữ liệu thật: thẻ đến hạn → câu sai → điểm ngữ pháp yếu → thi thử → thẻ mới); **luyện câu theo 1 điểm ngữ pháp** (nút "Luyện" ở Dashboard, Thống kê, chi tiết Ngữ pháp). Trang **Thống kê**: cột lượt học 30 ngày, tổng thời gian, tỉ lệ nhớ SRS theo loại, lịch sử thi theo phần, mondai yếu, điểm ngữ pháp yếu, câu sai ≥ 2 lần. Sửa lỗi có sẵn: "lượt gần nhất" sai thứ tự khi nộp cùng giây (thêm `rowid`) | 90 test |
 
 ## Độ phủ kiến thức N5: ĐÃ ĐỦ, không cần thu thập thêm tài liệu
 | Mảng | Độ phủ | Trạng thái xác minh |
@@ -46,9 +47,9 @@ Ký hiệu trạng thái:
 | SRS §8 | ✅ | Từ vựng (2 chiều), ngữ pháp + kanji (1 chiều), ADR-021 |
 | Mock Exam §9 | ✅ | Mode A (đề + giờ JLPT 20/40/30), B (đề gốc, giữ cấu trúc/thời gian gốc), C (theo phần), D (theo mondai), E (ôn câu sai), F (tuỳ chỉnh số câu/thời gian/nguồn). Giao diện §9.2 đủ (điều hướng, cờ, trước/sau, tiến độ, đồng hồ, audio, xác nhận nộp). Kết quả §9.3 + ước lượng tách riêng (§4.3). Có 1 đề mẫu chính thức + 6 đề thật các năm (giờ gốc 25/50/30 trước 2020, 20/40/30 từ 2020). Ngân hàng: từ vựng (問題1/2, sinh bằng luật) + ngữ pháp (文の文法1/2, agent soạn). Chưa có câu sinh cho 文章の文法, đọc hiểu, nghe. |
 | Listening §10 | 🟡 | Chế độ thi: không lộ script/lựa chọn audio-only; luyện tập: tốc độ phát, script sau khi trả lời. Chưa có timestamp, chưa có đề nghe thứ hai. |
-| Dashboard §13 | 🟡 | Có SRS 3 loại (đến hạn, mức độ thuộc), thi thử, độ xác minh, gợi ý ngữ pháp cần ôn. Chưa có mục tiêu ngày. |
+| Dashboard §13 | ✅ | Cấp độ, mục tiêu ngày, streak, mức độ thuộc 3 loại, thẻ đến hạn, lượt thi gần nhất, ngữ pháp/bài yếu, "Học gì tiếp" (ADR-022). |
 | Kaiwa §7.4 | ⬜ | |
-| Analytics §14 | 🟡 | Điểm yếu theo bài (SRS + thi thử) và theo điểm ngữ pháp (thi thử). Chưa có xu hướng theo thời gian. |
+| Analytics §14 | ✅ | Trang Thống kê: thời gian học (ước tính), hoạt động 30 ngày, tỉ lệ nhớ SRS theo loại, lịch sử thi theo phần, mondai yếu, điểm ngữ pháp yếu, câu sai lặp lại. Đọc/nghe tính theo phần thi (chưa tách kỹ năng con). |
 | Backup/restore | 🟡 | Copy file sqlite |
 | Offline | ✅ | |
 
@@ -72,10 +73,11 @@ Ký hiệu trạng thái:
 - Câu 漢字読み sinh tự động có thể có bẫy trông "lạ" (ví dụ うた → ううた) — vẫn chắc chắn sai, nhưng ít tự nhiên hơn đề thật.
 - Đề mẫu: 1 file MP3 cho toàn bộ phần nghe, không có mốc thời gian từng câu.
 - Câu ngữ pháp do agent soạn: 2 AI giải mù đồng ý không chứng minh tuyệt đối câu chỉ có 1 đáp án (nhất là 文法2 ★ khi các cụm đổi chỗ được). Nếu gặp câu có 2 đáp án, sửa trong `grammar_questions.json` (ghi `review_log`) hoặc `excluded: true`, rồi `import`. 5 điểm (059, 068, 069, 095, 103) hiện chưa có câu ★.
+- Thời gian học là ước tính (ADR-022): không tính thời gian đọc trước câu đầu mỗi phiên, nên thường thấp hơn thực tế.
 - Vài câu dùng mẫu mà một số danh sách xếp N4 (～ないと, いくら～ても, ～たことがある): đúng theo 135 điểm của dự án (Minna 1–25).
 
 ## Việc tiếp theo (theo thứ tự)
-1. (Tuỳ chọn) Timestamp từng câu nghe của đề thật từ bản ghi Whisper (`data/raw/PAST_EXAM_WORK/asr/`; mới có 2010/2012/2013/2021).
-2. Mục tiêu ngày trên Dashboard; (tuỳ chọn) chiều Việt→Nhật cho thẻ ngữ pháp/kanji; luyện câu hỏi lọc theo 1 điểm ngữ pháp (từ khung "Ngữ pháp cần ôn").
-3. (Tuỳ chọn) Câu 文章の文法 / đọc hiểu ngắn do agent soạn, cùng quy trình ADR-020.
-4. Upload/ZIP qua UI, backup/restore qua UI, Kaiwa, Analytics theo thời gian.
+1. **Kaiwa §7.4** (module hội thoại bổ trợ, 9 chủ đề): agent soạn hội thoại + hiragana + dịch Việt + liên kết từ vựng/ngữ pháp verified, rà soát 2 vòng như ADR-020; không đưa vào đề thi.
+2. Backup/restore qua UI (tải về/khôi phục file sqlite); upload/ZIP qua UI.
+3. (Tuỳ chọn) Timestamp từng câu nghe của đề thật từ bản ghi Whisper (`data/raw/PAST_EXAM_WORK/asr/`; mới có 2010/2012/2013/2021).
+4. (Tuỳ chọn) Câu 文章の文法 / đọc hiểu ngắn do agent soạn, cùng quy trình ADR-020; chiều Việt→Nhật cho thẻ ngữ pháp/kanji.
