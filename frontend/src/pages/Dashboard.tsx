@@ -200,6 +200,40 @@ export default function Dashboard() {
             ))}
           </ul>}
       </Panel>
+
+      <BackupPanel />
     </div>
+  )
+}
+
+function BackupPanel() {
+  const [msg, setMsg] = useState<string | null>(null)
+  const [busy, setBusy] = useState(false)
+  async function restore(file: File) {
+    if (!confirm(`Khôi phục từ "${file.name}"? Toàn bộ dữ liệu hiện tại sẽ được thay bằng bản sao lưu (bản hiện tại được tự lưu lại trước).`)) return
+    setBusy(true)
+    try {
+      const r = await api.restore(file)
+      setMsg(`Đã khôi phục: ${r.counts.srs_cards} thẻ, ${r.counts.review_log} lượt ôn, ${r.counts.exam_attempts} lượt thi.`
+        + (r.pre_restore_backup ? ` Bản trước khi khôi phục: data/database/backups/${r.pre_restore_backup}.` : ''))
+    } catch (e) {
+      setMsg(`Không khôi phục được: ${e instanceof Error ? e.message : String(e)}`)
+    } finally {
+      setBusy(false)
+    }
+  }
+  return (
+    <Panel title="Sao lưu dữ liệu">
+      <div className="flex flex-wrap items-center gap-3 text-sm">
+        <a href={api.backupUrl} download className="rounded-lg bg-indigo-600 px-3 py-1.5 text-white hover:bg-indigo-500">Tải bản sao lưu</a>
+        <label className="cursor-pointer rounded-lg border border-slate-300 px-3 py-1.5 hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-800">
+          {busy ? 'Đang khôi phục…' : 'Khôi phục từ file…'}
+          <input type="file" accept=".sqlite,.db" className="sr-only" disabled={busy}
+            onChange={e => { const f = e.target.files?.[0]; e.target.value = ''; if (f) void restore(f) }} />
+        </label>
+      </div>
+      {msg && <p className="mt-2 text-sm" role="status">{msg}</p>}
+      <p className="mt-2 text-xs text-slate-500">Bản sao lưu là toàn bộ cơ sở dữ liệu (tiến độ SRS, lịch sử thi, cài đặt, chỉnh sửa của bạn). Sau khi khôi phục bản cũ, chạy <code>hub import</code> để cập nhật nội dung học mới; tiến độ được giữ nguyên.</p>
+    </Panel>
   )
 }

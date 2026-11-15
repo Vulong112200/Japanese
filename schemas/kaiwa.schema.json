@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kaiwa.schema.json",
+  "title": "kaiwa (one entry of data/normalized/kaiwa/kaiwa.json)",
+  "type": "object",
+  "required": ["id", "topic", "title_vi", "situation_vi", "lines", "vocab", "grammar_ids", "origin"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^KAI_\\d{3}$"},
+    "topic": {"enum": ["self_intro", "greetings", "shopping", "directions", "transportation", "restaurant",
+                       "daily_routine", "work_school", "time_dates"]},
+    "title_vi": {"type": "string", "minLength": 1},
+    "situation_vi": {"type": "string", "minLength": 1},
+    "lines": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "required": ["speaker", "jp", "hiragana", "vi"],
+        "properties": {
+          "speaker": {"type": "string", "minLength": 1},
+          "jp": {"type": "string", "minLength": 1},
+          "hiragana": {"type": "string", "minLength": 1},
+          "vi": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "vocab": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "grammar_ids": {"type": "array", "items": {"type": "string", "pattern": "^GRA_\\d{6}$"}},
+    "origin": {"const": "ai"},
+    "audited": {"type": "boolean"},
+    "excluded": {"type": "boolean"},
+    "exclude_reason": {"type": "string"},
+    "review_log": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["line", "field", "old_value", "new_value", "reason_vi"],
+        "properties": {
+          "line": {"type": ["integer", "null"]},
+          "field": {"type": "string"},
+          "old_value": {},
+          "new_value": {},
+          "reason_vi": {"type": "string"},
+          "round": {"type": "integer"}
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

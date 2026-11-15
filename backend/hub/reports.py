@@ -100,6 +100,9 @@ def data_quality(conn) -> str:
     lessons = kv("SELECT lesson_number, COUNT(*) FROM vocabulary WHERE archived=0 AND lesson_number IS NOT NULL GROUP BY 1")
     missing_lessons = [n for n in range(1, 26) if n not in lessons]
     gram = kv("SELECT origin, COUNT(*) FROM grammar GROUP BY 1")
+    kaiwa = dict(conn.execute("SELECT COUNT(*) AS 'all', COUNT(DISTINCT topic) AS topics, "
+                              "COALESCE(SUM(verification_status='verified'), 0) AS verified FROM kaiwa "
+                              "WHERE verification_status!='rejected'").fetchone())
     gram_err = sum(len(json.loads(r[0]).get("handbook_errors") or []) for r in conn.execute("SELECT data_json FROM grammar"))
     return f"""# DATA QUALITY REPORT
 
@@ -109,6 +112,7 @@ Tạo tự động lúc {repo.iso()}.
 - **Từ vựng**: {sum(decks.values())} mục ({"; ".join(f"{k}: {v}" for k, v in decks.items())}). Có đủ 25 bài Minna{"" if not missing_lessons else f" (thiếu bài {missing_lessons})"}. So với danh sách JLPT N5 (718 từ): toàn bộ đã có. 19 từ khớp qua dạng khác (後→後で, 結婚→結婚します…); ～がる là ngữ pháp N4.
 - **Kanji**: {conn.execute("SELECT COUNT(*) FROM kanji").fetchone()[0]}/103 chữ N5 (danh sách cấp 4 JLPT cũ), đối chứng với sách Basic Kanji 120.
 - **Ngữ pháp**: {sum(gram.values())} điểm (121 điểm Minna bài 1–25 + 14 điểm N5 bổ sung/đối chiếu). Nguồn: {"; ".join(f"{k}: {v}" for k, v in gram.items())}. Đã ghi nhận {gram_err} chỗ sai hoặc thiếu trong cẩm nang gốc.
+- **Hội thoại (Kaiwa §7.4, bổ trợ, không thuộc đề thi)**: {kaiwa.get("all", 0)} bài / {kaiwa.get("topics", 0)} chủ đề, {kaiwa.get("verified", 0)} verified (AI soạn, luật tự động + rà soát 2 vòng, ADR-023).
 
 ## Quy trình xác minh từ vựng
 1. **Luật tự động**: kana hợp lệ, romaji ↔ kana, mã hoá, trùng lặp.

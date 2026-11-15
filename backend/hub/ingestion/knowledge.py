@@ -240,6 +240,117 @@ def import_kanji(conn, path: Path = KANJI) -> dict:
     return stats
 
 
+# ------------------------------------------------------------------ kaiwa (spec §7.4, ADR-023)
+KAIWA = NORM / "kaiwa" / "kaiwa.json"
+KAIWA_TOPICS = ("self_intro", "greetings", "shopping", "directions", "transportation", "restaurant",
+                "daily_routine", "work_school", "time_dates")
+PUNCT = r"[。、！？!?「」『』（）()・…\s　.]"
+
+
+def _kana_key(s: str) -> str:
+    """Reading without punctuation/spaces/～, katakana folded to hiragana: for order and substring checks."""
+    return kata_to_hira(re.sub(PUNCT + r"|[～〜]", "", s or ""))
+
+
+def _stem(word: str) -> str:
+    """ます-verbs are referenced in ます form; the stem is what appears in conjugated text (行きました)."""
+    return word[:-2] if word.endswith("ます") and len(word) > 2 else word
+
+
+def vocab_index(conn) -> dict[str, list[dict]]:
+    """Verified vocabulary keyed by spelling and by reading (without ～)."""
+    idx: dict[str, list[dict]] = {}
+    for r in conn.execute("SELECT id, word, reading, meaning_vi FROM vocabulary "
+                          "WHERE verification_status='verified' AND archived=0"):
+        for k in {r["word"], r["reading"]}:
+            if k:
+                idx.setdefault(k.strip("～〜"), []).append(dict(r))
+    return idx
+
+
+def check_kaiwa(k: dict, vocab: dict, verified_grammar: set[str], n5_kanji: set[str]) -> list:
+    issues = []
+    add = lambda code, sev, msg: issues.append((code, sev, msg, None))
+    for f in ("title_vi", "situation_vi"):
+        if not (k.get(f) or "").strip():
+            add("missing_field", "error", f"Thiếu {f}")
+    if k.get("topic") not in KAIWA_TOPICS:
+        add("bad_topic", "error", f"Chủ đề không hợp lệ: {k.get('topic')}")
+    lines = k.get("lines") or []
+    if len(lines) < 4:
+        add("few_lines", "error", "Cần ít nhất 4 lượt lời")
+    for i, ln in enumerate(lines, 1):
+        if not all((ln.get(f) or "").strip() for f in ("speaker", "jp", "hiragana", "vi")):
+            add("line_incomplete", "error", f"Lượt {i} thiếu người nói, câu Nhật, phần đọc hoặc bản dịch")
+            continue
+        if not KANA_RE.match(re.sub(PUNCT, "", ln["hiragana"])):
+            add("reading_not_kana", "warning", f"Lượt {i}: phần đọc có ký tự không phải kana")
+            continue
+        rest = _kana_key(ln["hiragana"])
+        for run in re.findall(r"[ぁ-ゖァ-ヵー]+", ln["jp"]):   # kana of the sentence must reappear, in order
+            pos = rest.find(kata_to_hira(run))
+            if pos < 0:
+                add("reading_mismatch", "warning", f"Lượt {i}: '{run}' trong câu không khớp phần đọc")
+                break
+            rest = rest[pos + len(run):]
+    jp_all = "".join(ln.get("jp") or "" for ln in lines)
+    hira_all = _kana_key("".join(ln.get("hiragana") or "" for ln in lines))
+    for w in k.get("vocab") or []:
+        cands = vocab.get(w.strip("～〜"))
+        if not cands:
+            add("vocab_not_verified", "error", f"Từ '{w}' không có trong từ vựng đã verified")
+        elif _stem(w.strip("～〜")) not in jp_all:
+            add("vocab_not_in_dialogue", "error", f"Từ '{w}' không xuất hiện trong hội thoại")
+        elif not any(_kana_key(_stem(c["reading"])) in hira_all for c in cands):
+            add("vocab_reading_missing", "warning", f"Cách đọc của '{w}' ({cands[0]['reading']}) không có trong phần đọc")
+    for g in k.get("grammar_ids") or []:
+        if g not in verified_grammar:
+            add("grammar_not_verified", "error", f"Điểm ngữ pháp {g} không tồn tại hoặc chưa verified")
+    if not k.get("vocab") or not k.get("grammar_ids"):
+        add("missing_refs", "warning", "Cần gắn từ vựng và điểm ngữ pháp liên quan")
+    outside = sorted({c for c in jp_all if re.match(r"[一-鿿]", c)} - n5_kanji)
+    if outside:
+        add("kanji_outside_n5", "info", f"Kanji ngoài N5: {''.join(outside)} (có dòng hiragana hỗ trợ)")
+    return issues
+
+
+def import_kaiwa(conn, path: Path = KAIWA) -> dict:
+    """Agent-written conversations; verified_by='ai' only when audited (2 review rounds) and no error/warning.
+    Excluded entries become 'rejected' (never deleted); a person's decision is kept."""
+    data = _load(path)
+    if not data:
+        return {"kaiwa": 0}
+    vocab = vocab_index(conn)
+    grammar = {r[0]: r[1] for r in conn.execute("SELECT id, pattern FROM grammar WHERE verification_status='verified'")}
+    n5_kanji = {r[0] for r in conn.execute("SELECT kanji FROM kanji WHERE verification_status='verified'")}
+    stats = {"kaiwa": 0, "verified": 0, "excluded": 0}
+    for k in data["entries"]:
+        cur = conn.execute("SELECT verified_by FROM kaiwa WHERE id=?", (k["id"],)).fetchone()
+        if cur and cur["verified_by"] in USER_OWNED:
+            continue
+        if k.get("excluded"):
+            conn.execute("UPDATE kaiwa SET verification_status='rejected', review_notes=? WHERE id=?",
+                         (k.get("exclude_reason"), k["id"]))
+            stats["excluded"] += 1
+            continue
+        issues = check_kaiwa(k, vocab, set(grammar), n5_kanji)
+        repo.replace_issues(conn, "kaiwa", k["id"], issues)
+        blocking = any(sev in ("error", "warning") for _, sev, _, _ in issues)
+        status, by = ("verified", "ai") if k.get("audited") and not blocking else ("needs_review", None)
+        body = {"lines": k["lines"],
+                "vocab": [{"ref": w, **c} for w in k.get("vocab") or [] if (c := (vocab.get(w.strip("～〜")) or [None])[0])],
+                "grammar": [{"id": g, "pattern": grammar[g]} for g in k.get("grammar_ids") or [] if g in grammar],
+                "review_log": k.get("review_log") or []}
+        conn.execute(
+            "INSERT OR REPLACE INTO kaiwa (id, topic, title_vi, situation_vi, data_json, origin, level, source_ids, "
+            "verification_status, verified_by) VALUES (?,?,?,?,?,?,?,?,?,?)",
+            (k["id"], k["topic"], k["title_vi"], k.get("situation_vi"), json.dumps(body, ensure_ascii=False),
+             k.get("origin", "ai"), "N5", "[]", status, by))
+        stats["kaiwa"] += 1
+        stats["verified"] += status == "verified"
+    return stats
+
+
 def kata_norm(s: str) -> str:
     return kata_to_hira(re.sub(r"\s", "", s or ""))
 

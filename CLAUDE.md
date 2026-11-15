@@ -34,7 +34,7 @@ backend/hub/                FastAPI + SQLite (sqlite3 chuẩn, SQL tập trung �
 backend/scripts/ocr_batch.py OCR hàng loạt PDF Drive → data/raw/SRC_LESSON_002/ocr/*.json (bố cục cột từng file)
 backend/scripts/merge_past_exams.py  gộp bản chép + key cộng đồng + 2 AI + quyết định duyệt → đề thật (docs/PAST_EXAMS.md)
 backend/tests/              pytest: test_units (thuần), test_data (dữ liệu thật), test_api (end-to-end), test_knowledge, test_exam
-frontend/src/               React + TS + Tailwind; pages/: Dashboard, Vocabulary, Grammar, Kanji, Flashcards, Exam (thi thử), Analytics (thống kê), Review, Library
+frontend/src/               React + TS + Tailwind; pages/: Dashboard (có sao lưu/khôi phục), Vocabulary, Grammar, Kanji, Kaiwa (hội thoại), Flashcards, Exam (thi thử), Analytics (thống kê), Review, Library
 schemas/*.schema.json       định dạng trao đổi JSON (được test kiểm)
 data/
   sources_online.json       registry nguồn trực tuyến
@@ -44,7 +44,8 @@ data/
   normalized/grammar/grammar.json                      nội dung 135 điểm (origin handbook/handbook+ai/ai)
   normalized/kanji/kanji_n5.json                       103 kanji N5
   normalized/grammar_questions/grammar_questions.json  399 câu 文の文法1/2 do agent soạn (ADR-020)
-  normalized/ai_review/     kết quả rà soát AI (bằng chứng; grammar_questions_review.json = 2 AI giải mù)
+  normalized/kaiwa/kaiwa.json                           27 hội thoại Kaiwa §7.4, 9 chủ đề (ADR-023)
+  normalized/ai_review/     kết quả rà soát AI (bằng chứng; grammar_questions_review.json = 2 AI giải mù; kaiwa_review.json = 2 vòng rà soát hội thoại)
   normalized/exams/         đề mẫu đã chép (bản chép không commit, xem .gitignore) + AI đối chiếu đáp án
   reference/jlpt_n5_words.csv  danh sách JLPT N5 (718 từ) để đo độ phủ
   raw/ reference/*.gz,*.sqlite,tessdata/ database/   sinh ra trên máy, không commit
@@ -91,7 +92,7 @@ cd ../frontend && npm run build               # tsc + vite build → frontend/di
   - Từ loại của từ vựng do JMdict quyết định, không lấy từ file.
 - **Độ phủ N5 đã đạt** (phiên 3): từ vựng phủ danh sách JLPT N5 và đủ 25 bài Minna; 103/103 kanji; 135 điểm ngữ pháp. **Không cần thu thập thêm tài liệu kiến thức.** Việc tiếp theo là tính năng (thi thử, luyện tập), không phải dữ liệu.
   - Ngữ pháp đã xong rà soát vòng 2 (phiên 4): 135/135 verified. Bằng chứng: `data/normalized/ai_review/grammar_round2.json`. Sửa ngữ pháp về sau: dùng `backend/scripts/apply_grammar_review.py`.
-- **Mock exam** (phiên 4) đã có. **6 đề thật các năm** (phiên 5, ADR-019) đã nhập: bản chép ở `data/normalized/exams/EXAM_N5_20*.json` (không commit), file gốc ở `data/raw/SRC_DRIVE_EXAM_N5_*`. Quy trình + nơi lưu + nhật ký duyệt: `docs/PAST_EXAMS.md` (script `backend/scripts/merge_past_exams.py`). Khi key cộng đồng lệch AI: chọn theo căn cứ chính xác nhất, giải thích được (người dùng uỷ quyền). **Câu ngữ pháp 文の文法1/2** (phiên 6, ADR-020): 399 câu verified. **SRS ngữ pháp/kanji + Dashboard "Ngữ pháp cần ôn"** (phiên 7, ADR-021) đã có. **Mục tiêu ngày, "Học gì tiếp", trang Thống kê, luyện theo 1 điểm ngữ pháp** (phiên 8, ADR-022; `learning/analytics.py`, bảng `settings`). Việc tiếp theo: Kaiwa §7.4, backup/restore UI (xem docs/PROGRESS.md).
+- **Mock exam** (phiên 4) đã có. **6 đề thật các năm** (phiên 5, ADR-019) đã nhập: bản chép ở `data/normalized/exams/EXAM_N5_20*.json` (không commit), file gốc ở `data/raw/SRC_DRIVE_EXAM_N5_*`. Quy trình + nơi lưu + nhật ký duyệt: `docs/PAST_EXAMS.md` (script `backend/scripts/merge_past_exams.py`). Khi key cộng đồng lệch AI: chọn theo căn cứ chính xác nhất, giải thích được (người dùng uỷ quyền). **Câu ngữ pháp 文の文法1/2** (phiên 6, ADR-020): 399 câu verified. **SRS ngữ pháp/kanji + Dashboard "Ngữ pháp cần ôn"** (phiên 7, ADR-021) đã có. **Mục tiêu ngày, "Học gì tiếp", trang Thống kê, luyện theo 1 điểm ngữ pháp** (phiên 8, ADR-022; `learning/analytics.py`, bảng `settings`). **Kaiwa §7.4** (phiên 9, ADR-023): 27 hội thoại verified, không bao giờ vào đề thi; sửa qua file + `review_log` rồi `import`. **Sao lưu/khôi phục qua UI** (ADR-024: `GET /api/backup`, `POST /api/restore` thân thô, tự lưu bản trước khi ghi đè). Việc tiếp theo: upload/ZIP qua UI (xem docs/PROGRESS.md).
 
 ## 6. Quy trình rà soát nội dung (đã dùng cho từ vựng, kanji và ngữ pháp)
 1. Dump dữ liệu kèm bằng chứng từ điển ra TSV (scratchpad), chia khoảng 4 lô.

@@ -100,6 +100,14 @@ Nhật ký: `ai_correction` (bản sửa đã duyệt, kèm `basis`), approve, r
 | stroke_count | Kiểm với KANJIDIC2 |
 | example_words | JSON [{vocab_id (NULL nếu ngoài kho từ vựng), word, reading, meaning_vi}]; cách đọc kiểm với JMdict |
 
+### kaiwa (hội thoại bổ trợ, ADR-023)
+| Cột | Ý nghĩa |
+|---|---|
+| id, topic | `KAI_001`…; chủ đề: `self_intro, greetings, shopping, directions, transportation, restaurant, daily_routine, work_school, time_dates` |
+| title_vi, situation_vi | Tên bài, tình huống |
+| data_json | `lines` [{speaker, jp, hiragana, vi}], `vocab` [{ref, id, word, reading, meaning_vi}] (resolve từ từ vựng verified), `grammar` [{id, pattern}], `review_log` |
+| origin, verification_status, verified_by | `ai`; chỉ `verified` khi `audited: true` trong file và `check_kaiwa` không ra lỗi/cảnh báo; `excluded: true` → `rejected` |
+
 ### exams, passages, questions
 - **exams**: `data_json` giữ nguyên cấu trúc section và mondai như đã chép.
 - **passages**: đoạn văn dùng chung cho nhiều câu.
@@ -137,6 +145,8 @@ Nhật ký: `ai_correction` (bản sửa đã duyệt, kèm `basis`), approve, r
 | `docs/N5/SourceDocs/*.docx` | nguồn gốc | Cẩm nang ngữ pháp của bạn (`SRC_LOCAL_GRAMMAR_DOCX`) |
 | `data/normalized/ai_review/vocabulary_ai_review.json` | AI_GENERATED | Rà soát vòng 1 (68 phát hiện), giữ làm bằng chứng |
 | `data/normalized/ai_review/grammar_round2.json` | AI_GENERATED | Rà soát ngữ pháp vòng 2 (4 agent, 135 điểm): 19 đề xuất, mỗi đề xuất có `decision` (6 nhận, 13 loại kèm lý do) |
+| `data/normalized/kaiwa/kaiwa.json` | NORMALIZED | 27 hội thoại (9 chủ đề × 3), `audited`, `review_log` (xem bảng kaiwa) |
+| `data/normalized/ai_review/kaiwa_review.json` | AI_GENERATED | 2 vòng rà soát hội thoại: đề xuất của từng agent kèm `decision` (nhận/loại + lý do) |
 | `data/sources_online.json` | registry | 24 nguồn trực tuyến trong spec |
 | `data/reference/reference.sqlite` | tham chiếu | JMdict + KANJIDIC2 đã dựng (không commit; `python -m hub build-reference`) |
 | `data/raw/SRC_GDOC_001/grammar_handbook.txt` | RAW | Google Doc ngữ pháp (export txt), không commit |

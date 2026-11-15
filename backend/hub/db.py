@@ -189,6 +189,21 @@ CREATE TABLE IF NOT EXISTS kanji (
   review_notes TEXT
 );
 
+CREATE TABLE IF NOT EXISTS kaiwa (        -- supplementary conversations (spec §7.4, ADR-023); never exam content
+  id TEXT PRIMARY KEY,                    -- KAI_001
+  topic TEXT NOT NULL,
+  title_vi TEXT NOT NULL,
+  situation_vi TEXT,
+  data_json TEXT NOT NULL,                -- lines [{speaker, jp, hiragana, vi}], vocab refs, grammar refs, review_log
+  origin TEXT NOT NULL DEFAULT 'ai',
+  level TEXT NOT NULL DEFAULT 'N5',
+  source_ids TEXT NOT NULL DEFAULT '[]',
+  verification_status TEXT NOT NULL DEFAULT 'needs_review' CHECK (verification_status IN
+    ('raw','extracted','normalized','needs_review','verified','rejected')),
+  verified_by TEXT,
+  review_notes TEXT
+);
+
 CREATE TABLE IF NOT EXISTS passages (
   passage_id TEXT PRIMARY KEY,
   exam_id TEXT REFERENCES exams(exam_id),
@@ -261,9 +276,14 @@ def connect(path: Path | str = DEFAULT_DB) -> sqlite3.Connection:
     conn = sqlite3.connect(path, check_same_thread=False)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
+    migrate(conn)
+    return conn
+
+
+def migrate(conn: sqlite3.Connection) -> None:
+    """Create missing tables/columns; safe on any older database (also run after a restore)."""
     conn.executescript(SCHEMA)
     for table, column in (("vocabulary", "dictionary_form TEXT"), ("vocabulary", "verified_by TEXT"),
                           ("questions", "verified_by TEXT")):       # databases created before these columns
         if column.split()[0] not in {r[1] for r in conn.execute(f"PRAGMA table_info({table})")}:
             conn.execute(f"ALTER TABLE {table} ADD COLUMN {column}")
-    return conn

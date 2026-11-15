@@ -171,3 +171,34 @@ def test_online_check_with_stub(imported):
     assert by["SRC_NOTEBOOK_001"] == "requires_auth"
     assert by["SRC_EXAM_001"] == "accessible" and by["SRC_LESSON_002"] == "accessible"
     assert any(u.endswith("/export?format=txt") for u in seen)   # Google Doc checked via its text export
+
+
+def test_kaiwa_list_and_detail(client):
+    items = client.get("/api/kaiwa").json()
+    assert len(items) >= 18 and all(i["verification_status"] == "verified" for i in items)
+    shop = client.get("/api/kaiwa", params={"topic": "shopping"}).json()
+    assert shop and all(i["topic"] == "shopping" for i in shop)
+    d = client.get(f"/api/kaiwa/{shop[0]['id']}").json()
+    assert len(d["lines"]) == shop[0]["line_count"] >= 4
+    assert all(ln["jp"] and ln["hiragana"] and ln["vi"] for ln in d["lines"])
+    assert d["vocab"] and d["grammar"] and d["grammar"][0]["pattern"]
+    assert client.get("/api/kaiwa/KAI_000").status_code == 404
+
+
+def test_backup_and_restore_roundtrip(client, imported):
+    conn, _ = imported
+    client.put("/api/settings", json={"daily_goal": 33})
+    r = client.get("/api/backup")
+    assert r.status_code == 200 and r.content.startswith(b"SQLite format 3\x00")
+    client.put("/api/settings", json={"daily_goal": 77})
+    res = client.post("/api/restore", content=r.content)
+    assert res.status_code == 200, res.text
+    assert res.json()["pre_restore_backup"].startswith("pre-restore-")
+    assert client.get("/api/settings").json()["daily_goal"] == 33
+    assert client.get("/api/kaiwa").status_code == 200                 # schema intact after restore
+
+
+def test_restore_rejects_garbage(client):
+    assert client.post("/api/restore", content=b"not a database").status_code == 400
+    assert client.post("/api/restore", content=b"SQLite format 3\x00" + b"\x00" * 200).status_code == 400
+    assert client.get("/api/settings").status_code == 200

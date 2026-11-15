@@ -121,3 +121,55 @@ def test_user_decision_survives_supplement_reimport(imported, tmp_path):
     knowledge.import_supplement(conn)
     assert conn.execute("SELECT meaning_vi FROM vocabulary WHERE id=?", (vid,)).fetchone()[0] == "bạn sửa"
     conn.rollback()
+
+
+# ---------- kaiwa §7.4 (ADR-023) ----------
+KAIWA_VOCAB = {"駅": [{"id": "VOC_1", "word": "駅", "reading": "えき", "meaning_vi": "nhà ga"}],
+               "えき": [{"id": "VOC_1", "word": "駅", "reading": "えき", "meaning_vi": "nhà ga"}],
+               "行きます": [{"id": "VOC_2", "word": "行きます", "reading": "いきます", "meaning_vi": "đi"}]}
+
+
+def _kaiwa(**over):
+    lines = [{"speaker": "A", "jp": "すみません。駅はどこですか。", "hiragana": "すみません。 えきは どこですか。", "vi": "Xin lỗi, nhà ga ở đâu?"},
+             {"speaker": "B", "jp": "あそこです。", "hiragana": "あそこです。", "vi": "Ở đằng kia."},
+             {"speaker": "A", "jp": "駅へ行きます。", "hiragana": "えきへ いきます。", "vi": "Tôi đi đến ga."},
+             {"speaker": "B", "jp": "はい。", "hiragana": "はい。", "vi": "Vâng."}]
+    return {"id": "KAI_999", "topic": "directions", "title_vi": "Hỏi ga", "situation_vi": "Ở phố.", "lines": lines,
+            "vocab": ["駅", "行きます"], "grammar_ids": ["GRA_000001"], "origin": "ai", **over}
+
+
+def test_kaiwa_checker():
+    check = lambda k: {c for c, *_ in knowledge.check_kaiwa(k, KAIWA_VOCAB, {"GRA_000001"}, set("駅行"))}
+    assert check(_kaiwa()) == set()
+    bad = _kaiwa()
+    bad["lines"][1] = {**bad["lines"][1], "hiragana": "あそこでした。"}          # kana of the sentence not in reading
+    assert "reading_mismatch" in check(bad)
+    bad["lines"][1] = {**bad["lines"][1], "hiragana": "あそこ です 1"}            # digit in the reading line
+    assert "reading_not_kana" in check(bad)
+    assert "vocab_not_verified" in check(_kaiwa(vocab=["銀行"]))
+    assert "vocab_not_in_dialogue" in check(_kaiwa(vocab=["駅", "えき", "行きます"], lines=_kaiwa()["lines"][1:2] * 4))
+    assert "grammar_not_verified" in check(_kaiwa(grammar_ids=["GRA_000999"]))
+    assert "bad_topic" in check(_kaiwa(topic="sports"))
+    out = knowledge.check_kaiwa(_kaiwa(lines=[{**l, "jp": l["jp"].replace("駅", "私")} for l in _kaiwa()["lines"]],
+                                       vocab=[]), KAIWA_VOCAB, {"GRA_000001"}, set("駅行"))
+    assert ("kanji_outside_n5", "info") in {(c, s) for c, s, *_ in out}
+
+
+def test_kaiwa_file_covers_9_topics():
+    doc = json.loads(knowledge.KAIWA.read_text(encoding="utf-8"))
+    live = [k for k in doc["entries"] if not k.get("excluded")]
+    assert {k["topic"] for k in live} == set(knowledge.KAIWA_TOPICS)
+    assert all(sum(k["topic"] == t for k in live) >= 2 for t in knowledge.KAIWA_TOPICS)
+    assert len({k["id"] for k in doc["entries"]}) == len(doc["entries"])
+
+
+def test_kaiwa_imported_verified_and_not_exam_content(imported):
+    conn, r = imported
+    doc = json.loads(knowledge.KAIWA.read_text(encoding="utf-8"))
+    live = [k for k in doc["entries"] if not k.get("excluded")]
+    assert r["kaiwa"]["kaiwa"] == len(live) and r["kaiwa"]["verified"] == len(live)
+    assert conn.execute("SELECT COUNT(*) FROM validation_issues WHERE entity_type='kaiwa' "
+                        "AND severity IN ('error','warning')").fetchone()[0] == 0
+    row = json.loads(conn.execute("SELECT data_json FROM kaiwa WHERE id=?", (live[0]["id"],)).fetchone()[0])
+    assert row["vocab"] and all(v["id"].startswith("VOC_") for v in row["vocab"]) and row["grammar"]
+    assert conn.execute("SELECT COUNT(*) FROM questions WHERE question_id LIKE 'KAI%' OR exam_id LIKE '%KAIWA%'").fetchone()[0] == 0

@@ -1,0 +1,586 @@
+{
+ "process": "3 agent soạn (mỗi agent 3 chủ đề) → check_kaiwa → vòng 1: 2 agent chia KAI_001–013 / KAI_014–027 → vòng 2: 2 agent chia số lẻ / số chẵn (độc lập, cùng bản gốc) → người duyệt cuối (Claude) xét từng đề xuất → check_kaiwa lại",
+ "reviews": {
+  "review_r1_a": {
+   "round": 1,
+   "batch": "KAI_001–013",
+   "proposals": [
+    {
+     "id": "KAI_008",
+     "line": null,
+     "field": "grammar_ids",
+     "old_value": [
+      "GRA_000013",
+      "GRA_000016",
+      "GRA_000017",
+      "GRA_000011"
+     ],
+     "new_value": [
+      "GRA_000013",
+      "GRA_000016",
+      "GRA_000017",
+      "GRA_000015"
+     ],
+     "reason_vi": "GRA_000011 (N1 の N2 'về nội dung/sở hữu' hoặc 'N1 の' thay danh từ) không xuất hiện: イタリアのネクタイ/日本のネクタイ là xuất xứ (đã có GRA_000016), 安いの là 'tính từ + の', không phải N1 の. Ngược lại câu 1 'ネクタイうりばはどこですか' minh hoạ rõ GRA_000015 (どこ).",
+     "confidence": "high",
+     "kind": "error",
+     "decision": "merged",
+     "decision_note": "Xem review_r2_b#0"
+    },
+    {
+     "id": "KAI_012",
+     "line": 4,
+     "field": "jp",
+     "old_value": "じゃ、北口を出て、右に行ってください。大きいコンビニが見えますか。",
+     "new_value": "じゃ、北口を出て、右に行ってください。大きいコンビニがありますか。",
+     "reason_vi": "見えます (nhìn thấy được, tự động từ khả năng) là từ/mẫu N4 (Minna bài 27), không có trong vocab.tsv. Đổi sang 'コンビニがありますか' (GRA_000052/053) vẫn tự nhiên khi chỉ đường qua điện thoại.",
+     "confidence": "medium",
+     "kind": "error",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_012",
+     "line": 4,
+     "field": "hiragana",
+     "old_value": "じゃ、 きたぐちを でて、 みぎに いって ください。 おおきい コンビニが みえますか。",
+     "new_value": "じゃ、 きたぐちを でて、 みぎに いって ください。 おおきい コンビニが ありますか。",
+     "reason_vi": "Khớp với bản sửa jp dòng 4.",
+     "confidence": "medium",
+     "kind": "error",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_012",
+     "line": 4,
+     "field": "vi",
+     "old_value": "Vậy anh ra cửa Bắc rồi đi về bên phải. Anh có thấy một cửa hàng tiện lợi lớn không?",
+     "new_value": "Vậy anh ra cửa Bắc rồi đi về bên phải. Ở đó có một cửa hàng tiện lợi lớn không?",
+     "reason_vi": "Khớp với bản sửa jp dòng 4 (ありますか thay cho 見えますか).",
+     "confidence": "medium",
+     "kind": "error",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_012",
+     "line": 5,
+     "field": "jp",
+     "old_value": "はい、見えます。",
+     "new_value": "はい、あります。",
+     "reason_vi": "Đi kèm sửa dòng 4: bỏ 見えます (N4).",
+     "confidence": "medium",
+     "kind": "error",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_012",
+     "line": 5,
+     "field": "hiragana",
+     "old_value": "はい、 みえます。",
+     "new_value": "はい、 あります。",
+     "reason_vi": "Khớp với bản sửa jp dòng 5.",
+     "confidence": "medium",
+     "kind": "error",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_012",
+     "line": 5,
+     "field": "vi",
+     "old_value": "Có, tôi thấy rồi.",
+     "new_value": "Vâng, có ạ.",
+     "reason_vi": "Khớp với bản sửa jp dòng 5.",
+     "confidence": "medium",
+     "kind": "error",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_013",
+     "line": 6,
+     "field": "jp",
+     "old_value": "わたしは三十分ぐらいかかります。あさのバスはいつもこみますから、たいへんです。",
+     "new_value": "わたしは三十分ぐらいかかります。あさのバスはいつも人が多いですから、たいへんです。",
+     "reason_vi": "こみます (混みます, đông đúc) không có trong vocab.tsv (từ N4); hơn nữa trạng thái 'xe đang đông' thường nói こんでいます. Thay bằng '人が多いです' (GRA_000081, từ N5) giữ nguyên nghĩa.",
+     "confidence": "medium",
+     "kind": "error",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_013",
+     "line": 6,
+     "field": "hiragana",
+     "old_value": "わたしは さんじゅっぷん ぐらい かかります。 あさの バスは いつも こみますから、 たいへんです。",
+     "new_value": "わたしは さんじゅっぷん ぐらい かかります。 あさの バスは いつも ひとが おおいですから、 たいへんです。",
+     "reason_vi": "Khớp với bản sửa jp dòng 6.",
+     "confidence": "medium",
+     "kind": "error",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_001",
+     "line": null,
+     "field": "situation_vi",
+     "old_value": "Ngày đầu tiên ở trường tiếng Nhật, Nguyễn (người Việt) làm quen với Lin (người Trung Quốc) ngồi bên cạnh.",
+     "new_value": "Tại một buổi giao lưu quốc tế, Nguyễn (người Việt) làm quen với Lin (người Trung Quốc) ngồi bên cạnh.",
+     "reason_vi": "Mâu thuẫn với hội thoại: nếu cả hai cùng ở trường tiếng Nhật thì Lin không cần giới thiệu 'tôi là học viên trường tiếng Nhật', và Nguyễn lại nói 'tôi không phải là học sinh, tôi là nhân viên công ty'. Đặt bối cảnh trung lập để lời thoại hợp lý.",
+     "confidence": "medium",
+     "kind": "error",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_001",
+     "line": null,
+     "field": "title_vi",
+     "old_value": "Làm quen với bạn cùng lớp",
+     "new_value": "Làm quen ở buổi giao lưu",
+     "reason_vi": "Nguyễn nói mình không phải học sinh mà là nhân viên công ty, nên 'bạn cùng lớp' không khớp; đi kèm sửa situation_vi.",
+     "confidence": "medium",
+     "kind": "error",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_003",
+     "line": null,
+     "field": "situation_vi",
+     "old_value": "Buổi học đầu tiên của lớp tiếng Nhật, cô giáo mời Nguyễn tự giới thiệu trước cả lớp. Sau đó bạn cùng lớp Ogawa đặt câu hỏi.",
+     "new_value": "Buổi học đầu tiên của lớp tiếng Nhật, cô giáo mời Nguyễn tự giới thiệu trước cả lớp. Sau đó bạn cùng lớp Maria đặt câu hỏi.",
+     "reason_vi": "Ogawa (小川) là tên người Nhật; một người Nhật làm 'bạn cùng lớp' trong lớp học tiếng Nhật là không hợp lý. Đổi sang học viên nước ngoài (Maria, đã dùng ở KAI_013).",
+     "confidence": "medium",
+     "kind": "unnatural",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_003",
+     "line": 7,
+     "field": "speaker",
+     "old_value": "小川",
+     "new_value": "マリア",
+     "reason_vi": "Đi kèm sửa situation_vi: bạn cùng lớp trong lớp tiếng Nhật không nên là người Nhật.",
+     "confidence": "medium",
+     "kind": "unnatural",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_003",
+     "line": 9,
+     "field": "speaker",
+     "old_value": "小川",
+     "new_value": "マリア",
+     "reason_vi": "Đi kèm sửa situation_vi và dòng 7.",
+     "confidence": "medium",
+     "kind": "unnatural",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_004",
+     "line": 6,
+     "field": "vi",
+     "old_value": "Vâng, cháu đi đến trường một chút ạ.",
+     "new_value": "Vâng, cháu đến trường ạ.",
+     "reason_vi": "ちょっと trong 'ちょっと学校まで' là từ làm mềm câu trả lời (không muốn nói chi tiết), không mang nghĩa 'một chút' về thời gian; dịch 'đi đến trường một chút' sai sắc thái và không tự nhiên.",
+     "confidence": "medium",
+     "kind": "unnatural",
+     "decision": "accepted",
+     "decision_note": null
+    }
+   ]
+  },
+  "review_r1_b": {
+   "round": 1,
+   "batch": "KAI_014–027",
+   "proposals": [
+    {
+     "id": "KAI_017",
+     "line": null,
+     "field": "title_vi",
+     "old_value": "Chọn món ở quán ramen",
+     "new_value": "Chọn món ở quán ăn",
+     "reason_vi": "Dòng 3 nói 「ラーメンがいちばんゆうめいですよ」 (món nổi tiếng nhất là ramen). Ở một quán chuyên ramen thì câu này vô nghĩa, vì món nào cũng là ramen. Đổi bối cảnh thành quán ăn bình thường thì câu hỏi 「この店は何がおいしいですか」 và câu trả lời mới hợp lý.",
+     "confidence": "medium",
+     "kind": "unnatural",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_017",
+     "line": null,
+     "field": "situation_vi",
+     "old_value": "Anh Nakagawa dẫn chị Lin đến một quán ramen; hai người bàn nên ăn gì rồi gọi món.",
+     "new_value": "Anh Nakagawa dẫn chị Lin đến một quán ăn; hai người bàn nên ăn gì rồi gọi món.",
+     "reason_vi": "Đi cùng với sửa title_vi: dòng 3 「ラーメンがいちばんゆうめいですよ」 chỉ hợp lý khi quán có bán cả món khác ngoài ramen.",
+     "confidence": "medium",
+     "kind": "unnatural",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_026",
+     "line": 8,
+     "field": "jp",
+     "old_value": "四月ですか。まだずっと先ですよ。",
+     "new_value": "四月はまだずっと先ですよ。",
+     "reason_vi": "Trung Sơn đang nói về sinh nhật của chính mình mà lại hỏi lại 「四月ですか」 (tháng 4 à?) như thể vừa nghe tin mới. Ghép với 「～ですよ」 ngay sau đó nghe rất lạ. Nên nói thẳng: 「四月はまだずっと先ですよ」.",
+     "confidence": "low",
+     "kind": "unnatural",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_026",
+     "line": 8,
+     "field": "hiragana",
+     "old_value": "しがつですか。まだ ずっと さきですよ。",
+     "new_value": "しがつは まだ ずっと さきですよ。",
+     "reason_vi": "Khớp với câu jp đã sửa.",
+     "confidence": "low",
+     "kind": "unnatural",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_026",
+     "line": 8,
+     "field": "vi",
+     "old_value": "Tháng 4 à? Vẫn còn lâu lắm đấy.",
+     "new_value": "Tháng 4 thì vẫn còn lâu lắm đấy.",
+     "reason_vi": "Khớp với câu jp đã sửa.",
+     "confidence": "low",
+     "kind": "unnatural",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_027",
+     "line": 1,
+     "field": "jp",
+     "old_value": "アンさん、来月のしゅっちょうのことですが、何日に行きましょうか。",
+     "new_value": "アンさん、来月のしゅっちょうは、何日に行きましょうか。",
+     "reason_vi": "Mẫu mở đầu chủ đề 「Nのことですが」 không có trong danh sách 135 điểm ngữ pháp N5 (là mẫu N4 trở lên). Dùng trợ từ chủ đề は thì vẫn tự nhiên mà nằm trong phạm vi N5.",
+     "confidence": "low",
+     "kind": "error",
+     "decision": "superseded",
+     "decision_note": "Trùng đề xuất review_r2_a#0 (cùng bỏ のことですが); áp bản của r2_a, kèm sửa vi"
+    },
+    {
+     "id": "KAI_027",
+     "line": 1,
+     "field": "hiragana",
+     "old_value": "アンさん、らいげつの しゅっちょうの ことですが、なんにちに いきましょうか。",
+     "new_value": "アンさん、らいげつの しゅっちょうは、なんにちに いきましょうか。",
+     "reason_vi": "Khớp với câu jp đã sửa.",
+     "confidence": "low",
+     "kind": "error",
+     "decision": "superseded",
+     "decision_note": "Đi kèm review_r1_b#5; áp bản hiragana của review_r2_a#1"
+    }
+   ]
+  },
+  "review_r2_a": {
+   "round": 2,
+   "batch": "số lẻ",
+   "proposals": [
+    {
+     "id": "KAI_027",
+     "line": 1,
+     "field": "jp",
+     "old_value": "アンさん、来月のしゅっちょうのことですが、何日に行きましょうか。",
+     "new_value": "アンさん、来月のしゅっちょうは何日に行きましょうか。",
+     "reason_vi": "「N のことですが、～」(nêu chủ đề để mở lời) không có trong danh sách 135 điểm ngữ pháp N5 (là cách nói N4 trở lên). Bỏ mẫu này, dùng câu hỏi đơn giản với は + ましょうか, nghĩa không đổi. (Ghi chú: しゅっちょう cũng không có trong vocab.tsv, nhưng là chủ đề của bài nên giữ.)",
+     "confidence": "medium",
+     "kind": "error",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_027",
+     "line": 1,
+     "field": "hiragana",
+     "old_value": "アンさん、らいげつの しゅっちょうの ことですが、なんにちに いきましょうか。",
+     "new_value": "アンさん、らいげつの しゅっちょうは なんにちに いきましょうか。",
+     "reason_vi": "Đi kèm bản sửa jp dòng 1 (bỏ「のことですが」).",
+     "confidence": "medium",
+     "kind": "error",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_027",
+     "line": 1,
+     "field": "vi",
+     "old_value": "Chị An này, về chuyến công tác tháng sau, mình đi vào ngày mấy nhỉ?",
+     "new_value": "Chị An này, chuyến công tác tháng sau mình đi vào ngày mấy nhỉ?",
+     "reason_vi": "Đi kèm bản sửa jp dòng 1.",
+     "confidence": "medium",
+     "kind": "error",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_009",
+     "line": 2,
+     "field": "jp",
+     "old_value": "いらっしゃいませ。白いセーターはこちらです。",
+     "new_value": "はい、白いセーターはこちらです。",
+     "reason_vi": "Thứ tự lượt lời không tự nhiên: khách (dòng 1) đã hỏi rồi nhân viên mới chào「いらっしゃいませ」. Lời chào đón khách phải ở đầu; khi đang trả lời câu hỏi thì chỉ nói「はい、～」.",
+     "confidence": "low",
+     "kind": "unnatural",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_009",
+     "line": 2,
+     "field": "hiragana",
+     "old_value": "いらっしゃいませ。 しろい セーターは こちらです。",
+     "new_value": "はい、 しろい セーターは こちらです。",
+     "reason_vi": "Đi kèm bản sửa jp dòng 2.",
+     "confidence": "low",
+     "kind": "unnatural",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_009",
+     "line": 2,
+     "field": "vi",
+     "old_value": "Xin mời quý khách. Áo len trắng ở đây ạ.",
+     "new_value": "Vâng, áo len trắng ở đây ạ.",
+     "reason_vi": "Đi kèm bản sửa jp dòng 2.",
+     "confidence": "low",
+     "kind": "unnatural",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_023",
+     "line": 4,
+     "field": "vi",
+     "old_value": "Ừ, được. Nhưng không được xem bài làm của bạn.",
+     "new_value": "Ừ, được. Nhưng không được xem câu trả lời của bạn.",
+     "reason_vi": "「こたえ」= câu trả lời/đáp án (đúng nghĩa trong vocab.tsv), không phải「bài làm」(cả bài). Dịch sát để người học khớp từ.",
+     "confidence": "low",
+     "kind": "error",
+     "decision": "accepted",
+     "decision_note": null
+    }
+   ]
+  },
+  "review_r2_b": {
+   "round": 2,
+   "batch": "số chẵn",
+   "proposals": [
+    {
+     "id": "KAI_008",
+     "line": null,
+     "field": "grammar_ids",
+     "old_value": [
+      "GRA_000013",
+      "GRA_000016",
+      "GRA_000017",
+      "GRA_000011"
+     ],
+     "new_value": [
+      "GRA_000013",
+      "GRA_000016",
+      "GRA_000017",
+      "GRA_000079"
+     ],
+     "reason_vi": "GRA_000011 (N1 の N2 sở hữu/nội dung, N1 の lược N2) không xuất hiện: 'イタリアの/日本のネクタイ' là xuất xứ (GRA_000016), còn '安いの' là tính từ + の thay danh từ, không phải 'N1 の'. Ngược lại dòng 8 '日本のネクタイで、三千円です' minh hoạ đúng GRA_000079 (N で nối câu).",
+     "confidence": "medium",
+     "kind": "error",
+     "decision": "merged",
+     "decision_note": "Cả 2 vòng cùng thấy GRA_000011 không có trong bài. Giữ cả GRA_000015 (dòng 1: どこですか, đề xuất r1_a) và GRA_000079 (dòng 8: 日本のネクタイで、三千円です)"
+    },
+    {
+     "id": "KAI_012",
+     "line": 4,
+     "field": "jp",
+     "old_value": "じゃ、北口を出て、右に行ってください。大きいコンビニが見えますか。",
+     "new_value": "じゃ、北口を出て、右に行ってください。大きいコンビニがありますか。",
+     "reason_vi": "'見えます' là từ vựng bài 27 Minna (N4), không có trong vocab.tsv N5. Dùng 'あります' vẫn tự nhiên khi chỉ đường.",
+     "confidence": "medium",
+     "kind": "error",
+     "decision": "duplicate",
+     "decision_note": "Vòng kia đã nêu cùng lỗi và đã sửa; giá trị hiện tại: \"じゃ、北口を出て、右に行ってください。大きいコンビニがありますか。\""
+    },
+    {
+     "id": "KAI_012",
+     "line": 4,
+     "field": "hiragana",
+     "old_value": "じゃ、 きたぐちを でて、 みぎに いって ください。 おおきい コンビニが みえますか。",
+     "new_value": "じゃ、 きたぐちを でて、 みぎに いって ください。 おおきい コンビニが ありますか。",
+     "reason_vi": "Khớp với jp mới (見えます → あります).",
+     "confidence": "medium",
+     "kind": "error",
+     "decision": "duplicate",
+     "decision_note": "Vòng kia đã nêu cùng lỗi và đã sửa; giá trị hiện tại: \"じゃ、 きたぐちを でて、 みぎに いって ください。 おおきい コンビニが ありますか。\""
+    },
+    {
+     "id": "KAI_012",
+     "line": 4,
+     "field": "vi",
+     "old_value": "Vậy anh ra cửa Bắc rồi đi về bên phải. Anh có thấy một cửa hàng tiện lợi lớn không?",
+     "new_value": "Vậy anh ra cửa Bắc rồi đi về bên phải. Ở đó có một cửa hàng tiện lợi lớn không?",
+     "reason_vi": "Khớp với jp mới (ありますか = có ... không).",
+     "confidence": "medium",
+     "kind": "error",
+     "decision": "duplicate",
+     "decision_note": "Vòng kia đã nêu cùng lỗi và đã sửa; giá trị hiện tại: \"Vậy anh ra cửa Bắc rồi đi về bên phải. Ở đó có một cửa hàng tiện lợi lớn không?\""
+    },
+    {
+     "id": "KAI_012",
+     "line": 5,
+     "field": "jp",
+     "old_value": "はい、見えます。",
+     "new_value": "はい、あります。",
+     "reason_vi": "Đi kèm sửa dòng 4: bỏ '見えます' (N4, ngoài vocab N5).",
+     "confidence": "medium",
+     "kind": "error",
+     "decision": "duplicate",
+     "decision_note": "Vòng kia đã nêu cùng lỗi và đã sửa; giá trị hiện tại: \"はい、あります。\""
+    },
+    {
+     "id": "KAI_012",
+     "line": 5,
+     "field": "hiragana",
+     "old_value": "はい、 みえます。",
+     "new_value": "はい、 あります。",
+     "reason_vi": "Khớp với jp mới.",
+     "confidence": "medium",
+     "kind": "error",
+     "decision": "duplicate",
+     "decision_note": "Vòng kia đã nêu cùng lỗi và đã sửa; giá trị hiện tại: \"はい、 あります。\""
+    },
+    {
+     "id": "KAI_012",
+     "line": 5,
+     "field": "vi",
+     "old_value": "Có, tôi thấy rồi.",
+     "new_value": "Vâng, có ạ.",
+     "reason_vi": "Khớp với jp mới (はい、あります).",
+     "confidence": "medium",
+     "kind": "error",
+     "decision": "duplicate",
+     "decision_note": "Vòng kia đã nêu cùng lỗi và đã sửa; giá trị hiện tại: \"Vâng, có ạ.\""
+    },
+    {
+     "id": "KAI_004",
+     "line": 6,
+     "field": "vi",
+     "old_value": "Vâng, cháu đi đến trường một chút ạ.",
+     "new_value": "Vâng, cháu đi đến trường ạ.",
+     "reason_vi": "'ちょっと学校まで' là cách trả lời rào đón (ちょっと làm mềm câu, như 'ちょっとそこまで'), không có nghĩa 'đi một lát'. Dịch 'đi đến trường một chút' khiến người học hiểu sai là ghé trường chốc lát.",
+     "confidence": "medium",
+     "kind": "unnatural",
+     "decision": "duplicate",
+     "decision_note": "Vòng kia đã nêu cùng lỗi và đã sửa; giá trị hiện tại: \"Vâng, cháu đến trường ạ.\""
+    },
+    {
+     "id": "KAI_024",
+     "line": 9,
+     "field": "jp",
+     "old_value": "むりをしないでくださいね。分からないことがあったら、いつでも聞いてください。",
+     "new_value": "むりをしないでくださいね。分からないことがあったら、聞いてください。",
+     "reason_vi": "'いつでも' (bất cứ lúc nào) không có trong vocab.tsv và cấu trúc nghi vấn từ + でも không nằm trong 135 điểm ngữ pháp N5; bỏ đi câu vẫn đủ ý.",
+     "confidence": "low",
+     "kind": "error",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_024",
+     "line": 9,
+     "field": "hiragana",
+     "old_value": "むりを しないで くださいね。わからない ことが あったら、いつでも きいて ください。",
+     "new_value": "むりを しないで くださいね。わからない ことが あったら、きいて ください。",
+     "reason_vi": "Khớp với jp mới (bỏ いつでも).",
+     "confidence": "low",
+     "kind": "error",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_024",
+     "line": 9,
+     "field": "vi",
+     "old_value": "Chị đừng làm quá sức nhé. Nếu có gì không hiểu thì cứ hỏi tôi bất cứ lúc nào.",
+     "new_value": "Chị đừng làm quá sức nhé. Nếu có gì không hiểu thì cứ hỏi tôi.",
+     "reason_vi": "Khớp với jp mới (bỏ いつでも).",
+     "confidence": "low",
+     "kind": "error",
+     "decision": "accepted",
+     "decision_note": null
+    },
+    {
+     "id": "KAI_002",
+     "line": null,
+     "field": "situation_vi",
+     "old_value": "Tại một bữa tiệc buổi tối, anh Miller (người Mỹ) lần đầu gặp anh Yamamoto. Hai người hỏi nhau về công việc và trao danh thiếp.",
+     "new_value": "Tại một bữa tiệc buổi tối, anh Miller (người Mỹ) lần đầu gặp anh Yamamoto. Hai người hỏi nhau về công việc, rồi anh Yamamoto đưa danh thiếp.",
+     "reason_vi": "Trong hội thoại chỉ Yamamoto đưa danh thiếp (dòng 9); Miller không đưa lại, nên 'hai người trao danh thiếp' (trao đổi) không khớp.",
+     "confidence": "low",
+     "kind": "error",
+     "decision": "accepted",
+     "decision_note": null
+    }
+   ]
+  }
+ },
+ "final_reviewer_fixes": [
+  {
+   "id": "KAI_008",
+   "line": 2,
+   "field": "speaker",
+   "old_value": "受付の人",
+   "new_value": "うけつけの人",
+   "reason_vi": "受, 付 không phải kanji N5; viết kana như phần câu"
+  },
+  {
+   "id": "KAI_020",
+   "line": 1,
+   "field": "vi",
+   "old_value": "Rin ơi, hằng ngày con về nhà lúc mấy giờ?",
+   "new_value": "Lin ơi, hằng ngày con về nhà lúc mấy giờ?",
+   "reason_vi": "Thống nhất phiên âm リン = Lin như các bài khác"
+  },
+  {
+   "id": "KAI_026",
+   "line": 2,
+   "field": "vi",
+   "old_value": "Ngày 8 tháng 4. Còn Rin?",
+   "new_value": "Ngày 8 tháng 4. Còn Lin?",
+   "reason_vi": "Thống nhất phiên âm リン = Lin"
+  },
+  {
+   "id": "KAI_020",
+   "line": null,
+   "field": "grammar_ids",
+   "old_value": [
+    "GRA_000080",
+    "GRA_000127",
+    "GRA_000075",
+    "GRA_000088"
+   ],
+   "new_value": [
+    "GRA_000080",
+    "GRA_000127",
+    "GRA_000075",
+    "GRA_000088",
+    "GRA_000092"
+   ],
+   "reason_vi": "Dòng 8 dùng ねるまえに (V る まえに, GRA_000092) nhưng chưa gắn (rà soát r1_b nêu, không đề xuất)"
+  }
+ ]
+}

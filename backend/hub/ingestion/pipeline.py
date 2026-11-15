@@ -570,6 +570,7 @@ def run_all(conn, check_network: bool = False) -> dict:
     revalidate_all(conn)
     out["grammar"] = knowledge.import_grammar(conn)
     out["kanji"] = knowledge.import_kanji(conn)
+    out["kaiwa"] = knowledge.import_kaiwa(conn)          # after vocabulary/grammar/kanji: it references them
     repo.ensure_cards(conn)                              # after grammar/kanji: they get SRS cards too (ADR-021)
     out["exam"] = import_exam(conn)
     out["past_exams"] = import_past_exams(conn)

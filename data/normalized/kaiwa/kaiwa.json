@@ -1,0 +1,2633 @@
+{
+ "note": "Hội thoại bổ trợ (spec §7.4, ADR-023). AI soạn từ từ vựng/ngữ pháp N5 đã verified; rà soát 2 vòng độc lập + người duyệt cuối (bằng chứng: data/normalized/ai_review/kaiwa_review.json). Không phải nội dung đề thi JLPT.",
+ "entries": [
+  {
+   "id": "KAI_001",
+   "topic": "self_intro",
+   "title_vi": "Làm quen ở buổi giao lưu",
+   "situation_vi": "Tại một buổi giao lưu quốc tế, Nguyễn (người Việt) làm quen với Lin (người Trung Quốc) ngồi bên cạnh.",
+   "lines": [
+    {
+     "speaker": "グエン",
+     "jp": "はじめまして。グエンです。ベトナムから来ました。",
+     "hiragana": "はじめまして。 グエンです。 ベトナムから きました。",
+     "vi": "Rất hân hạnh được làm quen. Tôi là Nguyễn. Tôi đến từ Việt Nam."
+    },
+    {
+     "speaker": "リン",
+     "jp": "はじめまして。リンです。中国から来ました。",
+     "hiragana": "はじめまして。 リンです。 ちゅうごくから きました。",
+     "vi": "Rất hân hạnh. Tôi là Lin. Tôi đến từ Trung Quốc."
+    },
+    {
+     "speaker": "グエン",
+     "jp": "リンさんは学生ですか。",
+     "hiragana": "リンさんは がくせいですか。",
+     "vi": "Chị Lin là sinh viên à?"
+    },
+    {
+     "speaker": "リン",
+     "jp": "はい、日本語学校の学生です。グエンさんも学生ですか。",
+     "hiragana": "はい、 にほんご がっこうの がくせいです。 グエンさんも がくせいですか。",
+     "vi": "Vâng, tôi là học viên trường tiếng Nhật. Anh Nguyễn cũng là sinh viên à?"
+    },
+    {
+     "speaker": "グエン",
+     "jp": "いいえ、学生じゃありません。かいしゃいんです。",
+     "hiragana": "いいえ、 がくせいじゃ ありません。 かいしゃいんです。",
+     "vi": "Không, tôi không phải là sinh viên. Tôi là nhân viên công ty."
+    },
+    {
+     "speaker": "リン",
+     "jp": "そうですか。どこの会社ですか。",
+     "hiragana": "そうですか。 どこの かいしゃですか。",
+     "vi": "Thế à. Anh làm ở công ty nào?"
+    },
+    {
+     "speaker": "グエン",
+     "jp": "パワー電気です。",
+     "hiragana": "パワー でんきです。",
+     "vi": "Công ty Điện khí Power."
+    },
+    {
+     "speaker": "リン",
+     "jp": "そうですか。どうぞよろしくおねがいします。",
+     "hiragana": "そうですか。 どうぞ よろしく おねがいします。",
+     "vi": "Vậy à. Rất mong được anh giúp đỡ."
+    },
+    {
+     "speaker": "グエン",
+     "jp": "こちらこそ、よろしくおねがいします。",
+     "hiragana": "こちらこそ、 よろしく おねがいします。",
+     "vi": "Chính tôi mới mong được chị giúp đỡ."
+    }
+   ],
+   "vocab": [
+    "はじめまして",
+    "ベトナム",
+    "中国",
+    "来ます",
+    "学生",
+    "日本語",
+    "学校",
+    "かいしゃいん",
+    "会社",
+    "そうですか",
+    "よろしくおねがいします"
+   ],
+   "grammar_ids": [
+    "GRA_000001",
+    "GRA_000002",
+    "GRA_000003",
+    "GRA_000004"
+   ],
+   "origin": "ai",
+   "review_log": [
+    {
+     "line": null,
+     "field": "situation_vi",
+     "old_value": "Ngày đầu tiên ở trường tiếng Nhật, Nguyễn (người Việt) làm quen với Lin (người Trung Quốc) ngồi bên cạnh.",
+     "new_value": "Tại một buổi giao lưu quốc tế, Nguyễn (người Việt) làm quen với Lin (người Trung Quốc) ngồi bên cạnh.",
+     "reason_vi": "Mâu thuẫn với hội thoại: nếu cả hai cùng ở trường tiếng Nhật thì Lin không cần giới thiệu 'tôi là học viên trường tiếng Nhật', và Nguyễn lại nói 'tôi không phải là học sinh, tôi là nhân viên công ty'. Đặt bối cảnh trung lập để lời thoại hợp lý.",
+     "round": 1
+    },
+    {
+     "line": null,
+     "field": "title_vi",
+     "old_value": "Làm quen với bạn cùng lớp",
+     "new_value": "Làm quen ở buổi giao lưu",
+     "reason_vi": "Nguyễn nói mình không phải học sinh mà là nhân viên công ty, nên 'bạn cùng lớp' không khớp; đi kèm sửa situation_vi.",
+     "round": 1
+    }
+   ],
+   "audited": true
+  },
+  {
+   "id": "KAI_002",
+   "topic": "self_intro",
+   "title_vi": "Làm quen ở bữa tiệc",
+   "situation_vi": "Tại một bữa tiệc buổi tối, anh Miller (người Mỹ) lần đầu gặp anh Yamamoto. Hai người hỏi nhau về công việc, rồi anh Yamamoto đưa danh thiếp.",
+   "lines": [
+    {
+     "speaker": "山本",
+     "jp": "こんばんは。はじめまして。山本です。",
+     "hiragana": "こんばんは。 はじめまして。 やまもとです。",
+     "vi": "Chào buổi tối. Rất hân hạnh được làm quen. Tôi là Yamamoto."
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "はじめまして。ミラーです。アメリカから来ました。",
+     "hiragana": "はじめまして。 ミラーです。 アメリカから きました。",
+     "vi": "Rất hân hạnh. Tôi là Miller. Tôi đến từ Mỹ."
+    },
+    {
+     "speaker": "山本",
+     "jp": "ミラーさん、おしごとは何ですか。",
+     "hiragana": "ミラーさん、 おしごとは なんですか。",
+     "vi": "Anh Miller làm nghề gì vậy?"
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "エンジニアです。とうきょうの会社ではたらいています。",
+     "hiragana": "エンジニアです。 とうきょうの かいしゃで はたらいて います。",
+     "vi": "Tôi là kỹ sư. Tôi đang làm việc ở một công ty tại Tokyo."
+    },
+    {
+     "speaker": "山本",
+     "jp": "そうですか。いつ日本へ来ましたか。",
+     "hiragana": "そうですか。 いつ にほんへ きましたか。",
+     "vi": "Thế à. Anh đến Nhật khi nào vậy?"
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "きょねんの四月に来ました。",
+     "hiragana": "きょねんの しがつに きました。",
+     "vi": "Tôi đến vào tháng Tư năm ngoái."
+    },
+    {
+     "speaker": "山本",
+     "jp": "日本語が上手ですね。",
+     "hiragana": "にほんごが じょうずですね。",
+     "vi": "Anh giỏi tiếng Nhật nhỉ."
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "いいえ、まだまだです。山本さんのおしごとは？",
+     "hiragana": "いいえ、 まだまだです。 やまもとさんの おしごとは？",
+     "vi": "Không đâu, tôi còn kém lắm. Còn công việc của anh Yamamoto thì sao?"
+    },
+    {
+     "speaker": "山本",
+     "jp": "わたしはぎんこういんです。これ、わたしのめいしです。どうぞ。",
+     "hiragana": "わたしは ぎんこういんです。 これ、 わたしの めいしです。 どうぞ。",
+     "vi": "Tôi là nhân viên ngân hàng. Đây là danh thiếp của tôi. Xin mời anh."
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "ありがとうございます。どうぞよろしくおねがいします。",
+     "hiragana": "ありがとう ございます。 どうぞ よろしく おねがいします。",
+     "vi": "Cảm ơn anh. Rất mong được anh giúp đỡ."
+    }
+   ],
+   "vocab": [
+    "こんばんは",
+    "はじめまして",
+    "アメリカ",
+    "おしごと",
+    "エンジニア",
+    "会社",
+    "来ます",
+    "上手",
+    "まだまだです",
+    "ぎんこういん",
+    "めいし",
+    "どうぞ"
+   ],
+   "grammar_ids": [
+    "GRA_000028",
+    "GRA_000020",
+    "GRA_000047",
+    "GRA_000077"
+   ],
+   "origin": "ai",
+   "review_log": [
+    {
+     "line": null,
+     "field": "situation_vi",
+     "old_value": "Tại một bữa tiệc buổi tối, anh Miller (người Mỹ) lần đầu gặp anh Yamamoto. Hai người hỏi nhau về công việc và trao danh thiếp.",
+     "new_value": "Tại một bữa tiệc buổi tối, anh Miller (người Mỹ) lần đầu gặp anh Yamamoto. Hai người hỏi nhau về công việc, rồi anh Yamamoto đưa danh thiếp.",
+     "reason_vi": "Trong hội thoại chỉ Yamamoto đưa danh thiếp (dòng 9); Miller không đưa lại, nên 'hai người trao danh thiếp' (trao đổi) không khớp.",
+     "round": 2
+    }
+   ],
+   "audited": true
+  },
+  {
+   "id": "KAI_003",
+   "topic": "self_intro",
+   "title_vi": "Tự giới thiệu trước lớp",
+   "situation_vi": "Buổi học đầu tiên của lớp tiếng Nhật, cô giáo mời Nguyễn tự giới thiệu trước cả lớp. Sau đó bạn cùng lớp Maria đặt câu hỏi.",
+   "lines": [
+    {
+     "speaker": "先生",
+     "jp": "それでは、グエンさん、おねがいします。",
+     "hiragana": "それでは、 グエンさん、 おねがいします。",
+     "vi": "Vậy thì, mời em Nguyễn."
+    },
+    {
+     "speaker": "グエン",
+     "jp": "みなさん、はじめまして。グエンです。ベトナムのハノイから来ました。",
+     "hiragana": "みなさん、 はじめまして。 グエンです。 ベトナムの ハノイから きました。",
+     "vi": "Chào mọi người, rất hân hạnh được làm quen. Mình là Nguyễn. Mình đến từ Hà Nội, Việt Nam."
+    },
+    {
+     "speaker": "グエン",
+     "jp": "かぞくは四人です。父と母といもうとがいます。",
+     "hiragana": "かぞくは よにんです。 ちちと ははと いもうとが います。",
+     "vi": "Gia đình mình có bốn người. Mình có bố, mẹ và em gái."
+    },
+    {
+     "speaker": "グエン",
+     "jp": "わたしのしゅみは日本のえいがを見ることです。",
+     "hiragana": "わたしの しゅみは にほんの えいがを みる ことです。",
+     "vi": "Sở thích của mình là xem phim Nhật Bản."
+    },
+    {
+     "speaker": "グエン",
+     "jp": "日本語はまだ下手ですが、毎日べんきょうしています。どうぞよろしくおねがいします。",
+     "hiragana": "にほんごは まだ へたですが、 まいにち べんきょうして います。 どうぞ よろしく おねがいします。",
+     "vi": "Tiếng Nhật của mình vẫn còn kém, nhưng ngày nào mình cũng học. Rất mong mọi người giúp đỡ."
+    },
+    {
+     "speaker": "先生",
+     "jp": "ありがとうございました。何かしつもんがありますか。",
+     "hiragana": "ありがとう ございました。 なにか しつもんが ありますか。",
+     "vi": "Cảm ơn em. Các em có câu hỏi gì không?"
+    },
+    {
+     "speaker": "マリア",
+     "jp": "グエンさん、どんなえいががすきですか。",
+     "hiragana": "グエンさん、 どんな えいがが すきですか。",
+     "vi": "Bạn Nguyễn thích phim như thế nào?"
+    },
+    {
+     "speaker": "グエン",
+     "jp": "アニメがすきです。いつか日本語だけで見たいです。",
+     "hiragana": "アニメが すきです。 いつか にほんごだけで みたいです。",
+     "vi": "Mình thích phim hoạt hình. Mình muốn một ngày nào đó xem được chỉ bằng tiếng Nhật."
+    },
+    {
+     "speaker": "マリア",
+     "jp": "わたしもアニメがすきです。こんど、いっしょに見ましょう。",
+     "hiragana": "わたしも アニメが すきです。 こんど、 いっしょに みましょう。",
+     "vi": "Mình cũng thích phim hoạt hình. Lần tới cùng xem nhé."
+    },
+    {
+     "speaker": "グエン",
+     "jp": "はい、ぜひ。",
+     "hiragana": "はい、 ぜひ。",
+     "vi": "Ừ, nhất định rồi."
+    }
+   ],
+   "vocab": [
+    "みなさん",
+    "かぞく",
+    "父",
+    "母",
+    "いもうと",
+    "しゅみ",
+    "えいが",
+    "下手",
+    "毎日",
+    "アニメ",
+    "いっしょに",
+    "ぜひ"
+   ],
+   "grammar_ids": [
+    "GRA_000091",
+    "GRA_000045",
+    "GRA_000067",
+    "GRA_000035"
+   ],
+   "origin": "ai",
+   "review_log": [
+    {
+     "line": null,
+     "field": "situation_vi",
+     "old_value": "Buổi học đầu tiên của lớp tiếng Nhật, cô giáo mời Nguyễn tự giới thiệu trước cả lớp. Sau đó bạn cùng lớp Ogawa đặt câu hỏi.",
+     "new_value": "Buổi học đầu tiên của lớp tiếng Nhật, cô giáo mời Nguyễn tự giới thiệu trước cả lớp. Sau đó bạn cùng lớp Maria đặt câu hỏi.",
+     "reason_vi": "Ogawa (小川) là tên người Nhật; một người Nhật làm 'bạn cùng lớp' trong lớp học tiếng Nhật là không hợp lý. Đổi sang học viên nước ngoài (Maria, đã dùng ở KAI_013).",
+     "round": 1
+    },
+    {
+     "line": 7,
+     "field": "speaker",
+     "old_value": "小川",
+     "new_value": "マリア",
+     "reason_vi": "Đi kèm sửa situation_vi: bạn cùng lớp trong lớp tiếng Nhật không nên là người Nhật.",
+     "round": 1
+    },
+    {
+     "line": 9,
+     "field": "speaker",
+     "old_value": "小川",
+     "new_value": "マリア",
+     "reason_vi": "Đi kèm sửa situation_vi và dòng 7.",
+     "round": 1
+    }
+   ],
+   "audited": true
+  },
+  {
+   "id": "KAI_004",
+   "topic": "greetings",
+   "title_vi": "Chào hàng xóm buổi sáng",
+   "situation_vi": "Buổi sáng, Nguyễn ra khỏi nhà và gặp bác hàng xóm Nakagawa trước cửa.",
+   "lines": [
+    {
+     "speaker": "中川",
+     "jp": "グエンさん、おはようございます。",
+     "hiragana": "グエンさん、 おはよう ございます。",
+     "vi": "Chào buổi sáng, cháu Nguyễn."
+    },
+    {
+     "speaker": "グエン",
+     "jp": "あ、中川さん。おはようございます。",
+     "hiragana": "あ、 なかがわさん。 おはよう ございます。",
+     "vi": "À, bác Nakagawa. Cháu chào bác ạ."
+    },
+    {
+     "speaker": "中川",
+     "jp": "今日はさむいですね。",
+     "hiragana": "きょうは さむいですね。",
+     "vi": "Hôm nay lạnh nhỉ."
+    },
+    {
+     "speaker": "グエン",
+     "jp": "ええ、ほんとうにさむいですね。",
+     "hiragana": "ええ、 ほんとうに さむいですね。",
+     "vi": "Vâng, lạnh thật bác nhỉ."
+    },
+    {
+     "speaker": "中川",
+     "jp": "お出かけですか。",
+     "hiragana": "おでかけですか。",
+     "vi": "Cháu đi đâu đấy à?"
+    },
+    {
+     "speaker": "グエン",
+     "jp": "ええ、ちょっと学校まで。",
+     "hiragana": "ええ、 ちょっと がっこうまで。",
+     "vi": "Vâng, cháu đến trường ạ."
+    },
+    {
+     "speaker": "中川",
+     "jp": "そうですか。いってらっしゃい。",
+     "hiragana": "そうですか。 いってらっしゃい。",
+     "vi": "Thế à. Cháu đi nhé."
+    },
+    {
+     "speaker": "グエン",
+     "jp": "いってきます。",
+     "hiragana": "いってきます。",
+     "vi": "Cháu đi đây ạ."
+    }
+   ],
+   "vocab": [
+    "今日",
+    "さむい",
+    "ええ",
+    "ほんとうに",
+    "お出かけですか",
+    "ちょっと",
+    "学校",
+    "そうですか",
+    "いってきます"
+   ],
+   "grammar_ids": [
+    "GRA_000023",
+    "GRA_000041"
+   ],
+   "origin": "ai",
+   "review_log": [
+    {
+     "line": 6,
+     "field": "vi",
+     "old_value": "Vâng, cháu đi đến trường một chút ạ.",
+     "new_value": "Vâng, cháu đến trường ạ.",
+     "reason_vi": "ちょっと trong 'ちょっと学校まで' là từ làm mềm câu trả lời (không muốn nói chi tiết), không mang nghĩa 'một chút' về thời gian; dịch 'đi đến trường một chút' sai sắc thái và không tự nhiên.",
+     "round": 1
+    }
+   ],
+   "audited": true
+  },
+  {
+   "id": "KAI_005",
+   "topic": "greetings",
+   "title_vi": "Đến chơi nhà bạn",
+   "situation_vi": "Lin đến chơi nhà chị Takagi, mang theo một món quà nhỏ. Cuối buổi, Lin xin phép ra về.",
+   "lines": [
+    {
+     "speaker": "リン",
+     "jp": "ごめんください。",
+     "hiragana": "ごめんください。",
+     "vi": "Xin lỗi, có ai ở nhà không ạ?"
+    },
+    {
+     "speaker": "高木",
+     "jp": "あ、リンさん、いらっしゃい。どうぞ、お上がりください。",
+     "hiragana": "あ、 リンさん、 いらっしゃい。 どうぞ、 おあがり ください。",
+     "vi": "À, Lin, chào mừng em. Mời em vào nhà."
+    },
+    {
+     "speaker": "リン",
+     "jp": "おじゃまします。これ、ほんのきもちです。",
+     "hiragana": "おじゃまします。 これ、 ほんの きもちです。",
+     "vi": "Em xin phép làm phiền ạ. Đây là chút quà nhỏ của em."
+    },
+    {
+     "speaker": "高木",
+     "jp": "どうもすみません。コーヒーとおちゃと、どちらがいいですか。",
+     "hiragana": "どうも すみません。 コーヒーと おちゃと、 どちらが いいですか。",
+     "vi": "Cảm ơn em nhé. Cà phê với trà, em thích loại nào hơn?"
+    },
+    {
+     "speaker": "リン",
+     "jp": "コーヒーをおねがいします。",
+     "hiragana": "コーヒーを おねがいします。",
+     "vi": "Cho em xin cà phê ạ."
+    },
+    {
+     "speaker": "高木",
+     "jp": "はい、どうぞ。ケーキもどうぞ。",
+     "hiragana": "はい、 どうぞ。 ケーキも どうぞ。",
+     "vi": "Đây, mời em. Mời em ăn cả bánh ngọt nữa."
+    },
+    {
+     "speaker": "リン",
+     "jp": "いただきます。このケーキ、おいしいですね。",
+     "hiragana": "いただきます。 この ケーキ、 おいしいですね。",
+     "vi": "Em xin phép ăn ạ. Bánh này ngon quá chị nhỉ."
+    },
+    {
+     "speaker": "高木",
+     "jp": "よかったです。たくさん食べてください。",
+     "hiragana": "よかったです。 たくさん たべて ください。",
+     "vi": "Thế thì tốt quá. Em ăn nhiều vào nhé."
+    },
+    {
+     "speaker": "リン",
+     "jp": "あ、もう六時ですね。そろそろしつれいします。",
+     "hiragana": "あ、 もう ろくじですね。 そろそろ しつれいします。",
+     "vi": "Ôi, đã sáu giờ rồi nhỉ. Em xin phép về ạ."
+    },
+    {
+     "speaker": "高木",
+     "jp": "そうですか。またいらっしゃってください。",
+     "hiragana": "そうですか。 また いらっしゃって ください。",
+     "vi": "Vậy à. Lần sau em lại đến chơi nhé."
+    }
+   ],
+   "vocab": [
+    "ごめんください",
+    "いらっしゃい",
+    "おじゃまします",
+    "ほんのきもちです",
+    "どうもすみません",
+    "コーヒー",
+    "おちゃ",
+    "ケーキ",
+    "いただきます",
+    "そろそろしつれいします",
+    "またいらっしゃってください"
+   ],
+   "grammar_ids": [
+    "GRA_000064",
+    "GRA_000072",
+    "GRA_000004"
+   ],
+   "origin": "ai",
+   "audited": true
+  },
+  {
+   "id": "KAI_006",
+   "topic": "greetings",
+   "title_vi": "Gặp lại thầy giáo cũ",
+   "situation_vi": "Ở nhà ga, anh Miller tình cờ gặp lại thầy Ogawa, người từng dạy tiếng Nhật cho anh. Hai người hỏi thăm nhau cho đến khi tàu của thầy đến.",
+   "lines": [
+    {
+     "speaker": "ミラー",
+     "jp": "小川先生、おひさしぶりですね。",
+     "hiragana": "おがわせんせい、 おひさしぶりですね。",
+     "vi": "Thầy Ogawa, lâu lắm rồi mới gặp thầy."
+    },
+    {
+     "speaker": "小川",
+     "jp": "あ、ミラーさん。ほんとうにひさしぶりですね。おげんきですか。",
+     "hiragana": "あ、 ミラーさん。 ほんとうに ひさしぶりですね。 おげんきですか。",
+     "vi": "À, anh Miller. Đúng là lâu lắm rồi nhỉ. Anh có khỏe không?"
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "はい、おかげさまで。先生もおげんきですか。",
+     "hiragana": "はい、 おかげさまで。 せんせいも おげんきですか。",
+     "vi": "Vâng, nhờ trời em vẫn khỏe. Thầy cũng khỏe chứ ạ?"
+    },
+    {
+     "speaker": "小川",
+     "jp": "ええ、げんきですよ。ミラーさんは今、どこではたらいていますか。",
+     "hiragana": "ええ、 げんきですよ。 ミラーさんは いま、 どこで はたらいて いますか。",
+     "vi": "Ừ, tôi khỏe. Bây giờ anh Miller đang làm việc ở đâu?"
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "大学のちかくの会社ではたらいています。毎日いそがしいですが、たのしいです。",
+     "hiragana": "だいがくの ちかくの かいしゃで はたらいて います。 まいにち いそがしいですが、 たのしいです。",
+     "vi": "Em đang làm ở một công ty gần trường đại học. Ngày nào cũng bận nhưng rất vui ạ."
+    },
+    {
+     "speaker": "小川",
+     "jp": "それはよかったですね。日本語のべんきょうはどうですか。",
+     "hiragana": "それは よかったですね。 にほんごの べんきょうは どうですか。",
+     "vi": "Thế thì tốt quá. Việc học tiếng Nhật thế nào rồi?"
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "少し上手になりましたが、かんじはまだむずかしいです。",
+     "hiragana": "すこし じょうずに なりましたが、 かんじは まだ むずかしいです。",
+     "vi": "Em đã khá lên một chút, nhưng chữ Hán thì vẫn còn khó ạ."
+    },
+    {
+     "speaker": "小川",
+     "jp": "そうですか。がんばってくださいね。あ、電車が来ました。",
+     "hiragana": "そうですか。 がんばって くださいね。 あ、 でんしゃが きました。",
+     "vi": "Vậy à. Cố gắng lên nhé. À, tàu đến rồi."
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "はい、がんばります。先生、お気をつけて。",
+     "hiragana": "はい、 がんばります。 せんせい、 おきを つけて。",
+     "vi": "Vâng, em sẽ cố gắng. Thầy đi cẩn thận ạ."
+    },
+    {
+     "speaker": "小川",
+     "jp": "ありがとう。じゃ、また。",
+     "hiragana": "ありがとう。 じゃ、 また。",
+     "vi": "Cảm ơn anh. Hẹn gặp lại nhé."
+    }
+   ],
+   "vocab": [
+    "ひさしぶり",
+    "おげんきですか",
+    "おかげさまで",
+    "大学",
+    "会社",
+    "いそがしい",
+    "たのしい",
+    "かんじ",
+    "むずかしい",
+    "がんばってください",
+    "お気をつけて",
+    "じゃ、また"
+   ],
+   "grammar_ids": [
+    "GRA_000077",
+    "GRA_000045",
+    "GRA_000097",
+    "GRA_000044"
+   ],
+   "origin": "ai",
+   "audited": true
+  },
+  {
+   "id": "KAI_007",
+   "topic": "shopping",
+   "title_vi": "Mua trái cây",
+   "situation_vi": "Nguyễn mua táo ở một cửa hàng trái cây gần nhà. Người bán giới thiệu thêm quýt.",
+   "lines": [
+    {
+     "speaker": "店の人",
+     "jp": "いらっしゃいませ。",
+     "hiragana": "いらっしゃいませ。",
+     "vi": "Xin mời quý khách."
+    },
+    {
+     "speaker": "グエン",
+     "jp": "すみません、このりんごはいくらですか。",
+     "hiragana": "すみません、 この りんごは いくらですか。",
+     "vi": "Xin hỏi, táo này bao nhiêu tiền ạ?"
+    },
+    {
+     "speaker": "店の人",
+     "jp": "一つ百円です。",
+     "hiragana": "ひとつ ひゃくえんです。",
+     "vi": "Một trăm yên một quả."
+    },
+    {
+     "speaker": "グエン",
+     "jp": "じゃ、りんごを三つください。",
+     "hiragana": "じゃ、 りんごを みっつ ください。",
+     "vi": "Vậy cho tôi ba quả táo."
+    },
+    {
+     "speaker": "店の人",
+     "jp": "はい。みかんもいかがですか。安いですよ。",
+     "hiragana": "はい。 みかんも いかがですか。 やすいですよ。",
+     "vi": "Vâng. Quý khách lấy thêm quýt không ạ? Rẻ lắm đấy."
+    },
+    {
+     "speaker": "グエン",
+     "jp": "みかんはいくらですか。",
+     "hiragana": "みかんは いくらですか。",
+     "vi": "Quýt bao nhiêu tiền ạ?"
+    },
+    {
+     "speaker": "店の人",
+     "jp": "五つで二百円です。",
+     "hiragana": "いつつで にひゃくえんです。",
+     "vi": "Năm quả hai trăm yên."
+    },
+    {
+     "speaker": "グエン",
+     "jp": "じゃ、みかんもください。ぜんぶでいくらですか。",
+     "hiragana": "じゃ、 みかんも ください。 ぜんぶで いくらですか。",
+     "vi": "Vậy cho tôi cả quýt nữa. Tất cả bao nhiêu tiền ạ?"
+    },
+    {
+     "speaker": "店の人",
+     "jp": "五百円です。ありがとうございます。",
+     "hiragana": "ごひゃくえんです。 ありがとう ございます。",
+     "vi": "Năm trăm yên ạ. Cảm ơn quý khách."
+    }
+   ],
+   "vocab": [
+    "いらっしゃいませ",
+    "りんご",
+    "いくら",
+    "一つ",
+    "百",
+    "円",
+    "三つ",
+    "ください",
+    "みかん",
+    "安い",
+    "五つ",
+    "ぜんぶで"
+   ],
+   "grammar_ids": [
+    "GRA_000017",
+    "GRA_000058",
+    "GRA_000004",
+    "GRA_000029"
+   ],
+   "origin": "ai",
+   "audited": true
+  },
+  {
+   "id": "KAI_008",
+   "topic": "shopping",
+   "title_vi": "Mua cà vạt ở cửa hàng bách hóa",
+   "situation_vi": "Anh Miller vào cửa hàng bách hóa, hỏi quầy lễ tân chỗ bán cà vạt rồi lên tầng chọn mua.",
+   "lines": [
+    {
+     "speaker": "ミラー",
+     "jp": "すみません。ネクタイうりばはどこですか。",
+     "hiragana": "すみません。 ネクタイ うりばは どこですか。",
+     "vi": "Xin lỗi. Quầy bán cà vạt ở đâu ạ?"
+    },
+    {
+     "speaker": "うけつけの人",
+     "jp": "三がいでございます。",
+     "hiragana": "さんがいで ございます。",
+     "vi": "Dạ, ở tầng ba ạ."
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "すみません、そのネクタイを見せてください。",
+     "hiragana": "すみません、 その ネクタイを みせて ください。",
+     "vi": "Xin lỗi, cho tôi xem cái cà vạt đó."
+    },
+    {
+     "speaker": "店の人",
+     "jp": "はい、どうぞ。イタリアのネクタイです。",
+     "hiragana": "はい、 どうぞ。 イタリアの ネクタイです。",
+     "vi": "Vâng, xin mời. Đây là cà vạt của Ý."
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "いいですね。いくらですか。",
+     "hiragana": "いいですね。 いくらですか。",
+     "vi": "Đẹp nhỉ. Bao nhiêu tiền vậy?"
+    },
+    {
+     "speaker": "店の人",
+     "jp": "八千円です。",
+     "hiragana": "はっせんえんです。",
+     "vi": "Tám nghìn yên ạ."
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "ちょっと高いですね。もう少し安いのはありますか。",
+     "hiragana": "ちょっと たかいですね。 もう すこし やすいのは ありますか。",
+     "vi": "Hơi đắt nhỉ. Có cái nào rẻ hơn một chút không?"
+    },
+    {
+     "speaker": "店の人",
+     "jp": "こちらはいかがですか。日本のネクタイで、三千円です。",
+     "hiragana": "こちらは いかがですか。 にほんの ネクタイで、 さんぜんえんです。",
+     "vi": "Cái này thì sao ạ? Đây là cà vạt của Nhật, giá ba nghìn yên."
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "じゃ、これをください。",
+     "hiragana": "じゃ、 これを ください。",
+     "vi": "Vậy cho tôi cái này."
+    }
+   ],
+   "vocab": [
+    "すみません",
+    "ネクタイ",
+    "うりば",
+    "でございます",
+    "見せてください",
+    "いくら",
+    "千",
+    "円",
+    "高い",
+    "もう少し",
+    "安い",
+    "いかがですか"
+   ],
+   "grammar_ids": [
+    "GRA_000013",
+    "GRA_000015",
+    "GRA_000016",
+    "GRA_000017",
+    "GRA_000079"
+   ],
+   "origin": "ai",
+   "review_log": [
+    {
+     "line": null,
+     "field": "grammar_ids",
+     "old_value": [
+      "GRA_000013",
+      "GRA_000016",
+      "GRA_000017",
+      "GRA_000011"
+     ],
+     "new_value": [
+      "GRA_000013",
+      "GRA_000015",
+      "GRA_000016",
+      "GRA_000017",
+      "GRA_000079"
+     ],
+     "reason_vi": "Cả 2 vòng rà soát: GRA_000011 không có trong bài; thay bằng điểm thật sự xuất hiện",
+     "round": 2
+    },
+    {
+     "line": 2,
+     "field": "speaker",
+     "old_value": "受付の人",
+     "new_value": "うけつけの人",
+     "reason_vi": "受, 付 không phải kanji N5; viết kana như phần câu",
+     "round": 3
+    }
+   ],
+   "audited": true
+  },
+  {
+   "id": "KAI_009",
+   "topic": "shopping",
+   "title_vi": "Mua áo len ở cửa hàng quần áo",
+   "situation_vi": "Lin tìm mua một chiếc áo len trắng. Cô mặc thử, đổi sang cỡ nhỏ hơn rồi hỏi có trả bằng thẻ được không.",
+   "lines": [
+    {
+     "speaker": "リン",
+     "jp": "すみません、白いセーターはありますか。",
+     "hiragana": "すみません、 しろい セーターは ありますか。",
+     "vi": "Xin lỗi, ở đây có áo len trắng không ạ?"
+    },
+    {
+     "speaker": "店の人",
+     "jp": "はい、白いセーターはこちらです。",
+     "hiragana": "はい、 しろい セーターは こちらです。",
+     "vi": "Vâng, áo len trắng ở đây ạ."
+    },
+    {
+     "speaker": "リン",
+     "jp": "これ、きてもいいですか。",
+     "hiragana": "これ、 きても いいですか。",
+     "vi": "Tôi mặc thử cái này được không?"
+    },
+    {
+     "speaker": "店の人",
+     "jp": "ええ、どうぞ。",
+     "hiragana": "ええ、 どうぞ。",
+     "vi": "Vâng, xin mời."
+    },
+    {
+     "speaker": "リン",
+     "jp": "ちょっと大きいですね。もっと小さいサイズはありますか。",
+     "hiragana": "ちょっと おおきいですね。 もっと ちいさい サイズは ありますか。",
+     "vi": "Hơi rộng nhỉ. Có cỡ nhỏ hơn không ạ?"
+    },
+    {
+     "speaker": "店の人",
+     "jp": "はい。こちらはどうですか。",
+     "hiragana": "はい。 こちらは どうですか。",
+     "vi": "Có ạ. Cái này thì thế nào ạ?"
+    },
+    {
+     "speaker": "リン",
+     "jp": "ちょうどいいです。いくらですか。",
+     "hiragana": "ちょうど いいです。 いくらですか。",
+     "vi": "Vừa khít. Bao nhiêu tiền ạ?"
+    },
+    {
+     "speaker": "店の人",
+     "jp": "四千五百円です。",
+     "hiragana": "よんせん ごひゃくえんです。",
+     "vi": "Bốn nghìn năm trăm yên ạ."
+    },
+    {
+     "speaker": "リン",
+     "jp": "じゃ、これをください。カードではらってもいいですか。",
+     "hiragana": "じゃ、 これを ください。 カードで はらっても いいですか。",
+     "vi": "Vậy cho tôi cái này. Tôi trả bằng thẻ được không?"
+    },
+    {
+     "speaker": "店の人",
+     "jp": "はい、だいじょうぶです。ありがとうございます。",
+     "hiragana": "はい、 だいじょうぶです。 ありがとう ございます。",
+     "vi": "Vâng, được ạ. Cảm ơn quý khách."
+    }
+   ],
+   "vocab": [
+    "白い",
+    "セーター",
+    "大きい",
+    "もっと",
+    "小さい",
+    "サイズ",
+    "ちょうど",
+    "いくら",
+    "千",
+    "円",
+    "カード",
+    "だいじょうぶ"
+   ],
+   "grammar_ids": [
+    "GRA_000075",
+    "GRA_000036",
+    "GRA_000042",
+    "GRA_000017"
+   ],
+   "origin": "ai",
+   "review_log": [
+    {
+     "line": 2,
+     "field": "jp",
+     "old_value": "いらっしゃいませ。白いセーターはこちらです。",
+     "new_value": "はい、白いセーターはこちらです。",
+     "reason_vi": "Thứ tự lượt lời không tự nhiên: khách (dòng 1) đã hỏi rồi nhân viên mới chào「いらっしゃいませ」. Lời chào đón khách phải ở đầu; khi đang trả lời câu hỏi thì chỉ nói「はい、～」.",
+     "round": 2
+    },
+    {
+     "line": 2,
+     "field": "hiragana",
+     "old_value": "いらっしゃいませ。 しろい セーターは こちらです。",
+     "new_value": "はい、 しろい セーターは こちらです。",
+     "reason_vi": "Đi kèm bản sửa jp dòng 2.",
+     "round": 2
+    },
+    {
+     "line": 2,
+     "field": "vi",
+     "old_value": "Xin mời quý khách. Áo len trắng ở đây ạ.",
+     "new_value": "Vâng, áo len trắng ở đây ạ.",
+     "reason_vi": "Đi kèm bản sửa jp dòng 2.",
+     "round": 2
+    }
+   ],
+   "audited": true
+  },
+  {
+   "id": "KAI_010",
+   "topic": "directions",
+   "title_vi": "Hỏi đường đến nhà ga",
+   "situation_vi": "Anh Miller mới đến khu phố, hỏi một người phụ nữ đi đường cách đến nhà ga.",
+   "lines": [
+    {
+     "speaker": "ミラー",
+     "jp": "すみません。駅はどこですか。",
+     "hiragana": "すみません。 えきは どこですか。",
+     "vi": "Xin lỗi. Nhà ga ở đâu ạ?"
+    },
+    {
+     "speaker": "女の人",
+     "jp": "駅ですか。この道をまっすぐ行ってください。",
+     "hiragana": "えきですか。 この みちを まっすぐ いって ください。",
+     "vi": "Nhà ga à? Anh cứ đi thẳng con đường này nhé."
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "まっすぐですね。",
+     "hiragana": "まっすぐですね。",
+     "vi": "Đi thẳng phải không ạ?"
+    },
+    {
+     "speaker": "女の人",
+     "jp": "ええ。それから、二つ目のしんごうを右にまがってください。",
+     "hiragana": "ええ。 それから、 ふたつめの しんごうを みぎに まがって ください。",
+     "vi": "Vâng. Sau đó đến đèn giao thông thứ hai thì anh rẽ phải."
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "二つ目のしんごうを右にまがりますね。",
+     "hiragana": "ふたつめの しんごうを みぎに まがりますね。",
+     "vi": "Đến đèn giao thông thứ hai thì rẽ phải, đúng không ạ?"
+    },
+    {
+     "speaker": "女の人",
+     "jp": "はい。駅は左にありますよ。",
+     "hiragana": "はい。 えきは ひだりに ありますよ。",
+     "vi": "Vâng. Nhà ga ở bên trái đấy."
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "ここからとおいですか。",
+     "hiragana": "ここから とおいですか。",
+     "vi": "Từ đây có xa không ạ?"
+    },
+    {
+     "speaker": "女の人",
+     "jp": "いいえ、ちかいですよ。あるいて五分ぐらいです。",
+     "hiragana": "いいえ、 ちかいですよ。 あるいて ごふん ぐらいです。",
+     "vi": "Không, gần thôi. Đi bộ khoảng năm phút."
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "わかりました。ありがとうございます。",
+     "hiragana": "わかりました。 ありがとう ございます。",
+     "vi": "Tôi hiểu rồi. Cảm ơn chị."
+    }
+   ],
+   "vocab": [
+    "駅",
+    "道",
+    "まっすぐ",
+    "それから",
+    "しんごう",
+    "右",
+    "左",
+    "まがります",
+    "とおい",
+    "ちかい",
+    "あるいて",
+    "わかります"
+   ],
+   "grammar_ids": [
+    "GRA_000015",
+    "GRA_000072",
+    "GRA_000113",
+    "GRA_000054"
+   ],
+   "origin": "ai",
+   "audited": true
+  },
+  {
+   "id": "KAI_011",
+   "topic": "directions",
+   "title_vi": "Hỏi đường đến bưu điện ở bốt cảnh sát",
+   "situation_vi": "Chị Lin muốn gửi thư nên ghé bốt cảnh sát (こうばん) hỏi đường đến bưu điện gần nhất.",
+   "lines": [
+    {
+     "speaker": "リン",
+     "jp": "すみません。このちかくにゆうびんきょくがありますか。",
+     "hiragana": "すみません。 この ちかくに ゆうびんきょくが ありますか。",
+     "vi": "Xin lỗi. Gần đây có bưu điện không ạ?"
+    },
+    {
+     "speaker": "おまわりさん",
+     "jp": "ええ、ありますよ。",
+     "hiragana": "ええ、 ありますよ。",
+     "vi": "Có, có đấy."
+    },
+    {
+     "speaker": "リン",
+     "jp": "どうやって行きますか。",
+     "hiragana": "どうやって いきますか。",
+     "vi": "Đi đến đó thế nào ạ?"
+    },
+    {
+     "speaker": "おまわりさん",
+     "jp": "この道をまっすぐ行くと、大きいこうさてんがあります。そのこうさてんを左にまがってください。",
+     "hiragana": "この みちを まっすぐ いくと、 おおきい こうさてんが あります。 その こうさてんを ひだりに まがって ください。",
+     "vi": "Cứ đi thẳng con đường này thì sẽ đến một ngã tư lớn. Đến ngã tư đó thì chị rẽ trái."
+    },
+    {
+     "speaker": "リン",
+     "jp": "こうさてんを左にまがりますね。",
+     "hiragana": "こうさてんを ひだりに まがりますね。",
+     "vi": "Rẽ trái ở ngã tư, phải không ạ?"
+    },
+    {
+     "speaker": "おまわりさん",
+     "jp": "はい。ゆうびんきょくはぎんこうのとなりにあります。",
+     "hiragana": "はい。 ゆうびんきょくは ぎんこうの となりに あります。",
+     "vi": "Vâng. Bưu điện ở bên cạnh ngân hàng."
+    },
+    {
+     "speaker": "リン",
+     "jp": "ぎんこうのとなりですね。ここから何分ぐらいかかりますか。",
+     "hiragana": "ぎんこうの となりですね。 ここから なんぷん ぐらい かかりますか。",
+     "vi": "Bên cạnh ngân hàng nhỉ. Từ đây đi mất khoảng mấy phút ạ?"
+    },
+    {
+     "speaker": "おまわりさん",
+     "jp": "そうですね。あるいて十分ぐらいです。",
+     "hiragana": "そうですね。 あるいて じゅっぷん ぐらいです。",
+     "vi": "Để tôi xem... Đi bộ khoảng mười phút."
+    },
+    {
+     "speaker": "リン",
+     "jp": "わかりました。ありがとうございました。",
+     "hiragana": "わかりました。 ありがとう ございました。",
+     "vi": "Tôi hiểu rồi. Cảm ơn anh."
+    },
+    {
+     "speaker": "おまわりさん",
+     "jp": "気をつけてください。",
+     "hiragana": "きを つけて ください。",
+     "vi": "Chị đi cẩn thận nhé."
+    }
+   ],
+   "vocab": [
+    "ちかく",
+    "ゆうびんきょく",
+    "行きます",
+    "道",
+    "まっすぐ",
+    "大きい",
+    "こうさてん",
+    "まがります",
+    "ぎんこう",
+    "となり",
+    "何分",
+    "かかります"
+   ],
+   "grammar_ids": [
+    "GRA_000082",
+    "GRA_000111",
+    "GRA_000055",
+    "GRA_000061"
+   ],
+   "origin": "ai",
+   "audited": true
+  },
+  {
+   "id": "KAI_012",
+   "topic": "directions",
+   "title_vi": "Gọi điện hỏi đường đến nhà bạn",
+   "situation_vi": "Anh Wang lần đầu đến nhà ga gần nhà anh Nakagawa, gọi điện để hỏi đường từ ga đến nhà anh ấy.",
+   "lines": [
+    {
+     "speaker": "ワン",
+     "jp": "もしもし、中川さん。ワンです。今、駅につきました。",
+     "hiragana": "もしもし、 なかがわさん。 ワンです。 いま、 えきに つきました。",
+     "vi": "A lô, anh Nakagawa à. Tôi là Wang đây. Tôi vừa đến nhà ga rồi."
+    },
+    {
+     "speaker": "中川",
+     "jp": "あ、ワンさん。今、駅のどこにいますか。",
+     "hiragana": "あ、 ワンさん。 いま、 えきの どこに いますか。",
+     "vi": "À, anh Wang. Bây giờ anh đang ở chỗ nào trong ga?"
+    },
+    {
+     "speaker": "ワン",
+     "jp": "北口の前にいます。",
+     "hiragana": "きたぐちの まえに います。",
+     "vi": "Tôi đang ở trước cửa Bắc."
+    },
+    {
+     "speaker": "中川",
+     "jp": "じゃ、北口を出て、右に行ってください。大きいコンビニがありますか。",
+     "hiragana": "じゃ、 きたぐちを でて、 みぎに いって ください。 おおきい コンビニが ありますか。",
+     "vi": "Vậy anh ra cửa Bắc rồi đi về bên phải. Ở đó có một cửa hàng tiện lợi lớn không?"
+    },
+    {
+     "speaker": "ワン",
+     "jp": "はい、あります。",
+     "hiragana": "はい、 あります。",
+     "vi": "Vâng, có ạ."
+    },
+    {
+     "speaker": "中川",
+     "jp": "そのコンビニのかどを左にまがって、まっすぐ来てください。",
+     "hiragana": "その コンビニの かどを ひだりに まがって、 まっすぐ きて ください。",
+     "vi": "Anh rẽ trái ở góc cửa hàng tiện lợi đó rồi đi thẳng tới nhé."
+    },
+    {
+     "speaker": "ワン",
+     "jp": "かどを左にまがって、まっすぐですね。",
+     "hiragana": "かどを ひだりに まがって、 まっすぐですね。",
+     "vi": "Rẽ trái ở góc rồi đi thẳng, đúng không?"
+    },
+    {
+     "speaker": "中川",
+     "jp": "ええ。はしをわたったら、右にあかいうちがあります。それがわたしのうちです。",
+     "hiragana": "ええ。 はしを わたったら、 みぎに あかい うちが あります。 それが わたしの うちです。",
+     "vi": "Đúng vậy. Qua cầu xong thì bên phải có một ngôi nhà màu đỏ. Đó là nhà tôi."
+    },
+    {
+     "speaker": "ワン",
+     "jp": "わかりました。駅から何分ぐらいですか。",
+     "hiragana": "わかりました。 えきから なんぷん ぐらいですか。",
+     "vi": "Tôi hiểu rồi. Từ ga đến đó khoảng mấy phút?"
+    },
+    {
+     "speaker": "中川",
+     "jp": "あるいて七分ぐらいです。気をつけて来てくださいね。",
+     "hiragana": "あるいて ななふん ぐらいです。 きを つけて きて くださいね。",
+     "vi": "Đi bộ khoảng bảy phút. Anh đi cẩn thận nhé."
+    }
+   ],
+   "vocab": [
+    "もしもし",
+    "つきます",
+    "北",
+    "前",
+    "コンビニ",
+    "かど",
+    "左",
+    "まっすぐ",
+    "はし",
+    "あかい",
+    "うち",
+    "来ます"
+   ],
+   "grammar_ids": [
+    "GRA_000118",
+    "GRA_000078",
+    "GRA_000053",
+    "GRA_000072"
+   ],
+   "origin": "ai",
+   "review_log": [
+    {
+     "line": 4,
+     "field": "jp",
+     "old_value": "じゃ、北口を出て、右に行ってください。大きいコンビニが見えますか。",
+     "new_value": "じゃ、北口を出て、右に行ってください。大きいコンビニがありますか。",
+     "reason_vi": "見えます (nhìn thấy được, tự động từ khả năng) là từ/mẫu N4 (Minna bài 27), không có trong vocab.tsv. Đổi sang 'コンビニがありますか' (GRA_000052/053) vẫn tự nhiên khi chỉ đường qua điện thoại.",
+     "round": 1
+    },
+    {
+     "line": 4,
+     "field": "hiragana",
+     "old_value": "じゃ、 きたぐちを でて、 みぎに いって ください。 おおきい コンビニが みえますか。",
+     "new_value": "じゃ、 きたぐちを でて、 みぎに いって ください。 おおきい コンビニが ありますか。",
+     "reason_vi": "Khớp với bản sửa jp dòng 4.",
+     "round": 1
+    },
+    {
+     "line": 4,
+     "field": "vi",
+     "old_value": "Vậy anh ra cửa Bắc rồi đi về bên phải. Anh có thấy một cửa hàng tiện lợi lớn không?",
+     "new_value": "Vậy anh ra cửa Bắc rồi đi về bên phải. Ở đó có một cửa hàng tiện lợi lớn không?",
+     "reason_vi": "Khớp với bản sửa jp dòng 4 (ありますか thay cho 見えますか).",
+     "round": 1
+    },
+    {
+     "line": 5,
+     "field": "jp",
+     "old_value": "はい、見えます。",
+     "new_value": "はい、あります。",
+     "reason_vi": "Đi kèm sửa dòng 4: bỏ 見えます (N4).",
+     "round": 1
+    },
+    {
+     "line": 5,
+     "field": "hiragana",
+     "old_value": "はい、 みえます。",
+     "new_value": "はい、 あります。",
+     "reason_vi": "Khớp với bản sửa jp dòng 5.",
+     "round": 1
+    },
+    {
+     "line": 5,
+     "field": "vi",
+     "old_value": "Có, tôi thấy rồi.",
+     "new_value": "Vâng, có ạ.",
+     "reason_vi": "Khớp với bản sửa jp dòng 5.",
+     "round": 1
+    }
+   ],
+   "audited": true
+  },
+  {
+   "id": "KAI_013",
+   "topic": "transportation",
+   "title_vi": "Đi học bằng phương tiện gì?",
+   "situation_vi": "Giờ nghỉ, hai bạn cùng lớp là Yamamoto và Maria nói chuyện về cách đến trường mỗi ngày.",
+   "lines": [
+    {
+     "speaker": "山本",
+     "jp": "マリアさんは毎日何で学校へ来ますか。",
+     "hiragana": "マリアさんは まいにち なんで がっこうへ きますか。",
+     "vi": "Maria hằng ngày đến trường bằng gì?"
+    },
+    {
+     "speaker": "マリア",
+     "jp": "バスで来ます。山本さんは？",
+     "hiragana": "バスで きます。 やまもとさんは？",
+     "vi": "Mình đi xe buýt. Còn Yamamoto thì sao?"
+    },
+    {
+     "speaker": "山本",
+     "jp": "わたしはじてんしゃで来ます。",
+     "hiragana": "わたしは じてんしゃで きます。",
+     "vi": "Mình đi xe đạp."
+    },
+    {
+     "speaker": "マリア",
+     "jp": "そうですか。うちから学校までどのくらいかかりますか。",
+     "hiragana": "そうですか。 うちから がっこうまで どのくらい かかりますか。",
+     "vi": "Vậy à. Từ nhà đến trường mất bao lâu?"
+    },
+    {
+     "speaker": "山本",
+     "jp": "二十分ぐらいです。マリアさんは？",
+     "hiragana": "にじゅっぷん ぐらいです。 マリアさんは？",
+     "vi": "Khoảng hai mươi phút. Còn Maria?"
+    },
+    {
+     "speaker": "マリア",
+     "jp": "わたしは三十分ぐらいかかります。あさのバスはいつも人が多いですから、たいへんです。",
+     "hiragana": "わたしは さんじゅっぷん ぐらい かかります。 あさの バスは いつも ひとが おおいですから、 たいへんです。",
+     "vi": "Mình mất khoảng ba mươi phút. Xe buýt buổi sáng lúc nào cũng đông nên vất vả lắm."
+    },
+    {
+     "speaker": "山本",
+     "jp": "そうですか。じてんしゃははやくて、べんりですよ。",
+     "hiragana": "そうですか。 じてんしゃは はやくて、 べんりですよ。",
+     "vi": "Thế à. Xe đạp vừa nhanh vừa tiện đấy."
+    },
+    {
+     "speaker": "マリア",
+     "jp": "いいですね。わたしもじてんしゃがほしいです。",
+     "hiragana": "いいですね。 わたしも じてんしゃが ほしいです。",
+     "vi": "Hay nhỉ. Mình cũng muốn có một chiếc xe đạp."
+    }
+   ],
+   "vocab": [
+    "毎日",
+    "学校",
+    "来ます",
+    "じてんしゃ",
+    "うち",
+    "どのくらい",
+    "かかります",
+    "あさ",
+    "いつも",
+    "たいへん",
+    "べんり",
+    "いいですね"
+   ],
+   "grammar_ids": [
+    "GRA_000026",
+    "GRA_000021",
+    "GRA_000061",
+    "GRA_000066"
+   ],
+   "origin": "ai",
+   "review_log": [
+    {
+     "line": 6,
+     "field": "jp",
+     "old_value": "わたしは三十分ぐらいかかります。あさのバスはいつもこみますから、たいへんです。",
+     "new_value": "わたしは三十分ぐらいかかります。あさのバスはいつも人が多いですから、たいへんです。",
+     "reason_vi": "こみます (混みます, đông đúc) không có trong vocab.tsv (từ N4); hơn nữa trạng thái 'xe đang đông' thường nói こんでいます. Thay bằng '人が多いです' (GRA_000081, từ N5) giữ nguyên nghĩa.",
+     "round": 1
+    },
+    {
+     "line": 6,
+     "field": "hiragana",
+     "old_value": "わたしは さんじゅっぷん ぐらい かかります。 あさの バスは いつも こみますから、 たいへんです。",
+     "new_value": "わたしは さんじゅっぷん ぐらい かかります。 あさの バスは いつも ひとが おおいですから、 たいへんです。",
+     "reason_vi": "Khớp với bản sửa jp dòng 6.",
+     "round": 1
+    }
+   ],
+   "audited": true
+  },
+  {
+   "id": "KAI_014",
+   "topic": "transportation",
+   "title_vi": "Hỏi nhân viên nhà ga cách đi sân bay",
+   "situation_vi": "Anh Miller ở nhà ga, hỏi nhân viên nên đi tàu nào ra sân bay, giá vé và giờ chuyến tàu tiếp theo.",
+   "lines": [
+    {
+     "speaker": "ミラー",
+     "jp": "すみません。くうこうへ行きたいです。どの電車にのりますか。",
+     "hiragana": "すみません。 くうこうへ いきたいです。 どの でんしゃに のりますか。",
+     "vi": "Xin lỗi. Tôi muốn đến sân bay. Tôi phải lên tàu nào ạ?"
+    },
+    {
+     "speaker": "駅の人",
+     "jp": "くうこうですね。三ばんせんの電車にのってください。",
+     "hiragana": "くうこうですね。 さんばんせんの でんしゃに のって ください。",
+     "vi": "Sân bay ạ. Anh hãy lên tàu ở sân ga số 3."
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "三ばんせんですね。のりかえますか。",
+     "hiragana": "さんばんせんですね。 のりかえますか。",
+     "vi": "Sân ga số 3 nhỉ. Tôi có phải đổi tàu không?"
+    },
+    {
+     "speaker": "駅の人",
+     "jp": "いいえ、のりかえなくてもいいです。とっきゅうで四十分ぐらいです。",
+     "hiragana": "いいえ、 のりかえなくても いいです。 とっきゅうで よんじゅっぷん ぐらいです。",
+     "vi": "Không, anh không cần đổi tàu. Đi tàu tốc hành đặc biệt mất khoảng bốn mươi phút."
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "そうですか。きっぷはいくらですか。",
+     "hiragana": "そうですか。 きっぷは いくらですか。",
+     "vi": "Thế à. Vé bao nhiêu tiền ạ?"
+    },
+    {
+     "speaker": "駅の人",
+     "jp": "千二百円です。あそこのきっぷうりばで買ってください。",
+     "hiragana": "せんにひゃくえんです。 あそこの きっぷうりばで かって ください。",
+     "vi": "1.200 yên. Anh mua vé ở quầy bán vé đằng kia nhé."
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "わかりました。つぎの電車は何時ですか。",
+     "hiragana": "わかりました。 つぎの でんしゃは なんじですか。",
+     "vi": "Tôi hiểu rồi. Chuyến tàu tiếp theo chạy lúc mấy giờ ạ?"
+    },
+    {
+     "speaker": "駅の人",
+     "jp": "十時十五分です。あと十分ですよ。",
+     "hiragana": "じゅうじ じゅうごふんです。 あと じゅっぷんですよ。",
+     "vi": "10 giờ 15 phút. Còn 10 phút nữa đấy."
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "ありがとうございます。",
+     "hiragana": "ありがとう ございます。",
+     "vi": "Cảm ơn anh."
+    }
+   ],
+   "vocab": [
+    "くうこう",
+    "電車",
+    "のります",
+    "ばんせん",
+    "のりかえます",
+    "とっきゅう",
+    "きっぷ",
+    "いくら",
+    "円",
+    "わかります",
+    "つぎの",
+    "何時"
+   ],
+   "grammar_ids": [
+    "GRA_000067",
+    "GRA_000082",
+    "GRA_000086",
+    "GRA_000017"
+   ],
+   "origin": "ai",
+   "audited": true
+  },
+  {
+   "id": "KAI_015",
+   "topic": "transportation",
+   "title_vi": "Đi taxi đến khách sạn",
+   "situation_vi": "Anh Takagi bắt taxi đến khách sạn Sakura vì có hẹn với bạn lúc 6 giờ, rồi trả tiền khi xuống xe.",
+   "lines": [
+    {
+     "speaker": "うんてんしゅ",
+     "jp": "どちらまでですか。",
+     "hiragana": "どちらまでですか。",
+     "vi": "Quý khách đi đến đâu ạ?"
+    },
+    {
+     "speaker": "高木",
+     "jp": "さくらホテルまでおねがいします。どのくらいかかりますか。",
+     "hiragana": "さくらホテルまで おねがいします。 どのくらい かかりますか。",
+     "vi": "Cho tôi đến khách sạn Sakura. Mất khoảng bao lâu ạ?"
+    },
+    {
+     "speaker": "うんてんしゅ",
+     "jp": "道がすいていたら、十五分ぐらいです。",
+     "hiragana": "みちが すいて いたら、 じゅうごふん ぐらいです。",
+     "vi": "Nếu đường vắng thì khoảng mười lăm phút."
+    },
+    {
+     "speaker": "高木",
+     "jp": "六時に友だちと会うやくそくがあるので、少しいそいでいます。",
+     "hiragana": "ろくじに ともだちと あう やくそくが あるので、 すこし いそいで います。",
+     "vi": "Tôi có hẹn gặp bạn lúc sáu giờ nên đang hơi vội."
+    },
+    {
+     "speaker": "うんてんしゅ",
+     "jp": "わかりました。じゃ、少しいそぎましょう。",
+     "hiragana": "わかりました。 じゃ、 すこし いそぎましょう。",
+     "vi": "Tôi hiểu rồi. Vậy tôi sẽ đi nhanh hơn một chút nhé."
+    },
+    {
+     "speaker": "高木",
+     "jp": "すみません。あのしんごうの前でとめてください。",
+     "hiragana": "すみません。 あの しんごうの まえで とめて ください。",
+     "vi": "Anh ơi, cho tôi dừng trước cái đèn giao thông kia."
+    },
+    {
+     "speaker": "うんてんしゅ",
+     "jp": "はい。千八百円です。",
+     "hiragana": "はい。 せんはっぴゃくえんです。",
+     "vi": "Vâng. 1.800 yên ạ."
+    },
+    {
+     "speaker": "高木",
+     "jp": "カードではらってもいいですか。",
+     "hiragana": "カードで はらっても いいですか。",
+     "vi": "Tôi trả bằng thẻ có được không?"
+    },
+    {
+     "speaker": "うんてんしゅ",
+     "jp": "ええ、いいですよ。",
+     "hiragana": "ええ、 いいですよ。",
+     "vi": "Vâng, được ạ."
+    },
+    {
+     "speaker": "高木",
+     "jp": "じゃ、カードでおねがいします。ありがとうございました。",
+     "hiragana": "じゃ、 カードで おねがいします。 ありがとう ございました。",
+     "vi": "Vậy tôi trả bằng thẻ. Cảm ơn anh."
+    }
+   ],
+   "vocab": [
+    "ホテル",
+    "どのくらい",
+    "かかります",
+    "道",
+    "やくそく",
+    "少し",
+    "いそぎます",
+    "しんごう",
+    "前",
+    "とめます",
+    "円",
+    "カード"
+   ],
+   "grammar_ids": [
+    "GRA_000117",
+    "GRA_000133",
+    "GRA_000108",
+    "GRA_000075"
+   ],
+   "origin": "ai",
+   "audited": true
+  },
+  {
+   "id": "KAI_016",
+   "topic": "restaurant",
+   "title_vi": "Gọi món ở nhà hàng",
+   "situation_vi": "Anh Miller vào một nhà hàng nhỏ một mình, được nhân viên dẫn chỗ và gọi món.",
+   "lines": [
+    {
+     "speaker": "店の人",
+     "jp": "いらっしゃいませ。何名さまですか。",
+     "hiragana": "いらっしゃいませ。 なんめいさまですか。",
+     "vi": "Xin chào quý khách. Quý khách đi mấy người ạ?"
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "一人です。",
+     "hiragana": "ひとりです。",
+     "vi": "Một người."
+    },
+    {
+     "speaker": "店の人",
+     "jp": "こちらへどうぞ。ごちゅうもんは？",
+     "hiragana": "こちらへ どうぞ。 ごちゅうもんは？",
+     "vi": "Mời quý khách đi lối này. Quý khách gọi món gì ạ?"
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "カレーとサラダをください。",
+     "hiragana": "カレーと サラダを ください。",
+     "vi": "Cho tôi cà ri và salad."
+    },
+    {
+     "speaker": "店の人",
+     "jp": "カレーとサラダですね。のみものは何がいいですか。",
+     "hiragana": "カレーと サラダですね。 のみものは なにが いいですか。",
+     "vi": "Cà ri và salad ạ. Quý khách dùng đồ uống gì ạ?"
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "コーヒーをおねがいします。",
+     "hiragana": "コーヒーを おねがいします。",
+     "vi": "Cho tôi cà phê."
+    },
+    {
+     "speaker": "店の人",
+     "jp": "コーヒーはカレーのあとでいいですか。",
+     "hiragana": "コーヒーは カレーの あとで いいですか。",
+     "vi": "Cà phê mang ra sau món cà ri được không ạ?"
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "はい、あとでおねがいします。",
+     "hiragana": "はい、 あとで おねがいします。",
+     "vi": "Vâng, mang ra sau giúp tôi."
+    },
+    {
+     "speaker": "店の人",
+     "jp": "かしこまりました。しょうしょうおまちください。",
+     "hiragana": "かしこまりました。 しょうしょうおまちください。",
+     "vi": "Vâng ạ. Xin quý khách vui lòng đợi một chút."
+    }
+   ],
+   "vocab": [
+    "いらっしゃいませ",
+    "一人",
+    "こちら",
+    "どうぞ",
+    "ごちゅうもんは？",
+    "カレー",
+    "ください",
+    "のみもの",
+    "コーヒー",
+    "かしこまりました",
+    "しょうしょうおまちください"
+   ],
+   "grammar_ids": [
+    "GRA_000070",
+    "GRA_000022",
+    "GRA_000127",
+    "GRA_000013"
+   ],
+   "origin": "ai",
+   "audited": true
+  },
+  {
+   "id": "KAI_017",
+   "topic": "restaurant",
+   "title_vi": "Chọn món ở quán ăn",
+   "situation_vi": "Anh Nakagawa dẫn chị Lin đến một quán ăn; hai người bàn nên ăn gì rồi gọi món.",
+   "lines": [
+    {
+     "speaker": "中川",
+     "jp": "リンさん、何を食べますか。",
+     "hiragana": "リンさん、 なにを たべますか。",
+     "vi": "Chị Lin, chị ăn gì?"
+    },
+    {
+     "speaker": "リン",
+     "jp": "そうですね。この店は何がおいしいですか。",
+     "hiragana": "そうですね。 この みせは なにが おいしいですか。",
+     "vi": "Để tôi xem. Quán này món gì ngon?"
+    },
+    {
+     "speaker": "中川",
+     "jp": "ラーメンがいちばんゆうめいですよ。",
+     "hiragana": "ラーメンが いちばん ゆうめいですよ。",
+     "vi": "Mì ramen nổi tiếng nhất đấy."
+    },
+    {
+     "speaker": "リン",
+     "jp": "そうですか。ラーメンはからいですか。",
+     "hiragana": "そうですか。 ラーメンは からいですか。",
+     "vi": "Thế à. Ramen có cay không?"
+    },
+    {
+     "speaker": "中川",
+     "jp": "しおラーメンはからくないです。でも、みそラーメンは少しからいですよ。",
+     "hiragana": "しおラーメンは からくないです。 でも、 みそラーメンは すこし からいですよ。",
+     "vi": "Ramen muối thì không cay. Nhưng ramen miso thì hơi cay đấy."
+    },
+    {
+     "speaker": "リン",
+     "jp": "わたしはからいものがあまりすきじゃありません。",
+     "hiragana": "わたしは からい ものが あまり すきじゃ ありません。",
+     "vi": "Tôi không thích đồ cay lắm."
+    },
+    {
+     "speaker": "中川",
+     "jp": "じゃ、しおラーメンはどうですか。",
+     "hiragana": "じゃ、 しおラーメンは どうですか。",
+     "vi": "Vậy ramen muối thì sao?"
+    },
+    {
+     "speaker": "リン",
+     "jp": "いいですね。わたしはしおラーメンを食べます。",
+     "hiragana": "いいですね。 わたしは しおラーメンを たべます。",
+     "vi": "Được đấy. Tôi sẽ ăn ramen muối."
+    },
+    {
+     "speaker": "中川",
+     "jp": "すみません。しおラーメンを一つと、みそラーメンを一つおねがいします。",
+     "hiragana": "すみません。 しおラーメンを ひとつと、 みそラーメンを ひとつ おねがいします。",
+     "vi": "Xin lỗi (gọi nhân viên). Cho tôi một ramen muối và một ramen miso."
+    },
+    {
+     "speaker": "店の人",
+     "jp": "はい、しおラーメン一つと、みそラーメン一つですね。",
+     "hiragana": "はい、 しおラーメン ひとつと、 みそラーメン ひとつですね。",
+     "vi": "Vâng, một ramen muối và một ramen miso ạ."
+    }
+   ],
+   "vocab": [
+    "食べます",
+    "そうですね",
+    "店",
+    "おいしい",
+    "ゆうめい",
+    "からい",
+    "しお",
+    "少し",
+    "あまり",
+    "すき",
+    "一つ",
+    "いいですね"
+   ],
+   "grammar_ids": [
+    "GRA_000043",
+    "GRA_000044",
+    "GRA_000047",
+    "GRA_000058"
+   ],
+   "origin": "ai",
+   "review_log": [
+    {
+     "line": null,
+     "field": "title_vi",
+     "old_value": "Chọn món ở quán ramen",
+     "new_value": "Chọn món ở quán ăn",
+     "reason_vi": "Dòng 3 nói 「ラーメンがいちばんゆうめいですよ」 (món nổi tiếng nhất là ramen). Ở một quán chuyên ramen thì câu này vô nghĩa, vì món nào cũng là ramen. Đổi bối cảnh thành quán ăn bình thường thì câu hỏi 「この店は何がおいしいですか」 và câu trả lời mới hợp lý.",
+     "round": 1
+    },
+    {
+     "line": null,
+     "field": "situation_vi",
+     "old_value": "Anh Nakagawa dẫn chị Lin đến một quán ramen; hai người bàn nên ăn gì rồi gọi món.",
+     "new_value": "Anh Nakagawa dẫn chị Lin đến một quán ăn; hai người bàn nên ăn gì rồi gọi món.",
+     "reason_vi": "Đi cùng với sửa title_vi: dòng 3 「ラーメンがいちばんゆうめいですよ」 chỉ hợp lý khi quán có bán cả món khác ngoài ramen.",
+     "round": 1
+    }
+   ],
+   "audited": true
+  },
+  {
+   "id": "KAI_018",
+   "topic": "restaurant",
+   "title_vi": "Hỏi món không có thịt và thanh toán",
+   "situation_vi": "Anh Takagi không ăn được thịt nên hỏi nhân viên nhà hàng món nào không có thịt, gọi món rồi thanh toán.",
+   "lines": [
+    {
+     "speaker": "高木",
+     "jp": "すみません。このりょうりににくが入っていますか。",
+     "hiragana": "すみません。 この りょうりに にくが はいって いますか。",
+     "vi": "Xin lỗi. Món này có thịt không ạ?"
+    },
+    {
+     "speaker": "店の人",
+     "jp": "はい、ぶたにくが入っています。",
+     "hiragana": "はい、 ぶたにくが はいって います。",
+     "vi": "Vâng, có thịt lợn ạ."
+    },
+    {
+     "speaker": "高木",
+     "jp": "そうですか。わたしはにくを食べることができません。にくが入っていないりょうりはありますか。",
+     "hiragana": "そうですか。 わたしは にくを たべる ことが できません。 にくが はいって いない りょうりは ありますか。",
+     "vi": "Vậy à. Tôi không ăn được thịt. Có món nào không có thịt không ạ?"
+    },
+    {
+     "speaker": "店の人",
+     "jp": "では、やさいの天ぷらていしょくはいかがですか。",
+     "hiragana": "では、 やさいの てんぷら ていしょくは いかがですか。",
+     "vi": "Vậy quý khách dùng suất cơm tempura rau có được không ạ?"
+    },
+    {
+     "speaker": "高木",
+     "jp": "いいですね。じゃ、それをください。それから、つめたいおちゃもおねがいします。",
+     "hiragana": "いいですね。 じゃ、 それを ください。 それから、 つめたい おちゃも おねがいします。",
+     "vi": "Được đấy. Vậy cho tôi món đó. Cho tôi thêm một trà lạnh nữa."
+    },
+    {
+     "speaker": "店の人",
+     "jp": "かしこまりました。",
+     "hiragana": "かしこまりました。",
+     "vi": "Vâng ạ."
+    },
+    {
+     "speaker": "高木",
+     "jp": "ごちそうさまでした。とてもおいしかったです。",
+     "hiragana": "ごちそうさまでした。 とても おいしかったです。",
+     "vi": "Cảm ơn vì bữa ăn. Ngon lắm ạ."
+    },
+    {
+     "speaker": "店の人",
+     "jp": "ありがとうございます。千五百円です。",
+     "hiragana": "ありがとう ございます。 せんごひゃくえんです。",
+     "vi": "Cảm ơn quý khách. 1.500 yên ạ."
+    },
+    {
+     "speaker": "高木",
+     "jp": "カードではらうことができますか。",
+     "hiragana": "カードで はらう ことが できますか。",
+     "vi": "Tôi có thể trả bằng thẻ không?"
+    },
+    {
+     "speaker": "店の人",
+     "jp": "はい、できます。こちらにカードを入れてください。",
+     "hiragana": "はい、 できます。 こちらに カードを いれて ください。",
+     "vi": "Vâng, được ạ. Xin quý khách đưa thẻ vào đây."
+    }
+   ],
+   "vocab": [
+    "りょうり",
+    "にく",
+    "ぶたにく",
+    "食べます",
+    "やさい",
+    "天ぷら",
+    "ていしょく",
+    "いかがですか",
+    "つめたい",
+    "おちゃ",
+    "ごちそうさまでした",
+    "カード"
+   ],
+   "grammar_ids": [
+    "GRA_000090",
+    "GRA_000107",
+    "GRA_000077",
+    "GRA_000072"
+   ],
+   "origin": "ai",
+   "audited": true
+  },
+  {
+   "id": "KAI_019",
+   "topic": "daily_routine",
+   "title_vi": "Mấy giờ thức dậy?",
+   "situation_vi": "Giờ nghỉ trưa ở công ty, anh Nakayama hỏi đồng nghiệp người Mỹ là anh Miller về giờ giấc sinh hoạt mỗi ngày.",
+   "lines": [
+    {
+     "speaker": "中山",
+     "jp": "ミラーさんはまいあさ何時におきますか。",
+     "hiragana": "ミラーさんは まいあさ なんじに おきますか。",
+     "vi": "Anh Miller mỗi sáng thức dậy lúc mấy giờ?"
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "六時におきます。中山さんは？",
+     "hiragana": "ろくじに おきます。なかやまさんは？",
+     "vi": "Tôi dậy lúc 6 giờ. Còn anh Nakayama?"
+    },
+    {
+     "speaker": "中山",
+     "jp": "わたしは七時半ごろおきます。",
+     "hiragana": "わたしは しちじはんごろ おきます。",
+     "vi": "Tôi dậy khoảng 7 giờ rưỡi."
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "そうですか。あさごはんを食べますか。",
+     "hiragana": "そうですか。あさごはんを たべますか。",
+     "vi": "Vậy à. Anh có ăn sáng không?"
+    },
+    {
+     "speaker": "中山",
+     "jp": "いいえ、食べません。コーヒーだけ飲みます。",
+     "hiragana": "いいえ、たべません。コーヒーだけ のみます。",
+     "vi": "Không, tôi không ăn. Tôi chỉ uống cà phê thôi."
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "わたしは毎日パンとたまごを食べます。",
+     "hiragana": "わたしは まいにち パンと たまごを たべます。",
+     "vi": "Tôi thì ngày nào cũng ăn bánh mì và trứng."
+    },
+    {
+     "speaker": "中山",
+     "jp": "いいですね。よるは何時にねますか。",
+     "hiragana": "いいですね。よるは なんじに ねますか。",
+     "vi": "Hay nhỉ. Buổi tối anh đi ngủ lúc mấy giờ?"
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "十一時ごろねます。",
+     "hiragana": "じゅういちじごろ ねます。",
+     "vi": "Tôi ngủ khoảng 11 giờ."
+    }
+   ],
+   "vocab": [
+    "まいあさ",
+    "何時",
+    "おきます",
+    "あさごはん",
+    "食べます",
+    "飲みます",
+    "毎日",
+    "たまご",
+    "ねます",
+    "よる"
+   ],
+   "grammar_ids": [
+    "GRA_000020",
+    "GRA_000019",
+    "GRA_000030",
+    "GRA_000060"
+   ],
+   "origin": "ai",
+   "audited": true
+  },
+  {
+   "id": "KAI_020",
+   "topic": "daily_routine",
+   "title_vi": "Sau giờ học ở nhà homestay",
+   "situation_vi": "Rin là du học sinh sống ở nhà homestay. Bà chủ nhà (Rin gọi là \"mẹ\") hỏi Rin về sinh hoạt buổi chiều tối.",
+   "lines": [
+    {
+     "speaker": "お母さん",
+     "jp": "リンさん、毎日何時にうちへかえりますか。",
+     "hiragana": "リンさん、まいにち なんじに うちへ かえりますか。",
+     "vi": "Lin ơi, hằng ngày con về nhà lúc mấy giờ?"
+    },
+    {
+     "speaker": "リン",
+     "jp": "学校が三時におわりますから、四時ごろかえります。",
+     "hiragana": "がっこうが さんじに おわりますから、よじごろ かえります。",
+     "vi": "Trường tan lúc 3 giờ nên khoảng 4 giờ con về ạ."
+    },
+    {
+     "speaker": "お母さん",
+     "jp": "かえってから、何をしますか。",
+     "hiragana": "かえってから、なにを しますか。",
+     "vi": "Về nhà rồi thì con làm gì?"
+    },
+    {
+     "speaker": "リン",
+     "jp": "少し休んでから、しゅくだいをします。",
+     "hiragana": "すこし やすんでから、しゅくだいを します。",
+     "vi": "Con nghỉ một chút rồi làm bài tập về nhà ạ."
+    },
+    {
+     "speaker": "お母さん",
+     "jp": "ばんごはんは七時ですよ。",
+     "hiragana": "ばんごはんは しちじですよ。",
+     "vi": "Bữa tối lúc 7 giờ đấy nhé."
+    },
+    {
+     "speaker": "リン",
+     "jp": "はい。ばんごはんのあとで、シャワーをあびてもいいですか。",
+     "hiragana": "はい。ばんごはんの あとで、シャワーを あびても いいですか。",
+     "vi": "Vâng ạ. Sau bữa tối con tắm vòi sen có được không ạ?"
+    },
+    {
+     "speaker": "お母さん",
+     "jp": "ええ、いいですよ。でも、十時までにあびてください。",
+     "hiragana": "ええ、いいですよ。でも、じゅうじまでに あびて ください。",
+     "vi": "Ừ, được chứ. Nhưng con tắm xong trước 10 giờ nhé."
+    },
+    {
+     "speaker": "リン",
+     "jp": "わかりました。ねるまえに、いつも日本語の本を読みます。",
+     "hiragana": "わかりました。ねる まえに、いつも にほんごの ほんを よみます。",
+     "vi": "Con hiểu rồi ạ. Trước khi ngủ, con luôn đọc sách tiếng Nhật."
+    },
+    {
+     "speaker": "お母さん",
+     "jp": "そうですか。がんばってくださいね。",
+     "hiragana": "そうですか。がんばって くださいね。",
+     "vi": "Vậy à. Con cố gắng nhé."
+    }
+   ],
+   "vocab": [
+    "毎日",
+    "うち",
+    "かえります",
+    "学校",
+    "おわります",
+    "しゅくだい",
+    "ばんごはん",
+    "シャワー",
+    "あびます",
+    "いつも",
+    "日本語",
+    "読みます"
+   ],
+   "grammar_ids": [
+    "GRA_000080",
+    "GRA_000127",
+    "GRA_000075",
+    "GRA_000088",
+    "GRA_000092"
+   ],
+   "origin": "ai",
+   "review_log": [
+    {
+     "line": 1,
+     "field": "vi",
+     "old_value": "Rin ơi, hằng ngày con về nhà lúc mấy giờ?",
+     "new_value": "Lin ơi, hằng ngày con về nhà lúc mấy giờ?",
+     "reason_vi": "Thống nhất phiên âm リン = Lin như các bài khác",
+     "round": 3
+    },
+    {
+     "line": null,
+     "field": "grammar_ids",
+     "old_value": [
+      "GRA_000080",
+      "GRA_000127",
+      "GRA_000075",
+      "GRA_000088"
+     ],
+     "new_value": [
+      "GRA_000080",
+      "GRA_000127",
+      "GRA_000075",
+      "GRA_000088",
+      "GRA_000092"
+     ],
+     "reason_vi": "Dòng 8 dùng ねるまえに (V る まえに, GRA_000092) nhưng chưa gắn (rà soát r1_b nêu, không đề xuất)",
+     "round": 3
+    }
+   ],
+   "audited": true
+  },
+  {
+   "id": "KAI_021",
+   "topic": "daily_routine",
+   "title_vi": "Buổi sáng vội vàng",
+   "situation_vi": "Ở văn phòng, chị Yamashita thấy đồng nghiệp là anh Ōkawa trông mệt mỏi và hỏi về giờ ngủ, giờ dậy của anh.",
+   "lines": [
+    {
+     "speaker": "山下",
+     "jp": "大川さん、げんきがありませんね。どうしましたか。",
+     "hiragana": "おおかわさん、げんきが ありませんね。どうしましたか。",
+     "vi": "Anh Ōkawa, trông anh không được khỏe nhỉ. Anh sao vậy?"
+    },
+    {
+     "speaker": "大川",
+     "jp": "さいきんしごとがいそがしいですから、まいばん一時ごろねます。",
+     "hiragana": "さいきん しごとが いそがしいですから、まいばん いちじごろ ねます。",
+     "vi": "Dạo này công việc bận nên tối nào tôi cũng khoảng 1 giờ sáng mới ngủ."
+    },
+    {
+     "speaker": "山下",
+     "jp": "一時ですか。あさは何時におきますか。",
+     "hiragana": "いちじですか。あさは なんじに おきますか。",
+     "vi": "1 giờ cơ à? Thế buổi sáng anh dậy lúc mấy giờ?"
+    },
+    {
+     "speaker": "大川",
+     "jp": "六時半です。七時の電車にのらなければなりませんから。",
+     "hiragana": "ろくじはんです。しちじの でんしゃに のらなければ なりませんから。",
+     "vi": "6 giờ rưỡi. Vì tôi phải đi chuyến tàu điện lúc 7 giờ."
+    },
+    {
+     "speaker": "山下",
+     "jp": "あさごはんは食べますか。",
+     "hiragana": "あさごはんは たべますか。",
+     "vi": "Anh có ăn sáng không?"
+    },
+    {
+     "speaker": "大川",
+     "jp": "時間がありませんから、コーヒーを飲みながらニュースを見て、すぐ出かけます。",
+     "hiragana": "じかんが ありませんから、コーヒーを のみながら ニュースを みて、すぐ でかけます。",
+     "vi": "Vì không có thời gian nên tôi vừa uống cà phê vừa xem tin tức, rồi ra khỏi nhà ngay."
+    },
+    {
+     "speaker": "山下",
+     "jp": "それはからだによくないですよ。もう少しはやくねたほうがいいですよ。",
+     "hiragana": "それは からだに よくないですよ。もう すこし はやく ねた ほうが いいですよ。",
+     "vi": "Như thế không tốt cho sức khỏe đâu. Anh nên đi ngủ sớm hơn một chút thì hơn."
+    },
+    {
+     "speaker": "大川",
+     "jp": "そうですね。来週から十一時までにねるつもりです。",
+     "hiragana": "そうですね。らいしゅうから じゅういちじまでに ねる つもりです。",
+     "vi": "Đúng vậy. Từ tuần sau tôi định đi ngủ trước 11 giờ."
+    },
+    {
+     "speaker": "山下",
+     "jp": "それがいいですね。しゅうまつはゆっくり休んでくださいね。",
+     "hiragana": "それが いいですね。しゅうまつは ゆっくり やすんで くださいね。",
+     "vi": "Thế thì tốt quá. Cuối tuần anh nghỉ ngơi thong thả nhé."
+    }
+   ],
+   "vocab": [
+    "さいきん",
+    "いそがしい",
+    "まいばん",
+    "おきます",
+    "電車",
+    "時間",
+    "飲みます",
+    "出かけます",
+    "はやく",
+    "来週",
+    "しゅうまつ",
+    "ゆっくり"
+   ],
+   "grammar_ids": [
+    "GRA_000085",
+    "GRA_000129",
+    "GRA_000134",
+    "GRA_000135"
+   ],
+   "origin": "ai",
+   "audited": true
+  },
+  {
+   "id": "KAI_022",
+   "topic": "work_school",
+   "title_vi": "Anh làm nghề gì?",
+   "situation_vi": "Tại một bữa tiệc, anh Miller và chị Nakayama mới quen nhau, hỏi nhau về công việc.",
+   "lines": [
+    {
+     "speaker": "中山",
+     "jp": "ミラーさんは学生ですか。",
+     "hiragana": "ミラーさんは がくせいですか。",
+     "vi": "Anh Miller là sinh viên à?"
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "いいえ、学生じゃありません。かいしゃいんです。",
+     "hiragana": "いいえ、がくせいじゃ ありません。かいしゃいんです。",
+     "vi": "Không, tôi không phải sinh viên. Tôi là nhân viên công ty."
+    },
+    {
+     "speaker": "中山",
+     "jp": "そうですか。どこの会社ですか。",
+     "hiragana": "そうですか。どこの かいしゃですか。",
+     "vi": "Vậy à. Anh làm ở công ty nào?"
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "さくら電気です。コンピューターの会社です。",
+     "hiragana": "さくらでんきです。コンピューターの かいしゃです。",
+     "vi": "Công ty Sakura Denki. Đó là công ty máy tính."
+    },
+    {
+     "speaker": "中山",
+     "jp": "会社はどこにありますか。",
+     "hiragana": "かいしゃは どこに ありますか。",
+     "vi": "Công ty ở đâu vậy?"
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "駅の前にあります。中山さんは？",
+     "hiragana": "えきの まえに あります。なかやまさんは？",
+     "vi": "Ở trước nhà ga. Còn chị Nakayama?"
+    },
+    {
+     "speaker": "中山",
+     "jp": "わたしは大学の先生です。日本語をおしえています。",
+     "hiragana": "わたしは だいがくの せんせいです。にほんごを おしえて います。",
+     "vi": "Tôi là giảng viên đại học. Tôi dạy tiếng Nhật."
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "そうですか。毎日いそがしいですか。",
+     "hiragana": "そうですか。まいにち いそがしいですか。",
+     "vi": "Vậy à. Ngày nào chị cũng bận chứ?"
+    },
+    {
+     "speaker": "中山",
+     "jp": "ええ、でも学生はみんないい人で、たのしいですよ。",
+     "hiragana": "ええ、でも がくせいは みんな いい ひとで、たのしいですよ。",
+     "vi": "Vâng, nhưng sinh viên ai cũng tốt nên vui lắm."
+    }
+   ],
+   "vocab": [
+    "学生",
+    "かいしゃいん",
+    "会社",
+    "コンピューター",
+    "駅",
+    "大学",
+    "先生",
+    "日本語",
+    "おしえます",
+    "毎日",
+    "いそがしい",
+    "たのしい"
+   ],
+   "grammar_ids": [
+    "GRA_000001",
+    "GRA_000002",
+    "GRA_000054",
+    "GRA_000077"
+   ],
+   "origin": "ai",
+   "audited": true
+  },
+  {
+   "id": "KAI_023",
+   "topic": "work_school",
+   "title_vi": "Hỏi cô giáo về bài tập và bài kiểm tra",
+   "situation_vi": "Sau giờ học, Lee hỏi cô giáo về hạn nộp bài tập về nhà và lịch bài kiểm tra tuần sau.",
+   "lines": [
+    {
+     "speaker": "リー",
+     "jp": "先生、しゅくだいはいつまでに出さなければなりませんか。",
+     "hiragana": "せんせい、しゅくだいは いつまでに ださなければ なりませんか。",
+     "vi": "Thưa cô, bài tập về nhà phải nộp trước khi nào ạ?"
+    },
+    {
+     "speaker": "先生",
+     "jp": "金よう日までに出してください。",
+     "hiragana": "きんようびまでに だして ください。",
+     "vi": "Em nộp trước thứ Sáu nhé."
+    },
+    {
+     "speaker": "リー",
+     "jp": "わかりました。じしょをつかってもいいですか。",
+     "hiragana": "わかりました。じしょを つかっても いいですか。",
+     "vi": "Em hiểu rồi ạ. Em dùng từ điển có được không ạ?"
+    },
+    {
+     "speaker": "先生",
+     "jp": "ええ、いいですよ。でも、ともだちのこたえを見てはいけません。",
+     "hiragana": "ええ、いいですよ。でも、ともだちの こたえを みては いけません。",
+     "vi": "Ừ, được. Nhưng không được xem câu trả lời của bạn."
+    },
+    {
+     "speaker": "リー",
+     "jp": "はい。それから、来週のテストは何時からですか。",
+     "hiragana": "はい。それから、らいしゅうの テストは なんじからですか。",
+     "vi": "Vâng ạ. Còn nữa, bài kiểm tra tuần sau bắt đầu lúc mấy giờ ạ?"
+    },
+    {
+     "speaker": "先生",
+     "jp": "火よう日の午前九時から十時半までです。",
+     "hiragana": "かようびの ごぜん くじから じゅうじはんまでです。",
+     "vi": "Từ 9 giờ đến 10 giờ rưỡi sáng thứ Ba."
+    },
+    {
+     "speaker": "リー",
+     "jp": "きょうしつはどこですか。",
+     "hiragana": "きょうしつは どこですか。",
+     "vi": "Phòng học ở đâu ạ?"
+    },
+    {
+     "speaker": "先生",
+     "jp": "三がいのきょうしつです。八時五十分までに来てくださいね。",
+     "hiragana": "さんがいの きょうしつです。はちじ ごじゅっぷんまでに きて くださいね。",
+     "vi": "Phòng học ở tầng 3. Em đến trước 8 giờ 50 nhé."
+    },
+    {
+     "speaker": "リー",
+     "jp": "はい、わかりました。ありがとうございました。",
+     "hiragana": "はい、わかりました。ありがとう ございました。",
+     "vi": "Vâng, em hiểu rồi ạ. Em cảm ơn cô."
+    }
+   ],
+   "vocab": [
+    "しゅくだい",
+    "出します",
+    "じしょ",
+    "ともだち",
+    "こたえ",
+    "見ます",
+    "来週",
+    "テスト",
+    "何時",
+    "午前",
+    "きょうしつ"
+   ],
+   "grammar_ids": [
+    "GRA_000088",
+    "GRA_000075",
+    "GRA_000076",
+    "GRA_000021"
+   ],
+   "origin": "ai",
+   "review_log": [
+    {
+     "line": 4,
+     "field": "vi",
+     "old_value": "Ừ, được. Nhưng không được xem bài làm của bạn.",
+     "new_value": "Ừ, được. Nhưng không được xem câu trả lời của bạn.",
+     "reason_vi": "「こたえ」= câu trả lời/đáp án (đúng nghĩa trong vocab.tsv), không phải「bài làm」(cả bài). Dịch sát để người học khớp từ.",
+     "round": 2
+    }
+   ],
+   "audited": true
+  },
+  {
+   "id": "KAI_024",
+   "topic": "work_school",
+   "title_vi": "Nhờ chuẩn bị tài liệu họp",
+   "situation_vi": "Ở công ty, trưởng phòng Nakayama nhờ nhân viên mới là chị Nguyễn chuẩn bị tài liệu cho cuộc họp ngày mai, rồi hỏi han việc chị hay làm thêm giờ.",
+   "lines": [
+    {
+     "speaker": "中山",
+     "jp": "グエンさん、ちょっといいですか。",
+     "hiragana": "グエンさん、ちょっと いいですか。",
+     "vi": "Chị Nguyễn, tôi nói chuyện một chút được không?"
+    },
+    {
+     "speaker": "グエン",
+     "jp": "はい、何でしょうか。",
+     "hiragana": "はい、なんでしょうか。",
+     "vi": "Vâng, có việc gì vậy ạ?"
+    },
+    {
+     "speaker": "中山",
+     "jp": "あしたのかいぎのしりょうをコピーしてください。",
+     "hiragana": "あしたの かいぎの しりょうを コピーして ください。",
+     "vi": "Chị photo giúp tôi tài liệu cho cuộc họp ngày mai nhé."
+    },
+    {
+     "speaker": "グエン",
+     "jp": "はい。何時までにしなければなりませんか。",
+     "hiragana": "はい。なんじまでに しなければ なりませんか。",
+     "vi": "Vâng. Tôi phải làm xong trước mấy giờ ạ?"
+    },
+    {
+     "speaker": "中山",
+     "jp": "かいぎはあしたの十時からですから、今日の五時までにおねがいします。",
+     "hiragana": "かいぎは あしたの じゅうじからですから、きょうの ごじまでに おねがいします。",
+     "vi": "Cuộc họp bắt đầu lúc 10 giờ ngày mai, nên chị làm xong trước 5 giờ hôm nay giúp tôi."
+    },
+    {
+     "speaker": "グエン",
+     "jp": "わかりました。おわったら、中山さんのつくえの上におきましょうか。",
+     "hiragana": "わかりました。おわったら、なかやまさんの つくえの うえに おきましょうか。",
+     "vi": "Tôi hiểu rồi ạ. Làm xong, tôi để lên bàn của anh nhé?"
+    },
+    {
+     "speaker": "中山",
+     "jp": "ええ、おねがいします。それから、グエンさん、さいきんまいばんざんぎょうしていますね。",
+     "hiragana": "ええ、おねがいします。それから、グエンさん、さいきん まいばん ざんぎょうして いますね。",
+     "vi": "Ừ, nhờ chị. À còn nữa, chị Nguyễn này, dạo này tối nào chị cũng làm thêm giờ nhỉ."
+    },
+    {
+     "speaker": "グエン",
+     "jp": "はい。しごとがまだよくわかりませんから、時間がかかります。",
+     "hiragana": "はい。しごとが まだ よく わかりませんから、じかんが かかります。",
+     "vi": "Vâng. Vì tôi vẫn chưa nắm rõ công việc nên mất nhiều thời gian ạ."
+    },
+    {
+     "speaker": "中山",
+     "jp": "むりをしないでくださいね。分からないことがあったら、聞いてください。",
+     "hiragana": "むりを しないで くださいね。わからない ことが あったら、きいて ください。",
+     "vi": "Chị đừng làm quá sức nhé. Nếu có gì không hiểu thì cứ hỏi tôi."
+    },
+    {
+     "speaker": "グエン",
+     "jp": "ありがとうございます。",
+     "hiragana": "ありがとう ございます。",
+     "vi": "Tôi cảm ơn anh."
+    }
+   ],
+   "vocab": [
+    "あした",
+    "かいぎ",
+    "しりょう",
+    "今日",
+    "つくえ",
+    "おきます",
+    "さいきん",
+    "まいばん",
+    "ざんぎょうします",
+    "時間",
+    "かかります"
+   ],
+   "grammar_ids": [
+    "GRA_000088",
+    "GRA_000118",
+    "GRA_000074",
+    "GRA_000084"
+   ],
+   "origin": "ai",
+   "review_log": [
+    {
+     "line": 9,
+     "field": "jp",
+     "old_value": "むりをしないでくださいね。分からないことがあったら、いつでも聞いてください。",
+     "new_value": "むりをしないでくださいね。分からないことがあったら、聞いてください。",
+     "reason_vi": "'いつでも' (bất cứ lúc nào) không có trong vocab.tsv và cấu trúc nghi vấn từ + でも không nằm trong 135 điểm ngữ pháp N5; bỏ đi câu vẫn đủ ý.",
+     "round": 2
+    },
+    {
+     "line": 9,
+     "field": "hiragana",
+     "old_value": "むりを しないで くださいね。わからない ことが あったら、いつでも きいて ください。",
+     "new_value": "むりを しないで くださいね。わからない ことが あったら、きいて ください。",
+     "reason_vi": "Khớp với jp mới (bỏ いつでも).",
+     "round": 2
+    },
+    {
+     "line": 9,
+     "field": "vi",
+     "old_value": "Chị đừng làm quá sức nhé. Nếu có gì không hiểu thì cứ hỏi tôi bất cứ lúc nào.",
+     "new_value": "Chị đừng làm quá sức nhé. Nếu có gì không hiểu thì cứ hỏi tôi.",
+     "reason_vi": "Khớp với jp mới (bỏ いつでも).",
+     "round": 2
+    }
+   ],
+   "audited": true
+  },
+  {
+   "id": "KAI_025",
+   "topic": "time_dates",
+   "title_vi": "Hỏi giờ và giờ mở cửa",
+   "situation_vi": "Trên phố, anh Miller hỏi giờ một người phụ nữ đi đường và hỏi giờ mở cửa của cửa hàng bách hóa gần đó.",
+   "lines": [
+    {
+     "speaker": "ミラー",
+     "jp": "すみません、今何時ですか。",
+     "hiragana": "すみません、いま なんじですか。",
+     "vi": "Xin lỗi, bây giờ là mấy giờ ạ?"
+    },
+    {
+     "speaker": "女の人",
+     "jp": "九時十分です。",
+     "hiragana": "くじ じゅっぷんです。",
+     "vi": "9 giờ 10 phút."
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "ありがとうございます。あのデパートは何時からですか。",
+     "hiragana": "ありがとう ございます。あの デパートは なんじからですか。",
+     "vi": "Cảm ơn chị. Cửa hàng bách hóa kia mở cửa từ mấy giờ ạ?"
+    },
+    {
+     "speaker": "女の人",
+     "jp": "十時からです。",
+     "hiragana": "じゅうじからです。",
+     "vi": "Từ 10 giờ."
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "何時までですか。",
+     "hiragana": "なんじまでですか。",
+     "vi": "Đến mấy giờ ạ?"
+    },
+    {
+     "speaker": "女の人",
+     "jp": "よる八時までです。",
+     "hiragana": "よる はちじまでです。",
+     "vi": "Đến 8 giờ tối."
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "休みは何よう日ですか。",
+     "hiragana": "やすみは なんようびですか。",
+     "vi": "Ngày nghỉ là thứ mấy ạ?"
+    },
+    {
+     "speaker": "女の人",
+     "jp": "水よう日です。でも、今週は休みがありませんよ。",
+     "hiragana": "すいようびです。でも、こんしゅうは やすみが ありませんよ。",
+     "vi": "Thứ Tư. Nhưng tuần này không có ngày nghỉ đâu."
+    },
+    {
+     "speaker": "ミラー",
+     "jp": "そうですか。どうもありがとうございました。",
+     "hiragana": "そうですか。どうも ありがとう ございました。",
+     "vi": "Vậy à. Cảm ơn chị nhiều."
+    }
+   ],
+   "vocab": [
+    "今",
+    "何時",
+    "デパート",
+    "よる",
+    "休み",
+    "今週"
+   ],
+   "grammar_ids": [
+    "GRA_000018",
+    "GRA_000021",
+    "GRA_000029"
+   ],
+   "origin": "ai",
+   "audited": true
+  },
+  {
+   "id": "KAI_026",
+   "topic": "time_dates",
+   "title_vi": "Sinh nhật là ngày nào?",
+   "situation_vi": "Hai người bạn là Rin và Nakayama nói chuyện về ngày sinh nhật của nhau.",
+   "lines": [
+    {
+     "speaker": "リン",
+     "jp": "中山さんのたんじょう日はいつですか。",
+     "hiragana": "なかやまさんの たんじょうびは いつですか。",
+     "vi": "Sinh nhật của anh Nakayama là khi nào?"
+    },
+    {
+     "speaker": "中山",
+     "jp": "四月八日です。リンさんは？",
+     "hiragana": "しがつ ようかです。リンさんは？",
+     "vi": "Ngày 8 tháng 4. Còn Lin?"
+    },
+    {
+     "speaker": "リン",
+     "jp": "わたしは十一月二十日です。",
+     "hiragana": "わたしは じゅういちがつ はつかです。",
+     "vi": "Em là ngày 20 tháng 11."
+    },
+    {
+     "speaker": "中山",
+     "jp": "二十日ですか。もうすぐですね。今日は十一月十四日ですから。",
+     "hiragana": "はつかですか。もうすぐですね。きょうは じゅういちがつ じゅうよっかですから。",
+     "vi": "Ngày 20 à? Sắp đến rồi nhỉ. Vì hôm nay là ngày 14 tháng 11 rồi."
+    },
+    {
+     "speaker": "リン",
+     "jp": "ええ。その日は金よう日ですから、ともだちとしょくじに行きます。",
+     "hiragana": "ええ。その ひは きんようびですから、ともだちと しょくじに いきます。",
+     "vi": "Vâng. Hôm đó là thứ Sáu nên em sẽ đi ăn với bạn bè."
+    },
+    {
+     "speaker": "中山",
+     "jp": "いいですね。じゃ、わたしも何かプレゼントを買います。",
+     "hiragana": "いいですね。じゃ、わたしも なにか プレゼントを かいます。",
+     "vi": "Hay nhỉ. Vậy anh cũng sẽ mua quà gì đó."
+    },
+    {
+     "speaker": "リン",
+     "jp": "ありがとうございます。中山さんのたんじょう日には、みんなでパーティーをしましょう。",
+     "hiragana": "ありがとう ございます。なかやまさんの たんじょうびには、みんなで パーティーを しましょう。",
+     "vi": "Em cảm ơn anh. Đến sinh nhật anh Nakayama thì mọi người cùng tổ chức tiệc nhé."
+    },
+    {
+     "speaker": "中山",
+     "jp": "四月はまだずっと先ですよ。",
+     "hiragana": "しがつは まだ ずっと さきですよ。",
+     "vi": "Tháng 4 thì vẫn còn lâu lắm đấy."
+    }
+   ],
+   "vocab": [
+    "いつ",
+    "八日",
+    "二十日",
+    "もうすぐ",
+    "今日",
+    "十四日",
+    "ともだち",
+    "行きます",
+    "何か",
+    "買います",
+    "みんなで",
+    "パーティー"
+   ],
+   "grammar_ids": [
+    "GRA_000028",
+    "GRA_000068",
+    "GRA_000069",
+    "GRA_000035"
+   ],
+   "origin": "ai",
+   "review_log": [
+    {
+     "line": 8,
+     "field": "jp",
+     "old_value": "四月ですか。まだずっと先ですよ。",
+     "new_value": "四月はまだずっと先ですよ。",
+     "reason_vi": "Trung Sơn đang nói về sinh nhật của chính mình mà lại hỏi lại 「四月ですか」 (tháng 4 à?) như thể vừa nghe tin mới. Ghép với 「～ですよ」 ngay sau đó nghe rất lạ. Nên nói thẳng: 「四月はまだずっと先ですよ」.",
+     "round": 1
+    },
+    {
+     "line": 8,
+     "field": "hiragana",
+     "old_value": "しがつですか。まだ ずっと さきですよ。",
+     "new_value": "しがつは まだ ずっと さきですよ。",
+     "reason_vi": "Khớp với câu jp đã sửa.",
+     "round": 1
+    },
+    {
+     "line": 8,
+     "field": "vi",
+     "old_value": "Tháng 4 à? Vẫn còn lâu lắm đấy.",
+     "new_value": "Tháng 4 thì vẫn còn lâu lắm đấy.",
+     "reason_vi": "Khớp với câu jp đã sửa.",
+     "round": 1
+    },
+    {
+     "line": 2,
+     "field": "vi",
+     "old_value": "Ngày 8 tháng 4. Còn Rin?",
+     "new_value": "Ngày 8 tháng 4. Còn Lin?",
+     "reason_vi": "Thống nhất phiên âm リン = Lin",
+     "round": 3
+    }
+   ],
+   "audited": true
+  },
+  {
+   "id": "KAI_027",
+   "topic": "time_dates",
+   "title_vi": "Lên lịch đi công tác",
+   "situation_vi": "Ở văn phòng, anh Kinoshita và chị An bàn ngày đi và ngày về cho chuyến công tác Osaka vào tháng sau.",
+   "lines": [
+    {
+     "speaker": "木下",
+     "jp": "アンさん、来月のしゅっちょうは何日に行きましょうか。",
+     "hiragana": "アンさん、らいげつの しゅっちょうは なんにちに いきましょうか。",
+     "vi": "Chị An này, chuyến công tác tháng sau mình đi vào ngày mấy nhỉ?"
+    },
+    {
+     "speaker": "アン",
+     "jp": "一日はどうですか。",
+     "hiragana": "ついたちは どうですか。",
+     "vi": "Ngày mùng 1 thì sao ạ?"
+    },
+    {
+     "speaker": "木下",
+     "jp": "一日は月よう日ですね。月よう日は午前中にかいぎがありますから、ちょっとむずかしいです。",
+     "hiragana": "ついたちは げつようびですね。げつようびは ごぜんちゅうに かいぎが ありますから、ちょっと むずかしいです。",
+     "vi": "Mùng 1 là thứ Hai nhỉ. Sáng thứ Hai tôi có cuộc họp nên hơi khó."
+    },
+    {
+     "speaker": "アン",
+     "jp": "じゃ、二日の火よう日は？",
+     "hiragana": "じゃ、ふつかの かようびは？",
+     "vi": "Vậy thứ Ba, ngày mùng 2 thì sao ạ?"
+    },
+    {
+     "speaker": "木下",
+     "jp": "二日はだいじょうぶです。おおさかまでしんかんせんでどのくらいかかりますか。",
+     "hiragana": "ふつかは だいじょうぶです。おおさかまで しんかんせんで どのくらい かかりますか。",
+     "vi": "Mùng 2 thì được. Đi tàu Shinkansen đến Osaka mất bao lâu nhỉ?"
+    },
+    {
+     "speaker": "アン",
+     "jp": "二時間半ぐらいです。あさ八時のしんかんせんにのったら、十時半ごろつきます。",
+     "hiragana": "にじかんはんぐらいです。あさ はちじの しんかんせんに のったら、じゅうじはんごろ つきます。",
+     "vi": "Khoảng 2 tiếng rưỡi. Nếu đi chuyến Shinkansen lúc 8 giờ sáng thì khoảng 10 giờ rưỡi sẽ đến nơi."
+    },
+    {
+     "speaker": "木下",
+     "jp": "そうですか。何日にかえりましょうか。",
+     "hiragana": "そうですか。なんにちに かえりましょうか。",
+     "vi": "Vậy à. Mình về vào ngày mấy nhỉ?"
+    },
+    {
+     "speaker": "アン",
+     "jp": "三日もしごとがありますから、四日の木よう日にかえりましょう。",
+     "hiragana": "みっかも しごとが ありますから、よっかの もくようびに かえりましょう。",
+     "vi": "Mùng 3 cũng có việc nên mình về vào thứ Năm, ngày mùng 4 đi ạ."
+    },
+    {
+     "speaker": "木下",
+     "jp": "わかりました。じゃ、二日から四日までですね。ホテルはわたしがよやくします。",
+     "hiragana": "わかりました。じゃ、ふつかから よっかまでですね。ホテルは わたしが よやくします。",
+     "vi": "Được rồi. Vậy là từ mùng 2 đến mùng 4 nhé. Khách sạn để tôi đặt."
+    },
+    {
+     "speaker": "アン",
+     "jp": "ありがとうございます。おねがいします。",
+     "hiragana": "ありがとう ございます。おねがいします。",
+     "vi": "Cảm ơn anh. Nhờ anh nhé."
+    }
+   ],
+   "vocab": [
+    "来月",
+    "何日",
+    "一日",
+    "二日",
+    "三日",
+    "四日",
+    "午前",
+    "むずかしい",
+    "しんかんせん",
+    "どのくらい",
+    "かかります",
+    "よやくします"
+   ],
+   "grammar_ids": [
+    "GRA_000061",
+    "GRA_000117",
+    "GRA_000021",
+    "GRA_000035"
+   ],
+   "origin": "ai",
+   "review_log": [
+    {
+     "line": 1,
+     "field": "jp",
+     "old_value": "アンさん、来月のしゅっちょうのことですが、何日に行きましょうか。",
+     "new_value": "アンさん、来月のしゅっちょうは何日に行きましょうか。",
+     "reason_vi": "「N のことですが、～」(nêu chủ đề để mở lời) không có trong danh sách 135 điểm ngữ pháp N5 (là cách nói N4 trở lên). Bỏ mẫu này, dùng câu hỏi đơn giản với は + ましょうか, nghĩa không đổi. (Ghi chú: しゅっちょう cũng không có trong vocab.tsv, nhưng là chủ đề của bài nên giữ.)",
+     "round": 2
+    },
+    {
+     "line": 1,
+     "field": "hiragana",
+     "old_value": "アンさん、らいげつの しゅっちょうの ことですが、なんにちに いきましょうか。",
+     "new_value": "アンさん、らいげつの しゅっちょうは なんにちに いきましょうか。",
+     "reason_vi": "Đi kèm bản sửa jp dòng 1 (bỏ「のことですが」).",
+     "round": 2
+    },
+    {
+     "line": 1,
+     "field": "vi",
+     "old_value": "Chị An này, về chuyến công tác tháng sau, mình đi vào ngày mấy nhỉ?",
+     "new_value": "Chị An này, chuyến công tác tháng sau mình đi vào ngày mấy nhỉ?",
+     "reason_vi": "Đi kèm bản sửa jp dòng 1.",
+     "round": 2
+    }
+   ],
+   "audited": true
+  }
+ ]
+}

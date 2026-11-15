@@ -196,3 +196,10 @@ def test_ai_generated_exam_cannot_be_official():
            "is_official": True, "sections": [{"section_id": "S", "name": "n"}]}
     with pytest.raises(jsonschema.ValidationError):
         jsonschema.validate(rec, schema("examination"))
+
+
+def test_kaiwa_file_schema():
+    from hub.ingestion import knowledge
+    sch = schema("kaiwa")
+    for k in json.loads(knowledge.KAIWA.read_text(encoding="utf-8"))["entries"]:
+        jsonschema.validate(k, sch)

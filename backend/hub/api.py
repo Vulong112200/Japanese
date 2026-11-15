@@ -2,16 +2,19 @@
 import json
 import os
 import random
+import sqlite3
+import tempfile
 from datetime import datetime
 from pathlib import Path
 from typing import Literal
 
-from fastapi import APIRouter, Depends, FastAPI, HTTPException, Query
+from fastapi import APIRouter, Depends, FastAPI, HTTPException, Query, Request
 from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel, Field
+from starlette.background import BackgroundTask
 
 from . import repo
-from .db import DEFAULT_DB, ROOT, connect
+from .db import DEFAULT_DB, ROOT, connect, migrate
 from .ingestion import flashcards_csv as fc
 from .ingestion import pipeline
 from .learning import analytics
@@ -267,6 +270,32 @@ def kanji_list(conn=Depends(get_conn)):
 @router.get("/kanji/{kid}")
 def kanji_item(kid: str, conn=Depends(get_conn)):
     return kanji_detail(conn, kid)
+
+
+def kaiwa_detail(conn, kid: str) -> dict:
+    k = conn.execute("SELECT * FROM kaiwa WHERE id=?", (kid,)).fetchone()
+    if not k:
+        raise HTTPException(404)
+    k = dict(k)
+    k.update(json.loads(k.pop("data_json")))
+    k["issues"] = repo.issues_for(conn, "kaiwa", kid)
+    return k
+
+
+@router.get("/kaiwa")
+def kaiwa_list(topic: str | None = None, conn=Depends(get_conn)):
+    sql, args = ("SELECT id, topic, title_vi, situation_vi, verification_status, verified_by, "
+                 "json_array_length(data_json, '$.lines') AS line_count FROM kaiwa "
+                 "WHERE verification_status != 'rejected'"), []
+    if topic:
+        sql += " AND topic=?"
+        args.append(topic)
+    return repo.rows(conn.execute(sql + " ORDER BY id", args))
+
+
+@router.get("/kaiwa/{kid}")
+def kaiwa_item(kid: str, conn=Depends(get_conn)):
+    return kaiwa_detail(conn, kid)
 
 
 @router.get("/questions/{qid}")
@@ -664,6 +693,63 @@ def asset(asset_id: str, conn=Depends(get_conn)):
     if ROOT not in path.parents or not path.is_file():   # never serve outside the project
         raise HTTPException(404, "Tệp không tồn tại")
     return FileResponse(path, media_type=a["mime_type"])   # Starlette handles Range requests (audio seek)
+
+
+# ---------- backup / restore (ADR-024) ----------
+BACKUP_TABLES = {"vocabulary", "srs_cards", "review_log", "exam_attempts"}
+
+
+def _copy_db(conn, dest: str | Path) -> None:
+    conn.commit()
+    dst = sqlite3.connect(dest)
+    conn.backup(dst)
+    dst.close()
+
+
+@router.get("/backup")
+def backup(conn=Depends(get_conn)):
+    fd, tmp = tempfile.mkstemp(suffix=".sqlite")
+    os.close(fd)
+    _copy_db(conn, tmp)
+    return FileResponse(tmp, filename=f"n5hub-backup-{datetime.now():%Y%m%d-%H%M}.sqlite",
+                        media_type="application/vnd.sqlite3", background=BackgroundTask(os.unlink, tmp))
+
+
+@router.post("/restore")
+async def restore(request: Request, conn=Depends(get_conn)):
+    """Replace the whole database with an uploaded backup (raw body). The current database is copied to
+    <db dir>/backups/pre-restore-*.sqlite first, so a wrong file never loses progress."""
+    data = await request.body()
+    if not data.startswith(b"SQLite format 3\x00"):
+        raise HTTPException(400, "Không phải file sao lưu SQLite")
+    fd, tmp = tempfile.mkstemp(suffix=".sqlite")
+    with os.fdopen(fd, "wb") as f:
+        f.write(data)
+    src = sqlite3.connect(tmp)
+    try:
+        try:
+            ok = src.execute("PRAGMA integrity_check").fetchone()[0] == "ok"
+            tables = {r[0] for r in src.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+        except sqlite3.DatabaseError:
+            ok, tables = False, set()
+        if not ok or not BACKUP_TABLES <= tables:
+            raise HTTPException(400, "File hỏng hoặc không phải bản sao lưu của ứng dụng này")
+        saved = None
+        if db_file := conn.execute("PRAGMA database_list").fetchone()[2]:
+            dest = Path(db_file).parent / "backups" / f"pre-restore-{datetime.now():%Y%m%d-%H%M%S}.sqlite"
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            _copy_db(conn, dest)
+            saved = dest.name
+        conn.commit()
+        src.backup(conn)
+    finally:
+        src.close()
+        os.unlink(tmp)
+    migrate(conn)                                          # backups from older versions get new tables/columns
+    conn.commit()
+    count = lambda t: conn.execute(f"SELECT COUNT(*) FROM {t}").fetchone()[0]
+    return {"restored": True, "pre_restore_backup": saved,
+            "counts": {t: count(t) for t in ("srs_cards", "review_log", "exam_attempts")}}
 
 
 def create_app() -> FastAPI:

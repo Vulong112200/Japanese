@@ -1,13 +1,13 @@
 # IMPORT REPORT
 
-Tạo tự động bởi `python -m hub report` lúc 2026-11-15T08:09:20+07:00. Số liệu đọc từ `data/database/hub.sqlite`.
+Tạo tự động bởi `python -m hub report` lúc 2026-11-15T13:20:25+07:00. Số liệu đọc từ `data/database/hub.sqlite`.
 
 Thư mục đã kiểm tra: `D:\Japanese\docs\N5\Exam`, `D:\Japanese\docs\N5\flashcards` (truy cập trực tiếp từ Windows, không qua WSL/Docker).
 
 ## Tóm tắt
 - Tệp cục bộ đã đăng ký: **57**
 - Từ vựng (lớp NORMALIZED): {"verified": 1253} — **0 mục được tự động xác minh**.
-- Câu hỏi đề mẫu: {"needs_review": 29, "rejected": 272, "verified": 1366}
+- Câu hỏi đề mẫu: {"needs_review": 29, "rejected": 275, "verified": 1363}
 - Trạng thái xử lý `needs_review` = đã nhập nhưng còn chờ người dùng duyệt (không phải lỗi).
 
 ## Chi tiết từng tệp

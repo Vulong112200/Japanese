@@ -317,6 +317,24 @@ export interface KanjiItem {
   verified_by: string | null
 }
 
+export interface KaiwaItem {
+  id: string
+  topic: string
+  title_vi: string
+  situation_vi: string | null
+  line_count: number
+  verification_status: Status
+  verified_by: string | null
+}
+
+export interface KaiwaDetail extends KaiwaItem {
+  origin: string
+  lines: { speaker: string; jp: string; hiragana: string; vi: string }[]
+  vocab: { ref: string; id: string; word: string; reading: string; meaning_vi: string }[]
+  grammar: { id: string; pattern: string }[]
+  issues: Issue[]
+}
+
 async function req<T>(path: string, init?: RequestInit): Promise<T> {
   const r = await fetch(`/api${path}`, {
     ...init,
@@ -362,6 +380,11 @@ export const api = {
   grammar: (q?: string, lesson?: number) => req<GrammarItem[]>(`/grammar?${qs({ q, lesson })}`),
   grammarItem: (id: string) => req<GrammarDetail>(`/grammar/${id}`),
   kanji: () => req<KanjiItem[]>('/kanji'),
+  kaiwa: (topic?: string) => req<KaiwaItem[]>(`/kaiwa?${qs({ topic })}`),
+  kaiwaItem: (id: string) => req<KaiwaDetail>(`/kaiwa/${id}`),
+  backupUrl: '/api/backup',
+  restore: (file: File) => req<{ restored: boolean; pre_restore_backup: string | null; counts: Record<string, number> }>(
+    '/restore', { method: 'POST', body: file }),
   exams: () => req<ExamOverview>('/exams'),
   attempts: () => req<AttemptSummary[]>('/attempts'),
   attempt: (id: string) => req<Attempt>(`/attempts/${id}`),

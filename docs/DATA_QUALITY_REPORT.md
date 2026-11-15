@@ -1,11 +1,12 @@
 # DATA QUALITY REPORT
 
-Tạo tự động lúc 2026-11-15T08:09:20+07:00.
+Tạo tự động lúc 2026-11-15T13:20:25+07:00.
 
 ## Độ phủ N5
 - **Từ vựng**: 1253 mục (bổ sung theo danh sách JLPT N5: 158; bổ sung từ Minna (PDF Drive, OCR): 132; flashcard của bạn (CSV): 963). Có đủ 25 bài Minna. So với danh sách JLPT N5 (718 từ): toàn bộ đã có. 19 từ khớp qua dạng khác (後→後で, 結婚→結婚します…); ～がる là ngữ pháp N4.
 - **Kanji**: 103/103 chữ N5 (danh sách cấp 4 JLPT cũ), đối chứng với sách Basic Kanji 120.
 - **Ngữ pháp**: 135 điểm (121 điểm Minna bài 1–25 + 14 điểm N5 bổ sung/đối chiếu). Nguồn: ai: 60; handbook+ai: 75. Đã ghi nhận 20 chỗ sai hoặc thiếu trong cẩm nang gốc.
+- **Hội thoại (Kaiwa §7.4, bổ trợ, không thuộc đề thi)**: 27 bài / 9 chủ đề, 27 verified (AI soạn, luật tự động + rà soát 2 vòng, ADR-023).
 
 ## Quy trình xác minh từ vựng
 1. **Luật tự động**: kana hợp lệ, romaji ↔ kana, mã hoá, trùng lặp.
