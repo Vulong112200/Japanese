@@ -12,7 +12,7 @@ export default function Grammar() {
   const [items, setItems] = useState<GrammarItem[] | null>(null)
   const [q, setQ] = useState('')
   const [lesson, setLesson] = useState('')
-  const [sel, setSel] = useState<string | null>(null)
+  const [sel, setSel] = useState<string | null>(() => new URLSearchParams(location.hash.split('?')[1] ?? '').get('id'))
   const [err, setErr] = useState<unknown>(null)
 
   useEffect(() => {

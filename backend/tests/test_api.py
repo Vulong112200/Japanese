@@ -58,6 +58,28 @@ def test_srs_session_and_dashboard(client):
     assert client.get("/api/srs/due", params={"direction": "jp_vi", "new_limit": 5}).json() == []
 
 
+def test_srs_grammar_and_kanji_cards(client, imported):
+    conn, _ = imported
+    d = client.get("/api/stats/dashboard").json()
+    n_grammar = conn.execute("SELECT COUNT(*) FROM grammar WHERE verification_status!='rejected'").fetchone()[0]
+    assert sum(d["cards_by_entity"]["grammar"].values()) == n_grammar
+    assert sum(d["cards_by_entity"]["kanji"].values()) == 103
+    vocab_new = len(client.get("/api/srs/due", params={"new_limit": 50}).json())
+
+    g = client.get("/api/srs/due", params={"entity": "grammar", "new_limit": 3}).json()
+    assert len(g) == 3 and all(c["pattern"] and c["examples"][0]["jp"] for c in g)
+    for c in g:
+        assert client.post(f"/api/srs/cards/{c['card_id']}/answer", json={"rating": "good"}).json()["status"] == "reviewing"
+    assert client.get("/api/srs/due", params={"entity": "grammar", "new_limit": 3}).json() == []
+    # grammar's new-card limit is separate from vocabulary's
+    assert len(client.get("/api/srs/due", params={"new_limit": 50}).json()) == vocab_new
+
+    k = client.get("/api/srs/due", params={"entity": "kanji", "new_limit": 2}).json()
+    assert len(k) == 2 and isinstance(k[0]["onyomi"], list) and k[0]["kanji"] and k[0]["example_words"]
+    d2 = client.get("/api/stats/dashboard").json()
+    assert d2["cards_by_entity"]["grammar"].get("reviewing") == 3 and d2["cards_by_status"] == d["cards_by_status"]
+
+
 def test_review_approve_reject_edit(client):
     v = client.get("/api/vocabulary", params={"q": "病院"}).json()["items"][0]
     assert v["verification_status"] == "verified" and v["verified_by"] == "ai"

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { api, type Card } from '../api'
+import { api, type Card, type SrsEntity } from '../api'
 import { Button, ErrorBox, Loading, Panel, SpeakButton, StatusBadge } from '../ui'
 
 const RATINGS = [
@@ -16,8 +16,16 @@ function writePref(k: string, v: unknown) {
   try { localStorage.setItem(k, JSON.stringify(v)) } catch { /* storage blocked */ }
 }
 
+const ENTITIES: [SrsEntity, string][] = [['vocabulary', 'Từ vựng'], ['grammar', 'Ngữ pháp'], ['kanji', 'Kanji']]
+const hashEntity = () => {
+  const e = new URLSearchParams(location.hash.split('?')[1] ?? '').get('entity')
+  return ENTITIES.some(([k]) => k === e) ? (e as SrsEntity) : null
+}
+
 export default function Flashcards() {
-  const [direction, setDirection] = useState<'jp_vi' | 'vi_jp'>(() => readPref('srs.direction', 'jp_vi'))
+  const [entity, setEntity] = useState<SrsEntity>(() => hashEntity() ?? readPref('srs.entity', 'vocabulary'))
+  const [vocabDirection, setDirection] = useState<'jp_vi' | 'vi_jp'>(() => readPref('srs.direction', 'jp_vi'))
+  const direction = entity === 'vocabulary' ? vocabDirection : 'jp_vi'   // grammar/kanji: one direction (ADR-021)
   const [newLimit, setNewLimit] = useState<number>(() => readPref('srs.newLimit', 20))
   const [queue, setQueue] = useState<Card[] | null>(null)
   const [shown, setShown] = useState(false)
@@ -27,8 +35,8 @@ export default function Flashcards() {
 
   const load = useCallback(() => {
     setQueue(null); setShown(false)
-    api.due(direction, newLimit).then(setQueue).catch(setErr)
-  }, [direction, newLimit])
+    api.due(direction, newLimit, entity).then(setQueue).catch(setErr)
+  }, [direction, newLimit, entity])
   useEffect(() => { load() }, [load])
 
   const card = queue?.[0]
@@ -56,20 +64,26 @@ export default function Flashcards() {
   }, [shown, answer])
 
   if (err) return <ErrorBox error={err} />
-  const front = card && (direction === 'jp_vi'
-    ? <span className="jp text-5xl font-semibold">{card.word}</span>
-    : <span className="text-2xl font-medium">{card.meaning_vi}</span>)
+  const front = card && (
+    entity === 'grammar' ? <span className="jp text-3xl font-semibold">{card.pattern}</span>
+      : entity === 'kanji' ? <span className="jp text-7xl font-semibold">{card.kanji}</span>
+        : direction === 'jp_vi' ? <span className="jp text-5xl font-semibold">{card.word}</span>
+          : <span className="text-2xl font-medium">{card.meaning_vi}</span>)
 
   return (
     <div className="mx-auto max-w-2xl space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h1 className="text-xl font-semibold">Ôn tập SRS</h1>
-        <div className="flex items-center gap-2 text-sm">
-          <select aria-label="Chiều ôn" className="rounded-lg border border-slate-300 bg-white px-2 py-1 dark:border-slate-700 dark:bg-slate-900"
+        <div className="flex flex-wrap items-center gap-2 text-sm">
+          <select aria-label="Loại thẻ" className="rounded-lg border border-slate-300 bg-white px-2 py-1 dark:border-slate-700 dark:bg-slate-900"
+            value={entity} onChange={e => { const v = e.target.value as SrsEntity; setEntity(v); writePref('srs.entity', v) }}>
+            {ENTITIES.map(([k, l]) => <option key={k} value={k}>{l}</option>)}
+          </select>
+          {entity === 'vocabulary' && <select aria-label="Chiều ôn" className="rounded-lg border border-slate-300 bg-white px-2 py-1 dark:border-slate-700 dark:bg-slate-900"
             value={direction} onChange={e => { const v = e.target.value as 'jp_vi' | 'vi_jp'; setDirection(v); writePref('srs.direction', v) }}>
             <option value="jp_vi">Nhật → Việt</option>
             <option value="vi_jp">Việt → Nhật</option>
-          </select>
+          </select>}
           <label className="flex items-center gap-1">Thẻ mới/ngày
             <input type="number" min={0} max={200} value={newLimit} aria-label="Số thẻ mới mỗi ngày"
               className="w-16 rounded-lg border border-slate-300 bg-white px-2 py-1 dark:border-slate-700 dark:bg-slate-900"
@@ -87,7 +101,7 @@ export default function Flashcards() {
         <>
           <div className="flex justify-between text-xs text-slate-500">
             <span>Còn {queue.length} thẻ · đã ôn {done}</span>
-            <span>{card.lesson_number ? `Bài ${card.lesson_number}` : card.deck} · {card.status === 'new' ? 'thẻ mới' : `khoảng ${card.interval_days} ngày`}</span>
+            <span>{card.lesson_number ? `Bài ${card.lesson_number}` : card.deck ?? ''} · {card.status === 'new' ? 'thẻ mới' : `khoảng ${card.interval_days} ngày`}</span>
           </div>
           <section className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm dark:border-slate-800 dark:bg-slate-900" aria-live="polite">
             {card.verification_status !== 'verified' && (
@@ -96,10 +110,38 @@ export default function Flashcards() {
             <div className="flex min-h-28 items-center justify-center">{front}</div>
             {!shown ? (
               <div className="mt-6"><Button kind="primary" onClick={() => setShown(true)}>Hiện đáp án (Space)</Button></div>
+            ) : entity === 'grammar' ? (
+              <div className="mt-4 space-y-2 border-t border-slate-100 pt-4 text-left dark:border-slate-800">
+                <div className="text-center text-xl">{card.meaning_vi}</div>
+                {card.grammar_name_vi && <div className="text-center text-sm text-slate-500">{card.grammar_name_vi}</div>}
+                <p className="jp text-sm"><span className="text-slate-500">Cách dùng: </span>{card.formation}</p>
+                {card.examples?.map((x, i) => (
+                  <div key={i} className="rounded-lg bg-slate-50 p-3 text-sm dark:bg-slate-800/60">
+                    <p className="jp">{x.jp} <SpeakButton text={x.jp} /></p>
+                    <p className="text-slate-500">{x.vi}</p>
+                  </div>
+                ))}
+                <a href={`#/grammar?id=${card.entity_id}`} className="block text-center text-sm text-indigo-600 hover:underline dark:text-indigo-300">Xem chi tiết điểm ngữ pháp →</a>
+              </div>
+            ) : entity === 'kanji' ? (
+              <div className="mt-4 space-y-2 border-t border-slate-100 pt-4 dark:border-slate-800">
+                <div className="text-xl">{card.han_viet && <b className="mr-2 uppercase">{card.han_viet}</b>}{card.meaning_vi}</div>
+                <div className="jp text-sm text-slate-600 dark:text-slate-300">
+                  {card.onyomi?.length ? <span className="mr-3">音: {card.onyomi.join('、')}</span> : null}
+                  {card.kunyomi?.length ? <span>訓: {card.kunyomi.join('、')}</span> : null}
+                </div>
+                {card.example_words?.length ? (
+                  <ul className="mx-auto max-w-md rounded-lg bg-slate-50 p-3 text-left text-sm dark:bg-slate-800/60">
+                    {card.example_words.slice(0, 4).map(w => (
+                      <li key={w.word}><span className="jp font-medium">{w.word}</span> <span className="jp text-slate-500">({w.reading})</span> {w.meaning_vi}</li>
+                    ))}
+                  </ul>
+                ) : null}
+              </div>
             ) : (
               <div className="mt-4 space-y-2 border-t border-slate-100 pt-4 dark:border-slate-800">
                 <div className="jp text-2xl">{direction === 'vi_jp' && <span className="mr-2 font-semibold">{card.word}</span>}{card.reading}
-                  <SpeakButton text={card.reading || card.word} /></div>
+                  <SpeakButton text={card.reading || card.word || ''} /></div>
                 <div className="text-sm text-slate-500">{[card.romaji, card.han_viet].filter(Boolean).join(' · ')}</div>
                 {direction === 'jp_vi' && <div className="text-xl">{card.meaning_vi}</div>}
                 {card.example_jp && (

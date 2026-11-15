@@ -162,32 +162,58 @@ def vocab_decks(conn) -> list[dict]:
 
 
 # ---------- SRS ----------
-def ensure_cards(conn, entity_type: str = "vocabulary") -> int:
-    cur = conn.execute(
+# Grammar and kanji cards have one direction (pattern/character -> meaning), stored as 'jp_vi' (ADR-021).
+SRS_ENTITIES = {   # entity -> (columns, table alias + join, active filter, new-card order)
+    "vocabulary": ("v.word, v.reading, v.romaji, v.han_viet, v.meaning_vi, v.example_jp, v.example_romaji, "
+                   "v.example_vi, v.lesson_number, v.deck, v.verification_status, v.verified_by, v.verb_group",
+                   "vocabulary v ON v.id=c.entity_id", "v.archived=0 AND v.verification_status!='rejected'",
+                   "COALESCE(v.lesson_number,999), v.id"),
+    "grammar": ("g.pattern, g.grammar_name_vi, g.meaning_vi, g.formation, g.data_json, g.lesson_number, "
+                "g.verification_status", "grammar g ON g.id=c.entity_id", "g.verification_status!='rejected'",
+                "COALESCE(g.lesson_number,999), g.id"),
+    "kanji": ("k.kanji, k.han_viet, k.meaning_vi, k.onyomi, k.kunyomi, k.example_words, k.verification_status",
+              "kanji k ON k.id=c.entity_id", "k.verification_status!='rejected'", "k.id"),
+}
+
+
+def ensure_cards(conn) -> int:
+    n = conn.execute(
         "INSERT OR IGNORE INTO srs_cards (entity_type, entity_id, direction) "
         "SELECT 'vocabulary', id, d.direction FROM vocabulary, "
         "(SELECT 'jp_vi' AS direction UNION ALL SELECT 'vi_jp') d "
-        "WHERE archived=0 AND verification_status!='rejected'")
-    return cur.rowcount
+        "WHERE archived=0 AND verification_status!='rejected'").rowcount
+    for table in ("grammar", "kanji"):
+        n += conn.execute(f"INSERT OR IGNORE INTO srs_cards (entity_type, entity_id, direction) "
+                          f"SELECT '{table}', id, 'jp_vi' FROM {table} WHERE verification_status!='rejected'").rowcount
+    return n
 
 
-def due_cards(conn, direction: str, new_limit: int = 20, lesson: int | None = None, limit: int = 100) -> list[dict]:
+def _card_view(r: dict) -> dict:
+    if "data_json" in r:                       # grammar: only what the card shows
+        r["examples"] = json.loads(r.pop("data_json")).get("examples", [])[:2]
+    for k in ("onyomi", "kunyomi", "example_words"):
+        if k in r:
+            r[k] = json.loads(r[k])
+    return r
+
+
+def due_cards(conn, direction: str, new_limit: int = 20, lesson: int | None = None, limit: int = 100,
+              entity: str = "vocabulary") -> list[dict]:
+    cols, join, active, order = SRS_ENTITIES[entity]
+    alias = join.split()[1]
     t = iso()
-    lesson_sql, la = ("AND v.lesson_number=?", [lesson]) if lesson is not None else ("", [])
-    base = ("SELECT c.*, v.word, v.reading, v.romaji, v.han_viet, v.meaning_vi, v.example_jp, v.example_romaji, "
-            "v.example_vi, v.lesson_number, v.deck, v.verification_status, v.verified_by, v.verb_group FROM srs_cards c "
-            "JOIN vocabulary v ON v.id=c.entity_id AND c.entity_type='vocabulary' "
-            "WHERE v.archived=0 AND v.verification_status!='rejected' AND c.direction=? ")
+    lesson_sql, la = (f"AND {alias}.lesson_number=?", [lesson]) if lesson is not None and entity != "kanji" else ("", [])
+    base = (f"SELECT c.*, {cols} FROM srs_cards c JOIN {join} AND c.entity_type=? "
+            f"WHERE {active} AND c.direction=? ")
     due = rows(conn.execute(base + f"AND c.due_at IS NOT NULL AND c.due_at<=? {lesson_sql} ORDER BY c.due_at LIMIT ?",
-                            [direction, t, *la, limit]))
+                            [entity, direction, t, *la, limit]))
     new_today = conn.execute(
-        "SELECT COUNT(*) FROM srs_cards WHERE direction=? AND first_studied>=?",
-        (direction, iso(now().replace(hour=0, minute=0, second=0, microsecond=0)))).fetchone()[0]
+        "SELECT COUNT(*) FROM srs_cards WHERE entity_type=? AND direction=? AND first_studied>=?",
+        (entity, direction, iso(now().replace(hour=0, minute=0, second=0, microsecond=0)))).fetchone()[0]
     remaining_new = max(0, new_limit - new_today)
-    new = rows(conn.execute(base + f"AND c.due_at IS NULL {lesson_sql} "
-                            "ORDER BY COALESCE(v.lesson_number,999), v.id LIMIT ?",
-                            [direction, *la, remaining_new])) if remaining_new else []
-    return due + new
+    new = rows(conn.execute(base + f"AND c.due_at IS NULL {lesson_sql} ORDER BY {order} LIMIT ?",
+                            [entity, direction, *la, remaining_new])) if remaining_new else []
+    return [_card_view(r) for r in due + new]
 
 
 def get_card(conn, card_id: int) -> dict | None:
@@ -217,6 +243,9 @@ def study_streak(conn) -> int:
     return streak
 
 
+VOC = "entity_type='vocabulary'"
+
+
 def dashboard(conn) -> dict:
     def kv(sql, *a):
         return {r[0]: r[1] for r in conn.execute(sql, a)}
@@ -226,9 +255,14 @@ def dashboard(conn) -> dict:
         "vocabulary_by_status": kv("SELECT verification_status, COUNT(*) FROM vocabulary WHERE archived=0 GROUP BY 1"),
         "vocabulary_verified_by": kv("SELECT COALESCE(verified_by,'none'), COUNT(*) FROM vocabulary "
                                      "WHERE archived=0 AND verification_status='verified' GROUP BY 1"),
-        "cards_by_status": kv("SELECT status, COUNT(*) FROM srs_cards WHERE direction='jp_vi' GROUP BY 1"),
-        "cards_by_status_vi_jp": kv("SELECT status, COUNT(*) FROM srs_cards WHERE direction='vi_jp' GROUP BY 1"),
-        "due_now": kv("SELECT direction, COUNT(*) FROM srs_cards WHERE due_at IS NOT NULL AND due_at<=? GROUP BY 1", iso()),
+        "cards_by_status": kv(f"SELECT status, COUNT(*) FROM srs_cards WHERE {VOC} AND direction='jp_vi' GROUP BY 1"),
+        "cards_by_status_vi_jp": kv(f"SELECT status, COUNT(*) FROM srs_cards WHERE {VOC} AND direction='vi_jp' GROUP BY 1"),
+        "due_now": kv(f"SELECT direction, COUNT(*) FROM srs_cards WHERE {VOC} AND due_at IS NOT NULL AND due_at<=? "
+                      "GROUP BY 1", iso()),
+        "cards_by_entity": {e: kv("SELECT status, COUNT(*) FROM srs_cards WHERE entity_type=? AND direction='jp_vi' "
+                                  "GROUP BY 1", e) for e in SRS_ENTITIES},
+        "due_by_entity": kv("SELECT entity_type, COUNT(*) FROM srs_cards WHERE due_at IS NOT NULL AND due_at<=? "
+                            "GROUP BY 1", iso()),
         "reviews_today": conn.execute("SELECT COUNT(*) FROM review_log WHERE reviewed_at>=?", (today,)).fetchone()[0],
         "correct_today": conn.execute("SELECT COUNT(*) FROM review_log WHERE reviewed_at>=? AND rating!='again'",
                                       (today,)).fetchone()[0],
@@ -241,7 +275,7 @@ def dashboard(conn) -> dict:
         "open_issues": kv("SELECT severity, COUNT(*) FROM validation_issues WHERE resolved=0 GROUP BY 1"),
         "weak_lessons": rows(conn.execute(
             "SELECT v.lesson_number, v.deck, SUM(c.incorrect_count) AS wrong, SUM(c.correct_count) AS right "
-            "FROM srs_cards c JOIN vocabulary v ON v.id=c.entity_id "
+            "FROM srs_cards c JOIN vocabulary v ON v.id=c.entity_id AND c.entity_type='vocabulary' "
             "WHERE c.review_count>0 GROUP BY v.deck HAVING wrong>0 "
             "ORDER BY CAST(wrong AS REAL)/(wrong+right) DESC LIMIT 5")),
     }
@@ -303,14 +337,18 @@ def questions_where(conn, exam_id=None, section=None, mondai_type=None, exam_typ
     return rows(conn.execute(sql + " ORDER BY q.section_id, q.mondai_no, q.number, q.question_id", args))
 
 
+def latest_answers(conn) -> dict[str, dict]:
+    """Most recent answer of each question across submitted attempts: qid -> {answer, is_correct}."""
+    return {r["question_id"]: {"answer": json.loads(r["answer"]), "is_correct": r["is_correct"]}
+            for r in conn.execute(
+                "SELECT a.question_id, a.answer, a.is_correct FROM attempt_answers a JOIN exam_attempts t "
+                "USING (attempt_id) WHERE t.submitted_at IS NOT NULL AND a.answer IS NOT NULL "
+                "ORDER BY t.submitted_at, a.answered_at, a.rowid")}   # rowid: same-second ties
+
+
 def mistake_question_ids(conn) -> list[str]:
     """Questions whose most recent answer in a submitted attempt was wrong (spec §9.1 Mode E)."""
-    last: dict[str, int] = {}
-    for qid, ok in conn.execute(
-            "SELECT a.question_id, a.is_correct FROM attempt_answers a JOIN exam_attempts t USING (attempt_id) "
-            "WHERE t.submitted_at IS NOT NULL AND a.answer IS NOT NULL ORDER BY t.submitted_at, a.answered_at"):
-        last[qid] = ok
-    return [q for q, ok in last.items() if ok == 0]
+    return [q for q, a in latest_answers(conn).items() if a["is_correct"] == 0]
 
 
 def create_attempt(conn, attempt_id: str, exam_id, title: str, mode: str, config: dict) -> None:

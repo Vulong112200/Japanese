@@ -339,8 +339,9 @@ def review(entity: Literal["vocabulary", "question", "grammar", "kanji"], entity
 # ---------- SRS ----------
 @router.get("/srs/due")
 def srs_due(direction: Literal["jp_vi", "vi_jp"] = "jp_vi", new_limit: int = Query(20, ge=0, le=200),
-            lesson: int | None = None, conn=Depends(get_conn)):
-    return repo.due_cards(conn, direction, new_limit, lesson)
+            lesson: int | None = None, entity: Literal["vocabulary", "grammar", "kanji"] = "vocabulary",
+            conn=Depends(get_conn)):
+    return repo.due_cards(conn, direction, new_limit, lesson, entity=entity)
 
 
 class Answer(BaseModel):
@@ -362,7 +363,12 @@ def srs_answer(card_id: int, body: Answer, conn=Depends(get_conn)):
 
 @router.get("/stats/dashboard")
 def stats(conn=Depends(get_conn)):
-    return repo.dashboard(conn)
+    d = repo.dashboard(conn)
+    # grammar points to review: latest answer per question across submitted attempts (ADR-021)
+    latest = repo.latest_answers(conn)
+    qs = [q for q in _scoring_questions(conn, list(latest)) if q["grammar_id"]]
+    d["weak_grammar_points"] = examlib.score(qs, {k: v["answer"] for k, v in latest.items()})["weak_grammar_points"]
+    return d
 
 
 # ---------- mock exam (spec Part 9, 10) ----------
@@ -570,15 +576,20 @@ def advance(attempt_id: str, conn=Depends(get_conn)):
     return attempt_view(conn, attempt_id)
 
 
+def _scoring_questions(conn, ids: list[str]) -> list[dict]:
+    qs = []
+    for r in conn.execute(f"SELECT * FROM questions WHERE question_id IN ({','.join('?' * len(ids)) or 'NULL'})", ids):
+        q = decode(dict(r))
+        extra = q["extra_json"] or {}
+        qs.append({**q, **{k: extra.get(k) for k in ("lesson_number", "grammar_id", "grammar_pattern")}})
+    return qs
+
+
 @router.post("/attempts/{attempt_id}/submit")
 def submit(attempt_id: str, conn=Depends(get_conn)):
     a = _open_attempt(conn, attempt_id)
     ids = [qid for s in a["config"]["sections"] for qid in s["question_ids"]]
-    qs = []
-    for r in conn.execute(f"SELECT * FROM questions WHERE question_id IN ({','.join('?' * len(ids))})", ids):
-        q = decode(dict(r))
-        extra = q["extra_json"] or {}
-        qs.append({**q, **{k: extra.get(k) for k in ("lesson_number", "grammar_id", "grammar_pattern")}})
+    qs = _scoring_questions(conn, ids)
     answers = {k: v["answer"] for k, v in repo.attempt_answers(conn, attempt_id).items()}
     result = examlib.score(qs, answers)
     result["readiness"] = examlib.readiness(result["by_section"])

@@ -73,24 +73,39 @@ export interface VocabDetail extends Vocab {
   history: { action: string; note: string | null; acted_at: string; before_json: string | null; after_json: string | null }[]
 }
 
+export type SrsEntity = 'vocabulary' | 'grammar' | 'kanji'
+
 export interface Card {
   card_id: number
+  entity_type: SrsEntity
+  entity_id: string
   direction: 'jp_vi' | 'vi_jp'
   status: string
   interval_days: number
   reps: number
   review_count: number
-  word: string
-  reading: string
-  romaji: string | null
-  han_viet: string | null
   meaning_vi: string
-  example_jp: string | null
-  example_romaji: string | null
-  example_vi: string | null
-  lesson_number: number | null
-  deck: string
   verification_status: Status
+  lesson_number?: number | null
+  han_viet?: string | null
+  // vocabulary
+  word?: string
+  reading?: string
+  romaji?: string | null
+  example_jp?: string | null
+  example_romaji?: string | null
+  example_vi?: string | null
+  deck?: string
+  // grammar
+  pattern?: string
+  grammar_name_vi?: string | null
+  formation?: string
+  examples?: { jp: string; romaji?: string; vi: string }[]
+  // kanji
+  kanji?: string
+  onyomi?: string[]
+  kunyomi?: string[]
+  example_words?: { word: string; reading: string; meaning_vi: string }[]
 }
 
 export interface Question {
@@ -137,6 +152,9 @@ export interface Dashboard {
   weak_lessons: { lesson_number: number | null; deck: string; wrong: number; right: number }[]
   grammar_by_status: Record<string, number>
   kanji_by_status: Record<string, number>
+  cards_by_entity: Record<SrsEntity, Record<string, number>>
+  due_by_entity: Partial<Record<SrsEntity, number>>
+  weak_grammar_points: { grammar_id: string; pattern: string | null; total: number; correct: number; accuracy: number | null }[]
   exam: {
     attempts_submitted: number
     mistakes_pending: number
@@ -305,8 +323,8 @@ export const api = {
   decks: () => req<{ deck: string; lesson_number: number | null; n: number }[]>('/vocabulary/decks'),
   vocabItem: (id: string) => req<VocabDetail>(`/vocabulary/${id}`),
   archive: (id: string) => req<{ archived: boolean }>(`/vocabulary/${id}/archive`, { method: 'POST' }),
-  due: (direction: string, newLimit: number, lesson?: number) =>
-    req<Card[]>(`/srs/due?${qs({ direction, new_limit: newLimit, lesson })}`),
+  due: (direction: string, newLimit: number, entity: SrsEntity = 'vocabulary') =>
+    req<Card[]>(`/srs/due?${qs({ direction, new_limit: newLimit, entity })}`),
   answer: (cardId: number, rating: string) =>
     req<Card>(`/srs/cards/${cardId}/answer`, { method: 'POST', body: JSON.stringify({ rating }) }),
   queue: (entity: string, status?: string, offset = 0) =>

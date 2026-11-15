@@ -568,9 +568,9 @@ def run_all(conn, check_network: bool = False) -> dict:
     out["flashcards"] = import_flashcards(conn)          # CSV first: keeps VOC ids of the user's cards stable
     out["vocab_supplement"] = knowledge.import_supplement(conn)
     revalidate_all(conn)
-    repo.ensure_cards(conn)
     out["grammar"] = knowledge.import_grammar(conn)
     out["kanji"] = knowledge.import_kanji(conn)
+    repo.ensure_cards(conn)                              # after grammar/kanji: they get SRS cards too (ADR-021)
     out["exam"] = import_exam(conn)
     out["past_exams"] = import_past_exams(conn)
     out["generated_questions"] = knowledge.import_generated_questions(conn)

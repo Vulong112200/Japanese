@@ -322,3 +322,33 @@ def test_grammar_bank_exam_mode_hides_answers_and_reports_weak_points(client):
     done = c.post(f"/api/attempts/{a['attempt_id']}/submit").json()
     assert done["result"]["weak_grammar_points"] and done["result"]["weak_grammar_points"][0]["pattern"]
     assert all("expected_sequence" in q["extra"] for q in done["questions"])
+
+
+def test_dashboard_suggests_grammar_points_until_answered_right(client):
+    """ADR-021: dashboard uses the latest answer of each question, so fixing a mistake removes the suggestion."""
+    c, conn = client
+
+    def redo_mistakes_correctly():
+        r = c.post("/api/attempts", json={"mode": "practice", "mistakes_only": True, "limit": 200})
+        if r.status_code == 404:                  # no mistakes pending
+            return
+        redo = r.json()
+        for q in redo["questions"]:
+            c.put(f"/api/attempts/{redo['attempt_id']}/answers/{q['question_id']}",
+                  json={"answer": _correct(conn, q["question_id"])})
+        c.post(f"/api/attempts/{redo['attempt_id']}/submit")
+
+    redo_mistakes_correctly()                     # clear mistakes left by earlier tests in this module
+    assert c.get("/api/stats/dashboard").json()["weak_grammar_points"] == []
+    a = c.post("/api/attempts", json={"mode": "practice", "source": "generated", "mondai_type": "grammar_form",
+                                      "limit": 3}).json()
+    for q in a["questions"]:
+        wrong = next(o["option_id"] for o in q["options"] if [o["option_id"]] != _correct(conn, q["question_id"]))
+        c.put(f"/api/attempts/{a['attempt_id']}/answers/{q['question_id']}", json={"answer": [wrong]})
+    c.post(f"/api/attempts/{a['attempt_id']}/submit")
+    missed = {json.loads(repo.get_question(conn, q["question_id"])["extra_json"])["grammar_id"] for q in a["questions"]}
+    weak = c.get("/api/stats/dashboard").json()["weak_grammar_points"]
+    assert {w["grammar_id"] for w in weak} == missed and all(w["pattern"] and w["correct"] < w["total"] for w in weak)
+
+    redo_mistakes_correctly()
+    assert c.get("/api/stats/dashboard").json()["weak_grammar_points"] == []

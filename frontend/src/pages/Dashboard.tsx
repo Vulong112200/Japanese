@@ -44,8 +44,11 @@ export default function Dashboard() {
   if (!d) return <Loading />
 
   const vocabTotal = Object.values(d.vocabulary_by_status).reduce((a, b) => a + b, 0)
-  const cardTotal = Object.values(d.cards_by_status).reduce((a, b) => a + b, 0) || 1
-  const due = (d.due_now.jp_vi ?? 0) + (d.due_now.vi_jp ?? 0)
+  const sum = (m: Record<string, number>) => Object.values(m).reduce((a, b) => a + b, 0)
+  const dueVocab = (d.due_now.jp_vi ?? 0) + (d.due_now.vi_jp ?? 0)
+  const dueGrammar = d.due_by_entity.grammar ?? 0
+  const dueKanji = d.due_by_entity.kanji ?? 0
+  const due = dueVocab + dueGrammar + dueKanji
   const verified = d.vocabulary_by_status.verified ?? 0
   const accuracy = d.reviews_today ? Math.round((d.correct_today / d.reviews_today) * 100) : null
 
@@ -64,13 +67,20 @@ export default function Dashboard() {
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
         <Stat label="Chuỗi ngày học" value={`${d.streak_days} ngày`} />
         <Stat label="Lượt ôn hôm nay" value={d.reviews_today} hint={accuracy !== null ? `Nhớ đúng ${accuracy}%` : 'Chưa ôn hôm nay'} />
-        <Stat label="Thẻ đến hạn" value={due} hint={`JP→VI ${d.due_now.jp_vi ?? 0} · VI→JP ${d.due_now.vi_jp ?? 0}`} />
+        <Stat label="Thẻ đến hạn" value={due} hint={`Từ vựng ${dueVocab} · Ngữ pháp ${dueGrammar} · Kanji ${dueKanji}`} />
         <Stat label="Từ vựng đã xác minh" value={`${verified}/${vocabTotal}`} hint="Còn lại: học được, có nhãn 'Chưa xác minh'" />
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">
-        <Panel title="Mức độ thuộc từ vựng (JP→VI)">
-          <StackBar data={d.cards_by_status} total={cardTotal} />
+        <Panel title="Mức độ thuộc (thẻ SRS)">
+          <div className="space-y-4">
+            {([['Từ vựng (JP→VI)', d.cards_by_status, 'vocabulary'], ['Ngữ pháp', d.cards_by_entity.grammar, 'grammar'],
+              ['Kanji', d.cards_by_entity.kanji, 'kanji']] as const).map(([l, m, e]) => (
+              <div key={e}>
+                <a href={`#/flashcards?entity=${e}`} className="mb-1 block text-sm font-medium hover:underline">{l}</a>
+                <StackBar data={m} total={sum(m) || 1} />
+              </div>))}
+          </div>
           <p className="mt-3 text-xs text-slate-500">"Thuộc" yêu cầu ≥3 lần nhớ liên tiếp và khoảng ôn ≥21 ngày — không bao giờ sau 1 lần trả lời.</p>
         </Panel>
         <Panel title="Chất lượng dữ liệu">
@@ -107,6 +117,22 @@ export default function Dashboard() {
           </dl>
         </Panel>
       </div>
+
+      <Panel title="Ngữ pháp cần ôn" action={<a href="#/flashcards?entity=grammar" className="text-sm text-indigo-600 hover:underline dark:text-indigo-300">Ôn thẻ ngữ pháp →</a>}>
+        {d.weak_grammar_points.length === 0
+          ? <p className="text-sm text-slate-500">Chưa có gợi ý: làm <a href="#/exam" className="text-indigo-600 hover:underline dark:text-indigo-300">bài thi thử hoặc luyện tập</a> có phần ngữ pháp (文の文法) để biết điểm nào còn sai.</p>
+          : <>
+            <ul className="divide-y divide-slate-100 text-sm dark:divide-slate-800">
+              {d.weak_grammar_points.map(w => (
+                <li key={w.grammar_id} className="flex items-center justify-between gap-2 py-1.5">
+                  <a href={`#/grammar?id=${w.grammar_id}`} className="jp hover:underline">{w.pattern ?? w.grammar_id}</a>
+                  <span className="shrink-0 tabular-nums text-slate-500">đúng {w.correct}/{w.total}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-2 text-xs text-slate-500">Tính theo lần trả lời gần nhất của mỗi câu trong các lượt đã nộp; làm đúng lại thì điểm đó tự biến mất.</p>
+          </>}
+      </Panel>
 
       <Panel title="Bài có tỉ lệ quên cao nhất">
         {d.weak_lessons.length === 0
