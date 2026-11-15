@@ -74,7 +74,7 @@ cd ../frontend && npm run build               # tsc + vite build → frontend/di
   - `verified_by='user'`: người dùng bấm Duyệt.
 - **Nhóm động từ** lấy từ thể từ điển trong JMdict, không bao giờ suy từ đuôi ます (spec §6.1).
 - **Hán-Việt** đối chiếu KANJIDIC2. KANJIDIC2 sai với một số chữ shinjitai, nên có `HV_OVERRIDES` trong `validation/reference.py`. Chỉ thêm vào đó khi chắc chắn.
-- **Đề thi**: đáp án chỉ lấy từ 正解 chính thức. Không bịa câu hỏi. Không tạo audio thay thế. Lựa chọn chỉ có trong audio thì phải ẩn ở chế độ thi.
+- **Đề thi**: đề chính thức chỉ lấy đáp án từ 正解. Đề thật các năm (ADR-019) dùng đáp án cộng đồng, đối chiếu 2 AI giải độc lập; chỉ `verified` khi key = A = B, có nhãn `COMMUNITY_KEY`/`AI_ANSWERED`, `is_official=0`. Không bịa câu hỏi. Không tạo audio thay thế. Lựa chọn chỉ có trong audio thì phải ẩn ở chế độ thi.
   - Không trích đề từ website bên thứ ba (nihonez cấm scrape; gojapan không công bố đáp án, giữ bản quyền). Xem bảng nguồn trong docs/PROGRESS.md.
   - Câu luyện tập tự sinh nằm trong đề `BANK_N5_GENERATED` (`is_official=0`, nhãn AI_GENERATED), `verified_by='generator'`. Chỉ sinh từ dữ liệu verified; phương án nhiễu phải được chứng minh sai bằng JMdict (ADR-017). Câu không sinh lại được thì `rejected`, không xoá (lịch sử thi tham chiếu).
   - Chế độ thi không được trả về đáp án/giải thích/script trước khi nộp (ADR-018, có test).
@@ -87,7 +87,7 @@ cd ../frontend && npm run build               # tsc + vite build → frontend/di
   - Từ loại của từ vựng do JMdict quyết định, không lấy từ file.
 - **Độ phủ N5 đã đạt** (phiên 3): từ vựng phủ danh sách JLPT N5 và đủ 25 bài Minna; 103/103 kanji; 135 điểm ngữ pháp. **Không cần thu thập thêm tài liệu kiến thức.** Việc tiếp theo là tính năng (thi thử, luyện tập), không phải dữ liệu.
   - Ngữ pháp đã xong rà soát vòng 2 (phiên 4): 135/135 verified. Bằng chứng: `data/normalized/ai_review/grammar_round2.json`. Sửa ngữ pháp về sau: dùng `backend/scripts/apply_grammar_review.py`.
-- **Mock exam** (phiên 4) đã có. Việc tiếp theo: đề N5 2017 trên Drive, rồi câu ngữ pháp do agent soạn (xem docs/PROGRESS.md).
+- **Mock exam** (phiên 4) đã có. **6 đề thật các năm** (phiên 5, ADR-019) đã nhập: bản chép ở `data/normalized/exams/EXAM_N5_20*.json` (không commit), file gốc ở `data/raw/SRC_DRIVE_EXAM_N5_*`. Việc tiếp theo: câu ngữ pháp do agent soạn (xem docs/PROGRESS.md).
 
 ## 6. Quy trình rà soát nội dung (đã dùng cho từ vựng, kanji và ngữ pháp)
 1. Dump dữ liệu kèm bằng chứng từ điển ra TSV (scratchpad), chia khoảng 4 lô.

@@ -22,6 +22,12 @@ def remaining_seconds(duration_sec: int | None, started_at: datetime | None, now
     return max(0, duration_sec - int((now - started_at).total_seconds()))
 
 
+def consensus_status(key: int, solvers: list[int | None]) -> str:
+    """ADR-019: a past-paper answer is 'verified' only when the answer key and two independent AI solvers agree.
+    No solver results (e.g. the official sample) -> needs_review."""
+    return "verified" if len(solvers) >= 2 and all(s == key for s in solvers) else "needs_review"
+
+
 def is_correct(answer: list[str] | None, correct: list[str]) -> bool | None:
     if not answer:
         return None

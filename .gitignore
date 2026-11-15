@@ -16,3 +16,5 @@ data/reference/tessdata/
 docs/N5/Exam/
 data/raw/
 data/normalized/exams/EXAM_N5_OFFICIAL_SAMPLE.json
+# Đề thi thật các năm (bản chép + kết quả AI giải): bản quyền JLPT, chỉ lưu trên máy (ADR-019)
+data/normalized/exams/EXAM_N5_20*

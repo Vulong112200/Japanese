@@ -1,6 +1,6 @@
 # SOURCE CATALOG
 
-Tạo tự động lúc 2026-11-14T21:53:08+07:00. Định nghĩa độ tin cậy: OFFICIAL / PRIMARY / EDUCATIONAL / SUPPLEMENTARY / AI_GENERATED / USER_CREATED (spec §3.3).
+Tạo tự động lúc 2026-11-15T07:27:30+07:00. Định nghĩa độ tin cậy: OFFICIAL / PRIMARY / EDUCATIONAL / SUPPLEMENTARY / AI_GENERATED / USER_CREATED (spec §3.3).
 
 Trạng thái truy cập là kết quả **kiểm tra HTTP** (`python -m hub check-online`), không phải trích xuất nội dung.
 `requires_auth` / `manual_export` = cần tài khoản Google hoặc người dùng tải/export tệp về `docs/` để nhập.
@@ -11,12 +11,29 @@ Một số lỗi `unreachable` có thể do mạng/chứng chỉ cục bộ (vd.
 | SRC_DRIVE_120_KANJI_CO_BAN_SO_CAP | 120-Kanji-co-ban-so-cap.pdf | pdf | EDUCATIONAL | local |  | data/raw/SRC_LESSON_002/120-Kanji-co-ban-so-cap.pdf |  |  |
 | SRC_DRIVE_160_KANJI_N5_N4 | 160-kanji-n5-n4.pdf | pdf | EDUCATIONAL | local |  | data/raw/SRC_LESSON_002/160-kanji-n5-n4.pdf |  |  |
 | SRC_DRIVE_214_BO_THU_BANG_HINH_ANH | 214-bo-thu-bang-hinh-anh.pdf | pdf | EDUCATIONAL | local |  | data/raw/SRC_LESSON_002/214-bo-thu-bang-hinh-anh.pdf |  |  |
+| SRC_DRIVE_EXAM_N5_2012_12 | mondai.pdf | pdf | SUPPLEMENTARY | local |  | data/raw/SRC_DRIVE_EXAM_N5_2012_12/mondai.pdf | Đề JLPT N5 thật (bản cộng đồng, thư mục Drive ĐỀ THI) |  |
+| SRC_DRIVE_EXAM_N5_2012_12_AUDIO | audio.m4a | audio | SUPPLEMENTARY | local |  | data/raw/SRC_DRIVE_EXAM_N5_2012_12/audio.m4a | Đề JLPT N5 thật (bản cộng đồng, thư mục Drive ĐỀ THI) |  |
+| SRC_DRIVE_EXAM_N5_2013_07 | mondai.pdf | pdf | SUPPLEMENTARY | local |  | data/raw/SRC_DRIVE_EXAM_N5_2013_07/mondai.pdf | Đề JLPT N5 thật (bản cộng đồng, thư mục Drive ĐỀ THI) |  |
+| SRC_DRIVE_EXAM_N5_2013_07_AUDIO | audio.mp3 | audio | SUPPLEMENTARY | local |  | data/raw/SRC_DRIVE_EXAM_N5_2013_07/audio.mp3 | Đề JLPT N5 thật (bản cộng đồng, thư mục Drive ĐỀ THI) |  |
+| SRC_DRIVE_EXAM_N5_2017_07 | mondai.pdf | pdf | SUPPLEMENTARY | local |  | data/raw/SRC_DRIVE_EXAM_N5_2017_07/mondai.pdf | Đề JLPT N5 thật (bản cộng đồng, thư mục Drive ĐỀ THI) |  |
+| SRC_DRIVE_EXAM_N5_2017_07_AUDIO | audio.m4a | audio | SUPPLEMENTARY | local |  | data/raw/SRC_DRIVE_EXAM_N5_2017_07/audio.m4a | Đề JLPT N5 thật (bản cộng đồng, thư mục Drive ĐỀ THI) |  |
+| SRC_DRIVE_EXAM_N5_2018 | mondai.pdf | pdf | SUPPLEMENTARY | local |  | data/raw/SRC_DRIVE_EXAM_N5_2018/mondai.pdf | Đề JLPT N5 thật (bản cộng đồng, thư mục Drive ĐỀ THI) |  |
+| SRC_DRIVE_EXAM_N5_2018_AUDIO | audio.m4a | audio | SUPPLEMENTARY | local |  | data/raw/SRC_DRIVE_EXAM_N5_2018/audio.m4a | Đề JLPT N5 thật (bản cộng đồng, thư mục Drive ĐỀ THI) |  |
+| SRC_DRIVE_EXAM_N5_2021_12 | mondai.pdf | pdf | SUPPLEMENTARY | local |  | data/raw/SRC_DRIVE_EXAM_N5_2021_12/mondai.pdf | Đề JLPT N5 thật (bản cộng đồng, thư mục Drive ĐỀ THI) |  |
+| SRC_DRIVE_EXAM_N5_2021_12_AUDIO | audio.mp3 | audio | SUPPLEMENTARY | local |  | data/raw/SRC_DRIVE_EXAM_N5_2021_12/audio.mp3 | Đề JLPT N5 thật (bản cộng đồng, thư mục Drive ĐỀ THI) |  |
+| SRC_DRIVE_EXAM_N5_2021_12_KEY | seikai.pdf | pdf | SUPPLEMENTARY | local |  | data/raw/SRC_DRIVE_EXAM_N5_2021_12/seikai.pdf | Đề JLPT N5 thật (bản cộng đồng, thư mục Drive ĐỀ THI) |  |
+| SRC_DRIVE_EXAM_N5_2021_12_SCRIPT | script.pdf | pdf | SUPPLEMENTARY | local |  | data/raw/SRC_DRIVE_EXAM_N5_2021_12/script.pdf | Đề JLPT N5 thật (bản cộng đồng, thư mục Drive ĐỀ THI) |  |
+| SRC_DRIVE_EXAM_N5_2024_07 | mondai.pdf | pdf | SUPPLEMENTARY | local |  | data/raw/SRC_DRIVE_EXAM_N5_2024_07/mondai.pdf | Đề JLPT N5 thật (bản cộng đồng, thư mục Drive ĐỀ THI) |  |
+| SRC_DRIVE_EXAM_N5_2024_07_AUDIO | audio.mp3 | audio | SUPPLEMENTARY | local |  | data/raw/SRC_DRIVE_EXAM_N5_2024_07/audio.mp3 | Đề JLPT N5 thật (bản cộng đồng, thư mục Drive ĐỀ THI) |  |
+| SRC_DRIVE_EXAM_N5_2024_07_KEY | seikai.pdf | pdf | SUPPLEMENTARY | local |  | data/raw/SRC_DRIVE_EXAM_N5_2024_07/seikai.pdf | Đề JLPT N5 thật (bản cộng đồng, thư mục Drive ĐỀ THI) |  |
+| SRC_DRIVE_EXAM_N5_2024_07_SCRIPT | script.pdf | pdf | SUPPLEMENTARY | local |  | data/raw/SRC_DRIVE_EXAM_N5_2024_07/script.pdf | Đề JLPT N5 thật (bản cộng đồng, thư mục Drive ĐỀ THI) |  |
 | SRC_DRIVE_PHO_TU_TU_DONG_TU_THA_DONG_TU | pho-tu-tu-dong-tu-tha-dong-tu.pdf | pdf | EDUCATIONAL | local |  | data/raw/SRC_LESSON_002/pho-tu-tu-dong-tu-tha-dong-tu.pdf |  |  |
 | SRC_DRIVE_TONG_HOP_TU_VUNG_N5 | Tong-hop-tu-vung-N5.pdf | pdf | EDUCATIONAL | local |  | data/raw/SRC_LESSON_002/Tong-hop-tu-vung-N5.pdf |  |  |
 | SRC_DRIVE_TU_VUNG_N5 | Tu-vung-N5.pdf | pdf | EDUCATIONAL | local |  | data/raw/SRC_LESSON_002/Tu-vung-N5.pdf |  |  |
 | SRC_EXAM_001 | GoJapan – Thi thử JLPT N5 | website | EDUCATIONAL | unchecked |  | https://gojapan.vn/thi-thu-jlpt/trinh-do-n5/ | Cấu trúc đề thi thử N5 trực tuyến (bên thứ ba, không phải đề chính thức) |  |
 | SRC_EXAM_002 | Migii JLPT – Mock test N5 | website | EDUCATIONAL | unchecked |  | https://jlpt.migii.net/vi/mock-test/jlpt-n5 | Cấu trúc đề thi thử, định dạng phản hồi (bên thứ ba) |  |
 | SRC_EXAM_003 | Nihonez – JLPT N5 test | website | EDUCATIONAL | unchecked |  | https://nihonez.com/jlpt-n5-test/ | Phân loại câu hỏi N5, dạng bài nghe/đọc (bên thứ ba) |  |
+| SRC_EXAM_004 | Google Drive – ĐỀ THI (đề JLPT N5 thật các năm) | google_drive | SUPPLEMENTARY | unchecked |  | https://drive.google.com/drive/folders/1XQr4kpH9YtLdU_yasMmpvrAdiWlErGpF | Đề thật 2012–2024 (bản cộng đồng, đáp án tham khảo); nhập qua data/raw/SRC_DRIVE_EXAM_N5_* (ADR-019) |  |
 | SRC_GDOC_001 | Google Docs – ghi chú ngữ pháp | google_doc | USER_CREATED | unchecked |  | https://docs.google.com/document/d/1tjsZBG5RAsIOlqKM_r7dfzlB1b1HKOzVu6YQDm_eUI0/edit?usp=sharing | Nguồn cho cơ sở dữ liệu ngữ pháp |  |
 | SRC_LESSON_001 | HanoiLink – Từ vựng N5 | website | EDUCATIONAL | unchecked |  | https://hanoilink.vn/tu-vung-tieng-nhat-n5/ | Tham khảo từ vựng N5 |  |
 | SRC_LESSON_002 | Google Drive – Tài liệu học | google_drive | PRIMARY | unchecked |  | https://drive.google.com/drive/folders/14cvGKUh4Gu7ojd2JE6FzWL5hCTSFwhaz | Tài liệu học cần nhập (cần tài khoản Google được cấp quyền hoặc người dùng tải xuống) |  |

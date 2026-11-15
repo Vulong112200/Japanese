@@ -222,7 +222,7 @@ export interface AttemptSummary {
 
 export interface ExamOverview {
   exams: { exam_id: string; title: string; exam_type: string; source_type: string; is_official: number; duration_minutes: number | null; verification_status: Status; question_count: number }[]
-  bank: { section: Section; mondai_no: number; mondai_type: string; is_official: number; n: number }[]
+  bank: { section: Section; mondai_no: number; mondai_type: string; exam_type: string; n: number }[]
   mistakes: number
 }
 
@@ -231,7 +231,7 @@ export interface AttemptStart {
   exam_id?: string
   section?: Section
   mondai_type?: string
-  source?: 'all' | 'official' | 'generated'
+  source?: 'all' | 'official' | 'past' | 'generated'
   mistakes_only?: boolean
   limit?: number
   timing?: 'none' | 'original' | 'current' | 'custom'

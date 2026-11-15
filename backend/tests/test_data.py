@@ -50,9 +50,13 @@ def test_verification_provenance(imported):
     assert set(by) <= {"ai"}
     assert conn.execute("SELECT COUNT(*) FROM questions WHERE verification_status='verified' "
                         "AND exam_id='EXAM_N5_OFFICIAL_SAMPLE'").fetchone()[0] == 0
-    # the only automatically verified questions are rule-generated ones in the non-official bank
+    # automatically verified questions: rule-generated bank, or past papers where key = 2 independent AIs (ADR-019)
     assert conn.execute("SELECT COUNT(*) FROM questions q JOIN exams e USING (exam_id) WHERE q.verification_status="
-                        "'verified' AND (q.verified_by!='generator' OR e.is_official=1)").fetchone()[0] == 0
+                        "'verified' AND NOT ((q.verified_by='generator' AND e.exam_type='question_bank') OR "
+                        "(q.verified_by='ai' AND e.exam_type='past_exam')) AND COALESCE(q.verified_by,'')!='user'"
+                        ).fetchone()[0] == 0
+    assert conn.execute("SELECT COUNT(*) FROM questions q JOIN exams e USING (exam_id) WHERE q.verification_status="
+                        "'verified' AND e.is_official=1 AND COALESCE(q.verified_by,'')!='user'").fetchone()[0] == 0
 
 
 def test_vocabulary_schema_and_traceability(imported):
@@ -176,7 +180,7 @@ def test_transcribed_answer_mismatch_is_rejected(imported, tmp_path):
     bad = tmp_path / "bad.json"
     bad.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
     with pytest.raises(ValueError, match="正解"):
-        pipeline.import_sample_exam(conn, bad)
+        pipeline.import_exam(conn, bad)
     conn.rollback()
 
 

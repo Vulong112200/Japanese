@@ -184,3 +184,59 @@ def test_practice_mode_gives_immediate_feedback_and_filters(client):
     assert sum(s["duration_sec"] for s in custom["sections"]) == 300
     assert c.post("/api/attempts", json={"timing": "custom"}).status_code == 422
     assert c.get("/api/assets/AUD_N5S_001", headers={"Range": "bytes=0-99"}).status_code == 206
+
+
+# ---------------------------------------------------------------- past papers (ADR-019)
+def test_consensus_status_needs_key_and_both_solvers():
+    assert examlib.consensus_status(2, [2, 2]) == "verified"
+    assert examlib.consensus_status(2, [2, 3]) == "needs_review"
+    assert examlib.consensus_status(2, [3, 3]) == "needs_review"        # both AIs disagree with the key
+    assert examlib.consensus_status(2, [2, None]) == "needs_review"     # a solver missing
+    assert examlib.consensus_status(2, []) == "needs_review"            # official sample: no solvers
+
+
+def _past(conn):
+    rows = conn.execute("SELECT exam_id, is_official, source_type, data_json FROM exams "
+                        "WHERE exam_type='past_exam'").fetchall()
+    if not rows:
+        pytest.skip("Chưa có đề thật trên máy (data/normalized/exams/EXAM_N5_20*.json + data/raw không commit)")
+    return rows
+
+
+def test_past_papers_are_labelled_and_consensus_backed(client):
+    _, conn = client
+    from hub.ingestion import pipeline
+    for r in _past(conn):
+        assert r["is_official"] == 0 and r["source_type"] in ("COMMUNITY_KEY", "AI_ANSWERED")
+        src = pipeline.EXAM_JSON.parent / f"{r['exam_id']}.json"
+        data = json.loads(src.read_text(encoding="utf-8"))
+        review = json.loads(src.with_name(f"{r['exam_id']}.ai_review.json").read_text(encoding="utf-8"))
+        qs = {q["question_id"]: q for q in repo.questions_where(conn, exam_id=r["exam_id"])}
+        assert len(qs) == len(data["questions"])
+        for qid, q in qs.items():
+            key = json.loads(q["correct_answer"])[0]
+            a = review[qid]
+            if q["verification_status"] == "verified" and q["verified_by"] == "ai":
+                assert str(a["solver_a"]) == str(a["solver_b"]) == key, qid
+            elif q["verified_by"] not in ("user", "pending_user"):
+                codes = {i["code"] for i in repo.issues_for(conn, "question", qid) if not i["resolved"]}
+                assert "answer_key_disputed" in codes, qid
+            if q["section"] == "listening":
+                assert q["audio_asset_id"] and q["transcript"], qid
+
+
+def test_past_papers_filter_and_exam_mode_hide_answers(client):
+    c, conn = client
+    rows = _past(conn)
+    a = c.post("/api/attempts", json={"mode": "practice", "source": "past", "limit": 50}).json()
+    past_ids = {r["exam_id"] for r in rows}
+    assert a["questions"] and {q["exam_id"] for q in a["questions"]} <= past_ids
+    eid = rows[0]["exam_id"]
+    e = c.post("/api/attempts", json={"exam_id": eid, "mode": "exam", "timing": "original"}).json()
+    meta = json.loads(rows[0]["data_json"])
+    assert [s["duration_sec"] for s in e["sections"]] == [s["duration_minutes"] * 60 for s in meta["sections"]]
+    for q in e["questions"]:
+        assert "correct_answer" not in q and "explanation_vi" not in q and "transcript" not in q
+        assert "option_explanations" not in q["extra"] and "expected_sequence" not in q["extra"]
+        if q["extra"].get("options_audio_only"):
+            assert all(o["text"] == "" for o in q["options"])

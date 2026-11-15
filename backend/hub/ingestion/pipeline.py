@@ -11,6 +11,7 @@ from pathlib import Path
 
 from .. import repo
 from ..db import ROOT
+from ..learning import exam as examlib
 from ..validation import reference as ref
 from ..validation import vocabulary as vrules
 from . import flashcards_csv as fc
@@ -21,7 +22,6 @@ SOURCEDOCS_DIR = ROOT / "docs" / "N5" / "SourceDocs"
 DRIVE_DIR = ROOT / "data" / "raw" / "SRC_LESSON_002"
 ONLINE_SOURCES = ROOT / "data" / "sources_online.json"
 EXAM_JSON = ROOT / "data" / "normalized" / "exams" / "EXAM_N5_OFFICIAL_SAMPLE.json"
-EXAM_AI_REVIEW = ROOT / "data" / "normalized" / "exams" / "EXAM_N5_OFFICIAL_SAMPLE.ai_review.json"
 RAW_DIR = ROOT / "data" / "raw"
 
 TYPE_BY_EXT = {".pdf": "pdf", ".mp3": "audio", ".wav": "audio", ".m4a": "audio", ".csv": "csv", ".json": "json",
@@ -53,6 +53,9 @@ def source_id_for(path: Path) -> str:
         return "SRC_LOCAL_FC_KAIWA"
     if "Số Đếm" in stem or "So Dem" in stem:
         return "SRC_LOCAL_FC_SODEM"
+    if path.parent.parent == RAW_DIR and path.parent.name.startswith("SRC_DRIVE_EXAM_"):   # past paper folder
+        return path.parent.name + {"mondai": "", "seikai": "_KEY", "script": "_SCRIPT", "audio": "_AUDIO"}.get(
+            path.stem, "_" + path.stem.upper())
     if path.parent == DRIVE_DIR:                      # PDFs downloaded from the public Drive folder
         return "SRC_DRIVE_" + re.sub(r"[^A-Z0-9]+", "_", path.stem.upper()).strip("_")[:30]
     if path.suffix.lower() == ".docx" and "Ngữ Pháp" in path.stem:
@@ -95,7 +98,8 @@ def inventory(conn, dirs=(EXAM_DIR, FLASHCARD_DIR, SOURCEDOCS_DIR, DRIVE_DIR)) -
             report.append({"location": rel(Path(d)), "error": "directory not accessible"})
             continue
         # data/raw holds derived files (OCR json, page images) next to downloaded PDFs: register PDFs only
-        files = Path(d).glob("*.pdf") if Path(d) == DRIVE_DIR else Path(d).rglob("*")
+        files = (Path(d).glob("*.pdf") if Path(d) == DRIVE_DIR else
+                 Path(d).glob("*") if Path(d).parent == RAW_DIR else Path(d).rglob("*"))
         for p in sorted(files):
             if not p.is_file():
                 continue
@@ -114,10 +118,13 @@ def inventory(conn, dirs=(EXAM_DIR, FLASHCARD_DIR, SOURCEDOCS_DIR, DRIVE_DIR)) -
                 existing = repo.get_source(conn, sid)
                 notes = f"Trùng nội dung với {dup}" if dup and dup != sid else None
                 reliability = ("OFFICIAL" if sid in EXAM_PURPOSE else
+                               "SUPPLEMENTARY" if sid.startswith("SRC_DRIVE_EXAM_") else
                                "USER_CREATED" if sid.startswith(("SRC_LOCAL_FC_", "SRC_LOCAL_GRAMMAR")) else
                                "EDUCATIONAL" if sid.startswith("SRC_DRIVE_") else "PRIMARY")
                 src = {**entry, "reliability": reliability, "access_status": "local", "level": "N5",
-                       "purpose": EXAM_PURPOSE.get(sid) or ("Flashcard do người dùng xuất" if kind == "csv" else None),
+                       "purpose": EXAM_PURPOSE.get(sid) or ("Flashcard do người dùng xuất" if kind == "csv" else
+                                                            "Đề JLPT N5 thật (bản cộng đồng, thư mục Drive ĐỀ THI)"
+                                                            if sid.startswith("SRC_DRIVE_EXAM_") else None),
                        "notes": notes}
                 if sid in EXAM_PURPOSE:
                     src["notes"] = ("Bộ 問題例 N5 (khớp định dạng mẫu trên jlpt.jp) – cần người dùng xác nhận nguồn gốc."
@@ -408,36 +415,55 @@ def render_pages(pdf: Path, source_id: str, dpi: int = 130) -> list[str]:
     return paths
 
 
-def import_sample_exam(conn, exam_json: Path = EXAM_JSON, exam_dir: Path | None = None) -> dict:
-    exam_dir = exam_dir or next(EXAM_DIR.rglob("N5-mondai.pdf")).parent
+def _exam_files(data: dict) -> tuple[Path, dict]:
+    """Where an exam's original files live. A JSON without a `files` block is the official sample in docs/N5/Exam."""
+    f = data.get("files") or {"mondai": "N5-mondai.pdf", "seikai": "N5-seikai.pdf", "script": "N5-script.pdf",
+                              "audio": "N5Sample.mp3", "audio_asset_id": "AUD_N5S_001"}
+    if f.get("dir"):
+        return ROOT / f["dir"], f
+    found = next(EXAM_DIR.rglob(f["mondai"]), None)
+    return (found.parent if found else EXAM_DIR), f
+
+
+def import_exam(conn, exam_json: Path = EXAM_JSON) -> dict:
+    """Import one transcribed exam (official sample or past paper). The JSON names its files, question-id prefix and
+    answer key; `<exam>.ai_review.json` next to it holds the independent AI solutions and explanations (ADR-019)."""
     data = json.loads(exam_json.read_text(encoding="utf-8"))
+    exam_dir, files = _exam_files(data)
+    if not (exam_dir / files["mondai"]).is_file():
+        return {"skipped": f"thiếu file gốc {rel(exam_dir / files['mondai'])}"}
+    prefix = data.get("question_id_prefix", "Q_N5S")
+    key_origin = data.get("key_origin", "official_seikai")
     inventory(conn, [exam_dir])
     pages: dict[str, list[str]] = {}
-    for fname, sid in EXAM_FILES.items():
-        f = exam_dir / fname
-        if f.suffix == ".pdf":
-            repo.update_source(conn, sid, processing_status="extracting")
-            pages[sid] = render_pages(f, sid)
-            with __import__("pymupdf").open(f) as d:
-                for i, pg in enumerate(d, start=1):
-                    repo.insert_raw(conn, sid, f"page:{i}", pg.get_text() or "",
-                                    "pdf_text_layer (incomplete: CID fonts without ToUnicode)")
-            for i, p in enumerate(pages[sid], start=1):
-                conn.execute("INSERT OR REPLACE INTO assets (asset_id, source_id, kind, file_path, mime_type, page_number, notes) "
-                             "VALUES (?,?,?,?,?,?,?)", (f"IMG_{sid[10:]}_P{i:03d}", sid, "image", p, "image/png", i,
-                                                         "Ảnh render trang gốc (lớp RAW)"))
-    audio = exam_dir / "N5Sample.mp3"
+    for f in sorted(exam_dir.glob("*.pdf")):
+        sid = source_id_for(f)
+        repo.update_source(conn, sid, processing_status="extracting")
+        pages[sid] = render_pages(f, sid)
+        with __import__("pymupdf").open(f) as d:
+            for i, pg in enumerate(d, start=1):
+                repo.insert_raw(conn, sid, f"page:{i}", pg.get_text() or "",
+                                "pdf_text_layer (incomplete: CID fonts without ToUnicode)")
+        for i, pth in enumerate(pages[sid], start=1):
+            conn.execute("INSERT OR REPLACE INTO assets (asset_id, source_id, kind, file_path, mime_type, page_number, notes) "
+                         "VALUES (?,?,?,?,?,?,?)", (f"IMG_{sid[10:]}_P{i:03d}", sid, "image", pth, "image/png", i,
+                                                     "Ảnh render trang gốc (lớp RAW)"))
+    sid_of = lambda role: source_id_for(exam_dir / files[role]) if files.get(role) else None
+    mondai_sid, key_sid, script_sid = sid_of("mondai"), sid_of("seikai"), sid_of("script")
+    audio = exam_dir / files["audio"]
+    audio_sid, audio_id = source_id_for(audio), files["audio_asset_id"]
     conn.execute("INSERT OR REPLACE INTO assets (asset_id, source_id, kind, file_path, mime_type, duration_seconds, "
                  "transcript_status, notes) VALUES (?,?,?,?,?,?,?,?)",
-                 ("AUD_N5S_001", "SRC_LOCAL_N5_AUDIO", "audio", rel(audio), "audio/mpeg", audio_duration(audio),
-                  "official_script_transcribed_needs_review",
+                 (audio_id, audio_sid, "audio", rel(audio), "audio/mp4" if audio.suffix == ".m4a" else "audio/mpeg",
+                  audio_duration(audio), data.get("transcript_status", "official_script_transcribed_needs_review"),
                   "Một track cho toàn bộ phần nghe; chưa có timestamp từng câu."))
 
     key = data["answer_key"]
-    official = {**{f"Q_N5S_V{i:02d}": a for i, a in enumerate(key["vocabulary"], 1)},
-                **{f"Q_N5S_G{i:02d}": a for i, a in enumerate(key["grammar_reading"], 1)},
-                **{f"Q_N5S_L{m}_{i}": a for m, arr in key["listening"].items() for i, a in enumerate(arr, 1)}}
-    ai = json.loads(EXAM_AI_REVIEW.read_text(encoding="utf-8")) if EXAM_AI_REVIEW.exists() else {}
+    official = {**{f"{prefix}_V{i:02d}": a for i, a in enumerate(key["vocabulary"], 1)},
+                **{f"{prefix}_G{i:02d}": a for i, a in enumerate(key["grammar_reading"], 1)},
+                **{f"{prefix}_L{m}_{i}": a for m, arr in key["listening"].items() for i, a in enumerate(arr, 1)}}
+    review_file = exam_json.with_name(exam_json.stem + ".ai_review.json")
+    ai = json.loads(review_file.read_text(encoding="utf-8")) if review_file.exists() else {}
 
     meta = {k: v for k, v in data.items() if k not in ("questions", "passages")}
     conn.execute("INSERT OR REPLACE INTO exams (exam_id, title, level, exam_type, source_type, is_official, "
@@ -445,70 +471,93 @@ def import_sample_exam(conn, exam_json: Path = EXAM_JSON, exam_dir: Path | None 
                  (data["exam_id"], data["title"], data["level"], data["exam_type"], data["source_type"],
                   int(data["is_official"]), data["duration_minutes"], json.dumps(meta, ensure_ascii=False),
                   json.dumps(data["source_ids"]), "needs_review"))
-    mondai_pages = pages["SRC_LOCAL_N5_MONDAI"]
+    img = lambda page: f"IMG_{mondai_sid[10:]}_P{page:03d}"
     for p in data["passages"]:
-        img = f"IMG_N5_MONDAI_P{p['image_page']:03d}" if p.get("image_page") else None
         conn.execute("INSERT OR REPLACE INTO passages (passage_id, exam_id, text, source_page, image_asset_id) "
-                     "VALUES (?,?,?,?,?)", (p["passage_id"], data["exam_id"], p["text"], p["source_page"], img))
+                     "VALUES (?,?,?,?,?)", (p["passage_id"], data["exam_id"], p["text"], p["source_page"],
+                                            img(p["image_page"]) if p.get("image_page") else None))
     sections = {s["section_id"]: s for s in data["sections"]}
+    stats = {"verified": 0, "needs_review": 0}
     for q in data["questions"]:
         sec = sections[q["section_id"]]
         mondai = next(m for m in sec["mondai"] if m["mondai_no"] == q["mondai_no"])
-        if official[q["question_id"]] != q["seikai"]:
+        if official.get(q["question_id"]) != q["seikai"]:
             raise ValueError(f"{q['question_id']}: transcribed answer {q['seikai']} != 正解 table")
         if not 1 <= q["seikai"] <= len(q["options"]):
             raise ValueError(f"{q['question_id']}: answer outside options")
-        page_img = f"IMG_N5_MONDAI_P{q['source_page']:03d}"
+        page_img = img(q["source_page"])
         glyph = q.get("options_are_glyph_images") or q.get("options_are_pictures")
         options = [{"option_id": str(i), "text": t, **({"image_asset_id": page_img} if glyph else {})}
                    for i, t in enumerate(q["options"], 1)]
+        a = ai.get(q["question_id"], {})
         extra = {k: q[k] for k in ("target", "options_are_glyph_images", "options_are_pictures", "options_audio_only",
                                     "star_position", "expected_sequence", "expected_sequence_note",
                                     "has_illustration") if k in q}
-        raw_id = repo.insert_raw(conn, "SRC_LOCAL_N5_MONDAI", f"page:{q['source_page']}/{q['question_id']}",
-                                 json.dumps(q, ensure_ascii=False), "ai_vision_transcription")
-        extra["raw_id"] = raw_id
-        a = ai.get(q["question_id"], {})
+        if a.get("option_explanations"):
+            extra["option_explanations"] = a["option_explanations"]
+        extra["key_origin"] = key_origin
+        extra["raw_id"] = repo.insert_raw(conn, mondai_sid, f"page:{q['source_page']}/{q['question_id']}",
+                                          json.dumps(q, ensure_ascii=False), "ai_vision_transcription")
+        listening = sec["section"] == "listening"
+        status = examlib.consensus_status(q["seikai"], [a.get("solver_a"), a.get("solver_b")])
+        by = "ai" if status == "verified" else None
+        cur = conn.execute("SELECT verification_status, verified_by FROM questions WHERE question_id=?",
+                           (q["question_id"],)).fetchone()
+        if cur and cur["verified_by"] in ("user", "pending_user"):
+            status, by = cur["verification_status"], cur["verified_by"]          # a person decided: keep it
         conn.execute(
             "INSERT OR REPLACE INTO questions (question_id, exam_id, section, section_id, mondai_no, mondai_type, number, "
             "question_text, instruction, passage_id, options, correct_answer, answer_type, extra_json, explanation_vi, "
             "explanation_origin, audio_asset_id, image_asset_id, transcript, level, source_ids, source_page, "
-            "extraction_method, verification_status, review_notes) "
-            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-            "COALESCE((SELECT verification_status FROM questions WHERE question_id=?), 'needs_review'),?)",
+            "extraction_method, verification_status, verified_by, review_notes) "
+            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
             (q["question_id"], data["exam_id"], sec["section"], q["section_id"], q["mondai_no"], mondai["mondai_type"],
              q["number"], q["question_text"], mondai["instruction"], q.get("passage_id"),
              json.dumps(options, ensure_ascii=False), json.dumps([str(q["seikai"])]),
              q.get("answer_type", "single_choice"), json.dumps(extra, ensure_ascii=False),
              a.get("explanation_vi"), "AI_GENERATED" if a else None,
-             "AUD_N5S_001" if sec["section"] == "listening" else None,
-             page_img if (glyph or q.get("has_illustration") or sec["section"] == "listening") else None,
+             audio_id if listening else None,
+             page_img if (glyph or q.get("has_illustration") or listening) else None,
              q.get("transcript"), data["level"],
-             json.dumps(["SRC_LOCAL_N5_MONDAI", "SRC_LOCAL_N5_SEIKAI"] +
-                        (["SRC_LOCAL_N5_SCRIPT", "SRC_LOCAL_N5_AUDIO"] if sec["section"] == "listening" else [])),
-             q["source_page"], "ai_vision_transcription", q["question_id"], q.get("review_notes")))
+             json.dumps([s for s in [mondai_sid, key_sid] + ([script_sid, audio_sid] if listening else []) if s]),
+             q["source_page"], "ai_vision_transcription", status, by, q.get("review_notes")))
+        stats["verified" if status == "verified" else "needs_review"] += 1
         issues = [("transcription_unverified", "warning",
                    "Câu hỏi được chép bằng AI từ ảnh trang; cần đối chiếu với ảnh gốc.", None)]
         if q.get("options_are_glyph_images"):
             issues.append(("options_image_only", "warning", "Lựa chọn là ký tự dạng ảnh, không có văn bản.", None))
-        if sec["section"] == "listening":
+        if listening:
             issues.append(("audio_timestamp_missing", "info", "Chưa có timestamp của câu trong file audio.", None))
+            if data.get("transcript_status") == "asr_whisper":
+                issues.append(("transcript_asr", "info", "Script nghe chép tự động bằng Whisper (không có script gốc).",
+                               None))
         repo.replace_issues(conn, "question", q["question_id"], issues)
-        if a and a.get("verdict") != "consistent":
-            repo.replace_issues(conn, "question", q["question_id"], [(
-                "ai_answer_doubt", "warning", a.get("verdict_note") or "AI nghi ngờ đáp án", None)], origin="ai_review")
-        if repo.get_question(conn, q["question_id"])["verification_status"] == "verified":
+        doubt = []
+        if a and a.get("verdict") not in (None, "consistent"):
+            doubt.append(("ai_answer_doubt", "warning", a.get("verdict_note") or "AI nghi ngờ đáp án", None))
+        if a.get("solver_a") is not None and status != "verified":
+            doubt.append(("answer_key_disputed", "warning",
+                          f"Đáp án ({key_origin}) = {q['seikai']}; AI giải độc lập: {a.get('solver_a')} / "
+                          f"{a.get('solver_b')}. {a.get('verdict_note') or ''}".strip(), None))
+        repo.replace_issues(conn, "question", q["question_id"], doubt, origin="ai_review")
+        if status == "verified":
             conn.execute("UPDATE validation_issues SET resolved=1 WHERE entity_type='question' AND entity_id=?",
                          (q["question_id"],))
     for sid in pages:
         repo.update_source(conn, sid, processing_status="needs_review", imported_at=repo.iso(),
                            record_count=len(pages[sid]))
-    repo.update_source(conn, "SRC_LOCAL_N5_MONDAI", record_count=len(data["questions"]))
-    repo.update_source(conn, "SRC_LOCAL_N5_AUDIO", processing_status="needs_review", imported_at=repo.iso(),
-                       record_count=8)
+    repo.update_source(conn, mondai_sid, record_count=len(data["questions"]))
+    repo.update_source(conn, audio_sid, processing_status="needs_review", imported_at=repo.iso(),
+                       record_count=sum(sections[q["section_id"]]["section"] == "listening" for q in data["questions"]))
     conn.commit()
     return {"questions": len(data["questions"]), "passages": len(data["passages"]),
-            "page_images": sum(len(v) for v in pages.values())}
+            "page_images": sum(len(v) for v in pages.values()), **stats}
+
+
+def import_past_exams(conn) -> dict:
+    """Every other transcribed exam in data/normalized/exams (past papers, ADR-019). Missing originals are skipped."""
+    return {p.stem: import_exam(conn, p) for p in sorted(EXAM_JSON.parent.glob("EXAM_*.json"))
+            if p != EXAM_JSON and not p.stem.endswith(".ai_review")}
 
 
 def run_all(conn, check_network: bool = False) -> dict:
@@ -520,7 +569,8 @@ def run_all(conn, check_network: bool = False) -> dict:
     repo.ensure_cards(conn)
     out["grammar"] = knowledge.import_grammar(conn)
     out["kanji"] = knowledge.import_kanji(conn)
-    out["exam"] = import_sample_exam(conn)
+    out["exam"] = import_exam(conn)
+    out["past_exams"] = import_past_exams(conn)
     out["generated_questions"] = knowledge.import_generated_questions(conn)
     conn.commit()
     if check_network:

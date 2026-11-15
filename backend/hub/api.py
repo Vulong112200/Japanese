@@ -90,7 +90,9 @@ def reprocess(source_id: str, conn=Depends(get_conn)):
     if source_id.startswith("SRC_LOCAL_FC_"):
         return pipeline.import_flashcards(conn, ROOT / Path(s["location"]).parent)
     if source_id.startswith("SRC_LOCAL_N5_"):
-        return pipeline.import_sample_exam(conn)
+        return pipeline.import_exam(conn)
+    if source_id.startswith("SRC_DRIVE_EXAM_"):
+        return pipeline.import_past_exams(conn)
     raise HTTPException(400, "Nguồn này chưa có bộ xử lý tự động (cần nhập thủ công hoặc export)")
 
 
@@ -369,12 +371,15 @@ PUBLIC_EXTRA = ("target", "star_position", "options_are_glyph_images", "options_
 REVEAL_EXTRA = ("option_explanations", "expected_sequence", "expected_sequence_note")
 
 
+SOURCE_EXAM_TYPE = {"official": "official_sample", "past": "past_exam", "generated": "question_bank"}
+
+
 class AttemptStart(BaseModel):
     mode: Literal["exam", "practice"] = "exam"
     exam_id: str | None = None                       # Mode A/B: a stored exam, original order
     section: Literal["vocabulary", "grammar_reading", "listening"] | None = None   # Mode C
     mondai_type: str | None = Field(None, max_length=50)                              # Mode D
-    source: Literal["all", "official", "generated"] = "all"
+    source: Literal["all", "official", "past", "generated"] = "all"
     mistakes_only: bool = False                      # Mode E
     limit: int = Field(20, ge=1, le=200)             # Mode F
     timing: Literal["none", "original", "current", "custom"] = "original"
@@ -432,7 +437,7 @@ def start_attempt(body: AttemptStart, conn=Depends(get_conn)):
     else:
         ids = repo.mistake_question_ids(conn) if body.mistakes_only else None
         qs = repo.questions_where(conn, section=body.section, mondai_type=body.mondai_type, ids=ids,
-                                  official={"all": None, "official": True, "generated": False}[body.source])
+                                  exam_type=SOURCE_EXAM_TYPE.get(body.source))
         qs = sorted(random.sample(qs, min(body.limit, len(qs))), key=lambda q: (
             examlib.SECTION_ORDER.index(q["section"]) if q["section"] in examlib.SECTION_ORDER else 9,
             q["mondai_no"] or 0, q["exam_id"], q["number"] or 0))

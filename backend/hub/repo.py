@@ -285,15 +285,15 @@ def exam_overview(conn) -> dict:
         f"(SELECT COUNT(*) FROM questions q WHERE q.exam_id=e.exam_id AND q.{LIVE_Q}) AS question_count "
         f"FROM exams e WHERE e.exam_type != 'question_bank' ORDER BY e.exam_id"))
     bank = rows(conn.execute(
-        f"SELECT q.section, q.mondai_no, q.mondai_type, e.is_official, COUNT(*) AS n FROM questions q "
+        f"SELECT q.section, q.mondai_no, q.mondai_type, e.exam_type, COUNT(*) AS n FROM questions q "
         f"JOIN exams e ON e.exam_id=q.exam_id WHERE q.{LIVE_Q} GROUP BY 1,2,3,4 ORDER BY 1,2"))
     return {"exams": exams, "bank": bank, "mistakes": len(mistake_question_ids(conn))}
 
 
-def questions_where(conn, exam_id=None, section=None, mondai_type=None, official=None, ids=None) -> list[dict]:
+def questions_where(conn, exam_id=None, section=None, mondai_type=None, exam_type=None, ids=None) -> list[dict]:
     sql, args = f"SELECT q.* FROM questions q JOIN exams e ON e.exam_id=q.exam_id WHERE q.{LIVE_Q}", []
     for col, val in (("q.exam_id", exam_id), ("q.section", section), ("q.mondai_type", mondai_type),
-                     ("e.is_official", None if official is None else int(official))):
+                     ("e.exam_type", exam_type)):
         if val is not None:
             sql += f" AND {col}=?"
             args.append(val)

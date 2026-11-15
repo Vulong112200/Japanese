@@ -26,7 +26,8 @@
         "mock",
         "historical",
         "official_sample",
-        "custom"
+        "custom",
+        "past_exam"
       ]
     },
     "source_type": {
@@ -36,7 +37,9 @@
         "EDUCATIONAL",
         "SUPPLEMENTARY",
         "AI_GENERATED",
-        "USER_CREATED"
+        "USER_CREATED",
+        "COMMUNITY_KEY",
+        "AI_ANSWERED"
       ]
     },
     "is_official": {
@@ -78,6 +81,13 @@
       "items": {
         "type": "string"
       }
+    },
+    "key_origin": {
+      "enum": [
+        "official_seikai",
+        "community",
+        "ai_consensus"
+      ]
     }
   },
   "required": [
@@ -102,6 +112,28 @@
         "properties": {
           "is_official": {
             "const": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "source_type": {
+            "enum": [
+              "COMMUNITY_KEY",
+              "AI_ANSWERED"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "is_official": {
+            "const": false
+          },
+          "exam_type": {
+            "const": "past_exam"
           }
         }
       }

@@ -25,8 +25,9 @@ def test_dashboard_reflects_real_counts(client):
     d = client.get("/api/stats/dashboard").json()
     assert sum(d["vocabulary_by_status"].values()) >= 1200      # user's 963 cards + verified N5 supplement
     assert d["vocabulary_by_status"].get("verified") == sum(d["vocabulary_by_status"].values())
-    assert d["questions_by_status"]["needs_review"] == 29          # official sample, awaiting page comparison
-    assert d["questions_by_status"]["verified"] == d["exam"]["bank_questions"] - 29   # rule-generated bank
+    # official sample (29) awaits page comparison; generated bank + past papers with key = 2 AI are verified
+    assert d["questions_by_status"]["needs_review"] >= 29
+    assert d["questions_by_status"]["verified"] + d["questions_by_status"]["needs_review"] == d["exam"]["bank_questions"]
     assert d["exam"]["attempts_submitted"] == 0 and d["exam"]["last"] is None
     assert d["streak_days"] == 0 and d["reviews_today"] == 0
 

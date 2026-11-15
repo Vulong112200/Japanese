@@ -14,6 +14,7 @@ const MONDAI_LABEL: Record<string, string> = {
 }
 
 // ?id=ATT_... in the hash keeps an attempt open across reloads (answers are auto-saved on the server).
+const SOURCE_EXAM_TYPE: Record<string, string> = { official: 'official_sample', past: 'past_exam', generated: 'question_bank' }
 const hashId = () => new URLSearchParams(location.hash.split('?')[1] ?? '').get('id')
 const setHashId = (id: string | null) => { location.hash = id ? `#/exam?id=${id}` : '#/exam' }
 
@@ -46,7 +47,7 @@ function ExamHome() {
   if (!ov) return err ? <ErrorBox error={err} /> : <Loading />
 
   const types = ov.bank.filter(b => !f.section || b.section === f.section)
-    .filter(b => f.source === 'all' || (f.source === 'official') === !!b.is_official)
+    .filter(b => !f.source || f.source === 'all' || SOURCE_EXAM_TYPE[f.source] === b.exam_type)
   const mondai = [...new Map(types.map(b => [b.mondai_type, b])).values()]
   const available = types.filter(b => !f.mondai_type || b.mondai_type === f.mondai_type).reduce((a, b) => a + b.n, 0)
 
@@ -58,13 +59,16 @@ function ExamHome() {
       </div>
       {err != null && <ErrorBox error={err} />}
 
-      <Panel title="Đề chính thức">
+      <Panel title="Đề thi">
         {ov.exams.map(e => (
           <div key={e.exam_id} className="flex flex-wrap items-center gap-3">
             <div className="min-w-0 flex-1">
               <div className="jp font-medium">{e.title}</div>
               <div className="mt-1 flex flex-wrap gap-1.5 text-xs">
-                {e.is_official ? <Tag tone="emerald">OFFICIAL · đáp án theo 正解</Tag> : <Tag tone="amber">AI_GENERATED</Tag>}
+                {e.is_official ? <Tag tone="emerald">OFFICIAL · đáp án theo 正解</Tag>
+                  : e.source_type === 'COMMUNITY_KEY' ? <Tag tone="indigo">Đề thật · đáp án cộng đồng + AI đối chiếu</Tag>
+                  : e.source_type === 'AI_ANSWERED' ? <Tag tone="indigo">Đề thật · đáp án do 2 AI giải độc lập</Tag>
+                  : <Tag tone="amber">AI_GENERATED</Tag>}
                 <Tag>{e.question_count} câu</Tag>
                 <Tag>{e.duration_minutes ? `${e.duration_minutes} phút` : 'Đề gốc không ghi thời gian'}</Tag>
                 {e.verification_status !== 'verified' && <Tag tone="amber">Bản chép chờ đối chiếu ảnh gốc</Tag>}
@@ -97,7 +101,8 @@ function ExamHome() {
           <Field label="Nguồn câu hỏi">
             <select value={f.source} onChange={e => setF({ ...f, source: e.target.value as AttemptStart['source'], mondai_type: undefined })} className={INPUT}>
               <option value="all">Tất cả</option>
-              <option value="official">Chỉ đề chính thức</option>
+              <option value="official">Chỉ đề mẫu chính thức</option>
+              <option value="past">Chỉ đề thi thật các năm</option>
               <option value="generated">Chỉ câu sinh tự động (AI_GENERATED)</option>
             </select>
           </Field>
