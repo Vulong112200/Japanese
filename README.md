@@ -6,15 +6,14 @@
 ```powershell
 cd D:\Japanese
 python -m venv backend\.venv
-backend\.venv\Scripts\python -m pip install fastapi uvicorn pymupdf jsonschema pytest httpx
-cd frontend; npm install; npm run build; cd ..
+backend\.venv\Scripts\python -m pip install -r backend\requirements.txt
+cd frontend; npm ci; npm run build; cd ..
 ```
 Tuỳ chọn:
 - Cài `ffprobe` (FFmpeg) để đo thời lượng audio.
 - OCR cho PDF scan:
   1. Chạy `winget install UB-Mannheim.TesseractOCR`.
   2. Tải `jpn`, `jpn_vert`, `vie`, `eng` `.traineddata` từ https://github.com/tesseract-ocr/tessdata_best vào `data/reference/tessdata/`.
-  3. Chạy `backend\.venv\Scripts\python -m pip install numpy pillow`.
 
 ## Chạy
 ```powershell
@@ -26,6 +25,12 @@ cd D:\Japanese\backend
 Các lệnh khác:
 - `python -m hub check-online`: kiểm tra truy cập các nguồn trực tuyến (chỉ HTTP).
 - `python -m hub report`: tạo lại `docs/IMPORT_REPORT.md`, `SOURCE_CATALOG.md` và `DATA_QUALITY_REPORT.md`.
+
+## Chuyển sang máy khác
+Git chỉ chứa code và nội dung bài học. Những thứ sau chỉ có trên máy cũ:
+- **Tiến độ học** (thẻ SRS, câu sai, lịch sử thi, streak, mục đã Duyệt) nằm trong `data/database/hub.sqlite`. Ở máy cũ vào Tổng quan → **Tải bản sao lưu**. Ở máy mới, sau khi cài và chạy xong, vào Tổng quan → **Khôi phục**. Hai máy không tự đồng bộ: đổi máy thì sao lưu/khôi phục lại.
+- **Đề mẫu + 6 đề thật + audio** (bản quyền, không push lên GitHub): chép tay sang máy mới, giữ nguyên đường dẫn, gồm `docs/N5/Exam/`, `data/normalized/exams/`, `data/raw/SRC_DRIVE_EXAM_N5_*`, `data/raw/SRC_LOCAL_*`. Sau đó chạy `hub import`.
+- **Từ điển** (`data/reference/*.gz`): `build-reference` tự tải về. Nếu mạng chặn thì chép 2 file `.gz` từ máy cũ sang, lệnh sẽ bỏ qua bước tải.
 
 Phát triển giao diện: chạy `npm run dev` trong `frontend/`. Lệnh này proxy `/api` sang cổng 8000.
 
