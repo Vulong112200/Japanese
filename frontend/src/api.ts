@@ -273,6 +273,8 @@ export interface AttemptStart {
   source?: 'all' | 'official' | 'past' | 'generated'
   mistakes_only?: boolean
   grammar_id?: string
+  lesson_from?: number   // grammar questions of lessons from..to; 26 = N5 bổ sung
+  lesson_to?: number
   limit?: number
   timing?: 'none' | 'original' | 'current' | 'custom'
   time_limit_min?: number

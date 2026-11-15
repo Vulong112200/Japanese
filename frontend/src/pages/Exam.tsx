@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
-import { api, type Attempt, type AttemptStart, type AttemptSummary, type ExamOverview, type ExamQuestion, type Section } from '../api'
+import { api, type Attempt, type AttemptStart, type AttemptSummary, type ExamOverview, type ExamQuestion, type GrammarDetail, type Section } from '../api'
 import { Button, ErrorBox, Loading, Panel, Tag } from '../ui'
 
 export const SECTION_LABEL: Record<string, string> = {
@@ -412,7 +412,7 @@ function QuestionCard({ q, a, pos, onChoose, onFlag, practice, review }: {
           <p><b>{!picked.length ? 'Chưa trả lời.' : st?.is_correct ? '✓ Đúng.' : '✗ Sai.'}</b> Đáp án: <b>{q.correct_answer!.join(', ')}</b></p>
           {Array.isArray(q.extra.expected_sequence) && <p>Thứ tự đúng: <b>{q.extra.expected_sequence.join(' → ')}</b></p>}
           {q.extra.expected_sequence_note && <p className="jp">{q.extra.expected_sequence_note}</p>}
-          {q.extra.grammar_pattern && <p>Điểm ngữ pháp: <span className="jp font-medium">{q.extra.grammar_pattern}</span></p>}
+          {q.extra.grammar_id && <GrammarHint id={q.extra.grammar_id} pattern={q.extra.grammar_pattern} />}
           {q.explanation_vi && <p>{q.explanation_vi}{q.explanation_origin === 'AI_GENERATED' &&
             <span className="ml-1 text-xs text-slate-500">(giải thích do AI soạn)</span>}</p>}
           {q.extra.passage_translation_vi && <details><summary className="cursor-pointer text-slate-500">Dịch bài đọc</summary>
@@ -504,6 +504,19 @@ export function BucketTable({ title, rows }: { title: string; rows: [string, { t
             <td className="text-right tabular-nums">{b.accuracy ?? '—'}</td>
           </tr>))}</tbody>
       </table>
+    </div>
+  )
+}
+
+/** "Learn while reviewing": the grammar point behind a revealed question, with a link to its full page. */
+function GrammarHint({ id, pattern }: { id: string; pattern?: string }) {
+  const [g, setG] = useState<GrammarDetail | null>(null)
+  useEffect(() => { api.grammarItem(id).then(setG).catch(() => setG(null)) }, [id])
+  return (
+    <div className="rounded-md border border-indigo-200 bg-indigo-50/60 p-2 dark:border-indigo-900 dark:bg-indigo-950/40">
+      <p>Điểm ngữ pháp: <a href={`#/grammar?id=${id}`} className="jp font-medium hover:underline">{g?.pattern ?? pattern ?? id}</a>
+        {g?.meaning_vi && <> · {g.meaning_vi}</>}</p>
+      {g?.formation && <p className="jp mt-1 text-xs text-slate-600 dark:text-slate-300">Cấu trúc: {g.formation}</p>}
     </div>
   )
 }

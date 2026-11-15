@@ -140,3 +140,10 @@ export function StartButton({ body, children, kind = 'default' }: { body: Attemp
     </span>
   )
 }
+
+export function readPref<T>(k: string, d: T): T {
+  try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d } catch { return d }
+}
+export function writePref(k: string, v: unknown) {
+  try { localStorage.setItem(k, JSON.stringify(v)) } catch { /* storage blocked */ }
+}

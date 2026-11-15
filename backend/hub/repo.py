@@ -362,8 +362,12 @@ def exam_overview(conn) -> dict:
 
 
 def questions_where(conn, exam_id=None, section=None, mondai_type=None, exam_type=None, ids=None,
-                    grammar_id=None) -> list[dict]:
+                    grammar_id=None, grammar_lessons=None) -> list[dict]:
     sql, args = f"SELECT q.* FROM questions q JOIN exams e ON e.exam_id=q.exam_id WHERE q.{LIVE_Q}", []
+    if grammar_lessons:     # (lo, hi); points with no lesson count as 26. Passages excluded: never split a passage
+        sql += (" AND q.passage_id IS NULL AND json_extract(q.extra_json,'$.grammar_id') IN "
+                "(SELECT id FROM grammar WHERE COALESCE(lesson_number, 26) BETWEEN ? AND ?)")
+        args += list(grammar_lessons)
     for col, val in (("q.exam_id", exam_id), ("q.section", section), ("q.mondai_type", mondai_type),
                      ("e.exam_type", exam_type), ("json_extract(q.extra_json,'$.grammar_id')", grammar_id)):
         if val is not None:

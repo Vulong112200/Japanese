@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { api, type GrammarDetail, type GrammarItem } from '../api'
-import { ErrorBox, IssueList, Loading, Panel, SpeakButton, StartButton, StatusBadge, Tag } from '../ui'
+import { ErrorBox, IssueList, Loading, Panel, SpeakButton, StartButton, StatusBadge, Tag, readPref, writePref } from '../ui'
 
 const ORIGIN: Record<string, string> = {
   handbook: 'Cẩm nang của bạn',
@@ -36,6 +36,7 @@ export default function Grammar() {
         <h1 className="text-xl font-semibold">Ngữ pháp N5</h1>
         <p className="text-sm text-slate-500">Theo Minna no Nihongo bài 1–25, cộng các điểm N5 thường gặp. Mỗi mục ghi rõ nguồn: cẩm nang của bạn hay AI bổ sung.</p>
       </div>
+      <QuickReview />
       <div className="flex flex-wrap gap-2">
         <input aria-label="Tìm ngữ pháp" className={`${input} min-w-0 flex-1`} placeholder="Tìm: mẫu câu, nghĩa…" value={q} onChange={e => setQ(e.target.value)} />
         <select aria-label="Bài" className={input} value={lesson} onChange={e => setLesson(e.target.value)}>
@@ -65,6 +66,40 @@ export default function Grammar() {
         <div>{sel ? <GrammarView id={sel} /> : <Panel><p className="text-sm text-slate-500">Chọn một mẫu ngữ pháp.</p></Panel>}</div>
       </div>
     </div>
+  )
+}
+
+const LESSONS = Array.from({ length: 25 }, (_, i) => i + 1)
+
+function QuickReview() {
+  const [from, setFrom] = useState<number>(() => readPref('grammar.quick.from', 1))
+  const [to, setTo] = useState<number>(() => readPref('grammar.quick.to', 5))
+  const [limit, setLimit] = useState<number>(() => readPref('grammar.quick.limit', 20))
+  const set = (k: string, f: (v: number) => void) => (e: { target: { value: string } }) => {
+    const v = Number(e.target.value); f(v); writePref(`grammar.quick.${k}`, v)
+  }
+  const sel = 'rounded-lg border border-slate-300 bg-white px-2 py-1 dark:border-slate-700 dark:bg-slate-900'
+  return (
+    <Panel title="Ôn nhanh nhiều bài">
+      <div className="flex flex-wrap items-center gap-2 text-sm">
+        <span>Từ</span>
+        <select aria-label="Từ bài" className={sel} value={from} onChange={set('from', setFrom)}>
+          {LESSONS.map(n => <option key={n} value={n}>Bài {n}</option>)}
+        </select>
+        <span>đến</span>
+        <select aria-label="Đến bài" className={sel} value={to} onChange={set('to', setTo)}>
+          {LESSONS.map(n => <option key={n} value={n}>Bài {n}</option>)}
+          <option value={26}>Bài 25 + N5 bổ sung</option>
+        </select>
+        <select aria-label="Số câu" className={sel} value={limit} onChange={set('limit', setLimit)}>
+          {[10, 20, 30, 50].map(n => <option key={n} value={n}>{n} câu</option>)}
+        </select>
+        {from <= to
+          ? <StartButton kind="primary" body={{ mode: 'practice', lesson_from: from, lesson_to: to, limit }}>Bắt đầu</StartButton>
+          : <span className="text-rose-600">"Từ bài" phải ≤ "Đến bài"</span>}
+      </div>
+      <p className="mt-2 text-xs text-slate-500">Trộn ngẫu nhiên câu 文の文法1/2 của mọi điểm ngữ pháp trong các bài đã chọn. Trả lời xong mỗi câu sẽ thấy ngay đáp án, giải thích và ý nghĩa/cấu trúc của điểm ngữ pháp.</p>
+    </Panel>
   )
 }
 

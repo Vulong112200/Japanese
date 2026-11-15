@@ -480,6 +480,8 @@ class AttemptStart(BaseModel):
     source: Literal["all", "official", "past", "generated"] = "all"
     mistakes_only: bool = False                      # Mode E
     grammar_id: str | None = Field(None, pattern=r"^GRA_\d{6}$")   # questions of one grammar point
+    lesson_from: int | None = Field(None, ge=1, le=26)   # grammar questions of lessons from..to; 26 = N5 bổ sung
+    lesson_to: int | None = Field(None, ge=1, le=26)
     limit: int = Field(20, ge=1, le=200)             # Mode F
     timing: Literal["none", "original", "current", "custom"] = "original"
     time_limit_min: int | None = Field(None, ge=1, le=300)
@@ -525,6 +527,9 @@ def exams(conn=Depends(get_conn)):
 def start_attempt(body: AttemptStart, conn=Depends(get_conn)):
     if body.timing == "custom" and not body.time_limit_min:
         raise HTTPException(422, "timing=custom cần time_limit_min")
+    lessons = (body.lesson_from, body.lesson_to) if body.lesson_from or body.lesson_to else None
+    if lessons and (None in lessons or lessons[0] > lessons[1]):
+        raise HTTPException(422, "Cần cả lesson_from và lesson_to, với from ≤ to")
     exam = None
     if body.exam_id:
         row = conn.execute("SELECT * FROM exams WHERE exam_id=?", (body.exam_id,)).fetchone()
@@ -536,7 +541,8 @@ def start_attempt(body: AttemptStart, conn=Depends(get_conn)):
     else:
         ids = repo.mistake_question_ids(conn) if body.mistakes_only else None
         qs = repo.questions_where(conn, section=body.section, mondai_type=body.mondai_type, ids=ids,
-                                  exam_type=SOURCE_EXAM_TYPE.get(body.source), grammar_id=body.grammar_id)
+                                  exam_type=SOURCE_EXAM_TYPE.get(body.source), grammar_id=body.grammar_id,
+                                  grammar_lessons=lessons)
         groups: dict[str, list[dict]] = {}      # a passage's questions are drawn together, never split
         for q in qs:
             groups.setdefault(q["passage_id"] or q["question_id"], []).append(q)
@@ -551,7 +557,9 @@ def start_attempt(body: AttemptStart, conn=Depends(get_conn)):
         parts = ["Ôn câu sai" if body.mistakes_only else "Luyện tập",
                  examlib.SECTION_NAMES.get(body.section or "", ""), body.mondai_type or "",
                  (json.loads(qs[0]["extra_json"]).get("grammar_pattern") or body.grammar_id)
-                 if body.grammar_id and qs else ""]
+                 if body.grammar_id and qs else "",
+                 ("Ngữ pháp N5 bổ sung" if lessons[0] == 26 else
+                  f"Ngữ pháp bài {lessons[0]}–{lessons[1] if lessons[1] < 26 else '25 + N5 bổ sung'}") if lessons else ""]
         title = " · ".join(p for p in parts if p) + f" ({len(qs)} câu)"
     if not qs:
         raise HTTPException(404, "Không có câu hỏi phù hợp")

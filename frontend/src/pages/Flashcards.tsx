@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { api, type Card, type SrsEntity } from '../api'
-import { Button, ErrorBox, Loading, Panel, SpeakButton, StatusBadge } from '../ui'
+import { Button, ErrorBox, Loading, Panel, SpeakButton, StatusBadge, readPref, writePref } from '../ui'
 
 const RATINGS = [
   { id: 'again', label: 'Lại', key: '1', cls: 'bg-rose-600 hover:bg-rose-500' },
@@ -21,13 +21,6 @@ function shuffled<T>(a: T[]): T[] {
   return b
 }
 const numOrNull = (v: string) => (v === '' ? null : Math.max(1, Number(v) || 1))
-
-function readPref<T>(k: string, d: T): T {
-  try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d } catch { return d }
-}
-function writePref(k: string, v: unknown) {
-  try { localStorage.setItem(k, JSON.stringify(v)) } catch { /* storage blocked */ }
-}
 
 const ENTITIES: [SrsEntity, string][] = [['vocabulary', 'Từ vựng'], ['grammar', 'Ngữ pháp'], ['kanji', 'Kanji']]
 const hashEntity = () => {

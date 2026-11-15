@@ -391,6 +391,23 @@ def test_practice_by_grammar_point_and_activity_analytics(client):
     assert c.get("/api/stats/analytics", params={"days": 3}).status_code == 422
 
 
+def test_practice_grammar_by_lesson_range(client):     # ADR-028
+    c, conn = client
+    lesson = {r[0]: r[1] for r in conn.execute("SELECT id, COALESCE(lesson_number, 26) FROM grammar")}
+    expect = sum(1 for q in repo.questions_where(conn) if not q["passage_id"]
+                 and lesson.get(json.loads(q["extra_json"] or "{}").get("grammar_id"), 0) in (1, 2, 3))
+    a = c.post("/api/attempts", json={"mode": "practice", "lesson_from": 1, "lesson_to": 3, "limit": 200}).json()
+    assert len(a["questions"]) == expect > 0 and "bài 1–3" in a["title"]
+    for q in a["questions"]:
+        extra = json.loads(repo.get_question(conn, q["question_id"])["extra_json"])
+        assert lesson[extra["grammar_id"]] in (1, 2, 3) and q["passage_id"] is None
+    sup = c.post("/api/attempts", json={"mode": "practice", "lesson_from": 26, "lesson_to": 26}).json()
+    assert all(lesson[json.loads(repo.get_question(conn, q["question_id"])["extra_json"])["grammar_id"]] == 26
+               for q in sup["questions"]) and sup["questions"]
+    for bad in ({"lesson_from": 3, "lesson_to": 1}, {"lesson_from": 1}, {"lesson_to": 27, "lesson_from": 1}):
+        assert c.post("/api/attempts", json={"mode": "practice", **bad}).status_code == 422
+
+
 # ---------------------------------------------------------------- agent-authored reading bank (ADR-026)
 def _q(k, **kw):
     return {"question_id": f"Q_RQ_T_{k}", "question_text": f"［{k}］", "options": ["は", "を", "に", "で"],
