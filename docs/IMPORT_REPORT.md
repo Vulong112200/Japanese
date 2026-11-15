@@ -1,13 +1,13 @@
 # IMPORT REPORT
 
-Tạo tự động bởi `python -m hub report` lúc 2026-11-15T07:27:30+07:00. Số liệu đọc từ `data/database/hub.sqlite`.
+Tạo tự động bởi `python -m hub report` lúc 2026-11-15T07:41:08+07:00. Số liệu đọc từ `data/database/hub.sqlite`.
 
 Thư mục đã kiểm tra: `D:\Japanese\docs\N5\Exam`, `D:\Japanese\docs\N5\flashcards` (truy cập trực tiếp từ Windows, không qua WSL/Docker).
 
 ## Tóm tắt
 - Tệp cục bộ đã đăng ký: **57**
 - Từ vựng (lớp NORMALIZED): {"verified": 1253} — **0 mục được tự động xác minh**.
-- Câu hỏi đề mẫu: {"needs_review": 31, "rejected": 272, "verified": 962}
+- Câu hỏi đề mẫu: {"needs_review": 29, "rejected": 272, "verified": 967}
 - Trạng thái xử lý `needs_review` = đã nhập nhưng còn chờ người dùng duyệt (không phải lỗi).
 
 ## Chi tiết từng tệp
@@ -16,13 +16,13 @@ Thư mục đã kiểm tra: `D:\Japanese\docs\N5\Exam`, `D:\Japanese\docs\N5\fla
 | 120-Kanji-co-ban-so-cap.pdf | pdf | 2791010 | data/raw/SRC_LESSON_002/120-Kanji-co-ban-so-cap.pdf | pdf | 23 |  |  | raw 0 / từ vựng 0 | pending |  |  |
 | 160-kanji-n5-n4.pdf | pdf | 14916244 | data/raw/SRC_LESSON_002/160-kanji-n5-n4.pdf | pdf | 191 |  |  | raw 0 / từ vựng 0 | pending |  |  |
 | 214-bo-thu-bang-hinh-anh.pdf | pdf | 13292972 | data/raw/SRC_LESSON_002/214-bo-thu-bang-hinh-anh.pdf | pdf | 14 |  |  | raw 0 / từ vựng 0 | pending |  |  |
-| mondai.pdf | pdf | 43738703 | data/raw/SRC_DRIVE_EXAM_N5_2012_12/mondai.pdf | pdf | 22 | 85 |  | raw 107 / từ vựng 0 | needs_review |  |  |
+| mondai.pdf | pdf | 43738703 | data/raw/SRC_DRIVE_EXAM_N5_2012_12/mondai.pdf | pdf | 22 | 85 |  | raw 108 / từ vựng 0 | needs_review |  |  |
 | audio.m4a | m4a | 14928190 | data/raw/SRC_DRIVE_EXAM_N5_2012_12/audio.m4a | audio |  | 24 | 1 | raw 0 / từ vựng 0 | needs_review |  |  |
 | mondai.pdf | pdf | 4520180 | data/raw/SRC_DRIVE_EXAM_N5_2013_07/mondai.pdf | pdf | 17 | 91 |  | raw 108 / từ vựng 0 | needs_review |  |  |
 | audio.mp3 | mp3 | 28470544 | data/raw/SRC_DRIVE_EXAM_N5_2013_07/audio.mp3 | audio |  | 24 | 1 | raw 0 / từ vựng 0 | needs_review |  |  |
 | mondai.pdf | pdf | 4415186 | data/raw/SRC_DRIVE_EXAM_N5_2017_07/mondai.pdf | pdf | 49 | 89 |  | raw 138 / từ vựng 0 | needs_review |  |  |
 | audio.m4a | m4a | 13843665 | data/raw/SRC_DRIVE_EXAM_N5_2017_07/audio.m4a | audio |  | 24 | 1 | raw 0 / từ vựng 0 | needs_review |  |  |
-| mondai.pdf | pdf | 55733031 | data/raw/SRC_DRIVE_EXAM_N5_2018/mondai.pdf | pdf | 24 | 91 |  | raw 115 / từ vựng 0 | needs_review |  |  |
+| mondai.pdf | pdf | 55733031 | data/raw/SRC_DRIVE_EXAM_N5_2018/mondai.pdf | pdf | 24 | 91 |  | raw 116 / từ vựng 0 | needs_review |  |  |
 | audio.m4a | m4a | 14010572 | data/raw/SRC_DRIVE_EXAM_N5_2018/audio.m4a | audio |  | 24 | 1 | raw 0 / từ vựng 0 | needs_review |  |  |
 | mondai.pdf | pdf | 18132573 | data/raw/SRC_DRIVE_EXAM_N5_2021_12/mondai.pdf | pdf | 17 | 67 |  | raw 84 / từ vựng 0 | needs_review |  |  |
 | audio.mp3 | mp3 | 13977658 | data/raw/SRC_DRIVE_EXAM_N5_2021_12/audio.mp3 | audio |  | 24 | 1 | raw 0 / từ vựng 0 | needs_review |  |  |
@@ -68,8 +68,8 @@ Thư mục đã kiểm tra: `D:\Japanese\docs\N5\Exam`, `D:\Japanese\docs\N5\fla
 | N5-script.pdf | pdf | 757940 | docs/N5/Exam/20260705/N5-script.pdf | pdf | 3 | 8 |  | raw 3 / từ vựng 0 | needs_review |  |  |
 | N5-seikai.pdf | pdf | 34996 | docs/N5/Exam/20260705/N5-seikai.pdf | pdf | 1 | 29 |  | raw 1 / từ vựng 0 | needs_review |  |  |
 | JLPT N5 word list (tanos.co.uk via elzup/jlpt-word-list) | csv |  | data/reference/jlpt_n5_words.csv | csv |  |  |  | raw 158 / từ vựng 158 | verified |  |  |
-| JMdict (EDRDG) | gz |  | data/reference/JMdict_e.gz | dictionary |  | 746 |  | raw 0 / từ vựng 0 | verified |  |  |
-| KANJIDIC2 (EDRDG) | gz |  | data/reference/kanjidic2.xml.gz | dictionary |  | 746 |  | raw 0 / từ vựng 0 | verified |  |  |
+| JMdict (EDRDG) | gz |  | data/reference/JMdict_e.gz | dictionary |  | 749 |  | raw 0 / từ vựng 0 | verified |  |  |
+| KANJIDIC2 (EDRDG) | gz |  | data/reference/kanjidic2.xml.gz | dictionary |  | 749 |  | raw 0 / từ vựng 0 | verified |  |  |
 
 ## Ghi chú trích xuất
 - **PDF đề thi**: text layer hỏng (font CID không có ToUnicode) → trích `get_text()` chỉ lấy được tiêu đề. Câu hỏi được chép lại bằng AI từ ảnh trang (`ai_vision_transcription`), lưu ở `data/normalized/exams/EXAM_N5_OFFICIAL_SAMPLE.json`, trạng thái `needs_review`. Ảnh trang gốc lưu ở `data/raw/<source_id>/pages/`.

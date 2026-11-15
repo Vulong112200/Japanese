@@ -213,10 +213,14 @@ def test_past_papers_are_labelled_and_consensus_backed(client):
         review = json.loads(src.with_name(f"{r['exam_id']}.ai_review.json").read_text(encoding="utf-8"))
         qs = {q["question_id"]: q for q in repo.questions_where(conn, exam_id=r["exam_id"])}
         assert len(qs) == len(data["questions"])
+        decided = {x["question_id"] for x in data["questions"] if x.get("decided_by") == "user"}
         for qid, q in qs.items():
             key = json.loads(q["correct_answer"])[0]
             a = review[qid]
-            if q["verification_status"] == "verified" and q["verified_by"] == "ai":
+            if qid in decided:                      # user settled a disputed key; JSON keeps the decision
+                assert (q["verification_status"], q["verified_by"]) == ("verified", "user"), qid
+                assert a["verdict_note"] and "Người dùng quyết định" in a["verdict_note"], qid
+            elif q["verification_status"] == "verified" and q["verified_by"] == "ai":
                 assert str(a["solver_a"]) == str(a["solver_b"]) == key, qid
             elif q["verified_by"] not in ("user", "pending_user"):
                 codes = {i["code"] for i in repo.issues_for(conn, "question", qid) if not i["resolved"]}

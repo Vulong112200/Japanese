@@ -501,6 +501,8 @@ def import_exam(conn, exam_json: Path = EXAM_JSON) -> dict:
         listening = sec["section"] == "listening"
         status = examlib.consensus_status(q["seikai"], [a.get("solver_a"), a.get("solver_b")])
         by = "ai" if status == "verified" else None
+        if q.get("decided_by") == "user":           # the user settled a disputed key; recorded in the exam JSON
+            status, by = "verified", "user"
         cur = conn.execute("SELECT verification_status, verified_by FROM questions WHERE question_id=?",
                            (q["question_id"],)).fetchone()
         if cur and cur["verified_by"] in ("user", "pending_user"):

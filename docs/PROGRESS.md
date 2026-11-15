@@ -9,7 +9,7 @@ Cập nhật: 2026-11-15, kết thúc phiên 5. Trạng thái dựa trên kết 
 | 2 | Tự tải nguồn online; JMdict/KANJIDIC2; rà soát + sửa 963 từ vựng (167 bản sửa); CLAUDE.md | 963/963 từ vựng verified (AI); 57 test |
 | 3 | Cài OCR Tesseract; OCR PDF Drive; **hoàn thiện kiến thức N5**: +290 từ vựng, 103 kanji, 135 điểm ngữ pháp; trang Ngữ pháp + Kanji | 1.253 từ vựng + 103 kanji verified; 68 test |
 | 4 | Rà soát ngữ pháp vòng 2 (4 agent, nhận 6 / loại 13 đề xuất); **Mock Exam Engine** (thi / luyện tập, theo đề, theo phần, theo mondai, ôn câu sai, tuỳ chỉnh; đồng hồ từng phần, tự lưu, gắn cờ, chấm điểm, lịch sử, ước lượng sẵn sàng); ngân hàng **475 câu từ vựng sinh bằng luật** (348 漢字読み + 127 表記); trang Thi thử; Dashboard có thi thử + ngữ pháp/kanji | 135/135 ngữ pháp verified; 77 test |
-| 5 | Tìm đề thật: internet không có nguồn hợp lệ (JLPT không công bố đề cũ). Nhập **6 đề JLPT N5 thật** từ thư mục Drive "ĐỀ THI" (2012-12, 2013-07, 2017-07, 2018, 2021-12, 2024-07; file "2010-2011" thực ra trùng đề 2017-07 nên bỏ). Mỗi đề: AI chép từ ảnh trang, đáp án cộng đồng (参考答案/正答表/Yuuki Bùi), 2 agent giải độc lập (A giải + giải thích, B giải từ ảnh + soát bản chép); verified chỉ khi key = A = B (ADR-019). Importer chung `import_exam()`; bộ lọc nguồn "Đề thi thật các năm" | 490 câu đề thật: 488 verified (key = A = B), 2 needs_review; 80 test |
+| 5 | Tìm đề thật: internet không có nguồn hợp lệ (JLPT không công bố đề cũ). Nhập **6 đề JLPT N5 thật** từ thư mục Drive "ĐỀ THI" (2012-12, 2013-07, 2017-07, 2018, 2021-12, 2024-07; file "2010-2011" thực ra trùng đề 2017-07 nên bỏ). Mỗi đề: AI chép từ ảnh trang, đáp án cộng đồng (参考答案/正答表/Yuuki Bùi), 2 agent giải độc lập (A giải + giải thích, B giải từ ảnh + soát bản chép); verified chỉ khi key = A = B (ADR-019). Importer chung `import_exam()`; bộ lọc nguồn "Đề thi thật các năm" | 490/490 câu đề thật verified (488 key = A = B, 2 người dùng quyết theo căn cứ); 80 test |
 
 ## Độ phủ kiến thức N5: ĐÃ ĐỦ, không cần thu thập thêm tài liệu
 | Mảng | Độ phủ | Trạng thái xác minh |
@@ -64,13 +64,13 @@ Ký hiệu trạng thái:
 
 ## Known issues
 - Đề thật các năm là bản cộng đồng dựng lại/quét (chữ gõ lại, hình vẽ lại), có thể khác đề gốc ở chi tiết; các lỗi in đã ghi trong `review_notes`. Bản chép + kết quả AI chỉ lưu trên máy (không commit): máy mới cần chạy lại từ `data/raw` (xem ADR-019).
-- 2 câu đề thật chờ người dùng quyết định: **2012-12 G06** (参考答案 ghi には, 2 AI chọn では) và **2018 G27** (key = AI A, AI B lệch). 2012-12 mất trang lựa chọn câu 24–29 (đã bỏ 6 câu). 2021-12: đề in đảo tranh 4番/6番 của 問題2 so với audio (đã ghép đáp án theo nội dung, có ghi chú).
+- 2012-12 mất trang lựa chọn câu 24–29 (đã bỏ 6 câu). Quy trình, nơi lưu và nhật ký quyết định duyệt: [PAST_EXAMS.md](PAST_EXAMS.md). 2021-12: đề in đảo tranh 4番/6番 của 問題2 so với audio (đã ghép đáp án theo nội dung, có ghi chú).
 - Romaji trong ví dụ ngữ pháp viết 2 kiểu: macron (Kinō, GRA 1–66) và gõ phím (Kinou, GRA 70+). Cả hai đều đúng (`romaji_matches` chấp nhận). Nếu muốn thống nhất, làm 1 lượt chuẩn hoá máy cho toàn bộ (vòng 2 đã loại 13 đề xuất sửa lẻ).
 - Câu 漢字読み sinh tự động có thể có bẫy trông "lạ" (ví dụ うた → ううた) — vẫn chắc chắn sai, nhưng ít tự nhiên hơn đề thật.
 - Đề mẫu: 1 file MP3 cho toàn bộ phần nghe, không có mốc thời gian từng câu.
 
 ## Việc tiếp theo (theo thứ tự)
-1. **Duyệt các câu đề thật `needs_review`** trên màn hình Duyệt (đáp án cộng đồng lệch với 2 AI, ví dụ 2012-12 G06). Có thể thêm timestamp từng câu nghe từ bản ghi Whisper.
+1. (Tuỳ chọn) Timestamp từng câu nghe của đề thật từ bản ghi Whisper (`data/raw/PAST_EXAM_WORK/asr/`; mới có 2010/2012/2013/2021).
 2. **Câu ngữ pháp do agent soạn** (文の文法1 chọn mẫu, 文の文法2 sắp xếp ★) từ 135 điểm đã verified: mỗi câu có `target_grammar_id`, đúng 1 đáp án, giải thích từng lựa chọn; rà soát 2 vòng (CLAUDE.md §6); nhập vào ngân hàng với `weak_grammar_points` trong kết quả thi.
 3. SRS cho ngữ pháp/kanji; mục tiêu ngày + gợi ý học trên Dashboard.
 4. Upload/ZIP qua UI, backup/restore qua UI, Kaiwa, Analytics theo thời gian.
