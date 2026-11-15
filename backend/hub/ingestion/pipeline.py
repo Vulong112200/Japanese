@@ -22,6 +22,7 @@ SOURCEDOCS_DIR = ROOT / "docs" / "N5" / "SourceDocs"
 DRIVE_DIR = ROOT / "data" / "raw" / "SRC_LESSON_002"
 ONLINE_SOURCES = ROOT / "data" / "sources_online.json"
 EXAM_JSON = ROOT / "data" / "normalized" / "exams" / "EXAM_N5_OFFICIAL_SAMPLE.json"
+TIMESTAMPS = ROOT / "data" / "normalized" / "exams" / "listening_timestamps.json"   # ADR-025
 RAW_DIR = ROOT / "data" / "raw"
 
 TYPE_BY_EXT = {".pdf": "pdf", ".mp3": "audio", ".wav": "audio", ".m4a": "audio", ".csv": "csv", ".json": "json",
@@ -452,11 +453,14 @@ def import_exam(conn, exam_json: Path = EXAM_JSON) -> dict:
     mondai_sid, key_sid, script_sid = sid_of("mondai"), sid_of("seikai"), sid_of("script")
     audio = exam_dir / files["audio"]
     audio_sid, audio_id = source_id_for(audio), files["audio_asset_id"]
+    stamps = json.loads(TIMESTAMPS.read_text(encoding="utf-8"))["questions"] if TIMESTAMPS.exists() else {}
+    n_stamped = sum(q["question_id"] in stamps for q in data["questions"])
     conn.execute("INSERT OR REPLACE INTO assets (asset_id, source_id, kind, file_path, mime_type, duration_seconds, "
                  "transcript_status, notes) VALUES (?,?,?,?,?,?,?,?)",
                  (audio_id, audio_sid, "audio", rel(audio), "audio/mp4" if audio.suffix == ".m4a" else "audio/mpeg",
                   audio_duration(audio), data.get("transcript_status", "official_script_transcribed_needs_review"),
-                  "Một track cho toàn bộ phần nghe; chưa có timestamp từng câu."))
+                  "Một track cho toàn bộ phần nghe; " + (f"{n_stamped} câu có mốc thời gian (ADR-025)." if n_stamped
+                                                         else "chưa có timestamp từng câu.")))
 
     key = data["answer_key"]
     official = {**{f"{prefix}_V{i:02d}": a for i, a in enumerate(key["vocabulary"], 1)},
@@ -499,6 +503,9 @@ def import_exam(conn, exam_json: Path = EXAM_JSON) -> dict:
         extra["raw_id"] = repo.insert_raw(conn, mondai_sid, f"page:{q['source_page']}/{q['question_id']}",
                                           json.dumps(q, ensure_ascii=False), "ai_vision_transcription")
         listening = sec["section"] == "listening"
+        stamp = stamps.get(q["question_id"]) if listening else None
+        if stamp:
+            extra.update(audio_start=stamp["start"], audio_end=stamp["end"])
         status = examlib.consensus_status(q["seikai"], [a.get("solver_a"), a.get("solver_b")])
         by = "ai" if status == "verified" else None
         if q.get("decided_by") == "user":           # the user settled a disputed key; recorded in the exam JSON
@@ -528,7 +535,7 @@ def import_exam(conn, exam_json: Path = EXAM_JSON) -> dict:
                    "Câu hỏi được chép bằng AI từ ảnh trang; cần đối chiếu với ảnh gốc.", None)]
         if q.get("options_are_glyph_images"):
             issues.append(("options_image_only", "warning", "Lựa chọn là ký tự dạng ảnh, không có văn bản.", None))
-        if listening:
+        if listening and not stamp:
             issues.append(("audio_timestamp_missing", "info", "Chưa có timestamp của câu trong file audio.", None))
             if data.get("transcript_status") == "asr_whisper":
                 issues.append(("transcript_asr", "info", "Script nghe chép tự động bằng Whisper (không có script gốc).",
@@ -576,6 +583,7 @@ def run_all(conn, check_network: bool = False) -> dict:
     out["past_exams"] = import_past_exams(conn)
     out["generated_questions"] = knowledge.import_generated_questions(conn)
     out["grammar_questions"] = knowledge.import_grammar_questions(conn)
+    out["reading_questions"] = knowledge.import_reading_questions(conn)
     conn.commit()
     if check_network:
         out["online_check"] = check_online(conn)

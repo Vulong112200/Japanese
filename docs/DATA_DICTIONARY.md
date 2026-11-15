@@ -115,9 +115,10 @@ Nhật ký: `ai_correction` (bản sửa đã duyệt, kèm `basis`), approve, r
   - `options`: JSON `[{option_id, text, image_asset_id?}]`. Khi lựa chọn là tranh hoặc glyph thì `text` = null.
   - `correct_answer`: JSON `["4"]`.
   - `answer_type`: `single_choice` hoặc `sentence_ordering`.
-  - `extra_json` chứa các cờ: `options_audio_only`, `options_are_pictures`, `options_are_glyph_images`, `star_position`, `expected_sequence` (do AI suy luận, có ghi chú), `raw_id`.
+  - `extra_json` chứa các cờ: `options_audio_only`, `options_are_pictures`, `options_are_glyph_images`, `star_position`, `expected_sequence` (do AI suy luận, có ghi chú), `raw_id`, `audio_start`/`audio_end` (giây, câu nghe có mốc thời gian, ADR-025; nguồn `data/normalized/exams/listening_timestamps.json`).
   - `explanation_vi` kèm `explanation_origin = AI_GENERATED`.
   - `transcript`: script nghe.
+  - Bài đọc do agent soạn (`exam_id='BANK_N5_READING_AI'`, ADR-026): `passage_id` (bảng `passages`, `exam_id` = bank), `number` = thứ tự câu trong bài, `mondai_type` ∈ `text_grammar|reading_short|reading_mid|information_retrieval` (mondai 3–6), `extraction_method='agent_authored'`, `verified_by='ai'`; `extra_json` có `option_explanations`, `passage_translation_vi` (chỉ trả về sau khi trả lời), `grammar_id`/`grammar_pattern` (câu 文章の文法 kiểm 1 điểm ngữ pháp), `generator`.
   - Câu sinh tự động (`exam_id='BANK_N5_GENERATED'`): `extraction_method='rule_generated'`, `verified_by='generator'`, `explanation_origin='AI_GENERATED'`; `extra_json` có `target` (chữ được gạch chân), `target_entity` (VOC id), `lesson_number`, `option_explanations` {option_id: lý do}, `generator`.
 
 ### exam_attempts, attempt_answers (thi thử)

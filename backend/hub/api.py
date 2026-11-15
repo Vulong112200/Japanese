@@ -455,8 +455,9 @@ def put_settings(body: Settings, conn=Depends(get_conn)):
 
 # ---------- mock exam (spec Part 9, 10) ----------
 PUBLIC_EXTRA = ("target", "star_position", "options_are_glyph_images", "options_are_pictures", "options_audio_only",
-                "has_illustration")
-REVEAL_EXTRA = ("option_explanations", "expected_sequence", "expected_sequence_note", "grammar_id", "grammar_pattern")
+                "has_illustration", "audio_start", "audio_end")
+REVEAL_EXTRA = ("option_explanations", "expected_sequence", "expected_sequence_note", "grammar_id", "grammar_pattern",
+                "passage_translation_vi")
 
 
 SOURCE_EXAM_TYPE = {"official": "official_sample", "past": "past_exam", "generated": "question_bank"}
@@ -527,9 +528,17 @@ def start_attempt(body: AttemptStart, conn=Depends(get_conn)):
         ids = repo.mistake_question_ids(conn) if body.mistakes_only else None
         qs = repo.questions_where(conn, section=body.section, mondai_type=body.mondai_type, ids=ids,
                                   exam_type=SOURCE_EXAM_TYPE.get(body.source), grammar_id=body.grammar_id)
-        qs = sorted(random.sample(qs, min(body.limit, len(qs))), key=lambda q: (
+        groups: dict[str, list[dict]] = {}      # a passage's questions are drawn together, never split
+        for q in qs:
+            groups.setdefault(q["passage_id"] or q["question_id"], []).append(q)
+        picked: list[dict] = []
+        for g in random.sample(list(groups.values()), len(groups)):
+            if len(picked) >= body.limit:
+                break
+            picked += g
+        qs = sorted(picked, key=lambda q: (
             examlib.SECTION_ORDER.index(q["section"]) if q["section"] in examlib.SECTION_ORDER else 9,
-            q["mondai_no"] or 0, q["exam_id"], q["number"] or 0))
+            q["mondai_no"] or 0, q["exam_id"], q["passage_id"] or "", q["number"] or 0))
         parts = ["Ôn câu sai" if body.mistakes_only else "Luyện tập",
                  examlib.SECTION_NAMES.get(body.section or "", ""), body.mondai_type or "",
                  (json.loads(qs[0]["extra_json"]).get("grammar_pattern") or body.grammar_id)

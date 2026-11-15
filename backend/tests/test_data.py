@@ -52,7 +52,7 @@ def test_verification_provenance(imported):
                         "AND exam_id='EXAM_N5_OFFICIAL_SAMPLE'").fetchone()[0] == 0
     # automatically verified questions: rule-generated bank, or past papers where key = 2 independent AIs (ADR-019)
     assert conn.execute("SELECT COUNT(*) FROM questions q JOIN exams e USING (exam_id) WHERE q.verification_status="
-                        "'verified' AND NOT (((q.verified_by='generator' OR (q.verified_by='ai' AND q.exam_id='BANK_N5_GRAMMAR_AI')) AND "
+                        "'verified' AND NOT (((q.verified_by='generator' OR (q.verified_by='ai' AND q.exam_id IN ('BANK_N5_GRAMMAR_AI','BANK_N5_READING_AI'))) AND "
                         "e.exam_type='question_bank') OR "
                         "(q.verified_by='ai' AND e.exam_type='past_exam')) AND COALESCE(q.verified_by,'')!='user'"
                         ).fetchone()[0] == 0

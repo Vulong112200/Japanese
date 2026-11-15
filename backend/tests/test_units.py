@@ -178,3 +178,22 @@ def test_recommend_priority_and_no_data():
     assert [x["kind"] for x in r] == ["srs_due", "mistakes", "grammar_point", "exam"]
     assert r[0]["href"] == "#/flashcards?entity=grammar" and r[2]["start"]["grammar_id"] == "GRA_000001"
     assert [x["kind"] for x in recommend({**base, "new_cards_left": 5, "days_since_last_exam": 8})] == ["exam", "srs_new"]
+
+
+# ---------- listening timestamps (ADR-025) ----------
+def test_listening_alignment_finds_each_question_after_its_number():
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+    from listening_timestamps import align
+    segs = [{"start": 0, "end": 5, "text": "問題1"}, {"start": 10, "end": 12, "text": "1番"},
+            {"start": 13, "end": 20, "text": "男の人と女の人が話しています 男の人はどこへ行きますか"},
+            {"start": 21, "end": 30, "text": "すみません 駅はどこですか"},
+            {"start": 40, "end": 42, "text": "2番"},
+            {"start": 43, "end": 50, "text": "先生が話しています 学生は明日何を持ってきますか"},
+            {"start": 51, "end": 60, "text": "辞書を持ってきてください"}, {"start": 70, "end": 72, "text": "問題2"}]
+    qs = [{"question_id": "a", "mondai_no": 1, "transcript": "男の人と女の人が話しています。男の人はどこへ行きますか。\n男：すみません、駅はどこですか。"},
+          {"question_id": "b", "mondai_no": 1, "transcript": "先生が話しています。学生は明日何を持ってきますか。\n先生：辞書を持ってきてください。"}]
+    out = align(qs, segs, 100)
+    assert (out["a"]["start"], out["a"]["end"]) == (9.7, 39.7)       # from "1番" to "2番"
+    assert (out["b"]["start"], out["b"]["end"]) == (39.7, 70)        # ends where 問題2 starts

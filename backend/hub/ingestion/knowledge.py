@@ -430,6 +430,24 @@ def jp_key(text: str) -> str:
     return _NOT_JP.sub("", text or "")
 
 
+def _choice_issues(q: dict, err) -> None:
+    """Checks shared by every authored 4-choice question."""
+    opts, ans = q.get("options") or [], q.get("answer")
+    if len(opts) != 4 or len(set(opts)) != 4 or not all(o.strip() for o in opts):
+        err("bad_options", "Cần đúng 4 lựa chọn khác nhau, không rỗng")
+    if ans not in (1, 2, 3, 4):
+        err("bad_answer", f"Đáp án phải là 1–4, đang là {ans}")
+    if set(q.get("option_explanations") or {}) != {"1", "2", "3", "4"}:
+        err("missing_option_explanations", "Cần giải thích cho cả 4 lựa chọn")
+    if not (q.get("explanation_vi") or "").strip():
+        err("missing_explanation", "Thiếu giải thích")
+
+
+def _outside_n5(text: str, n5_kanji: set[str]) -> list:
+    outside = sorted({c for c in text if re.match(r"[一-鿿]", c)} - n5_kanji)
+    return [("kanji_outside_n5", "warning", f"Kanji ngoài N5: {''.join(outside)} (nên viết kana)", None)] if outside else []
+
+
 def check_grammar_question(q: dict, verified_grammar: set[str], n5_kanji: set[str], past_keys: set[str]) -> list:
     """Rule checks for one authored grammar question -> [(code, severity, message, suggestion)]."""
     issues = []
@@ -437,16 +455,9 @@ def check_grammar_question(q: dict, verified_grammar: set[str], n5_kanji: set[st
     opts, text, ans = q.get("options") or [], q.get("question_text") or "", q.get("answer")
     if q.get("mondai_type") not in GQ_MONDAI:
         err("bad_mondai_type", f"mondai_type không hợp lệ: {q.get('mondai_type')}")
-    if len(opts) != 4 or len(set(opts)) != 4 or not all(o.strip() for o in opts):
-        err("bad_options", "Cần đúng 4 lựa chọn khác nhau, không rỗng")
-    if ans not in (1, 2, 3, 4):
-        err("bad_answer", f"Đáp án phải là 1–4, đang là {ans}")
+    _choice_issues(q, err)
     if q.get("grammar_id") not in verified_grammar:
         err("grammar_not_verified", f"Điểm ngữ pháp {q.get('grammar_id')} không tồn tại hoặc chưa verified")
-    if set(q.get("option_explanations") or {}) != {"1", "2", "3", "4"}:
-        err("missing_option_explanations", "Cần giải thích cho cả 4 lựa chọn")
-    if not (q.get("explanation_vi") or "").strip():
-        err("missing_explanation", "Thiếu giải thích")
     if q.get("mondai_type") == "grammar_form" and text.count("（　　）") != 1:
         err("blank_count", "文の文法1 cần đúng 1 chỗ trống （　　）")
     if q.get("mondai_type") == "sentence_composition":
@@ -459,74 +470,177 @@ def check_grammar_question(q: dict, verified_grammar: set[str], n5_kanji: set[st
             err("bad_sequence", "expected_sequence phải là hoán vị của 1–4")
         elif star in (1, 2, 3, 4) and seq[star - 1] != ans:
             err("star_answer_mismatch", f"Đáp án {ans} ≠ lựa chọn ở ô ★ ({seq[star - 1]})")
-    outside = sorted({c for c in text + "".join(opts) if re.match(r"[一-鿿]", c)} - n5_kanji)
-    if outside:
-        issues.append(("kanji_outside_n5", "warning", f"Kanji ngoài N5: {''.join(outside)} (nên viết kana)", None))
+    issues += _outside_n5(text + "".join(opts), n5_kanji)
     if jp_key(text) in past_keys:
         err("copied_from_past_exam", "Trùng câu trong đề thi thật")
     return issues
 
 
-def import_grammar_questions(conn, path: Path = GRAMMAR_Q, review_path: Path = GRAMMAR_Q_REVIEW) -> dict:
-    """Agent-authored 文の文法1/2 practice questions (ADR-020). Verified only when the rules pass and two independent
-    blind AI solvers both pick the authored answer; anything else stays needs_review. Questions that are excluded or
-    gone become 'rejected' (attempt history may reference them), never deleted. A person's decision is kept."""
+def _bank_exam(conn, exam_id: str, title: str, note: str) -> None:
+    conn.execute("INSERT OR REPLACE INTO exams (exam_id, title, level, exam_type, source_type, is_official, "
+                 "duration_minutes, data_json, source_ids, verification_status) VALUES (?,?,?,?,?,?,?,?,?,?)",
+                 (exam_id, title, "N5", "question_bank", "AI_GENERATED", 0, None,
+                  json.dumps({"note": note}, ensure_ascii=False), json.dumps(["SRC_LOCAL_GRAMMAR_DOCX"]), "verified"))
+
+
+def _upsert_bank_question(conn, exam_id: str, q: dict, issues: list, review: dict, *, mondai_no, instruction,
+                          extra: dict, answer_type: str = "single_choice", number=None, passage_id=None) -> str:
+    """Store one agent-authored question. Verified only when audited, no blocking rule issue and both blind AI solvers
+    picked the authored answer (ADR-020); a person's decision is kept. Returns the status."""
     from ..learning import exam as examlib
+    qid = q["question_id"]
+    repo.replace_issues(conn, "question", qid, issues)
+    r = review.get(qid, {})
+    agreed = examlib.consensus_status(q["answer"], [r.get("solver_a"), r.get("solver_b")]) == "verified"
+    doubt = [] if agreed or not r else [("ai_solver_disagrees", "warning", f"Đáp án {q['answer']}; AI giải mù: "
+                                         f"{r.get('solver_a')} / {r.get('solver_b')}. {r.get('note') or ''}".strip(), None)]
+    repo.replace_issues(conn, "question", qid, doubt, origin="ai_review")
+    blocking = any(sev in ("error", "warning") for _, sev, _, _ in issues)
+    status, by = ("verified", "ai") if q.get("audited") and agreed and not blocking else ("needs_review", None)
+    cur = conn.execute("SELECT verification_status, verified_by FROM questions WHERE question_id=?", (qid,)).fetchone()
+    if cur and cur["verified_by"] in USER_OWNED:
+        status, by = cur["verification_status"], cur["verified_by"]
+    conn.execute(
+        "INSERT OR REPLACE INTO questions (question_id, exam_id, section, section_id, mondai_no, mondai_type, number, "
+        "passage_id, question_text, instruction, options, correct_answer, answer_type, extra_json, explanation_vi, "
+        "explanation_origin, level, source_ids, extraction_method, verification_status, verified_by, review_notes) "
+        "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+        (qid, exam_id, "grammar_reading", "SEC_02", mondai_no, q.get("mondai_type"), number, passage_id,
+         q["question_text"], instruction,
+         json.dumps([{"option_id": str(i), "text": t} for i, t in enumerate(q["options"], 1)], ensure_ascii=False),
+         json.dumps([str(q["answer"])]), answer_type, json.dumps(extra, ensure_ascii=False), q.get("explanation_vi"),
+         "AI_GENERATED", "N5", json.dumps(["SRC_LOCAL_GRAMMAR_DOCX"]), "agent_authored", status, by,
+         json.dumps(q["review_log"], ensure_ascii=False) if q.get("review_log") else None))
+    if status == "verified":
+        conn.execute("UPDATE validation_issues SET resolved=1 WHERE entity_type='question' AND entity_id=?", (qid,))
+    return status
+
+
+def _reject_gone(conn, exam_id: str, live: list) -> None:
+    conn.execute(f"UPDATE questions SET verification_status='rejected' WHERE exam_id=? AND verified_by IS NOT 'user' "
+                 f"AND question_id NOT IN ({','.join('?' * len(live)) or 'NULL'})", [exam_id, *live])
+
+
+def _past_keys(conn, sql: str) -> set[str]:
+    return {jp_key(r[0]) for r in conn.execute(sql)}
+
+
+def import_grammar_questions(conn, path: Path = GRAMMAR_Q, review_path: Path = GRAMMAR_Q_REVIEW) -> dict:
+    """Agent-authored 文の文法1/2 practice questions (ADR-020). Questions that are excluded or gone become 'rejected'
+    (attempt history may reference them), never deleted."""
     data = _load(path)
     if not data:
         return {"grammar_questions": 0}
     review = _load(review_path) or {}
     grammar = {r[0]: r[1] for r in conn.execute("SELECT id, pattern FROM grammar WHERE verification_status='verified'")}
     n5_kanji = {r[0] for r in conn.execute("SELECT kanji FROM kanji WHERE verification_status='verified'")}
-    past_keys = {jp_key(r[0]) for r in conn.execute(
-        "SELECT q.question_text FROM questions q JOIN exams e USING (exam_id) WHERE e.exam_type!='question_bank' "
-        "AND q.question_text IS NOT NULL")}
-    conn.execute("INSERT OR REPLACE INTO exams (exam_id, title, level, exam_type, source_type, is_official, "
-                 "duration_minutes, data_json, source_ids, verification_status) VALUES (?,?,?,?,?,?,?,?,?,?)",
-                 (GQ_EXAM, "Ngân hàng câu ngữ pháp do AI soạn (AI_GENERATED)", "N5", "question_bank", "AI_GENERATED", 0,
-                  None, json.dumps({"note": "Câu 文の文法1/2 do agent soạn từ các điểm ngữ pháp đã verified; 2 AI giải "
-                                    "mù độc lập (ADR-020). Không phải câu hỏi JLPT chính thức."}, ensure_ascii=False),
-                  json.dumps(["SRC_LOCAL_GRAMMAR_DOCX"]), "verified"))
+    past_keys = _past_keys(conn, "SELECT q.question_text FROM questions q JOIN exams e USING (exam_id) "
+                                 "WHERE e.exam_type!='question_bank' AND q.question_text IS NOT NULL")
+    _bank_exam(conn, GQ_EXAM, "Ngân hàng câu ngữ pháp do AI soạn (AI_GENERATED)",
+               "Câu 文の文法1/2 do agent soạn từ các điểm ngữ pháp đã verified; 2 AI giải mù độc lập (ADR-020). "
+               "Không phải câu hỏi JLPT chính thức.")
     stats, live = {"grammar_questions": 0, "verified": 0, "needs_review": 0}, []
     for q in data["entries"]:
         if q.get("excluded"):
             continue
-        qid = q["question_id"]
-        live.append(qid)
+        live.append(q["question_id"])
         mondai_no, instruction = GQ_MONDAI.get(q["mondai_type"], (None, None))
-        issues = check_grammar_question(q, set(grammar), n5_kanji, past_keys)
-        repo.replace_issues(conn, "question", qid, issues)
-        r = review.get(qid, {})
-        agreed = examlib.consensus_status(q["answer"], [r.get("solver_a"), r.get("solver_b")]) == "verified"
-        doubt = [] if agreed or not r else [("ai_solver_disagrees", "warning", f"Đáp án {q['answer']}; AI giải mù: "
-                                             f"{r.get('solver_a')} / {r.get('solver_b')}. {r.get('note') or ''}".strip(), None)]
-        repo.replace_issues(conn, "question", qid, doubt, origin="ai_review")
-        blocking = any(sev in ("error", "warning") for _, sev, _, _ in issues)
-        status, by = ("verified", "ai") if q.get("audited") and agreed and not blocking else ("needs_review", None)
-        cur = conn.execute("SELECT verification_status, verified_by FROM questions WHERE question_id=?", (qid,)).fetchone()
-        if cur and cur["verified_by"] in USER_OWNED:
-            status, by = cur["verification_status"], cur["verified_by"]
         extra = {"grammar_id": q["grammar_id"], "grammar_pattern": grammar.get(q["grammar_id"]),
                  "option_explanations": q.get("option_explanations"), "generator": "agent:" + q["mondai_type"]}
         if q["mondai_type"] == "sentence_composition":
             extra.update(star_position=q.get("star_position"), expected_sequence=q.get("expected_sequence"))
-        conn.execute(
-            "INSERT OR REPLACE INTO questions (question_id, exam_id, section, section_id, mondai_no, mondai_type, number, "
-            "question_text, instruction, options, correct_answer, answer_type, extra_json, explanation_vi, "
-            "explanation_origin, level, source_ids, extraction_method, verification_status, verified_by, review_notes) "
-            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-            (qid, GQ_EXAM, "grammar_reading", "SEC_02", mondai_no, q["mondai_type"], None, q["question_text"],
-             instruction, json.dumps([{"option_id": str(i), "text": t} for i, t in enumerate(q["options"], 1)],
-                                     ensure_ascii=False),
-             json.dumps([str(q["answer"])]),
-             "sentence_ordering" if q["mondai_type"] == "sentence_composition" else "single_choice",
-             json.dumps(extra, ensure_ascii=False), q.get("explanation_vi"), "AI_GENERATED", "N5",
-             json.dumps(["SRC_LOCAL_GRAMMAR_DOCX"]), "agent_authored", status, by,
-             json.dumps(q["review_log"], ensure_ascii=False) if q.get("review_log") else None))
-        if status == "verified":
-            conn.execute("UPDATE validation_issues SET resolved=1 WHERE entity_type='question' AND entity_id=?", (qid,))
+        status = _upsert_bank_question(
+            conn, GQ_EXAM, q, check_grammar_question(q, set(grammar), n5_kanji, past_keys), review,
+            mondai_no=mondai_no, instruction=instruction, extra=extra,
+            answer_type="sentence_ordering" if q["mondai_type"] == "sentence_composition" else "single_choice")
         stats["grammar_questions"] += 1
         stats["verified" if status == "verified" else "needs_review"] += 1
-    conn.execute(f"UPDATE questions SET verification_status='rejected' WHERE exam_id=? AND verified_by IS NOT 'user' "
-                 f"AND question_id NOT IN ({','.join('?' * len(live)) or 'NULL'})", [GQ_EXAM, *live])
+    _reject_gone(conn, GQ_EXAM, live)
+    return stats
+
+
+# ------------------------------------------------------------------ agent-authored 文章の文法 / 読解 (ADR-026)
+READING_Q = NORM / "reading_questions" / "reading_questions.json"
+READING_Q_REVIEW = NORM / "ai_review" / "reading_questions_review.json"
+RQ_EXAM = "BANK_N5_READING_AI"
+_ASK = "1・2・3・4から いちばん いい ものを 一つ えらんで ください。"
+RQ_MONDAI = {
+    "text_grammar": (3, "［ ］に 何を 入れますか。ぶんしょうの いみを かんがえて、" + _ASK),
+    "reading_short": (4, "つぎの ぶんを よんで、しつもんに こたえて ください。こたえは、" + _ASK),
+    "reading_mid": (5, "つぎの ぶんを よんで、しつもんに こたえて ください。こたえは、" + _ASK),
+    "information_retrieval": (6, "つぎの おしらせを 見て、しつもんに こたえて ください。こたえは、" + _ASK),
+}
+_BLANK = re.compile(r"［(\d+)］")
+
+
+def check_reading_group(p: dict, verified_grammar: set[str], n5_kanji: set[str], past_keys: set[str]) -> dict:
+    """Rule checks for one authored passage and its questions -> {question_id: [(code, severity, msg, sugg)]}.
+    Passage-level problems are reported on every question of the passage."""
+    shared: list = []
+    err = lambda code, msg: shared.append((code, "error", msg, None))
+    mt, text, qs = p.get("mondai_type"), p.get("text") or "", p.get("questions") or []
+    if mt not in RQ_MONDAI:
+        err("bad_mondai_type", f"mondai_type không hợp lệ: {mt}")
+    if not text.strip() or not qs:
+        err("empty_passage", "Bài đọc thiếu nội dung hoặc câu hỏi")
+    blanks = [int(n) for n in _BLANK.findall(text)]
+    if mt == "text_grammar":
+        if blanks != list(range(1, len(qs) + 1)):
+            err("blank_count", f"Chỗ trống {blanks} không khớp {len(qs)} câu hỏi (cần ［1］…［{len(qs)}］ theo thứ tự)")
+    elif blanks:
+        err("unexpected_blank", "Bài đọc hiểu không được có chỗ trống ［k］")
+    if jp_key(text) in past_keys:
+        err("copied_from_past_exam", "Trùng bài đọc trong đề thi thật")
+    shared += _outside_n5(text, n5_kanji)
+    out = {}
+    for k, q in enumerate(qs, 1):
+        issues = list(shared)
+        qerr = lambda code, msg: issues.append((code, "error", msg, None))
+        _choice_issues(q, qerr)
+        if mt == "text_grammar" and q.get("question_text") != f"［{k}］":
+            qerr("blank_question_mismatch", f"question_text phải là ［{k}］")
+        if mt != "text_grammar" and not (q.get("question_text") or "").strip():
+            qerr("missing_question", "Thiếu câu hỏi")
+        if q.get("grammar_id") is not None and q["grammar_id"] not in verified_grammar:
+            qerr("grammar_not_verified", f"Điểm ngữ pháp {q['grammar_id']} không tồn tại hoặc chưa verified")
+        own = _outside_n5((q.get("question_text") or "") + "".join(q.get("options") or []), n5_kanji)
+        out[q.get("question_id")] = issues + [i for i in own if i not in issues]
+    return out
+
+
+def import_reading_questions(conn, path: Path = READING_Q, review_path: Path = READING_Q_REVIEW) -> dict:
+    """Agent-authored 文章の文法 (mondai 3) and 読解 (mondai 4–6) practice passages, same rules as ADR-020 (ADR-026).
+    Each entry is one passage; its questions share passage_id and are numbered 1..n inside it."""
+    data = _load(path)
+    if not data:
+        return {"reading_questions": 0}
+    review = _load(review_path) or {}
+    grammar = {r[0]: r[1] for r in conn.execute("SELECT id, pattern FROM grammar WHERE verification_status='verified'")}
+    n5_kanji = {r[0] for r in conn.execute("SELECT kanji FROM kanji WHERE verification_status='verified'")}
+    past_keys = _past_keys(conn, "SELECT p.text FROM passages p JOIN exams e USING (exam_id) "
+                                 "WHERE e.exam_type!='question_bank'")
+    _bank_exam(conn, RQ_EXAM, "Ngân hàng bài đọc do AI soạn (AI_GENERATED)",
+               "Bài 文章の文法 và 読解 do agent soạn từ từ vựng/ngữ pháp/kanji N5 đã verified; 2 AI giải mù độc lập "
+               "(ADR-026). Không phải câu hỏi JLPT chính thức.")
+    stats, live = {"reading_questions": 0, "passages": 0, "verified": 0, "needs_review": 0}, []
+    for p in data["entries"]:
+        if p.get("excluded"):
+            continue
+        mondai_no, instruction = RQ_MONDAI.get(p["mondai_type"], (None, None))
+        conn.execute("INSERT OR REPLACE INTO passages (passage_id, exam_id, text, source_page, image_asset_id) "
+                     "VALUES (?,?,?,?,?)", (p["passage_id"], RQ_EXAM, p["text"], None, None))
+        stats["passages"] += 1
+        checks = check_reading_group(p, set(grammar), n5_kanji, past_keys)
+        for k, q in enumerate(p["questions"], 1):
+            live.append(q["question_id"])
+            q = {**q, "mondai_type": p["mondai_type"], "audited": p.get("audited"), "review_log": p.get("review_log")}
+            extra = {"option_explanations": q.get("option_explanations"), "generator": "agent:" + p["mondai_type"],
+                     "passage_translation_vi": p.get("translation_vi")}
+            if q.get("grammar_id"):
+                extra.update(grammar_id=q["grammar_id"], grammar_pattern=grammar.get(q["grammar_id"]))
+            status = _upsert_bank_question(conn, RQ_EXAM, q, checks[q["question_id"]], review, mondai_no=mondai_no,
+                                           instruction=instruction, extra=extra, number=k, passage_id=p["passage_id"])
+            stats["reading_questions"] += 1
+            stats["verified" if status == "verified" else "needs_review"] += 1
+    _reject_gone(conn, RQ_EXAM, live)
     return stats

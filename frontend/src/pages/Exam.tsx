@@ -282,7 +282,7 @@ function Runner({ a, setA }: { a: Attempt; setA: (a: Attempt) => void }) {
       {err != null && <ErrorBox error={err} />}
 
       <div className="grid gap-4 lg:grid-cols-[1fr_260px]">
-        <QuestionCard q={q} a={a} pos={`${qIndex + 1}/${visible.length}`} onChoose={o => choose(q, o)}
+        <QuestionCard key={q.question_id} q={q} a={a} pos={`${qIndex + 1}/${visible.length}`} onChoose={o => choose(q, o)}
           onFlag={() => choose(q, null, !a.answers[q.question_id]?.flagged)} practice={!exam} />
         <aside className="space-y-3">
           <Panel title={`Đã làm ${visible.length - visible.filter(x => !answered(x.question_id)).length}/${visible.length}`}>
@@ -330,6 +330,15 @@ function QuestionCard({ q, a, pos, onChoose, onFlag, practice, review }: {
   const [rate, setRate] = useState(1)
   const audio = useRef<HTMLAudioElement>(null)
   useEffect(() => { if (audio.current) audio.current.playbackRate = rate }, [rate])
+  const { audio_start: from, audio_end: to } = q.extra
+  const stopAt = useRef<number | null>(null)
+  const playClip = () => {
+    const el = audio.current
+    if (!el || from == null) return
+    el.currentTime = from
+    stopAt.current = to ?? null
+    void el.play()
+  }
 
   return (
     <section className="space-y-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900" aria-label={`Câu ${pos}`}>
@@ -337,7 +346,7 @@ function QuestionCard({ q, a, pos, onChoose, onFlag, practice, review }: {
         <Tag tone="indigo">Câu {pos}</Tag>
         <Tag>{SECTION_LABEL[q.section] ?? q.section}{q.mondai_no ? ` · もんだい${q.mondai_no}` : ''}</Tag>
         {q.mondai_type && <Tag>{MONDAI_LABEL[q.mondai_type] ?? q.mondai_type}</Tag>}
-        {q.exam_id === 'BANK_N5_GENERATED'
+        {q.exam_id.startsWith('BANK_')
           ? <Tag tone="amber">AI_GENERATED · không phải đề chính thức</Tag>
           : <Tag tone="emerald">Đề chính thức</Tag>}
         {q.verification_status === 'needs_review' && <Tag tone="amber">Bản chép chờ đối chiếu ảnh gốc</Tag>}
@@ -349,13 +358,23 @@ function QuestionCard({ q, a, pos, onChoose, onFlag, practice, review }: {
       {q.audio_asset_id && (
         <div className="rounded-lg bg-slate-50 p-2 dark:bg-slate-800/60">
           <div className="mb-1 flex items-center justify-between text-xs text-slate-500">
-            <span>Audio gốc (một track cho cả phần nghe, chưa có mốc thời gian từng câu)</span>
+            {from != null
+              ? <button type="button" onClick={playClip} className="rounded-md bg-indigo-600 px-2.5 py-1 font-medium text-white hover:bg-indigo-700">
+                  ▶ Nghe câu này ({fmt(Math.floor(from))}–{fmt(Math.ceil(to ?? from))})</button>
+              : <span>Audio gốc (một track cho cả phần nghe, chưa có mốc thời gian câu này)</span>}
             {(practice || review) && <label className="flex items-center gap-1">Tốc độ
               <select value={rate} onChange={e => setRate(+e.target.value)} className="rounded border border-slate-300 bg-white px-1 dark:border-slate-700 dark:bg-slate-800">
                 {[0.75, 0.9, 1, 1.25].map(r => <option key={r} value={r}>{r}×</option>)}
               </select></label>}
           </div>
-          <audio ref={audio} controls preload="none" src={api.assetUrl(q.audio_asset_id)} className="w-full" />
+          <audio ref={audio} controls preload="none" src={api.assetUrl(q.audio_asset_id)} className="w-full"
+            onTimeUpdate={e => {
+              if (stopAt.current != null && e.currentTarget.currentTime >= stopAt.current) {
+                e.currentTarget.pause()
+                stopAt.current = null
+              }
+            }} />
+          {from != null && <p className="mt-1 text-xs text-slate-500">Mốc thời gian căn tự động từ bản ghi Whisper, có thể lệch vài giây.</p>}
         </div>
       )}
       {passage && <pre className="jp max-h-72 overflow-y-auto whitespace-pre-wrap rounded-lg bg-slate-50 p-3 text-[15px] leading-relaxed dark:bg-slate-800/60">{passage.text}</pre>}
@@ -396,6 +415,8 @@ function QuestionCard({ q, a, pos, onChoose, onFlag, practice, review }: {
           {q.extra.grammar_pattern && <p>Điểm ngữ pháp: <span className="jp font-medium">{q.extra.grammar_pattern}</span></p>}
           {q.explanation_vi && <p>{q.explanation_vi}{q.explanation_origin === 'AI_GENERATED' &&
             <span className="ml-1 text-xs text-slate-500">(giải thích do AI soạn)</span>}</p>}
+          {q.extra.passage_translation_vi && <details><summary className="cursor-pointer text-slate-500">Dịch bài đọc</summary>
+            <p className="mt-1 whitespace-pre-wrap">{q.extra.passage_translation_vi}</p></details>}
           {q.transcript && <details><summary className="cursor-pointer text-slate-500">Script phần nghe</summary>
             <pre className="jp mt-1 whitespace-pre-wrap">{q.transcript}</pre></details>}
         </div>

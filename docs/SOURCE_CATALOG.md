@@ -1,6 +1,6 @@
 # SOURCE CATALOG
 
-Tạo tự động lúc 2026-11-15T13:20:25+07:00. Định nghĩa độ tin cậy: OFFICIAL / PRIMARY / EDUCATIONAL / SUPPLEMENTARY / AI_GENERATED / USER_CREATED (spec §3.3).
+Tạo tự động lúc 2026-11-15T13:48:32+07:00. Định nghĩa độ tin cậy: OFFICIAL / PRIMARY / EDUCATIONAL / SUPPLEMENTARY / AI_GENERATED / USER_CREATED (spec §3.3).
 
 Trạng thái truy cập là kết quả **kiểm tra HTTP** (`python -m hub check-online`), không phải trích xuất nội dung.
 `requires_auth` / `manual_export` = cần tài khoản Google hoặc người dùng tải/export tệp về `docs/` để nhập.

@@ -1,0 +1,1196 @@
+{
+ "Q_RQ_101_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_101_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_101_3": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_101_4": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_102_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_102_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_102_3": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_102_4": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_103_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_103_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_103_3": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_103_4": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_104_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_104_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_104_3": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_105_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_105_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_105_3": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_105_4": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_106_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_106_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_106_3": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_107_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_107_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_107_3": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_107_4": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_108_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_108_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_108_3": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_108_4": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_109_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_109_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_109_3": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_109_4": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_110_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_110_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_110_3": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_111_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_111_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_111_3": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_112_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_112_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_112_3": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_201_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": "Nhẹ: từ むり (無理) thường xếp N4, không phải N5. Đáp án vẫn duy nhất.",
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_201_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_201_3": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_201_4": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_202_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_202_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": "Nhẹ: bài dùng 入ると (と điều kiện) và でんち, thường xếp N4. Đáp án vẫn duy nhất.",
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_202_3": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_203_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "previous": {
+   "alt_a": [],
+   "alt_b": [],
+   "issue_a": null,
+   "issue_b": null,
+   "round": "re-solved after final reviewer edit",
+   "solver_a": 1,
+   "solver_b": 1
+  },
+  "round": "re-solved after final reviewer edit (3rd)",
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_203_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "previous": {
+   "alt_a": [],
+   "alt_b": [],
+   "issue_a": "Đáp án 3 đúng, nhưng câu dẫn 「2週間 あとで 本を かえさなければ なりません」 hơi gượng: 「あとで」 nghĩa là 'sau 2 tuần (mới) trả', trong khi ý muốn nói là 'phải trả trong vòng/khi hết 2 tuần'. Nên sửa thành 「2週間で」 hoặc 「2週間 たったら」.",
+   "issue_b": null,
+   "round": "re-solved after final reviewer edit",
+   "solver_a": 3,
+   "solver_b": 3
+  },
+  "round": "re-solved after final reviewer edit (3rd)",
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_203_3": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "previous": {
+   "alt_a": [],
+   "alt_b": [],
+   "issue_a": null,
+   "issue_b": null,
+   "round": "re-solved after final reviewer edit",
+   "solver_a": 2,
+   "solver_b": 2
+  },
+  "round": "re-solved after final reviewer edit (3rd)",
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_203_4": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": "Không sai, chỉ lưu ý nhỏ: câu chứa chỗ trống dùng 「聞くと」 (～と điều kiện), ngữ pháp này thường xếp N4. Đáp án くれます vẫn rõ ràng.",
+  "issue_b": null,
+  "previous": {
+   "alt_a": [],
+   "alt_b": [],
+   "issue_a": null,
+   "issue_b": null,
+   "round": "re-solved after final reviewer edit",
+   "solver_a": 4,
+   "solver_b": 4
+  },
+  "round": "re-solved after final reviewer edit (3rd)",
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_204_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_204_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_204_3": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_204_4": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_205_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_205_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": "Đáp án duy nhất; lưu ý 〜かた (つかいかた) thường xếp N4 ở một số danh sách.",
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_205_3": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_205_4": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_206_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_206_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_206_3": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_207_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_207_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_207_3": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_207_4": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_208_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_208_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_208_3": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_208_4": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_209_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_209_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_209_3": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": "Bẫy theo hình thức: chỉ まえに hợp với thể từ điển 食べる (あとで cần 食べた, ながら cần 食べ, てから cần 食べて). Nếu đáp án dự định là あとで thì câu sai ngữ pháp; nếu là まえに thì ổn.",
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_209_4": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": "Nhẹ: ～た ほうが いい thường xếp N4 (Minna bài 32).",
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_210_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_210_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_210_3": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_211_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_211_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_211_3": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_212_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_212_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_212_3": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": "Nhẹ: ～ても (ふっても) thường xếp N4 (Minna bài 25). Đáp án vẫn duy nhất.",
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_301_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_302_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_303_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_304_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_305_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_306_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_307_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_308_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_309_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_310_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_311_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_312_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_313_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_314_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_315_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_316_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_317_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_318_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_319_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_320_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_321_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_322_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_323_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_324_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_401_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_401_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_402_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_402_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_403_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_403_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_404_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_404_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_405_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_405_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_406_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_406_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_407_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_407_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_408_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": "ふなびん (và エアメール) vượt N5, không chú thích; bài tự giải thích giá/thời gian nên vẫn làm được, đáp án duy nhất.",
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_408_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_409_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "previous": {
+   "alt_a": [],
+   "alt_b": [],
+   "issue_a": "Bài dùng nhiều từ vượt N5 (キャッシュカード, やちん, お金を下ろす, あんしょうばんごう, きんがく) không có chú thích; đáp án vẫn duy nhất. Nên thêm chú thích từ hoặc thay từ dễ hơn.",
+   "issue_b": "Bài dùng nhiều từ vượt N5: やちん, あんしょうばんごう, きんがく, お金を 下ろす (N4 trở lên). Đáp án vẫn duy nhất.",
+   "solver_a": 1,
+   "solver_b": 1
+  },
+  "round": "re-solved after final reviewer edit",
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_409_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "previous": {
+   "alt_a": [],
+   "alt_b": [],
+   "issue_a": "Như 409_1: あんしょうばんごう, きんがく vượt N5, không chú thích; đáp án (カードを入れます) vẫn duy nhất.",
+   "issue_b": "Như 409_1: あんしょうばんごう, きんがく vượt N5; nên chú thích hoặc thay từ dễ hơn.",
+   "solver_a": 3,
+   "solver_b": 3
+  },
+  "round": "re-solved after final reviewer edit",
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_410_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_410_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_411_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_411_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_412_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_412_2": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_413_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_414_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_415_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_416_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ },
+ "Q_RQ_417_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 2,
+  "solver_b": 2
+ },
+ "Q_RQ_418_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 3,
+  "solver_b": 3
+ },
+ "Q_RQ_419_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 4,
+  "solver_b": 4
+ },
+ "Q_RQ_420_1": {
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "solver_a": 1,
+  "solver_b": 1
+ }
+}

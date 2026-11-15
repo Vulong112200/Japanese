@@ -389,3 +389,95 @@ def test_practice_by_grammar_point_and_activity_analytics(client):
     assert an["attempts"][-1]["attempt_id"] == a["attempt_id"] and "grammar_reading" in an["attempts"][-1]["by_section"]
     assert set(qids) <= {m["question_id"] for m in an["repeated_mistakes"] if m["wrong"] >= 2}
     assert c.get("/api/stats/analytics", params={"days": 3}).status_code == 422
+
+
+# ---------------------------------------------------------------- agent-authored reading bank (ADR-026)
+def _q(k, **kw):
+    return {"question_id": f"Q_RQ_T_{k}", "question_text": f"［{k}］", "options": ["は", "を", "に", "で"],
+            "answer": 1, "explanation_vi": "x", "option_explanations": {"1": "a", "2": "b", "3": "c", "4": "d"}, **kw}
+
+
+RG = {"passage_id": "PSG_RQ_T", "mondai_type": "text_grammar",
+      "text": "わたしは 毎朝 パン［1］ 食べます。［2］、学校へ 行きます。", "questions": [_q(1), _q(2)]}
+
+
+def _rcodes(p, past=frozenset()):
+    return {c for issues in knowledge.check_reading_group(p, {"GRA_000001"}, set("毎朝食学校行"), set(past)).values()
+            for c, *_ in issues}
+
+
+def test_reading_group_rules():
+    assert _rcodes(RG) == set()
+    assert "blank_count" in _rcodes({**RG, "questions": [_q(1)]})
+    assert "blank_question_mismatch" in _rcodes({**RG, "questions": [_q(2), _q(1)]})
+    assert "bad_answer" in _rcodes({**RG, "questions": [_q(1), _q(2, answer=5)]})
+    assert "grammar_not_verified" in _rcodes({**RG, "questions": [_q(1, grammar_id="GRA_999999"), _q(2)]})
+    assert "kanji_outside_n5" in _rcodes({**RG, "text": RG["text"].replace("パン", "麺")})
+    assert "copied_from_past_exam" in _rcodes(RG, {knowledge.jp_key(RG["text"])})
+    short = {**RG, "mondai_type": "reading_short", "text": "あした 学校へ 行きます。",
+             "questions": [_q(1, question_text="あした どこへ 行きますか。")]}
+    assert _rcodes(short) == set()
+    assert "unexpected_blank" in _rcodes({**short, "text": RG["text"]})
+    assert "missing_question" in _rcodes({**short, "questions": [_q(1, question_text="")]})
+    assert "bad_mondai_type" in _rcodes({**short, "mondai_type": "essay"})
+
+
+def test_reading_bank_is_consensus_backed(imported):
+    conn, result = imported
+    st = result["reading_questions"]
+    assert st["verified"] >= 100, st
+    e = conn.execute("SELECT * FROM exams WHERE exam_id=?", (knowledge.RQ_EXAM,)).fetchone()
+    assert e["is_official"] == 0 and e["source_type"] == "AI_GENERATED" and e["exam_type"] == "question_bank"
+    review = json.loads(knowledge.READING_Q_REVIEW.read_text(encoding="utf-8"))
+    rows = conn.execute("SELECT q.*, p.text FROM questions q JOIN passages p USING (passage_id) WHERE q.exam_id=? "
+                        "AND q.verification_status='verified'", (knowledge.RQ_EXAM,)).fetchall()
+    assert len(rows) == st["verified"]                                   # every question has its passage
+    assert {r["mondai_type"] for r in rows} == set(knowledge.RQ_MONDAI)
+    for q in rows:
+        ans = int(json.loads(q["correct_answer"])[0])
+        assert review[q["question_id"]]["solver_a"] == review[q["question_id"]]["solver_b"] == ans, q["question_id"]
+        assert q["mondai_no"] == knowledge.RQ_MONDAI[q["mondai_type"]][0] and q["number"] >= 1
+        if q["mondai_type"] == "text_grammar":
+            assert q["question_text"] == f"［{q['number']}］" and q["question_text"] in q["text"]
+        assert not conn.execute("SELECT 1 FROM validation_issues WHERE entity_type='question' AND entity_id=? "
+                                "AND resolved=0 AND severity IN ('error','warning')", (q["question_id"],)).fetchone()
+
+
+def test_reading_bank_keeps_passages_whole_and_hides_answers(client):
+    c, conn = client
+    a = c.post("/api/attempts", json={"mode": "exam", "source": "generated", "mondai_type": "text_grammar",
+                                      "limit": 3, "timing": "none"}).json()
+    qs = a["questions"]
+    assert qs and all(q["exam_id"] == knowledge.RQ_EXAM and q["passage_id"] in a["passages"] for q in qs)
+    for pid in {q["passage_id"] for q in qs}:                  # a passage is never split by the sampler
+        live = {r[0] for r in conn.execute("SELECT question_id FROM questions WHERE passage_id=? "
+                                           "AND verification_status!='rejected'", (pid,))}
+        got = [q for q in qs if q["passage_id"] == pid]
+        assert {q["question_id"] for q in got} == live
+        assert [q["number"] for q in got] == sorted(q["number"] for q in got)
+    for q in qs:
+        assert "correct_answer" not in q and "passage_translation_vi" not in q["extra"]
+
+
+# ---------------------------------------------------------------- listening timestamps (ADR-025)
+def test_listening_timestamps_fit_the_track_and_hide_nothing(client):
+    c, conn = client
+    rows = conn.execute("SELECT q.question_id, q.exam_id, q.extra_json, a.duration_seconds FROM questions q "
+                        "JOIN assets a ON a.asset_id=q.audio_asset_id WHERE json_extract(q.extra_json,'$.audio_start') "
+                        "IS NOT NULL").fetchall()
+    assert len(rows) >= 90
+    by_exam: dict[str, list] = {}
+    for r in rows:
+        x = json.loads(r["extra_json"])
+        assert 0 <= x["audio_start"] < x["audio_end"] <= (r["duration_seconds"] or 1e9) + 1, r["question_id"]
+        by_exam.setdefault(r["exam_id"], []).append((x["audio_start"], x["audio_end"]))
+    for spans in by_exam.values():                          # clips of one track never overlap
+        spans.sort()
+        assert all(e <= s2 for (_, e), (s2, _) in zip(spans, spans[1:]))
+    stamped = [r["question_id"] for r in rows]                # a timestamped question is not reported as missing one
+    assert not conn.execute(f"SELECT 1 FROM validation_issues WHERE code='audio_timestamp_missing' AND resolved=0 "
+                            f"AND entity_id IN ({','.join('?' * len(stamped))})", stamped).fetchone()
+    exam_id = rows[0]["exam_id"]
+    a = c.post("/api/attempts", json={"mode": "exam", "exam_id": exam_id, "section": "listening"}).json()
+    q = next(q for q in a["questions"] if "audio_start" in q["extra"])
+    assert "transcript" not in q and "correct_answer" not in q

@@ -1,0 +1,3520 @@
+{
+ "description": "Bài luyện 文章の文法 (mondai 3) và 読解 (mondai 4 短文, 5 中文, 6 情報検索) do agent soạn chỉ từ từ vựng/ngữ pháp/kanji N5 đã verified (ADR-026). Không phải đề JLPT chính thức. Mỗi mục là 1 bài đọc; câu hỏi đánh số theo bài. Sửa: đổi trường, ghi review_log, giải mù lại câu đó, rồi import. Loại: excluded=true.",
+ "review_process": "Vòng 1: 4 agent soạn. Luật tự động check_reading_group. Vòng 2: 2 lượt giải mù độc lập A/B, chia lô khác (A theo loại bài, B xen kẽ chẵn/lẻ). Người duyệt cuối xử lý mọi câu lệch hoặc bị gắn cờ. Bằng chứng: data/normalized/ai_review/reading_questions_review.json",
+ "entries": [
+  {
+   "passage_id": "PSG_RQ_101",
+   "mondai_type": "text_grammar",
+   "text": "「わたしの 日よう日」\nわたしは ベトナムの リンです。日本語学校の 学生です。日よう日の 午前は いつも としょかん［1］ 日本語の べんきょうを します。先週の 日よう日も としょかんへ 行きました。［2］、その 日は としょかんが 休みでした。わたしは うちへ かえって、べんきょうしました。来週の 日よう日は また としょかんへ ［3］。としょかんで 日本語の 本を ［4］です。",
+   "translation_vi": "「Ngày chủ nhật của tôi」\nTôi là Linh, người Việt Nam. Tôi là học sinh trường tiếng Nhật. Sáng chủ nhật tôi luôn học tiếng Nhật ở thư viện. Chủ nhật tuần trước tôi cũng đã đến thư viện. Nhưng hôm đó thư viện nghỉ. Tôi về nhà và học. Chủ nhật tuần sau tôi lại sẽ đến thư viện. Tôi muốn đọc sách tiếng Nhật ở thư viện.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_101_1",
+     "question_text": "［1］",
+     "options": [
+      "に",
+      "を",
+      "で",
+      "が"
+     ],
+     "answer": 3,
+     "grammar_id": "GRA_000033",
+     "explanation_vi": "「としょかんで べんきょうを します」: thư viện là nơi diễn ra hành động học, nên dùng で.",
+     "option_explanations": {
+      "1": "Sai. に chỉ nơi tồn tại/đích đến, không dùng cho nơi diễn ra hành động べんきょうを します.",
+      "2": "Sai. を đánh dấu tân ngữ; tân ngữ ở đây là べんきょう, không phải thư viện.",
+      "3": "Đúng. で chỉ nơi diễn ra hành động: học ở thư viện.",
+      "4": "Sai. が đánh dấu chủ ngữ; thư viện không phải người thực hiện việc học."
+     }
+    },
+    {
+     "question_id": "Q_RQ_101_2",
+     "question_text": "［2］",
+     "options": [
+      "ですから",
+      "でも",
+      "それから",
+      "それでは"
+     ],
+     "answer": 2,
+     "grammar_id": null,
+     "explanation_vi": "Câu trước: 「としょかんへ 行きました」 (đã đến thư viện); câu sau: 「としょかんが 休みでした」 (thư viện nghỉ). Hai ý trái ngược với mong đợi nên dùng でも (nhưng).",
+     "option_explanations": {
+      "1": "Sai. ですから (vì vậy): việc đến thư viện không phải lý do khiến thư viện nghỉ.",
+      "2": "Đúng. でも nối hai ý trái ngược: đã đến nhưng thư viện lại nghỉ.",
+      "3": "Sai. それから (sau đó) nối hành động nối tiếp; việc thư viện nghỉ không xảy ra sau khi đến.",
+      "4": "Sai. それでは (vậy thì) dùng để chuyển ý/kết luận, không hợp ở đây."
+     }
+    },
+    {
+     "question_id": "Q_RQ_101_3",
+     "question_text": "［3］",
+     "options": [
+      "行きました",
+      "行きませんでした",
+      "行って いました",
+      "行きます"
+     ],
+     "answer": 4,
+     "grammar_id": "GRA_000019",
+     "explanation_vi": "「来週の 日よう日は」 là tương lai, nên động từ dùng thể hiện tại/tương lai 行きます.",
+     "option_explanations": {
+      "1": "Sai. 行きました là quá khứ, không hợp với 来週 (tuần sau).",
+      "2": "Sai. 行きませんでした là quá khứ phủ định, không hợp với 来週.",
+      "3": "Sai. 行って いました là quá khứ, không hợp với 来週.",
+      "4": "Đúng. 来週 là tương lai nên dùng 行きます (sẽ đi)."
+     }
+    },
+    {
+     "question_id": "Q_RQ_101_4",
+     "question_text": "［4］",
+     "options": [
+      "読みたい",
+      "読んで",
+      "読む",
+      "読み"
+     ],
+     "answer": 1,
+     "grammar_id": "GRA_000067",
+     "explanation_vi": "Trước です chỉ có 「読みたい」 (muốn đọc) tạo thành câu đúng: 「本を 読みたいです」 (Vます bỏ ます + たいです).",
+     "option_explanations": {
+      "1": "Đúng. 読みたいです = muốn đọc, đúng mẫu Vます bỏ ます + たいです.",
+      "2": "Sai. 読んでです không phải cấu trúc đúng.",
+      "3": "Sai. 読むです sai ngữ pháp (thể từ điển không gắn trực tiếp です).",
+      "4": "Sai. 読みです sai ngữ pháp, thiếu たい."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_102",
+   "mondai_type": "text_grammar",
+   "text": "「わたしの かぞく」\nわたしは マリアです。ブラジル人です。今 日本の 大学で べんきょうして います。わたしの かぞくは 今 ブラジルに ［1］。父と 母と あにです。あには 日本語が とても 上手です。でも、わたしは まだ ［2］ 上手じゃ ありません。ブラジルの うちには いぬも 2［3］ います。らいねんの なつ休みに、かぞくに ［4］ ブラジルへ かえります。",
+   "translation_vi": "「Gia đình tôi」\nTôi là Maria. Tôi là người Brazil. Bây giờ tôi đang học ở một trường đại học Nhật Bản. Gia đình tôi bây giờ đang ở Brazil. Đó là bố, mẹ và anh trai. Anh trai tôi rất giỏi tiếng Nhật. Nhưng tôi thì vẫn chưa giỏi lắm. Ở nhà bên Brazil còn có 2 con chó. Kỳ nghỉ hè năm sau, tôi sẽ về Brazil để gặp gia đình.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_102_1",
+     "question_text": "［1］",
+     "options": [
+      "ありました",
+      "います",
+      "あります",
+      "いました"
+     ],
+     "answer": 2,
+     "grammar_id": "GRA_000054",
+     "explanation_vi": "Chủ ngữ là かぞく (người) nên dùng います; có 「今」 (bây giờ) nên dùng hiện tại: 「かぞくは 今 ブラジルに います」.",
+     "option_explanations": {
+      "1": "Sai. ありました dùng cho đồ vật và là quá khứ, không hợp với người và 今.",
+      "2": "Đúng. Người dùng います, và 今 yêu cầu thì hiện tại.",
+      "3": "Sai. あります dùng cho đồ vật, không dùng cho người.",
+      "4": "Sai. いました là quá khứ, mâu thuẫn với 今 (bây giờ)."
+     }
+    },
+    {
+     "question_id": "Q_RQ_102_2",
+     "question_text": "［2］",
+     "options": [
+      "とても",
+      "よく",
+      "たくさん",
+      "あまり"
+     ],
+     "answer": 4,
+     "grammar_id": "GRA_000043",
+     "explanation_vi": "Phía sau là thể phủ định 「上手じゃ ありません」, nên dùng あまり (không... lắm): 「まだ あまり 上手じゃ ありません」.",
+     "option_explanations": {
+      "1": "Sai. とても (rất) đi với khẳng định, không đi với 上手じゃ ありません.",
+      "2": "Sai. よく không bổ nghĩa cho 上手じゃ ありません.",
+      "3": "Sai. たくさん chỉ số lượng nhiều, không bổ nghĩa cho tính từ 上手.",
+      "4": "Đúng. あまり + phủ định = không... lắm: vẫn chưa giỏi lắm."
+     }
+    },
+    {
+     "question_id": "Q_RQ_102_3",
+     "question_text": "［3］",
+     "options": [
+      "ひき",
+      "まい",
+      "だい",
+      "さつ"
+     ],
+     "answer": 1,
+     "grammar_id": "GRA_000057",
+     "explanation_vi": "Đếm động vật nhỏ như chó dùng ～ひき: 「いぬが 2ひき います」.",
+     "option_explanations": {
+      "1": "Đúng. ～ひき dùng để đếm con vật nhỏ (chó, mèo).",
+      "2": "Sai. ～まい đếm vật mỏng (giấy, áo).",
+      "3": "Sai. ～だい đếm máy móc, xe cộ.",
+      "4": "Sai. ～さつ đếm sách, vở."
+     }
+    },
+    {
+     "question_id": "Q_RQ_102_4",
+     "question_text": "［4］",
+     "options": [
+      "会う",
+      "会いたい",
+      "会いに",
+      "会いました"
+     ],
+     "answer": 3,
+     "grammar_id": "GRA_000068",
+     "explanation_vi": "Mẫu chỉ mục đích di chuyển: Vます bỏ ます + に + かえります. 「かぞくに 会いに ブラジルへ かえります」 = về Brazil để gặp gia đình.",
+     "option_explanations": {
+      "1": "Sai. 会う ブラジル không tạo thành câu đúng trước へ かえります.",
+      "2": "Sai. 会いたい ブラジル sai ngữ pháp.",
+      "3": "Đúng. 会いに + かえります chỉ mục đích: về để gặp.",
+      "4": "Sai. 会いました là động từ kết thúc câu, không đặt trước ブラジルへ かえります được."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_103",
+   "mondai_type": "text_grammar",
+   "text": "「デパートで」\nわたしは キムです。先週の 土よう日、わたしは 友だちと デパートへ 行きました。わたしは 新しい くつ［1］ ほしかったです。くつの 店は デパートの 2かい［2］ ありました。白い くつは すてきでしたが、とても ［3］。ですから、買いませんでした。それから、となりの 店へ 行きました。そこの くろい くつは 白い くつ［4］ 安かったです。わたしは くろい くつを 買いました。",
+   "translation_vi": "「Ở cửa hàng bách hóa」\nTôi là Kim. Thứ bảy tuần trước, tôi đã cùng bạn đến cửa hàng bách hóa. Tôi đã muốn có một đôi giày mới. Cửa hàng giày ở tầng 2 của cửa hàng bách hóa. Đôi giày trắng đẹp nhưng rất đắt. Vì vậy tôi đã không mua. Sau đó tôi đến cửa hàng bên cạnh. Đôi giày đen ở đó rẻ hơn đôi giày trắng. Tôi đã mua đôi giày đen.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_103_1",
+     "question_text": "［1］",
+     "options": [
+      "が",
+      "を",
+      "に",
+      "で"
+     ],
+     "answer": 1,
+     "grammar_id": "GRA_000066",
+     "explanation_vi": "Mẫu 「N が ほしいです」: đối tượng mong muốn đi với が → 「くつが ほしかったです」.",
+     "option_explanations": {
+      "1": "Đúng. ほしい lấy đối tượng bằng が.",
+      "2": "Sai. Theo mẫu chuẩn, ほしい không đi với を.",
+      "3": "Sai. に không đánh dấu đối tượng của ほしい.",
+      "4": "Sai. で chỉ nơi chốn/phương tiện, không hợp."
+     }
+    },
+    {
+     "question_id": "Q_RQ_103_2",
+     "question_text": "［2］",
+     "options": [
+      "で",
+      "を",
+      "に",
+      "へ"
+     ],
+     "answer": 3,
+     "grammar_id": "GRA_000054",
+     "explanation_vi": "Mẫu 「N1 は N2（nơi chốn）に あります」: nơi tồn tại đi với に → 「デパートの 2かいに ありました」.",
+     "option_explanations": {
+      "1": "Sai. で chỉ nơi diễn ra hành động, không dùng với あります chỉ sự tồn tại của đồ vật.",
+      "2": "Sai. を không dùng với あります.",
+      "3": "Đúng. に chỉ nơi tồn tại: ở tầng 2.",
+      "4": "Sai. へ chỉ hướng di chuyển, không dùng với あります."
+     }
+    },
+    {
+     "question_id": "Q_RQ_103_3",
+     "question_text": "［3］",
+     "options": [
+      "安かったです",
+      "高いでした",
+      "高くなかったです",
+      "高かったです"
+     ],
+     "answer": 4,
+     "grammar_id": "GRA_000062",
+     "explanation_vi": "「すてきでしたが」 (đẹp nhưng...) và 「ですから、買いませんでした」 cho thấy giày có điểm xấu là đắt. Quá khứ của 高い là 高かったです.",
+     "option_explanations": {
+      "1": "Sai. Rẻ thì không trái với \"đẹp\" sau が, và không phải lý do để không mua.",
+      "2": "Sai. 高いでした sai ngữ pháp; quá khứ của tính từ い là ～かったです.",
+      "3": "Sai. とても không đi với phủ định, và \"không đắt\" không phải lý do để không mua.",
+      "4": "Đúng. Đẹp nhưng rất đắt, vì vậy không mua; 高かったです là quá khứ đúng."
+     }
+    },
+    {
+     "question_id": "Q_RQ_103_4",
+     "question_text": "［4］",
+     "options": [
+      "から",
+      "より",
+      "まで",
+      "で"
+     ],
+     "answer": 2,
+     "grammar_id": "GRA_000063",
+     "explanation_vi": "Mẫu so sánh 「N1 は N2 より Adj です」: 「くろい くつは 白い くつより 安かったです」 = giày đen rẻ hơn giày trắng.",
+     "option_explanations": {
+      "1": "Sai. から chỉ điểm bắt đầu/lý do, không dùng để so sánh.",
+      "2": "Đúng. より dùng để so sánh: rẻ hơn giày trắng.",
+      "3": "Sai. まで chỉ điểm kết thúc, không dùng để so sánh.",
+      "4": "Sai. で không dùng để so sánh hai vật."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_104",
+   "mondai_type": "text_grammar",
+   "text": "「山の 上」\nわたしは アメリカの トムです。きのう、友だちの ケンさんと 山へ 行きました。山の 上は 天気は よかったです［1］、とても さむかったです。わたしは コートを ［2］ 行きませんでしたから、たいへんでした。山の 上で ケンさんと おべんとうを 食べました。とても おいしかったです。でも、山の 上の 店は 休みでしたから、あたたかい 飲みものは ［3］。",
+   "translation_vi": "「Trên đỉnh núi」\nTôi là Tom, người Mỹ. Hôm qua tôi đã đi núi cùng bạn tôi là Ken. Trên đỉnh núi thời tiết đẹp nhưng rất lạnh. Tôi đã không mang áo khoác theo nên rất vất vả. Trên đỉnh núi tôi đã ăn cơm hộp cùng Ken. Rất ngon. Nhưng vì cửa hàng trên núi nghỉ nên chúng tôi đã không uống đồ uống nóng.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_104_1",
+     "question_text": "［1］",
+     "options": [
+      "から",
+      "が",
+      "と",
+      "も"
+     ],
+     "answer": 2,
+     "grammar_id": "GRA_000045",
+     "explanation_vi": "「天気は よかったです」 (thời tiết đẹp) và 「とても さむかったです」 (rất lạnh) là hai ý trái ngược, nối bằng が (nhưng).",
+     "option_explanations": {
+      "1": "Sai. から (vì) không hợp: thời tiết đẹp không phải lý do khiến trời lạnh.",
+      "2": "Đúng. S1 が、S2 = S1 nhưng S2: đẹp trời nhưng rất lạnh.",
+      "3": "Sai. と không nối hai câu theo nghĩa này sau です.",
+      "4": "Sai. も không đứng sau です để nối câu."
+     }
+    },
+    {
+     "question_id": "Q_RQ_104_2",
+     "question_text": "［2］",
+     "options": [
+      "もち",
+      "もつ",
+      "もって",
+      "もった"
+     ],
+     "answer": 3,
+     "grammar_id": "GRA_000071",
+     "explanation_vi": "「もって 行きます」 = mang theo (thể て + 行きます). Câu gốc: 「コートを もって 行きませんでした」 = đã không mang áo khoác theo.",
+     "option_explanations": {
+      "1": "Sai. もち 行きませんでした sai ngữ pháp.",
+      "2": "Sai. もつ 行きませんでした sai ngữ pháp.",
+      "3": "Đúng. Thể て もって + 行きます = mang đi, mang theo.",
+      "4": "Sai. もった 行きませんでした sai ngữ pháp."
+     }
+    },
+    {
+     "question_id": "Q_RQ_104_3",
+     "question_text": "［3］",
+     "options": [
+      "飲みました",
+      "飲みたいです",
+      "飲んで います",
+      "飲みませんでした"
+     ],
+     "answer": 4,
+     "grammar_id": "GRA_000019",
+     "explanation_vi": "「店は 休みでしたから」 (vì cửa hàng nghỉ) nên không mua được đồ uống nóng; chuyện xảy ra hôm qua nên dùng quá khứ phủ định 飲みませんでした.",
+     "option_explanations": {
+      "1": "Sai. Cửa hàng nghỉ (lý do から) nên không thể kết luận là đã uống.",
+      "2": "Sai. Thì hiện tại, và \"vì cửa hàng nghỉ nên muốn uống\" không hợp lý.",
+      "3": "Sai. 飲んで います (đang uống) không hợp với chuyện hôm qua và lý do cửa hàng nghỉ.",
+      "4": "Đúng. Vì cửa hàng nghỉ nên đã không uống đồ uống nóng (quá khứ phủ định)."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_105",
+   "mondai_type": "text_grammar",
+   "text": "「わたしの 学校」\nわたしは タイの ナリです。わたしの 学校は 駅［1］ ちかくに あります。わたしの クラスには 学生が 12人 ［2］。中国人［3］ ベトナム人など、いろいろな 国の 学生が います。学校の 1かいに しょくどうが あります。［4］ しょくどうの カレーは 安くて おいしいです。わたしは 毎日 そこで ひるごはんを 食べます。",
+   "translation_vi": "「Trường của tôi」\nTôi là Nari, người Thái Lan. Trường của tôi ở gần nhà ga. Lớp tôi có 12 học sinh. Có học sinh nhiều nước như người Trung Quốc, người Việt Nam... Ở tầng 1 của trường có nhà ăn. Món cà ri của nhà ăn đó rẻ và ngon. Hằng ngày tôi ăn trưa ở đó.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_105_1",
+     "question_text": "［1］",
+     "options": [
+      "の",
+      "に",
+      "で",
+      "を"
+     ],
+     "answer": 1,
+     "grammar_id": "GRA_000055",
+     "explanation_vi": "Mẫu chỉ vị trí 「N1 の N2（ちかく）」: 「駅の ちかくに あります」 = ở gần nhà ga.",
+     "option_explanations": {
+      "1": "Đúng. 駅の ちかく = gần nhà ga (N1 の + từ chỉ vị trí).",
+      "2": "Sai. 駅に ちかくに sai ngữ pháp.",
+      "3": "Sai. 駅で ちかくに sai ngữ pháp.",
+      "4": "Sai. 駅を ちかくに sai ngữ pháp."
+     }
+    },
+    {
+     "question_id": "Q_RQ_105_2",
+     "question_text": "［2］",
+     "options": [
+      "あります",
+      "なります",
+      "します",
+      "います"
+     ],
+     "answer": 4,
+     "grammar_id": "GRA_000052",
+     "explanation_vi": "Chủ ngữ là 学生 (người) nên dùng います: 「クラスには 学生が 12人 います」.",
+     "option_explanations": {
+      "1": "Sai. あります dùng cho đồ vật, không dùng cho người.",
+      "2": "Sai. なります (trở thành) không hợp nghĩa.",
+      "3": "Sai. します (làm) không hợp nghĩa.",
+      "4": "Đúng. Người tồn tại dùng います."
+     }
+    },
+    {
+     "question_id": "Q_RQ_105_3",
+     "question_text": "［3］",
+     "options": [
+      "や",
+      "を",
+      "へ",
+      "で"
+     ],
+     "answer": 1,
+     "grammar_id": "GRA_000056",
+     "explanation_vi": "Mẫu liệt kê không đầy đủ 「N1 や N2 など」: 「中国人や ベトナム人など」 = người Trung Quốc, người Việt Nam, v.v.",
+     "option_explanations": {
+      "1": "Đúng. や ... など liệt kê ví dụ tiêu biểu.",
+      "2": "Sai. を đánh dấu tân ngữ, không nối hai danh từ.",
+      "3": "Sai. へ chỉ hướng, không nối hai danh từ.",
+      "4": "Sai. で không nối hai danh từ trong phép liệt kê."
+     }
+    },
+    {
+     "question_id": "Q_RQ_105_4",
+     "question_text": "［4］",
+     "options": [
+      "どの",
+      "それ",
+      "その",
+      "そこ"
+     ],
+     "answer": 3,
+     "grammar_id": "GRA_000008",
+     "explanation_vi": "Chỗ trống đứng trước danh từ しょくどう và chỉ lại nhà ăn vừa nói ở câu trước, nên dùng その: 「その しょくどう」.",
+     "option_explanations": {
+      "1": "Sai. どの là từ để hỏi (nào?), không hợp trong câu trần thuật.",
+      "2": "Sai. それ là đại từ, không đứng trực tiếp trước danh từ.",
+      "3": "Đúng. その + danh từ chỉ lại nhà ăn vừa nhắc đến.",
+      "4": "Sai. そこ chỉ nơi chốn, không đứng trực tiếp trước danh từ."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_106",
+   "mondai_type": "text_grammar",
+   "text": "「ゆうびんきょく」\nわたしは グエンです。母は ベトナムに います。あしたは 母の たんじょう日です。先週、わたしは 母に プレゼントを ［1］ ゆうびんきょくへ 行きました。ふなびんは 安いですが、3週間ぐらい かかります。ですから、わたしは エアメール［2］ おくりました。きょう、母から 電話が ありました。プレゼントは もう ［3］。母は「ありがとう。」と 言いました。",
+   "translation_vi": "「Bưu điện」\nTôi là Nguyên. Mẹ tôi ở Việt Nam. Ngày mai là sinh nhật mẹ. Tuần trước tôi đã đến bưu điện để gửi quà cho mẹ. Gửi đường biển thì rẻ nhưng mất khoảng 3 tuần. Vì vậy tôi đã gửi bằng đường hàng không. Hôm nay mẹ gọi điện cho tôi. Món quà đã đến rồi. Mẹ nói: \"Cảm ơn con.\"",
+   "questions": [
+    {
+     "question_id": "Q_RQ_106_1",
+     "question_text": "［1］",
+     "options": [
+      "おくって",
+      "おくりたい",
+      "おくりました",
+      "おくりに"
+     ],
+     "answer": 4,
+     "grammar_id": "GRA_000068",
+     "explanation_vi": "Mẫu chỉ mục đích: Vます bỏ ます + に + 行きます. 「プレゼントを おくりに ゆうびんきょくへ 行きました」 = đến bưu điện để gửi quà.",
+     "option_explanations": {
+      "1": "Sai. おくって ゆうびんきょくへ 行きました nghĩa là gửi xong rồi mới đến bưu điện, không hợp lý.",
+      "2": "Sai. おくりたい ゆうびんきょく sai ngữ pháp/không có nghĩa.",
+      "3": "Sai. おくりました là động từ kết thúc câu, không đứng trước ゆうびんきょくへ được.",
+      "4": "Đúng. おくりに + 行きました chỉ mục đích: đi để gửi."
+     }
+    },
+    {
+     "question_id": "Q_RQ_106_2",
+     "question_text": "［2］",
+     "options": [
+      "に",
+      "で",
+      "へ",
+      "が"
+     ],
+     "answer": 2,
+     "grammar_id": "GRA_000036",
+     "explanation_vi": "で chỉ phương tiện/cách thức: 「エアメールで おくりました」 = gửi bằng đường hàng không (vì đường biển mất 3 tuần).",
+     "option_explanations": {
+      "1": "Sai. エアメールに おくりました sai ngữ pháp.",
+      "2": "Đúng. で chỉ cách thức, phương tiện gửi.",
+      "3": "Sai. へ chỉ hướng/đích đến, không chỉ phương tiện.",
+      "4": "Sai. が đánh dấu chủ ngữ; người gửi là わたし."
+     }
+    },
+    {
+     "question_id": "Q_RQ_106_3",
+     "question_text": "［3］",
+     "options": [
+      "ついて いません",
+      "つきません",
+      "つきました",
+      "つきたいです"
+     ],
+     "answer": 3,
+     "grammar_id": "GRA_000040",
+     "explanation_vi": "「もう V ました」 = đã V rồi. Mẹ gọi điện và nói 「ありがとう」 nên món quà đã đến: 「もう つきました」.",
+     "option_explanations": {
+      "1": "Sai. もう không đi với ついて いません; và mẹ đã cảm ơn nên quà đã đến.",
+      "2": "Sai. もう つきません nghĩa là không còn đến nữa, không hợp.",
+      "3": "Đúng. もう つきました = đã đến rồi, phù hợp với lời cảm ơn của mẹ.",
+      "4": "Sai. つきたいです (muốn đến) không dùng cho đồ vật."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_107",
+   "mondai_type": "text_grammar",
+   "text": "「わたしの しゅみ」\nわたしは イギリスの ポールです。わたしの しゅみは テニスです。わたしは テニス［1］ 大すきです。でも、まだ あまり 上手じゃ ありません。友だちの たなかさんは テニスが とても 上手ですから、ときどき たなかさんに テニスを ［2］。きのう、たなかさんが「来週の 日よう日、いっしょに テニスの しあいを 見に 行き［3］。」と 言いました。わたしは「いいですね。行き［4］。」と 言いました。",
+   "translation_vi": "「Sở thích của tôi」\nTôi là Paul, người Anh. Sở thích của tôi là quần vợt. Tôi rất thích quần vợt. Nhưng tôi vẫn chưa giỏi lắm. Bạn tôi là Tanaka chơi quần vợt rất giỏi, nên thỉnh thoảng tôi học quần vợt từ Tanaka. Hôm qua Tanaka nói: \"Chủ nhật tuần sau, cùng đi xem trận đấu quần vợt không?\" Tôi đã nói: \"Hay quá. Chúng ta cùng đi nhé.\"",
+   "questions": [
+    {
+     "question_id": "Q_RQ_107_1",
+     "question_text": "［1］",
+     "options": [
+      "が",
+      "を",
+      "に",
+      "で"
+     ],
+     "answer": 1,
+     "grammar_id": "GRA_000047",
+     "explanation_vi": "Mẫu 「N が すきです」: đối tượng yêu thích đi với が → 「テニスが 大すきです」.",
+     "option_explanations": {
+      "1": "Đúng. すき/大すき lấy đối tượng bằng が.",
+      "2": "Sai. すき không đi với を theo mẫu chuẩn.",
+      "3": "Sai. に không đánh dấu đối tượng của すき.",
+      "4": "Sai. で không đánh dấu đối tượng của すき."
+     }
+    },
+    {
+     "question_id": "Q_RQ_107_2",
+     "question_text": "［2］",
+     "options": [
+      "おしえます",
+      "ならいます",
+      "かします",
+      "あげます"
+     ],
+     "answer": 2,
+     "grammar_id": "GRA_000039",
+     "explanation_vi": "Tanaka giỏi, còn tôi chưa giỏi lắm, nên tôi học từ Tanaka: 「たなかさんに テニスを ならいます」 (N（người）に ならいます).",
+     "option_explanations": {
+      "1": "Sai. おしえます (dạy) nghĩa là tôi dạy Tanaka, mâu thuẫn vì Tanaka giỏi hơn tôi.",
+      "2": "Đúng. たなかさんに ならいます = học từ Tanaka.",
+      "3": "Sai. テニスを かします (cho mượn quần vợt) không có nghĩa.",
+      "4": "Sai. テニスを あげます (tặng quần vợt) không có nghĩa."
+     }
+    },
+    {
+     "question_id": "Q_RQ_107_3",
+     "question_text": "［3］",
+     "options": [
+      "ませんか",
+      "ました",
+      "ませんでした",
+      "なかった"
+     ],
+     "answer": 1,
+     "grammar_id": "GRA_000034",
+     "explanation_vi": "Tanaka rủ đi xem trận đấu vào chủ nhật tuần sau, và tôi đáp 「いいですね」, nên đây là lời mời 「行きませんか」.",
+     "option_explanations": {
+      "1": "Đúng. V ませんか là lời mời: cùng đi không?",
+      "2": "Sai. 行きました là quá khứ, mâu thuẫn với 来週の 日よう日.",
+      "3": "Sai. 行きませんでした là quá khứ, mâu thuẫn với 来週.",
+      "4": "Sai. 行きなかった sai cách chia (phủ định quá khứ là 行かなかった) và là quá khứ."
+     }
+    },
+    {
+     "question_id": "Q_RQ_107_4",
+     "question_text": "［4］",
+     "options": [
+      "ません",
+      "ましょう",
+      "ました",
+      "ませんでした"
+     ],
+     "answer": 2,
+     "grammar_id": "GRA_000035",
+     "explanation_vi": "Tôi đồng ý lời mời bằng 「いいですね」, rồi nói 「行きましょう」 (cùng đi nhé).",
+     "option_explanations": {
+      "1": "Sai. 行きません (không đi) mâu thuẫn với いいですね.",
+      "2": "Đúng. V ましょう = cùng làm nhé, dùng để nhận lời mời.",
+      "3": "Sai. 行きました là quá khứ, mà trận đấu là tuần sau.",
+      "4": "Sai. 行きませんでした là quá khứ phủ định, không hợp."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_108",
+   "mondai_type": "text_grammar",
+   "text": "「すしの 店」\nわたしは 中国の チャンです。日本の 食べものの 中［1］ すしが いちばん すきです。きのう、友だちの さとうさんと 駅の 前の すしの 店で ばんごはんを ［2］。その 店の 魚は 新しくて、とても ［3］。［4］、二人で えいがを 見ました。とても たのしい 一日でした。",
+   "translation_vi": "「Quán sushi」\nTôi là Trương, người Trung Quốc. Trong các món ăn Nhật, tôi thích sushi nhất. Hôm qua tôi đã ăn tối cùng bạn tôi là Sato ở quán sushi trước nhà ga. Cá ở quán đó tươi và rất ngon. Sau đó, hai chúng tôi đã xem phim. Đó là một ngày rất vui.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_108_1",
+     "question_text": "［1］",
+     "options": [
+      "に",
+      "を",
+      "で",
+      "が"
+     ],
+     "answer": 3,
+     "grammar_id": "GRA_000065",
+     "explanation_vi": "Mẫu 「N1 の 中で ～が いちばん Adj」: 「日本の 食べものの 中で すしが いちばん すきです」 = trong các món Nhật, thích sushi nhất.",
+     "option_explanations": {
+      "1": "Sai. 中に không dùng trong mẫu so sánh nhất với いちばん.",
+      "2": "Sai. 中を sai ngữ pháp ở đây.",
+      "3": "Đúng. の 中で + いちばん = trong số ... thì ... nhất.",
+      "4": "Sai. 中が sai ngữ pháp ở đây."
+     }
+    },
+    {
+     "question_id": "Q_RQ_108_2",
+     "question_text": "［2］",
+     "options": [
+      "食べます",
+      "食べません",
+      "食べて ください",
+      "食べました"
+     ],
+     "answer": 4,
+     "grammar_id": "GRA_000019",
+     "explanation_vi": "Có 「きのう」 (hôm qua) nên dùng quá khứ 食べました.",
+     "option_explanations": {
+      "1": "Sai. 食べます là hiện tại/tương lai, mâu thuẫn với きのう.",
+      "2": "Sai. 食べません là hiện tại phủ định, mâu thuẫn với きのう và câu sau nói cá rất ngon.",
+      "3": "Sai. 食べて ください là lời yêu cầu, không hợp với câu kể.",
+      "4": "Đúng. きのう → quá khứ 食べました."
+     }
+    },
+    {
+     "question_id": "Q_RQ_108_3",
+     "question_text": "［3］",
+     "options": [
+      "おいしいでした",
+      "おいしかったです",
+      "おいしくて",
+      "おいしくなかったです"
+     ],
+     "answer": 2,
+     "grammar_id": "GRA_000062",
+     "explanation_vi": "Cá tươi (新しくて) và có とても, nên là \"rất ngon\"; kể chuyện hôm qua dùng quá khứ của tính từ い: おいしかったです.",
+     "option_explanations": {
+      "1": "Sai. おいしいでした sai ngữ pháp; quá khứ của tính từ い là ～かったです.",
+      "2": "Đúng. Quá khứ khẳng định của おいしい.",
+      "3": "Sai. おいしくて là dạng nối, không kết thúc câu trước dấu 。.",
+      "4": "Sai. とても không đi với phủ định, và cá tươi thì không hợp với \"không ngon\"."
+     }
+    },
+    {
+     "question_id": "Q_RQ_108_4",
+     "question_text": "［4］",
+     "options": [
+      "それから",
+      "でも",
+      "ですから",
+      "しかし"
+     ],
+     "answer": 1,
+     "grammar_id": null,
+     "explanation_vi": "Ăn tối xong rồi xem phim: hai hành động nối tiếp theo thời gian, dùng それから (sau đó).",
+     "option_explanations": {
+      "1": "Đúng. それから nối hành động tiếp theo: ăn tối, sau đó xem phim.",
+      "2": "Sai. でも (nhưng) dùng cho ý trái ngược; ở đây không có sự đối lập.",
+      "3": "Sai. ですから (vì vậy): cá ngon không phải lý do để xem phim.",
+      "4": "Sai. しかし (tuy nhiên) dùng cho ý trái ngược, không hợp."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_109",
+   "mondai_type": "text_grammar",
+   "text": "「かぜ」\nわたしは インドネシアの アリです。きのう、あたまが いたくて、ねつも ありました。ですから、学校を ［1］。午前、タクシー［2］ びょういんへ 行って、くすりを もらいました。きょうは、あたまは もう いたく ありません。でも、まだ 少し ねつが ［3］。あしたは 学校へ 行き［4］です。",
+   "translation_vi": "「Bị cảm」\nTôi là Ali, người Indonesia. Hôm qua tôi bị đau đầu và còn bị sốt. Vì vậy tôi đã nghỉ học. Buổi sáng tôi đi bệnh viện bằng taxi và nhận thuốc. Hôm nay đầu tôi không còn đau nữa. Nhưng vẫn còn sốt một chút. Ngày mai tôi muốn đi học.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_109_1",
+     "question_text": "［1］",
+     "options": [
+      "休みます",
+      "休みません",
+      "休みました",
+      "休みませんでした"
+     ],
+     "answer": 3,
+     "grammar_id": "GRA_000019",
+     "explanation_vi": "Hôm qua bị đau đầu và sốt, 「ですから」 (vì vậy) nên đã nghỉ học; chuyện hôm qua dùng quá khứ 休みました.",
+     "option_explanations": {
+      "1": "Sai. 休みます là hiện tại/tương lai, không hợp với chuyện hôm qua.",
+      "2": "Sai. 休みません là phủ định hiện tại, mâu thuẫn với ですから và きのう.",
+      "3": "Đúng. Vì ốm nên hôm qua đã nghỉ học.",
+      "4": "Sai. 休みませんでした (đã không nghỉ) mâu thuẫn với ですから: ốm thì phải nghỉ."
+     }
+    },
+    {
+     "question_id": "Q_RQ_109_2",
+     "question_text": "［2］",
+     "options": [
+      "を",
+      "に",
+      "が",
+      "で"
+     ],
+     "answer": 4,
+     "grammar_id": "GRA_000026",
+     "explanation_vi": "Mẫu 「N（phương tiện）で 行きます」: 「タクシーで びょういんへ 行って」 = đi bệnh viện bằng taxi.",
+     "option_explanations": {
+      "1": "Sai. タクシーを びょういんへ 行って sai ngữ pháp.",
+      "2": "Sai. タクシーに cần động từ 乗ります; với 行きます thì sai.",
+      "3": "Sai. タクシーが 行って nghĩa là taxi đi, không hợp với người đi là わたし.",
+      "4": "Đúng. で chỉ phương tiện đi lại."
+     }
+    },
+    {
+     "question_id": "Q_RQ_109_3",
+     "question_text": "［3］",
+     "options": [
+      "あります",
+      "います",
+      "ありません",
+      "です"
+     ],
+     "answer": 1,
+     "grammar_id": "GRA_000052",
+     "explanation_vi": "「でも」 đối lập với ý trước (đầu hết đau), và có 「まだ 少し」, nên vẫn còn sốt: 「ねつが あります」.",
+     "option_explanations": {
+      "1": "Đúng. ねつが あります = bị sốt; でも + まだ 少し cho thấy vẫn còn sốt.",
+      "2": "Sai. います dùng cho người, động vật, không dùng cho ねつ.",
+      "3": "Sai. ありません mâu thuẫn với でも và まだ 少し.",
+      "4": "Sai. ねつが です sai ngữ pháp."
+     }
+    },
+    {
+     "question_id": "Q_RQ_109_4",
+     "question_text": "［4］",
+     "options": [
+      "ます",
+      "たい",
+      "ません",
+      "ました"
+     ],
+     "answer": 2,
+     "grammar_id": "GRA_000067",
+     "explanation_vi": "Phía sau chỗ trống là です, chỉ có 「行きたいです」 (muốn đi) là đúng ngữ pháp.",
+     "option_explanations": {
+      "1": "Sai. 行きますです sai ngữ pháp.",
+      "2": "Đúng. 行きたいです = muốn đi (Vます bỏ ます + たいです).",
+      "3": "Sai. 行きませんです sai ngữ pháp.",
+      "4": "Sai. 行きましたです sai ngữ pháp, và あした là tương lai."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_110",
+   "mondai_type": "text_grammar",
+   "text": "「わたしの アルバイト」\nわたしは インドの ラジです。大学で けいざいを べんきょうして います。コンビニで アルバイトを して います。アルバイトは 午後 6時［1］ 10時までです。月よう日と 木よう日と 土よう日［2］ はたらきます。しごとは たいへんですが、店の 人は みんな しんせつです。日よう日は アルバイトが ありませんから、いつも うちで ゆっくり ［3］。",
+   "translation_vi": "「Công việc làm thêm của tôi」\nTôi là Raj, người Ấn Độ. Tôi đang học kinh tế ở trường đại học. Tôi đang làm thêm ở cửa hàng tiện lợi. Giờ làm thêm từ 6 giờ chiều đến 10 giờ. Tôi làm vào thứ Hai, thứ Năm và thứ Bảy. Công việc vất vả nhưng mọi người ở cửa hàng đều tốt bụng. Chủ nhật không có việc làm thêm nên tôi luôn nghỉ ngơi thong thả ở nhà.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_110_1",
+     "question_text": "［1］",
+     "options": [
+      "まで",
+      "に",
+      "から",
+      "で"
+     ],
+     "answer": 3,
+     "grammar_id": "GRA_000021",
+     "explanation_vi": "Mẫu 「N1 から N2 まで」: 「午後 6時から 10時までです」 = từ 6 giờ chiều đến 10 giờ.",
+     "option_explanations": {
+      "1": "Sai. 6時まで 10時まで: phía sau đã có まで, cần から chỉ điểm bắt đầu.",
+      "2": "Sai. 6時に 10時まで sai cấu trúc.",
+      "3": "Đúng. から ... まで = từ ... đến ....",
+      "4": "Sai. 6時で 10時まで sai cấu trúc."
+     }
+    },
+    {
+     "question_id": "Q_RQ_110_2",
+     "question_text": "［2］",
+     "options": [
+      "を",
+      "で",
+      "が",
+      "に"
+     ],
+     "answer": 4,
+     "grammar_id": "GRA_000020",
+     "explanation_vi": "Mẫu 「N（thời gian）に V」: thứ trong tuần đi với に → 「土よう日に はたらきます」.",
+     "option_explanations": {
+      "1": "Sai. を không chỉ thời điểm.",
+      "2": "Sai. で không chỉ thời điểm hành động.",
+      "3": "Sai. が sẽ biến các thứ thành chủ ngữ của はたらきます, không hợp nghĩa.",
+      "4": "Đúng. に chỉ thời điểm làm việc."
+     }
+    },
+    {
+     "question_id": "Q_RQ_110_3",
+     "question_text": "［3］",
+     "options": [
+      "休みました",
+      "休みます",
+      "休みませんでした",
+      "休んで ください"
+     ],
+     "answer": 2,
+     "grammar_id": "GRA_000019",
+     "explanation_vi": "「いつも」 (luôn luôn) chỉ thói quen hiện tại, và chủ nhật không có việc nên nghỉ ngơi: 「いつも うちで ゆっくり 休みます」.",
+     "option_explanations": {
+      "1": "Sai. 休みました là quá khứ, không hợp với thói quen いつも.",
+      "2": "Đúng. Thói quen hiện tại dùng thể ます.",
+      "3": "Sai. Quá khứ phủ định, mâu thuẫn với いつも và lý do không có việc làm thêm.",
+      "4": "Sai. 休んで ください là lời yêu cầu người khác, không hợp với câu tự kể."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_111",
+   "mondai_type": "text_grammar",
+   "text": "「なつ休みの りょこう」\nわたしは フランスの ソフィアです。来月から なつ休みです。友だちの エマさんが「なつ休みは ［1］へ 行きますか。」と 聞きました。わたしは「きょうとへ 行きます。エマさんも いっしょに 行きませんか。」と 言いました。エマさんは「いいですね。わたし［2］ きょうとへ 行きたいです。」と 言いました。きょうとの なつは とても あついです。わたしは あつい 天気が あまり ［3］。ですから、ぼうしと 水を もって 行きます。",
+   "translation_vi": "「Chuyến du lịch kỳ nghỉ hè」\nTôi là Sophia, người Pháp. Từ tháng sau là kỳ nghỉ hè. Bạn tôi là Emma hỏi: \"Nghỉ hè bạn đi đâu?\" Tôi nói: \"Mình đi Kyoto. Emma cũng đi cùng không?\" Emma nói: \"Hay quá. Mình cũng muốn đi Kyoto.\" Mùa hè ở Kyoto rất nóng. Tôi không thích thời tiết nóng lắm. Vì vậy tôi sẽ mang theo mũ và nước.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_111_1",
+     "question_text": "［1］",
+     "options": [
+      "どこ",
+      "いつ",
+      "だれ",
+      "なに"
+     ],
+     "answer": 1,
+     "grammar_id": "GRA_000015",
+     "explanation_vi": "Sau chỗ trống là へ 行きますか, và câu trả lời là 「きょうとへ 行きます」 (địa điểm), nên hỏi どこ (đâu).",
+     "option_explanations": {
+      "1": "Đúng. どこへ 行きますか = đi đâu? Câu trả lời là Kyoto.",
+      "2": "Sai. いつ hỏi thời gian, không đi với へ.",
+      "3": "Sai. だれ hỏi người; câu trả lời là địa điểm.",
+      "4": "Sai. なに hỏi vật, không đi với へ 行きます."
+     }
+    },
+    {
+     "question_id": "Q_RQ_111_2",
+     "question_text": "［2］",
+     "options": [
+      "を",
+      "で",
+      "も",
+      "や"
+     ],
+     "answer": 3,
+     "grammar_id": "GRA_000004",
+     "explanation_vi": "Sophia đi Kyoto, Emma được rủ và cũng muốn đi Kyoto, nên dùng も (cũng): 「わたしも きょうとへ 行きたいです」.",
+     "option_explanations": {
+      "1": "Sai. わたしを sai vì わたし là người đi, không phải tân ngữ.",
+      "2": "Sai. わたしで sai ngữ pháp ở đây.",
+      "3": "Đúng. も = cũng: Emma cũng muốn đi Kyoto giống Sophia.",
+      "4": "Sai. や dùng để liệt kê danh từ, phía sau phải có danh từ khác."
+     }
+    },
+    {
+     "question_id": "Q_RQ_111_3",
+     "question_text": "［3］",
+     "options": [
+      "すきです",
+      "すきでした",
+      "きらいです",
+      "すきでは ありません"
+     ],
+     "answer": 4,
+     "grammar_id": "GRA_000043",
+     "explanation_vi": "あまり đi với phủ định (không... lắm): 「あつい 天気が あまり すきでは ありません」; vì không thích nóng nên mang mũ và nước.",
+     "option_explanations": {
+      "1": "Sai. あまり không đi với khẳng định すきです.",
+      "2": "Sai. あまり không đi với khẳng định すきでした; và đây là sở thích hiện tại.",
+      "3": "Sai. あまり không đi với きらいです (khẳng định).",
+      "4": "Đúng. あまり + phủ định = không thích lắm."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_112",
+   "mondai_type": "text_grammar",
+   "text": "「わたしの へや」\nわたしは メキシコの カルロスです。今、駅の ちかくの アパートに すんで います。わたしの へやは 2かいです。へやは あまり ひろく ありませんが、きれいです。つくえの 上［1］ パソコンと 本が あります。きのう、友だちが「カルロスさんの へやは ［2］ へやですか。」と 聞きました。わたしは「小さいですが、しずかで いい へやです。」と こたえました。アパートの ちかくに スーパーが ［3］から、とても べんりです。",
+   "translation_vi": "「Phòng của tôi」\nTôi là Carlos, người Mexico. Bây giờ tôi đang sống ở một căn hộ gần nhà ga. Phòng của tôi ở tầng 2. Phòng không rộng lắm nhưng sạch đẹp. Trên bàn có máy tính và sách. Hôm qua bạn tôi hỏi: \"Phòng của Carlos là phòng như thế nào?\" Tôi trả lời: \"Nhỏ nhưng yên tĩnh, là một căn phòng tốt.\" Gần căn hộ có siêu thị nên rất tiện lợi.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_112_1",
+     "question_text": "［1］",
+     "options": [
+      "に",
+      "で",
+      "を",
+      "へ"
+     ],
+     "answer": 1,
+     "grammar_id": "GRA_000053",
+     "explanation_vi": "Mẫu 「N1（nơi chốn）に N2 が あります」: 「つくえの 上に パソコンと 本が あります」 = trên bàn có máy tính và sách.",
+     "option_explanations": {
+      "1": "Đúng. に chỉ nơi tồn tại của đồ vật với あります.",
+      "2": "Sai. で chỉ nơi diễn ra hành động, không dùng với あります chỉ sự tồn tại.",
+      "3": "Sai. を không dùng với あります.",
+      "4": "Sai. へ chỉ hướng di chuyển, không dùng với あります."
+     }
+    },
+    {
+     "question_id": "Q_RQ_112_2",
+     "question_text": "［2］",
+     "options": [
+      "どう",
+      "どんな",
+      "どれ",
+      "なに"
+     ],
+     "answer": 2,
+     "grammar_id": "GRA_000048",
+     "explanation_vi": "Chỗ trống đứng trước danh từ へや, và câu trả lời mô tả đặc điểm (小さいですが、しずかで いい へや), nên dùng どんな + N (N như thế nào).",
+     "option_explanations": {
+      "1": "Sai. どう không đứng trực tiếp trước danh từ.",
+      "2": "Đúng. どんな へや = phòng như thế nào; câu trả lời mô tả tính chất căn phòng.",
+      "3": "Sai. どれ là đại từ, không đứng trước danh từ.",
+      "4": "Sai. なに không đứng trực tiếp trước danh từ へや theo cách này."
+     }
+    },
+    {
+     "question_id": "Q_RQ_112_3",
+     "question_text": "［3］",
+     "options": [
+      "います",
+      "ありません",
+      "あります",
+      "ありました"
+     ],
+     "answer": 3,
+     "grammar_id": "GRA_000053",
+     "explanation_vi": "スーパー là địa điểm/đồ vật nên dùng あります; câu sau 「とても べんりです」 (rất tiện) ở hiện tại, nên siêu thị hiện có ở gần: 「スーパーが あります」.",
+     "option_explanations": {
+      "1": "Sai. います dùng cho người, động vật.",
+      "2": "Sai. Không có siêu thị thì không thể là lý do khiến nơi ở rất tiện lợi.",
+      "3": "Đúng. Có siêu thị ở gần nên rất tiện.",
+      "4": "Sai. ありました là quá khứ, không hợp với việc mô tả nơi đang sống hiện tại (べんりです)."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_201",
+   "mondai_type": "text_grammar",
+   "text": "先週の 月よう日、あさ おきた とき、あたまが とても いたかったです。ねつも ありました。［1］、学校を 休みました。母に 電話を かけました。母は「くすりを 飲んで、はやく ねて ください。むりを［2］ ください」と 言いました。わたしは くすりを 飲んで［3］、すぐ ねました。火よう日も まだ 少し ねつが ありましたが、水よう日には げんきに なりました。これからは 毎日 はやく ねる［4］です。",
+   "translation_vi": "Thứ Hai tuần trước, lúc thức dậy buổi sáng, tôi bị đau đầu dữ dội. Tôi cũng bị sốt. Vì vậy, tôi đã nghỉ học. Tôi gọi điện cho mẹ. Mẹ nói: 「Con uống thuốc rồi đi ngủ sớm đi. Đừng cố quá sức nhé.」 Tôi uống thuốc xong thì đi ngủ ngay. Thứ Ba tôi vẫn còn hơi sốt, nhưng đến thứ Tư thì đã khỏe lại. Từ nay tôi định ngày nào cũng đi ngủ sớm.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_201_1",
+     "question_text": "［1］",
+     "options": [
+      "でも",
+      "しかし",
+      "だから",
+      "じゃ"
+     ],
+     "answer": 3,
+     "grammar_id": null,
+     "explanation_vi": "Câu trước nói lý do (đau đầu, sốt), câu sau là kết quả (nghỉ học): 「ねつも ありました。だから、学校を 休みました。」 Từ nối chỉ kết quả là だから.",
+     "option_explanations": {
+      "1": "Sai. でも (nhưng) dùng khi hai vế trái ngược; bị sốt và nghỉ học không trái ngược nhau.",
+      "2": "Sai. しかし (tuy nhiên) cũng chỉ sự đối lập, không hợp với quan hệ nguyên nhân – kết quả.",
+      "3": "Đúng. だから (vì vậy) nối nguyên nhân (sốt, đau đầu) với kết quả (nghỉ học).",
+      "4": "Sai. じゃ (vậy thì) dùng trong hội thoại khi chuyển ý/quyết định theo lời người khác, không dùng để kể chuyện như ở đây."
+     }
+    },
+    {
+     "question_id": "Q_RQ_201_2",
+     "question_text": "［2］",
+     "options": [
+      "しないで",
+      "しなくて",
+      "しない",
+      "しませんで"
+     ],
+     "answer": 1,
+     "grammar_id": "GRA_000084",
+     "explanation_vi": "Mẹ dặn đừng cố quá sức: 「むりを しないで ください」. Mẫu V ないで ください = xin đừng làm V.",
+     "option_explanations": {
+      "1": "Đúng. しないで ください = xin đừng làm (đừng cố quá sức).",
+      "2": "Sai. しなくて không đi với ください để tạo lời yêu cầu.",
+      "3": "Sai. しない ください sai ngữ pháp, thiếu で.",
+      "4": "Sai. しませんで ください không phải dạng đúng."
+     }
+    },
+    {
+     "question_id": "Q_RQ_201_3",
+     "question_text": "［3］",
+     "options": [
+      "まで",
+      "ので",
+      "より",
+      "から"
+     ],
+     "answer": 4,
+     "grammar_id": "GRA_000080",
+     "explanation_vi": "Uống thuốc xong rồi mới đi ngủ: 「くすりを 飲んでから、すぐ ねました」. Mẫu V て から = sau khi làm V xong thì….",
+     "option_explanations": {
+      "1": "Sai. 飲んで まで không phải mẫu N5 và không có nghĩa 'sau khi'.",
+      "2": "Sai. ので không đứng sau thể て (phải là 飲んだので).",
+      "3": "Sai. より dùng để so sánh, không đi sau thể て.",
+      "4": "Đúng. 飲んで から = sau khi uống thuốc xong, rồi đi ngủ ngay."
+     }
+    },
+    {
+     "question_id": "Q_RQ_201_4",
+     "question_text": "［4］",
+     "options": [
+      "とき",
+      "つもり",
+      "まえ",
+      "あと"
+     ],
+     "answer": 2,
+     "grammar_id": "GRA_000135",
+     "explanation_vi": "Người viết nói ý định từ nay về sau: 「これからは 毎日 はやく ねる つもりです」. V る つもりです = định làm V.",
+     "option_explanations": {
+      "1": "Sai. ねる ときです (là lúc ngủ) không hợp với 「これからは」 và không nói lên quyết tâm.",
+      "2": "Đúng. ねる つもりです = định đi ngủ sớm mỗi ngày từ nay.",
+      "3": "Sai. ねる まえです không thành câu có nghĩa ở đây (まえ phải đi với に + hành động sau).",
+      "4": "Sai. あと phải đi với thể た (ねた あと), và cũng không hợp nghĩa."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-15",
+     "by": "final_reviewer",
+     "action": "kept",
+     "note_vi": "AI A: むり thường xếp N4. Giữ: 「むりを しないで ください」 là cụm cố định, nghĩa rõ từ ngữ cảnh; đáp án = A = B."
+    }
+   ]
+  },
+  {
+   "passage_id": "PSG_RQ_202",
+   "mondai_type": "text_grammar",
+   "text": "きのう、わたしは ゆうびんきょくへ 行きました。ベトナムに いる 母に にもつを おくりたかった［1］です。ゆうびんきょくは 駅の 前に あります。中に 入ると、人が 10人ぐらい ならんで［2］。わたしも ならんで、20分ぐらい まちました。ゆうびんきょくの 人は「にもつの 中に でんちを 入れては［3］」と 言いました。わたしの にもつには でんちは 入って いませんでした。わたしは エアメールで にもつを おくりました。",
+   "translation_vi": "Hôm qua tôi đã đến bưu điện. Là vì tôi muốn gửi đồ cho mẹ đang ở Việt Nam. Bưu điện nằm ở trước nhà ga. Khi bước vào trong, có khoảng 10 người đang xếp hàng. Tôi cũng xếp hàng và đợi khoảng 20 phút. Nhân viên bưu điện nói: 「Không được cho pin vào trong bưu kiện.」 Trong bưu kiện của tôi không có pin. Tôi đã gửi bưu kiện bằng đường hàng không.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_202_1",
+     "question_text": "［1］",
+     "options": [
+      "ので",
+      "から",
+      "ても",
+      "まで"
+     ],
+     "answer": 2,
+     "grammar_id": "GRA_000050",
+     "explanation_vi": "Câu này giải thích lý do đi bưu điện: 「母に にもつを おくりたかった からです」 (là vì muốn gửi đồ). Mẫu ～から です dùng để nêu lý do.",
+     "option_explanations": {
+      "1": "Sai. ので không đứng ngay trước です (không nói おくりたかった ので です).",
+      "2": "Đúng. おくりたかった からです = là vì (tôi) muốn gửi đồ.",
+      "3": "Sai. ても (dù) không đứng trước です và không chỉ lý do.",
+      "4": "Sai. まで (đến) không có nghĩa chỉ lý do."
+     }
+    },
+    {
+     "question_id": "Q_RQ_202_2",
+     "question_text": "［2］",
+     "options": [
+      "ありました",
+      "おきました",
+      "みました",
+      "いました"
+     ],
+     "answer": 4,
+     "grammar_id": "GRA_000073",
+     "explanation_vi": "Lúc bước vào, có khoảng 10 người đang xếp hàng: 「人が 10人ぐらい ならんで いました」. V て います/いました diễn tả hành động/trạng thái đang diễn ra.",
+     "option_explanations": {
+      "1": "Sai. て あります dùng với tha động từ và đồ vật, không dùng cho người đang xếp hàng.",
+      "2": "Sai. て おきます là làm sẵn (chuẩn bị), không hợp với chủ ngữ 人が.",
+      "3": "Sai. て みます là thử làm, không hợp nghĩa miêu tả cảnh người đang xếp hàng.",
+      "4": "Đúng. ならんで いました = (mọi người) đang xếp hàng."
+     }
+    },
+    {
+     "question_id": "Q_RQ_202_3",
+     "question_text": "［3］",
+     "options": [
+      "いけません",
+      "いいです",
+      "ください",
+      "あります"
+     ],
+     "answer": 1,
+     "grammar_id": "GRA_000076",
+     "explanation_vi": "Nhân viên nhắc quy định: 「でんちを 入れては いけません」 (không được cho pin vào). Mẫu V て は いけません = không được làm V. Câu sau xác nhận bưu kiện của người viết không có pin.",
+     "option_explanations": {
+      "1": "Đúng. 入れては いけません = không được cho vào.",
+      "2": "Sai. Cho phép phải là 入れても いいです; 入れては いいです sai ngữ pháp.",
+      "3": "Sai. 入れては ください sai ngữ pháp (phải là 入れて ください).",
+      "4": "Sai. 入れては あります sai ngữ pháp."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-15",
+     "by": "final_reviewer",
+     "action": "kept",
+     "note_vi": "AI A: 入ると / でんち thường xếp N4. Giữ: ～と (GRA_000111) nằm trong 135 điểm verified; でんち không phải điểm được hỏi."
+    }
+   ]
+  },
+  {
+   "passage_id": "PSG_RQ_203",
+   "mondai_type": "text_grammar",
+   "text": "わたしの 大学の ちかくに 大きい としょかんが あります。わたしは 毎週 土よう日に そこで べんきょうします。としょかんの 中では 大きい こえで 話しては いけません。食べものも 食べては いけません。でも、水は［1］ いいです。本は 2週間 かりる ことが できます。でも、その あとは 本を［2］。わたしは うちでは よく おんがくを 聞き［3］ べんきょうしますが、としょかんでは 聞きません。としょかんの 人は とても しんせつです。わからない ことを 聞くと、としょかんの 人は いつも おしえて［4］。",
+   "translation_vi": "Gần trường đại học của tôi có một thư viện lớn. Thứ Bảy hằng tuần tôi học ở đó. Trong thư viện không được nói to. Cũng không được ăn đồ ăn. Nhưng uống nước thì được. Sách có thể mượn trong 2 tuần. Nhưng sau đó thì phải trả sách. Ở nhà tôi hay vừa nghe nhạc vừa học, nhưng ở thư viện thì tôi không nghe. Nhân viên thư viện rất tốt bụng. Khi tôi hỏi điều mình không hiểu, họ luôn chỉ cho tôi.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_203_1",
+     "question_text": "［1］",
+     "options": [
+      "飲んでも",
+      "飲んでは",
+      "飲まなくては",
+      "飲みながら"
+     ],
+     "answer": 1,
+     "grammar_id": "GRA_000075",
+     "explanation_vi": "Sau でも (nhưng) là điều được phép, đối lập với 「食べては いけません」: 「水は 飲んでも いいです」. Mẫu V て も いいです = làm V cũng được.",
+     "option_explanations": {
+      "1": "Đúng. 飲んでも いいです = uống thì được.",
+      "2": "Sai. 飲んでは phải đi với いけません, không đi với いいです.",
+      "3": "Sai. 飲まなくては いいです sai ngữ pháp.",
+      "4": "Sai. 飲みながら いいです không thành câu."
+     }
+    },
+    {
+     "question_id": "Q_RQ_203_2",
+     "question_text": "［2］",
+     "options": [
+      "かえさなくても いいです",
+      "かえさないで ください",
+      "かえさなければ なりません",
+      "かえさない ほうが いいです"
+     ],
+     "answer": 3,
+     "grammar_id": "GRA_000085",
+     "explanation_vi": "Sách chỉ được mượn 2 tuần, nên 「でも、2週間 あとには 本を かえさなければ なりません」 (sau 2 tuần phải trả). V なければ なりません = phải làm V.",
+     "option_explanations": {
+      "1": "Sai. 'Không trả cũng được' mâu thuẫn với việc chỉ được mượn 2 tuần.",
+      "2": "Sai. 'Xin đừng trả' trái với quy định mượn 2 tuần.",
+      "3": "Đúng. かえさなければ なりません = phải trả lại.",
+      "4": "Sai. 'Không nên trả' không hợp lý với quy định của thư viện."
+     }
+    },
+    {
+     "question_id": "Q_RQ_203_3",
+     "question_text": "［3］",
+     "options": [
+      "たり",
+      "ながら",
+      "から",
+      "まで"
+     ],
+     "answer": 2,
+     "grammar_id": "GRA_000129",
+     "explanation_vi": "Chỗ trống đứng sau 聞き (thể ます bỏ ます) và trước động từ thứ hai べんきょうします: 「おんがくを 聞きながら べんきょうします」 = vừa nghe nhạc vừa học.",
+     "option_explanations": {
+      "1": "Sai. たり phải đi với thể た (聞いたり), không gắn vào 聞き.",
+      "2": "Đúng. 聞きながら = vừa nghe vừa (học).",
+      "3": "Sai. から không gắn trực tiếp vào thân động từ 聞き.",
+      "4": "Sai. まで không gắn vào thân động từ 聞き."
+     }
+    },
+    {
+     "question_id": "Q_RQ_203_4",
+     "question_text": "［4］",
+     "options": [
+      "あげます",
+      "もらいます",
+      "やります",
+      "くれます"
+     ],
+     "answer": 4,
+     "grammar_id": "GRA_000115",
+     "explanation_vi": "Nhân viên thư viện chỉ bảo cho tôi (người viết nhận ân huệ), chủ ngữ là người khác: 「いつも おしえて くれます」. V て くれます = ai đó làm V cho tôi.",
+     "option_explanations": {
+      "1": "Sai. おしえて あげます là tôi làm cho người khác, ngược hướng.",
+      "2": "Sai. おしえて もらいます cần chủ ngữ là tôi (わたしは ～に), còn ở đây chủ ngữ là nhân viên thư viện.",
+      "3": "Sai. おしえて やります là làm cho người dưới, ngược hướng và không lịch sự.",
+      "4": "Đúng. おしえて くれます = (họ) chỉ cho tôi."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-15",
+     "by": "final_reviewer",
+     "action": "edited",
+     "note_vi": "AI giải mù B: 「2週間 あとには」 không tự nhiên → 「2週間 あとで」. Đáp án không đổi; đã giải mù lại."
+    },
+    {
+     "date": "2026-11-15",
+     "by": "final_reviewer",
+     "action": "edited",
+     "note_vi": "Lượt giải lại: cả 2 AI thấy 「2週間 あとで」 vẫn gượng → 「その あとは」. Đáp án không đổi; giải mù lại lần 2."
+    },
+    {
+     "date": "2026-11-15",
+     "by": "final_reviewer",
+     "action": "edited",
+     "note_vi": "Giải lại lần 2: AI B thấy おしえて もらいます cũng đọc được (chủ ngữ ẩn わたし) → thêm chủ ngữ 「としょかんの 人は」 để chỉ còn くれます. Giải mù lại lần 3."
+    }
+   ]
+  },
+  {
+   "passage_id": "PSG_RQ_204",
+   "mondai_type": "text_grammar",
+   "text": "来月、メキシコから りょうしんが 日本に 来ます。父も 母も 日本へ［1］ ことが ありません。わたしは 二人と いっしょに すしを 食べたり、古い おてらを 見に［2］ したいです。わたしが 日本に［3］ まえに、母は あたたかい セーターを くれました。日本の ふゆは さむいからです。わたしは 今も その セーターを きて います。ホテルは もう よやくしましたが、レストランは［4］ よやくして いません。",
+   "translation_vi": "Tháng sau bố mẹ tôi từ Mexico sẽ đến Nhật. Cả bố và mẹ đều chưa từng đến Nhật. Tôi muốn cùng hai người đi ăn sushi, đi xem chùa cổ, v.v. Trước khi tôi sang Nhật, mẹ đã cho tôi một chiếc áo len ấm. Vì mùa đông ở Nhật lạnh. Đến bây giờ tôi vẫn mặc chiếc áo len đó. Khách sạn thì tôi đã đặt rồi, nhưng nhà hàng thì vẫn chưa đặt.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_204_1",
+     "question_text": "［1］",
+     "options": [
+      "来て",
+      "来た",
+      "来ます",
+      "来ましょう"
+     ],
+     "answer": 2,
+     "grammar_id": "GRA_000095",
+     "explanation_vi": "Bố mẹ sắp sang Nhật lần đầu, nên câu kể kinh nghiệm: 「日本へ 来た ことが ありません」 (chưa từng đến). V た こと が あります = đã từng làm V.",
+     "option_explanations": {
+      "1": "Sai. Thể て không đứng trước こと.",
+      "2": "Đúng. 来た ことが ありません = chưa từng đến.",
+      "3": "Sai. Thể ます không đứng trước こと.",
+      "4": "Sai. 来ましょう là rủ rê, không đứng trước こと."
+     }
+    },
+    {
+     "question_id": "Q_RQ_204_2",
+     "question_text": "［2］",
+     "options": [
+      "行って",
+      "行ったら",
+      "行ったり",
+      "行くと"
+     ],
+     "answer": 3,
+     "grammar_id": "GRA_000096",
+     "explanation_vi": "Câu có 「すしを 食べたり」 ở trước và 「したいです」 ở sau, nên cần ～たり: 「食べたり、おてらを 見に 行ったり したいです」. Mẫu V1 たり、V2 たり します = liệt kê vài việc.",
+     "option_explanations": {
+      "1": "Sai. 行って したいです sai ngữ pháp, không ghép với 食べたり.",
+      "2": "Sai. 行ったら (nếu đi) không đi với したいです.",
+      "3": "Đúng. 食べたり、…行ったり したいです = muốn ăn sushi, đi xem chùa, v.v.",
+      "4": "Sai. 行くと したいです sai ngữ pháp."
+     }
+    },
+    {
+     "question_id": "Q_RQ_204_3",
+     "question_text": "［3］",
+     "options": [
+      "来る",
+      "来た",
+      "来て",
+      "来ない"
+     ],
+     "answer": 1,
+     "grammar_id": "GRA_000092",
+     "explanation_vi": "Trước まえに luôn dùng thể từ điển: 「日本に 来る まえに」 (trước khi sang Nhật), mẹ cho áo len.",
+     "option_explanations": {
+      "1": "Đúng. 来る まえに = trước khi đến.",
+      "2": "Sai. まえに không đi sau thể た.",
+      "3": "Sai. まえに không đi sau thể て.",
+      "4": "Sai. 来ない まえに sai ngữ pháp ở trình độ này và không có nghĩa phù hợp."
+     }
+    },
+    {
+     "question_id": "Q_RQ_204_4",
+     "question_text": "［4］",
+     "options": [
+      "もう",
+      "よく",
+      "すぐ",
+      "まだ"
+     ],
+     "answer": 4,
+     "grammar_id": "GRA_000125",
+     "explanation_vi": "Vế trước 「ホテルは もう よやくしました」, vế sau đối lập bằng が và có 「よやくして いません」: 「レストランは まだ よやくして いません」 = vẫn chưa đặt.",
+     "option_explanations": {
+      "1": "Sai. もう đi với thể khẳng định đã xong (もう よやくしました), không đi với ～て いません.",
+      "2": "Sai. よく (thường, kỹ) không hợp nghĩa 'chưa đặt'.",
+      "3": "Sai. すぐ (ngay) không đi với ～て いません để nói 'chưa'.",
+      "4": "Đúng. まだ よやくして いません = vẫn chưa đặt."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_205",
+   "mondai_type": "text_grammar",
+   "text": "わたしは きょねんから 駅の ちかくの コンビニで アルバイトを［1］。はじめは きかいの［2］が わかりませんでした。でも、店の 大川さんが しんせつに［3］ くれました。今は もう だいじょうぶです。アルバイトは よる 10時に おわります。アルバイトが おわった［4］、いつも 友だちと ばんごはんを 食べに 行きます。",
+   "translation_vi": "Tôi làm thêm ở cửa hàng tiện lợi gần nhà ga từ năm ngoái. Lúc đầu tôi không biết cách dùng máy móc. Nhưng anh Okawa ở cửa hàng đã tận tình chỉ cho tôi. Bây giờ thì tôi đã ổn rồi. Việc làm thêm kết thúc lúc 10 giờ tối. Sau khi làm xong, tôi thường đi ăn tối cùng bạn bè.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_205_1",
+     "question_text": "［1］",
+     "options": [
+      "します",
+      "しましょう",
+      "しています",
+      "しませんか"
+     ],
+     "answer": 3,
+     "grammar_id": "GRA_000077",
+     "explanation_vi": "「きょねんから」 (từ năm ngoái) đến nay vẫn làm thêm, là công việc thường xuyên: 「アルバイトを して います」. V て います diễn tả công việc/thói quen kéo dài.",
+     "option_explanations": {
+      "1": "Sai. します (sẽ làm) không đi với 「きょねんから」 để nói việc kéo dài đến nay.",
+      "2": "Sai. しましょう là lời rủ, không dùng để kể về bản thân.",
+      "3": "Đúng. して います = đang làm (công việc kéo dài từ năm ngoái).",
+      "4": "Sai. しませんか là lời mời, không hợp với bài văn kể chuyện."
+     }
+    },
+    {
+     "question_id": "Q_RQ_205_2",
+     "question_text": "［2］",
+     "options": [
+      "つかいたい",
+      "つかいかた",
+      "つかいます",
+      "つかって"
+     ],
+     "answer": 2,
+     "grammar_id": "GRA_000131",
+     "explanation_vi": "Sau 「きかいの」 cần một danh từ và trước が: 「きかいの つかいかたが わかりませんでした」 = không biết cách dùng máy. V (bỏ ます) 方 = cách làm V.",
+     "option_explanations": {
+      "1": "Sai. つかいたい là tính từ dạng muốn, không đứng sau の làm danh từ.",
+      "2": "Đúng. つかいかた là danh từ 'cách dùng', đứng được sau の và trước が.",
+      "3": "Sai. つかいます là động từ, không đứng sau の và trước が.",
+      "4": "Sai. Thể て không đứng sau の và trước が."
+     }
+    },
+    {
+     "question_id": "Q_RQ_205_3",
+     "question_text": "［3］",
+     "options": [
+      "おしえ",
+      "おしえる",
+      "おしえた",
+      "おしえて"
+     ],
+     "answer": 4,
+     "grammar_id": "GRA_000115",
+     "explanation_vi": "Trước くれました cần thể て: 「しんせつに おしえて くれました」 = (anh ấy) đã tận tình chỉ cho tôi.",
+     "option_explanations": {
+      "1": "Sai. おしえ くれました thiếu て, sai ngữ pháp.",
+      "2": "Sai. Thể từ điển không đi trước くれます trong mẫu làm ơn.",
+      "3": "Sai. Thể た không đi trước くれます.",
+      "4": "Đúng. おしえて くれました = chỉ cho tôi."
+     }
+    },
+    {
+     "question_id": "Q_RQ_205_4",
+     "question_text": "［4］",
+     "options": [
+      "あとで",
+      "まえに",
+      "ながら",
+      "までに"
+     ],
+     "answer": 1,
+     "grammar_id": "GRA_000127",
+     "explanation_vi": "Chỗ trống đứng sau thể た 「おわった」, và đi ăn tối là việc sau khi làm xong: 「おわった あとで」 = sau khi kết thúc.",
+     "option_explanations": {
+      "1": "Đúng. おわった あとで = sau khi (việc làm thêm) kết thúc.",
+      "2": "Sai. まえに phải đi với thể từ điển (おわる まえに).",
+      "3": "Sai. ながら đi với thân động từ (おわりながら), không đi sau thể た.",
+      "4": "Sai. までに không đi sau thể た."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-15",
+     "by": "final_reviewer",
+     "action": "kept",
+     "note_vi": "AI B: 〜かた có danh sách xếp N4. Giữ: GRA_000131 nằm trong 135 điểm verified (Minna 1–25 + bổ sung)."
+    }
+   ]
+  },
+  {
+   "passage_id": "PSG_RQ_206",
+   "mondai_type": "text_grammar",
+   "text": "先週の 土よう日、友だちの マリアさんと 電車で 山へ 行きました。駅から 山の 上まで 2時間 あるきました。上へ 行くと、だんだん［1］ なりました。山の 上で 二人で おべんとうを 食べました。かえりは 川の そばの みち［2］ あるいて、駅まで 行きました。とても つかれましたが、たのしかったです。あきに また あの 山へ［3］と おもいます。",
+   "translation_vi": "Thứ Bảy tuần trước, tôi đi tàu điện lên núi cùng bạn tôi là Maria. Từ nhà ga lên đến đỉnh núi chúng tôi đi bộ 2 tiếng. Càng lên cao thì trời càng dần trở nên lạnh. Trên đỉnh núi, hai đứa ăn cơm hộp. Lúc về, chúng tôi đi bộ dọc con đường cạnh sông đến nhà ga. Rất mệt nhưng vui. Tôi nghĩ là mùa thu tôi muốn lại đến ngọn núi đó.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_206_1",
+     "question_text": "［1］",
+     "options": [
+      "さむい",
+      "さむくて",
+      "さむさ",
+      "さむく"
+     ],
+     "answer": 4,
+     "grammar_id": "GRA_000097",
+     "explanation_vi": "Trước なりました, tính từ い đổi い → く: 「だんだん さむく なりました」 = dần trở nên lạnh.",
+     "option_explanations": {
+      "1": "Sai. さむい なりました sai, phải đổi thành さむく.",
+      "2": "Sai. さむくて là dạng nối, không đi trước なります.",
+      "3": "Sai. さむさ là danh từ, danh từ phải là さむさに なります và không hợp nghĩa.",
+      "4": "Đúng. さむく なりました = trở nên lạnh."
+     }
+    },
+    {
+     "question_id": "Q_RQ_206_2",
+     "question_text": "［2］",
+     "options": [
+      "を",
+      "が",
+      "や",
+      "の"
+     ],
+     "answer": 1,
+     "grammar_id": "GRA_000113",
+     "explanation_vi": "Đi bộ dọc theo con đường: nơi di chuyển qua/dọc theo dùng を: 「川の そばの みちを あるいて」.",
+     "option_explanations": {
+      "1": "Đúng. みちを あるきます = đi bộ dọc con đường (を chỉ nơi di chuyển qua).",
+      "2": "Sai. みちが あるいて sai: con đường không phải chủ thể đi bộ.",
+      "3": "Sai. や dùng để liệt kê danh từ, phía sau không có danh từ khác.",
+      "4": "Sai. の nối hai danh từ, phía sau là động từ あるいて."
+     }
+    },
+    {
+     "question_id": "Q_RQ_206_3",
+     "question_text": "［3］",
+     "options": [
+      "行きます",
+      "行って",
+      "行きたい",
+      "行きたく"
+     ],
+     "answer": 3,
+     "grammar_id": "GRA_000100",
+     "explanation_vi": "Trước と おもいます phải là thể thông thường: 「また あの 山へ 行きたいと おもいます」 = tôi nghĩ là muốn lại đến ngọn núi đó.",
+     "option_explanations": {
+      "1": "Sai. Thể ます (行きます) không đứng trước と おもいます.",
+      "2": "Sai. Thể て không đứng trước と おもいます.",
+      "3": "Đúng. 行きたい là thể thông thường, đứng trước と おもいます.",
+      "4": "Sai. 行きたく là dạng nối của たい, không đứng trước と."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_207",
+   "mondai_type": "text_grammar",
+   "text": "わたしは 今、日本人の かぞくの うちで ホームステイを して います。お母さんの 山川さんは りょうりが とても 上手です。きのう、わたしは 山川さんに 日本りょうりの つくりかたを［1］。まず、やさいを［2］、小さく きりました。山川さんの かぞくは あまい ものが あまり すきじゃ ありません。だから、山川さんは「さとうは［3］」と 言いました。りょうりは とても おいしかったです。来週は わたしが 山川さんたちに オーストラリアの りょうりを つくって［4］ つもりです。",
+   "translation_vi": "Hiện tôi đang ở homestay tại nhà một gia đình người Nhật. Người mẹ là bà Yamakawa nấu ăn rất giỏi. Hôm qua tôi đã học bà Yamakawa cách nấu món Nhật. Đầu tiên tôi rửa rau rồi cắt nhỏ. Gia đình bà Yamakawa không thích đồ ngọt lắm. Vì vậy bà Yamakawa nói: 「Đường thì không cho vào cũng được.」 Món ăn rất ngon. Tuần sau tôi định nấu món Úc cho gia đình bà Yamakawa.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_207_1",
+     "question_text": "［1］",
+     "options": [
+      "ならいました",
+      "おしえました",
+      "あげました",
+      "くれました"
+     ],
+     "answer": 1,
+     "grammar_id": "GRA_000039",
+     "explanation_vi": "Bà Yamakawa nấu giỏi, người viết là người học: 「わたしは 山川さんに つくりかたを ならいました」. N（người）に ならいます = học từ N.",
+     "option_explanations": {
+      "1": "Đúng. 山川さんに ならいました = đã học từ bà Yamakawa.",
+      "2": "Sai. わたしは 山川さんに おしえました nghĩa là tôi dạy bà ấy, ngược với bài (bà ấy nấu giỏi, tôi đang học).",
+      "3": "Sai. あげました (cho) không hợp với つくりかた trong ngữ cảnh học nấu ăn.",
+      "4": "Sai. くれました không dùng khi chủ ngữ là わたし."
+     }
+    },
+    {
+     "question_id": "Q_RQ_207_2",
+     "question_text": "［2］",
+     "options": [
+      "あらう",
+      "あらった",
+      "あらいて",
+      "あらって"
+     ],
+     "answer": 4,
+     "grammar_id": "GRA_000078",
+     "explanation_vi": "Hai hành động nối tiếp (rửa rồi cắt) được nối bằng thể て: 「やさいを あらって、小さく きりました」. あらいます → あらって.",
+     "option_explanations": {
+      "1": "Sai. Thể từ điển không dùng để nối sang hành động tiếp theo bằng dấu phẩy.",
+      "2": "Sai. Thể た không dùng để nối hai hành động như vậy.",
+      "3": "Sai. あらいて là chia sai; thể て của あらいます là あらって.",
+      "4": "Đúng. あらって、きりました = rửa rồi cắt."
+     }
+    },
+    {
+     "question_id": "Q_RQ_207_3",
+     "question_text": "［3］",
+     "options": [
+      "入れて ください",
+      "入れなければ なりません",
+      "入れなくても いいです",
+      "たくさん 入れましょう"
+     ],
+     "answer": 3,
+     "grammar_id": "GRA_000086",
+     "explanation_vi": "Gia đình không thích đồ ngọt (だから ở đầu câu chỉ kết quả), nên bà nói 「さとうは 入れなくても いいです」 = không cho đường cũng được.",
+     "option_explanations": {
+      "1": "Sai. 'Hãy cho đường vào' trái với việc gia đình không thích đồ ngọt.",
+      "2": "Sai. 'Phải cho đường vào' trái với lý do vừa nêu.",
+      "3": "Đúng. 入れなくても いいです = không cần cho đường.",
+      "4": "Sai. 'Cho thật nhiều vào nào' trái với việc gia đình không thích ngọt."
+     }
+    },
+    {
+     "question_id": "Q_RQ_207_4",
+     "question_text": "［4］",
+     "options": [
+      "くれる",
+      "あげる",
+      "もらう",
+      "ください"
+     ],
+     "answer": 2,
+     "grammar_id": "GRA_000115",
+     "explanation_vi": "Chủ ngữ là わたしが, tôi làm món ăn cho gia đình bà Yamakawa: 「つくって あげる つもりです」. V て あげます = làm V cho người khác.",
+     "option_explanations": {
+      "1": "Sai. つくって くれる là người khác làm cho tôi, nhưng ở đây わたし là người nấu.",
+      "2": "Đúng. つくって あげる = (tôi) nấu cho họ.",
+      "3": "Sai. つくって もらう là nhờ người khác nấu cho mình, trái với 「わたしが」 nấu.",
+      "4": "Sai. つくって ください つもり sai ngữ pháp."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_208",
+   "mondai_type": "text_grammar",
+   "text": "来週の 日よう日は 友だちの 山下さんの たんじょう日です。わたしは 山下さんに［1］ プレゼントを あげたいと おもいました。土よう日に デパートへ 行きました。山下さんは おんがくが すき［2］、CDを 買いました。店の 人に「プレゼントです」と 言う［3］、きれいな はこに 入れて くれました。パーティーは 山下さんの うち［4］ あります。クラスの 友だちも 10人 来ます。",
+   "translation_vi": "Chủ nhật tuần sau là sinh nhật của bạn tôi, anh Yamashita. Tôi nghĩ là muốn tặng anh Yamashita món quà gì đó. Thứ Bảy tôi đã đi đến cửa hàng bách hóa. Vì anh Yamashita thích âm nhạc nên tôi đã mua đĩa CD. Khi tôi nói với nhân viên cửa hàng 「Đây là quà tặng」, họ đã cho vào một chiếc hộp đẹp giúp tôi. Bữa tiệc được tổ chức ở nhà anh Yamashita. Mười người bạn trong lớp cũng sẽ đến.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_208_1",
+     "question_text": "［1］",
+     "options": [
+      "何も",
+      "何が",
+      "何を",
+      "何か"
+     ],
+     "answer": 4,
+     "grammar_id": "GRA_000069",
+     "explanation_vi": "Người viết chưa biết sẽ tặng gì, nên dùng 何か (một cái gì đó): 「何か プレゼントを あげたい」.",
+     "option_explanations": {
+      "1": "Sai. 何も đi với phủ định (không... gì cả), câu này là khẳng định.",
+      "2": "Sai. 何が là câu hỏi 'cái gì', không dùng trong câu kể.",
+      "3": "Sai. 何を là từ để hỏi, và câu đã có プレゼントを nên trùng を.",
+      "4": "Đúng. 何か プレゼント = một món quà nào đó."
+     }
+    },
+    {
+     "question_id": "Q_RQ_208_2",
+     "question_text": "［2］",
+     "options": [
+      "なのに",
+      "なので",
+      "だので",
+      "なから"
+     ],
+     "answer": 2,
+     "grammar_id": "GRA_000133",
+     "explanation_vi": "Vì anh ấy thích âm nhạc nên mua CD — quan hệ lý do: 「おんがくが すきなので、CDを 買いました」. Tính từ な + ので → ～なので.",
+     "option_explanations": {
+      "1": "Sai. なのに (dù… mà) chỉ sự trái ngược; thích âm nhạc và mua CD không trái ngược.",
+      "2": "Đúng. すきなので = vì thích.",
+      "3": "Sai. だので sai, tính từ な đi với ので phải là なので.",
+      "4": "Sai. なから sai, phải là すきだから."
+     }
+    },
+    {
+     "question_id": "Q_RQ_208_3",
+     "question_text": "［3］",
+     "options": [
+      "と",
+      "が",
+      "を",
+      "に"
+     ],
+     "answer": 1,
+     "grammar_id": "GRA_000111",
+     "explanation_vi": "Hễ tôi nói là quà thì nhân viên cho vào hộp: 「言うと、きれいな はこに 入れて くれました」. V る と = khi/hễ làm V thì….",
+     "option_explanations": {
+      "1": "Đúng. 言うと = khi (tôi) nói thì….",
+      "2": "Sai. 言うが không tạo quan hệ khi… thì… ở đây.",
+      "3": "Sai. を không đứng sau động từ để nối sang vế sau.",
+      "4": "Sai. に không đứng sau động từ thể từ điển như vậy."
+     }
+    },
+    {
+     "question_id": "Q_RQ_208_4",
+     "question_text": "［4］",
+     "options": [
+      "に",
+      "を",
+      "で",
+      "へ"
+     ],
+     "answer": 3,
+     "grammar_id": "GRA_000103",
+     "explanation_vi": "パーティー là sự kiện; nơi diễn ra sự kiện với あります dùng で: 「山下さんの うちで あります」.",
+     "option_explanations": {
+      "1": "Sai. に dùng cho nơi tồn tại của đồ vật, còn sự kiện (パーティー) dùng で.",
+      "2": "Sai. を không chỉ nơi diễn ra sự kiện.",
+      "3": "Đúng. N（nơi）で N（sự kiện）が あります = sự kiện diễn ra ở N.",
+      "4": "Sai. へ chỉ hướng di chuyển, không đi với あります."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_209",
+   "mondai_type": "text_grammar",
+   "text": "わたしの しゅみは ピアノを ひく［1］です。子どもの［2］、母に ピアノを ならいました。今は 日本で ピアノの 先生に ならって います。毎日 ばんごはんを 食べる［3］、1時間 れんしゅうします。先生は「毎日 少しずつ れんしゅうした［4］ いいですよ」と 言いました。来年は たくさんの 人の 前で ひきたいです。",
+   "translation_vi": "Sở thích của tôi là chơi đàn piano. Hồi còn nhỏ, tôi học piano từ mẹ. Bây giờ tôi đang học với một giáo viên piano ở Nhật. Mỗi ngày trước khi ăn tối, tôi luyện tập 1 tiếng. Cô giáo nói: 「Mỗi ngày nên luyện tập từng chút một.」 Năm sau tôi muốn chơi đàn trước nhiều người.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_209_1",
+     "question_text": "［1］",
+     "options": [
+      "とき",
+      "こと",
+      "まえ",
+      "もの"
+     ],
+     "answer": 2,
+     "grammar_id": "GRA_000091",
+     "explanation_vi": "Mẫu nói sở thích: 「わたしの しゅみは ピアノを ひく ことです」. V る こと biến động từ thành danh từ (việc chơi đàn).",
+     "option_explanations": {
+      "1": "Sai. しゅみは… ひく ときです (sở thích là lúc chơi đàn) không có nghĩa.",
+      "2": "Đúng. しゅみは ピアノを ひく ことです = sở thích là chơi piano.",
+      "3": "Sai. ひく まえです (là trước khi chơi) không có nghĩa.",
+      "4": "Sai. ひく ものです không dùng để nói sở thích."
+     }
+    },
+    {
+     "question_id": "Q_RQ_209_2",
+     "question_text": "［2］",
+     "options": [
+      "とき",
+      "まえ",
+      "あと",
+      "まで"
+     ],
+     "answer": 1,
+     "grammar_id": "GRA_000110",
+     "explanation_vi": "Kể chuyện hồi nhỏ: 「子どもの とき、母に ピアノを ならいました」. N の とき = khi (là) N.",
+     "option_explanations": {
+      "1": "Đúng. 子どもの とき = khi còn nhỏ.",
+      "2": "Sai. 子どもの まえ (trước mặt đứa trẻ) không hợp nghĩa kể thời thơ ấu.",
+      "3": "Sai. 子どもの あと không có nghĩa phù hợp.",
+      "4": "Sai. 子どもの まで sai ngữ pháp."
+     }
+    },
+    {
+     "question_id": "Q_RQ_209_3",
+     "question_text": "［3］",
+     "options": [
+      "あとで",
+      "ながら",
+      "てから",
+      "まえに"
+     ],
+     "answer": 4,
+     "grammar_id": "GRA_000092",
+     "explanation_vi": "Chỗ trống đứng sau thể từ điển 「食べる」, nên chỉ まえに hợp: 「ばんごはんを 食べる まえに、1時間 れんしゅうします」.",
+     "option_explanations": {
+      "1": "Sai. あとで phải đi với thể た (食べた あとで).",
+      "2": "Sai. ながら đi với thân động từ (食べながら), không đi sau 食べる.",
+      "3": "Sai. てから đi với thể て (食べてから), không đi sau 食べる.",
+      "4": "Đúng. 食べる まえに = trước khi ăn."
+     }
+    },
+    {
+     "question_id": "Q_RQ_209_4",
+     "question_text": "［4］",
+     "options": [
+      "ことが",
+      "ときが",
+      "ほうが",
+      "までが"
+     ],
+     "answer": 3,
+     "grammar_id": "GRA_000134",
+     "explanation_vi": "Cô giáo khuyên: 「少しずつ れんしゅうした ほうが いいですよ」. V た ほうが いいです = nên làm V.",
+     "option_explanations": {
+      "1": "Sai. れんしゅうした ことが いいです sai; ～た ことが đi với あります.",
+      "2": "Sai. ～た ときが いいです không phải mẫu khuyên bảo.",
+      "3": "Đúng. れんしゅうした ほうが いいです = nên luyện tập.",
+      "4": "Sai. までが いいです sai ngữ pháp."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-15",
+     "by": "final_reviewer",
+     "action": "kept",
+     "note_vi": "AI A: 209_3 chỉ まえに hợp thể từ điển (đúng là đáp án dự định); ～た ほうが いい (GRA_000134) nằm trong 135 điểm verified. Giữ."
+    }
+   ]
+  },
+  {
+   "passage_id": "PSG_RQ_210",
+   "mondai_type": "text_grammar",
+   "text": "わたしは 先月 新しい アパートに ひっこししました。前の アパートは 駅から とおくて、ふべんでした。今の アパートは 駅から あるいて 5分です。アパートの となりに 大きい こうえんが［1］。毎あさ、その こうえん［2］ ジョギングを します。こうえんには 木が たくさん あります。来週の 土よう日、クラスの 友だちが わたしの アパートへ あそびに［3］。いっしょに 中国の りょうりを つくります。",
+   "translation_vi": "Tháng trước tôi đã chuyển đến một căn hộ mới. Căn hộ trước xa nhà ga, bất tiện. Căn hộ bây giờ đi bộ 5 phút là đến nhà ga. Bên cạnh căn hộ có một công viên lớn. Sáng nào tôi cũng chạy bộ ở công viên đó. Trong công viên có nhiều cây. Thứ Bảy tuần sau, bạn cùng lớp sẽ đến căn hộ của tôi chơi. Chúng tôi sẽ cùng nấu món Trung Quốc.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_210_1",
+     "question_text": "［1］",
+     "options": [
+      "あります",
+      "います",
+      "なります",
+      "します"
+     ],
+     "answer": 1,
+     "grammar_id": "GRA_000126",
+     "explanation_vi": "Công viên là vật không tự chuyển động, nên nói sự tồn tại bằng あります: 「となりに 大きい こうえんが あります」.",
+     "option_explanations": {
+      "1": "Đúng. こうえんが あります = có công viên.",
+      "2": "Sai. います dùng cho người và động vật.",
+      "3": "Sai. こうえんが なります (công viên trở thành) không có nghĩa, thiếu に/く.",
+      "4": "Sai. こうえんが します không có nghĩa."
+     }
+    },
+    {
+     "question_id": "Q_RQ_210_2",
+     "question_text": "［2］",
+     "options": [
+      "を",
+      "に",
+      "で",
+      "へ"
+     ],
+     "answer": 3,
+     "grammar_id": "GRA_000124",
+     "explanation_vi": "Công viên là nơi diễn ra hành động chạy bộ: 「こうえんで ジョギングを します」. Nơi hành động dùng で.",
+     "option_explanations": {
+      "1": "Sai. Câu đã có ジョギングを, không thể dùng thêm を cho こうえん.",
+      "2": "Sai. に chỉ nơi tồn tại hoặc đích đến, không chỉ nơi diễn ra hành động.",
+      "3": "Đúng. こうえんで ジョギングを します = chạy bộ ở công viên.",
+      "4": "Sai. へ chỉ hướng di chuyển, không đi với ジョギングを します."
+     }
+    },
+    {
+     "question_id": "Q_RQ_210_3",
+     "question_text": "［3］",
+     "options": [
+      "行きます",
+      "来ます",
+      "かえります",
+      "出ます"
+     ],
+     "answer": 2,
+     "grammar_id": "GRA_000068",
+     "explanation_vi": "Bạn bè di chuyển đến chỗ người viết (わたしの アパートへ), nên dùng 来ます: 「あそびに 来ます」 = đến chơi.",
+     "option_explanations": {
+      "1": "Sai. 行きます là đi xa khỏi chỗ người nói; bạn đến nhà tôi thì phải dùng 来ます.",
+      "2": "Đúng. わたしの アパートへ あそびに 来ます = đến căn hộ tôi chơi.",
+      "3": "Sai. かえります là về nhà mình, căn hộ của tôi không phải nhà của bạn.",
+      "4": "Sai. 出ます (ra khỏi) không đi với あそびに và へ ở đây."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_211",
+   "mondai_type": "text_grammar",
+   "text": "きのう、はじめて 日本の ぎんこうへ 行きました。キャッシュカードを つくりたかったです。でも、ぎんこうの かみの 書きかたが よく わかりませんでした。ぎんこうの 人が「わたしが 書き［1］か」と 言いました。でも、わたしは「じぶんで 書きます。日本語が あまり わからないので、ゆっくり［2］ ください」と 言いました。名前と じゅうしょを 書いて、パスポートを 見せました。それから、ぎんこうの 人に「カードは いつ できますか」と［3］。カードは 来週 できます。",
+   "translation_vi": "Hôm qua lần đầu tiên tôi đến ngân hàng ở Nhật. Tôi muốn làm thẻ rút tiền. Nhưng tôi không hiểu rõ cách điền giấy tờ của ngân hàng. Nhân viên ngân hàng nói: 「Để tôi viết giúp anh nhé?」 Nhưng tôi nói: 「Tôi sẽ tự viết. Vì tôi không hiểu tiếng Nhật lắm nên xin hãy nói chậm.」 Tôi viết tên và địa chỉ rồi đưa hộ chiếu. Sau đó, tôi hỏi nhân viên ngân hàng: 「Khi nào thẻ làm xong?」 Thẻ sẽ xong vào tuần sau.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_211_1",
+     "question_text": "［1］",
+     "options": [
+      "ません",
+      "ました",
+      "ませんでした",
+      "ましょう"
+     ],
+     "answer": 4,
+     "grammar_id": "GRA_000074",
+     "explanation_vi": "Nhân viên đề nghị tự mình viết giúp (わたしが): 「わたしが 書きましょうか」 = để tôi viết giúp nhé? Người viết đáp lại là sẽ tự viết.",
+     "option_explanations": {
+      "1": "Sai. わたしが 書きませんか (tôi không viết à?) không phải lời đề nghị giúp.",
+      "2": "Sai. わたしが 書きましたか (tôi đã viết à?) không hợp; người viết còn chưa điền.",
+      "3": "Sai. 書きませんでしたか là câu hỏi quá khứ, không hợp ngữ cảnh.",
+      "4": "Đúng. 書きましょうか = để tôi viết giúp nhé?"
+     }
+    },
+    {
+     "question_id": "Q_RQ_211_2",
+     "question_text": "［2］",
+     "options": [
+      "話して",
+      "話し",
+      "話す",
+      "話した"
+     ],
+     "answer": 1,
+     "grammar_id": "GRA_000072",
+     "explanation_vi": "Lời nhờ: 「ゆっくり 話して ください」 = xin hãy nói chậm. V て ください.",
+     "option_explanations": {
+      "1": "Đúng. 話して ください = xin hãy nói.",
+      "2": "Sai. 話し ください thiếu て.",
+      "3": "Sai. Thể từ điển không đi trước ください.",
+      "4": "Sai. Thể た không đi trước ください."
+     }
+    },
+    {
+     "question_id": "Q_RQ_211_3",
+     "question_text": "［3］",
+     "options": [
+      "こたえました",
+      "聞きました",
+      "おしえました",
+      "読みました"
+     ],
+     "answer": 2,
+     "grammar_id": "GRA_000101",
+     "explanation_vi": "Câu trích dẫn là câu hỏi (「いつ できますか」) người viết đặt ra cho nhân viên (ぎんこうの 人に), nên động từ là 聞きました (hỏi).",
+     "option_explanations": {
+      "1": "Sai. こたえました (trả lời) không hợp vì câu trích dẫn là câu hỏi của tôi.",
+      "2": "Đúng. 人に「…か」と 聞きました = hỏi nhân viên.",
+      "3": "Sai. おしえました (chỉ bảo) không hợp với nội dung là một câu hỏi.",
+      "4": "Sai. 読みました (đọc) không hợp với 「人に」 và lời nói trực tiếp."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_212",
+   "mondai_type": "text_grammar",
+   "text": "わたしの 国は ふゆが とても さむいです。日本の ふゆは わたしの 国［1］ あたたかいです。でも、きのうは 東きょうで ゆきが たくさん ふりました。ニュースで「あしたも ゆきが ふる［2］」と 言って いました。ゆきが ふって［3］、学校は 休みに なりません。だから、あしたも はやく おきて、学校へ 行かなければ なりません。",
+   "translation_vi": "Mùa đông ở nước tôi rất lạnh. Mùa đông ở Nhật ấm hơn nước tôi. Nhưng hôm qua ở Tokyo tuyết rơi nhiều. Trên bản tin nói: 「Ngày mai có lẽ tuyết cũng sẽ rơi.」 Dù tuyết rơi, trường cũng không cho nghỉ. Vì vậy ngày mai tôi cũng phải dậy sớm và đi học.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_212_1",
+     "question_text": "［1］",
+     "options": [
+      "から",
+      "まで",
+      "より",
+      "ほど"
+     ],
+     "answer": 3,
+     "grammar_id": "GRA_000063",
+     "explanation_vi": "So sánh mùa đông Nhật với nước tôi (nước tôi rất lạnh): 「日本の ふゆは わたしの 国より あたたかいです」. N1 は N2 より Adj です.",
+     "option_explanations": {
+      "1": "Sai. から (từ, vì) không dùng để so sánh.",
+      "2": "Sai. まで (đến) không dùng để so sánh.",
+      "3": "Đúng. 国より あたたかい = ấm hơn nước tôi.",
+      "4": "Sai. ほど phải đi với phủ định (～ほど あたたかくない), câu này là khẳng định."
+     }
+    },
+    {
+     "question_id": "Q_RQ_212_2",
+     "question_text": "［2］",
+     "options": [
+      "ましょう",
+      "たいです",
+      "つもりです",
+      "でしょう"
+     ],
+     "answer": 4,
+     "grammar_id": "GRA_000130",
+     "explanation_vi": "Bản tin dự đoán thời tiết ngày mai: 「あしたも ゆきが ふる でしょう」 = có lẽ tuyết cũng rơi. ～でしょう chỉ phỏng đoán.",
+     "option_explanations": {
+      "1": "Sai. ふる ましょう sai ngữ pháp (ましょう gắn vào thân động từ) và tuyết không thể rủ rê.",
+      "2": "Sai. ふる たいです sai ngữ pháp; たい gắn vào thân động từ, và tuyết không có mong muốn.",
+      "3": "Sai. つもりです là ý định của người, tuyết không có ý định.",
+      "4": "Đúng. ふる でしょう = có lẽ sẽ rơi (dự báo)."
+     }
+    },
+    {
+     "question_id": "Q_RQ_212_3",
+     "question_text": "［3］",
+     "options": [
+      "も",
+      "から",
+      "で",
+      "は"
+     ],
+     "answer": 1,
+     "grammar_id": "GRA_000119",
+     "explanation_vi": "Tuyết rơi nhưng trường vẫn không nghỉ, và câu sau nói vẫn phải đi học: 「ゆきが ふっても、学校は 休みに なりません」. V て も = dù V.",
+     "option_explanations": {
+      "1": "Đúng. ふっても = dù tuyết rơi (trường vẫn không nghỉ).",
+      "2": "Sai. ふってから (sau khi tuyết rơi xong) không hợp với ý 'dù… vẫn không nghỉ'.",
+      "3": "Sai. ふってで sai ngữ pháp.",
+      "4": "Sai. ふっては phải đi với いけません, không hợp ở đây."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-15",
+     "by": "final_reviewer",
+     "action": "kept",
+     "note_vi": "AI A: ～ても xếp N4 ở một số danh sách. Giữ: GRA_000119 nằm trong 135 điểm verified (Minna bài 25)."
+    }
+   ]
+  },
+  {
+   "passage_id": "PSG_RQ_301",
+   "mondai_type": "reading_short",
+   "text": "ケンくん\n母は 3時から 5時まで 出かけます。スーパーで 買いものを して、それから ぎんこうへ 行きます。ケンくんは 学校から かえったら、まず しゅくだいを して ください。しゅくだいが おわったら、いぬの さんぽに 行って ください。テレビは 見ないで ください。\n母",
+   "translation_vi": "Ken à,\nMẹ ra ngoài từ 3 giờ đến 5 giờ. Mẹ đi siêu thị mua đồ, sau đó đến ngân hàng. Ken đi học về thì trước tiên hãy làm bài tập về nhà. Làm xong bài tập thì hãy dắt chó đi dạo. Đừng xem tivi nhé.\nMẹ",
+   "questions": [
+    {
+     "question_id": "Q_RQ_301_1",
+     "question_text": "ケンくんは 学校から かえって、まず 何を しますか。",
+     "options": [
+      "スーパーで 買いものを します",
+      "しゅくだいを します",
+      "いぬの さんぽに 行きます",
+      "テレビを 見ます"
+     ],
+     "answer": 2,
+     "grammar_id": null,
+     "explanation_vi": "Giấy nhắn ghi 「ケンくんは 学校から かえったら、まず しゅくだいを して ください。」: việc đầu tiên Ken làm là bài tập về nhà.",
+     "option_explanations": {
+      "1": "Sai. Người đi siêu thị mua đồ là mẹ, không phải Ken.",
+      "2": "Đúng. 「まず しゅくだいを して ください」.",
+      "3": "Sai. Dắt chó đi dạo là việc làm sau khi xong bài tập (しゅくだいが おわったら).",
+      "4": "Sai. Mẹ dặn 「テレビは 見ないで ください」."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_302",
+   "mondai_type": "reading_short",
+   "text": "りゅうがくせいの みなさんへ\n来週の 水よう日に、バスで 山へ 行きます。あさ 8時に 学校の 前に 来て ください。おべんとうと 飲みものを もって 来て ください。山の 上は さむいですから、セーターも もって 来て ください。かさと おかねは いりません。",
+   "translation_vi": "Gửi các bạn du học sinh,\nThứ Tư tuần sau chúng ta sẽ đi núi bằng xe buýt. Hãy đến trước cổng trường lúc 8 giờ sáng. Hãy mang theo cơm hộp và đồ uống. Trên núi lạnh nên hãy mang cả áo len. Không cần ô và tiền.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_302_1",
+     "question_text": "学生は 何を もって 行きますか。",
+     "options": [
+      "おべんとうと 飲みものと かさ",
+      "飲みものと セーターと おかね",
+      "おべんとうと おかねと かさ",
+      "おべんとうと 飲みものと セーター"
+     ],
+     "answer": 4,
+     "grammar_id": null,
+     "explanation_vi": "Thông báo dặn mang 「おべんとうと 飲みもの」 và 「セーターも」; còn 「かさと おかねは いりません」. Chỉ phương án 4 đúng.",
+     "option_explanations": {
+      "1": "Sai. Bài nói không cần ô (かさは いりません).",
+      "2": "Sai. Bài nói không cần tiền (おかねは いりません).",
+      "3": "Sai. Cả ô và tiền đều không cần.",
+      "4": "Đúng. Cơm hộp, đồ uống và áo len là ba thứ phải mang."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_303",
+   "mondai_type": "reading_short",
+   "text": "マリアさん\nあしたの えいがは 2時から 4時までですね。わたしは 12時まで アルバイトが ありますから、ひるごはんは いっしょに 食べる ことが できません。1時半に えいがかんの 前で 会いましょう。えいがの あとで、4時半ごろ いっしょに きっさてんへ 行きませんか。\nリン",
+   "translation_vi": "Maria à,\nBộ phim ngày mai chiếu từ 2 giờ đến 4 giờ nhỉ. Mình làm thêm đến 12 giờ nên không thể ăn trưa cùng được. Mình gặp nhau trước rạp chiếu phim lúc 1 rưỡi nhé. Xem phim xong, khoảng 4 rưỡi mình cùng đi quán cà phê không?\nLin",
+   "questions": [
+    {
+     "question_id": "Q_RQ_303_1",
+     "question_text": "リンさんと マリアさんは 何時に えいがかんの 前で 会いますか。",
+     "options": [
+      "1時半",
+      "2時",
+      "12時",
+      "4時半"
+     ],
+     "answer": 1,
+     "grammar_id": null,
+     "explanation_vi": "Bài viết 「1時半に えいがかんの 前で 会いましょう。」 nên hai người gặp nhau lúc 1 giờ rưỡi.",
+     "option_explanations": {
+      "1": "Đúng. 「1時半に えいがかんの 前で 会いましょう」.",
+      "2": "Sai. 2 giờ là giờ phim bắt đầu.",
+      "3": "Sai. 12 giờ là giờ Lin làm thêm xong.",
+      "4": "Sai. Khoảng 4 rưỡi là lúc rủ đi quán cà phê sau phim."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_304",
+   "mondai_type": "reading_short",
+   "text": "6月 7日（土） はれ\nきょうは 友だちの キムさんと 出かけました。午前は こうえんで テニスを しました。ひるごはんは 駅の ちかくの レストランで 食べました。午後は デパートへ 行く つもりでしたが、人が とても 多かったですから、行きませんでした。キムさんの うちへ 行って、おちゃを 飲みました。",
+   "translation_vi": "Ngày 7 tháng 6 (Thứ Bảy), trời nắng\nHôm nay tôi đi chơi với bạn Kim. Buổi sáng chúng tôi chơi tennis ở công viên. Bữa trưa ăn ở nhà hàng gần nhà ga. Buổi chiều định đi trung tâm thương mại nhưng vì rất đông người nên đã không đi. Chúng tôi đến nhà Kim và uống trà.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_304_1",
+     "question_text": "わたしは ひるごはんの あとで どこへ 行きましたか。",
+     "options": [
+      "こうえん",
+      "レストラン",
+      "キムさんの うち",
+      "デパート"
+     ],
+     "answer": 3,
+     "grammar_id": null,
+     "explanation_vi": "Sau bữa trưa (午後), người viết không đi trung tâm thương mại vì đông, mà 「キムさんの うちへ 行って、おちゃを 飲みました」.",
+     "option_explanations": {
+      "1": "Sai. Công viên là nơi chơi tennis buổi sáng, trước bữa trưa.",
+      "2": "Sai. Nhà hàng là nơi ăn trưa, không phải nơi đến sau bữa trưa.",
+      "3": "Đúng. 「キムさんの うちへ 行って」.",
+      "4": "Sai. Bài nói 「人が とても 多かったですから、行きませんでした」."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_305",
+   "mondai_type": "reading_short",
+   "text": "みなさんへ\nあしたの かいぎは 10時からです。かいぎは 2かいの かいぎしつで する つもりでしたが、5かいの かいぎしつに なりました。かいぎの 前に、1かいの うけつけで しりょうを もらって ください。かいぎの あとで、4かいの しょくどうで いっしょに ひるごはんを 食べましょう。",
+   "translation_vi": "Gửi mọi người,\nCuộc họp ngày mai bắt đầu từ 10 giờ. Cuộc họp dự định tổ chức ở phòng họp tầng 2 nhưng đã đổi sang phòng họp tầng 5. Trước cuộc họp, hãy nhận tài liệu ở quầy lễ tân tầng 1. Sau cuộc họp, chúng ta cùng ăn trưa ở nhà ăn tầng 4 nhé.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_305_1",
+     "question_text": "あしたの かいぎは どこで しますか。",
+     "options": [
+      "2かいの かいぎしつ",
+      "1かいの うけつけ",
+      "5かいの かいぎしつ",
+      "4かいの しょくどう"
+     ],
+     "answer": 3,
+     "grammar_id": null,
+     "explanation_vi": "Thông báo: 「2かいの かいぎしつで する つもりでしたが、5かいの かいぎしつに なりました」 → họp ở phòng họp tầng 5.",
+     "option_explanations": {
+      "1": "Sai. Tầng 2 là dự định cũ, đã đổi sang tầng 5.",
+      "2": "Sai. Quầy lễ tân tầng 1 là nơi nhận tài liệu trước cuộc họp.",
+      "3": "Đúng. 「5かいの かいぎしつに なりました」.",
+      "4": "Sai. Nhà ăn tầng 4 là nơi ăn trưa sau cuộc họp."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_306",
+   "mondai_type": "reading_short",
+   "text": "ワンさん\nABC会社の たなかさんから 電話が ありました。あしたの かいぎの しりょうを メールで おくって ください と 言いました。たなかさんは 5時に 会社を 出ますから、4時までに おくって ください。たなかさんに 電話を かけなくても いいです。たなかさんの 会社へ 行かなくても いいです。\nいとう",
+   "translation_vi": "Anh Wang,\nCó điện thoại của anh Tanaka bên công ty ABC. Anh ấy nói hãy gửi tài liệu cho cuộc họp ngày mai qua email. Anh Tanaka rời công ty lúc 5 giờ nên anh hãy gửi trước 4 giờ. Không cần gọi điện cho anh Tanaka. Cũng không cần đến công ty của anh Tanaka.\nIto",
+   "questions": [
+    {
+     "question_id": "Q_RQ_306_1",
+     "question_text": "ワンさんは 何を しなければ なりませんか。",
+     "options": [
+      "4時までに しりょうを メールで おくります",
+      "たなかさんに 電話を かけます",
+      "たなかさんの 会社へ 行きます",
+      "5時に しりょうを メールで おくります"
+     ],
+     "answer": 1,
+     "grammar_id": null,
+     "explanation_vi": "Giấy nhắn: 「しりょうを メールで おくって ください」 và 「4時までに おくって ください」. Việc bắt buộc là gửi tài liệu qua email trước 4 giờ.",
+     "option_explanations": {
+      "1": "Đúng. Gửi tài liệu qua email, hạn 「4時までに」.",
+      "2": "Sai. 「電話を かけなくても いいです」: không cần gọi điện.",
+      "3": "Sai. 「会社へ 行かなくても いいです」: không cần đến công ty.",
+      "4": "Sai. Phải gửi trước 4 giờ; 5 giờ là lúc anh Tanaka rời công ty."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_307",
+   "mondai_type": "reading_short",
+   "text": "やまだ先生\nおげんきですか。わたしは 今、父と 母と きょうとに 来て います。きのうは おてらを 見に 行きました。きょうは あさ 雨でしたから、ホテルで 休みました。午後は 天気が よく なりましたから、川の ちかくを さんぽしました。あしたは 山に のぼる つもりです。\nナム",
+   "translation_vi": "Thầy Yamada,\nThầy có khỏe không ạ? Em hiện đang ở Kyoto cùng bố mẹ. Hôm qua em đi xem chùa. Hôm nay buổi sáng trời mưa nên em nghỉ ở khách sạn. Buổi chiều trời đẹp lên nên em đi dạo gần bờ sông. Ngày mai em định leo núi.\nNam",
+   "questions": [
+    {
+     "question_id": "Q_RQ_307_1",
+     "question_text": "ナムさんは きょうの 午後 何を しましたか。",
+     "options": [
+      "おてらを 見ました",
+      "ホテルで 休みました",
+      "山に のぼりました",
+      "川の ちかくを さんぽしました"
+     ],
+     "answer": 4,
+     "grammar_id": null,
+     "explanation_vi": "Thư viết 「午後は 天気が よく なりましたから、川の ちかくを さんぽしました」.",
+     "option_explanations": {
+      "1": "Sai. Đi xem chùa là hôm qua (きのう).",
+      "2": "Sai. Nghỉ ở khách sạn là buổi sáng hôm nay vì trời mưa.",
+      "3": "Sai. Leo núi là dự định ngày mai (あしたは 山に のぼる つもりです).",
+      "4": "Đúng. Chiều nay Nam đi dạo gần bờ sông."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_308",
+   "mondai_type": "reading_short",
+   "text": "日本語クラスの みなさん\n金よう日に かんじの テストが あります。テストは 9時に はじまります。えんぴつと けしゴムを もって 来て ください。ボールペンは つかわないで ください。じしょと ノートは かばんの 中に 入れて ください。",
+   "translation_vi": "Các bạn lớp tiếng Nhật,\nThứ Sáu có bài kiểm tra chữ Hán. Bài kiểm tra bắt đầu lúc 9 giờ. Hãy mang bút chì và cục tẩy. Đừng dùng bút bi. Hãy cho từ điển và vở vào trong cặp.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_308_1",
+     "question_text": "テストの とき、何を つかいますか。",
+     "options": [
+      "ボールペンと けしゴム",
+      "えんぴつと けしゴム",
+      "えんぴつと じしょ",
+      "ノートと ボールペン"
+     ],
+     "answer": 2,
+     "grammar_id": null,
+     "explanation_vi": "Thông báo dặn 「えんぴつと けしゴムを もって 来て ください」; bút bi không được dùng, từ điển và vở phải để trong cặp. Vậy khi làm bài dùng bút chì và cục tẩy.",
+     "option_explanations": {
+      "1": "Sai. 「ボールペンは つかわないで ください」.",
+      "2": "Đúng. Bút chì và cục tẩy là đồ được dặn mang đến.",
+      "3": "Sai. Từ điển phải cho vào cặp, không dùng.",
+      "4": "Sai. Vở phải cho vào cặp và không được dùng bút bi."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_309",
+   "mondai_type": "reading_short",
+   "text": "アンナさん\n土よう日の パーティーは わたしの うちで 6時からです。りょうりは わたしが つくります。飲みものは さとうさんが 買って 来ます。アンナさんは ケーキを 買って 来て ください。おさらや コップは うちに たくさん ありますから、もって 来なくても いいです。\nユミ",
+   "translation_vi": "Anna à,\nBữa tiệc thứ Bảy tổ chức ở nhà mình từ 6 giờ. Món ăn thì mình nấu. Đồ uống thì Sato sẽ mua đến. Anna hãy mua bánh kem mang đến nhé. Đĩa và cốc nhà mình có nhiều rồi nên không cần mang.\nYumi",
+   "questions": [
+    {
+     "question_id": "Q_RQ_309_1",
+     "question_text": "アンナさんは パーティーに 何を もって 行きますか。",
+     "options": [
+      "ケーキ",
+      "りょうり",
+      "飲みもの",
+      "おさら"
+     ],
+     "answer": 1,
+     "grammar_id": null,
+     "explanation_vi": "Yumi nhờ: 「アンナさんは ケーキを 買って 来て ください」.",
+     "option_explanations": {
+      "1": "Đúng. Anna mua bánh kem mang đến.",
+      "2": "Sai. Món ăn do Yumi nấu (りょうりは わたしが つくります).",
+      "3": "Sai. Đồ uống do Sato mua đến.",
+      "4": "Sai. Nhà Yumi có nhiều đĩa, 「もって 来なくても いいです」."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_310",
+   "mondai_type": "reading_short",
+   "text": "10月 15日\nけさ、あたまが いたくて、ねつも ありました。会社に 電話を かけて、休みました。それから びょういんへ 行って、くすりを もらいました。うちへ かえって、すぐ くすりを 飲んで、ねました。ゆうがた、友だちが りんごを もって 来て くれました。",
+   "translation_vi": "Ngày 15 tháng 10\nSáng nay tôi đau đầu và còn bị sốt. Tôi gọi điện cho công ty và xin nghỉ. Sau đó tôi đến bệnh viện và nhận thuốc. Về nhà, tôi uống thuốc ngay rồi đi ngủ. Chiều tối, bạn tôi mang táo đến cho tôi.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_310_1",
+     "question_text": "わたしは びょういんから うちへ かえって、すぐ 何を しましたか。",
+     "options": [
+      "会社に 電話を かけました",
+      "くすりを もらいました",
+      "りんごを 買いました",
+      "くすりを 飲みました"
+     ],
+     "answer": 4,
+     "grammar_id": null,
+     "explanation_vi": "Nhật ký: 「うちへ かえって、すぐ くすりを 飲んで、ねました」 → về nhà là uống thuốc ngay.",
+     "option_explanations": {
+      "1": "Sai. Gọi điện cho công ty là việc làm sáng nay, trước khi đi bệnh viện.",
+      "2": "Sai. Nhận thuốc là ở bệnh viện, trước khi về nhà.",
+      "3": "Sai. Táo do bạn mang đến, người viết không mua.",
+      "4": "Đúng. 「すぐ くすりを 飲んで」."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_311",
+   "mondai_type": "reading_short",
+   "text": "ハンさん\n駅の 前の ゆうびんきょくの 時間を しらべました。月よう日から 金よう日までは 9時から 5時までです。土よう日は 午前だけ、9時から 12時までです。日よう日は 休みです。\nジョン",
+   "translation_vi": "Han à,\nMình đã tra giờ làm việc của bưu điện trước nhà ga. Từ thứ Hai đến thứ Sáu mở từ 9 giờ đến 5 giờ. Thứ Bảy chỉ mở buổi sáng, từ 9 giờ đến 12 giờ. Chủ nhật nghỉ.\nJohn",
+   "questions": [
+    {
+     "question_id": "Q_RQ_311_1",
+     "question_text": "ハンさんは いつ ゆうびんきょくへ 行く ことが できますか。",
+     "options": [
+      "日よう日の 午前",
+      "土よう日の 10時",
+      "土よう日の 午後",
+      "金よう日の 6時"
+     ],
+     "answer": 2,
+     "grammar_id": null,
+     "explanation_vi": "Thứ Bảy bưu điện mở 「9時から 12時まで」, nên 10 giờ thứ Bảy là thời điểm duy nhất trong các phương án bưu điện còn mở.",
+     "option_explanations": {
+      "1": "Sai. 「日よう日は 休みです」.",
+      "2": "Đúng. 10 giờ nằm trong khoảng 9–12 giờ thứ Bảy.",
+      "3": "Sai. Thứ Bảy chỉ mở buổi sáng (午前だけ).",
+      "4": "Sai. Thứ Sáu chỉ mở đến 5 giờ."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_312",
+   "mondai_type": "reading_short",
+   "text": "ミラーさん\nあしたの しゅっちょうの ことです。8時半に あおば駅で 会いましょう。きっぷうりばの 前は 人が 多いですから、南口の 前で まって いて ください。北口や 東口では ありません。しんかんせんは 9時に 出ます。\nこばやし",
+   "translation_vi": "Anh Miller,\nVề chuyến công tác ngày mai. Chúng ta gặp nhau ở ga Aoba lúc 8 rưỡi nhé. Trước quầy bán vé đông người nên anh hãy đợi trước cửa Nam. Không phải cửa Bắc hay cửa Đông. Tàu Shinkansen chạy lúc 9 giờ.\nKobayashi",
+   "questions": [
+    {
+     "question_id": "Q_RQ_312_1",
+     "question_text": "ミラーさんは あした どこで まちますか。",
+     "options": [
+      "きっぷうりばの 前",
+      "北口の 前",
+      "南口の 前",
+      "東口の 前"
+     ],
+     "answer": 3,
+     "grammar_id": null,
+     "explanation_vi": "Bài viết 「南口の 前で まって いて ください。北口や 東口では ありません。」",
+     "option_explanations": {
+      "1": "Sai. Trước quầy bán vé đông người nên không đợi ở đó.",
+      "2": "Sai. 「北口…では ありません」.",
+      "3": "Đúng. 「南口の 前で まって いて ください」.",
+      "4": "Sai. 「東口では ありません」."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_313",
+   "mondai_type": "reading_short",
+   "text": "エマさん\nわたしは きょう おそく かえります。ばんごはんは そばを つくる つもりでしたが、時間が ありませんでした。れいぞうこの 中に サンドイッチが ありますから、それを 食べて ください。カレーは あした しゅじんが 会社に もって 行きますから、食べないで ください。テーブルの 上の パンは あしたの あさごはんです。\nなかむら",
+   "translation_vi": "Emma à,\nHôm nay cô về muộn. Bữa tối cô định nấu mì soba nhưng không có thời gian. Trong tủ lạnh có bánh sandwich, con hãy ăn cái đó nhé. Món cà ri ngày mai chồng cô mang đến công ty nên đừng ăn. Bánh mì trên bàn là bữa sáng ngày mai.\nNakamura",
+   "questions": [
+    {
+     "question_id": "Q_RQ_313_1",
+     "question_text": "エマさんは こんばん 何を 食べますか。",
+     "options": [
+      "カレー",
+      "パン",
+      "そば",
+      "サンドイッチ"
+     ],
+     "answer": 4,
+     "grammar_id": null,
+     "explanation_vi": "Giấy nhắn: 「れいぞうこの 中に サンドイッチが ありますから、それを 食べて ください」.",
+     "option_explanations": {
+      "1": "Sai. Cà ri để chồng bà Nakamura mang đi làm ngày mai, 「食べないで ください」.",
+      "2": "Sai. Bánh mì là bữa sáng ngày mai.",
+      "3": "Sai. Bà định nấu soba nhưng 「時間が ありませんでした」.",
+      "4": "Đúng. Emma ăn bánh sandwich trong tủ lạnh."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_314",
+   "mondai_type": "reading_short",
+   "text": "会社の みなさんへ\nあしたから 月よう日まで 会社は 休みです。きょう かえる 前に、まどを しめて ください。それから、つくえの 上の しりょうを たなに 入れて ください。しりょうは うちへ もって かえらないで ください。へやの そうじは しなくても いいです。",
+   "translation_vi": "Gửi mọi người trong công ty,\nTừ ngày mai đến thứ Hai công ty nghỉ. Hôm nay trước khi về, hãy đóng cửa sổ. Sau đó hãy cất tài liệu trên bàn vào kệ. Đừng mang tài liệu về nhà. Không cần dọn dẹp phòng.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_314_1",
+     "question_text": "会社の 人は きょう かえる 前に 何を しなければ なりませんか。",
+     "options": [
+      "まどを しめて、しりょうを たなに 入れます",
+      "まどを あけて、しりょうを たなに 入れます",
+      "まどを しめて、へやを そうじします",
+      "しりょうを かばんに 入れて、もって かえります"
+     ],
+     "answer": 1,
+     "grammar_id": null,
+     "explanation_vi": "Thông báo yêu cầu 「まどを しめて ください」 và 「しりょうを たなに 入れて ください」.",
+     "option_explanations": {
+      "1": "Đúng. Đóng cửa sổ và cất tài liệu vào kệ.",
+      "2": "Sai. Phải đóng (しめて) cửa sổ, không phải mở.",
+      "3": "Sai. 「へやの そうじは しなくても いいです」.",
+      "4": "Sai. 「しりょうは うちへ もって かえらないで ください」."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_315",
+   "mondai_type": "reading_short",
+   "text": "日よう日に 母の たんじょうびの プレゼントを 買いに デパートへ 行きました。セーターは 高かったですから、買いませんでした。ぼうしは 母が たくさん もって いますから、やめました。かさは 安かったですが、母の すきな いろが ありませんでしたから、買いませんでした。母は 白が すきですから、白い ハンカチを 買いました。",
+   "translation_vi": "Chủ nhật tôi đến trung tâm thương mại để mua quà sinh nhật cho mẹ. Áo len đắt nên tôi không mua. Mẹ đã có nhiều mũ nên tôi thôi. Ô thì rẻ nhưng không có màu mẹ thích nên tôi không mua. Mẹ thích màu trắng nên tôi mua một chiếc khăn tay trắng.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_315_1",
+     "question_text": "わたしは 母に 何を 買いましたか。",
+     "options": [
+      "セーター",
+      "ぼうし",
+      "ハンカチ",
+      "かさ"
+     ],
+     "answer": 3,
+     "grammar_id": null,
+     "explanation_vi": "Câu cuối: 「白い ハンカチを 買いました」.",
+     "option_explanations": {
+      "1": "Sai. Áo len đắt nên 「買いませんでした」.",
+      "2": "Sai. Mẹ có nhiều mũ nên 「やめました」.",
+      "3": "Đúng. Người viết mua khăn tay trắng.",
+      "4": "Sai. Không có màu mẹ thích nên không mua ô."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_316",
+   "mondai_type": "reading_short",
+   "text": "りょうの みなさんへ\n今週の 日よう日に、みんなで りょうの 中と 外を そうじします。10時に 1かいの ロビーに 来て ください。そうじの あとで、しょくどうで いっしょに ひるごはんを 食べましょう。日よう日に ようじが ある 人は そうじに 来なくても いいですが、土よう日までに かとうさんに 言って ください。",
+   "translation_vi": "Gửi các bạn ở ký túc xá,\nChủ nhật tuần này mọi người cùng dọn dẹp bên trong và bên ngoài ký túc xá. Hãy đến sảnh tầng 1 lúc 10 giờ. Dọn xong, chúng ta cùng ăn trưa ở nhà ăn nhé. Người nào Chủ nhật có việc bận thì không đến dọn cũng được, nhưng hãy báo cho anh/chị Kato trước thứ Bảy.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_316_1",
+     "question_text": "日よう日に ようじが ある 人は 何を しなければ なりませんか。",
+     "options": [
+      "10時に ロビーへ 行きます",
+      "土よう日までに かとうさんに 言います",
+      "しょくどうで ひるごはんを 食べます",
+      "日よう日に かとうさんに 電話を かけます"
+     ],
+     "answer": 2,
+     "grammar_id": null,
+     "explanation_vi": "Thông báo: người có việc bận 「そうじに 来なくても いいですが、土よう日までに かとうさんに 言って ください」.",
+     "option_explanations": {
+      "1": "Sai. Người có việc bận 「そうじに 来なくても いいです」.",
+      "2": "Đúng. Phải báo cho Kato trước thứ Bảy.",
+      "3": "Sai. Ăn trưa là sau buổi dọn dẹp, người có việc bận không phải đến.",
+      "4": "Sai. Phải báo trước thứ Bảy (土よう日までに), Chủ nhật là quá hạn."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_317",
+   "mondai_type": "reading_short",
+   "text": "ホセさん\n来週の うみの りょこうの ことです。うみまでは とおいですから、じてんしゃでは 行く ことが できません。電車は 高いですから、バスで 行きましょう。わたしも ホセさんも 車を もって いません。バスは 駅の 前から あさ 7時に 出ます。\nサラ",
+   "translation_vi": "José à,\nVề chuyến đi biển tuần sau. Ra biển xa nên không thể đi bằng xe đạp. Tàu điện đắt nên mình đi bằng xe buýt nhé. Cả mình và José đều không có ô tô. Xe buýt chạy từ trước nhà ga lúc 7 giờ sáng.\nSara",
+   "questions": [
+    {
+     "question_id": "Q_RQ_317_1",
+     "question_text": "二人は 何で うみへ 行きますか。",
+     "options": [
+      "電車",
+      "バス",
+      "車",
+      "じてんしゃ"
+     ],
+     "answer": 2,
+     "grammar_id": null,
+     "explanation_vi": "Sara viết 「電車は 高いですから、バスで 行きましょう」.",
+     "option_explanations": {
+      "1": "Sai. Tàu điện đắt nên không đi.",
+      "2": "Đúng. Hai người đi bằng xe buýt.",
+      "3": "Sai. 「わたしも ホセさんも 車を もって いません」.",
+      "4": "Sai. Biển xa nên 「じてんしゃでは 行く ことが できません」."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_318",
+   "mondai_type": "reading_short",
+   "text": "11月 9日（日）\nわたしは いつも 6時に おきて、6時半から 7時まで こうえんを ジョギングします。7時半に あさごはんを 食べます。でも、きょうは 日よう日でしたから、ジョギングは しませんでした。8時に おきて、9時に あさごはんを 食べました。",
+   "translation_vi": "Ngày 9 tháng 11 (Chủ nhật)\nTôi thường dậy lúc 6 giờ và chạy bộ trong công viên từ 6 rưỡi đến 7 giờ. Tôi ăn sáng lúc 7 rưỡi. Nhưng hôm nay là Chủ nhật nên tôi không chạy bộ. Tôi dậy lúc 8 giờ và ăn sáng lúc 9 giờ.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_318_1",
+     "question_text": "わたしは きょう 何時に おきましたか。",
+     "options": [
+      "6時",
+      "6時半",
+      "9時",
+      "8時"
+     ],
+     "answer": 4,
+     "grammar_id": null,
+     "explanation_vi": "Hôm nay là Chủ nhật: 「8時に おきて、9時に あさごはんを 食べました」.",
+     "option_explanations": {
+      "1": "Sai. 6 giờ là giờ dậy thường ngày (いつも), không phải hôm nay.",
+      "2": "Sai. 6 rưỡi là giờ bắt đầu chạy bộ thường ngày; hôm nay không chạy.",
+      "3": "Sai. 9 giờ là giờ ăn sáng hôm nay.",
+      "4": "Đúng. Hôm nay dậy lúc 8 giờ."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_319",
+   "mondai_type": "reading_short",
+   "text": "1年生の みなさんへ\nあしたは すずき先生が 休みですから、えいごの じゅぎょうは ありません。あしたの 午前は、としょかんで 本を 読んで ください。午後は 日本語の じゅぎょうが あります。えいごの じゅぎょうは 木よう日に します。木よう日の 午前は テストが ありますから、えいごは 午後です。",
+   "translation_vi": "Gửi các bạn năm thứ nhất,\nNgày mai thầy Suzuki nghỉ nên không có giờ tiếng Anh. Sáng mai các bạn hãy đọc sách ở thư viện. Buổi chiều có giờ tiếng Nhật. Giờ tiếng Anh sẽ học vào thứ Năm. Sáng thứ Năm có bài kiểm tra nên tiếng Anh học buổi chiều.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_319_1",
+     "question_text": "えいごの じゅぎょうは いつ ありますか。",
+     "options": [
+      "あしたの 午前",
+      "あしたの 午後",
+      "木よう日の 午後",
+      "木よう日の 午前"
+     ],
+     "answer": 3,
+     "grammar_id": null,
+     "explanation_vi": "Thông báo: 「えいごの じゅぎょうは 木よう日に します。…えいごは 午後です」.",
+     "option_explanations": {
+      "1": "Sai. Sáng mai đọc sách ở thư viện; ngày mai không có giờ tiếng Anh.",
+      "2": "Sai. Chiều mai là giờ tiếng Nhật.",
+      "3": "Đúng. Tiếng Anh học chiều thứ Năm.",
+      "4": "Sai. Sáng thứ Năm có bài kiểm tra."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_320",
+   "mondai_type": "reading_short",
+   "text": "チャンさん\nチャンさんは あした としょかんへ 行きますね。わたしは あした びょういんへ 行きますから、としょかんへ 行く ことが できません。わたしが かりた 本を 2さつ かえして ください。本は もう チャンさんの つくえの 上に おきました。新しい 本は 来週 じぶんで かりますから、かりないで ください。\nゴック",
+   "translation_vi": "Chan à,\nNgày mai Chan đi thư viện nhỉ. Ngày mai mình đi bệnh viện nên không thể đến thư viện. Bạn trả giúp mình 2 cuốn sách mình đã mượn nhé. Sách mình đã để sẵn trên bàn của Chan rồi. Sách mới thì tuần sau mình tự mượn nên bạn đừng mượn nhé.\nNgọc",
+   "questions": [
+    {
+     "question_id": "Q_RQ_320_1",
+     "question_text": "チャンさんは あした としょかんで 何を しますか。",
+     "options": [
+      "本を 2さつ かえします",
+      "本を 2さつ かります",
+      "本を つくえの 上に おきます",
+      "本を 1さつ かえします"
+     ],
+     "answer": 1,
+     "grammar_id": null,
+     "explanation_vi": "Ngọc nhờ: 「わたしが かりた 本を 2さつ かえして ください」 → Chan trả 2 cuốn sách ở thư viện.",
+     "option_explanations": {
+      "1": "Đúng. Trả 2 cuốn sách Ngọc đã mượn.",
+      "2": "Sai. 「新しい 本は…かりないで ください」.",
+      "3": "Sai. Ngọc đã để sách lên bàn rồi (もう…おきました); đó không phải việc Chan làm ở thư viện.",
+      "4": "Sai. Số sách phải trả là 2 cuốn, không phải 1."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_321",
+   "mondai_type": "reading_short",
+   "text": "4月 6日\nきょうは 友だちの パクさんと 花見に 行きました。駅の ちかくの こうえんは 人が 多いですから、川の そばの 小さい こうえんへ 行きました。山の 上の おてらの さくらも きれいですが、とおいですから、行きませんでした。花見の あとで、パクさんの うちで おちゃを 飲みました。",
+   "translation_vi": "Ngày 6 tháng 4\nHôm nay tôi đi ngắm hoa anh đào với bạn Park. Công viên gần nhà ga đông người nên chúng tôi đến công viên nhỏ bên bờ sông. Hoa anh đào ở chùa trên núi cũng đẹp nhưng xa nên chúng tôi không đi. Ngắm hoa xong, chúng tôi uống trà ở nhà Park.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_321_1",
+     "question_text": "わたしたちは さくらを 見に どこへ 行きましたか。",
+     "options": [
+      "川の そばの こうえん",
+      "駅の ちかくの こうえん",
+      "山の 上の おてら",
+      "パクさんの うち"
+     ],
+     "answer": 1,
+     "grammar_id": null,
+     "explanation_vi": "Nhật ký: 「川の そばの 小さい こうえんへ 行きました」 để ngắm hoa.",
+     "option_explanations": {
+      "1": "Đúng. Hai người ngắm hoa ở công viên nhỏ bên sông.",
+      "2": "Sai. Công viên gần ga đông người nên không đến.",
+      "3": "Sai. Chùa trên núi xa nên 「行きませんでした」.",
+      "4": "Sai. Nhà Park là nơi uống trà sau khi ngắm hoa, không phải nơi ngắm hoa."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_322",
+   "mondai_type": "reading_short",
+   "text": "スーパー あおば\nこの 店は いつも 火よう日が 休みですが、今週は 火よう日（4日）も あいて います。水よう日（5日）は 店の 中に 新しい れいぞうこを 入れますから、休みです。木よう日（6日）は 11時に あきます。金よう日（7日）からは いつもと おなじです。",
+   "translation_vi": "Siêu thị Aoba\nCửa hàng thường nghỉ thứ Ba, nhưng tuần này thứ Ba (ngày 4) vẫn mở cửa. Thứ Tư (ngày 5) cửa hàng lắp tủ lạnh mới bên trong nên nghỉ. Thứ Năm (ngày 6) mở cửa lúc 11 giờ. Từ thứ Sáu (ngày 7) trở đi như mọi khi.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_322_1",
+     "question_text": "今週、この 店が 休みの 日は いつですか。",
+     "options": [
+      "火よう日",
+      "木よう日",
+      "水よう日",
+      "金よう日"
+     ],
+     "answer": 3,
+     "grammar_id": null,
+     "explanation_vi": "Thông báo: 「水よう日（5日）は…休みです」. Tuần này chỉ nghỉ thứ Tư.",
+     "option_explanations": {
+      "1": "Sai. Thường nghỉ thứ Ba, nhưng 「今週は 火よう日（4日）も あいて います」.",
+      "2": "Sai. Thứ Năm vẫn mở, chỉ mở muộn lúc 11 giờ.",
+      "3": "Đúng. Thứ Tư nghỉ để lắp tủ lạnh mới.",
+      "4": "Sai. Từ thứ Sáu hoạt động như mọi khi (mở cửa)."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_323",
+   "mondai_type": "reading_short",
+   "text": "Bクラスの みなさんへ\n来週の じゅぎょうで、「わたしの 国」の スピーチを します。まず、さくぶんを 書いて、金よう日までに 先生に メールで おくって ください。先生が さくぶんを なおして、かえします。それから、スピーチの れんしゅうを して ください。",
+   "translation_vi": "Gửi các bạn lớp B,\nTrong giờ học tuần sau, chúng ta sẽ thuyết trình về chủ đề \"Đất nước của tôi\". Trước hết, các bạn hãy viết bài văn rồi gửi email cho giáo viên trước thứ Sáu. Giáo viên sẽ sửa bài và gửi trả lại. Sau đó, các bạn hãy luyện tập bài thuyết trình.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_323_1",
+     "question_text": "学生は いちばん はじめに 何を しますか。",
+     "options": [
+      "スピーチの れんしゅうを します",
+      "先生に メールを おくります",
+      "先生に さくぶんを かえします",
+      "さくぶんを 書きます"
+     ],
+     "answer": 4,
+     "grammar_id": null,
+     "explanation_vi": "Thông báo: 「まず、さくぶんを 書いて、…おくって ください」 → việc đầu tiên là viết bài văn.",
+     "option_explanations": {
+      "1": "Sai. Luyện thuyết trình là bước cuối (それから).",
+      "2": "Sai. Gửi email là sau khi viết bài văn xong (書いて、…おくって).",
+      "3": "Sai. Người sửa và trả bài là giáo viên, không phải học sinh.",
+      "4": "Đúng. 「まず、さくぶんを 書いて」."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_324",
+   "mondai_type": "reading_short",
+   "text": "ラニさん\n来週の 日よう日、わたしの うちで いっしょに すきやきを 食べませんか。にくや やさいは 母が 買いますから、ラニさんは 何も 買わなくても いいです。わたしの うちは 駅から とおいですから、あるいて 来る ことは できません。駅に ついたら、電話を ください。父が 車で むかえに 行きます。タクシーには のらないで ください。\nたかし",
+   "translation_vi": "Rani à,\nChủ nhật tuần sau, bạn đến nhà mình ăn lẩu sukiyaki cùng nhé? Thịt và rau mẹ mình sẽ mua nên Rani không cần mua gì cả. Nhà mình xa ga nên không thể đi bộ đến được. Đến ga thì hãy gọi điện cho mình. Bố mình sẽ lái xe ra đón. Đừng đi taxi nhé.\nTakashi",
+   "questions": [
+    {
+     "question_id": "Q_RQ_324_1",
+     "question_text": "ラニさんは 駅に ついて、何を しますか。",
+     "options": [
+      "にくと やさいを 買います",
+      "電話を かけます",
+      "あるいて うちへ 行きます",
+      "タクシーに のります"
+     ],
+     "answer": 2,
+     "grammar_id": null,
+     "explanation_vi": "Takashi dặn: 「駅に ついたら、電話を ください」 → đến ga thì Rani gọi điện.",
+     "option_explanations": {
+      "1": "Sai. Thịt và rau do mẹ Takashi mua; Rani 「何も 買わなくても いいです」.",
+      "2": "Đúng. Đến ga thì gọi điện để bố Takashi ra đón.",
+      "3": "Sai. Nhà xa ga, 「あるいて 来る ことは できません」.",
+      "4": "Sai. 「タクシーには のらないで ください」."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_401",
+   "mondai_type": "reading_mid",
+   "text": "「わたしの しゅみ」　ジョン・スミス\nわたしの しゅみは ギターを ひく ことです。国で 高校生の とき、父に ギターを ならいました。\n日本へ 来る とき、ギターは 大きくて おもいですから、もって 来ませんでした。日本に 来てから、毎日 学校と アルバイトで いそがしかったです。でも、ときどき 国の うたを 聞いて、ギターを ひきたいと おもいました。\n先月、駅の 前の 古い 店で 安い ギターを 見ました。2万円でした。わたしは アルバイトの お金で その ギターを 買いました。\n今は 毎週 土よう日の 午後、友だちの やまださんの うちで いっしょに ひいて います。わたしは ギターを ひいて、やまださんは ピアノを ひきます。来月、学校の パーティーで 二人で うたを うたいます。",
+   "translation_vi": "「Sở thích của tôi」 John Smith\nSở thích của tôi là chơi đàn ghi-ta. Hồi học cấp 3 ở nước tôi, tôi đã học ghi-ta từ bố.\nKhi sang Nhật, vì cây đàn to và nặng nên tôi đã không mang theo. Từ khi đến Nhật, ngày nào tôi cũng bận việc học ở trường và việc làm thêm. Nhưng thỉnh thoảng nghe những bài hát của nước mình, tôi lại nghĩ muốn chơi ghi-ta.\nTháng trước, tôi thấy một cây đàn rẻ ở một cửa hàng cũ trước nhà ga. Nó giá 20.000 yên. Tôi đã mua cây đàn đó bằng tiền làm thêm.\nBây giờ, chiều thứ Bảy hàng tuần, tôi cùng chơi đàn ở nhà bạn tôi là anh Yamada. Tôi chơi ghi-ta, còn anh Yamada chơi piano. Tháng sau, hai chúng tôi sẽ hát ở bữa tiệc của trường.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_401_1",
+     "question_text": "ジョンさんは どうして ギターを 日本へ もって 来ませんでしたか。",
+     "options": [
+      "ギターが 大きくて おもいから",
+      "日本で 安い ギターを 買いたかったから",
+      "父に ギターを あげたから",
+      "ギターが 古かったから"
+     ],
+     "answer": 1,
+     "grammar_id": null,
+     "explanation_vi": "Bài viết: 「ギターは 大きくて おもいですから、もって 来ませんでした」 — vì đàn to và nặng nên không mang theo.",
+     "option_explanations": {
+      "1": "Đúng. Bài nói rõ lý do: 大きくて おもいですから.",
+      "2": "Sai. Bài không nói anh ấy định mua đàn rẻ ở Nhật; việc mua đàn chỉ xảy ra tháng trước, tình cờ thấy.",
+      "3": "Sai. Anh ấy học đàn từ bố (父に ならいました), không nói đã tặng đàn cho bố.",
+      "4": "Sai. 「古い」 là cửa hàng cũ (古い 店), không phải lý do không mang đàn."
+     }
+    },
+    {
+     "question_id": "Q_RQ_401_2",
+     "question_text": "ジョンさんは 今、土よう日の 午後 何を して いますか。",
+     "options": [
+      "駅の 前の 店で アルバイトを して います",
+      "やまださんに ピアノを ならって います",
+      "やまださんの うちで ギターを ひいて います",
+      "学校で うたの れんしゅうを して います"
+     ],
+     "answer": 3,
+     "grammar_id": null,
+     "explanation_vi": "Bài viết: 「毎週 土よう日の 午後、友だちの やまださんの うちで いっしょに ひいて います。わたしは ギターを ひいて…」",
+     "option_explanations": {
+      "1": "Sai. Cửa hàng trước ga là nơi anh ấy mua đàn, không phải nơi làm thêm vào chiều thứ Bảy.",
+      "2": "Sai. Anh Yamada chơi piano, nhưng John không học piano; John chơi ghi-ta.",
+      "3": "Đúng. Chiều thứ Bảy John chơi ghi-ta ở nhà anh Yamada.",
+      "4": "Sai. Bài chỉ nói tháng sau sẽ hát ở bữa tiệc của trường, không nói luyện hát ở trường vào thứ Bảy."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_402",
+   "mondai_type": "reading_mid",
+   "text": "「母が 来ました」　マリア・シルバ\n先週、ブラジルから 母が 日本へ 来ました。母は はじめて 外国へ 行きました。ひこうきの 時間が 長くて、とても つかれたと 言って いました。\n月よう日、わたしは 母と 古い おてらへ 行きました。おてらの 前で しゃしんを たくさん とりました。\n火よう日は わたしの 学校が ありましたから、母は 一人で ホテルの ちかくを さんぽしました。\n水よう日の ばん、母は わたしの りょうで ブラジルの りょうりを つくりました。クラスの 友だちも 3人 来ました。みんな 「おいしいです」と 言って、たくさん 食べました。\n木よう日、母は 国へ かえりました。くうこうで 母は 「また 日本へ 来たいです」と 言いました。わたしは 少し さびしく なりました。",
+   "translation_vi": "「Mẹ tôi đã đến」 Maria Silva\nTuần trước, mẹ tôi từ Brazil sang Nhật. Đây là lần đầu tiên mẹ đi nước ngoài. Mẹ nói thời gian đi máy bay dài nên rất mệt.\nThứ Hai, tôi cùng mẹ đi đến một ngôi chùa cổ. Chúng tôi chụp rất nhiều ảnh trước chùa.\nThứ Ba tôi có giờ học ở trường nên mẹ đi dạo một mình quanh khách sạn.\nTối thứ Tư, mẹ nấu món ăn Brazil ở ký túc xá của tôi. Ba người bạn cùng lớp của tôi cũng đến. Mọi người đều nói 「Ngon quá」 và ăn rất nhiều.\nThứ Năm, mẹ về nước. Ở sân bay mẹ nói 「Mẹ muốn lại sang Nhật nữa」. Tôi thấy hơi buồn.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_402_1",
+     "question_text": "マリアさんの お母さんは 火よう日に 何を しましたか。",
+     "options": [
+      "マリアさんと おてらへ 行きました",
+      "一人で ホテルの ちかくを さんぽしました",
+      "マリアさんの 友だちに りょうりを つくりました",
+      "国へ かえりました"
+     ],
+     "answer": 2,
+     "grammar_id": null,
+     "explanation_vi": "Bài viết: 「火よう日は わたしの 学校が ありましたから、母は 一人で ホテルの ちかくを さんぽしました」.",
+     "option_explanations": {
+      "1": "Sai. Đi chùa cùng Maria là việc của thứ Hai.",
+      "2": "Đúng. Thứ Ba Maria đi học nên mẹ đi dạo một mình quanh khách sạn.",
+      "3": "Sai. Nấu ăn cho các bạn là tối thứ Tư.",
+      "4": "Sai. Mẹ về nước vào thứ Năm."
+     }
+    },
+    {
+     "question_id": "Q_RQ_402_2",
+     "question_text": "水よう日の ばん、マリアさんの りょうで だれが 何を つくりましたか。",
+     "options": [
+      "マリアさんが 日本の りょうりを つくりました",
+      "お母さんが 日本の りょうりを つくりました",
+      "マリアさんが ブラジルの りょうりを つくりました",
+      "お母さんが ブラジルの りょうりを つくりました"
+     ],
+     "answer": 4,
+     "grammar_id": null,
+     "explanation_vi": "Bài viết: 「水よう日の ばん、母は わたしの りょうで ブラジルの りょうりを つくりました」 — người nấu là mẹ, món ăn là món Brazil.",
+     "option_explanations": {
+      "1": "Sai. Người nấu là mẹ, và món ăn là món Brazil, không phải món Nhật.",
+      "2": "Sai. Mẹ nấu, nhưng là món Brazil, không phải món Nhật.",
+      "3": "Sai. Món Brazil là đúng, nhưng người nấu là mẹ (母は … つくりました), không phải Maria.",
+      "4": "Đúng. Mẹ nấu món ăn Brazil."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_403",
+   "mondai_type": "reading_mid",
+   "text": "「かぜ」　キム・ミンス\n先週の 金よう日、わたしは あさから あたまが いたくて、ねつも ありました。ですから、学校を 休みました。\n午前 10時に、りょうの ちかくの びょういんへ 行きました。いしゃは 「かぜですね。3日 ぐらい うちで 休んで ください。きょうは おふろに 入らないで ください。」と 言いました。わたしは くすりを もらって、りょうへ かえりました。\n土よう日と 日よう日は、ずっと へやで ねて いました。となりの へやの チャンさんが、パンや くだものを 買って 来て くれました。チャンさんは とても しんせつです。\n月よう日には げん気に なりましたから、学校へ 行きました。",
+   "translation_vi": "「Bị cảm」 Kim Min-su\nThứ Sáu tuần trước, từ sáng tôi đã đau đầu và còn bị sốt. Vì thế tôi nghỉ học.\nLúc 10 giờ sáng, tôi đến bệnh viện gần ký túc xá. Bác sĩ nói: 「Cậu bị cảm rồi. Hãy nghỉ ở nhà khoảng 3 ngày. Hôm nay đừng tắm bồn.」 Tôi nhận thuốc rồi về ký túc xá.\nThứ Bảy và Chủ nhật, tôi nằm ngủ suốt trong phòng. Bạn Chan ở phòng bên cạnh đã mua bánh mì, trái cây… mang đến cho tôi. Bạn Chan rất tốt bụng.\nĐến thứ Hai tôi đã khỏe lại nên đi học.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_403_1",
+     "question_text": "いしゃは キムさんに 何と 言いましたか。",
+     "options": [
+      "3日 ぐらい 学校へ 行って ください",
+      "おふろに 入って、はやく ねて ください",
+      "3日 ぐらい うちで 休んで ください",
+      "3日 ぐらい びょういんに 来て ください"
+     ],
+     "answer": 3,
+     "grammar_id": null,
+     "explanation_vi": "Bác sĩ nói: 「3日 ぐらい うちで 休んで ください」 — hãy nghỉ ở nhà khoảng 3 ngày.",
+     "option_explanations": {
+      "1": "Sai. Bác sĩ bảo nghỉ ở nhà, không phải đi học.",
+      "2": "Sai. Bác sĩ bảo hôm nay đừng tắm bồn (おふろに 入らないで ください).",
+      "3": "Đúng. Đúng nguyên văn lời bác sĩ.",
+      "4": "Sai. Bác sĩ không bảo đến bệnh viện 3 ngày; Kim nhận thuốc rồi về."
+     }
+    },
+    {
+     "question_id": "Q_RQ_403_2",
+     "question_text": "だれが キムさんに パンや くだものを 買って 来て くれましたか。",
+     "options": [
+      "いしゃ",
+      "チャンさん",
+      "学校の 先生",
+      "国の 母"
+     ],
+     "answer": 2,
+     "grammar_id": null,
+     "explanation_vi": "Bài viết: 「となりの へやの チャンさんが、パンや くだものを 買って 来て くれました」.",
+     "option_explanations": {
+      "1": "Sai. Bác sĩ chỉ khám và cho thuốc.",
+      "2": "Đúng. Bạn Chan ở phòng bên cạnh mua mang đến.",
+      "3": "Sai. Bài không nhắc đến thầy cô mang đồ đến.",
+      "4": "Sai. Bài không nhắc đến mẹ."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_404",
+   "mondai_type": "reading_mid",
+   "text": "「わたしの アルバイト」　グエン・バン・アン\nわたしは 毎週 火よう日と 金よう日に、駅の 前の レストランで アルバイトを して います。時間は 午後 5時から 10時までです。\nはじめは 日本語の ことばが よく わかりませんでしたから、たいへんでした。でも、店の すずきさんが いつも ゆっくり 話して くれました。\n今は 店で おさらを あらったり、テーブルを そうじしたり して います。先月から、すずきさんに やさいの きりかたを ならって います。むずかしいですが、おもしろいです。\nアルバイトの お金で、来年の なつ休みに 国へ かえりたいです。かぞくに 日本の おかしを 買って かえります。",
+   "translation_vi": "「Việc làm thêm của tôi」 Nguyễn Văn An\nThứ Ba và thứ Sáu hằng tuần, tôi làm thêm ở nhà hàng trước nhà ga. Giờ làm từ 5 giờ chiều đến 10 giờ tối.\nLúc đầu tôi không hiểu rõ từ ngữ tiếng Nhật nên rất vất vả. Nhưng anh Suzuki ở quán lúc nào cũng nói chậm cho tôi.\nBây giờ ở quán tôi rửa đĩa, lau dọn bàn… Từ tháng trước, tôi học cách cắt rau từ anh Suzuki. Khó nhưng thú vị.\nTôi muốn dùng tiền làm thêm để về nước vào kỳ nghỉ hè năm sau. Tôi sẽ mua bánh kẹo Nhật mang về cho gia đình.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_404_1",
+     "question_text": "グエンさんは どうして はじめ たいへんでしたか。",
+     "options": [
+      "店の 人が しんせつじゃ なかったから",
+      "毎日 アルバイトが あったから",
+      "アルバイトの 時間が 長かったから",
+      "日本語の ことばが よく わからなかったから"
+     ],
+     "answer": 4,
+     "grammar_id": null,
+     "explanation_vi": "Bài viết: 「はじめは 日本語の ことばが よく わかりませんでしたから、たいへんでした」.",
+     "option_explanations": {
+      "1": "Sai. Anh Suzuki ở quán luôn nói chậm cho An, tức là người ở quán tử tế.",
+      "2": "Sai. An chỉ làm vào thứ Ba và thứ Sáu, không phải mỗi ngày.",
+      "3": "Sai. Bài không nói giờ làm dài là lý do vất vả; lý do được nêu rõ bằng から là không hiểu tiếng Nhật.",
+      "4": "Đúng. Đây là lý do bài nêu rõ."
+     }
+    },
+    {
+     "question_id": "Q_RQ_404_2",
+     "question_text": "グエンさんは 先月から 何を して いますか。",
+     "options": [
+      "すずきさんに やさいの きりかたを ならって います",
+      "すずきさんに 日本語を ならって います",
+      "すずきさんに やさいの きりかたを おしえて います",
+      "店で りょうりを つくって います"
+     ],
+     "answer": 1,
+     "grammar_id": null,
+     "explanation_vi": "Bài viết: 「先月から、すずきさんに やさいの きりかたを ならって います」.",
+     "option_explanations": {
+      "1": "Đúng. Từ tháng trước An học cách cắt rau từ anh Suzuki.",
+      "2": "Sai. Anh Suzuki nói chậm cho An hiểu, nhưng bài không nói An học tiếng Nhật với anh ấy.",
+      "3": "Sai. Ngược chiều: An học (ならって), không phải dạy (おしえて) anh Suzuki.",
+      "4": "Sai. Công việc của An là rửa đĩa, lau bàn; bài không nói An nấu món ăn."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_405",
+   "mondai_type": "reading_mid",
+   "text": "「うみの まち」　アンナ・シュミット\n先週の 休みに、友だちの ゆきさんと 二人で うみの ちかくの 小さい まちへ 行きました。電車で 3時間 ぐらい かかりました。\nまちに ついてから、まず 魚の 店で ひるごはんを 食べました。魚は 新しくて、とても おいしかったです。\n午後は うみで およぎたかったですが、雨が ふりましたから、およぐ ことが できませんでした。ですから、まちの 小さい びじゅつかんへ 行きました。\nよるは うみの 前の ホテルに とまりました。つぎの 日の あさは 天気が よかったですから、うみの しゃしんを たくさん とりました。\n来年の なつ、また この まちへ 来て、うみで およぎたいです。",
+   "translation_vi": "「Thị trấn biển」 Anna Schmidt\nKỳ nghỉ tuần trước, tôi cùng bạn là Yuki, hai người đi đến một thị trấn nhỏ gần biển. Đi tàu điện mất khoảng 3 tiếng.\nSau khi đến thị trấn, đầu tiên chúng tôi ăn trưa ở một quán cá. Cá tươi và rất ngon.\nBuổi chiều chúng tôi muốn bơi ở biển nhưng vì trời mưa nên không bơi được. Vì vậy chúng tôi đi đến bảo tàng mỹ thuật nhỏ của thị trấn.\nBuổi tối chúng tôi nghỉ ở khách sạn trước biển. Sáng hôm sau trời đẹp nên chúng tôi chụp rất nhiều ảnh biển.\nMùa hè năm sau, tôi muốn lại đến thị trấn này và bơi ở biển.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_405_1",
+     "question_text": "アンナさんたちは どうして うみで およぎませんでしたか。",
+     "options": [
+      "うみの 水が つめたかったから",
+      "雨が ふったから",
+      "時間が なかったから",
+      "びじゅつかんへ 行きたかったから"
+     ],
+     "answer": 2,
+     "grammar_id": null,
+     "explanation_vi": "Bài viết: 「雨が ふりましたから、およぐ ことが できませんでした」.",
+     "option_explanations": {
+      "1": "Sai. Bài không nói nước biển lạnh.",
+      "2": "Đúng. Vì trời mưa nên không bơi được.",
+      "3": "Sai. Bài không nói thiếu thời gian.",
+      "4": "Sai. Họ đến bảo tàng là kết quả sau khi không bơi được (ですから), không phải lý do."
+     }
+    },
+    {
+     "question_id": "Q_RQ_405_2",
+     "question_text": "アンナさんたちは つぎの 日の あさ 何を しましたか。",
+     "options": [
+      "うみで およぎました",
+      "びじゅつかんへ 行きました",
+      "うみの しゃしんを とりました",
+      "魚の 店で ごはんを 食べました"
+     ],
+     "answer": 3,
+     "grammar_id": null,
+     "explanation_vi": "Bài viết: 「つぎの 日の あさは 天気が よかったですから、うみの しゃしんを たくさん とりました」.",
+     "option_explanations": {
+      "1": "Sai. Bài không nói sáng hôm sau họ bơi; Anna còn nói muốn năm sau đến bơi.",
+      "2": "Sai. Đi bảo tàng là chiều ngày đầu.",
+      "3": "Đúng. Sáng hôm sau trời đẹp, họ chụp nhiều ảnh biển.",
+      "4": "Sai. Ăn ở quán cá là trưa ngày đầu."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_406",
+   "mondai_type": "reading_mid",
+   "text": "「プレゼント」　トム・ブラウン\nわたしは 今、日本人の かぞくの うちで ホームステイを して います。来週の 水よう日は お母さんの たんじょう日です。\nきのう、デパートへ プレゼントを 買いに 行きました。はじめに ハンカチを 見ましたが、お母さんは ハンカチを たくさん もって いますから、やめました。\nつぎに、かさの うりばへ 行きました。あおい かさが きれいでしたが、8千円でした。高かったですから、買いませんでした。\nそれから、白い カップを 見ました。2千円でした。お母さんは 毎あさ コーヒーを 飲みますから、その カップを 買いました。\n水よう日の あさ、「おたんじょう日 おめでとう ございます」と 言って、わたします。",
+   "translation_vi": "「Quà tặng」 Tom Brown\nHiện tôi đang ở homestay tại nhà một gia đình người Nhật. Thứ Tư tuần sau là sinh nhật của mẹ (chủ nhà).\nHôm qua, tôi đến cửa hàng bách hóa để mua quà. Đầu tiên tôi xem khăn tay, nhưng mẹ đã có rất nhiều khăn tay nên tôi thôi.\nTiếp theo, tôi đến quầy bán ô. Chiếc ô màu xanh rất đẹp nhưng giá 8.000 yên. Vì đắt nên tôi không mua.\nSau đó, tôi xem một chiếc cốc màu trắng. Giá 2.000 yên. Mẹ sáng nào cũng uống cà phê nên tôi đã mua chiếc cốc đó.\nSáng thứ Tư, tôi sẽ nói 「Chúc mừng sinh nhật mẹ」 rồi trao quà.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_406_1",
+     "question_text": "トムさんは どうして かさを 買いませんでしたか。",
+     "options": [
+      "高かったから",
+      "あおい いろが きらいだったから",
+      "お母さんが かさを たくさん もって いるから",
+      "うりばに かさが なかったから"
+     ],
+     "answer": 1,
+     "grammar_id": null,
+     "explanation_vi": "Bài viết: 「8千円でした。高かったですから、買いませんでした」.",
+     "option_explanations": {
+      "1": "Đúng. Ô giá 8.000 yên, đắt nên không mua.",
+      "2": "Sai. Tom còn khen ô xanh đẹp (きれいでした).",
+      "3": "Sai. Thứ mẹ có nhiều là khăn tay, không phải ô.",
+      "4": "Sai. Quầy có ô; Tom đã xem chiếc ô xanh."
+     }
+    },
+    {
+     "question_id": "Q_RQ_406_2",
+     "question_text": "トムさんは 何を 買いましたか。",
+     "options": [
+      "ハンカチ",
+      "あおい かさ",
+      "あかい カップ",
+      "白い カップ"
+     ],
+     "answer": 4,
+     "grammar_id": null,
+     "explanation_vi": "Bài viết: 「白い カップを 見ました。…その カップを 買いました」.",
+     "option_explanations": {
+      "1": "Sai. Tom xem khăn tay nhưng thôi không mua (やめました).",
+      "2": "Sai. Ô xanh đắt nên không mua.",
+      "3": "Sai. Chiếc cốc màu trắng, không phải màu đỏ.",
+      "4": "Đúng. Tom mua chiếc cốc trắng giá 2.000 yên."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_407",
+   "mondai_type": "reading_mid",
+   "text": "「雨の 日よう日」　ハン・ソヨン\n先週の 日よう日、クラスの みんなで こうえんへ 花見に 行く やくそくが ありました。\nわたしは あさ 6時に おきて、おべんとうを つくりました。でも、8時ごろから 雨が ふりました。\n9時に 先生から 電話が ありました。先生は 「きょうは 雨ですから、花見は 来週の 日よう日に 行きましょう。」と 言いました。\nわたしは おべんとうを もって、となりの へやの エマさんの ところへ 行きました。二人で おべんとうを 食べながら、テレビで 日本の えいがを 見ました。\n雨の 日でしたが、たのしい 一日でした。",
+   "translation_vi": "「Chủ nhật mưa」 Han So-yeon\nChủ nhật tuần trước, cả lớp có hẹn đi ngắm hoa anh đào ở công viên.\nTôi dậy lúc 6 giờ sáng và làm cơm hộp. Nhưng từ khoảng 8 giờ trời mưa.\nLúc 9 giờ, thầy giáo gọi điện. Thầy nói: 「Hôm nay trời mưa nên chủ nhật tuần sau chúng ta đi ngắm hoa nhé.」\nTôi mang cơm hộp sang chỗ bạn Emma ở phòng bên cạnh. Hai chúng tôi vừa ăn cơm hộp vừa xem phim Nhật trên tivi.\nTuy là một ngày mưa nhưng là một ngày vui.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_407_1",
+     "question_text": "先生は 電話で 何と 言いましたか。",
+     "options": [
+      "花見は 午後から 行きましょう",
+      "こうえんで おべんとうを 食べましょう",
+      "花見は 来週の 日よう日に 行きましょう",
+      "かさを もって こうえんへ 来て ください"
+     ],
+     "answer": 3,
+     "grammar_id": null,
+     "explanation_vi": "Thầy nói: 「花見は 来週の 日よう日に 行きましょう」 — dời buổi ngắm hoa sang chủ nhật tuần sau.",
+     "option_explanations": {
+      "1": "Sai. Thầy không nói chiều hôm đó đi.",
+      "2": "Sai. Thầy không bảo ăn cơm hộp ở công viên; Han ăn ở phòng Emma.",
+      "3": "Đúng. Đúng nguyên văn lời thầy.",
+      "4": "Sai. Thầy không bảo mang ô đến công viên; buổi ngắm hoa bị dời."
+     }
+    },
+    {
+     "question_id": "Q_RQ_407_2",
+     "question_text": "ハンさんは 日よう日、どこで おべんとうを 食べましたか。",
+     "options": [
+      "エマさんの へやで",
+      "こうえんで",
+      "学校で",
+      "先生の うちで"
+     ],
+     "answer": 1,
+     "grammar_id": null,
+     "explanation_vi": "Bài viết: 「となりの へやの エマさんの ところへ 行きました。二人で おべんとうを 食べながら…」.",
+     "option_explanations": {
+      "1": "Đúng. Han ăn cơm hộp ở chỗ (phòng) của Emma.",
+      "2": "Sai. Buổi ngắm hoa ở công viên bị hoãn vì mưa.",
+      "3": "Sai. Bài không nói đến trường.",
+      "4": "Sai. Thầy chỉ gọi điện; Han không đến nhà thầy."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_408",
+   "mondai_type": "reading_mid",
+   "text": "「ゆうびんきょくで」　サラ・ジョーンズ\n今月、国の おとうとが 10さいに なります。わたしは おとうとに 日本の マンガを 5さつ 買いました。\nきょうは 4月 10日です。じゅぎょうの あとで、大学の ちかくの ゆうびんきょくへ マンガを もって 行きました。\nゆうびんきょくの 人に 「アメリカまで いくらですか。」と 聞きました。ゆうびんきょくの 人は 「ふなびんは 1,800円で、1か月 ぐらい かかります。エアメールは 3,500円で、1週間 ぐらいです。」と 言いました。\nおとうとの たんじょう日は 4月 25日です。ふなびんは 安いですが、たんじょう日までに つきません。ですから、エアメールで おくりました。\nそれから、きってを 10まい 買いました。国の 友だちに はがきを 書きたいですから。",
+   "translation_vi": "「Ở bưu điện」 Sarah Jones\nTháng này, em trai tôi ở quê nhà sẽ tròn 10 tuổi. Tôi đã mua 5 cuốn truyện tranh Nhật cho em.\nHôm nay là ngày 10 tháng 4. Sau giờ học, tôi mang truyện tranh đến bưu điện gần trường đại học.\nTôi hỏi nhân viên bưu điện: 「Gửi đến Mỹ thì bao nhiêu tiền?」 Nhân viên nói: 「Đường biển 1.800 yên, mất khoảng 1 tháng. Đường hàng không 3.500 yên, khoảng 1 tuần.」\nSinh nhật em tôi là ngày 25 tháng 4. Gửi đường biển thì rẻ nhưng sẽ không đến kịp trước sinh nhật. Vì vậy tôi gửi bằng đường hàng không.\nSau đó, tôi mua 10 con tem. Vì tôi muốn viết bưu thiếp cho bạn bè ở quê nhà.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_408_1",
+     "question_text": "サラさんは どうして エアメールで おくりましたか。",
+     "options": [
+      "ふなびんより 安いから",
+      "おとうとが エアメールが すきだから",
+      "ゆうびんきょくの 人が エアメールが いいと 言ったから",
+      "ふなびんでは たんじょう日までに つかないから"
+     ],
+     "answer": 4,
+     "grammar_id": null,
+     "explanation_vi": "Bài viết: 「ふなびんは 安いですが、たんじょう日までに つきません。ですから、エアメールで おくりました」.",
+     "option_explanations": {
+      "1": "Sai. Đường hàng không (3.500 yên) đắt hơn đường biển (1.800 yên).",
+      "2": "Sai. Bài không nói em trai thích thư hàng không.",
+      "3": "Sai. Nhân viên chỉ báo giá và thời gian, không khuyên chọn cách nào.",
+      "4": "Đúng. Đường biển mất khoảng 1 tháng, không kịp ngày 25/4."
+     }
+    },
+    {
+     "question_id": "Q_RQ_408_2",
+     "question_text": "サラさんは どうして きってを 買いましたか。",
+     "options": [
+      "おとうとに マンガを おくりたいから",
+      "国の 友だちに はがきを 書きたいから",
+      "おとうとに てがみを 書きたいから",
+      "大学の 友だちに はがきを 書きたいから"
+     ],
+     "answer": 2,
+     "grammar_id": null,
+     "explanation_vi": "Bài viết: 「きってを 10まい 買いました。国の 友だちに はがきを 書きたいですから」.",
+     "option_explanations": {
+      "1": "Sai. Truyện tranh đã gửi bằng đường hàng không; tem mua cho việc viết bưu thiếp.",
+      "2": "Đúng. Đúng lý do bài nêu.",
+      "3": "Sai. Người nhận là bạn bè ở quê, không phải em trai; và là bưu thiếp, không phải thư.",
+      "4": "Sai. Là bạn bè ở quê nhà (国の 友だち), không phải bạn ở trường đại học."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-15",
+     "by": "final_reviewer",
+     "action": "kept",
+     "note_vi": "AI A: ふなびん / エアメール vượt N5. Giữ: bài tự giải thích giá và thời gian, エアメール có trong kho từ vựng; đáp án = A = B."
+    }
+   ]
+  },
+  {
+   "passage_id": "PSG_RQ_409",
+   "mondai_type": "reading_mid",
+   "text": "「はじめての ぎんこう」　ワン・リー\nわたしは 日本に 来て 1か月です。先週、ぎんこうで カードを つくりました。\nきのうは へやの お金を はらう 日でしたから、ぎんこうの きかいで お金を 出したかったです。でも、きかいの ことばが 日本語で、よく わかりませんでしたから、こまりました。\nその とき、ぎんこうの 人が 来て、ゆっくり せつめいして くれました。「まず、カードを 入れて ください。つぎに、ばんごうを おして ください。それから、ほしい お金を おして ください。」\nわたしは 5万円 出して、へやの お金を はらいました。ぎんこうの 人は とても しんせつでした。つぎは 一人で できると おもいます。",
+   "translation_vi": "「Lần đầu ở ngân hàng」 Wang Li\nTôi đến Nhật được 1 tháng. Tuần trước, tôi đã làm thẻ ở ngân hàng.\nHôm qua là ngày trả tiền phòng nên tôi muốn lấy tiền ở máy của ngân hàng. Nhưng chữ trên máy là tiếng Nhật, tôi không hiểu rõ nên rất bối rối.\nLúc đó, nhân viên ngân hàng đến và giải thích chậm rãi cho tôi: 「Trước hết, hãy cho thẻ vào. Tiếp theo, hãy bấm mã số. Sau đó, hãy bấm số tiền mình muốn.」\nTôi lấy 50.000 yên và trả tiền phòng. Nhân viên ngân hàng rất tốt bụng. Tôi nghĩ lần sau mình có thể tự làm một mình.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_409_1",
+     "question_text": "ワンさんは どうして こまりましたか。",
+     "options": [
+      "きかいの ことばが よく わからなかったから",
+      "カードを なくしたから",
+      "ばんごうを わすれたから",
+      "ぎんこうに 人が いなかったから"
+     ],
+     "answer": 1,
+     "grammar_id": null,
+     "explanation_vi": "Bài viết: 「きかいの ことばが 日本語で、よく わかりませんでしたから、こまりました」.",
+     "option_explanations": {
+      "1": "Đúng. Chữ trên máy là tiếng Nhật, không hiểu rõ nên bối rối.",
+      "2": "Sai. Bài không nói làm mất thẻ; tuần trước vừa làm thẻ.",
+      "3": "Sai. Bài không nói quên mã số.",
+      "4": "Sai. Có nhân viên ngân hàng đến giúp."
+     }
+    },
+    {
+     "question_id": "Q_RQ_409_2",
+     "question_text": "ぎんこうの 人の せつめいでは、はじめに 何を しますか。",
+     "options": [
+      "ばんごうを おします",
+      "ほしい お金を おします",
+      "カードを 入れます",
+      "お金を とります"
+     ],
+     "answer": 3,
+     "grammar_id": null,
+     "explanation_vi": "Nhân viên nói: 「まず、カードを 入れて ください」 — まず (trước hết) là cho thẻ vào.",
+     "option_explanations": {
+      "1": "Sai. Bấm mã số là bước tiếp theo (つぎに).",
+      "2": "Sai. Bấm số tiền là bước sau đó (それから).",
+      "3": "Đúng. Bước đầu tiên (まず) là cho thẻ vào.",
+      "4": "Sai. Lấy tiền không phải bước đầu tiên, và không có trong lời hướng dẫn."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-15",
+     "by": "final_reviewer",
+     "action": "edited",
+     "note_vi": "2 AI giải mù: từ vượt N5 (キャッシュカード, やちん, 下ろす, あんしょうばんごう, きんがく) → カード, へやの お金, 出す, ばんごう, ほしい お金を おして; sửa lựa chọn + bản dịch tương ứng. Đáp án không đổi; đã giải mù lại."
+    }
+   ]
+  },
+  {
+   "passage_id": "PSG_RQ_410",
+   "mondai_type": "reading_mid",
+   "text": "「新しい アパート」　アリ・ハサン\n先月、わたしは 大学の りょうから 新しい アパートへ ひっこししました。\nりょうは 大学から あるいて 5分で、べんりでした。でも、へやが せまくて、となりの へやの おとが うるさかったです。ですから、ひっこししました。\n新しい アパートは 大学から じてん車で 20分 かかります。少し とおいですが、へやが ひろくて、しずかです。やちんは りょうより 5千円 高いです。\nアパートの 南に 大きい こうえんが あります。毎あさ、わたしは その こうえんを さんぽして います。\n来週の 日よう日、クラスの 友だちを 3人 よんで、へやで パーティーを します。",
+   "translation_vi": "「Căn hộ mới」 Ali Hassan\nTháng trước, tôi đã chuyển từ ký túc xá của trường đại học sang một căn hộ mới.\nKý túc xá cách trường 5 phút đi bộ nên rất tiện. Nhưng phòng chật và tiếng ồn từ phòng bên cạnh rất ồn. Vì vậy tôi đã chuyển nhà.\nCăn hộ mới cách trường 20 phút đi xe đạp. Hơi xa nhưng phòng rộng và yên tĩnh. Tiền thuê nhà đắt hơn ký túc xá 5.000 yên.\nPhía nam căn hộ có một công viên lớn. Sáng nào tôi cũng đi dạo trong công viên đó.\nChủ nhật tuần sau, tôi sẽ mời 3 người bạn cùng lớp đến và tổ chức tiệc ở phòng.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_410_1",
+     "question_text": "アリさんは どうして りょうから ひっこししましたか。",
+     "options": [
+      "りょうが 大学から とおかったから",
+      "りょうの へやが せまくて うるさかったから",
+      "りょうの やちんが 高かったから",
+      "こうえんの ちかくに すみたかったから"
+     ],
+     "answer": 2,
+     "grammar_id": null,
+     "explanation_vi": "Bài viết: 「へやが せまくて、となりの へやの おとが うるさかったです。ですから、ひっこししました」.",
+     "option_explanations": {
+      "1": "Sai. Ký túc xá chỉ cách trường 5 phút đi bộ, rất tiện.",
+      "2": "Đúng. Phòng chật và ồn nên chuyển.",
+      "3": "Sai. Ngược lại, căn hộ mới đắt hơn ký túc xá 5.000 yên.",
+      "4": "Sai. Bài có nói gần căn hộ có công viên, nhưng không nói đó là lý do chuyển nhà."
+     }
+    },
+    {
+     "question_id": "Q_RQ_410_2",
+     "question_text": "新しい アパートは どんな ところですか。",
+     "options": [
+      "大学から あるいて 5分で、べんりです",
+      "やちんは りょうより 安いです",
+      "アパートの 北に こうえんが あります",
+      "大学から 少し とおいですが、へやが ひろいです"
+     ],
+     "answer": 4,
+     "grammar_id": null,
+     "explanation_vi": "Bài viết: 「少し とおいですが、へやが ひろくて、しずかです」.",
+     "option_explanations": {
+      "1": "Sai. 5 phút đi bộ là ký túc xá cũ; căn hộ mới mất 20 phút đi xe đạp.",
+      "2": "Sai. Tiền thuê căn hộ mới đắt hơn ký túc xá 5.000 yên.",
+      "3": "Sai. Công viên ở phía nam (南), không phải phía bắc.",
+      "4": "Đúng. Hơi xa nhưng phòng rộng (và yên tĩnh)."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_411",
+   "mondai_type": "reading_mid",
+   "text": "「日本語の テスト」　パク・ジフン\n来週の 月よう日に、日本語の 大きい テストが あります。テストは 午前 9時から 11時までです。\nわたしは かんじが 下手です。ですから、毎日 学校が おわってから、としょかんで 2時間 かんじを べんきょうして います。\nきのう、先生に 「かんじの 読みかたが よく わかりません。」と 言いました。先生は 「毎日 かんじを 10こ 書いて ください。それから、かんじが ある 本を 読んで ください。」と 言いました。\n今は 毎ばん ねる 前に、かんじを 10こ 書いて います。\nテストの 前の 日は、はやく ねる つもりです。",
+   "translation_vi": "「Bài kiểm tra tiếng Nhật」 Park Ji-hoon\nThứ Hai tuần sau có một bài kiểm tra tiếng Nhật lớn. Bài kiểm tra từ 9 giờ đến 11 giờ sáng.\nTôi kém chữ Hán. Vì vậy, ngày nào sau khi tan học tôi cũng học chữ Hán 2 tiếng ở thư viện.\nHôm qua tôi nói với thầy: 「Em không hiểu rõ cách đọc chữ Hán.」 Thầy nói: 「Mỗi ngày em hãy viết 10 chữ Hán. Và hãy đọc sách có chữ Hán.」\nBây giờ, tối nào trước khi đi ngủ tôi cũng viết 10 chữ Hán.\nNgày trước hôm kiểm tra, tôi định đi ngủ sớm.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_411_1",
+     "question_text": "パクさんは 学校が おわってから、何を して いますか。",
+     "options": [
+      "先生に かんじを ならって います",
+      "うちで 本を 読んで います",
+      "としょかんで かんじを べんきょうして います",
+      "友だちと テストの べんきょうを して います"
+     ],
+     "answer": 3,
+     "grammar_id": null,
+     "explanation_vi": "Bài viết: 「毎日 学校が おわってから、としょかんで 2時間 かんじを べんきょうして います」.",
+     "option_explanations": {
+      "1": "Sai. Park chỉ hỏi thầy một lần hôm qua, không học thầy sau giờ học.",
+      "2": "Sai. Bài không nói sau giờ học Park đọc sách ở nhà.",
+      "3": "Đúng. Sau giờ học Park học chữ Hán 2 tiếng ở thư viện.",
+      "4": "Sai. Bài không nhắc đến học cùng bạn."
+     }
+    },
+    {
+     "question_id": "Q_RQ_411_2",
+     "question_text": "パクさんは テストの 前の 日に 何を する つもりですか。",
+     "options": [
+      "はやく ねます",
+      "先生に 電話を かけます",
+      "としょかんで 本を かります",
+      "友だちと あそびます"
+     ],
+     "answer": 1,
+     "grammar_id": null,
+     "explanation_vi": "Bài viết: 「テストの 前の 日は、はやく ねる つもりです」.",
+     "option_explanations": {
+      "1": "Đúng. Park định ngủ sớm vào ngày trước hôm thi.",
+      "2": "Sai. Bài không nói Park định gọi điện cho thầy.",
+      "3": "Sai. Bài không nói mượn sách ở thư viện.",
+      "4": "Sai. Bài không nói đi chơi với bạn."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_412",
+   "mondai_type": "reading_mid",
+   "text": "「タイの りょうり」　ソムチャイ・ウォン\nわたしは タイから 来た りゅう学生です。日本の 食べものは おいしいですが、ときどき 国の りょうりが 食べたいです。\n先週の 土よう日、クラスの 友だちを 4人 へやに よんで、タイの りょうりを つくりました。\nあさ、スーパーで にくと やさいを 買いました。でも、ナンプラーは スーパーに ありませんでしたから、駅の 前の 小さい 店で 買いました。\nりょうりは 少し からかったです。ケンさんは からい ものが きらいですから、あまり 食べませんでした。でも、ほかの 3人は 「おいしいです」と 言って、たくさん 食べました。\nつぎは ケンさんも 食べる ことが できる、からくない りょうりを つくりたいです。",
+   "translation_vi": "「Món ăn Thái」 Somchai Wong\nTôi là du học sinh đến từ Thái Lan. Đồ ăn Nhật ngon nhưng thỉnh thoảng tôi muốn ăn món của nước mình.\nThứ Bảy tuần trước, tôi mời 4 người bạn cùng lớp đến phòng và nấu món ăn Thái.\nBuổi sáng tôi mua thịt và rau ở siêu thị. Nhưng siêu thị không có nước mắm (nam pla) nên tôi mua ở một cửa hàng nhỏ trước nhà ga.\nMón ăn hơi cay. Ken ghét đồ cay nên không ăn mấy. Nhưng 3 người còn lại nói 「Ngon quá」 và ăn rất nhiều.\nLần sau tôi muốn nấu món không cay mà Ken cũng ăn được.",
+   "questions": [
+    {
+     "question_id": "Q_RQ_412_1",
+     "question_text": "ソムチャイさんは ナンプラーを どこで 買いましたか。",
+     "options": [
+      "スーパー",
+      "大学の 中の 店",
+      "デパート",
+      "駅の 前の 小さい 店"
+     ],
+     "answer": 4,
+     "grammar_id": null,
+     "explanation_vi": "Bài viết: 「ナンプラーは スーパーに ありませんでしたから、駅の 前の 小さい 店で 買いました」.",
+     "option_explanations": {
+      "1": "Sai. Siêu thị không có nước mắm; ở siêu thị chỉ mua thịt và rau.",
+      "2": "Sai. Bài không nhắc đến cửa hàng trong trường.",
+      "3": "Sai. Bài không nhắc đến cửa hàng bách hóa.",
+      "4": "Đúng. Mua ở cửa hàng nhỏ trước nhà ga."
+     }
+    },
+    {
+     "question_id": "Q_RQ_412_2",
+     "question_text": "ケンさんは どうして あまり 食べませんでしたか。",
+     "options": [
+      "おなかが いっぱいだったから",
+      "からい ものが きらいだから",
+      "にくが きらいだから",
+      "りょうりが 少なかったから"
+     ],
+     "answer": 2,
+     "grammar_id": null,
+     "explanation_vi": "Bài viết: 「ケンさんは からい ものが きらいですから、あまり 食べませんでした」.",
+     "option_explanations": {
+      "1": "Sai. Bài không nói Ken no bụng.",
+      "2": "Đúng. Ken ghét đồ cay, mà món ăn hơi cay.",
+      "3": "Sai. Bài không nói Ken ghét thịt.",
+      "4": "Sai. Bài không nói món ăn ít; 3 người kia còn ăn rất nhiều."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_413",
+   "mondai_type": "information_retrieval",
+   "text": "さくらまち プール　「およぎかた クラス」\n① 子ども / 火よう日・木よう日 / 午後 4時～5時 / 1か月 3,000円\n② 子ども / 土よう日 / 午前 10時～11時 / 1か月 2,000円\n③ 大人 / 水よう日 / 午後 7時～8時半 / 1か月 4,000円\n④ 大人 / 土よう日 / 午後 2時～3時半 / 1か月 3,500円\n⑤ 大人 / 日よう日 / 午前 9時～10時半 / 1か月 3,500円",
+   "translation_vi": "Hồ bơi thị trấn Sakura — 「Lớp học bơi」\n① Trẻ em / Thứ Ba, thứ Năm / 4:00–5:00 chiều / 3.000 yên một tháng\n② Trẻ em / Thứ Bảy / 10:00–11:00 sáng / 2.000 yên một tháng\n③ Người lớn / Thứ Tư / 7:00–8:30 tối / 4.000 yên một tháng\n④ Người lớn / Thứ Bảy / 2:00–3:30 chiều / 3.500 yên một tháng\n⑤ Người lớn / Chủ nhật / 9:00–10:30 sáng / 3.500 yên một tháng\n\nCâu hỏi: Anh Tanaka là nhân viên công ty. Từ thứ Hai đến thứ Sáu, ngày nào anh ấy cũng làm việc đến 8 giờ tối. Chiều thứ Bảy hằng tuần anh ấy chơi tennis. Anh ấy muốn vào lớp rẻ hơn 4.000 yên một tháng. Lớp nào phù hợp?",
+   "questions": [
+    {
+     "question_id": "Q_RQ_413_1",
+     "question_text": "たなかさんは かいしゃいんです。月よう日から 金よう日まで、毎日 午後 8時まで しごとが あります。土よう日の 午後は 毎週 テニスを します。1か月 4,000円より 安い クラスに 入りたいです。どれが いいですか。",
+     "options": [
+      "②",
+      "③",
+      "④",
+      "⑤"
+     ],
+     "answer": 4,
+     "grammar_id": null,
+     "explanation_vi": "Anh Tanaka là người lớn → loại lớp trẻ em. Ngày thường làm đến 8 giờ tối → loại ③ (thứ Tư 7 giờ, lại đúng 4.000 yên, không rẻ hơn). Chiều thứ Bảy chơi tennis → loại ④. Còn ⑤: Chủ nhật sáng, 3.500 yên < 4.000 yên.",
+     "option_explanations": {
+      "1": "Sai. ② là lớp trẻ em.",
+      "2": "Sai. ③ học thứ Tư lúc 7 giờ tối khi anh Tanaka còn làm việc (đến 8 giờ), và 4.000 yên không rẻ hơn 4.000 yên.",
+      "3": "Sai. ④ học chiều thứ Bảy, lúc anh Tanaka chơi tennis.",
+      "4": "Đúng. ⑤ là lớp người lớn, sáng Chủ nhật, 3.500 yên."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_414",
+   "mondai_type": "information_retrieval",
+   "text": "みなみまち りょうり クラス（3月）\nA 日本の りょうり（すし） / 3月 5日（土） / 午前 10時～12時 / 2,500円\nB 日本の りょうり（てんぷら） / 3月 12日（土） / 午後 1時～3時 / 3,000円\nC 中国の りょうり / 3月 13日（日） / 午前 10時～12時 / 2,000円\nD パン / 3月 19日（土） / 午後 2時～4時 / 1,500円\nE 日本の りょうり（すきやき） / 3月 20日（日） / 午後 1時～3時 / 3,500円",
+   "translation_vi": "Lớp nấu ăn thị trấn Minami (tháng 3)\nA Món Nhật (sushi) / 5/3 (thứ Bảy) / 10:00–12:00 sáng / 2.500 yên\nB Món Nhật (tempura) / 12/3 (thứ Bảy) / 1:00–3:00 chiều / 3.000 yên\nC Món Trung Quốc / 13/3 (Chủ nhật) / 10:00–12:00 sáng / 2.000 yên\nD Bánh mì / 19/3 (thứ Bảy) / 2:00–4:00 chiều / 1.500 yên\nE Món Nhật (sukiyaki) / 20/3 (Chủ nhật) / 1:00–3:00 chiều / 3.500 yên\n\nCâu hỏi: Mai muốn học nấu món Nhật. Chủ nhật bạn ấy có việc làm thêm. Sáng thứ Bảy bạn ấy có lớp tiếng Nhật. Lớp nào phù hợp?",
+   "questions": [
+    {
+     "question_id": "Q_RQ_414_1",
+     "question_text": "マイさんは 日本の りょうりを ならいたいです。日よう日は アルバイトが あります。土よう日の 午前は 日本語の クラスが あります。どれが いいですか。",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "E"
+     ],
+     "answer": 2,
+     "grammar_id": null,
+     "explanation_vi": "Điều kiện: món Nhật (A, B, E); không phải Chủ nhật (loại E); không phải sáng thứ Bảy (loại A). Chỉ còn B: món Nhật, chiều thứ Bảy 12/3.",
+     "option_explanations": {
+      "1": "Sai. A vào sáng thứ Bảy, lúc Mai có lớp tiếng Nhật.",
+      "2": "Đúng. B là món Nhật, chiều thứ Bảy.",
+      "3": "Sai. C là món Trung Quốc và vào Chủ nhật.",
+      "4": "Sai. E vào Chủ nhật, Mai có việc làm thêm."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_415",
+   "mondai_type": "information_retrieval",
+   "text": "さくら駅 → みどり大学　バスの 時間\n① 駅 7:30 → 大学 8:10 / 毎日\n② 駅 7:50 → 大学 8:35 / 月よう日～金よう日だけ\n③ 駅 8:05 → 大学 8:40 / 月よう日～金よう日だけ\n④ 駅 8:20 → 大学 8:50 / 毎日\n⑤ 駅 8:40 → 大学 9:15 / 毎日",
+   "translation_vi": "Ga Sakura → Đại học Midori: giờ xe buýt\n① Ga 7:30 → Trường 8:10 / Hằng ngày\n② Ga 7:50 → Trường 8:35 / Chỉ thứ Hai–thứ Sáu\n③ Ga 8:05 → Trường 8:40 / Chỉ thứ Hai–thứ Sáu\n④ Ga 8:20 → Trường 8:50 / Hằng ngày\n⑤ Ga 8:40 → Trường 9:15 / Hằng ngày\n\nCâu hỏi: Thứ Bảy, Jose có bài kiểm tra ở trường từ 9 giờ. Bạn ấy muốn đến trường trước 9 giờ. Bạn ấy muốn đi chuyến xe rời ga muộn nhất. Chuyến nào phù hợp?",
+   "questions": [
+    {
+     "question_id": "Q_RQ_415_1",
+     "question_text": "ホセさんは 土よう日に 大学で 9時から テストが あります。9時までに 大学に つきたいです。駅を いちばん おそく 出る バスに のりたいです。どれが いいですか。",
+     "options": [
+      "①",
+      "③",
+      "④",
+      "⑤"
+     ],
+     "answer": 3,
+     "grammar_id": null,
+     "explanation_vi": "Thứ Bảy chỉ có ①, ④, ⑤ (② và ③ chỉ chạy thứ Hai–thứ Sáu). Đến trước 9 giờ: ① (8:10) và ④ (8:50); ⑤ đến 9:15 là muộn. Trong ① và ④, chuyến rời ga muộn nhất là ④ (8:20).",
+     "option_explanations": {
+      "1": "Sai. ① đến kịp nhưng rời ga lúc 7:30, sớm hơn ④.",
+      "2": "Sai. ③ chỉ chạy từ thứ Hai đến thứ Sáu, thứ Bảy không có.",
+      "3": "Đúng. ④ chạy thứ Bảy, đến trường 8:50 và rời ga muộn nhất trong các chuyến kịp giờ.",
+      "4": "Sai. ⑤ đến trường 9:15, muộn giờ kiểm tra."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_416",
+   "mondai_type": "information_retrieval",
+   "text": "きっさてん「もり」の ひるごはん（午前 11時～午後 3時）\nA カレー / 750円\nB サンドイッチと コーヒー / 700円\nC 魚の ていしょく / 900円（午後 1時まで）\nD にくの ていしょく / 950円\nE やさいの ていしょく / 850円\n＊コーヒーは 200円です。",
+   "translation_vi": "Bữa trưa ở quán cà phê 「Mori」 (11:00 sáng – 3:00 chiều)\nA Cơm cà ri / 750 yên\nB Bánh sandwich và cà phê / 700 yên\nC Cơm suất cá / 900 yên (đến 1 giờ chiều)\nD Cơm suất thịt / 950 yên\nE Cơm suất rau / 850 yên\n* Cà phê giá 200 yên.\n\nCâu hỏi: Emi sẽ đến quán này lúc 1 giờ rưỡi chiều. Bạn ấy không thích bánh mì lắm. Bạn ấy muốn uống cả cà phê cùng bữa trưa. Tổng cộng tối đa 1.000 yên. Món nào phù hợp?",
+   "questions": [
+    {
+     "question_id": "Q_RQ_416_1",
+     "question_text": "エミさんは 午後 1時半に この きっさてんへ 行きます。パンは あまり すきじゃ ありません。ひるごはんと いっしょに コーヒーも 飲みたいです。ぜんぶで 1,000円までが いいです。どれが いいですか。",
+     "options": [
+      "A",
+      "B",
+      "D",
+      "E"
+     ],
+     "answer": 1,
+     "grammar_id": null,
+     "explanation_vi": "A: cà ri 750 + cà phê 200 = 950 yên ≤ 1.000 yên. B là bánh sandwich (bánh mì). C chỉ bán đến 1 giờ. D: 950 + 200 = 1.150 yên. E: 850 + 200 = 1.050 yên.",
+     "option_explanations": {
+      "1": "Đúng. Cà ri + cà phê = 950 yên, đến lúc 1:30 vẫn có.",
+      "2": "Sai. B là bánh sandwich, Emi không thích bánh mì.",
+      "3": "Sai. D cộng cà phê là 1.150 yên, quá 1.000 yên.",
+      "4": "Sai. E cộng cà phê là 1.050 yên, quá 1.000 yên."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_417",
+   "mondai_type": "information_retrieval",
+   "text": "ひがしまち スポーツ クラス\nテニス / 火よう日 / 午後 6時～8時 / 1かい 800円\nダンス / 水よう日 / 午後 5時～6時半 / 1かい 400円\nサッカー / 土よう日 / 午前 9時～11時 / 1かい 300円\nやきゅう / 日よう日 / 午後 1時～4時 / 1かい 300円\nゴルフ / 金よう日 / 午後 7時～9時 / 1かい 1,500円\n＊サッカーは 12さいまでの 子どもの クラスです。",
+   "translation_vi": "Các lớp thể thao thị trấn Higashi\nTennis / Thứ Ba / 6:00–8:00 tối / 800 yên một buổi\nNhảy / Thứ Tư / 5:00–6:30 chiều / 400 yên một buổi\nBóng đá / Thứ Bảy / 9:00–11:00 sáng / 300 yên một buổi\nBóng chày / Chủ nhật / 1:00–4:00 chiều / 300 yên một buổi\nGolf / Thứ Sáu / 7:00–9:00 tối / 1.500 yên một buổi\n* Lớp bóng đá là lớp cho trẻ em đến 12 tuổi.\n\nCâu hỏi: Ken là học sinh cấp 3, 16 tuổi. Bạn ấy đi học từ thứ Hai đến thứ Sáu, ngày nào cũng tan học lúc 4 giờ chiều. Chủ nhật hằng tuần bạn ấy có việc làm thêm. Bạn ấy muốn lớp tối đa 500 yên một buổi. Lớp nào phù hợp?",
+   "questions": [
+    {
+     "question_id": "Q_RQ_417_1",
+     "question_text": "けんさんは 16さいの 高校生です。学校は 月よう日から 金よう日までで、毎日 午後 4時に おわります。日よう日は 毎週 アルバイトが あります。1かい 500円までの クラスが いいです。どれが いいですか。",
+     "options": [
+      "テニス",
+      "ダンス",
+      "サッカー",
+      "やきゅう"
+     ],
+     "answer": 2,
+     "grammar_id": null,
+     "explanation_vi": "Tennis 800 yên, golf 1.500 yên: quá 500 yên. Bóng đá chỉ cho trẻ em đến 12 tuổi, Ken 16 tuổi. Bóng chày vào Chủ nhật, Ken đi làm thêm. Nhảy: thứ Tư 5 giờ chiều (sau giờ tan học 4 giờ), 400 yên.",
+     "option_explanations": {
+      "1": "Sai. Tennis 800 yên một buổi, quá 500 yên.",
+      "2": "Đúng. Nhảy học thứ Tư từ 5 giờ, sau khi Ken tan học; 400 yên.",
+      "3": "Sai. Bóng đá chỉ dành cho trẻ em đến 12 tuổi.",
+      "4": "Sai. Bóng chày vào Chủ nhật, Ken có việc làm thêm."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_418",
+   "mondai_type": "information_retrieval",
+   "text": "みどりまちの としょかん\nA 北としょかん / 午前 9時～午後 5時 / 休み：月よう日\nB 南としょかん / 午前 10時～午後 8時 / 休み：水よう日\nC 東としょかん / 午前 9時～午後 7時 / 休み：日よう日\nD 西としょかん / 午前 10時～午後 6時 / 休み：火よう日",
+   "translation_vi": "Các thư viện thị trấn Midori\nA Thư viện Bắc / 9:00 sáng – 5:00 chiều / Nghỉ: thứ Hai\nB Thư viện Nam / 10:00 sáng – 8:00 tối / Nghỉ: thứ Tư\nC Thư viện Đông / 9:00 sáng – 7:00 tối / Nghỉ: Chủ nhật\nD Thư viện Tây / 10:00 sáng – 6:00 chiều / Nghỉ: thứ Ba\n\nCâu hỏi: Leo muốn đến thư viện trả sách vào khoảng 6 giờ rưỡi chiều thứ Tư. Thư viện nào phù hợp?",
+   "questions": [
+    {
+     "question_id": "Q_RQ_418_1",
+     "question_text": "レオさんは 水よう日の 午後 6時半ごろ、としょかんへ 本を かえしに 行きたいです。どの としょかんが いいですか。",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "answer": 3,
+     "grammar_id": null,
+     "explanation_vi": "Cần mở cửa vào thứ Tư lúc khoảng 6:30 chiều. A đóng lúc 5 giờ, D đóng lúc 6 giờ, B nghỉ thứ Tư. C mở thứ Tư đến 7 giờ tối.",
+     "option_explanations": {
+      "1": "Sai. A đóng cửa lúc 5 giờ chiều.",
+      "2": "Sai. B mở đến 8 giờ nhưng nghỉ vào thứ Tư.",
+      "3": "Đúng. C mở thứ Tư đến 7 giờ tối.",
+      "4": "Sai. D đóng cửa lúc 6 giờ chiều."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_419",
+   "mondai_type": "information_retrieval",
+   "text": "やまの びじゅつかん\n時間：午前 9時半～午後 5時（金よう日は 午後 8時まで）\n休み：月よう日\n入る ときの お金\n大人：1,000円\n学生：600円\n子ども（12さいまで）：300円\n＊土よう日は、子どもは お金が いりません。",
+   "translation_vi": "Bảo tàng mỹ thuật Yama\nGiờ mở cửa: 9:30 sáng – 5:00 chiều (thứ Sáu đến 8:00 tối)\nNgày nghỉ: thứ Hai\nGiá vé vào cửa\nNgười lớn: 1.000 yên\nHọc sinh, sinh viên: 600 yên\nTrẻ em (đến 12 tuổi): 300 yên\n* Thứ Bảy trẻ em không mất tiền.\n\nCâu hỏi: Lisa là sinh viên đại học. Lúc 6 giờ chiều thứ Sáu, bạn ấy sẽ đi cùng em trai 5 tuổi, hai người. Hai người trả bao nhiêu tiền?",
+   "questions": [
+    {
+     "question_id": "Q_RQ_419_1",
+     "question_text": "リサさんは 大学生です。金よう日の 午後 6時に、5さいの おとうとと 二人で 行きます。二人で いくら はらいますか。",
+     "options": [
+      "600円",
+      "1,200円",
+      "1,300円",
+      "900円"
+     ],
+     "answer": 4,
+     "grammar_id": null,
+     "explanation_vi": "Thứ Sáu mở đến 8 giờ nên 6 giờ vẫn vào được. Lisa là sinh viên: 600 yên; em trai 5 tuổi là trẻ em: 300 yên (miễn phí chỉ áp dụng thứ Bảy). Tổng 900 yên.",
+     "option_explanations": {
+      "1": "Sai. 600 yên là khi em trai được miễn phí, nhưng miễn phí chỉ vào thứ Bảy.",
+      "2": "Sai. 1.200 yên là tính cả hai người giá sinh viên; em trai 5 tuổi trả giá trẻ em.",
+      "3": "Sai. 1.300 yên là tính Lisa giá người lớn; Lisa là sinh viên (600 yên).",
+      "4": "Đúng. 600 + 300 = 900 yên."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  },
+  {
+   "passage_id": "PSG_RQ_420",
+   "mondai_type": "information_retrieval",
+   "text": "さくらまちの 日本語 クラス\nA かんじ クラス / 日よう日 / 午前 10時～11時半 / としょかん 2かい\nB はじめての 日本語 / 月よう日・木よう日 / 午前 10時～11時半 / 駅の 前の ビル 3かい\nC かんじ クラス / 水よう日 / 午後 7時～8時半 / 駅の 前の ビル 3かい\nD 話す れんしゅう / 火よう日・金よう日 / 午後 6時～7時半 / としょかん 2かい\nE はじめての 日本語 / 土よう日 / 午後 2時～3時半 / さくら小学校",
+   "translation_vi": "Các lớp tiếng Nhật thị trấn Sakura\nA Lớp chữ Hán / Chủ nhật / 10:00–11:30 sáng / Thư viện tầng 2\nB Tiếng Nhật nhập môn / Thứ Hai, thứ Năm / 10:00–11:30 sáng / Tòa nhà trước ga tầng 3\nC Lớp chữ Hán / Thứ Tư / 7:00–8:30 tối / Tòa nhà trước ga tầng 3\nD Luyện nói / Thứ Ba, thứ Sáu / 6:00–7:30 tối / Thư viện tầng 2\nE Tiếng Nhật nhập môn / Thứ Bảy / 2:00–3:30 chiều / Trường tiểu học Sakura\n\nCâu hỏi: Daniel nói được một chút tiếng Nhật nhưng hoàn toàn không biết chữ Hán. Anh ấy muốn học chữ Hán. Từ thứ Hai đến thứ Sáu, ngày nào anh ấy cũng làm việc ở công ty đến 8 giờ tối. Lớp nào phù hợp?",
+   "questions": [
+    {
+     "question_id": "Q_RQ_420_1",
+     "question_text": "ダニエルさんは 日本語を 少し 話す ことが できますが、かんじは ぜんぜん わかりません。かんじを べんきょうしたいです。月よう日から 金よう日まで、毎日 午後 8時まで 会社で しごとを して います。どれが いいですか。",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+     ],
+     "answer": 1,
+     "grammar_id": null,
+     "explanation_vi": "Muốn học chữ Hán → chỉ A hoặc C. C học thứ Tư 7 giờ tối, lúc Daniel còn làm việc (đến 8 giờ). A học sáng Chủ nhật → phù hợp.",
+     "option_explanations": {
+      "1": "Đúng. A là lớp chữ Hán vào sáng Chủ nhật, Daniel không phải đi làm.",
+      "2": "Sai. B là lớp nhập môn (không phải lớp chữ Hán) và học sáng thứ Hai, thứ Năm khi Daniel đi làm.",
+      "3": "Sai. C là lớp chữ Hán nhưng học thứ Tư 7 giờ tối, Daniel còn làm việc đến 8 giờ.",
+      "4": "Sai. D là lớp luyện nói, không phải chữ Hán, và học tối ngày thường."
+     }
+    }
+   ],
+   "audited": true,
+   "excluded": false,
+   "review_log": []
+  }
+ ]
+}

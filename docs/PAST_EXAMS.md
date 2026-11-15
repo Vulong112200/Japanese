@@ -36,6 +36,7 @@ Drive: thư mục "ĐỀ THI" `1XQr4kpH9YtLdU_yasMmpvrAdiWlErGpF` (xem `data/sou
 5. **Gộp**: `cd backend && .venv/Scripts/python -X utf8 scripts/merge_past_exams.py [id…]` in mọi câu lệch / lỗi chép.
 6. **Người duyệt cuối** ghi quyết định vào `review.json`: `{qid: {seikai?, note, patch?, drop?}}`. `patch: {"decided_by": "user"}` = người dùng đã quyết (import thành `verified_by='user'`). `drop: true` = bỏ câu (mất trang).
 7. `hub import` → `pytest` → `hub report`.
+8. **Mốc thời gian câu nghe** (ADR-025): chạy Whisper cho audio của đề (`uv run --python 3.13 --with faster-whisper --with numpy python data/raw/PAST_EXAM_WORK/asr/run_asr.py data/raw data/raw/PAST_EXAM_WORK/asr SRC_DRIVE_EXAM_N5_<id>`), rồi `cd backend && .venv/Scripts/python -X utf8 scripts/listening_timestamps.py` (in số câu có mốc từng đề) → `hub import`.
 
 Quy tắc trạng thái: `verified` (`verified_by='ai'`) chỉ khi key = A = B (`examlib.consensus_status`); lệch → `needs_review` + issue `answer_key_disputed`, trừ khi người dùng đã quyết.
 

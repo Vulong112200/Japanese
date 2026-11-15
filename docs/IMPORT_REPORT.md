@@ -1,13 +1,13 @@
 # IMPORT REPORT
 
-Tạo tự động bởi `python -m hub report` lúc 2026-11-15T13:20:25+07:00. Số liệu đọc từ `data/database/hub.sqlite`.
+Tạo tự động bởi `python -m hub report` lúc 2026-11-15T13:48:32+07:00. Số liệu đọc từ `data/database/hub.sqlite`.
 
 Thư mục đã kiểm tra: `D:\Japanese\docs\N5\Exam`, `D:\Japanese\docs\N5\flashcards` (truy cập trực tiếp từ Windows, không qua WSL/Docker).
 
 ## Tóm tắt
 - Tệp cục bộ đã đăng ký: **57**
 - Từ vựng (lớp NORMALIZED): {"verified": 1253} — **0 mục được tự động xác minh**.
-- Câu hỏi đề mẫu: {"needs_review": 29, "rejected": 275, "verified": 1363}
+- Câu hỏi đề mẫu: {"needs_review": 29, "rejected": 276, "verified": 1504}
 - Trạng thái xử lý `needs_review` = đã nhập nhưng còn chờ người dùng duyệt (không phải lỗi).
 
 ## Chi tiết từng tệp
@@ -61,7 +61,7 @@ Thư mục đã kiểm tra: `D:\Japanese\docs\N5\Exam`, `D:\Japanese\docs\N5\fla
 | flashcards_Bai25.csv | csv | 4779 | docs/N5/flashcards/flashcards_Bai25.csv | csv |  |  |  | raw 16 / từ vựng 16 | needs_review |  |  |
 | flashcards_Từ Vựng Kaiwa-Hội thoại giao tiếp.csv | csv | 21781 | docs/N5/flashcards/flashcards_Từ Vựng Kaiwa-Hội thoại giao tiếp.csv | csv |  |  |  | raw 60 / từ vựng 60 | needs_review |  |  |
 | flashcards_Chuyên Đề Số Đếm & Ngày Tháng N5.csv | csv | 1901 | docs/N5/flashcards/flashcards_Chuyên Đề Số Đếm & Ngày Tháng N5.csv | csv |  |  |  | raw 16 / từ vựng 0 / RAW-only 16 | needs_review |  |  |
-| Cẩm Nang Hệ Thống Ngữ Pháp JLPT N5 Toàn Diện (Bài 1 - 25).docx | docx | 24240 | docs/N5/SourceDocs/Cẩm Nang Hệ Thống Ngữ Pháp JLPT N5 Toàn Diện (Bài 1 - 25).docx | docx |  | 399 |  | raw 0 / từ vựng 0 | pending |  |  |
+| Cẩm Nang Hệ Thống Ngữ Pháp JLPT N5 Toàn Diện (Bài 1 - 25).docx | docx | 24240 | docs/N5/SourceDocs/Cẩm Nang Hệ Thống Ngữ Pháp JLPT N5 Toàn Diện (Bài 1 - 25).docx | docx |  | 541 |  | raw 0 / từ vựng 0 | pending |  |  |
 | N5Sample.mp3 | mp3 | 7584313 | docs/N5/Exam/20260705/N5Sample.mp3 | audio |  | 8 | 1 | raw 0 / từ vựng 0 | needs_review |  |  |
 | N5-kaitou.pdf | pdf | 371599 | docs/N5/Exam/20260705/N5-kaitou.pdf | pdf | 3 |  |  | raw 3 / từ vựng 0 | needs_review |  |  |
 | N5-mondai.pdf | pdf | 4443728 | docs/N5/Exam/20260705/N5-mondai.pdf | pdf | 22 | 29 |  | raw 51 / từ vựng 0 | needs_review |  |  |
