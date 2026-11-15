@@ -7,6 +7,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from hub import api, repo
+from hub.ingestion import knowledge
 from hub.learning import exam as examlib
 from hub.learning import question_gen as qg
 from hub.validation import reference as ref
@@ -244,3 +245,80 @@ def test_past_papers_filter_and_exam_mode_hide_answers(client):
         assert "option_explanations" not in q["extra"] and "expected_sequence" not in q["extra"]
         if q["extra"].get("options_audio_only"):
             assert all(o["text"] == "" for o in q["options"])
+
+
+# ---------------------------------------------------------------- agent-authored grammar bank (ADR-020)
+GQ = {"question_id": "Q_GQ_T", "grammar_id": "GRA_000001", "mondai_type": "sentence_composition",
+      "question_text": "つくえの ＿＿ ＿＿ ★ ＿＿ あります。", "options": ["に", "上", "本", "が"], "answer": 3,
+      "star_position": 3, "expected_sequence": [2, 1, 3, 4], "explanation_vi": "x",
+      "option_explanations": {"1": "a", "2": "b", "3": "c", "4": "d"}}
+
+
+def _codes(q, past=frozenset()):
+    return {c for c, *_ in knowledge.check_grammar_question(q, {"GRA_000001"}, set("上本"), set(past))}
+
+
+def test_grammar_question_rules():
+    assert _codes(GQ) == set()
+    assert "star_answer_mismatch" in _codes({**GQ, "answer": 1})
+    assert "star_position_mismatch" in _codes({**GQ, "star_position": 2, "expected_sequence": [2, 3, 1, 4]})
+    assert "slot_count" in _codes({**GQ, "question_text": "つくえの ＿＿ ★ ＿＿ あります。"})
+    assert "bad_sequence" in _codes({**GQ, "expected_sequence": [2, 2, 3, 4]})
+    assert "bad_options" in _codes({**GQ, "options": ["に", "に", "本", "が"]})
+    assert "grammar_not_verified" in _codes({**GQ, "grammar_id": "GRA_999999"})
+    assert "kanji_outside_n5" in _codes({**GQ, "question_text": "机の ＿＿ ＿＿ ★ ＿＿ あります。"})
+    assert "copied_from_past_exam" in _codes(GQ, {knowledge.jp_key("つくえの ＿＿ ＿＿ ★ ＿＿ あります。")})
+    form = {**GQ, "mondai_type": "grammar_form", "question_text": "つくえの 上（　　） 本が あります。",
+            "star_position": None, "expected_sequence": None, "answer": 1}
+    assert _codes(form) == set() and "blank_count" in _codes({**form, "question_text": "つくえの 上 本が あります。"})
+
+
+def test_score_reports_weak_grammar_points():
+    qs = [{"question_id": "g1", "section": "grammar_reading", "mondai_no": 1, "correct_answer": ["1"],
+           "grammar_id": "GRA_000002", "grammar_pattern": "P2"},
+          {"question_id": "g2", "section": "grammar_reading", "mondai_no": 2, "correct_answer": ["1"],
+           "grammar_id": "GRA_000002", "grammar_pattern": "P2"},
+          {"question_id": "g3", "section": "grammar_reading", "mondai_no": 1, "correct_answer": ["1"],
+           "grammar_id": "GRA_000003", "grammar_pattern": "P3"}]
+    w = examlib.score(qs, {"g1": ["1"], "g2": ["2"], "g3": ["1"]})["weak_grammar_points"]
+    assert [(x["grammar_id"], x["pattern"], x["correct"], x["total"]) for x in w] == [("GRA_000002", "P2", 1, 2)]
+
+
+def test_grammar_bank_is_consensus_backed(imported):
+    conn, result = imported
+    st = result["grammar_questions"]
+    assert st["verified"] >= 300, st
+    e = conn.execute("SELECT * FROM exams WHERE exam_id=?", (knowledge.GQ_EXAM,)).fetchone()
+    assert e["is_official"] == 0 and e["source_type"] == "AI_GENERATED" and e["exam_type"] == "question_bank"
+    review = json.loads(knowledge.GRAMMAR_Q_REVIEW.read_text(encoding="utf-8"))
+    verified_grammar = {r[0] for r in conn.execute("SELECT id FROM grammar WHERE verification_status='verified'")}
+    rows = conn.execute("SELECT * FROM questions WHERE exam_id=? AND verification_status='verified'",
+                        (knowledge.GQ_EXAM,)).fetchall()
+    assert {r["mondai_type"] for r in rows} == {"grammar_form", "sentence_composition"}
+    for q in rows:
+        extra, ans = json.loads(q["extra_json"]), int(json.loads(q["correct_answer"])[0])
+        assert extra["grammar_id"] in verified_grammar and len(extra["option_explanations"]) == 4
+        r = review[q["question_id"]]
+        assert r["solver_a"] == r["solver_b"] == ans, q["question_id"]
+        if q["mondai_type"] == "sentence_composition":
+            assert sorted(extra["expected_sequence"]) == [1, 2, 3, 4]
+            assert extra["expected_sequence"][extra["star_position"] - 1] == ans
+        assert not conn.execute("SELECT 1 FROM validation_issues WHERE entity_type='question' AND entity_id=? "
+                                "AND resolved=0 AND severity IN ('error','warning')", (q["question_id"],)).fetchone()
+
+
+def test_grammar_bank_exam_mode_hides_answers_and_reports_weak_points(client):
+    c, conn = client
+    a = c.post("/api/attempts", json={"mode": "exam", "source": "generated", "mondai_type": "sentence_composition",
+                                      "limit": 10, "timing": "none"}).json()
+    assert a["questions"] and all(q["exam_id"] == knowledge.GQ_EXAM for q in a["questions"])
+    for q in a["questions"]:
+        assert "correct_answer" not in q and "explanation_vi" not in q
+        assert not {"option_explanations", "expected_sequence", "grammar_pattern"} & set(q["extra"])
+        assert q["extra"]["star_position"] in (1, 2, 3, 4)
+    for q in a["questions"]:                      # answer everything wrong
+        wrong = next(o["option_id"] for o in q["options"] if [o["option_id"]] != _correct(conn, q["question_id"]))
+        c.put(f"/api/attempts/{a['attempt_id']}/answers/{q['question_id']}", json={"answer": [wrong]})
+    done = c.post(f"/api/attempts/{a['attempt_id']}/submit").json()
+    assert done["result"]["weak_grammar_points"] and done["result"]["weak_grammar_points"][0]["pattern"]
+    assert all("expected_sequence" in q["extra"] for q in done["questions"])

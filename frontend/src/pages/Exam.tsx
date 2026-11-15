@@ -391,7 +391,9 @@ function QuestionCard({ q, a, pos, onChoose, onFlag, practice, review }: {
       {revealed && (
         <div className="space-y-2 rounded-lg bg-slate-50 p-3 text-sm dark:bg-slate-800/60">
           <p><b>{!picked.length ? 'Chưa trả lời.' : st?.is_correct ? '✓ Đúng.' : '✗ Sai.'}</b> Đáp án: <b>{q.correct_answer!.join(', ')}</b></p>
+          {Array.isArray(q.extra.expected_sequence) && <p>Thứ tự đúng: <b>{q.extra.expected_sequence.join(' → ')}</b></p>}
           {q.extra.expected_sequence_note && <p className="jp">{q.extra.expected_sequence_note}</p>}
+          {q.extra.grammar_pattern && <p>Điểm ngữ pháp: <span className="jp font-medium">{q.extra.grammar_pattern}</span></p>}
           {q.explanation_vi && <p>{q.explanation_vi}{q.explanation_origin === 'AI_GENERATED' &&
             <span className="ml-1 text-xs text-slate-500">(giải thích do AI soạn)</span>}</p>}
           {q.transcript && <details><summary className="cursor-pointer text-slate-500">Script phần nghe</summary>
@@ -441,6 +443,8 @@ function Result({ a }: { a: Attempt }) {
           <span>Độ chính xác phần nghe: <b>{r.listening_accuracy == null ? 'không có phần nghe' : `${r.listening_accuracy}%`}</b></span>
           {r.weak_vocabulary_lessons.length > 0 && <span>Từ vựng yếu: {r.weak_vocabulary_lessons.map(w =>
             <Tag key={w.lesson_number} tone="rose">Bài {w.lesson_number}: {w.correct}/{w.total}</Tag>)}</span>}
+          {r.weak_grammar_points?.length > 0 && <span>Ngữ pháp yếu: {r.weak_grammar_points.map(w =>
+            <Tag key={w.grammar_id} tone="rose"><span className="jp">{w.pattern ?? w.grammar_id}</span>: {w.correct}/{w.total}</Tag>)}</span>}
         </div>
       </Panel>
 

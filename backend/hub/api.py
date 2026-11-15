@@ -368,7 +368,7 @@ def stats(conn=Depends(get_conn)):
 # ---------- mock exam (spec Part 9, 10) ----------
 PUBLIC_EXTRA = ("target", "star_position", "options_are_glyph_images", "options_are_pictures", "options_audio_only",
                 "has_illustration")
-REVEAL_EXTRA = ("option_explanations", "expected_sequence", "expected_sequence_note")
+REVEAL_EXTRA = ("option_explanations", "expected_sequence", "expected_sequence_note", "grammar_id", "grammar_pattern")
 
 
 SOURCE_EXAM_TYPE = {"official": "official_sample", "past": "past_exam", "generated": "question_bank"}
@@ -577,7 +577,8 @@ def submit(attempt_id: str, conn=Depends(get_conn)):
     qs = []
     for r in conn.execute(f"SELECT * FROM questions WHERE question_id IN ({','.join('?' * len(ids))})", ids):
         q = decode(dict(r))
-        qs.append({**q, "lesson_number": (q["extra_json"] or {}).get("lesson_number")})
+        extra = q["extra_json"] or {}
+        qs.append({**q, **{k: extra.get(k) for k in ("lesson_number", "grammar_id", "grammar_pattern")}})
     answers = {k: v["answer"] for k, v in repo.attempt_answers(conn, attempt_id).items()}
     result = examlib.score(qs, answers)
     result["readiness"] = examlib.readiness(result["by_section"])

@@ -1,0 +1,5493 @@
+{
+ "Q_GQ_000001_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000001_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000001_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   3,
+   1,
+   2,
+   4
+  ],
+  "seq_b": [
+   3,
+   1,
+   2,
+   4
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000002_1": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000002_2": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000002_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   1,
+   4,
+   2,
+   3
+  ],
+  "seq_b": [
+   1,
+   4,
+   2,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000003_1": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000003_2": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000003_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   2,
+   3,
+   1,
+   4
+  ],
+  "seq_b": [
+   2,
+   3,
+   1,
+   4
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000004_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000004_2": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000004_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   1,
+   4,
+   3,
+   2
+  ],
+  "seq_b": [
+   1,
+   4,
+   3,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000005_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000005_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000005_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   3,
+   4,
+   1,
+   2
+  ],
+  "seq_b": [
+   3,
+   4,
+   1,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000006_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000006_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000006_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   3,
+   1,
+   2,
+   4
+  ],
+  "seq_b": [
+   3,
+   1,
+   2,
+   4
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000007_1": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000007_2": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000007_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   1,
+   4,
+   3,
+   2
+  ],
+  "seq_b": [
+   1,
+   4,
+   3,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000008_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000008_2": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000008_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   4,
+   1,
+   2,
+   3
+  ],
+  "seq_b": [
+   4,
+   1,
+   2,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000009_1": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000009_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000009_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   1,
+   4,
+   3,
+   2
+  ],
+  "seq_b": [
+   1,
+   4,
+   3,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000010_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000010_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000010_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "seq_b": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000011_1": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000011_2": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000011_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   2,
+   3,
+   4,
+   1
+  ],
+  "seq_b": [
+   2,
+   3,
+   4,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000012_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000012_2": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000012_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   1,
+   4,
+   2,
+   3
+  ],
+  "seq_b": [
+   1,
+   4,
+   2,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000013_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000013_2": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000013_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   1,
+   4,
+   3,
+   2
+  ],
+  "seq_b": [
+   1,
+   4,
+   3,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000014_1": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000014_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000014_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "seq_b": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000015_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000015_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000015_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   4,
+   1,
+   3,
+   2
+  ],
+  "seq_b": [
+   4,
+   1,
+   3,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000016_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000016_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000016_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   4,
+   2,
+   3,
+   1
+  ],
+  "seq_b": [
+   4,
+   2,
+   3,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000017_1": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000017_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000017_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   2,
+   1,
+   3,
+   4
+  ],
+  "seq_b": [
+   2,
+   1,
+   3,
+   4
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000018_1": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000018_2": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000018_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   2,
+   3,
+   4,
+   1
+  ],
+  "seq_b": [
+   2,
+   3,
+   4,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000019_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000019_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000019_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   1,
+   4,
+   3,
+   2
+  ],
+  "seq_b": [
+   1,
+   4,
+   3,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000020_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000020_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000020_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   1,
+   4,
+   3,
+   2
+  ],
+  "seq_b": [
+   1,
+   4,
+   3,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000021_1": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000021_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000021_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "seq_b": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000022_1": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000022_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000022_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   1,
+   3,
+   2,
+   4
+  ],
+  "seq_b": [
+   1,
+   3,
+   2,
+   4
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000023_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000023_2": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000023_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   3,
+   2,
+   4,
+   1
+  ],
+  "seq_b": [
+   3,
+   2,
+   4,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000024_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000024_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000024_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   1,
+   3,
+   2,
+   4
+  ],
+  "seq_b": [
+   1,
+   3,
+   2,
+   4
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000025_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000025_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000025_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "seq_b": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000026_1": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000026_2": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000026_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   1,
+   2,
+   4,
+   3
+  ],
+  "seq_b": [
+   1,
+   2,
+   4,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000027_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000027_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000027_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   2,
+   3,
+   4,
+   1
+  ],
+  "seq_b": [
+   2,
+   3,
+   4,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000028_1": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000028_2": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000028_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "seq_b": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000029_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000029_2": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000029_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   2,
+   3,
+   4,
+   1
+  ],
+  "seq_b": [
+   2,
+   3,
+   4,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000030_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000030_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000030_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   3,
+   2,
+   4,
+   1
+  ],
+  "seq_b": [
+   3,
+   2,
+   4,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000031_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000031_2": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000031_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   4,
+   2,
+   1,
+   3
+  ],
+  "seq_b": [
+   4,
+   2,
+   1,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000032_1": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000032_2": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000032_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   4,
+   2,
+   3,
+   1
+  ],
+  "seq_b": [
+   4,
+   2,
+   3,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000033_1": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000033_2": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000033_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   3,
+   4,
+   1,
+   2
+  ],
+  "seq_b": [
+   3,
+   4,
+   1,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000034_1": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000034_2": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000034_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "seq_b": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000035_1": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000035_2": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000035_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   3,
+   2,
+   4,
+   1
+  ],
+  "seq_b": [
+   3,
+   2,
+   4,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000036_1": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000036_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000036_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   3,
+   1,
+   4,
+   2
+  ],
+  "seq_b": [
+   3,
+   1,
+   4,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000037_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000037_2": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000037_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   3,
+   4,
+   2,
+   1
+  ],
+  "seq_b": [
+   3,
+   4,
+   2,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000038_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000038_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000038_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "seq_b": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000039_1": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000039_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000039_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "seq_b": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000040_1": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000040_2": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000040_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "seq_b": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000041_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000041_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000041_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   3,
+   2,
+   4,
+   1
+  ],
+  "seq_b": [
+   3,
+   2,
+   4,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000042_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000042_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000042_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "seq_b": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000043_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000043_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000043_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   3,
+   1,
+   4,
+   2
+  ],
+  "seq_b": [
+   3,
+   1,
+   4,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": "Thứ tự 1-3-4-2 (へやは 安いですが、あまり ひろく ないです) cũng tự nhiên nhưng ★ vẫn là 4",
+  "issue_b": null,
+  "round": "re-solved after final reviewer edit",
+  "previous": {
+   "solver_a": 3,
+   "solver_b": 3,
+   "seq_a": [
+    3,
+    1,
+    4,
+    2
+   ],
+   "seq_b": [
+    3,
+    1,
+    4,
+    2
+   ],
+   "alt_a": [
+    1
+   ],
+   "alt_b": [
+    1
+   ],
+   "issue_a": "Thứ tự khác cũng tự nhiên: へやは 安いですが、あまり ひろく ないです (★=へやは) → hai đáp án.",
+   "issue_b": "「へやは 安いですが、あまり ひろく ないです」 cũng hoàn toàn tự nhiên → ★ có thể là へやは. Không có đáp án duy nhất."
+  }
+ },
+ "Q_GQ_000044_1": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000044_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000044_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   3,
+   2,
+   4,
+   1
+  ],
+  "seq_b": [
+   3,
+   2,
+   4,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000045_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000045_2": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000045_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   3,
+   4,
+   1,
+   2
+  ],
+  "seq_b": [
+   3,
+   4,
+   1,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000046_1": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000046_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000046_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   3,
+   4,
+   2,
+   1
+  ],
+  "seq_b": [
+   3,
+   4,
+   2,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000047_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000047_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000047_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "seq_b": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000048_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000048_2": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000048_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "seq_b": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000049_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": "「日本語が たくさん わかります」 không tự nhiên; đáp án 「だいたい」 đúng, nhưng phương án nhiễu たくさん có thể khiến người học hiểu sai."
+ },
+ "Q_GQ_000049_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000049_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "seq_b": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000050_1": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000050_2": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000050_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   4,
+   2,
+   3,
+   1
+  ],
+  "seq_b": [
+   4,
+   2,
+   3,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000051_1": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000051_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000051_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   3,
+   1,
+   4,
+   2
+  ],
+  "seq_b": [
+   3,
+   1,
+   4,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000052_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000052_2": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000052_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "seq_b": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000053_1": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000053_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000053_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   3,
+   1,
+   4,
+   2
+  ],
+  "seq_b": [
+   3,
+   1,
+   4,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000054_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000054_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000054_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "seq_b": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000055_1": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000055_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000055_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "seq_b": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000056_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000056_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000056_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   3,
+   4,
+   2,
+   1
+  ],
+  "seq_b": [
+   3,
+   4,
+   2,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000057_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000057_2": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000057_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   3,
+   1,
+   4,
+   2
+  ],
+  "seq_b": [
+   3,
+   1,
+   4,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000058_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000058_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000058_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "seq_b": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000059_1": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000059_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000059_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "seq_b": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "alt_a": [
+   1
+  ],
+  "alt_b": [
+   1
+  ],
+  "issue_a": "Thứ tự khác cũng tự nhiên: えいがを 見に 1か月に 何かい 行きますか (★=見に) → hai đáp án.",
+  "issue_b": "「えいがを 見に 1か月に 何かい 行きますか」 cũng đúng ngữ pháp (見に ở ô ★); nên đổi vị trí ★ hoặc bỏ 「えいがを」 khỏi câu để chỉ còn 1 thứ tự."
+ },
+ "Q_GQ_000060_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000060_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000060_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   3,
+   4,
+   2,
+   1
+  ],
+  "seq_b": [
+   3,
+   4,
+   2,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000061_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000061_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000061_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   3,
+   4,
+   1,
+   2
+  ],
+  "seq_b": [
+   3,
+   4,
+   1,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000062_1": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000062_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000062_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   3,
+   2,
+   4,
+   1
+  ],
+  "seq_b": [
+   3,
+   2,
+   4,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000063_1": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000063_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000063_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   4,
+   1,
+   3,
+   2
+  ],
+  "seq_b": [
+   4,
+   1,
+   3,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": "Thứ tự 1-3-4-2 (電車より ひこうきは ずっと) cũng đúng nhưng ★ vẫn là 2",
+  "issue_b": null,
+  "round": "re-solved after final reviewer edit",
+  "previous": {
+   "solver_a": 3,
+   "solver_b": 3,
+   "seq_a": [
+    4,
+    1,
+    3,
+    2
+   ],
+   "seq_b": [
+    4,
+    1,
+    3,
+    2
+   ],
+   "alt_a": [
+    4
+   ],
+   "alt_b": [
+    4
+   ],
+   "issue_a": "Thứ tự khác cũng ngữ pháp: 電車より ひこうきは ずっと はやいです (★=ひこうきは) → hai đáp án.",
+   "issue_b": "Có thể xếp 「電車より ひこうきは ずっと はやいです」 (ひこうきは ở ô ★) cũng đúng ngữ pháp, nên có 2 đáp án."
+  }
+ },
+ "Q_GQ_000064_1": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000064_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000064_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   3,
+   4,
+   2,
+   1
+  ],
+  "seq_b": [
+   3,
+   4,
+   2,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000065_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000065_2": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000065_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "seq_b": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000066_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000066_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000066_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "seq_b": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000067_1": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000067_2": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000067_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "seq_b": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000068_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000068_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000068_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   3,
+   2,
+   4,
+   1
+  ],
+  "seq_b": [
+   3,
+   2,
+   4,
+   1
+  ],
+  "alt_a": [
+   1
+  ],
+  "alt_b": [
+   1
+  ],
+  "issue_a": "Hai thứ tự đều tự nhiên: 「えきの まえの みせへ パンを 買いに」 (★=みせへ) và 「パンを 買いに えきの まえの みせへ」 (★=買いに) → ★ không duy nhất.",
+  "issue_b": "「パンを 買いに えきの まえの みせへ 行きます」 cũng tự nhiên → ô ★ (ô 2) có thể là 買いに. Không có đáp án duy nhất."
+ },
+ "Q_GQ_000069_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000069_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000069_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "seq_b": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "alt_a": [
+   4
+  ],
+  "alt_b": [
+   4
+  ],
+  "issue_a": "Thứ tự khác cũng tự nhiên: あたたかい ものを 何か 食べましょう (★=あたたかい) → hai đáp án.",
+  "issue_b": "「あたたかい ものを 何か 食べましょう」 cũng tự nhiên (lượng từ 何か đặt sau) → ★ có thể là あたたかい. Nên đổi vị trí ★ hoặc cố định 何か."
+ },
+ "Q_GQ_000070_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000070_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000070_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   2,
+   1,
+   4,
+   3
+  ],
+  "seq_b": [
+   2,
+   1,
+   4,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000071_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000071_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000071_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   2,
+   1,
+   4,
+   3
+  ],
+  "seq_b": [
+   2,
+   1,
+   4,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000072_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000072_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000072_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   1,
+   4,
+   3,
+   2
+  ],
+  "seq_b": [
+   1,
+   4,
+   3,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000073_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000073_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000073_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   1,
+   2,
+   4,
+   3
+  ],
+  "seq_b": [
+   1,
+   2,
+   4,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000074_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000074_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000074_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "seq_b": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000075_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000075_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000075_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "seq_b": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000076_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000076_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000076_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "seq_b": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000077_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000077_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000077_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   4,
+   1,
+   3,
+   2
+  ],
+  "seq_b": [
+   4,
+   1,
+   3,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000078_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000078_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000078_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   2,
+   1,
+   3,
+   4
+  ],
+  "seq_b": [
+   2,
+   1,
+   3,
+   4
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000079_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000079_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000079_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   4,
+   3,
+   2,
+   1
+  ],
+  "seq_b": [
+   4,
+   3,
+   2,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000080_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000080_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000080_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "seq_b": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000081_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000081_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000081_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   3,
+   1,
+   4,
+   2
+  ],
+  "seq_b": [
+   3,
+   1,
+   4,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000082_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000082_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000082_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   1,
+   3,
+   4,
+   2
+  ],
+  "seq_b": [
+   1,
+   3,
+   4,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000083_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000083_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000083_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   1,
+   4,
+   3,
+   2
+  ],
+  "seq_b": [
+   1,
+   4,
+   3,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000084_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000084_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000084_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   3,
+   1,
+   2,
+   4
+  ],
+  "seq_b": [
+   3,
+   1,
+   2,
+   4
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000085_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000085_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000085_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   4,
+   1,
+   2,
+   3
+  ],
+  "seq_b": [
+   4,
+   1,
+   2,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000086_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000086_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000086_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   2,
+   3,
+   1,
+   4
+  ],
+  "seq_b": [
+   2,
+   3,
+   1,
+   4
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000087_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000087_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000087_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   3,
+   4,
+   2,
+   1
+  ],
+  "seq_b": [
+   3,
+   4,
+   2,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "round": "re-solved after final reviewer edit",
+  "previous": {
+   "solver_a": 3,
+   "solver_b": 3,
+   "seq_a": [
+    2,
+    4,
+    3,
+    1
+   ],
+   "seq_b": [
+    2,
+    4,
+    3,
+    1
+   ],
+   "alt_a": [
+    2
+   ],
+   "alt_b": [
+    2
+   ],
+   "issue_a": "Trả lời いいえ cho câu hỏi phủ định サッカーは しませんか mâu thuẫn với サッカーは しません (nên dùng ええ/はい); và thứ tự テニスは しませんが、サッカーは よく します (★=サッカーは) lại hợp logic với いいえ → hai đáp án.",
+   "issue_b": "Câu hỏi phủ định 「サッカーはしませんか」 mà trả lời 「いいえ」 trong tiếng Nhật nghĩa là \"không, tôi CÓ chơi\" → mâu thuẫn với 「サッカーはしませんが」. Thứ tự 「テニスはしませんが、サッカーはよくします」 cũng đúng ngữ pháp (★=2) và khớp với いいえ hơn. Nên đổi A thành 「サッカーをしますか」 hoặc B thành 「はい」."
+  }
+ },
+ "Q_GQ_000088_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000088_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000088_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   4,
+   2,
+   3,
+   1
+  ],
+  "seq_b": [
+   4,
+   2,
+   3,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000089_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000089_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000089_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "seq_b": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000090_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000090_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000090_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   1,
+   2,
+   4,
+   3
+  ],
+  "seq_b": [
+   1,
+   2,
+   4,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000091_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000091_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000091_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   3,
+   1,
+   2,
+   4
+  ],
+  "seq_b": [
+   3,
+   1,
+   2,
+   4
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000092_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000092_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000092_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   3,
+   1,
+   4,
+   2
+  ],
+  "seq_b": [
+   3,
+   1,
+   4,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000093_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000093_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000093_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "seq_b": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000094_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000094_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000094_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   4,
+   2,
+   3,
+   1
+  ],
+  "seq_b": [
+   4,
+   2,
+   3,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000095_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000095_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000095_3": {
+  "solver_a": 1,
+  "solver_b": 3,
+  "seq_a": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "seq_b": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "alt_a": [
+   3
+  ],
+  "alt_b": [],
+  "issue_a": "Thứ tự khác cũng tự nhiên: わたしは 一ども ひこうきに のった ことが ありません (★=のった) → hai đáp án.",
+  "issue_b": null
+ },
+ "Q_GQ_000096_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000096_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000096_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   2,
+   1,
+   3,
+   4
+  ],
+  "seq_b": [
+   2,
+   1,
+   3,
+   4
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000097_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000097_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000097_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   1,
+   2,
+   4,
+   3
+  ],
+  "seq_b": [
+   1,
+   2,
+   4,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000098_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000098_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000098_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   1,
+   4,
+   2,
+   3
+  ],
+  "seq_b": [
+   4,
+   1,
+   2,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000099_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000099_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000099_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   3,
+   1,
+   2,
+   4
+  ],
+  "seq_b": [
+   3,
+   1,
+   2,
+   4
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000100_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000100_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000100_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   3,
+   4,
+   2,
+   1
+  ],
+  "seq_b": [
+   3,
+   4,
+   2,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000101_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000101_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000101_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   1,
+   3,
+   4,
+   2
+  ],
+  "seq_b": [
+   1,
+   3,
+   4,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000102_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000102_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000102_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   4,
+   2,
+   3,
+   1
+  ],
+  "seq_b": [
+   4,
+   2,
+   3,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000103_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000103_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000103_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   1,
+   4,
+   2,
+   3
+  ],
+  "seq_b": [
+   1,
+   4,
+   2,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [
+   3
+  ],
+  "issue_a": null,
+  "issue_b": "「土よう日に おまつりが 駅の前で あります」 cũng đúng ngữ pháp và chấp nhận được → ★ có thể là が. Nên đổi vị trí ★."
+ },
+ "Q_GQ_000104_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000104_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000104_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "seq_b": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000105_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000105_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000105_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   3,
+   2,
+   4,
+   1
+  ],
+  "seq_b": [
+   3,
+   2,
+   4,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000106_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000106_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": "～ないと (lược いけない) dạng nói tắt thường xếp N4, hơi vượt N5.",
+  "issue_b": null
+ },
+ "Q_GQ_000106_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "seq_b": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": "Cuối câu 「のらないと。」 (lược いけない) là văn nói, mẫu ～ないと thuộc N4, hơi vượt N5."
+ },
+ "Q_GQ_000107_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000107_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000107_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "seq_b": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000108_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000108_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000108_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   1,
+   2,
+   4,
+   3
+  ],
+  "seq_b": [
+   1,
+   2,
+   4,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000109_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000109_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000109_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   3,
+   1,
+   2,
+   4
+  ],
+  "seq_b": [
+   3,
+   1,
+   2,
+   4
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000110_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000110_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000110_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "seq_b": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000111_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000111_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000111_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   2,
+   3,
+   4,
+   1
+  ],
+  "seq_b": [
+   2,
+   3,
+   4,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000112_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000112_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000112_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   3,
+   4,
+   2,
+   1
+  ],
+  "seq_b": [
+   3,
+   4,
+   2,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000113_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000113_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000113_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   4,
+   1,
+   3,
+   2
+  ],
+  "seq_b": [
+   4,
+   1,
+   3,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000114_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000114_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000114_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   1,
+   4,
+   2,
+   3
+  ],
+  "seq_b": [
+   1,
+   4,
+   2,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000115_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000115_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000115_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   3,
+   4,
+   2,
+   1
+  ],
+  "seq_b": [
+   3,
+   4,
+   2,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000116_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000116_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000116_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   1,
+   3,
+   4,
+   2
+  ],
+  "seq_b": [
+   1,
+   3,
+   4,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000117_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000117_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000117_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   2,
+   1,
+   4,
+   3
+  ],
+  "seq_b": [
+   2,
+   1,
+   4,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000118_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000118_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000118_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   2,
+   3,
+   1,
+   4
+  ],
+  "seq_b": [
+   2,
+   3,
+   1,
+   4
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000119_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000119_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000119_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   3,
+   2,
+   4,
+   1
+  ],
+  "seq_b": [
+   3,
+   2,
+   4,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000120_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000120_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000120_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   2,
+   1,
+   3,
+   4
+  ],
+  "seq_b": [
+   2,
+   1,
+   3,
+   4
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": "Mẫu いくら〜ても thường xếp N4, vượt N5.",
+  "issue_b": null
+ },
+ "Q_GQ_000121_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000121_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000121_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   4,
+   1,
+   3,
+   2
+  ],
+  "seq_b": [
+   4,
+   1,
+   3,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000122_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000122_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000122_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "seq_b": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000123_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000123_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000123_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "seq_b": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000124_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000124_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000124_3": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   4,
+   2,
+   1,
+   3
+  ],
+  "seq_b": [
+   4,
+   2,
+   1,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000125_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000125_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000125_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   4,
+   3,
+   2,
+   1
+  ],
+  "seq_b": [
+   4,
+   3,
+   2,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000126_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000126_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000126_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "seq_b": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000127_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000127_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000127_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   1,
+   2,
+   4,
+   3
+  ],
+  "seq_b": [
+   1,
+   2,
+   4,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000128_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000128_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000128_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "seq_b": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000129_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000129_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000129_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   3,
+   1,
+   4,
+   2
+  ],
+  "seq_b": [
+   3,
+   1,
+   4,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000130_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000130_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000130_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   1,
+   4,
+   3,
+   2
+  ],
+  "seq_b": [
+   1,
+   4,
+   3,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000131_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000131_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000131_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   1,
+   3,
+   2,
+   4
+  ],
+  "seq_b": [
+   1,
+   3,
+   2,
+   4
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000132_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000132_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000132_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   3,
+   2,
+   1,
+   4
+  ],
+  "seq_b": [
+   3,
+   2,
+   1,
+   4
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000133_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000133_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000133_3": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   1,
+   4,
+   3,
+   2
+  ],
+  "seq_b": [
+   1,
+   4,
+   3,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000134_1": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000134_2": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000134_3": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   1,
+   4,
+   3,
+   2
+  ],
+  "seq_b": [
+   1,
+   4,
+   3,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000135_1": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000135_2": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQ_000135_3": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   3,
+   4,
+   1,
+   2
+  ],
+  "seq_b": [
+   3,
+   4,
+   1,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ }
+}

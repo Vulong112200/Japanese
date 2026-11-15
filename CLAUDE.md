@@ -42,7 +42,8 @@ data/
   normalized/grammar/n5_grammar_checklist.json         khung 135 điểm ngữ pháp N5 (đo độ phủ)
   normalized/grammar/grammar.json                      nội dung 135 điểm (origin handbook/handbook+ai/ai)
   normalized/kanji/kanji_n5.json                       103 kanji N5
-  normalized/ai_review/     kết quả rà soát AI vòng 1 (bằng chứng)
+  normalized/grammar_questions/grammar_questions.json  399 câu 文の文法1/2 do agent soạn (ADR-020)
+  normalized/ai_review/     kết quả rà soát AI (bằng chứng; grammar_questions_review.json = 2 AI giải mù)
   normalized/exams/         đề mẫu đã chép (bản chép không commit, xem .gitignore) + AI đối chiếu đáp án
   reference/jlpt_n5_words.csv  danh sách JLPT N5 (718 từ) để đo độ phủ
   raw/ reference/*.gz,*.sqlite,tessdata/ database/   sinh ra trên máy, không commit
@@ -79,6 +80,7 @@ cd ../frontend && npm run build               # tsc + vite build → frontend/di
   - Không trích đề từ website bên thứ ba (nihonez cấm scrape; gojapan không công bố đáp án, giữ bản quyền). Xem bảng nguồn trong docs/PROGRESS.md.
   - Câu luyện tập tự sinh nằm trong đề `BANK_N5_GENERATED` (`is_official=0`, nhãn AI_GENERATED), `verified_by='generator'`. Chỉ sinh từ dữ liệu verified; phương án nhiễu phải được chứng minh sai bằng JMdict (ADR-017). Câu không sinh lại được thì `rejected`, không xoá (lịch sử thi tham chiếu).
   - Chế độ thi không được trả về đáp án/giải thích/script trước khi nộp (ADR-018, có test).
+  - Câu ngữ pháp do agent soạn (ADR-020) nằm trong đề `BANK_N5_GRAMMAR_AI`, `verified_by='ai'` chỉ khi qua luật `check_grammar_question` và key = 2 AI giải mù. Sửa câu: sửa file + `review_log`, rồi **giải mù lại** câu đó (cập nhật `grammar_questions_review.json`) trước khi `import`; loại: `excluded: true`.
 - **Bản quyền**: không commit đề JLPT (PDF/MP3), ảnh trang, bản chép đề, hay PDF tải từ Drive (`.gitignore` đã chặn). Kiểm `git diff --cached --name-only` trước khi push.
 
 - **Từ vựng bổ sung / ngữ pháp / kanji**: nguồn chuẩn là các file trong `data/normalized/` ở trên.
@@ -88,7 +90,7 @@ cd ../frontend && npm run build               # tsc + vite build → frontend/di
   - Từ loại của từ vựng do JMdict quyết định, không lấy từ file.
 - **Độ phủ N5 đã đạt** (phiên 3): từ vựng phủ danh sách JLPT N5 và đủ 25 bài Minna; 103/103 kanji; 135 điểm ngữ pháp. **Không cần thu thập thêm tài liệu kiến thức.** Việc tiếp theo là tính năng (thi thử, luyện tập), không phải dữ liệu.
   - Ngữ pháp đã xong rà soát vòng 2 (phiên 4): 135/135 verified. Bằng chứng: `data/normalized/ai_review/grammar_round2.json`. Sửa ngữ pháp về sau: dùng `backend/scripts/apply_grammar_review.py`.
-- **Mock exam** (phiên 4) đã có. **6 đề thật các năm** (phiên 5, ADR-019) đã nhập: bản chép ở `data/normalized/exams/EXAM_N5_20*.json` (không commit), file gốc ở `data/raw/SRC_DRIVE_EXAM_N5_*`. Quy trình + nơi lưu + nhật ký duyệt: `docs/PAST_EXAMS.md` (script `backend/scripts/merge_past_exams.py`). Khi key cộng đồng lệch AI: chọn theo căn cứ chính xác nhất, giải thích được (người dùng uỷ quyền). Việc tiếp theo: câu ngữ pháp do agent soạn (xem docs/PROGRESS.md).
+- **Mock exam** (phiên 4) đã có. **6 đề thật các năm** (phiên 5, ADR-019) đã nhập: bản chép ở `data/normalized/exams/EXAM_N5_20*.json` (không commit), file gốc ở `data/raw/SRC_DRIVE_EXAM_N5_*`. Quy trình + nơi lưu + nhật ký duyệt: `docs/PAST_EXAMS.md` (script `backend/scripts/merge_past_exams.py`). Khi key cộng đồng lệch AI: chọn theo căn cứ chính xác nhất, giải thích được (người dùng uỷ quyền). **Câu ngữ pháp 文の文法1/2** (phiên 6, ADR-020): 399 câu verified. Việc tiếp theo: SRS ngữ pháp/kanji, Dashboard gợi ý học (xem docs/PROGRESS.md).
 
 ## 6. Quy trình rà soát nội dung (đã dùng cho từ vựng, kanji và ngữ pháp)
 1. Dump dữ liệu kèm bằng chứng từ điển ra TSV (scratchpad), chia khoảng 4 lô.

@@ -170,6 +170,7 @@ export interface ExamQuestion {
     target?: string; star_position?: number; options_are_glyph_images?: boolean; options_are_pictures?: boolean
     options_audio_only?: boolean; has_illustration?: boolean
     option_explanations?: Record<string, string>; expected_sequence?: unknown; expected_sequence_note?: string
+    grammar_id?: string; grammar_pattern?: string
   }
   // only after submission (exam) or after answering (practice)
   correct_answer?: string[]
@@ -195,6 +196,7 @@ export interface ExamResult extends Bucket {
   by_mondai: (Bucket & { section: string; mondai_no: number | null; mondai_type: string | null })[]
   listening_accuracy: number | null
   weak_vocabulary_lessons: (Bucket & { lesson_number: number })[]
+  weak_grammar_points: (Bucket & { grammar_id: string; pattern: string | null })[]
   per_question: Record<string, 'correct' | 'incorrect' | 'unanswered'>
   readiness: Readiness
 }

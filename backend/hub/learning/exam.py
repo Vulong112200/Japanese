@@ -49,9 +49,10 @@ def _finish(b: dict) -> dict:
 
 
 def score(questions: list[dict], answers: dict[str, list[str] | None]) -> dict:
-    """questions: {question_id, section, mondai_no, mondai_type, correct_answer, lesson_number?};
+    """questions: {question_id, section, mondai_no, mondai_type, correct_answer, lesson_number?, grammar_id?,
+    grammar_pattern?};
     answers: question_id -> list of option ids (missing/None = unanswered). Unanswered counts as not correct."""
-    total, by_section, by_mondai, lessons, per_q = _bucket(), {}, {}, {}, {}
+    total, by_section, by_mondai, lessons, grammar, per_q = _bucket(), {}, {}, {}, {}, {}
     for q in questions:
         ok = is_correct(answers.get(q["question_id"]), q["correct_answer"])
         status = "unanswered" if ok is None else "correct" if ok else "incorrect"
@@ -64,8 +65,12 @@ def score(questions: list[dict], answers: dict[str, list[str] | None]) -> dict:
         _add(m, status)
         if q.get("lesson_number") is not None:
             _add(lessons.setdefault(q["lesson_number"], _bucket()), status)
-    weak = sorted(({"lesson_number": k, **_finish(v)} for k, v in lessons.items() if v["correct"] < v["total"]),
-                  key=lambda x: (x["accuracy"], -x["total"]))
+        if q.get("grammar_id"):
+            _add(grammar.setdefault((q["grammar_id"], q.get("grammar_pattern")), _bucket()), status)
+
+    def weakest(groups: dict, key) -> list[dict]:
+        return sorted(({**key(k), **_finish(v)} for k, v in groups.items() if v["correct"] < v["total"]),
+                      key=lambda x: (x["accuracy"], -x["total"]))[:5]
     return {
         **_finish(total),
         "by_section": {k: _finish(v) for k, v in sorted(by_section.items(),
@@ -73,8 +78,8 @@ def score(questions: list[dict], answers: dict[str, list[str] | None]) -> dict:
         "by_mondai": [_finish(v) for _, v in sorted(by_mondai.items(), key=lambda kv: (
             SECTION_ORDER.index(kv[1]["section"]) if kv[1]["section"] in SECTION_ORDER else 9, kv[1]["mondai_no"] or 0))],
         "listening_accuracy": by_section["listening"]["accuracy"] if "listening" in by_section else None,
-        "weak_vocabulary_lessons": weak[:5],
-        "weak_grammar_points": [],          # no question targets a grammar point yet (grammar bank: next phase)
+        "weak_vocabulary_lessons": weakest(lessons, lambda k: {"lesson_number": k}),
+        "weak_grammar_points": weakest(grammar, lambda k: {"grammar_id": k[0], "pattern": k[1]}),
         "per_question": per_q,
     }
 
@@ -113,9 +118,13 @@ if __name__ == "__main__":
     assert remaining_seconds(None, t0, t0) is None and remaining_seconds(60, t0, t0 + timedelta(seconds=70)) == 0
     qs = [{"question_id": "a", "section": "vocabulary", "mondai_no": 1, "correct_answer": ["1"], "lesson_number": 3},
           {"question_id": "b", "section": "vocabulary", "mondai_no": 1, "correct_answer": ["2"], "lesson_number": 3},
-          {"question_id": "c", "section": "listening", "mondai_no": 1, "correct_answer": ["3"]}]
-    s = score(qs, {"a": ["1"], "b": ["1"]})
-    assert (s["correct"], s["incorrect"], s["unanswered"]) == (1, 1, 1) and s["listening_accuracy"] == 0.0
+          {"question_id": "c", "section": "listening", "mondai_no": 1, "correct_answer": ["3"]},
+          {"question_id": "g", "section": "grammar_reading", "mondai_no": 1, "correct_answer": ["1"],
+           "grammar_id": "GRA_000001", "grammar_pattern": "N1 は N2 です"}]
+    s = score(qs, {"a": ["1"], "b": ["1"], "g": ["2"]})
+    assert (s["correct"], s["incorrect"], s["unanswered"]) == (1, 2, 1) and s["listening_accuracy"] == 0.0
+    assert s["weak_grammar_points"] == [{"grammar_id": "GRA_000001", "pattern": "N1 は N2 です", "total": 1, "correct": 0,
+                                         "incorrect": 1, "unanswered": 0, "accuracy": 0.0}]
     r = readiness(s["by_section"])
-    assert r["language_knowledge_reading"] == 60 and r["listening"] == 0 and r["likely_pass"] is False
+    assert r["language_knowledge_reading"] == 40 and r["listening"] == 0 and r["likely_pass"] is False
     print("ok")

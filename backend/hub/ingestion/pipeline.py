@@ -574,6 +574,7 @@ def run_all(conn, check_network: bool = False) -> dict:
     out["exam"] = import_exam(conn)
     out["past_exams"] = import_past_exams(conn)
     out["generated_questions"] = knowledge.import_generated_questions(conn)
+    out["grammar_questions"] = knowledge.import_grammar_questions(conn)
     conn.commit()
     if check_network:
         out["online_check"] = check_online(conn)
