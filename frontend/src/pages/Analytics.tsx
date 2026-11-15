@@ -3,7 +3,7 @@ import { api, type Analytics as A } from '../api'
 import { ErrorBox, fmtDuration, Loading, Panel, StartButton } from '../ui'
 import { BucketTable, MONDAI_LABEL, SECTION_LABEL } from './Exam'
 
-const ENTITY_LABEL = { vocabulary: 'Từ vựng', grammar: 'Ngữ pháp', kanji: 'Kanji' } as const
+const ENTITY_LABEL = { vocabulary: 'Từ vựng', grammar: 'Ngữ pháp', kanji: 'Kanji', number: 'Số đếm' } as const
 const dm = (iso: string) => `${iso.slice(8, 10)}/${iso.slice(5, 7)}`
 
 function Stat({ label, value, hint }: { label: string; value: string; hint?: string }) {

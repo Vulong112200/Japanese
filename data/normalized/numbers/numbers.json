@@ -1,0 +1,6626 @@
+{
+ "description": "Chuyên đề số đếm, trợ số từ, giờ, ngày tháng năm N5 (ADR-029). Cách đọc gõ tay, kiểm bằng hub.validation.numbers (luật biến âm độc lập) + JMdict + 2 vòng rà soát AI + người duyệt cuối.",
+ "origin": "ai",
+ "categories": [
+  {
+   "key": "number",
+   "title_vi": "Số đếm cơ bản",
+   "rule_vi": "Số từ 11 trở lên ghép như tiếng Việt: 十一 = じゅう+いち, 二十 = に+じゅう. 4 đọc よん, 7 đọc なな, 9 đọc きゅう (し/しち/く chỉ dùng trong vài từ cố định như 四月, 七時, 九時). Biến âm cần nhớ ở hàng trăm/nghìn: 300 さんびゃく, 600 ろっぴゃく, 800 はっぴゃく, 3000 さんぜん, 8000 はっせん. 10.000 phải nói いちまん (không bỏ いち như 百, 千).",
+   "items": [
+    {
+     "id": "NUM_number_一",
+     "jp": "一",
+     "reading": "いち",
+     "vi": "số 1",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "こたえは 一です。",
+     "example_vi": "Đáp án là 1.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_number_二",
+     "jp": "二",
+     "reading": "に",
+     "vi": "số 2",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "こたえは 二です。",
+     "example_vi": "Đáp án là 2.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_number_三",
+     "jp": "三",
+     "reading": "さん",
+     "vi": "số 3",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "こたえは 三です。",
+     "example_vi": "Đáp án là 3.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_number_四",
+     "jp": "四",
+     "reading": "よん",
+     "vi": "số 4",
+     "irregular": true,
+     "note_vi": "Thường đọc よん; し dùng khi đếm liền (いち、に、さん、し) và trong vài từ cố định (四月 しがつ). Người Nhật hay tránh し vì đồng âm với 死 (chết).",
+     "example_jp": "こたえは 四です。",
+     "example_vi": "Đáp án là 4.",
+     "alt_readings": [
+      "し"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "reviewer",
+       "note": "Sửa note_vi theo rà soát B2"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_number_五",
+     "jp": "五",
+     "reading": "ご",
+     "vi": "số 5",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "こたえは 五です。",
+     "example_vi": "Đáp án là 5.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_number_六",
+     "jp": "六",
+     "reading": "ろく",
+     "vi": "số 6",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "こたえは 六です。",
+     "example_vi": "Đáp án là 6.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_number_七",
+     "jp": "七",
+     "reading": "なな",
+     "vi": "số 7",
+     "irregular": true,
+     "note_vi": "Thường đọc なな; しち dùng trong 七時 しちじ, 七月 しちがつ.",
+     "example_jp": "こたえは 七です。",
+     "example_vi": "Đáp án là 7.",
+     "alt_readings": [
+      "しち"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_number_八",
+     "jp": "八",
+     "reading": "はち",
+     "vi": "số 8",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "こたえは 八です。",
+     "example_vi": "Đáp án là 8.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_number_九",
+     "jp": "九",
+     "reading": "きゅう",
+     "vi": "số 9",
+     "irregular": true,
+     "note_vi": "Thường đọc きゅう; く dùng trong 九時 くじ, 九月 くがつ.",
+     "example_jp": "こたえは 九です。",
+     "example_vi": "Đáp án là 9.",
+     "alt_readings": [
+      "く"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_number_十",
+     "jp": "十",
+     "reading": "じゅう",
+     "vi": "số 10",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "こたえは 十です。",
+     "example_vi": "Đáp án là 10.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_number_十一",
+     "jp": "十一",
+     "reading": "じゅういち",
+     "vi": "số 11",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "こたえは 十一です。",
+     "example_vi": "Đáp án là 11.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_number_十四",
+     "jp": "十四",
+     "reading": "じゅうよん",
+     "vi": "số 14",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "こたえは 十四です。",
+     "example_vi": "Đáp án là 14.",
+     "alt_readings": [
+      "じゅうし"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_number_二十",
+     "jp": "二十",
+     "reading": "にじゅう",
+     "vi": "số 20",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "こたえは 二十です。",
+     "example_vi": "Đáp án là 20.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_number_四十",
+     "jp": "四十",
+     "reading": "よんじゅう",
+     "vi": "số 40",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "こたえは 四十です。",
+     "example_vi": "Đáp án là 40.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_number_七十",
+     "jp": "七十",
+     "reading": "ななじゅう",
+     "vi": "số 70",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "こたえは 七十です。",
+     "example_vi": "Đáp án là 70.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_number_九十",
+     "jp": "九十",
+     "reading": "きゅうじゅう",
+     "vi": "số 90",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "こたえは 九十です。",
+     "example_vi": "Đáp án là 90.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_number_百",
+     "jp": "百",
+     "reading": "ひゃく",
+     "vi": "số 100",
+     "irregular": false,
+     "note_vi": "100 chỉ nói ひゃく, không nói いちひゃく.",
+     "example_jp": "こたえは 百です。",
+     "example_vi": "Đáp án là 100.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_number_三百",
+     "jp": "三百",
+     "reading": "さんびゃく",
+     "vi": "số 300",
+     "irregular": true,
+     "note_vi": "ひゃく → びゃく sau さん.",
+     "example_jp": "こたえは 三百です。",
+     "example_vi": "Đáp án là 300.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_number_六百",
+     "jp": "六百",
+     "reading": "ろっぴゃく",
+     "vi": "số 600",
+     "irregular": true,
+     "note_vi": "ろく → ろっ, ひゃく → ぴゃく.",
+     "example_jp": "こたえは 六百です。",
+     "example_vi": "Đáp án là 600.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_number_八百",
+     "jp": "八百",
+     "reading": "はっぴゃく",
+     "vi": "số 800",
+     "irregular": true,
+     "note_vi": "はち → はっ, ひゃく → ぴゃく.",
+     "example_jp": "こたえは 八百です。",
+     "example_vi": "Đáp án là 800.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_number_千",
+     "jp": "千",
+     "reading": "せん",
+     "vi": "số 1.000",
+     "irregular": false,
+     "note_vi": "1000 chỉ nói せん, không nói いちせん.",
+     "example_jp": "こたえは 千です。",
+     "example_vi": "Đáp án là 1.000.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_number_三千",
+     "jp": "三千",
+     "reading": "さんぜん",
+     "vi": "số 3.000",
+     "irregular": true,
+     "note_vi": "せん → ぜん sau さん.",
+     "example_jp": "こたえは 三千です。",
+     "example_vi": "Đáp án là 3.000.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_number_八千",
+     "jp": "八千",
+     "reading": "はっせん",
+     "vi": "số 8.000",
+     "irregular": true,
+     "note_vi": "はち → はっ.",
+     "example_jp": "こたえは 八千です。",
+     "example_vi": "Đáp án là 8.000.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_number_一万",
+     "jp": "一万",
+     "reading": "いちまん",
+     "vi": "số 10.000",
+     "irregular": true,
+     "note_vi": "10.000 phải có いち: いちまん (khác với ひゃく, せん).",
+     "example_jp": "こたえは 一万です。",
+     "example_vi": "Đáp án là 10.000.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_number_十万",
+     "jp": "十万",
+     "reading": "じゅうまん",
+     "vi": "số 100.000",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "こたえは 十万です。",
+     "example_vi": "Đáp án là 100.000.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "tsu",
+   "title_vi": "Đếm đồ vật chung (～つ)",
+   "rule_vi": "Đếm đồ vật nói chung (táo, bánh, câu hỏi…) bằng số thuần Nhật, chỉ từ 1 đến 10: ひとつ…ここのつ, 10 là とお (không có つ). Từ 11 trở đi dùng số thường: じゅういち. Hỏi 'mấy cái' dùng いくつ. いくつ cũng dùng để hỏi tuổi; hỏi lịch sự với người lớn là おいくつですか.",
+   "items": [
+    {
+     "id": "NUM_tsu_一つ",
+     "jp": "一つ",
+     "reading": "ひとつ",
+     "vi": "1 cái",
+     "irregular": true,
+     "note_vi": "Số thuần Nhật: ひと.",
+     "example_jp": "りんごを 一つ ください。",
+     "example_vi": "Cho tôi 1 quả táo.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_tsu_二つ",
+     "jp": "二つ",
+     "reading": "ふたつ",
+     "vi": "2 cái",
+     "irregular": true,
+     "note_vi": "Số thuần Nhật: ふた.",
+     "example_jp": "りんごを 二つ ください。",
+     "example_vi": "Cho tôi 2 quả táo.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_tsu_三つ",
+     "jp": "三つ",
+     "reading": "みっつ",
+     "vi": "3 cái",
+     "irregular": true,
+     "note_vi": "み + っ + つ.",
+     "example_jp": "りんごを 三つ ください。",
+     "example_vi": "Cho tôi 3 quả táo.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_tsu_四つ",
+     "jp": "四つ",
+     "reading": "よっつ",
+     "vi": "4 cái",
+     "irregular": true,
+     "note_vi": "よ + っ + つ.",
+     "example_jp": "りんごを 四つ ください。",
+     "example_vi": "Cho tôi 4 quả táo.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_tsu_五つ",
+     "jp": "五つ",
+     "reading": "いつつ",
+     "vi": "5 cái",
+     "irregular": true,
+     "note_vi": "Số thuần Nhật: いつ + つ.",
+     "example_jp": "りんごを 五つ ください。",
+     "example_vi": "Cho tôi 5 quả táo.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "reviewer",
+       "note": "Bổ sung note_vi (luật missing_note)"
+      }
+     ]
+    },
+    {
+     "id": "NUM_tsu_六つ",
+     "jp": "六つ",
+     "reading": "むっつ",
+     "vi": "6 cái",
+     "irregular": true,
+     "note_vi": "む + っ + つ.",
+     "example_jp": "りんごを 六つ ください。",
+     "example_vi": "Cho tôi 6 quả táo.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_tsu_七つ",
+     "jp": "七つ",
+     "reading": "ななつ",
+     "vi": "7 cái",
+     "irregular": true,
+     "note_vi": "Số thuần Nhật: なな + つ.",
+     "example_jp": "りんごを 七つ ください。",
+     "example_vi": "Cho tôi 7 quả táo.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "reviewer",
+       "note": "Bổ sung note_vi (luật missing_note)"
+      }
+     ]
+    },
+    {
+     "id": "NUM_tsu_八つ",
+     "jp": "八つ",
+     "reading": "やっつ",
+     "vi": "8 cái",
+     "irregular": true,
+     "note_vi": "や + っ + つ (không đọc はっつ).",
+     "example_jp": "りんごを 八つ ください。",
+     "example_vi": "Cho tôi 8 quả táo.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_tsu_九つ",
+     "jp": "九つ",
+     "reading": "ここのつ",
+     "vi": "9 cái",
+     "irregular": true,
+     "note_vi": "Số thuần Nhật: ここの + つ.",
+     "example_jp": "りんごを 九つ ください。",
+     "example_vi": "Cho tôi 9 quả táo.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "reviewer",
+       "note": "Bổ sung note_vi (luật missing_note)"
+      }
+     ]
+    },
+    {
+     "id": "NUM_tsu_十",
+     "jp": "十",
+     "reading": "とお",
+     "vi": "10 cái",
+     "irregular": true,
+     "note_vi": "Mười cái là とお, không có つ ở cuối.",
+     "example_jp": "りんごを 十 ください。",
+     "example_vi": "Cho tôi 10 quả táo.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_tsu_ikutsu",
+     "jp": "いくつ",
+     "reading": "いくつ",
+     "vi": "mấy cái, bao nhiêu cái",
+     "irregular": true,
+     "note_vi": "Từ để hỏi 'mấy cái'.",
+     "example_jp": "りんごは いくつ ありますか。",
+     "example_vi": "Có mấy quả táo?",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "nin",
+   "title_vi": "Đếm người (～人)",
+   "rule_vi": "1 người ひとり, 2 người ふたり là cách đọc đặc biệt. Từ 3 trở đi: số + にん (さんにん). 4 người là よにん (không phải よんにん). 7 người ななにん hoặc しちにん. Hỏi: 何人 なんにん.",
+   "items": [
+    {
+     "id": "NUM_nin_一人",
+     "jp": "一人",
+     "reading": "ひとり",
+     "vi": "1 người",
+     "irregular": true,
+     "note_vi": "Đặc biệt: ひとり (không phải いちにん).",
+     "example_jp": "きょうしつに がくせいが 一人 います。",
+     "example_vi": "Trong lớp có 1 học sinh.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nin_二人",
+     "jp": "二人",
+     "reading": "ふたり",
+     "vi": "2 người",
+     "irregular": true,
+     "note_vi": "Đặc biệt: ふたり (không phải ににん).",
+     "example_jp": "きょうしつに がくせいが 二人 います。",
+     "example_vi": "Trong lớp có 2 học sinh.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nin_三人",
+     "jp": "三人",
+     "reading": "さんにん",
+     "vi": "3 người",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "きょうしつに がくせいが 三人 います。",
+     "example_vi": "Trong lớp có 3 học sinh.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nin_四人",
+     "jp": "四人",
+     "reading": "よにん",
+     "vi": "4 người",
+     "irregular": true,
+     "note_vi": "4 người: よにん, không phải よんにん.",
+     "example_jp": "きょうしつに がくせいが 四人 います。",
+     "example_vi": "Trong lớp có 4 học sinh.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nin_五人",
+     "jp": "五人",
+     "reading": "ごにん",
+     "vi": "5 người",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "きょうしつに がくせいが 五人 います。",
+     "example_vi": "Trong lớp có 5 học sinh.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nin_六人",
+     "jp": "六人",
+     "reading": "ろくにん",
+     "vi": "6 người",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "きょうしつに がくせいが 六人 います。",
+     "example_vi": "Trong lớp có 6 học sinh.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nin_七人",
+     "jp": "七人",
+     "reading": "ななにん",
+     "vi": "7 người",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "きょうしつに がくせいが 七人 います。",
+     "example_vi": "Trong lớp có 7 học sinh.",
+     "alt_readings": [
+      "しちにん"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nin_八人",
+     "jp": "八人",
+     "reading": "はちにん",
+     "vi": "8 người",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "きょうしつに がくせいが 八人 います。",
+     "example_vi": "Trong lớp có 8 học sinh.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nin_九人",
+     "jp": "九人",
+     "reading": "きゅうにん",
+     "vi": "9 người",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "きょうしつに がくせいが 九人 います。",
+     "example_vi": "Trong lớp có 9 học sinh.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nin_十人",
+     "jp": "十人",
+     "reading": "じゅうにん",
+     "vi": "10 người",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "きょうしつに がくせいが 十人 います。",
+     "example_vi": "Trong lớp có 10 học sinh.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nin_nan",
+     "jp": "何人",
+     "reading": "なんにん",
+     "vi": "mấy người",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "きょうしつに がくせいが 何人 いますか。",
+     "example_vi": "Trong lớp có mấy học sinh?",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "mai",
+   "title_vi": "Vật mỏng, dẹt (～枚)",
+   "rule_vi": "Giấy, tem, áo sơ mi, đĩa, vé… Không có biến âm: số + まい. Nhớ 4 よんまい, 7 ななまい, 9 きゅうまい.",
+   "items": [
+    {
+     "id": "NUM_mai_一枚",
+     "jp": "一枚",
+     "reading": "いちまい",
+     "vi": "1 tờ/chiếc (vật mỏng)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "きってを 一枚 かいました。",
+     "example_vi": "Tôi đã mua 1 con tem.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_mai_二枚",
+     "jp": "二枚",
+     "reading": "にまい",
+     "vi": "2 tờ/chiếc (vật mỏng)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "きってを 二枚 かいました。",
+     "example_vi": "Tôi đã mua 2 con tem.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_mai_三枚",
+     "jp": "三枚",
+     "reading": "さんまい",
+     "vi": "3 tờ/chiếc (vật mỏng)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "きってを 三枚 かいました。",
+     "example_vi": "Tôi đã mua 3 con tem.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_mai_四枚",
+     "jp": "四枚",
+     "reading": "よんまい",
+     "vi": "4 tờ/chiếc (vật mỏng)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "きってを 四枚 かいました。",
+     "example_vi": "Tôi đã mua 4 con tem.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_mai_五枚",
+     "jp": "五枚",
+     "reading": "ごまい",
+     "vi": "5 tờ/chiếc (vật mỏng)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "きってを 五枚 かいました。",
+     "example_vi": "Tôi đã mua 5 con tem.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_mai_六枚",
+     "jp": "六枚",
+     "reading": "ろくまい",
+     "vi": "6 tờ/chiếc (vật mỏng)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "きってを 六枚 かいました。",
+     "example_vi": "Tôi đã mua 6 con tem.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_mai_七枚",
+     "jp": "七枚",
+     "reading": "ななまい",
+     "vi": "7 tờ/chiếc (vật mỏng)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "きってを 七枚 かいました。",
+     "example_vi": "Tôi đã mua 7 con tem.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_mai_八枚",
+     "jp": "八枚",
+     "reading": "はちまい",
+     "vi": "8 tờ/chiếc (vật mỏng)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "きってを 八枚 かいました。",
+     "example_vi": "Tôi đã mua 8 con tem.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_mai_九枚",
+     "jp": "九枚",
+     "reading": "きゅうまい",
+     "vi": "9 tờ/chiếc (vật mỏng)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "きってを 九枚 かいました。",
+     "example_vi": "Tôi đã mua 9 con tem.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_mai_十枚",
+     "jp": "十枚",
+     "reading": "じゅうまい",
+     "vi": "10 tờ/chiếc (vật mỏng)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "きってを 十枚 かいました。",
+     "example_vi": "Tôi đã mua 10 con tem.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_mai_nan",
+     "jp": "何枚",
+     "reading": "なんまい",
+     "vi": "mấy tờ/chiếc (vật mỏng)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "きってを 何枚 かいましたか。",
+     "example_vi": "Bạn đã mua mấy con tem?",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "hon",
+   "title_vi": "Vật dài, thon (～本)",
+   "rule_vi": "Bút, chai, ô, cây, cà vạt… ほん biến âm theo số: 1, 6, 8, 10 → âm ngắt っ + ぽん (いっぽん, ろっぽん, はっぽん, じゅっぽん); 3 và 何 → ぼん (さんぼん, なんぼん); còn lại giữ ほん. Quy luật này giống 匹 và 杯.",
+   "items": [
+    {
+     "id": "NUM_hon_一本",
+     "jp": "一本",
+     "reading": "いっぽん",
+     "vi": "1 cây/chai (vật dài)",
+     "irregular": true,
+     "note_vi": "いち → いっ, ほん → ぽん.",
+     "example_jp": "えんぴつが 一本 あります。",
+     "example_vi": "Có 1 cây bút chì.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hon_二本",
+     "jp": "二本",
+     "reading": "にほん",
+     "vi": "2 cây/chai (vật dài)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "えんぴつが 二本 あります。",
+     "example_vi": "Có 2 cây bút chì.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hon_三本",
+     "jp": "三本",
+     "reading": "さんぼん",
+     "vi": "3 cây/chai (vật dài)",
+     "irregular": true,
+     "note_vi": "Sau さん: ほん → ぼん.",
+     "example_jp": "えんぴつが 三本 あります。",
+     "example_vi": "Có 3 cây bút chì.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hon_四本",
+     "jp": "四本",
+     "reading": "よんほん",
+     "vi": "4 cây/chai (vật dài)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "えんぴつが 四本 あります。",
+     "example_vi": "Có 4 cây bút chì.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hon_五本",
+     "jp": "五本",
+     "reading": "ごほん",
+     "vi": "5 cây/chai (vật dài)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "えんぴつが 五本 あります。",
+     "example_vi": "Có 5 cây bút chì.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hon_六本",
+     "jp": "六本",
+     "reading": "ろっぽん",
+     "vi": "6 cây/chai (vật dài)",
+     "irregular": true,
+     "note_vi": "ろく → ろっ, ほん → ぽん.",
+     "example_jp": "えんぴつが 六本 あります。",
+     "example_vi": "Có 6 cây bút chì.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hon_七本",
+     "jp": "七本",
+     "reading": "ななほん",
+     "vi": "7 cây/chai (vật dài)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "えんぴつが 七本 あります。",
+     "example_vi": "Có 7 cây bút chì.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hon_八本",
+     "jp": "八本",
+     "reading": "はっぽん",
+     "vi": "8 cây/chai (vật dài)",
+     "irregular": true,
+     "note_vi": "はち → はっ, ほん → ぽん.",
+     "example_jp": "えんぴつが 八本 あります。",
+     "example_vi": "Có 8 cây bút chì.",
+     "alt_readings": [
+      "はちほん"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hon_九本",
+     "jp": "九本",
+     "reading": "きゅうほん",
+     "vi": "9 cây/chai (vật dài)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "えんぴつが 九本 あります。",
+     "example_vi": "Có 9 cây bút chì.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hon_十本",
+     "jp": "十本",
+     "reading": "じゅっぽん",
+     "vi": "10 cây/chai (vật dài)",
+     "irregular": true,
+     "note_vi": "じゅう → じゅっ, ほん → ぽん.",
+     "example_jp": "えんぴつが 十本 あります。",
+     "example_vi": "Có 10 cây bút chì.",
+     "alt_readings": [
+      "じっぽん"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hon_nan",
+     "jp": "何本",
+     "reading": "なんぼん",
+     "vi": "mấy cây/chai (vật dài)",
+     "irregular": true,
+     "note_vi": "Sau なん: ほん → ぼん.",
+     "example_jp": "えんぴつが 何本 ありますか。",
+     "example_vi": "Có mấy cây bút chì?",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "hiki",
+   "title_vi": "Con vật nhỏ (～匹)",
+   "rule_vi": "Chó, mèo, cá, côn trùng… Biến âm giống 本: 1, 6, 8, 10 → っぴき; 3 và 何 → びき; còn lại ひき.",
+   "items": [
+    {
+     "id": "NUM_hiki_一匹",
+     "jp": "一匹",
+     "reading": "いっぴき",
+     "vi": "1 con (vật nhỏ)",
+     "irregular": true,
+     "note_vi": "いち → いっ, ひき → ぴき.",
+     "example_jp": "いえに ねこが 一匹 います。",
+     "example_vi": "Ở nhà có 1 con mèo.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hiki_二匹",
+     "jp": "二匹",
+     "reading": "にひき",
+     "vi": "2 con (vật nhỏ)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "いえに ねこが 二匹 います。",
+     "example_vi": "Ở nhà có 2 con mèo.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hiki_三匹",
+     "jp": "三匹",
+     "reading": "さんびき",
+     "vi": "3 con (vật nhỏ)",
+     "irregular": true,
+     "note_vi": "Sau さん: ひき → びき.",
+     "example_jp": "いえに ねこが 三匹 います。",
+     "example_vi": "Ở nhà có 3 con mèo.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hiki_四匹",
+     "jp": "四匹",
+     "reading": "よんひき",
+     "vi": "4 con (vật nhỏ)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "いえに ねこが 四匹 います。",
+     "example_vi": "Ở nhà có 4 con mèo.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hiki_五匹",
+     "jp": "五匹",
+     "reading": "ごひき",
+     "vi": "5 con (vật nhỏ)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "いえに ねこが 五匹 います。",
+     "example_vi": "Ở nhà có 5 con mèo.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hiki_六匹",
+     "jp": "六匹",
+     "reading": "ろっぴき",
+     "vi": "6 con (vật nhỏ)",
+     "irregular": true,
+     "note_vi": "ろく → ろっ, ひき → ぴき.",
+     "example_jp": "いえに ねこが 六匹 います。",
+     "example_vi": "Ở nhà có 6 con mèo.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hiki_七匹",
+     "jp": "七匹",
+     "reading": "ななひき",
+     "vi": "7 con (vật nhỏ)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "いえに ねこが 七匹 います。",
+     "example_vi": "Ở nhà có 7 con mèo.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hiki_八匹",
+     "jp": "八匹",
+     "reading": "はっぴき",
+     "vi": "8 con (vật nhỏ)",
+     "irregular": true,
+     "note_vi": "はち → はっ, ひき → ぴき.",
+     "example_jp": "いえに ねこが 八匹 います。",
+     "example_vi": "Ở nhà có 8 con mèo.",
+     "alt_readings": [
+      "はちひき"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hiki_九匹",
+     "jp": "九匹",
+     "reading": "きゅうひき",
+     "vi": "9 con (vật nhỏ)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "いえに ねこが 九匹 います。",
+     "example_vi": "Ở nhà có 9 con mèo.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hiki_十匹",
+     "jp": "十匹",
+     "reading": "じゅっぴき",
+     "vi": "10 con (vật nhỏ)",
+     "irregular": true,
+     "note_vi": "じゅう → じゅっ, ひき → ぴき.",
+     "example_jp": "いえに ねこが 十匹 います。",
+     "example_vi": "Ở nhà có 10 con mèo.",
+     "alt_readings": [
+      "じっぴき"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hiki_nan",
+     "jp": "何匹",
+     "reading": "なんびき",
+     "vi": "mấy con (vật nhỏ)",
+     "irregular": true,
+     "note_vi": "Sau なん: ひき → びき.",
+     "example_jp": "いえに ねこが 何匹 いますか。",
+     "example_vi": "Ở nhà có mấy con mèo?",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "hai",
+   "title_vi": "Cốc, chén, bát (～杯)",
+   "rule_vi": "Đồ uống/đồ ăn đựng trong cốc, chén, bát. Biến âm giống 本: 1, 6, 8, 10 → っぱい; 3 và 何 → ばい; còn lại はい. Chú ý: いっぱい còn có nghĩa 'đầy, nhiều'.",
+   "items": [
+    {
+     "id": "NUM_hai_一杯",
+     "jp": "一杯",
+     "reading": "いっぱい",
+     "vi": "1 cốc/chén",
+     "irregular": true,
+     "note_vi": "いち → いっ, はい → ぱい.",
+     "example_jp": "コーヒーを 一杯 のみました。",
+     "example_vi": "Tôi đã uống 1 cốc cà phê.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hai_二杯",
+     "jp": "二杯",
+     "reading": "にはい",
+     "vi": "2 cốc/chén",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "コーヒーを 二杯 のみました。",
+     "example_vi": "Tôi đã uống 2 cốc cà phê.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hai_三杯",
+     "jp": "三杯",
+     "reading": "さんばい",
+     "vi": "3 cốc/chén",
+     "irregular": true,
+     "note_vi": "Sau さん: はい → ばい.",
+     "example_jp": "コーヒーを 三杯 のみました。",
+     "example_vi": "Tôi đã uống 3 cốc cà phê.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hai_四杯",
+     "jp": "四杯",
+     "reading": "よんはい",
+     "vi": "4 cốc/chén",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "コーヒーを 四杯 のみました。",
+     "example_vi": "Tôi đã uống 4 cốc cà phê.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hai_五杯",
+     "jp": "五杯",
+     "reading": "ごはい",
+     "vi": "5 cốc/chén",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "コーヒーを 五杯 のみました。",
+     "example_vi": "Tôi đã uống 5 cốc cà phê.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hai_六杯",
+     "jp": "六杯",
+     "reading": "ろっぱい",
+     "vi": "6 cốc/chén",
+     "irregular": true,
+     "note_vi": "ろく → ろっ, はい → ぱい.",
+     "example_jp": "コーヒーを 六杯 のみました。",
+     "example_vi": "Tôi đã uống 6 cốc cà phê.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hai_七杯",
+     "jp": "七杯",
+     "reading": "ななはい",
+     "vi": "7 cốc/chén",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "コーヒーを 七杯 のみました。",
+     "example_vi": "Tôi đã uống 7 cốc cà phê.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hai_八杯",
+     "jp": "八杯",
+     "reading": "はっぱい",
+     "vi": "8 cốc/chén",
+     "irregular": true,
+     "note_vi": "はち → はっ, はい → ぱい.",
+     "example_jp": "コーヒーを 八杯 のみました。",
+     "example_vi": "Tôi đã uống 8 cốc cà phê.",
+     "alt_readings": [
+      "はちはい"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hai_九杯",
+     "jp": "九杯",
+     "reading": "きゅうはい",
+     "vi": "9 cốc/chén",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "コーヒーを 九杯 のみました。",
+     "example_vi": "Tôi đã uống 9 cốc cà phê.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hai_十杯",
+     "jp": "十杯",
+     "reading": "じゅっぱい",
+     "vi": "10 cốc/chén",
+     "irregular": true,
+     "note_vi": "じゅう → じゅっ, はい → ぱい.",
+     "example_jp": "コーヒーを 十杯 のみました。",
+     "example_vi": "Tôi đã uống 10 cốc cà phê.",
+     "alt_readings": [
+      "じっぱい"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_hai_nan",
+     "jp": "何杯",
+     "reading": "なんばい",
+     "vi": "mấy cốc/chén",
+     "irregular": true,
+     "note_vi": "Sau なん: はい → ばい.",
+     "example_jp": "コーヒーを 何杯 のみましたか。",
+     "example_vi": "Bạn đã uống mấy cốc cà phê?",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "satsu",
+   "title_vi": "Sách, vở (～冊)",
+   "rule_vi": "Sách, vở, tạp chí. Âm さ bắt đầu bằng s nên chỉ 1, 8, 10 có âm ngắt っ: いっさつ, はっさつ, じゅっさつ. 6 vẫn là ろくさつ (khác với 本, 個).",
+   "items": [
+    {
+     "id": "NUM_satsu_一冊",
+     "jp": "一冊",
+     "reading": "いっさつ",
+     "vi": "1 quyển",
+     "irregular": true,
+     "note_vi": "いち → いっ.",
+     "example_jp": "としょかんで ほんを 一冊 かりました。",
+     "example_vi": "Tôi đã mượn 1 quyển sách ở thư viện.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_satsu_二冊",
+     "jp": "二冊",
+     "reading": "にさつ",
+     "vi": "2 quyển",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "としょかんで ほんを 二冊 かりました。",
+     "example_vi": "Tôi đã mượn 2 quyển sách ở thư viện.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_satsu_三冊",
+     "jp": "三冊",
+     "reading": "さんさつ",
+     "vi": "3 quyển",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "としょかんで ほんを 三冊 かりました。",
+     "example_vi": "Tôi đã mượn 3 quyển sách ở thư viện.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_satsu_四冊",
+     "jp": "四冊",
+     "reading": "よんさつ",
+     "vi": "4 quyển",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "としょかんで ほんを 四冊 かりました。",
+     "example_vi": "Tôi đã mượn 4 quyển sách ở thư viện.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_satsu_五冊",
+     "jp": "五冊",
+     "reading": "ごさつ",
+     "vi": "5 quyển",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "としょかんで ほんを 五冊 かりました。",
+     "example_vi": "Tôi đã mượn 5 quyển sách ở thư viện.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_satsu_六冊",
+     "jp": "六冊",
+     "reading": "ろくさつ",
+     "vi": "6 quyển",
+     "irregular": false,
+     "note_vi": "Không có âm ngắt: ろくさつ.",
+     "example_jp": "としょかんで ほんを 六冊 かりました。",
+     "example_vi": "Tôi đã mượn 6 quyển sách ở thư viện.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_satsu_七冊",
+     "jp": "七冊",
+     "reading": "ななさつ",
+     "vi": "7 quyển",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "としょかんで ほんを 七冊 かりました。",
+     "example_vi": "Tôi đã mượn 7 quyển sách ở thư viện.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_satsu_八冊",
+     "jp": "八冊",
+     "reading": "はっさつ",
+     "vi": "8 quyển",
+     "irregular": true,
+     "note_vi": "はち → はっ.",
+     "example_jp": "としょかんで ほんを 八冊 かりました。",
+     "example_vi": "Tôi đã mượn 8 quyển sách ở thư viện.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_satsu_九冊",
+     "jp": "九冊",
+     "reading": "きゅうさつ",
+     "vi": "9 quyển",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "としょかんで ほんを 九冊 かりました。",
+     "example_vi": "Tôi đã mượn 9 quyển sách ở thư viện.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_satsu_十冊",
+     "jp": "十冊",
+     "reading": "じゅっさつ",
+     "vi": "10 quyển",
+     "irregular": true,
+     "note_vi": "じゅう → じゅっ.",
+     "example_jp": "としょかんで ほんを 十冊 かりました。",
+     "example_vi": "Tôi đã mượn 10 quyển sách ở thư viện.",
+     "alt_readings": [
+      "じっさつ"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_satsu_nan",
+     "jp": "何冊",
+     "reading": "なんさつ",
+     "vi": "mấy quyển",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "としょかんで ほんを 何冊 かりましたか。",
+     "example_vi": "Bạn đã mượn mấy quyển sách ở thư viện?",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "dai",
+   "title_vi": "Máy móc, xe (～台)",
+   "rule_vi": "Xe, máy tính, tivi, máy giặt… Không có biến âm: số + だい.",
+   "items": [
+    {
+     "id": "NUM_dai_一台",
+     "jp": "一台",
+     "reading": "いちだい",
+     "vi": "1 chiếc (máy, xe)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "ちゅうしゃじょうに くるまが 一台 あります。",
+     "example_vi": "Ở bãi đỗ có 1 chiếc ô tô.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_dai_二台",
+     "jp": "二台",
+     "reading": "にだい",
+     "vi": "2 chiếc (máy, xe)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "ちゅうしゃじょうに くるまが 二台 あります。",
+     "example_vi": "Ở bãi đỗ có 2 chiếc ô tô.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_dai_三台",
+     "jp": "三台",
+     "reading": "さんだい",
+     "vi": "3 chiếc (máy, xe)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "ちゅうしゃじょうに くるまが 三台 あります。",
+     "example_vi": "Ở bãi đỗ có 3 chiếc ô tô.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_dai_四台",
+     "jp": "四台",
+     "reading": "よんだい",
+     "vi": "4 chiếc (máy, xe)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "ちゅうしゃじょうに くるまが 四台 あります。",
+     "example_vi": "Ở bãi đỗ có 4 chiếc ô tô.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_dai_五台",
+     "jp": "五台",
+     "reading": "ごだい",
+     "vi": "5 chiếc (máy, xe)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "ちゅうしゃじょうに くるまが 五台 あります。",
+     "example_vi": "Ở bãi đỗ có 5 chiếc ô tô.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_dai_六台",
+     "jp": "六台",
+     "reading": "ろくだい",
+     "vi": "6 chiếc (máy, xe)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "ちゅうしゃじょうに くるまが 六台 あります。",
+     "example_vi": "Ở bãi đỗ có 6 chiếc ô tô.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_dai_七台",
+     "jp": "七台",
+     "reading": "ななだい",
+     "vi": "7 chiếc (máy, xe)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "ちゅうしゃじょうに くるまが 七台 あります。",
+     "example_vi": "Ở bãi đỗ có 7 chiếc ô tô.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_dai_八台",
+     "jp": "八台",
+     "reading": "はちだい",
+     "vi": "8 chiếc (máy, xe)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "ちゅうしゃじょうに くるまが 八台 あります。",
+     "example_vi": "Ở bãi đỗ có 8 chiếc ô tô.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_dai_九台",
+     "jp": "九台",
+     "reading": "きゅうだい",
+     "vi": "9 chiếc (máy, xe)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "ちゅうしゃじょうに くるまが 九台 あります。",
+     "example_vi": "Ở bãi đỗ có 9 chiếc ô tô.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_dai_十台",
+     "jp": "十台",
+     "reading": "じゅうだい",
+     "vi": "10 chiếc (máy, xe)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "ちゅうしゃじょうに くるまが 十台 あります。",
+     "example_vi": "Ở bãi đỗ có 10 chiếc ô tô.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_dai_nan",
+     "jp": "何台",
+     "reading": "なんだい",
+     "vi": "mấy chiếc (máy, xe)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "ちゅうしゃじょうに くるまが 何台 ありますか。",
+     "example_vi": "Ở bãi đỗ có mấy chiếc ô tô?",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "ko",
+   "title_vi": "Đồ vật nhỏ, tròn (～個)",
+   "rule_vi": "Trứng, táo, kẹo, cục tẩy… Âm こ bắt đầu bằng k nên 1, 6, 8, 10 có âm ngắt: いっこ, ろっこ, はっこ, じゅっこ.",
+   "items": [
+    {
+     "id": "NUM_ko_一個",
+     "jp": "一個",
+     "reading": "いっこ",
+     "vi": "1 cái/quả (vật nhỏ)",
+     "irregular": true,
+     "note_vi": "いち → いっ.",
+     "example_jp": "たまごを 一個 かいました。",
+     "example_vi": "Tôi đã mua 1 quả trứng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_ko_二個",
+     "jp": "二個",
+     "reading": "にこ",
+     "vi": "2 cái/quả (vật nhỏ)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "たまごを 二個 かいました。",
+     "example_vi": "Tôi đã mua 2 quả trứng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_ko_三個",
+     "jp": "三個",
+     "reading": "さんこ",
+     "vi": "3 cái/quả (vật nhỏ)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "たまごを 三個 かいました。",
+     "example_vi": "Tôi đã mua 3 quả trứng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_ko_四個",
+     "jp": "四個",
+     "reading": "よんこ",
+     "vi": "4 cái/quả (vật nhỏ)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "たまごを 四個 かいました。",
+     "example_vi": "Tôi đã mua 4 quả trứng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_ko_五個",
+     "jp": "五個",
+     "reading": "ごこ",
+     "vi": "5 cái/quả (vật nhỏ)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "たまごを 五個 かいました。",
+     "example_vi": "Tôi đã mua 5 quả trứng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_ko_六個",
+     "jp": "六個",
+     "reading": "ろっこ",
+     "vi": "6 cái/quả (vật nhỏ)",
+     "irregular": true,
+     "note_vi": "ろく → ろっ.",
+     "example_jp": "たまごを 六個 かいました。",
+     "example_vi": "Tôi đã mua 6 quả trứng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_ko_七個",
+     "jp": "七個",
+     "reading": "ななこ",
+     "vi": "7 cái/quả (vật nhỏ)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "たまごを 七個 かいました。",
+     "example_vi": "Tôi đã mua 7 quả trứng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_ko_八個",
+     "jp": "八個",
+     "reading": "はっこ",
+     "vi": "8 cái/quả (vật nhỏ)",
+     "irregular": true,
+     "note_vi": "はち → はっ.",
+     "example_jp": "たまごを 八個 かいました。",
+     "example_vi": "Tôi đã mua 8 quả trứng.",
+     "alt_readings": [
+      "はちこ"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_ko_九個",
+     "jp": "九個",
+     "reading": "きゅうこ",
+     "vi": "9 cái/quả (vật nhỏ)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "たまごを 九個 かいました。",
+     "example_vi": "Tôi đã mua 9 quả trứng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_ko_十個",
+     "jp": "十個",
+     "reading": "じゅっこ",
+     "vi": "10 cái/quả (vật nhỏ)",
+     "irregular": true,
+     "note_vi": "じゅう → じゅっ.",
+     "example_jp": "たまごを 十個 かいました。",
+     "example_vi": "Tôi đã mua 10 quả trứng.",
+     "alt_readings": [
+      "じっこ"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_ko_nan",
+     "jp": "何個",
+     "reading": "なんこ",
+     "vi": "mấy cái/quả (vật nhỏ)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "たまごを 何個 かいましたか。",
+     "example_vi": "Bạn đã mua mấy quả trứng?",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "kai",
+   "title_vi": "Số lần (～回)",
+   "rule_vi": "Số lần làm việc gì. Biến âm như 個: いっかい, ろっかい, はっかい, じゅっかい. Thường đi với に: 一週間に 二回 (1 tuần 2 lần).",
+   "items": [
+    {
+     "id": "NUM_kai_一回",
+     "jp": "一回",
+     "reading": "いっかい",
+     "vi": "1 lần",
+     "irregular": true,
+     "note_vi": "いち → いっ.",
+     "example_jp": "ことし きょうとへ 一回 いきました。",
+     "example_vi": "Năm nay tôi đã đi Kyoto 1 lần.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kai_二回",
+     "jp": "二回",
+     "reading": "にかい",
+     "vi": "2 lần",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "ことし きょうとへ 二回 いきました。",
+     "example_vi": "Năm nay tôi đã đi Kyoto 2 lần.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kai_三回",
+     "jp": "三回",
+     "reading": "さんかい",
+     "vi": "3 lần",
+     "irregular": false,
+     "note_vi": "Số lần: さんかい (khác tầng 3 さんがい).",
+     "example_jp": "ことし きょうとへ 三回 いきました。",
+     "example_vi": "Năm nay tôi đã đi Kyoto 3 lần.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kai_四回",
+     "jp": "四回",
+     "reading": "よんかい",
+     "vi": "4 lần",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "ことし きょうとへ 四回 いきました。",
+     "example_vi": "Năm nay tôi đã đi Kyoto 4 lần.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kai_五回",
+     "jp": "五回",
+     "reading": "ごかい",
+     "vi": "5 lần",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "ことし きょうとへ 五回 いきました。",
+     "example_vi": "Năm nay tôi đã đi Kyoto 5 lần.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kai_六回",
+     "jp": "六回",
+     "reading": "ろっかい",
+     "vi": "6 lần",
+     "irregular": true,
+     "note_vi": "ろく → ろっ.",
+     "example_jp": "ことし きょうとへ 六回 いきました。",
+     "example_vi": "Năm nay tôi đã đi Kyoto 6 lần.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kai_七回",
+     "jp": "七回",
+     "reading": "ななかい",
+     "vi": "7 lần",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "ことし きょうとへ 七回 いきました。",
+     "example_vi": "Năm nay tôi đã đi Kyoto 7 lần.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kai_八回",
+     "jp": "八回",
+     "reading": "はっかい",
+     "vi": "8 lần",
+     "irregular": true,
+     "note_vi": "はち → はっ.",
+     "example_jp": "ことし きょうとへ 八回 いきました。",
+     "example_vi": "Năm nay tôi đã đi Kyoto 8 lần.",
+     "alt_readings": [
+      "はちかい"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kai_九回",
+     "jp": "九回",
+     "reading": "きゅうかい",
+     "vi": "9 lần",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "ことし きょうとへ 九回 いきました。",
+     "example_vi": "Năm nay tôi đã đi Kyoto 9 lần.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kai_十回",
+     "jp": "十回",
+     "reading": "じゅっかい",
+     "vi": "10 lần",
+     "irregular": true,
+     "note_vi": "じゅう → じゅっ.",
+     "example_jp": "ことし きょうとへ 十回 いきました。",
+     "example_vi": "Năm nay tôi đã đi Kyoto 10 lần.",
+     "alt_readings": [
+      "じっかい"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kai_nan",
+     "jp": "何回",
+     "reading": "なんかい",
+     "vi": "mấy lần",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "ことし きょうとへ 何回 いきましたか。",
+     "example_vi": "Năm nay bạn đã đi Kyoto mấy lần?",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "kai_floor",
+   "title_vi": "Tầng nhà (～階)",
+   "rule_vi": "Tầng của tòa nhà. Giống 回 (いっかい, ろっかい, はっかい, じゅっかい) nhưng tầng 3 là さんがい và hỏi 'tầng mấy' là なんがい. Tầng hầm: ちか（地下）一階.",
+   "items": [
+    {
+     "id": "NUM_kai_floor_一階",
+     "jp": "一階",
+     "reading": "いっかい",
+     "vi": "tầng 1",
+     "irregular": true,
+     "note_vi": "いち → いっ.",
+     "example_jp": "トイレは 一階です。",
+     "example_vi": "Nhà vệ sinh ở tầng 1.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kai_floor_二階",
+     "jp": "二階",
+     "reading": "にかい",
+     "vi": "tầng 2",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "トイレは 二階です。",
+     "example_vi": "Nhà vệ sinh ở tầng 2.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kai_floor_三階",
+     "jp": "三階",
+     "reading": "さんがい",
+     "vi": "tầng 3",
+     "irregular": true,
+     "note_vi": "Tầng 3: かい → がい (số lần 3 vẫn là さんかい).",
+     "example_jp": "トイレは 三階です。",
+     "example_vi": "Nhà vệ sinh ở tầng 3.",
+     "alt_readings": [
+      "さんかい"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kai_floor_四階",
+     "jp": "四階",
+     "reading": "よんかい",
+     "vi": "tầng 4",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "トイレは 四階です。",
+     "example_vi": "Nhà vệ sinh ở tầng 4.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kai_floor_五階",
+     "jp": "五階",
+     "reading": "ごかい",
+     "vi": "tầng 5",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "トイレは 五階です。",
+     "example_vi": "Nhà vệ sinh ở tầng 5.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kai_floor_六階",
+     "jp": "六階",
+     "reading": "ろっかい",
+     "vi": "tầng 6",
+     "irregular": true,
+     "note_vi": "ろく → ろっ.",
+     "example_jp": "トイレは 六階です。",
+     "example_vi": "Nhà vệ sinh ở tầng 6.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kai_floor_七階",
+     "jp": "七階",
+     "reading": "ななかい",
+     "vi": "tầng 7",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "トイレは 七階です。",
+     "example_vi": "Nhà vệ sinh ở tầng 7.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kai_floor_八階",
+     "jp": "八階",
+     "reading": "はっかい",
+     "vi": "tầng 8",
+     "irregular": true,
+     "note_vi": "はち → はっ.",
+     "example_jp": "トイレは 八階です。",
+     "example_vi": "Nhà vệ sinh ở tầng 8.",
+     "alt_readings": [
+      "はちかい"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kai_floor_九階",
+     "jp": "九階",
+     "reading": "きゅうかい",
+     "vi": "tầng 9",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "トイレは 九階です。",
+     "example_vi": "Nhà vệ sinh ở tầng 9.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kai_floor_十階",
+     "jp": "十階",
+     "reading": "じゅっかい",
+     "vi": "tầng 10",
+     "irregular": true,
+     "note_vi": "じゅう → じゅっ.",
+     "example_jp": "トイレは 十階です。",
+     "example_vi": "Nhà vệ sinh ở tầng 10.",
+     "alt_readings": [
+      "じっかい"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kai_floor_nan",
+     "jp": "何階",
+     "reading": "なんがい",
+     "vi": "tầng mấy",
+     "irregular": true,
+     "note_vi": "Hỏi tầng: なんがい.",
+     "example_jp": "トイレは 何階ですか。",
+     "example_vi": "Nhà vệ sinh ở tầng mấy?",
+     "alt_readings": [
+      "なんかい"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "sai",
+   "title_vi": "Tuổi (～歳)",
+   "rule_vi": "Tuổi: số + さい, 1, 8, 10 có âm ngắt (いっさい, はっさい, じゅっさい). 20 tuổi có cách nói riêng はたち. Hỏi tuổi: 何歳 なんさい, lịch sự hơn: おいくつ. Chữ 歳 hay được viết đơn giản là 才.",
+   "items": [
+    {
+     "id": "NUM_sai_一歳",
+     "jp": "一歳",
+     "reading": "いっさい",
+     "vi": "1 tuổi",
+     "irregular": true,
+     "note_vi": "いち → いっ.",
+     "example_jp": "むすこは 一歳です。",
+     "example_vi": "Con trai tôi 1 tuổi.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_sai_二歳",
+     "jp": "二歳",
+     "reading": "にさい",
+     "vi": "2 tuổi",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "むすこは 二歳です。",
+     "example_vi": "Con trai tôi 2 tuổi.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_sai_三歳",
+     "jp": "三歳",
+     "reading": "さんさい",
+     "vi": "3 tuổi",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "むすこは 三歳です。",
+     "example_vi": "Con trai tôi 3 tuổi.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_sai_四歳",
+     "jp": "四歳",
+     "reading": "よんさい",
+     "vi": "4 tuổi",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "むすこは 四歳です。",
+     "example_vi": "Con trai tôi 4 tuổi.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_sai_五歳",
+     "jp": "五歳",
+     "reading": "ごさい",
+     "vi": "5 tuổi",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "むすこは 五歳です。",
+     "example_vi": "Con trai tôi 5 tuổi.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_sai_六歳",
+     "jp": "六歳",
+     "reading": "ろくさい",
+     "vi": "6 tuổi",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "むすこは 六歳です。",
+     "example_vi": "Con trai tôi 6 tuổi.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_sai_七歳",
+     "jp": "七歳",
+     "reading": "ななさい",
+     "vi": "7 tuổi",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "むすこは 七歳です。",
+     "example_vi": "Con trai tôi 7 tuổi.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_sai_八歳",
+     "jp": "八歳",
+     "reading": "はっさい",
+     "vi": "8 tuổi",
+     "irregular": true,
+     "note_vi": "はち → はっ.",
+     "example_jp": "むすこは 八歳です。",
+     "example_vi": "Con trai tôi 8 tuổi.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_sai_九歳",
+     "jp": "九歳",
+     "reading": "きゅうさい",
+     "vi": "9 tuổi",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "むすこは 九歳です。",
+     "example_vi": "Con trai tôi 9 tuổi.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_sai_十歳",
+     "jp": "十歳",
+     "reading": "じゅっさい",
+     "vi": "10 tuổi",
+     "irregular": true,
+     "note_vi": "じゅう → じゅっ.",
+     "example_jp": "むすこは 十歳です。",
+     "example_vi": "Con trai tôi 10 tuổi.",
+     "alt_readings": [
+      "じっさい"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_sai_二十歳",
+     "jp": "二十歳",
+     "reading": "はたち",
+     "vi": "20 tuổi",
+     "irregular": true,
+     "note_vi": "20 tuổi: cách nói riêng はたち (mốc truyền thống: lễ thành nhân, được uống rượu; tuổi trưởng thành theo luật hiện nay là 18).",
+     "example_jp": "むすこは 二十歳です。",
+     "example_vi": "Con trai tôi 20 tuổi.",
+     "alt_readings": [
+      "にじゅっさい",
+      "にじっさい"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "reviewer",
+       "note": "Sửa note_vi theo rà soát B1"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_sai_nan",
+     "jp": "何歳",
+     "reading": "なんさい",
+     "vi": "mấy tuổi",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "むすこさんは 何歳ですか。",
+     "example_vi": "Con trai anh mấy tuổi?",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "ji",
+   "title_vi": "Giờ (～時)",
+   "rule_vi": "Giờ: số + じ. Có 3 mốc giờ cần nhớ cách đọc: 4 giờ よじ (không phải よんじ), 7 giờ しちじ, 9 giờ くじ (không phải きゅうじ). Rưỡi: 半 はん (七時半 しちじはん). Sáng/chiều: ごぜん/ごご 三時.",
+   "items": [
+    {
+     "id": "NUM_ji_一時",
+     "jp": "一時",
+     "reading": "いちじ",
+     "vi": "1 giờ",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "いま 一時です。",
+     "example_vi": "Bây giờ là 1 giờ.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_ji_二時",
+     "jp": "二時",
+     "reading": "にじ",
+     "vi": "2 giờ",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "いま 二時です。",
+     "example_vi": "Bây giờ là 2 giờ.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_ji_三時",
+     "jp": "三時",
+     "reading": "さんじ",
+     "vi": "3 giờ",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "いま 三時です。",
+     "example_vi": "Bây giờ là 3 giờ.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_ji_四時",
+     "jp": "四時",
+     "reading": "よじ",
+     "vi": "4 giờ",
+     "irregular": true,
+     "note_vi": "4 giờ: よじ (không phải よんじ).",
+     "example_jp": "いま 四時です。",
+     "example_vi": "Bây giờ là 4 giờ.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_ji_五時",
+     "jp": "五時",
+     "reading": "ごじ",
+     "vi": "5 giờ",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "いま 五時です。",
+     "example_vi": "Bây giờ là 5 giờ.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_ji_六時",
+     "jp": "六時",
+     "reading": "ろくじ",
+     "vi": "6 giờ",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "いま 六時です。",
+     "example_vi": "Bây giờ là 6 giờ.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_ji_七時",
+     "jp": "七時",
+     "reading": "しちじ",
+     "vi": "7 giờ",
+     "irregular": true,
+     "note_vi": "7 giờ: しちじ (ななじ cũng được nghe).",
+     "example_jp": "いま 七時です。",
+     "example_vi": "Bây giờ là 7 giờ.",
+     "alt_readings": [
+      "ななじ"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_ji_八時",
+     "jp": "八時",
+     "reading": "はちじ",
+     "vi": "8 giờ",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "いま 八時です。",
+     "example_vi": "Bây giờ là 8 giờ.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_ji_九時",
+     "jp": "九時",
+     "reading": "くじ",
+     "vi": "9 giờ",
+     "irregular": true,
+     "note_vi": "9 giờ: くじ (không phải きゅうじ).",
+     "example_jp": "いま 九時です。",
+     "example_vi": "Bây giờ là 9 giờ.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_ji_十時",
+     "jp": "十時",
+     "reading": "じゅうじ",
+     "vi": "10 giờ",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "いま 十時です。",
+     "example_vi": "Bây giờ là 10 giờ.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_ji_十一時",
+     "jp": "十一時",
+     "reading": "じゅういちじ",
+     "vi": "11 giờ",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "いま 十一時です。",
+     "example_vi": "Bây giờ là 11 giờ.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_ji_十二時",
+     "jp": "十二時",
+     "reading": "じゅうにじ",
+     "vi": "12 giờ",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "いま 十二時です。",
+     "example_vi": "Bây giờ là 12 giờ.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_ji_nan",
+     "jp": "何時",
+     "reading": "なんじ",
+     "vi": "mấy giờ",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "いま 何時ですか。",
+     "example_vi": "Bây giờ là mấy giờ?",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "fun",
+   "title_vi": "Phút (～分)",
+   "rule_vi": "Phút: ふん biến âm theo số. 1, 6, 8, 10 → âm ngắt + ぷん (いっぷん, ろっぷん, はっぷん, じゅっぷん); 3, 4 và 何 → ぷん (さんぷん, よんぷん, なんぷん); 2, 5, 7, 9 giữ ふん (にふん, ごふん, ななふん, きゅうふん). 20, 30… kết thúc bằng じゅう nên cũng là じゅっぷん.",
+   "items": [
+    {
+     "id": "NUM_fun_一分",
+     "jp": "一分",
+     "reading": "いっぷん",
+     "vi": "1 phút",
+     "irregular": true,
+     "note_vi": "いち → いっ, ふん → ぷん.",
+     "example_jp": "えきまで あるいて 一分です。",
+     "example_vi": "Đi bộ đến ga mất 1 phút.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_fun_二分",
+     "jp": "二分",
+     "reading": "にふん",
+     "vi": "2 phút",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "えきまで あるいて 二分です。",
+     "example_vi": "Đi bộ đến ga mất 2 phút.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_fun_三分",
+     "jp": "三分",
+     "reading": "さんぷん",
+     "vi": "3 phút",
+     "irregular": true,
+     "note_vi": "Sau さん: ふん → ぷん.",
+     "example_jp": "えきまで あるいて 三分です。",
+     "example_vi": "Đi bộ đến ga mất 3 phút.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_fun_四分",
+     "jp": "四分",
+     "reading": "よんぷん",
+     "vi": "4 phút",
+     "irregular": true,
+     "note_vi": "Sau よん: ふん → ぷん.",
+     "example_jp": "えきまで あるいて 四分です。",
+     "example_vi": "Đi bộ đến ga mất 4 phút.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_fun_五分",
+     "jp": "五分",
+     "reading": "ごふん",
+     "vi": "5 phút",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "えきまで あるいて 五分です。",
+     "example_vi": "Đi bộ đến ga mất 5 phút.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_fun_六分",
+     "jp": "六分",
+     "reading": "ろっぷん",
+     "vi": "6 phút",
+     "irregular": true,
+     "note_vi": "ろく → ろっ, ふん → ぷん.",
+     "example_jp": "えきまで あるいて 六分です。",
+     "example_vi": "Đi bộ đến ga mất 6 phút.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_fun_七分",
+     "jp": "七分",
+     "reading": "ななふん",
+     "vi": "7 phút",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "えきまで あるいて 七分です。",
+     "example_vi": "Đi bộ đến ga mất 7 phút.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_fun_八分",
+     "jp": "八分",
+     "reading": "はっぷん",
+     "vi": "8 phút",
+     "irregular": true,
+     "note_vi": "はち → はっ, ふん → ぷん.",
+     "example_jp": "えきまで あるいて 八分です。",
+     "example_vi": "Đi bộ đến ga mất 8 phút.",
+     "alt_readings": [
+      "はちふん"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_fun_九分",
+     "jp": "九分",
+     "reading": "きゅうふん",
+     "vi": "9 phút",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "えきまで あるいて 九分です。",
+     "example_vi": "Đi bộ đến ga mất 9 phút.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_fun_十分",
+     "jp": "十分",
+     "reading": "じゅっぷん",
+     "vi": "10 phút",
+     "irregular": true,
+     "note_vi": "じゅう → じゅっ, ふん → ぷん. (十分 đọc じゅうぶん lại là 'đủ'.)",
+     "example_jp": "えきまで あるいて 十分です。",
+     "example_vi": "Đi bộ đến ga mất 10 phút.",
+     "alt_readings": [
+      "じっぷん"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_fun_十五分",
+     "jp": "十五分",
+     "reading": "じゅうごふん",
+     "vi": "15 phút",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "えきまで あるいて 十五分です。",
+     "example_vi": "Đi bộ đến ga mất 15 phút.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_fun_二十分",
+     "jp": "二十分",
+     "reading": "にじゅっぷん",
+     "vi": "20 phút",
+     "irregular": true,
+     "note_vi": "Kết thúc bằng じゅう → じゅっぷん.",
+     "example_jp": "えきまで あるいて 二十分です。",
+     "example_vi": "Đi bộ đến ga mất 20 phút.",
+     "alt_readings": [
+      "にじっぷん"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_fun_三十分",
+     "jp": "三十分",
+     "reading": "さんじゅっぷん",
+     "vi": "30 phút",
+     "irregular": true,
+     "note_vi": "Kết thúc bằng じゅう → じゅっぷん.",
+     "example_jp": "えきまで あるいて 三十分です。",
+     "example_vi": "Đi bộ đến ga mất 30 phút.",
+     "alt_readings": [
+      "さんじっぷん"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_fun_nan",
+     "jp": "何分",
+     "reading": "なんぷん",
+     "vi": "mấy phút",
+     "irregular": true,
+     "note_vi": "Sau なん: ふん → ぷん.",
+     "example_jp": "えきまで あるいて 何分ですか。",
+     "example_vi": "Đi bộ đến ga mất mấy phút?",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_fun_四時半",
+     "jp": "四時半",
+     "reading": "よじはん",
+     "vi": "4 giờ rưỡi",
+     "irregular": true,
+     "note_vi": "半 = rưỡi: 4 giờ rưỡi よじはん.",
+     "example_jp": "いま 四時半です。",
+     "example_vi": "Bây giờ là 4 giờ rưỡi.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "jikan",
+   "title_vi": "Số giờ, khoảng thời gian (～時間)",
+   "rule_vi": "Khoảng thời gian bao nhiêu tiếng: số + じかん. 4, 7, 9 đọc giống giờ: よじかん, しちじかん, くじかん.",
+   "items": [
+    {
+     "id": "NUM_jikan_一時間",
+     "jp": "一時間",
+     "reading": "いちじかん",
+     "vi": "1 tiếng",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "まいにち 一時間 べんきょうします。",
+     "example_vi": "Mỗi ngày tôi học 1 tiếng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_jikan_二時間",
+     "jp": "二時間",
+     "reading": "にじかん",
+     "vi": "2 tiếng",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "まいにち 二時間 べんきょうします。",
+     "example_vi": "Mỗi ngày tôi học 2 tiếng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_jikan_三時間",
+     "jp": "三時間",
+     "reading": "さんじかん",
+     "vi": "3 tiếng",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "まいにち 三時間 べんきょうします。",
+     "example_vi": "Mỗi ngày tôi học 3 tiếng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_jikan_四時間",
+     "jp": "四時間",
+     "reading": "よじかん",
+     "vi": "4 tiếng",
+     "irregular": true,
+     "note_vi": "Giống 4 giờ: よ.",
+     "example_jp": "まいにち 四時間 べんきょうします。",
+     "example_vi": "Mỗi ngày tôi học 4 tiếng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_jikan_五時間",
+     "jp": "五時間",
+     "reading": "ごじかん",
+     "vi": "5 tiếng",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "まいにち 五時間 べんきょうします。",
+     "example_vi": "Mỗi ngày tôi học 5 tiếng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_jikan_六時間",
+     "jp": "六時間",
+     "reading": "ろくじかん",
+     "vi": "6 tiếng",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "まいにち 六時間 べんきょうします。",
+     "example_vi": "Mỗi ngày tôi học 6 tiếng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_jikan_七時間",
+     "jp": "七時間",
+     "reading": "しちじかん",
+     "vi": "7 tiếng",
+     "irregular": true,
+     "note_vi": "Giống 7 giờ: しち (なな cũng được).",
+     "example_jp": "まいにち 七時間 べんきょうします。",
+     "example_vi": "Mỗi ngày tôi học 7 tiếng.",
+     "alt_readings": [
+      "ななじかん"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_jikan_八時間",
+     "jp": "八時間",
+     "reading": "はちじかん",
+     "vi": "8 tiếng",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "まいにち 八時間 べんきょうします。",
+     "example_vi": "Mỗi ngày tôi học 8 tiếng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_jikan_九時間",
+     "jp": "九時間",
+     "reading": "くじかん",
+     "vi": "9 tiếng",
+     "irregular": true,
+     "note_vi": "Giống 9 giờ: く.",
+     "example_jp": "まいにち 九時間 べんきょうします。",
+     "example_vi": "Mỗi ngày tôi học 9 tiếng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_jikan_十時間",
+     "jp": "十時間",
+     "reading": "じゅうじかん",
+     "vi": "10 tiếng",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "まいにち 十時間 べんきょうします。",
+     "example_vi": "Mỗi ngày tôi học 10 tiếng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_jikan_nan",
+     "jp": "何時間",
+     "reading": "なんじかん",
+     "vi": "mấy tiếng",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "まいにち 何時間 べんきょうしますか。",
+     "example_vi": "Mỗi ngày bạn học mấy tiếng?",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "youbi",
+   "title_vi": "Thứ trong tuần (～曜日)",
+   "rule_vi": "Mỗi thứ gắn với một nguyên tố: 月 Mặt trăng (thứ Hai), 火 Lửa (thứ Ba), 水 Nước (thứ Tư), 木 Cây (thứ Năm), 金 Vàng (thứ Sáu), 土 Đất (thứ Bảy), 日 Mặt trời (Chủ nhật). Nói ngắn có thể bỏ 日: げつようです.",
+   "items": [
+    {
+     "id": "NUM_youbi_月曜日",
+     "jp": "月曜日",
+     "reading": "げつようび",
+     "vi": "thứ Hai",
+     "irregular": true,
+     "note_vi": "Thứ Hai (月 đọc げつ).",
+     "example_jp": "きょうは 月曜日です。",
+     "example_vi": "Hôm nay là thứ Hai.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_youbi_火曜日",
+     "jp": "火曜日",
+     "reading": "かようび",
+     "vi": "thứ Ba",
+     "irregular": true,
+     "note_vi": "Thứ Ba.",
+     "example_jp": "きょうは 火曜日です。",
+     "example_vi": "Hôm nay là thứ Ba.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_youbi_水曜日",
+     "jp": "水曜日",
+     "reading": "すいようび",
+     "vi": "thứ Tư",
+     "irregular": true,
+     "note_vi": "Thứ Tư.",
+     "example_jp": "きょうは 水曜日です。",
+     "example_vi": "Hôm nay là thứ Tư.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_youbi_木曜日",
+     "jp": "木曜日",
+     "reading": "もくようび",
+     "vi": "thứ Năm",
+     "irregular": true,
+     "note_vi": "Thứ Năm.",
+     "example_jp": "きょうは 木曜日です。",
+     "example_vi": "Hôm nay là thứ Năm.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_youbi_金曜日",
+     "jp": "金曜日",
+     "reading": "きんようび",
+     "vi": "thứ Sáu",
+     "irregular": true,
+     "note_vi": "Thứ Sáu.",
+     "example_jp": "きょうは 金曜日です。",
+     "example_vi": "Hôm nay là thứ Sáu.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_youbi_土曜日",
+     "jp": "土曜日",
+     "reading": "どようび",
+     "vi": "thứ Bảy",
+     "irregular": true,
+     "note_vi": "Thứ Bảy (土 đọc ど, không phải と).",
+     "example_jp": "きょうは 土曜日です。",
+     "example_vi": "Hôm nay là thứ Bảy.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_youbi_日曜日",
+     "jp": "日曜日",
+     "reading": "にちようび",
+     "vi": "Chủ nhật",
+     "irregular": true,
+     "note_vi": "Chủ nhật.",
+     "example_jp": "きょうは 日曜日です。",
+     "example_vi": "Hôm nay là Chủ nhật.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_youbi_nan",
+     "jp": "何曜日",
+     "reading": "なんようび",
+     "vi": "thứ mấy",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "きょうは 何曜日ですか。",
+     "example_vi": "Hôm nay là thứ mấy?",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "nichi",
+   "title_vi": "Ngày trong tháng (～日)",
+   "rule_vi": "Ngày 1–10 dùng cách đọc thuần Nhật: ついたち, ふつか, みっか, よっか, いつか, むいか, なのか, ようか, ここのか, とおか. Cũng đặc biệt: 14 じゅうよっか, 20 はつか, 24 にじゅうよっか. Ngày khác: số + にち (17 じゅうしちにち, 19 じゅうくにち). Từ ngày 2 trở đi, cùng chữ còn có nghĩa 'n ngày' (ふつか = 2 ngày); riêng 1 ngày là いちにち.",
+   "items": [
+    {
+     "id": "NUM_nichi_一日",
+     "jp": "一日",
+     "reading": "ついたち",
+     "vi": "ngày 1",
+     "irregular": true,
+     "note_vi": "Ngày mồng 1: ついたち (còn 'một ngày' là いちにち).",
+     "example_jp": "たんじょうびは 五月一日です。",
+     "example_vi": "Sinh nhật tôi là ngày 1 tháng 5.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nichi_二日",
+     "jp": "二日",
+     "reading": "ふつか",
+     "vi": "ngày 2",
+     "irregular": true,
+     "note_vi": "Ngày 2: ふつか (đọc thuần Nhật; cũng nghĩa là \"2 ngày\").",
+     "example_jp": "たんじょうびは 五月二日です。",
+     "example_vi": "Sinh nhật tôi là ngày 2 tháng 5.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "reviewer",
+       "note": "Bổ sung note_vi (luật missing_note)"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nichi_三日",
+     "jp": "三日",
+     "reading": "みっか",
+     "vi": "ngày 3",
+     "irregular": true,
+     "note_vi": "Ngày 3: みっか (み + っ + か; cũng nghĩa là \"3 ngày\").",
+     "example_jp": "たんじょうびは 五月三日です。",
+     "example_vi": "Sinh nhật tôi là ngày 3 tháng 5.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "reviewer",
+       "note": "Bổ sung note_vi (luật missing_note)"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nichi_四日",
+     "jp": "四日",
+     "reading": "よっか",
+     "vi": "ngày 4",
+     "irregular": true,
+     "note_vi": "Ngày 4: よっか (dễ nhầm với ようか ngày 8).",
+     "example_jp": "たんじょうびは 五月四日です。",
+     "example_vi": "Sinh nhật tôi là ngày 4 tháng 5.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nichi_五日",
+     "jp": "五日",
+     "reading": "いつか",
+     "vi": "ngày 5",
+     "irregular": true,
+     "note_vi": "Ngày 5: いつか (cũng nghĩa là \"5 ngày\").",
+     "example_jp": "たんじょうびは 五月五日です。",
+     "example_vi": "Sinh nhật tôi là ngày 5 tháng 5.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "reviewer",
+       "note": "Bổ sung note_vi (luật missing_note)"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nichi_六日",
+     "jp": "六日",
+     "reading": "むいか",
+     "vi": "ngày 6",
+     "irregular": true,
+     "note_vi": "Ngày 6: むいか (cũng nghĩa là \"6 ngày\").",
+     "example_jp": "たんじょうびは 五月六日です。",
+     "example_vi": "Sinh nhật tôi là ngày 6 tháng 5.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "reviewer",
+       "note": "Bổ sung note_vi (luật missing_note)"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nichi_七日",
+     "jp": "七日",
+     "reading": "なのか",
+     "vi": "ngày 7",
+     "irregular": true,
+     "note_vi": "Ngày 7: なのか (không phải ななか; cũng nghĩa là \"7 ngày\").",
+     "example_jp": "たんじょうびは 五月七日です。",
+     "example_vi": "Sinh nhật tôi là ngày 7 tháng 5.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "reviewer",
+       "note": "Bổ sung note_vi (luật missing_note)"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nichi_八日",
+     "jp": "八日",
+     "reading": "ようか",
+     "vi": "ngày 8",
+     "irregular": true,
+     "note_vi": "Ngày 8: ようか (dễ nhầm với よっか ngày 4).",
+     "example_jp": "たんじょうびは 五月八日です。",
+     "example_vi": "Sinh nhật tôi là ngày 8 tháng 5.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nichi_九日",
+     "jp": "九日",
+     "reading": "ここのか",
+     "vi": "ngày 9",
+     "irregular": true,
+     "note_vi": "Ngày 9: ここのか (cũng nghĩa là \"9 ngày\").",
+     "example_jp": "たんじょうびは 五月九日です。",
+     "example_vi": "Sinh nhật tôi là ngày 9 tháng 5.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "reviewer",
+       "note": "Bổ sung note_vi (luật missing_note)"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nichi_十日",
+     "jp": "十日",
+     "reading": "とおか",
+     "vi": "ngày 10",
+     "irregular": true,
+     "note_vi": "Ngày 10: とおか (giống 10 cái とお + か; cũng nghĩa là \"10 ngày\").",
+     "example_jp": "たんじょうびは 五月十日です。",
+     "example_vi": "Sinh nhật tôi là ngày 10 tháng 5.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "reviewer",
+       "note": "Bổ sung note_vi (luật missing_note)"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nichi_十一日",
+     "jp": "十一日",
+     "reading": "じゅういちにち",
+     "vi": "ngày 11",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "たんじょうびは 五月十一日です。",
+     "example_vi": "Sinh nhật tôi là ngày 11 tháng 5.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nichi_十四日",
+     "jp": "十四日",
+     "reading": "じゅうよっか",
+     "vi": "ngày 14",
+     "irregular": true,
+     "note_vi": "14: giữ よっか.",
+     "example_jp": "たんじょうびは 五月十四日です。",
+     "example_vi": "Sinh nhật tôi là ngày 14 tháng 5.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nichi_十七日",
+     "jp": "十七日",
+     "reading": "じゅうしちにち",
+     "vi": "ngày 17",
+     "irregular": true,
+     "note_vi": "17: しち.",
+     "example_jp": "たんじょうびは 五月十七日です。",
+     "example_vi": "Sinh nhật tôi là ngày 17 tháng 5.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nichi_十九日",
+     "jp": "十九日",
+     "reading": "じゅうくにち",
+     "vi": "ngày 19",
+     "irregular": true,
+     "note_vi": "19: く.",
+     "example_jp": "たんじょうびは 五月十九日です。",
+     "example_vi": "Sinh nhật tôi là ngày 19 tháng 5.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nichi_二十日",
+     "jp": "二十日",
+     "reading": "はつか",
+     "vi": "ngày 20",
+     "irregular": true,
+     "note_vi": "20: はつか, cách đọc riêng.",
+     "example_jp": "たんじょうびは 五月二十日です。",
+     "example_vi": "Sinh nhật tôi là ngày 20 tháng 5.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nichi_二十四日",
+     "jp": "二十四日",
+     "reading": "にじゅうよっか",
+     "vi": "ngày 24",
+     "irregular": true,
+     "note_vi": "24: giữ よっか.",
+     "example_jp": "たんじょうびは 五月二十四日です。",
+     "example_vi": "Sinh nhật tôi là ngày 24 tháng 5.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nichi_三十日",
+     "jp": "三十日",
+     "reading": "さんじゅうにち",
+     "vi": "ngày 30",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "たんじょうびは 五月三十日です。",
+     "example_vi": "Sinh nhật tôi là ngày 30 tháng 5.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nichi_nan",
+     "jp": "何日",
+     "reading": "なんにち",
+     "vi": "ngày mấy",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "たんじょうびは 五月何日ですか。",
+     "example_vi": "Sinh nhật bạn là ngày mấy tháng 5?",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "gatsu",
+   "title_vi": "Tháng (～月)",
+   "rule_vi": "Tháng: số + がつ, rất đều, chỉ cần nhớ 3 tháng: 4 しがつ, 7 しちがつ, 9 くがつ. Hỏi tháng mấy: 何月 なんがつ. Khác với 'số tháng' (khoảng thời gian) là ～か月.",
+   "items": [
+    {
+     "id": "NUM_gatsu_一月",
+     "jp": "一月",
+     "reading": "いちがつ",
+     "vi": "tháng 1",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "わたしの たんじょうびは 一月です。",
+     "example_vi": "Sinh nhật tôi vào tháng 1.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_gatsu_二月",
+     "jp": "二月",
+     "reading": "にがつ",
+     "vi": "tháng 2",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "わたしの たんじょうびは 二月です。",
+     "example_vi": "Sinh nhật tôi vào tháng 2.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_gatsu_三月",
+     "jp": "三月",
+     "reading": "さんがつ",
+     "vi": "tháng 3",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "わたしの たんじょうびは 三月です。",
+     "example_vi": "Sinh nhật tôi vào tháng 3.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_gatsu_四月",
+     "jp": "四月",
+     "reading": "しがつ",
+     "vi": "tháng 4",
+     "irregular": true,
+     "note_vi": "Tháng 4: し (không phải よんがつ).",
+     "example_jp": "わたしの たんじょうびは 四月です。",
+     "example_vi": "Sinh nhật tôi vào tháng 4.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_gatsu_五月",
+     "jp": "五月",
+     "reading": "ごがつ",
+     "vi": "tháng 5",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "わたしの たんじょうびは 五月です。",
+     "example_vi": "Sinh nhật tôi vào tháng 5.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_gatsu_六月",
+     "jp": "六月",
+     "reading": "ろくがつ",
+     "vi": "tháng 6",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "わたしの たんじょうびは 六月です。",
+     "example_vi": "Sinh nhật tôi vào tháng 6.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_gatsu_七月",
+     "jp": "七月",
+     "reading": "しちがつ",
+     "vi": "tháng 7",
+     "irregular": true,
+     "note_vi": "Tháng 7: しち (không phải なながつ).",
+     "example_jp": "わたしの たんじょうびは 七月です。",
+     "example_vi": "Sinh nhật tôi vào tháng 7.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_gatsu_八月",
+     "jp": "八月",
+     "reading": "はちがつ",
+     "vi": "tháng 8",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "わたしの たんじょうびは 八月です。",
+     "example_vi": "Sinh nhật tôi vào tháng 8.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_gatsu_九月",
+     "jp": "九月",
+     "reading": "くがつ",
+     "vi": "tháng 9",
+     "irregular": true,
+     "note_vi": "Tháng 9: く (không phải きゅうがつ).",
+     "example_jp": "わたしの たんじょうびは 九月です。",
+     "example_vi": "Sinh nhật tôi vào tháng 9.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_gatsu_十月",
+     "jp": "十月",
+     "reading": "じゅうがつ",
+     "vi": "tháng 10",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "わたしの たんじょうびは 十月です。",
+     "example_vi": "Sinh nhật tôi vào tháng 10.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_gatsu_十一月",
+     "jp": "十一月",
+     "reading": "じゅういちがつ",
+     "vi": "tháng 11",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "わたしの たんじょうびは 十一月です。",
+     "example_vi": "Sinh nhật tôi vào tháng 11.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_gatsu_十二月",
+     "jp": "十二月",
+     "reading": "じゅうにがつ",
+     "vi": "tháng 12",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "わたしの たんじょうびは 十二月です。",
+     "example_vi": "Sinh nhật tôi vào tháng 12.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_gatsu_nan",
+     "jp": "何月",
+     "reading": "なんがつ",
+     "vi": "tháng mấy",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "あなたの たんじょうびは 何月ですか。",
+     "example_vi": "Sinh nhật bạn tháng mấy?",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "nen",
+   "title_vi": "Năm (～年)",
+   "rule_vi": "Năm/số năm: số + ねん. 4 năm よねん, 7 năm ななねん (しちねん), 9 năm きゅうねん. Năm cụ thể đọc cả số: 2026年 にせんにじゅうろくねん.",
+   "items": [
+    {
+     "id": "NUM_nen_一年",
+     "jp": "一年",
+     "reading": "いちねん",
+     "vi": "1 năm",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "にほんに 一年 すんでいました。",
+     "example_vi": "Tôi đã sống ở Nhật 1 năm.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nen_二年",
+     "jp": "二年",
+     "reading": "にねん",
+     "vi": "2 năm",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "にほんに 二年 すんでいました。",
+     "example_vi": "Tôi đã sống ở Nhật 2 năm.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nen_三年",
+     "jp": "三年",
+     "reading": "さんねん",
+     "vi": "3 năm",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "にほんに 三年 すんでいました。",
+     "example_vi": "Tôi đã sống ở Nhật 3 năm.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nen_四年",
+     "jp": "四年",
+     "reading": "よねん",
+     "vi": "4 năm",
+     "irregular": true,
+     "note_vi": "4 năm: よねん (không phải よんねん).",
+     "example_jp": "にほんに 四年 すんでいました。",
+     "example_vi": "Tôi đã sống ở Nhật 4 năm.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nen_五年",
+     "jp": "五年",
+     "reading": "ごねん",
+     "vi": "5 năm",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "にほんに 五年 すんでいました。",
+     "example_vi": "Tôi đã sống ở Nhật 5 năm.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nen_六年",
+     "jp": "六年",
+     "reading": "ろくねん",
+     "vi": "6 năm",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "にほんに 六年 すんでいました。",
+     "example_vi": "Tôi đã sống ở Nhật 6 năm.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nen_七年",
+     "jp": "七年",
+     "reading": "ななねん",
+     "vi": "7 năm",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "にほんに 七年 すんでいました。",
+     "example_vi": "Tôi đã sống ở Nhật 7 năm.",
+     "alt_readings": [
+      "しちねん"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nen_八年",
+     "jp": "八年",
+     "reading": "はちねん",
+     "vi": "8 năm",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "にほんに 八年 すんでいました。",
+     "example_vi": "Tôi đã sống ở Nhật 8 năm.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nen_九年",
+     "jp": "九年",
+     "reading": "きゅうねん",
+     "vi": "9 năm",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "にほんに 九年 すんでいました。",
+     "example_vi": "Tôi đã sống ở Nhật 9 năm.",
+     "alt_readings": [
+      "くねん"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nen_十年",
+     "jp": "十年",
+     "reading": "じゅうねん",
+     "vi": "10 năm",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "にほんに 十年 すんでいました。",
+     "example_vi": "Tôi đã sống ở Nhật 10 năm.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_nen_nan",
+     "jp": "何年",
+     "reading": "なんねん",
+     "vi": "mấy năm",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "にほんに 何年 すんでいましたか。",
+     "example_vi": "Bạn đã sống ở Nhật mấy năm?",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "shuukan",
+   "title_vi": "Số tuần (～週間)",
+   "rule_vi": "Số tuần: số + しゅうかん. Âm し nên 1, 8, 10 có âm ngắt: いっしゅうかん, はっしゅうかん, じゅっしゅうかん.",
+   "items": [
+    {
+     "id": "NUM_shuukan_一週間",
+     "jp": "一週間",
+     "reading": "いっしゅうかん",
+     "vi": "1 tuần",
+     "irregular": true,
+     "note_vi": "いち → いっ.",
+     "example_jp": "なつやすみは 一週間です。",
+     "example_vi": "Kỳ nghỉ hè dài 1 tuần.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_shuukan_二週間",
+     "jp": "二週間",
+     "reading": "にしゅうかん",
+     "vi": "2 tuần",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "なつやすみは 二週間です。",
+     "example_vi": "Kỳ nghỉ hè dài 2 tuần.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_shuukan_三週間",
+     "jp": "三週間",
+     "reading": "さんしゅうかん",
+     "vi": "3 tuần",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "なつやすみは 三週間です。",
+     "example_vi": "Kỳ nghỉ hè dài 3 tuần.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_shuukan_四週間",
+     "jp": "四週間",
+     "reading": "よんしゅうかん",
+     "vi": "4 tuần",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "なつやすみは 四週間です。",
+     "example_vi": "Kỳ nghỉ hè dài 4 tuần.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_shuukan_八週間",
+     "jp": "八週間",
+     "reading": "はっしゅうかん",
+     "vi": "8 tuần",
+     "irregular": true,
+     "note_vi": "はち → はっ.",
+     "example_jp": "なつやすみは 八週間です。",
+     "example_vi": "Kỳ nghỉ hè dài 8 tuần.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_shuukan_十週間",
+     "jp": "十週間",
+     "reading": "じゅっしゅうかん",
+     "vi": "10 tuần",
+     "irregular": true,
+     "note_vi": "じゅう → じゅっ.",
+     "example_jp": "なつやすみは 十週間です。",
+     "example_vi": "Kỳ nghỉ hè dài 10 tuần.",
+     "alt_readings": [
+      "じっしゅうかん"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_shuukan_nan",
+     "jp": "何週間",
+     "reading": "なんしゅうかん",
+     "vi": "mấy tuần",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "なつやすみは 何週間ですか。",
+     "example_vi": "Kỳ nghỉ hè dài mấy tuần?",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "kagetsu",
+   "title_vi": "Số tháng (～か月)",
+   "rule_vi": "Khoảng thời gian bao nhiêu tháng: số + かげつ (viết か月 hoặc ヶ月). Âm か nên 1, 6, 8, 10 có âm ngắt: いっかげつ, ろっかげつ, はっかげつ, じゅっかげつ. Không nhầm với tháng mấy (～月 がつ).",
+   "items": [
+    {
+     "id": "NUM_kagetsu_一か月",
+     "jp": "一か月",
+     "reading": "いっかげつ",
+     "vi": "1 tháng (khoảng thời gian)",
+     "irregular": true,
+     "note_vi": "いち → いっ.",
+     "example_jp": "にほんごを 一か月 べんきょうしました。",
+     "example_vi": "Tôi đã học tiếng Nhật 1 tháng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kagetsu_二か月",
+     "jp": "二か月",
+     "reading": "にかげつ",
+     "vi": "2 tháng (khoảng thời gian)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "にほんごを 二か月 べんきょうしました。",
+     "example_vi": "Tôi đã học tiếng Nhật 2 tháng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kagetsu_三か月",
+     "jp": "三か月",
+     "reading": "さんかげつ",
+     "vi": "3 tháng (khoảng thời gian)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "にほんごを 三か月 べんきょうしました。",
+     "example_vi": "Tôi đã học tiếng Nhật 3 tháng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kagetsu_六か月",
+     "jp": "六か月",
+     "reading": "ろっかげつ",
+     "vi": "6 tháng (khoảng thời gian)",
+     "irregular": true,
+     "note_vi": "ろく → ろっ.",
+     "example_jp": "にほんごを 六か月 べんきょうしました。",
+     "example_vi": "Tôi đã học tiếng Nhật 6 tháng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kagetsu_八か月",
+     "jp": "八か月",
+     "reading": "はっかげつ",
+     "vi": "8 tháng (khoảng thời gian)",
+     "irregular": true,
+     "note_vi": "はち → はっ.",
+     "example_jp": "にほんごを 八か月 べんきょうしました。",
+     "example_vi": "Tôi đã học tiếng Nhật 8 tháng.",
+     "alt_readings": [
+      "はちかげつ"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kagetsu_十か月",
+     "jp": "十か月",
+     "reading": "じゅっかげつ",
+     "vi": "10 tháng (khoảng thời gian)",
+     "irregular": true,
+     "note_vi": "じゅう → じゅっ.",
+     "example_jp": "にほんごを 十か月 べんきょうしました。",
+     "example_vi": "Tôi đã học tiếng Nhật 10 tháng.",
+     "alt_readings": [
+      "じっかげつ"
+     ],
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kagetsu_nan",
+     "jp": "何か月",
+     "reading": "なんかげつ",
+     "vi": "mấy tháng (khoảng thời gian)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "にほんごを 何か月 べんきょうしましたか。",
+     "example_vi": "Bạn đã học tiếng Nhật mấy tháng?",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "en",
+   "title_vi": "Tiền (～円)",
+   "rule_vi": "Giá tiền: số + えん, biến âm của 百/千 giữ nguyên (さんびゃくえん, はっせんえん). 4 yên là よえん, nhưng 400 là よんひゃくえん. Hỏi giá: いくら ですか.",
+   "items": [
+    {
+     "id": "NUM_en_十円",
+     "jp": "十円",
+     "reading": "じゅうえん",
+     "vi": "10 yên",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "この あめは 十円です。",
+     "example_vi": "Viên kẹo này giá 10 yên.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "reviewer",
+       "note": "Sửa example_jp theo rà soát A2+B2"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "reviewer",
+       "note": "Sửa example_vi theo rà soát A2+B2"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_en_百円",
+     "jp": "百円",
+     "reading": "ひゃくえん",
+     "vi": "100 yên",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "この ほんは 百円です。",
+     "example_vi": "Quyển sách này giá 100 yên.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_en_三百円",
+     "jp": "三百円",
+     "reading": "さんびゃくえん",
+     "vi": "300 yên",
+     "irregular": true,
+     "note_vi": "ひゃく → びゃく sau さん.",
+     "example_jp": "この ほんは 三百円です。",
+     "example_vi": "Quyển sách này giá 300 yên.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_en_四百円",
+     "jp": "四百円",
+     "reading": "よんひゃくえん",
+     "vi": "400 yên",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "この ほんは 四百円です。",
+     "example_vi": "Quyển sách này giá 400 yên.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_en_五百円",
+     "jp": "五百円",
+     "reading": "ごひゃくえん",
+     "vi": "500 yên",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "この ほんは 五百円です。",
+     "example_vi": "Quyển sách này giá 500 yên.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_en_六百円",
+     "jp": "六百円",
+     "reading": "ろっぴゃくえん",
+     "vi": "600 yên",
+     "irregular": true,
+     "note_vi": "ろく → ろっ, ひゃく → ぴゃく.",
+     "example_jp": "この ほんは 六百円です。",
+     "example_vi": "Quyển sách này giá 600 yên.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_en_八百円",
+     "jp": "八百円",
+     "reading": "はっぴゃくえん",
+     "vi": "800 yên",
+     "irregular": true,
+     "note_vi": "はち → はっ, ひゃく → ぴゃく.",
+     "example_jp": "この ほんは 八百円です。",
+     "example_vi": "Quyển sách này giá 800 yên.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_en_千円",
+     "jp": "千円",
+     "reading": "せんえん",
+     "vi": "1.000 yên",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "この ほんは 千円です。",
+     "example_vi": "Quyển sách này giá 1.000 yên.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_en_三千円",
+     "jp": "三千円",
+     "reading": "さんぜんえん",
+     "vi": "3.000 yên",
+     "irregular": true,
+     "note_vi": "せん → ぜん sau さん.",
+     "example_jp": "この ほんは 三千円です。",
+     "example_vi": "Quyển sách này giá 3.000 yên.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_en_八千円",
+     "jp": "八千円",
+     "reading": "はっせんえん",
+     "vi": "8.000 yên",
+     "irregular": true,
+     "note_vi": "はち → はっ.",
+     "example_jp": "この ほんは 八千円です。",
+     "example_vi": "Quyển sách này giá 8.000 yên.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_en_一万円",
+     "jp": "一万円",
+     "reading": "いちまんえん",
+     "vi": "10.000 yên",
+     "irregular": true,
+     "note_vi": "Phải có いち: いちまんえん.",
+     "example_jp": "この ほんは 一万円です。",
+     "example_vi": "Quyển sách này giá 10.000 yên.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_en_四円",
+     "jp": "四円",
+     "reading": "よえん",
+     "vi": "4 yên",
+     "irregular": true,
+     "note_vi": "4 yên: よえん (không phải よんえん).",
+     "example_jp": "おつりは 四円です。",
+     "example_vi": "Tiền thừa là 4 yên.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-15",
+       "by": "author",
+       "note": "Soạn lần đầu"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "reviewer",
+       "note": "Sửa example_jp theo rà soát A2+B1"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "reviewer",
+       "note": "Sửa example_vi theo rà soát A2+B1"
+      },
+      {
+       "date": "2026-11-15",
+       "by": "ai_review",
+       "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

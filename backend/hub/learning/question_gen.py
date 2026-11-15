@@ -225,7 +225,83 @@ def make_questions(vocab: list[dict], valid_readings, readings_of, pool: dict[st
     return out
 
 
+# ---------- numbers / counters / dates (ADR-029)
+SOUND_SWAP = [set("はばぱ"), set("ひびぴ"), set("ふぶぷ"), set("ほぼぽ"), set("かが"), set("こご"), set("さざ"),
+              set("せぜ"), set("とど"), set("げけ"), set("すず")]
+NUM_PREFIXES = [{"よん", "よ", "し"}, {"なな", "しち"}, {"きゅう", "く"}, {"いち", "いっ"}, {"ろく", "ろっ"},
+                {"はち", "はっ"}, {"じゅう", "じゅっ"}]
+
+
+def _edit_distance(a: str, b: str) -> int:
+    prev = list(range(len(b) + 1))
+    for i, ca in enumerate(a, 1):
+        cur = [i]
+        for j, cb in enumerate(b, 1):
+            cur.append(min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (ca != cb)))
+        prev = cur
+    return prev[-1]
+
+
+def number_variants(reading: str, swap_at: set[int] | None = None, swap_prefix: bool = True) -> set[str]:
+    """One-step wrong-sound variants: voicing/half-voicing swaps at swap_at (default: any kana but the first; for a
+    counter only its first kana, ほん→ぼん/ぽん; 土曜日 ど→と), the leading number morpheme read another way
+    (よん→よ/し, いち→いっ…), or a っ dropped.
+    A っ is kept only before a kana that can be geminated (no いっまん)."""
+    out = set()
+    for i, ch in enumerate(reading):
+        for grp in SOUND_SWAP:
+            if ch in grp and (i in swap_at if swap_at is not None else i > 0):
+                out |= {reading[:i] + o + reading[i + 1:] for o in grp - {ch}}
+        if ch == "っ":
+            out.add(reading[:i] + reading[i + 1:])
+    if swap_prefix:
+        heads = sorted({p for g in NUM_PREFIXES for p in g if reading.startswith(p)}, key=len, reverse=True)
+        if heads:
+            grp = next(g for g in NUM_PREFIXES if heads[0] in g)
+            out |= {o + reading[len(heads[0]):] for o in grp - {heads[0]}}
+    ok = lambda v: HIRA_ONLY.match(v) and all(v[i + 1] in GEMINATE_BEFORE for i in range(len(v) - 1) if v[i] == "っ")         and not v.endswith("っ")
+    return {v for v in out if ok(v)}
+
+
+def number_question(item: dict, valid: set[str], traps: set[str], others: set[str] = frozenset(),
+                    filler: set[str] = frozenset(), swap_at: set[int] | None = None) -> dict | None:
+    """item: {id, jp, reading, meaning_vi, note_vi, example_jp}; valid: every accepted reading (rules ∪ JMdict ∪
+    item); traps: naive number+counter readings (はちにち for 八日) — preferred; others: readings of other items of a
+    memorised set (よっか vs ようか; prefix swaps are then skipped: no よんうか); filler: readings of the same category, used only when too few candidates.
+    3 wrong options among the nearest candidates."""
+    reading = item["reading"]
+    trap = sorted((traps - valid) - {""})
+    near = (number_variants(reading, swap_at, swap_prefix=not others) | others) - valid - set(trap) - {""}
+    ranked = trap[:2] + sorted(near, key=lambda c: (_edit_distance(c, reading), c))[:5 - min(2, len(trap))]
+    if len(ranked) < (1 if item.get("irregular") else 2):   # options differing only in the number test nothing
+        return None
+    fill = sorted(set(filler) - valid - set(ranked) - {""}, key=lambda c: (_edit_distance(c, reading), c))
+    ranked += fill[:max(0, 3 - len(ranked))]
+    if len(ranked) < 3:
+        return None
+    qid = item.get("question_id") or f"Q_NUM_{item['id']}"
+    rng = random.Random(qid)
+    def why(w):
+        if w in trap:
+            return f"{item['jp']} không đọc ghép thẳng là {w}"
+        return f"{item['jp']} không đọc là {w}" + (" (đó là cách đọc của mục khác cùng nhóm)" if w in others | filler else "")
+    picked = ranked[:1] + rng.sample(ranked[1:], 2) if trap else rng.sample(ranked, 3)
+    opts, ans, expl = _options(reading, [(w, why(w)) for w in picked], rng)
+    note = f" {item['note_vi']}" if item.get("note_vi") else ""
+    ex = item.get("example_jp") or ""
+    return {"question_id": qid, "question_text": ex if item["jp"] in ex else item["jp"], "options": opts,
+            "correct_answer": [ans], "option_explanations": expl,
+            "explanation_vi": f"{item['jp']} đọc là {reading} ({item['meaning_vi']}).{note}"}
+
+
 if __name__ == "__main__":
+    q = number_question({"id": "NUM_hon_三本", "jp": "三本", "reading": "さんぼん", "meaning_vi": "3 cây",
+                         "example_jp": "えんぴつが 三本 あります。"}, {"さんぼん"}, {"さんほん"}, filler={"にほん"})
+    assert q and len(q["options"]) == 4 and "さんほん" in {o["text"] for o in q["options"]}
+    assert "ざんぼん" not in number_variants("さんぼん") and "よじ" in number_variants("よんじ")
+    assert number_variants("にじかん", {1}) == set() and number_variants("どようび", {0}, False) == {"とようび"}
+    assert number_variants("よんまい") >= {"よまい", "しまい"} and "しんまい" not in number_variants("よんまい")
+    assert "いっまん" not in number_variants("いちまん")
     r = random.Random(0)
     assert set(reading_variants("がっこう")) >= {"がこう", "かっこう", "がっこ"}
     assert align("咲きます", "さきます") == [(0, 1, "咲")] and align("ご家族", "ごかぞく") == [(1, 4, "家族")]

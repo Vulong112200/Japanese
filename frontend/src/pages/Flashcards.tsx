@@ -22,7 +22,7 @@ function shuffled<T>(a: T[]): T[] {
 }
 const numOrNull = (v: string) => (v === '' ? null : Math.max(1, Number(v) || 1))
 
-const ENTITIES: [SrsEntity, string][] = [['vocabulary', 'Từ vựng'], ['grammar', 'Ngữ pháp'], ['kanji', 'Kanji']]
+const ENTITIES: [SrsEntity, string][] = [['vocabulary', 'Từ vựng'], ['grammar', 'Ngữ pháp'], ['kanji', 'Kanji'], ['number', 'Số đếm']]
 const hashEntity = () => {
   const e = new URLSearchParams(location.hash.split('?')[1] ?? '').get('entity')
   return ENTITIES.some(([k]) => k === e) ? (e as SrsEntity) : null
@@ -87,6 +87,7 @@ export default function Flashcards() {
   const front = card && (
     entity === 'grammar' ? <span className="jp text-3xl font-semibold">{card.pattern}</span>
       : entity === 'kanji' ? <span className="jp text-7xl font-semibold">{card.kanji}</span>
+        : entity === 'number' ? <span><span className="jp block text-5xl font-semibold">{card.jp}</span><span className="mt-2 block text-sm text-slate-500">{card.category_vi}</span></span>
         : direction === 'jp_vi' ? <span className="jp text-5xl font-semibold">{card.word}</span>
           : <span className="text-2xl font-medium">{card.meaning_vi}</span>)
 
@@ -112,7 +113,7 @@ export default function Flashcards() {
         </div>
       </div>
       <div className="flex flex-wrap items-center justify-end gap-2 text-sm">
-        {entity !== 'kanji' && <label className="flex items-center gap-1">Bài
+        {(entity === 'vocabulary' || entity === 'grammar') && <label className="flex items-center gap-1">Bài
           <input type="number" min={1} value={lessonFrom ?? ''} placeholder="đầu" aria-label="Từ bài" className="w-16 rounded-lg border border-slate-300 bg-white px-2 py-1 dark:border-slate-700 dark:bg-slate-900"
             onChange={e => { const v = numOrNull(e.target.value); setLessonFrom(v); writePref('srs.lessonFrom', v) }} />–
           <input type="number" min={1} value={lessonTo ?? ''} placeholder="cuối" aria-label="Đến bài" className="w-16 rounded-lg border border-slate-300 bg-white px-2 py-1 dark:border-slate-700 dark:bg-slate-900"
@@ -151,7 +152,7 @@ export default function Flashcards() {
         <>
           <div className="flex justify-between text-xs text-slate-500">
             <span>Còn {queue.length} thẻ · {cram ? `nhớ ${done - forgot} · quên ${forgot}` : `đã ôn ${done}`}</span>
-            <span>{card.lesson_number ? `Bài ${card.lesson_number}` : card.deck ?? ''} · {card.status === 'new' ? 'thẻ mới' : `khoảng ${card.interval_days} ngày`}</span>
+            <span>{card.lesson_number ? `Bài ${card.lesson_number}` : card.deck ?? card.category_vi ?? ''} · {card.status === 'new' ? 'thẻ mới' : `khoảng ${card.interval_days} ngày`}</span>
           </div>
           <section className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm dark:border-slate-800 dark:bg-slate-900" aria-live="polite">
             {card.verification_status !== 'verified' && (
@@ -194,6 +195,8 @@ export default function Flashcards() {
                   <SpeakButton text={card.reading || card.word || ''} /></div>
                 <div className="text-sm text-slate-500">{[card.romaji, card.han_viet].filter(Boolean).join(' · ')}</div>
                 {direction === 'jp_vi' && <div className="text-xl">{card.meaning_vi}</div>}
+                {card.alt_readings?.length ? <div className="jp text-xs text-slate-500">Cũng đọc: {card.alt_readings.join('、')}</div> : null}
+                {card.note_vi && <div className="text-sm text-amber-700 dark:text-amber-300">{card.note_vi}</div>}
                 {card.example_jp && (
                   <div className="mx-auto max-w-md rounded-lg bg-slate-50 p-3 text-left text-sm dark:bg-slate-800/60">
                     <p className="jp">{card.example_jp}</p>

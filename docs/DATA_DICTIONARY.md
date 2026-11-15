@@ -108,6 +108,16 @@ Nhật ký: `ai_correction` (bản sửa đã duyệt, kèm `basis`), approve, r
 | data_json | `lines` [{speaker, jp, hiragana, vi}], `vocab` [{ref, id, word, reading, meaning_vi}] (resolve từ từ vựng verified), `grammar` [{id, pattern}], `review_log` |
 | origin, verification_status, verified_by | `ai`; chỉ `verified` khi `audited: true` trong file và `check_kaiwa` không ra lỗi/cảnh báo; `excluded: true` → `rejected` |
 
+### number_categories, numbers (chuyên đề số đếm & ngày tháng, ADR-029)
+| Trường | Ý nghĩa |
+|---|---|
+| number_categories.key, position, title_vi, rule_vi | Nhóm (hon, nichi, gatsu…), thứ tự, tên, quy tắc biến âm hiển thị cho người học |
+| numbers.id | `NUM_<nhóm>_<chữ>` (`NUM_hon_三本`, câu hỏi `NUM_hon_nan` cho 何) |
+| jp, reading, romaji, meaning_vi | Chữ, cách đọc chính (kana), romaji (tự tính), nghĩa |
+| irregular | 1 = dạng đặc biệt/biến âm cần nhớ riêng; chỉ các mục này có thẻ SRS (`entity_type='number'`) |
+| data_json | `alt_readings`, `note_vi`, `example_jp`, `example_vi`, `review_log` |
+| verification_status, verified_by | `verified`/`ai` chỉ khi `audited` và `check_number_item` không ra lỗi/cảnh báo (luật biến âm `validation/numbers.py`, JMdict, ví dụ chứa từ, có ghi chú) |
+
 ### exams, passages, questions
 - **exams**: `data_json` giữ nguyên cấu trúc section và mondai như đã chép.
 - **passages**: đoạn văn dùng chung cho nhiều câu.
@@ -148,6 +158,8 @@ Nhật ký: `ai_correction` (bản sửa đã duyệt, kèm `basis`), approve, r
 | `data/normalized/ai_review/grammar_round2.json` | AI_GENERATED | Rà soát ngữ pháp vòng 2 (4 agent, 135 điểm): 19 đề xuất, mỗi đề xuất có `decision` (6 nhận, 13 loại kèm lý do) |
 | `data/normalized/kaiwa/kaiwa.json` | NORMALIZED | 27 hội thoại (9 chủ đề × 3), `audited`, `review_log` (xem bảng kaiwa) |
 | `data/normalized/ai_review/kaiwa_review.json` | AI_GENERATED | 2 vòng rà soát hội thoại: đề xuất của từng agent kèm `decision` (nhận/loại + lý do) |
+| `data/normalized/numbers/numbers.json` | NORMALIZED | 23 nhóm / 273 mục số đếm, trợ số từ, giờ, ngày tháng năm, tiền (xem bảng numbers) |
+| `data/normalized/ai_review/numbers_review.json` | AI_GENERATED | 2 vòng rà soát chuyên đề số đếm: đề xuất + quyết định duyệt |
 | `data/sources_online.json` | registry | 24 nguồn trực tuyến trong spec |
 | `data/reference/reference.sqlite` | tham chiếu | JMdict + KANJIDIC2 đã dựng (không commit; `python -m hub build-reference`) |
 | `data/raw/SRC_GDOC_001/grammar_handbook.txt` | RAW | Google Doc ngữ pháp (export txt), không commit |

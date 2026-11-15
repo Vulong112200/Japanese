@@ -82,7 +82,8 @@ export default function Dashboard() {
   const dueVocab = (d.due_now.jp_vi ?? 0) + (d.due_now.vi_jp ?? 0)
   const dueGrammar = d.due_by_entity.grammar ?? 0
   const dueKanji = d.due_by_entity.kanji ?? 0
-  const due = dueVocab + dueGrammar + dueKanji
+  const dueNumber = d.due_by_entity.number ?? 0
+  const due = dueVocab + dueGrammar + dueKanji + dueNumber
   const accuracy = d.reviews_today ? Math.round((d.correct_today / d.reviews_today) * 100) : null
 
   return (
@@ -100,7 +101,7 @@ export default function Dashboard() {
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
         <Stat label="Chuỗi ngày học" value={`${d.streak_days} ngày`} />
         <GoalCard d={d} onSaved={g => setD({ ...d, daily_goal: g })} />
-        <Stat label="Thẻ đến hạn" value={due} hint={`Từ vựng ${dueVocab} · Ngữ pháp ${dueGrammar} · Kanji ${dueKanji}`} />
+        <Stat label="Thẻ đến hạn" value={due} hint={`Từ vựng ${dueVocab} · Ngữ pháp ${dueGrammar} · Kanji ${dueKanji} · Số đếm ${dueNumber}`} />
         <Stat label="Lượt ôn thẻ hôm nay" value={d.reviews_today} hint={accuracy !== null ? `Nhớ đúng ${accuracy}%` : 'Chưa ôn hôm nay'} />
       </div>
 
@@ -126,7 +127,7 @@ export default function Dashboard() {
         <Panel title="Mức độ thuộc (thẻ SRS)">
           <div className="space-y-4">
             {([['Từ vựng (JP→VI)', d.cards_by_status, 'vocabulary'], ['Ngữ pháp', d.cards_by_entity.grammar, 'grammar'],
-              ['Kanji', d.cards_by_entity.kanji, 'kanji']] as const).map(([l, m, e]) => (
+              ['Kanji', d.cards_by_entity.kanji, 'kanji'], ['Số đếm', d.cards_by_entity.number ?? {}, 'number']] as const).map(([l, m, e]) => (
               <div key={e}>
                 <a href={`#/flashcards?entity=${e}`} className="mb-1 block text-sm font-medium hover:underline">{l}</a>
                 <StackBar data={m} total={sum(m) || 1} />

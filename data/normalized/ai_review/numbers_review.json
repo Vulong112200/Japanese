@@ -1,0 +1,85 @@
+{
+ "description": "Rà soát chuyên đề số đếm (ADR-029): vòng A chia theo nhóm (A1: 12 nhóm đầu, A2: còn lại), vòng B chia chẵn/lẻ toàn bộ mục; mỗi agent đọc hết lô và trả đề xuất JSON; người duyệt cuối quyết định từng đề xuất. Không agent nào phát hiện cách đọc sai.",
+ "date": "2026-11-15",
+ "items": 273,
+ "rounds": {
+  "A1": 1,
+  "A2": 6,
+  "B1": 3,
+  "B2": 4
+ },
+ "decisions": [
+  {
+   "id": "tsu",
+   "field": "rule_vi",
+   "old_value": "Đếm đồ vật nói chung (táo, bánh, câu hỏi…) bằng số thuần Nhật, chỉ từ 1 đến 10: ひとつ…ここのつ, 10 là とお (không có つ). Từ 11 trở đi dùng số thường: じゅういち. Hỏi 'mấy cái' dùng いくつ. Cũng dùng いくつ để hỏi tuổi trẻ em.",
+   "new_value": "Đếm đồ vật nói chung (táo, bánh, câu hỏi…) bằng số thuần Nhật, chỉ từ 1 đến 10: ひとつ…ここのつ, 10 là とお (không có つ). Từ 11 trở đi dùng số thường: じゅういち. Hỏi 'mấy cái' dùng いくつ. いくつ cũng dùng để hỏi tuổi; hỏi lịch sự với người lớn là おいくつですか.",
+   "proposed_by": "A1",
+   "decision": "accepted"
+  },
+  {
+   "id": "ji",
+   "field": "rule_vi",
+   "old_value": "Giờ: số + じ. Ba giờ cần nhớ: 4 giờ よじ (không phải よんじ), 7 giờ しちじ, 9 giờ くじ (không phải きゅうじ). Rưỡi: 半 はん (七時半 しちじはん). Sáng/chiều: ごぜん/ごご 三時.",
+   "new_value": "Giờ: số + じ. Có 3 mốc giờ cần nhớ cách đọc: 4 giờ よじ (không phải よんじ), 7 giờ しちじ, 9 giờ くじ (không phải きゅうじ). Rưỡi: 半 はん (七時半 しちじはん). Sáng/chiều: ごぜん/ごご 三時.",
+   "proposed_by": "A2+B2",
+   "decision": "accepted"
+  },
+  {
+   "id": "NUM_en_四円",
+   "field": "example_jp",
+   "old_value": "この ほんは 四円です。",
+   "new_value": "おつりは 四円です。",
+   "proposed_by": "A2+B1",
+   "decision": "accepted"
+  },
+  {
+   "id": "NUM_en_四円",
+   "field": "example_vi",
+   "old_value": "Quyển sách này giá 4 yên.",
+   "new_value": "Tiền thừa là 4 yên.",
+   "proposed_by": "A2+B1",
+   "decision": "accepted"
+  },
+  {
+   "id": "NUM_en_十円",
+   "field": "example_jp",
+   "old_value": "この ほんは 十円です。",
+   "new_value": "この あめは 十円です。",
+   "proposed_by": "A2+B2",
+   "decision": "accepted"
+  },
+  {
+   "id": "NUM_en_十円",
+   "field": "example_vi",
+   "old_value": "Quyển sách này giá 10 yên.",
+   "new_value": "Viên kẹo này giá 10 yên.",
+   "proposed_by": "A2+B2",
+   "decision": "accepted"
+  },
+  {
+   "id": "NUM_sai_二十歳",
+   "field": "note_vi",
+   "old_value": "20 tuổi: cách nói riêng はたち (tuổi trưởng thành).",
+   "new_value": "20 tuổi: cách nói riêng はたち (mốc truyền thống: lễ thành nhân, được uống rượu; tuổi trưởng thành theo luật hiện nay là 18).",
+   "proposed_by": "B1",
+   "decision": "accepted"
+  },
+  {
+   "id": "NUM_number_四",
+   "field": "note_vi",
+   "old_value": "Thường đọc よん; し chỉ còn trong vài từ cố định (四月 しがつ) vì し đồng âm với 'chết'.",
+   "new_value": "Thường đọc よん; し dùng khi đếm liền (いち、に、さん、し) và trong vài từ cố định (四月 しがつ). Người Nhật hay tránh し vì đồng âm với 死 (chết).",
+   "proposed_by": "B2",
+   "decision": "accepted"
+  },
+  {
+   "id": "NUM_fun_七分",
+   "field": "alt_readings",
+   "new_value": "しちふん",
+   "proposed_by": "A2",
+   "decision": "rejected",
+   "reason_vi": "Loại: Minna/JLPT dạy ななふん; しちふん ít dùng, đề xuất độ tin cậy thấp."
+  }
+ ]
+}

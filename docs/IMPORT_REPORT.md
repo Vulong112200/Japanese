@@ -1,13 +1,13 @@
 # IMPORT REPORT
 
-Tạo tự động bởi `python -m hub report` lúc 2026-11-15T13:48:32+07:00. Số liệu đọc từ `data/database/hub.sqlite`.
+Tạo tự động bởi `python -m hub report` lúc 2026-11-15T21:00:45+07:00. Số liệu đọc từ `data/database/hub.sqlite`.
 
 Thư mục đã kiểm tra: `D:\Japanese\docs\N5\Exam`, `D:\Japanese\docs\N5\flashcards` (truy cập trực tiếp từ Windows, không qua WSL/Docker).
 
 ## Tóm tắt
 - Tệp cục bộ đã đăng ký: **57**
 - Từ vựng (lớp NORMALIZED): {"verified": 1253} — **0 mục được tự động xác minh**.
-- Câu hỏi đề mẫu: {"needs_review": 29, "rejected": 276, "verified": 1504}
+- Câu hỏi đề mẫu: {"needs_review": 29, "rejected": 275, "verified": 1652}
 - Trạng thái xử lý `needs_review` = đã nhập nhưng còn chờ người dùng duyệt (không phải lỗi).
 
 ## Chi tiết từng tệp
@@ -68,7 +68,7 @@ Thư mục đã kiểm tra: `D:\Japanese\docs\N5\Exam`, `D:\Japanese\docs\N5\fla
 | N5-script.pdf | pdf | 757940 | docs/N5/Exam/20260705/N5-script.pdf | pdf | 3 | 8 |  | raw 3 / từ vựng 0 | needs_review |  |  |
 | N5-seikai.pdf | pdf | 34996 | docs/N5/Exam/20260705/N5-seikai.pdf | pdf | 1 | 29 |  | raw 1 / từ vựng 0 | needs_review |  |  |
 | JLPT N5 word list (tanos.co.uk via elzup/jlpt-word-list) | csv |  | data/reference/jlpt_n5_words.csv | csv |  |  |  | raw 158 / từ vựng 158 | verified |  |  |
-| JMdict (EDRDG) | gz |  | data/reference/JMdict_e.gz | dictionary |  | 749 |  | raw 0 / từ vựng 0 | verified |  |  |
+| JMdict (EDRDG) | gz |  | data/reference/JMdict_e.gz | dictionary |  | 896 |  | raw 0 / từ vựng 0 | verified |  |  |
 | KANJIDIC2 (EDRDG) | gz |  | data/reference/kanjidic2.xml.gz | dictionary |  | 749 |  | raw 0 / từ vựng 0 | verified |  |  |
 
 ## Ghi chú trích xuất
@@ -76,5 +76,5 @@ Thư mục đã kiểm tra: `D:\Japanese\docs\N5\Exam`, `D:\Japanese\docs\N5\fla
 - **Đáp án**: lấy từ bảng 正解 (`N5-seikai.pdf`); importer từ chối nạp nếu đáp án chép khác bảng 正解.
 - **Audio**: 1 tệp MP3 cho cả 8 câu nghe; chưa có timestamp từng câu (không suy đoán).
 - **OCR**: chưa dùng (tesseract chưa cài). Không có PDF scan cần OCR trong bộ dữ liệu hiện tại.
-- **Flashcard Số Đếm**: 16 dòng dạng hỏi–đáp tự do → giữ ở RAW, không ép thành từ vựng.
+- **Flashcard Số Đếm**: 16 dòng dạng hỏi–đáp tự do → giữ ở RAW, không ép thành từ vựng. Nội dung được thay bằng chuyên đề Số đếm (ADR-029, `data/normalized/numbers/numbers.json`).
 - **Thiếu dữ liệu**: không có `flashcards_Bai15.csv`; `flashcards_Bai18.csv` chỉ có 1 dòng (có thể export bị thiếu).

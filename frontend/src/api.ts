@@ -73,7 +73,7 @@ export interface VocabDetail extends Vocab {
   history: { action: string; note: string | null; acted_at: string; before_json: string | null; after_json: string | null }[]
 }
 
-export type SrsEntity = 'vocabulary' | 'grammar' | 'kanji'
+export type SrsEntity = 'vocabulary' | 'grammar' | 'kanji' | 'number'
 
 export interface Card {
   card_id: number
@@ -96,6 +96,11 @@ export interface Card {
   example_romaji?: string | null
   example_vi?: string | null
   deck?: string
+  // number (ADR-029)
+  jp?: string
+  note_vi?: string | null
+  category_vi?: string
+  alt_readings?: string[] | null
   // grammar
   pattern?: string
   grammar_name_vi?: string | null
@@ -275,6 +280,7 @@ export interface AttemptStart {
   grammar_id?: string
   lesson_from?: number   // grammar questions of lessons from..to; 26 = N5 bổ sung
   lesson_to?: number
+  topic?: 'numbers'
   limit?: number
   timing?: 'none' | 'original' | 'current' | 'custom'
   time_limit_min?: number
@@ -382,6 +388,7 @@ export const api = {
   assetUrl: (id: string) => `/api/assets/${id}`,
   grammar: (q?: string, lesson?: number) => req<GrammarItem[]>(`/grammar?${qs({ q, lesson })}`),
   grammarItem: (id: string) => req<GrammarDetail>(`/grammar/${id}`),
+  numbers: () => req<NumberCategory[]>('/numbers'),
   kanji: () => req<KanjiItem[]>('/kanji'),
   kaiwa: (topic?: string) => req<KaiwaItem[]>(`/kaiwa?${qs({ topic })}`),
   kaiwaItem: (id: string) => req<KaiwaDetail>(`/kaiwa/${id}`),
@@ -398,3 +405,20 @@ export const api = {
   advance: (id: string) => req<Attempt>(`/attempts/${id}/advance`, { method: 'POST' }),
   submit: (id: string) => req<Attempt>(`/attempts/${id}/submit`, { method: 'POST' }),
 }
+
+export interface NumberItem {
+  id: string
+  category: string
+  jp: string
+  reading: string
+  romaji: string | null
+  meaning_vi: string
+  irregular: number
+  alt_readings?: string[] | null
+  note_vi?: string | null
+  example_jp: string
+  example_vi: string
+  verification_status: Status
+}
+
+export interface NumberCategory { key: string; title_vi: string; rule_vi: string; items: NumberItem[] }

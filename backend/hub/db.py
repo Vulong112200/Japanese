@@ -189,6 +189,29 @@ CREATE TABLE IF NOT EXISTS kanji (
   review_notes TEXT
 );
 
+CREATE TABLE IF NOT EXISTS number_categories (   -- numbers/counters/dates topic (ADR-029)
+  key TEXT PRIMARY KEY,                   -- hon, nichi, gatsu…
+  position INTEGER NOT NULL,
+  title_vi TEXT NOT NULL,
+  rule_vi TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS numbers (
+  id TEXT PRIMARY KEY,                    -- NUM_hon_三本 / NUM_hon_nan
+  category TEXT NOT NULL,
+  position INTEGER NOT NULL,              -- file order (category, then item)
+  jp TEXT NOT NULL,
+  reading TEXT NOT NULL,
+  romaji TEXT,
+  meaning_vi TEXT NOT NULL,
+  irregular INTEGER NOT NULL DEFAULT 0,   -- 1 = special/sound-changed form to memorise; only these get SRS cards
+  data_json TEXT NOT NULL,                -- alt_readings, note_vi, example_jp, example_vi, review_log
+  verification_status TEXT NOT NULL DEFAULT 'needs_review' CHECK (verification_status IN
+    ('raw','extracted','normalized','needs_review','verified','rejected')),
+  verified_by TEXT,
+  review_notes TEXT
+);
+
 CREATE TABLE IF NOT EXISTS kaiwa (        -- supplementary conversations (spec §7.4, ADR-023); never exam content
   id TEXT PRIMARY KEY,                    -- KAI_001
   topic TEXT NOT NULL,

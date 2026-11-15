@@ -7,6 +7,7 @@ import Grammar from './pages/Grammar'
 import Kanji from './pages/Kanji'
 import Kaiwa from './pages/Kaiwa'
 import Library from './pages/Library'
+import Numbers from './pages/Numbers'
 import Review from './pages/Review'
 import Vocabulary from './pages/Vocabulary'
 
@@ -16,6 +17,7 @@ const ROUTES = [
   { id: 'vocabulary', label: 'Từ vựng', el: Vocabulary },
   { id: 'grammar', label: 'Ngữ pháp', el: Grammar },
   { id: 'kanji', label: 'Kanji', el: Kanji },
+  { id: 'numbers', label: 'Số đếm', el: Numbers },
   { id: 'kaiwa', label: 'Hội thoại', el: Kaiwa },
   { id: 'flashcards', label: 'Ôn tập SRS', el: Flashcards },
   { id: 'exam', label: 'Thi thử', el: Exam },

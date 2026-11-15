@@ -6,6 +6,7 @@ import pytest
 
 from hub.db import ROOT
 from hub.ingestion import knowledge, ocr
+from hub.validation import numbers as numrules
 
 
 # ---------- OCR helpers (no Tesseract needed) ----------
@@ -173,3 +174,60 @@ def test_kaiwa_imported_verified_and_not_exam_content(imported):
     row = json.loads(conn.execute("SELECT data_json FROM kaiwa WHERE id=?", (live[0]["id"],)).fetchone()[0])
     assert row["vocab"] and all(v["id"].startswith("VOC_") for v in row["vocab"]) and row["grammar"]
     assert conn.execute("SELECT COUNT(*) FROM questions WHERE question_id LIKE 'KAI%' OR exam_id LIKE '%KAIWA%'").fetchone()[0] == 0
+
+
+# ---------- numbers / counters / dates (ADR-029)
+
+
+def test_number_reading_rules():
+    e = numrules.expected_readings
+    cases = {("三本", "hon"): {"さんぼん"}, ("六本", "hon"): {"ろっぽん"}, ("一分", "fun"): {"いっぷん"},
+             ("四分", "fun"): {"よんぷん"}, ("三階", "kai_floor"): {"さんがい", "さんかい"}, ("八百", "number"): {"はっぴゃく"},
+             ("三千", "number"): {"さんぜん"}, ("四時", "ji"): {"よじ"}, ("九時", "ji"): {"くじ"}, ("四月", "gatsu"): {"しがつ"},
+             ("八日", "nichi"): {"ようか"}, ("二十日", "nichi"): {"はつか"}, ("一人", "nin"): {"ひとり"}, ("四人", "nin"): {"よにん"},
+             ("二十歳", "sai"): {"はたち", "にじゅっさい", "にじっさい"}, ("十", "tsu"): {"とお"}, ("六冊", "satsu"): {"ろくさつ"},
+             ("八冊", "satsu"): {"はっさつ"}, ("何階", "kai_floor"): {"なんがい", "なんかい"}, ("四円", "en"): {"よえん"},
+             ("三百円", "en"): {"さんびゃくえん"}, ("土曜日", "youbi"): {"どようび"}, ("四時半", "fun"): {"よじはん"}}
+    for (jp, cat), want in cases.items():
+        assert e(jp, cat) == want, jp
+    for jp, cat, wrong in (("三本", "hon", "さんほん"), ("一分", "fun", "いちふん"), ("四時", "ji", "よんじ"),
+                           ("九月", "gatsu", "きゅうがつ"), ("八日", "nichi", "はちにち"), ("八冊", "satsu", "はちさつ")):
+        assert wrong not in e(jp, cat) and wrong in numrules.naive_readings(jp, cat)
+    assert e("三本", "satsu") == set() and numrules.parse_number("二十四") == 24
+
+
+def test_number_item_checker():
+    ok = {"id": "NUM_hon_三本", "jp": "三本", "reading": "さんぼん", "vi": "3 cây", "irregular": True,
+          "note_vi": "ほん → ぼん", "example_jp": "えんぴつが 三本 あります。", "example_vi": "Có 3 cây bút chì."}
+    codes = lambda it: {c for c, *_ in knowledge.check_number_item(it, "hon", set("三本"))}
+    assert codes(ok) == set()
+    assert "reading_rule_mismatch" in codes({**ok, "reading": "さんほん"})
+    assert "reading_rule_mismatch" in codes({**ok, "alt_readings": ["さんぽん"]})
+    assert "missing_note" in codes({**ok, "note_vi": None})
+    assert "example_missing_word" in codes({**ok, "example_jp": "えんぴつが あります。"})
+    assert "reading_not_kana" in codes({**ok, "reading": "sanbon"})
+
+
+def test_number_questions_distractors(imported):
+    conn, result = imported
+    assert result["numbers"]["verified"] == result["numbers"]["numbers"] > 250
+    rows = conn.execute("SELECT q.*, n.category, n.jp FROM questions q JOIN numbers n "
+                        "ON n.id=json_extract(q.extra_json,'$.target_entity') "
+                        "WHERE q.exam_id='BANK_N5_NUMBERS' AND q.verification_status='verified'").fetchall()
+    assert len(rows) >= 100
+    for q in rows:
+        item = conn.execute("SELECT * FROM numbers WHERE jp=? AND category=?", (q["jp"], q["category"])).fetchone()
+        valid = knowledge.number_valid_readings(q["jp"], q["category"], {"reading": item["reading"],
+                                                **json.loads(item["data_json"])})
+        opts = {o["option_id"]: o["text"] for o in json.loads(q["options"])}
+        ans = json.loads(q["correct_answer"])[0]
+        assert len(opts) == 4 and len(set(opts.values())) == 4
+        assert opts[ans] == item["reading"] and opts[ans] in numrules.expected_readings(q["jp"], q["category"])
+        assert not ({t for k, t in opts.items() if k != ans} & valid), q["question_id"]
+        assert q["jp"] in q["question_text"]
+
+
+def test_number_srs_cards_only_for_memorised_forms(imported):
+    conn, _ = imported
+    n = conn.execute("SELECT COUNT(*) FROM srs_cards WHERE entity_type='number'").fetchone()[0]
+    assert n == conn.execute("SELECT COUNT(*) FROM numbers WHERE irregular=1 AND verification_status!='rejected'").fetchone()[0] > 100

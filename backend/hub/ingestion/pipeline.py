@@ -578,12 +578,14 @@ def run_all(conn, check_network: bool = False) -> dict:
     out["grammar"] = knowledge.import_grammar(conn)
     out["kanji"] = knowledge.import_kanji(conn)
     out["kaiwa"] = knowledge.import_kaiwa(conn)          # after vocabulary/grammar/kanji: it references them
+    out["numbers"] = knowledge.import_numbers(conn)      # numbers/counters/dates topic (ADR-029)
     repo.ensure_cards(conn)                              # after grammar/kanji: they get SRS cards too (ADR-021)
     out["exam"] = import_exam(conn)
     out["past_exams"] = import_past_exams(conn)
     out["generated_questions"] = knowledge.import_generated_questions(conn)
     out["grammar_questions"] = knowledge.import_grammar_questions(conn)
     out["reading_questions"] = knowledge.import_reading_questions(conn)
+    out["number_questions"] = knowledge.import_number_questions(conn)
     conn.commit()
     if check_network:
         out["online_check"] = check_online(conn)

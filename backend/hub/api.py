@@ -282,6 +282,18 @@ def kaiwa_detail(conn, kid: str) -> dict:
     return k
 
 
+@router.get("/numbers")
+def numbers(conn=Depends(get_conn)):
+    """Numbers/counters/dates topic (ADR-029): categories in order, each with its items."""
+    cats = repo.rows(conn.execute("SELECT * FROM number_categories ORDER BY position"))
+    by: dict[str, list] = {c["key"]: [] for c in cats}
+    for r in conn.execute("SELECT * FROM numbers WHERE verification_status!='rejected' ORDER BY position"):
+        it = dict(r)
+        it.update(json.loads(it.pop("data_json")))
+        by.setdefault(it["category"], []).append(it)
+    return [{**c, "items": by[c["key"]]} for c in cats if by.get(c["key"])]
+
+
 @router.get("/kaiwa")
 def kaiwa_list(topic: str | None = None, conn=Depends(get_conn)):
     sql, args = ("SELECT id, topic, title_vi, situation_vi, verification_status, verified_by, "
@@ -370,14 +382,14 @@ def review(entity: Literal["vocabulary", "question", "grammar", "kanji"], entity
 @router.get("/srs/due")
 def srs_due(direction: Literal["jp_vi", "vi_jp"] = "jp_vi", new_limit: int = Query(20, ge=0, le=500),
             lesson_from: int | None = None, lesson_to: int | None = None, shuffle: bool = False,
-            entity: Literal["vocabulary", "grammar", "kanji"] = "vocabulary", conn=Depends(get_conn)):
+            entity: Literal["vocabulary", "grammar", "kanji", "number"] = "vocabulary", conn=Depends(get_conn)):
     return repo.due_cards(conn, direction, new_limit, lesson_from, lesson_to, entity=entity, shuffle=shuffle)
 
 
 @router.get("/srs/cram")
 def srs_cram(source: Literal["studied", "weak", "all"] = "studied", n: int = Query(50, ge=1, le=500),
              direction: Literal["jp_vi", "vi_jp"] = "jp_vi", lesson_from: int | None = None,
-             lesson_to: int | None = None, entity: Literal["vocabulary", "grammar", "kanji"] = "vocabulary",
+             lesson_to: int | None = None, entity: Literal["vocabulary", "grammar", "kanji", "number"] = "vocabulary",
              conn=Depends(get_conn)):
     """Random off-schedule cards; read-only — the client writes only 'again' back via /answer (ADR-027)."""
     return repo.cram_cards(conn, entity, direction, source, n, lesson_from, lesson_to)
@@ -420,7 +432,7 @@ def stats(conn=Depends(get_conn)):
     last = d["exam"]["last"]
     d["recommendations"] = analytics.recommend({
         "due": {"vocabulary": sum(d["due_now"].values()), "grammar": d["due_by_entity"].get("grammar", 0),
-                "kanji": d["due_by_entity"].get("kanji", 0)},
+                "kanji": d["due_by_entity"].get("kanji", 0), "number": d["due_by_entity"].get("number", 0)},
         "mistakes_pending": d["exam"]["mistakes_pending"],
         "weak_grammar_points": d["weak_grammar_points"],
         "days_since_last_exam": (repo.now() - datetime.fromisoformat(last["submitted_at"])).days if last else None,
@@ -469,6 +481,7 @@ REVEAL_EXTRA = ("option_explanations", "expected_sequence", "expected_sequence_n
                 "passage_translation_vi")
 
 
+TOPIC_EXAMS = {"numbers": "BANK_N5_NUMBERS"}
 SOURCE_EXAM_TYPE = {"official": "official_sample", "past": "past_exam", "generated": "question_bank"}
 
 
@@ -482,6 +495,7 @@ class AttemptStart(BaseModel):
     grammar_id: str | None = Field(None, pattern=r"^GRA_\d{6}$")   # questions of one grammar point
     lesson_from: int | None = Field(None, ge=1, le=26)   # grammar questions of lessons from..to; 26 = N5 bổ sung
     lesson_to: int | None = Field(None, ge=1, le=26)
+    topic: Literal["numbers"] | None = None           # numbers/counters/dates reading questions (ADR-029)
     limit: int = Field(20, ge=1, le=200)             # Mode F
     timing: Literal["none", "original", "current", "custom"] = "original"
     time_limit_min: int | None = Field(None, ge=1, le=300)
@@ -540,7 +554,7 @@ def start_attempt(body: AttemptStart, conn=Depends(get_conn)):
         title = row["title"] + (f" · {examlib.SECTION_NAMES.get(body.section, body.section)}" if body.section else "")
     else:
         ids = repo.mistake_question_ids(conn) if body.mistakes_only else None
-        qs = repo.questions_where(conn, section=body.section, mondai_type=body.mondai_type, ids=ids,
+        qs = repo.questions_where(conn, exam_id=TOPIC_EXAMS.get(body.topic or ""), section=body.section, mondai_type=body.mondai_type, ids=ids,
                                   exam_type=SOURCE_EXAM_TYPE.get(body.source), grammar_id=body.grammar_id,
                                   grammar_lessons=lessons)
         groups: dict[str, list[dict]] = {}      # a passage's questions are drawn together, never split
@@ -555,6 +569,7 @@ def start_attempt(body: AttemptStart, conn=Depends(get_conn)):
             examlib.SECTION_ORDER.index(q["section"]) if q["section"] in examlib.SECTION_ORDER else 9,
             q["mondai_no"] or 0, q["exam_id"], q["passage_id"] or "", q["number"] or 0))
         parts = ["Ôn câu sai" if body.mistakes_only else "Luyện tập",
+                 "Số đếm & ngày tháng" if body.topic == "numbers" else "",
                  examlib.SECTION_NAMES.get(body.section or "", ""), body.mondai_type or "",
                  (json.loads(qs[0]["extra_json"]).get("grammar_pattern") or body.grammar_id)
                  if body.grammar_id and qs else "",

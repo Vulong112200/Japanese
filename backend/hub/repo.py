@@ -175,6 +175,9 @@ SRS_ENTITIES = {   # entity -> (columns, table alias + join, active filter, new-
                 "COALESCE(g.lesson_number,999), g.id"),
     "kanji": ("k.kanji, k.han_viet, k.meaning_vi, k.onyomi, k.kunyomi, k.example_words, k.verification_status",
               "kanji k ON k.id=c.entity_id", "k.verification_status!='rejected'", "k.id"),
+    "number": ("n.jp, n.reading, n.romaji, n.meaning_vi, n.category, n.data_json, n.verification_status, "
+               "(SELECT title_vi FROM number_categories WHERE key=n.category) AS category_vi",
+               "numbers n ON n.id=c.entity_id", "n.verification_status!='rejected' AND n.irregular=1", "n.position"),
 }
 
 
@@ -184,15 +187,21 @@ def ensure_cards(conn) -> int:
         "SELECT 'vocabulary', id, d.direction FROM vocabulary, "
         "(SELECT 'jp_vi' AS direction UNION ALL SELECT 'vi_jp') d "
         "WHERE archived=0 AND verification_status!='rejected'").rowcount
-    for table in ("grammar", "kanji"):
+    for entity, table, extra in (("grammar", "grammar", ""), ("kanji", "kanji", ""),
+                                 ("number", "numbers", " AND irregular=1")):   # numbers: only forms to memorise
         n += conn.execute(f"INSERT OR IGNORE INTO srs_cards (entity_type, entity_id, direction) "
-                          f"SELECT '{table}', id, 'jp_vi' FROM {table} WHERE verification_status!='rejected'").rowcount
+                          f"SELECT '{entity}', id, 'jp_vi' FROM {table} "
+                          f"WHERE verification_status!='rejected'{extra}").rowcount
     return n
 
 
 def _card_view(r: dict) -> dict:
-    if "data_json" in r:                       # grammar: only what the card shows
-        r["examples"] = json.loads(r.pop("data_json")).get("examples", [])[:2]
+    if "data_json" in r:                       # only what the card shows
+        data = json.loads(r.pop("data_json"))
+        if "pattern" in r:                     # grammar
+            r["examples"] = data.get("examples", [])[:2]
+        else:                                  # number (ADR-029)
+            r.update({k: data.get(k) for k in ("alt_readings", "note_vi", "example_jp", "example_vi")})
     for k in ("onyomi", "kunyomi", "example_words"):
         if k in r:
             r[k] = json.loads(r[k])
@@ -206,7 +215,7 @@ def _srs_base(entity: str, lesson_from: int | None, lesson_to: int | None) -> tu
     sql = (f"SELECT c.*, {cols} FROM srs_cards c JOIN {join} AND c.entity_type=? "
            f"WHERE {active} AND c.direction=? ")
     la: list = []
-    if entity != "kanji" and (lesson_from is not None or lesson_to is not None):   # kanji have no lesson
+    if entity in ("vocabulary", "grammar") and (lesson_from is not None or lesson_to is not None):   # kanji have no lesson
         sql += f"AND {alias}.lesson_number BETWEEN ? AND ? "
         la = [lesson_from if lesson_from is not None else 0, lesson_to if lesson_to is not None else 999]
     return sql, la, order

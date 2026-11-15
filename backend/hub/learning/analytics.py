@@ -18,7 +18,7 @@ def recommend(d: dict) -> list[dict]:
     out = []
     due = {k: v for k, v in d["due"].items() if v}
     if due:
-        names = {"vocabulary": "từ vựng", "grammar": "ngữ pháp", "kanji": "kanji"}
+        names = {"vocabulary": "từ vựng", "grammar": "ngữ pháp", "kanji": "kanji", "number": "số đếm"}
         top = max(due, key=due.get)
         out.append({"kind": "srs_due", "title": f"Ôn {sum(due.values())} thẻ đến hạn",
                     "reason": " · ".join(f"{names[k]} {v}" for k, v in due.items()) + " — để quá hạn sẽ dễ quên",

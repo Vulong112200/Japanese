@@ -50,7 +50,7 @@ Thư mục đã kiểm tra: `D:\\Japanese\\docs\\N5\\Exam`, `D:\\Japanese\\docs\
 - **Đáp án**: lấy từ bảng 正解 (`N5-seikai.pdf`); importer từ chối nạp nếu đáp án chép khác bảng 正解.
 - **Audio**: 1 tệp MP3 cho cả 8 câu nghe; chưa có timestamp từng câu (không suy đoán).
 - **OCR**: chưa dùng (tesseract chưa cài). Không có PDF scan cần OCR trong bộ dữ liệu hiện tại.
-- **Flashcard Số Đếm**: 16 dòng dạng hỏi–đáp tự do → giữ ở RAW, không ép thành từ vựng.
+- **Flashcard Số Đếm**: 16 dòng dạng hỏi–đáp tự do → giữ ở RAW, không ép thành từ vựng. Nội dung được thay bằng chuyên đề Số đếm (ADR-029, `data/normalized/numbers/numbers.json`).
 - **Thiếu dữ liệu**: không có `flashcards_Bai15.csv`; `flashcards_Bai18.csv` chỉ có 1 dòng (có thể export bị thiếu).
 """
 

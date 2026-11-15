@@ -11,8 +11,9 @@ from pathlib import Path
 
 from .. import repo
 from ..db import ROOT
+from ..validation import numbers as numrules
 from ..validation import reference as ref
-from ..validation.kana import KANA_RE, kata_to_hira, romaji_matches
+from ..validation.kana import KANA_RE, KANJI_RE, kata_to_hira, romaji_matches, to_romaji
 
 NORM = ROOT / "data" / "normalized"
 SUPPLEMENT = NORM / "supplements" / "vocabulary_supplement.json"
@@ -349,6 +350,148 @@ def import_kaiwa(conn, path: Path = KAIWA) -> dict:
         stats["kaiwa"] += 1
         stats["verified"] += status == "verified"
     return stats
+
+
+# ------------------------------------------------------------------ numbers / counters / dates (ADR-029)
+NUMBERS = NORM / "numbers" / "numbers.json"
+NUM_EXAM = "BANK_N5_NUMBERS"
+MEMORISED_SETS = {"tsu", "nichi", "nin", "youbi"}   # lists learnt by heart: other members are good traps
+
+
+def number_valid_readings(jp: str, category: str, item: dict | None = None) -> set[str]:
+    """Every accepted reading: phonology rules ∪ JMdict ∪ the item's own readings. Distractors must lie outside it."""
+    out = numrules.expected_readings(jp, category) | ({kata_to_hira(r) for r, _, _ in ref.lookup(jp)} if KANJI_RE.search(jp) else set())
+    return out | ({item["reading"], *(item.get("alt_readings") or [])} if item else set())
+
+
+def number_question_id(jp: str, category: str) -> str:
+    """Stable ASCII id (schema ^Q_[A-Z0-9_]+$): Q_NUM_HON_3, Q_NUM_HON_NAN; hex of the spelling when not a count."""
+    sp = numrules.split(jp, category)
+    tok = ("NAN" if sp[1] is None else str(sp[1])) if sp else "".join(f"{ord(ch):X}" for ch in jp)
+    return f"Q_NUM_{category.upper()}_{tok}"
+
+
+def check_number_item(item: dict, category: str, n5_kanji: set[str]) -> list:
+    issues = []
+    add = lambda code, sev, msg: issues.append((code, sev, msg, None))
+    for f in ("jp", "reading", "vi", "example_jp", "example_vi"):
+        if not (item.get(f) or "").strip():
+            add("missing_field", "error", f"Thiếu {f}")
+    readings = [item.get("reading") or "", *(item.get("alt_readings") or [])]
+    if not all(KANA_RE.match(r) for r in readings):
+        add("reading_not_kana", "error", "Cách đọc phải là kana")
+    expected = numrules.expected_readings(item.get("jp") or "", category)
+    if not expected:
+        add("rule_unknown", "error", f"Luật biến âm không suy được cách đọc của {item.get('jp')}")
+    for r in readings:
+        if expected and r not in expected:
+            add("reading_rule_mismatch", "error", f"'{r}' không khớp luật biến âm (luật cho: {'、'.join(sorted(expected))})")
+    jm = {kata_to_hira(r) for r, _, _ in ref.lookup(item.get("jp") or "")} if KANJI_RE.search(item.get("jp") or "") else set()
+    if jm and item.get("reading") not in jm:
+        add("reading_not_in_jmdict", "error", f"JMdict đọc {item.get('jp')} là {'、'.join(sorted(jm))}")
+    if item.get("jp") and item["jp"] not in (item.get("example_jp") or ""):
+        add("example_missing_word", "error", "Câu ví dụ không chứa từ")
+    if item.get("irregular") and not (item.get("note_vi") or "").strip():
+        add("missing_note", "warning", "Mục cần nhớ riêng phải có ghi chú vì sao")
+    outside = sorted({c for c in (item.get("jp") or "") if KANJI_RE.match(c)} - n5_kanji - set("何"))
+    if outside:
+        add("kanji_outside_n5", "info", f"Kanji ngoài N5: {''.join(outside)}")
+    return issues
+
+
+def import_numbers(conn, path: Path = NUMBERS) -> dict:
+    """Numbers topic file -> number_categories + numbers. verified_by='ai' only when audited (2 review rounds) and no
+    error/warning; excluded -> rejected (never deleted); a person's decision is kept."""
+    data = _load(path)
+    if not data:
+        return {"numbers": 0}
+    n5_kanji = {r[0] for r in conn.execute("SELECT kanji FROM kanji WHERE verification_status='verified'")}
+    stats = {"numbers": 0, "verified": 0, "excluded": 0}
+    pos = 0
+    for ci, c in enumerate(data["categories"]):
+        conn.execute("INSERT OR REPLACE INTO number_categories (key, position, title_vi, rule_vi) VALUES (?,?,?,?)",
+                     (c["key"], ci, c["title_vi"], c["rule_vi"]))
+        for it in c["items"]:
+            pos += 1
+            cur = conn.execute("SELECT verified_by FROM numbers WHERE id=?", (it["id"],)).fetchone()
+            if cur and cur["verified_by"] in USER_OWNED:
+                continue
+            if it.get("excluded"):
+                conn.execute("UPDATE numbers SET verification_status='rejected', review_notes=? WHERE id=?",
+                             (it.get("exclude_reason"), it["id"]))
+                stats["excluded"] += 1
+                continue
+            issues = check_number_item(it, c["key"], n5_kanji)
+            repo.replace_issues(conn, "number", it["id"], issues)
+            blocking = any(sev in ("error", "warning") for _, sev, _, _ in issues)
+            status, by = ("verified", "ai") if it.get("audited") and not blocking else ("needs_review", None)
+            body = {k: it.get(k) for k in ("alt_readings", "note_vi", "example_jp", "example_vi", "review_log")}
+            conn.execute(
+                "INSERT OR REPLACE INTO numbers (id, category, position, jp, reading, romaji, meaning_vi, irregular, "
+                "data_json, verification_status, verified_by) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                (it["id"], c["key"], pos, it["jp"], it["reading"], to_romaji(it["reading"]), it["vi"],
+                 int(bool(it.get("irregular"))), json.dumps(body, ensure_ascii=False), status, by))
+            stats["numbers"] += 1
+            stats["verified"] += status == "verified"
+    return stats
+
+
+def import_number_questions(conn) -> dict:
+    """漢字読み questions for verified number items with kanji (BANK_N5_NUMBERS). Distractors are wrong sound-change
+    variants proven outside number_valid_readings. Stable ids; ungenerable questions become 'rejected'."""
+    from ..learning import question_gen
+    if not ref.available():
+        return {"generated": 0, "note": "reference dictionary missing (run build-reference)"}
+    items = repo.rows(conn.execute("SELECT * FROM numbers WHERE verification_status='verified' ORDER BY position"))
+    by_cat: dict[str, set[str]] = {}
+    irregular: dict[str, set[str]] = {}
+    for it in items:
+        by_cat.setdefault(it["category"], set()).add(it["reading"])
+        if it["irregular"]:
+            irregular.setdefault(it["category"], set()).add(it["reading"])
+    conn.execute("INSERT OR REPLACE INTO exams (exam_id, title, level, exam_type, source_type, is_official, "
+                 "duration_minutes, data_json, source_ids, verification_status) VALUES (?,?,?,?,?,?,?,?,?,?)",
+                 (NUM_EXAM, "Số đếm & ngày tháng: câu đọc sinh tự động (AI_GENERATED)", "N5", "question_bank",
+                  "AI_GENERATED", 0, None, json.dumps({"generator": "hub.learning.question_gen.number_question", "note":
+                  "Sinh bằng luật từ chuyên đề số đếm đã verified; không phải câu hỏi JLPT chính thức."},
+                  ensure_ascii=False), json.dumps(["SRC_REF_JMDICT"]), "verified"))
+    def fillers(it):           # same category; plain numbers: same order of magnitude (三百 → ひゃく, はっぴゃく…)
+        if it["category"] != "number":
+            return by_cat[it["category"]]
+        return {o["reading"] for o in items if o["category"] == "number" and o["jp"][-1] == it["jp"][-1]
+                and o["jp"][-1] in "十百千万"}
+
+    ids = []
+    for it in items:
+        cat = it["category"]
+        if not KANJI_RE.search(it["jp"]):
+            continue
+        full = {**it, **json.loads(it["data_json"]), "question_id": number_question_id(it["jp"], cat)}
+        # memorised lists (ようか vs よっか): other irregular members are the traps, only for an irregular item
+        others = irregular.get(cat, set()) if cat in MEMORISED_SETS and it["irregular"] else set()
+        kana = numrules.COUNTERS.get(cat, ("",))[0]
+        swap_at = ({0} if cat == "youbi" else None if cat == "number" else           # voicing swaps: counter head only
+                   {len(it["reading"]) - len(kana)} if kana and len(it["reading"]) > len(kana) else set())
+        q = question_gen.number_question(full, number_valid_readings(it["jp"], cat, full),
+                                         numrules.naive_readings(it["jp"], cat), others,
+                                         fillers(it), swap_at)
+        if not q:
+            continue
+        extra = {"target": it["jp"], "target_entity": it["id"], "option_explanations": q["option_explanations"],
+                 "generator": "rule:number_reading", "topic": "numbers"}
+        conn.execute(
+            "INSERT OR REPLACE INTO questions (question_id, exam_id, section, section_id, mondai_no, mondai_type, number, "
+            "question_text, instruction, options, correct_answer, answer_type, extra_json, explanation_vi, "
+            "explanation_origin, level, source_ids, extraction_method, verification_status, verified_by) "
+            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            (q["question_id"], NUM_EXAM, "vocabulary", "SEC_01", 1, "kanji_reading", None, q["question_text"],
+             GEN_INSTRUCTION[1], json.dumps(q["options"], ensure_ascii=False), json.dumps(q["correct_answer"]),
+             "single_choice", json.dumps(extra, ensure_ascii=False), q["explanation_vi"], "AI_GENERATED", "N5",
+             json.dumps(["SRC_REF_JMDICT"]), "rule_generated", "verified", "generator"))
+        ids.append(q["question_id"])
+    conn.execute(f"UPDATE questions SET verification_status='rejected' WHERE exam_id=? "
+                 f"AND question_id NOT IN ({','.join('?' * len(ids)) or 'NULL'})", [NUM_EXAM, *ids])
+    return {"generated": len(ids)}
 
 
 def kata_norm(s: str) -> str:

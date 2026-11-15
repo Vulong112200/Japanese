@@ -498,3 +498,19 @@ def test_listening_timestamps_fit_the_track_and_hide_nothing(client):
     a = c.post("/api/attempts", json={"mode": "exam", "exam_id": exam_id, "section": "listening"}).json()
     q = next(q for q in a["questions"] if "audio_start" in q["extra"])
     assert "transcript" not in q and "correct_answer" not in q
+
+
+def test_numbers_topic_api_srs_and_practice(client):      # ADR-029
+    c, conn = client
+    cats = c.get("/api/numbers").json()
+    keys = [x["key"] for x in cats]
+    assert {"number", "tsu", "nin", "hon", "fun", "ji", "nichi", "gatsu", "kai_floor", "en"} <= set(keys)
+    hon = next(x for x in cats if x["key"] == "hon")
+    assert hon["rule_vi"] and any(i["jp"] == "三本" and i["reading"] == "さんぼん" and i["irregular"] for i in hon["items"])
+    cards = c.get("/api/srs/due", params={"entity": "number", "new_limit": 5}).json()
+    assert len(cards) == 5 and all(x["jp"] and x["reading"] and x["category_vi"] for x in cards)
+    a = c.post("/api/attempts", json={"mode": "practice", "topic": "numbers", "limit": 10}).json()
+    assert len(a["questions"]) == 10 and "Số đếm" in a["title"]
+    assert {q["exam_id"] for q in a["questions"]} == {"BANK_N5_NUMBERS"}
+    assert all("correct_answer" not in q for q in a["questions"])          # nothing revealed before answering
+    assert c.post("/api/attempts", json={"mode": "practice", "topic": "x"}).status_code == 422
