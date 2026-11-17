@@ -62,8 +62,8 @@ export default function Flashcards() {
     if (!card || busy) return
     setBusy(true)
     try {
-      // cram "Nhớ" is not an on-schedule review, so it is not sent to SM-2
-      const updated = cram && rating !== 'again' ? {} : await api.answer(card.card_id, rating)
+      // cram "Nhớ" is not an on-schedule review: not sent to SM-2, only clears the "Từ hay quên" mark
+      const updated = cram && rating !== 'again' ? (await api.recalled(card.card_id), {}) : await api.answer(card.card_id, rating)
       setDone(n => n + 1)
       if (rating === 'again') setForgot(n => n + 1)
       // "again" cards come back in this session (due in 10 min) — requeue at the end

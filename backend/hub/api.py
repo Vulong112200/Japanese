@@ -412,6 +412,15 @@ def srs_answer(card_id: int, body: Answer, conn=Depends(get_conn)):
     return repo.get_card(conn, card_id)
 
 
+@router.post("/srs/cards/{card_id}/recalled")
+def srs_recalled(card_id: int, conn=Depends(get_conn)):
+    if not repo.get_card(conn, card_id):
+        raise HTTPException(404)
+    repo.clear_weak(conn, card_id)
+    conn.commit()
+    return {"ok": True}
+
+
 def _latest_score(conn) -> dict:
     """examlib.score over the latest answer of each question in submitted attempts (ADR-021)."""
     latest = repo.latest_answers(conn)

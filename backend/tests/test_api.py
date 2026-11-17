@@ -107,7 +107,13 @@ def test_srs_limits_lesson_range_shuffle_and_cram(client, imported):
     assert len(client.get("/api/srs/cram", params={**p, "source": "all", "lesson_from": 3, "lesson_to": 3}).json()) \
         and all(c["lesson_number"] == 3 for c in client.get(
             "/api/srs/cram", params={**p, "source": "all", "lesson_from": 3, "lesson_to": 3}).json())
+    conn.execute("UPDATE review_log SET reviewed_at='2000-01-01' WHERE card_id=?", (ids[0],))  # miss was earlier
+    assert client.post(f"/api/srs/cards/{ids[0]}/recalled").json() == {"ok": True}    # cram "Nhớ"
+    assert [c["card_id"] for c in client.get("/api/srs/cram", params={**p, "source": "weak"}).json()] == [ids[3]]
     assert due_before == dict(conn.execute("SELECT card_id, due_at FROM srs_cards WHERE direction='vi_jp'").fetchall())
+    client.post(f"/api/srs/cards/{ids[0]}/answer", json={"rating": "again"})              # forgotten again -> back
+    assert ids[0] in [c["card_id"] for c in client.get("/api/srs/cram", params={**p, "source": "weak"}).json()]
+    assert client.post("/api/srs/cards/999999/recalled").status_code == 404
 
 
 def test_review_approve_reject_edit(client):

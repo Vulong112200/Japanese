@@ -238,7 +238,10 @@ def due_cards(conn, direction: str, new_limit: int = 20, lesson_from: int | None
 
 CRAM_SOURCES = {   # source -> (extra filter, order): off-schedule review before the exam (ADR-027)
     "studied": ("AND c.first_studied IS NOT NULL ", "RANDOM()"),
-    "weak": ("AND c.incorrect_count>0 ", "c.lapses + c.incorrect_count DESC, RANDOM()"),
+    # forgotten at least once and not recalled in cram since the last "again"
+    "weak": ("AND c.incorrect_count>0 AND (c.weak_cleared_at IS NULL OR c.weak_cleared_at <= (SELECT MAX(reviewed_at) "
+             "FROM review_log WHERE card_id=c.card_id AND rating='again')) ",
+             "c.lapses + c.incorrect_count DESC, RANDOM()"),
     "all": ("", "RANDOM()"),
 }
 
@@ -249,6 +252,11 @@ def cram_cards(conn, entity: str, direction: str, source: str, n: int,
     where, order = CRAM_SOURCES[source]
     return [_card_view(r) for r in rows(conn.execute(base + where + f"ORDER BY {order} LIMIT ?",
                                                      [entity, direction, *la, n]))]
+
+
+def clear_weak(conn, card_id: int) -> None:
+    """Cram "Nhớ": drop the card from the "weak" list until it is forgotten again; SM-2 schedule untouched."""
+    conn.execute("UPDATE srs_cards SET weak_cleared_at=? WHERE card_id=?", (iso(), card_id))
 
 
 def get_card(conn, card_id: int) -> dict | None:

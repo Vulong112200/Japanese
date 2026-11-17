@@ -18,6 +18,7 @@ Cập nhật: 2026-11-15, kết thúc phiên 11. Trạng thái dựa trên kết
 | 11 | **Flashcard ôn tổng hợp** (ADR-027): thẻ mới/ngày tối đa 500 (trước 200), 1000 thẻ đến hạn mỗi lần tải; lọc khoảng bài; thứ tự Theo bài / Ngẫu nhiên; chế độ **Ôn tổng hợp** (từ đã học / từ hay quên / tất cả, lật ngẫu nhiên ngoài lịch; Quên → đưa lại vào SRS, Nhớ → không ghi). Phím số trong ô nhập không còn bị hiểu là chấm điểm | 103 test |
 | 12 | **Ôn ngữ pháp gom nhiều bài** (ADR-028): panel "Ôn nhanh nhiều bài" ở trang Ngữ pháp, chọn Bài X–Y (có "25 + N5 bổ sung") và 10/20/30/50 câu, trộn ngẫu nhiên câu 文の文法1/2; sau khi trả lời hiện ý nghĩa + cấu trúc điểm ngữ pháp kèm link | 104 test |
 | 13 | **Chuyên đề Số đếm & ngày tháng** (ADR-029): 273 mục / 23 nhóm (số, trợ số từ, giờ phút, thứ, ngày, tháng, năm, tiền), luật biến âm độc lập + JMdict + 2 vòng rà soát → 273 verified; trang **Số đếm** (bảng + quy tắc, tô cách đọc đặc biệt); 118 thẻ SRS loại "Số đếm"; 147 câu trắc nghiệm 漢字読み (`BANK_N5_NUMBERS`), luyện từ trang Số đếm | 109 test |
+| 13b | Sửa lỗi "Từ hay quên" (ADR-027): bấm **Nhớ** ở Ôn tổng hợp ghi `srs_cards.weak_cleared_at` (`POST /api/srs/cards/{id}/recalled`), thẻ rời danh sách đến khi bị Quên lại; lịch SM-2 không đổi | 109 test |
 
 ## Độ phủ kiến thức N5: ĐÃ ĐỦ, không cần thu thập thêm tài liệu
 | Mảng | Độ phủ | Trạng thái xác minh |

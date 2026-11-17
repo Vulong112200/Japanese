@@ -373,6 +373,7 @@ export const api = {
   archive: (id: string) => req<{ archived: boolean }>(`/vocabulary/${id}/archive`, { method: 'POST' }),
   due: (p: Record<string, string | number | undefined | null>) => req<Card[]>(`/srs/due?${qs(p)}`),
   cram: (p: Record<string, string | number | undefined | null>) => req<Card[]>(`/srs/cram?${qs(p)}`),
+  recalled: (cardId: number) => req<{ ok: boolean }>(`/srs/cards/${cardId}/recalled`, { method: 'POST' }),
   answer: (cardId: number, rating: string) =>
     req<Card>(`/srs/cards/${cardId}/answer`, { method: 'POST', body: JSON.stringify({ rating }) }),
   queue: (entity: string, status?: string, offset = 0) =>
