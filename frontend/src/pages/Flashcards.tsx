@@ -8,7 +8,7 @@ const RATINGS = [
   { id: 'good', label: 'Được', key: '3', cls: 'bg-emerald-600 hover:bg-emerald-500' },
   { id: 'easy', label: 'Dễ', key: '4', cls: 'bg-sky-600 hover:bg-sky-500' },
 ] as const
-// Ôn tổng hợp (ADR-027): only "Quên" is written back to SRS; "Nhớ" leaves the schedule alone
+// Ôn tổng hợp (ADR-027): "Quên" and "Nhớ" on a new card go to SRS; "Nhớ" on a studied card only clears "weak"
 const CRAM_RATINGS = [
   { id: 'again', label: 'Quên', key: '1', cls: 'bg-rose-600 hover:bg-rose-500' },
   { id: 'good', label: 'Nhớ', key: '3', cls: 'bg-emerald-600 hover:bg-emerald-500' },
