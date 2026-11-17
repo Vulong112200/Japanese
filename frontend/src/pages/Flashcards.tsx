@@ -62,8 +62,10 @@ export default function Flashcards() {
     if (!card || busy) return
     setBusy(true)
     try {
-      // cram "Nhớ" is not an on-schedule review: not sent to SM-2, only clears the "Từ hay quên" mark
-      const updated = cram && rating !== 'again' ? (await api.recalled(card.card_id), {}) : await api.answer(card.card_id, rating)
+      // cram "Nhớ" on a studied card is off-schedule: not sent to SM-2, only clears the "Từ hay quên" mark.
+      // A new card has no schedule to distort, so "Nhớ" is its real first review (enters SRS, counts on the Dashboard).
+      const updated = cram && rating !== 'again' && card.status !== 'new'
+        ? (await api.recalled(card.card_id), {}) : await api.answer(card.card_id, rating)
       setDone(n => n + 1)
       if (rating === 'again') setForgot(n => n + 1)
       // "again" cards come back in this session (due in 10 min) — requeue at the end
@@ -128,6 +130,7 @@ export default function Flashcards() {
             <input type="number" min={1} max={500} value={cramN} aria-label="Số thẻ mỗi lượt" className="w-16 rounded-lg border border-slate-300 bg-white px-2 py-1 dark:border-slate-700 dark:bg-slate-900"
               onChange={e => { const v = Math.max(1, Math.min(500, Number(e.target.value) || 1)); setCramN(v); writePref('srs.cramN', v) }} />
           </label>
+          <p className="basis-full text-right text-xs text-slate-500">Thẻ chưa học: Quên/Nhớ đều được đưa vào lịch SRS. Thẻ đã học: chỉ Quên mới đổi lịch, Nhớ chỉ bỏ thẻ khỏi "Từ hay quên".</p>
         </> : <>
           <select aria-label="Thứ tự" className="rounded-lg border border-slate-300 bg-white px-2 py-1 dark:border-slate-700 dark:bg-slate-900"
             value={shuffle ? 'random' : 'lesson'} onChange={e => { const v = e.target.value === 'random'; setShuffle(v); writePref('srs.shuffle', v) }}>
