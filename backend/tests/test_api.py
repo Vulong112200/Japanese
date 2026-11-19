@@ -1,4 +1,6 @@
 """End-to-end API flows on an imported copy of the real data."""
+from datetime import timedelta
+
 import pytest
 from fastapi.testclient import TestClient
 
@@ -78,6 +80,24 @@ def test_srs_grammar_and_kanji_cards(client, imported):
     assert len(k) == 2 and isinstance(k[0]["onyomi"], list) and k[0]["kanji"] and k[0]["example_words"]
     d2 = client.get("/api/stats/dashboard").json()
     assert d2["cards_by_entity"]["grammar"].get("reviewing") == 3 and d2["cards_by_status"] == d["cards_by_status"]
+
+
+def test_srs_intensive_mode(client, imported):
+    """SRS cấp tốc (ADR-030): 10-min first step, exam date setting, long SM-2 gaps come back after 7 days."""
+    conn, _ = imported
+    assert client.put("/api/settings", json={"exam_date": "2099-12-06"}).json() == {"daily_goal": 30, "exam_date": "2099-12-06"}
+    p = {"entity": "number", "new_limit": 1, "intensive": "true"}
+    cid = client.get("/api/srs/due", params=p).json()[0]["card_id"]
+    r = client.post(f"/api/srs/cards/{cid}/answer", params={"intensive": "true"}, json={"rating": "good"}).json()
+    assert r["interval_days"] < 0.01 and r["status"] == "reviewing"
+    # pretend SM-2 booked it 20 days out and it was last seen 8 days ago
+    conn.execute("UPDATE srs_cards SET due_at=datetime('now','+20 days'), last_studied=? WHERE card_id=?",
+                 ((api.repo.now() - timedelta(days=8)).isoformat(timespec="seconds"), cid))
+    conn.commit()
+    p["new_limit"] = 0
+    assert [c["card_id"] for c in client.get("/api/srs/due", params=p).json()] == [cid]
+    assert client.get("/api/srs/due", params={**p, "intensive": "false"}).json() == []
+    assert client.put("/api/settings", json={"exam_date": None}).json()["exam_date"] is None
 
 
 def test_srs_limits_lesson_range_shuffle_and_cram(client, imported):

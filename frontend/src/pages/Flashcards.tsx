@@ -21,6 +21,9 @@ function shuffled<T>(a: T[]): T[] {
   return b
 }
 const numOrNull = (v: string) => (v === '' ? null : Math.max(1, Number(v) || 1))
+type Mode = 'srs' | 'intensive' | 'cram'
+const gap = (d: number) => (d >= 1 ? `${d} ngày` : d * 24 >= 1 ? `${Math.round(d * 24)} giờ` : `${Math.round(d * 1440)} phút`)
+const daysUntil = (iso: string) => Math.ceil((new Date(`${iso}T00:00`).getTime() - Date.now()) / 86400e3)
 
 const ENTITIES: [SrsEntity, string][] = [['vocabulary', 'Từ vựng'], ['grammar', 'Ngữ pháp'], ['kanji', 'Kanji'], ['number', 'Số đếm']]
 const hashEntity = () => {
@@ -33,7 +36,8 @@ export default function Flashcards() {
   const [vocabDirection, setDirection] = useState<'jp_vi' | 'vi_jp'>(() => readPref('srs.direction', 'jp_vi'))
   const direction = entity === 'vocabulary' ? vocabDirection : 'jp_vi'   // grammar/kanji: one direction (ADR-021)
   const [newLimit, setNewLimit] = useState<number>(() => readPref('srs.newLimit', 20))
-  const [mode, setMode] = useState<'srs' | 'cram'>(() => readPref('srs.mode', 'srs'))
+  const [mode, setMode] = useState<Mode>(() => readPref('srs.mode', 'srs'))
+  const [examDate, setExamDate] = useState<string | null>(null)
   const [lessonFrom, setLessonFrom] = useState<number | null>(() => readPref('srs.lessonFrom', null))
   const [lessonTo, setLessonTo] = useState<number | null>(() => readPref('srs.lessonTo', null))
   const [shuffle, setShuffle] = useState<boolean>(() => readPref('srs.shuffle', false))
@@ -46,15 +50,18 @@ export default function Flashcards() {
   const [busy, setBusy] = useState(false)
   const [err, setErr] = useState<unknown>(null)
   const cram = mode === 'cram'
+  const intensive = mode === 'intensive'   // SRS cấp tốc (ADR-030)
+  useEffect(() => { api.settings().then(s => setExamDate(s.exam_date)).catch(setErr) }, [])
   const ratings = cram ? CRAM_RATINGS : RATINGS
 
   const load = useCallback(() => {
     setQueue(null); setShown(false); setDone(0); setForgot(0)
     const p = { direction, entity, lesson_from: lessonFrom, lesson_to: lessonTo }
     const req = cram ? api.cram({ ...p, source: cramSource, n: cramN })
-      : api.due({ ...p, new_limit: newLimit, shuffle: shuffle ? 'true' : undefined }).then(q => (shuffle ? shuffled(q) : q))
+      : api.due({ ...p, new_limit: newLimit, shuffle: shuffle ? 'true' : undefined, intensive: intensive ? 'true' : undefined })
+        .then(q => (shuffle ? shuffled(q) : q))
     req.then(setQueue).catch(setErr)
-  }, [direction, newLimit, entity, cram, lessonFrom, lessonTo, shuffle, cramSource, cramN])
+  }, [direction, newLimit, entity, cram, intensive, lessonFrom, lessonTo, shuffle, cramSource, cramN])
   useEffect(() => { load() }, [load])
 
   const card = queue?.[0]
@@ -64,15 +71,16 @@ export default function Flashcards() {
     try {
       // cram "Nhớ" on a studied card is off-schedule: not sent to SM-2, only clears the "Từ hay quên" mark.
       // A new card has no schedule to distort, so "Nhớ" is its real first review (enters SRS, counts on the Dashboard).
-      const updated = cram && rating !== 'again' && card.status !== 'new'
-        ? (await api.recalled(card.card_id), {}) : await api.answer(card.card_id, rating)
+      const updated: Partial<Card> = cram && rating !== 'again' && card.status !== 'new'
+        ? (await api.recalled(card.card_id), {}) : await api.answer(card.card_id, rating, intensive)
       setDone(n => n + 1)
       if (rating === 'again') setForgot(n => n + 1)
-      // "again" cards come back in this session (due in 10 min) — requeue at the end
-      setQueue(q => (q ? [...q.slice(1), ...(rating === 'again' ? [{ ...card, ...updated }] : [])] : q))
+      // cards due again within 20 min ("again", or the 10-min first step of SRS cấp tốc) come back this session
+      const soon = updated.due_at != null && new Date(updated.due_at).getTime() - Date.now() < 20 * 60e3
+      setQueue(q => (q ? [...q.slice(1), ...(soon ? [{ ...card, ...updated }] : [])] : q))
       setShown(false)
     } catch (e) { setErr(e) } finally { setBusy(false) }
-  }, [card, busy, cram])
+  }, [card, busy, cram, intensive])
 
   useEffect(() => {
     const on = (e: KeyboardEvent) => {
@@ -108,8 +116,9 @@ export default function Flashcards() {
             <option value="vi_jp">Việt → Nhật</option>
           </select>}
           <select aria-label="Chế độ" className="rounded-lg border border-slate-300 bg-white px-2 py-1 dark:border-slate-700 dark:bg-slate-900"
-            value={mode} onChange={e => { const v = e.target.value as 'srs' | 'cram'; setMode(v); writePref('srs.mode', v) }}>
+            value={mode} onChange={e => { const v = e.target.value as Mode; setMode(v); writePref('srs.mode', v) }}>
             <option value="srs">Theo lịch SRS</option>
+            <option value="intensive">SRS cấp tốc</option>
             <option value="cram">Ôn tổng hợp</option>
           </select>
         </div>
@@ -141,6 +150,16 @@ export default function Flashcards() {
             <input type="number" min={0} max={500} value={newLimit} aria-label="Số thẻ mới mỗi ngày" className="w-16 rounded-lg border border-slate-300 bg-white px-2 py-1 dark:border-slate-700 dark:bg-slate-900"
               onChange={e => { const v = Math.max(0, Math.min(500, Number(e.target.value) || 0)); setNewLimit(v); writePref('srs.newLimit', v) }} />
           </label>
+          {intensive && <>
+            <label className="flex items-center gap-1">Ngày thi
+              <input type="date" value={examDate ?? ''} aria-label="Ngày thi" className="rounded-lg border border-slate-300 bg-white px-2 py-1 dark:border-slate-700 dark:bg-slate-900"
+                onChange={e => api.saveSettings({ exam_date: e.target.value || null }).then(s => setExamDate(s.exam_date)).catch(setErr)} />
+            </label>
+            <p className="basis-full text-right text-xs text-slate-500">
+              {examDate && daysUntil(examDate) > 0 ? `Còn ${daysUntil(examDate)} ngày. ` : ''}
+              Lịch nén: 10 phút → 1 → 2 → 4 → 7 ngày, luôn ôn lại trước ngày thi; nhớ đúng 5 lần liên tiếp là "thuộc". Thẻ để quá 7 ngày sẽ đến hạn lại.
+            </p>
+          </>}
         </>}
       </div>
 
@@ -155,7 +174,7 @@ export default function Flashcards() {
         <>
           <div className="flex justify-between text-xs text-slate-500">
             <span>Còn {queue.length} thẻ · {cram ? `nhớ ${done - forgot} · quên ${forgot}` : `đã ôn ${done}`}</span>
-            <span>{card.lesson_number ? `Bài ${card.lesson_number}` : card.deck ?? card.category_vi ?? ''} · {card.status === 'new' ? 'thẻ mới' : `khoảng ${card.interval_days} ngày`}</span>
+            <span>{card.lesson_number ? `Bài ${card.lesson_number}` : card.deck ?? card.category_vi ?? ''} · {card.status === 'new' ? 'thẻ mới' : `khoảng ${gap(card.interval_days)}`}</span>
           </div>
           <section className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm dark:border-slate-800 dark:bg-slate-900" aria-live="polite">
             {card.verification_status !== 'verified' && (

@@ -4,6 +4,7 @@ import json
 import sqlite3
 from datetime import datetime, timedelta, timezone
 
+from .learning import srs
 from .learning.analytics import active_seconds
 
 TZ = timezone(timedelta(hours=7))  # learner's timezone (Vietnam)
@@ -223,9 +224,11 @@ def _srs_base(entity: str, lesson_from: int | None, lesson_to: int | None) -> tu
 
 def due_cards(conn, direction: str, new_limit: int = 20, lesson_from: int | None = None,
               lesson_to: int | None = None, limit: int = 1000, entity: str = "vocabulary",
-              shuffle: bool = False) -> list[dict]:
+              shuffle: bool = False, intensive: bool = False) -> list[dict]:
     base, la, order = _srs_base(entity, lesson_from, lesson_to)
-    due = rows(conn.execute(base + "AND c.due_at IS NOT NULL AND c.due_at<=? ORDER BY c.due_at LIMIT ?",
+    # SRS cấp tốc (ADR-030): a card unseen for INTENSIVE_MAX days is due even if SM-2 booked it later
+    stale = f"OR c.last_studied<='{iso(now() - timedelta(days=srs.INTENSIVE_MAX))}'" if intensive else ""
+    due = rows(conn.execute(base + f"AND c.due_at IS NOT NULL AND (c.due_at<=? {stale}) ORDER BY c.due_at LIMIT ?",
                             [entity, direction, *la, iso(), limit]))
     new_today = conn.execute(
         "SELECT COUNT(*) FROM srs_cards WHERE entity_type=? AND direction=? AND first_studied>=?",

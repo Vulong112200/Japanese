@@ -111,6 +111,30 @@ def test_mastery_requires_streak_and_interval():
     assert c.status == "mastered" and c.interval_days >= 21 and c.reps >= 3
 
 
+def test_intensive_ladder_and_mastery():
+    """SRS cấp tốc (ADR-030): 10 min → 1 → 2 → 4 → 7 days, mastered after 5 correct in a row."""
+    c, t, gaps = srs.Card(), NOW, []
+    for _ in range(6):
+        prev = t
+        c, t = srs.schedule(c, "good", t, intensive=True)
+        gaps.append(round((t - prev).total_seconds() / 86400, 4))
+        assert c.status == ("mastered" if c.reps >= 5 else "reviewing")
+    assert gaps == [round(10 / 1440, 4), 1, 2, 4, 7, 7]
+    c, due = srs.schedule(c, "again", t, intensive=True)
+    assert c.reps == 0 and c.status == "learning" and (due - t).total_seconds() == 600
+
+
+def test_intensive_caps_before_exam_and_keeps_long_gaps():
+    old = srs.Card(interval_days=15, reps=3, review_count=3, status="reviewing")   # from normal SM-2
+    c, due = srs.schedule(old, "good", NOW, intensive=True)
+    assert c.interval_days == 7                                   # capped, not shrunk to the 4-day step
+    exam = NOW.date().replace(day=19)                             # 5 days away → at most 4 days
+    c, due = srs.schedule(old, "good", NOW, intensive=True, exam_date=exam)
+    assert c.interval_days == 4 and due.date() < exam
+    c, _ = srs.schedule(old, "good", NOW, intensive=True, exam_date=NOW.date())   # exam passed: no cap
+    assert c.interval_days == 7
+
+
 def test_again_resets_and_counts_lapse():
     c = srs.Card()
     for _ in range(3):

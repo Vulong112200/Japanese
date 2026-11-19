@@ -357,8 +357,8 @@ def test_dashboard_suggests_grammar_points_until_answered_right(client):
 # ---------- Dashboard goal / analytics / practice by grammar point (ADR-022) ----------
 def test_settings_daily_goal(client):
     c, _ = client
-    assert c.get("/api/settings").json() == {"daily_goal": 30}
-    assert c.put("/api/settings", json={"daily_goal": 50}).json() == {"daily_goal": 50}
+    assert c.get("/api/settings").json() == {"daily_goal": 30, "exam_date": None}
+    assert c.put("/api/settings", json={"daily_goal": 50}).json() == {"daily_goal": 50, "exam_date": None}
     assert c.get("/api/stats/dashboard").json()["daily_goal"] == 50
     assert c.put("/api/settings", json={"daily_goal": 3}).status_code == 422
 

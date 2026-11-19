@@ -82,6 +82,7 @@ export interface Card {
   direction: 'jp_vi' | 'vi_jp'
   status: string
   interval_days: number
+  due_at?: string | null
   reps: number
   review_count: number
   meaning_vi: string
@@ -363,10 +364,13 @@ async function req<T>(path: string, init?: RequestInit): Promise<T> {
 const qs = (p: Record<string, string | number | undefined | null>) =>
   new URLSearchParams(Object.entries(p).filter(([, v]) => v !== undefined && v !== null && v !== '').map(([k, v]) => [k, String(v)])).toString()
 
+export type Settings = { daily_goal: number; exam_date: string | null }
+
 export const api = {
   dashboard: () => req<Dashboard>('/stats/dashboard'),
   analytics: () => req<Analytics>('/stats/analytics'),
-  saveSettings: (s: { daily_goal: number }) => req<{ daily_goal: number }>('/settings', { method: 'PUT', body: JSON.stringify(s) }),
+  settings: () => req<Settings>('/settings'),
+  saveSettings: (s: Partial<Settings>) => req<Settings>('/settings', { method: 'PUT', body: JSON.stringify(s) }),
   vocab: (p: Record<string, string | number | undefined>) => req<{ total: number; items: Vocab[] }>(`/vocabulary?${qs(p)}`),
   decks: () => req<{ deck: string; lesson_number: number | null; n: number }[]>('/vocabulary/decks'),
   vocabItem: (id: string) => req<VocabDetail>(`/vocabulary/${id}`),
@@ -374,8 +378,8 @@ export const api = {
   due: (p: Record<string, string | number | undefined | null>) => req<Card[]>(`/srs/due?${qs(p)}`),
   cram: (p: Record<string, string | number | undefined | null>) => req<Card[]>(`/srs/cram?${qs(p)}`),
   recalled: (cardId: number) => req<{ ok: boolean }>(`/srs/cards/${cardId}/recalled`, { method: 'POST' }),
-  answer: (cardId: number, rating: string) =>
-    req<Card>(`/srs/cards/${cardId}/answer`, { method: 'POST', body: JSON.stringify({ rating }) }),
+  answer: (cardId: number, rating: string, intensive = false) =>
+    req<Card>(`/srs/cards/${cardId}/answer${intensive ? '?intensive=true' : ''}`, { method: 'POST', body: JSON.stringify({ rating }) }),
   queue: (entity: string, status?: string, offset = 0) =>
     req<{ total: number; items: (Vocab & Question)[] }>(`/review/queue?${qs({ entity, status, offset, limit: 50 })}`),
   question: (id: string) => req<QuestionDetail>(`/questions/${id}`),

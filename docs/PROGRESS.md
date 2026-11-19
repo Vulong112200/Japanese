@@ -19,6 +19,7 @@ Cập nhật: 2026-11-15, kết thúc phiên 11. Trạng thái dựa trên kết
 | 12 | **Ôn ngữ pháp gom nhiều bài** (ADR-028): panel "Ôn nhanh nhiều bài" ở trang Ngữ pháp, chọn Bài X–Y (có "25 + N5 bổ sung") và 10/20/30/50 câu, trộn ngẫu nhiên câu 文の文法1/2; sau khi trả lời hiện ý nghĩa + cấu trúc điểm ngữ pháp kèm link | 104 test |
 | 13 | **Chuyên đề Số đếm & ngày tháng** (ADR-029): 273 mục / 23 nhóm (số, trợ số từ, giờ phút, thứ, ngày, tháng, năm, tiền), luật biến âm độc lập + JMdict + 2 vòng rà soát → 273 verified; trang **Số đếm** (bảng + quy tắc, tô cách đọc đặc biệt); 118 thẻ SRS loại "Số đếm"; 147 câu trắc nghiệm 漢字読み (`BANK_N5_NUMBERS`), luyện từ trang Số đếm | 109 test |
 | 13b | Sửa lỗi "Từ hay quên" (ADR-027): bấm **Nhớ** ở Ôn tổng hợp ghi `srs_cards.weak_cleared_at` (`POST /api/srs/cards/{id}/recalled`), thẻ rời danh sách đến khi bị Quên lại; lịch SM-2 không đổi. **Nhớ** với thẻ chưa học = lượt ôn `good` thật (trước đây không ghi gì → học ở Ôn tổng hợp "Tất cả" không hiện ở Tổng quan); ghi chú cách ghi nhận ngay dưới bộ lọc | 109 test |
+| 14 | **SRS cấp tốc** (ADR-030): chế độ thứ 3 ở trang Flashcard cho những tuần trước ngày thi. Lịch nén 10 phút → 1 → 2 → 4 → 7 ngày, không hẹn quá ngày trước hôm thi (setting `exam_date`), "thuộc" = nhớ đúng 5 lần liên tiếp; thẻ không gặp 7 ngày tự đến hạn lại (tính khi đọc, không sửa lịch SM-2). Thẻ đến hạn trong 20 phút quay lại ngay trong phiên | 112 test |
 
 ## Độ phủ kiến thức N5: ĐÃ ĐỦ, không cần thu thập thêm tài liệu
 | Mảng | Độ phủ | Trạng thái xác minh |
@@ -51,7 +52,7 @@ Ký hiệu trạng thái:
 | Vocabulary §7.1 | ✅ | |
 | Kanji §7.2 | ✅ | |
 | Grammar §7.3 | ✅ | Tra cứu đủ, đã verified. Bài tập: 399 câu 文の文法1/2 trong Thi thử (nguồn "Sinh tự động", lọc theo mondai); kết quả thi + Dashboard báo điểm ngữ pháp cần ôn. SRS 1 chiều (mẫu → nghĩa). Ôn nhanh gom nhiều bài (ADR-028). |
-| SRS §8 | ✅ | Từ vựng (2 chiều), ngữ pháp + kanji (1 chiều), ADR-021. Lọc khoảng bài, xáo trộn, chế độ Ôn tổng hợp (ADR-027). Số đếm: 118 thẻ dạng đặc biệt (ADR-029). |
+| SRS §8 | ✅ | Từ vựng (2 chiều), ngữ pháp + kanji (1 chiều), ADR-021. Lọc khoảng bài, xáo trộn, chế độ Ôn tổng hợp (ADR-027), SRS cấp tốc (ADR-030). Số đếm: 118 thẻ dạng đặc biệt (ADR-029). |
 | Mock Exam §9 | ✅ | Mode A (đề + giờ JLPT 20/40/30), B (đề gốc, giữ cấu trúc/thời gian gốc), C (theo phần), D (theo mondai), E (ôn câu sai), F (tuỳ chỉnh số câu/thời gian/nguồn). Giao diện §9.2 đủ (điều hướng, cờ, trước/sau, tiến độ, đồng hồ, audio, xác nhận nộp). Kết quả §9.3 + ước lượng tách riêng (§4.3). Có 1 đề mẫu chính thức + 6 đề thật các năm (giờ gốc 25/50/30 trước 2020, 20/40/30 từ 2020). Ngân hàng: từ vựng (問題1/2, sinh bằng luật) + ngữ pháp (文の文法1/2, agent soạn) + bài đọc (文章の文法, 短文, 中文, 情報検索; agent soạn, ADR-026). Chưa có câu sinh cho nghe (không tạo audio thay thế). |
 | Listening §10 | ✅ | Chế độ thi: không lộ script/lựa chọn audio-only; luyện tập: tốc độ phát, script sau khi trả lời; nút nghe đúng đoạn của câu (ADR-025). Nguồn nghe = 7 đề có audio gốc (không tạo audio thay thế). |
 | Dashboard §13 | ✅ | Cấp độ, mục tiêu ngày, streak, mức độ thuộc 3 loại, thẻ đến hạn, lượt thi gần nhất, ngữ pháp/bài yếu, "Học gì tiếp" (ADR-022). |

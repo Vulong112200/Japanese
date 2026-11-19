@@ -4,7 +4,7 @@ import os
 import random
 import sqlite3
 import tempfile
-from datetime import datetime
+from datetime import date, datetime
 from pathlib import Path
 from typing import Literal
 
@@ -382,8 +382,10 @@ def review(entity: Literal["vocabulary", "question", "grammar", "kanji"], entity
 @router.get("/srs/due")
 def srs_due(direction: Literal["jp_vi", "vi_jp"] = "jp_vi", new_limit: int = Query(20, ge=0, le=500),
             lesson_from: int | None = None, lesson_to: int | None = None, shuffle: bool = False,
-            entity: Literal["vocabulary", "grammar", "kanji", "number"] = "vocabulary", conn=Depends(get_conn)):
-    return repo.due_cards(conn, direction, new_limit, lesson_from, lesson_to, entity=entity, shuffle=shuffle)
+            entity: Literal["vocabulary", "grammar", "kanji", "number"] = "vocabulary", intensive: bool = False,
+            conn=Depends(get_conn)):
+    return repo.due_cards(conn, direction, new_limit, lesson_from, lesson_to, entity=entity, shuffle=shuffle,
+                          intensive=intensive)
 
 
 @router.get("/srs/cram")
@@ -400,13 +402,14 @@ class Answer(BaseModel):
 
 
 @router.post("/srs/cards/{card_id}/answer")
-def srs_answer(card_id: int, body: Answer, conn=Depends(get_conn)):
+def srs_answer(card_id: int, body: Answer, intensive: bool = False, conn=Depends(get_conn)):
     row = repo.get_card(conn, card_id)
     if not row:
         raise HTTPException(404)
     card = srs.Card(**{k: row[k] for k in ("ease", "interval_days", "reps", "lapses", "review_count",
                                             "correct_count", "incorrect_count", "status")})
-    new, due = srs.schedule(card, body.rating, repo.now())
+    exam = repo.get_setting(conn, "exam_date", "") if intensive else ""
+    new, due = srs.schedule(card, body.rating, repo.now(), intensive, date.fromisoformat(exam) if exam else None)
     repo.save_card(conn, card_id, new, due, body.rating, row["interval_days"], row["first_studied"] is None)
     conn.commit()
     return repo.get_card(conn, card_id)
@@ -467,20 +470,23 @@ def analytics_view(days: int = Query(30, ge=7, le=365), conn=Depends(get_conn)):
     }
 
 
-class Settings(BaseModel):
-    daily_goal: int = Field(ge=5, le=500)
+class Settings(BaseModel):   # partial update: only the fields sent are saved
+    daily_goal: int | None = Field(None, ge=5, le=500)
+    exam_date: date | None = None   # SRS cấp tốc caps intervals before it (ADR-030)
 
 
 @router.get("/settings")
 def get_settings(conn=Depends(get_conn)):
-    return {"daily_goal": int(repo.get_setting(conn, "daily_goal", str(DEFAULT_GOAL)))}
+    return {"daily_goal": int(repo.get_setting(conn, "daily_goal", str(DEFAULT_GOAL))),
+            "exam_date": repo.get_setting(conn, "exam_date", "") or None}
 
 
 @router.put("/settings")
 def put_settings(body: Settings, conn=Depends(get_conn)):
-    repo.set_setting(conn, "daily_goal", str(body.daily_goal))
+    for k, v in body.model_dump(exclude_unset=True).items():
+        repo.set_setting(conn, k, "" if v is None else str(v))
     conn.commit()
-    return body.model_dump()
+    return get_settings(conn)
 
 
 # ---------- mock exam (spec Part 9, 10) ----------
