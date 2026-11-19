@@ -514,3 +514,8 @@ def test_numbers_topic_api_srs_and_practice(client):      # ADR-029
     assert {q["exam_id"] for q in a["questions"]} == {"BANK_N5_NUMBERS"}
     assert all("correct_answer" not in q for q in a["questions"])          # nothing revealed before answering
     assert c.post("/api/attempts", json={"mode": "practice", "topic": "x"}).status_code == 422
+    # chosen groups only, one question type (ADR-031)
+    a = c.post("/api/attempts", json={"mode": "practice", "topic": "numbers", "limit": 500,
+                                      "number_categories": ["nichi", "ji"], "mondai_type": "orthography"}).json()
+    assert len(a["questions"]) > 20 and {q["mondai_type"] for q in a["questions"]} == {"orthography"}
+    assert all(q["question_id"].startswith(("Q_NUM_NICHI_", "Q_NUM_JI_")) for q in a["questions"])

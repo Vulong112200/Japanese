@@ -282,6 +282,7 @@ export interface AttemptStart {
   lesson_from?: number   // grammar questions of lessons from..to; 26 = N5 bổ sung
   lesson_to?: number
   topic?: 'numbers'
+  number_categories?: string[]
   limit?: number
   timing?: 'none' | 'original' | 'current' | 'custom'
   time_limit_min?: number

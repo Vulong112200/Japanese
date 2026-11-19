@@ -213,7 +213,8 @@ def test_number_questions_distractors(imported):
     assert result["numbers"]["verified"] == result["numbers"]["numbers"] > 250
     rows = conn.execute("SELECT q.*, n.category, n.jp FROM questions q JOIN numbers n "
                         "ON n.id=json_extract(q.extra_json,'$.target_entity') "
-                        "WHERE q.exam_id='BANK_N5_NUMBERS' AND q.verification_status='verified'").fetchall()
+                        "WHERE q.exam_id='BANK_N5_NUMBERS' AND q.verification_status='verified' "
+                        "AND q.mondai_type='kanji_reading'").fetchall()
     assert len(rows) >= 100
     for q in rows:
         item = conn.execute("SELECT * FROM numbers WHERE jp=? AND category=?", (q["jp"], q["category"])).fetchone()
@@ -225,6 +226,26 @@ def test_number_questions_distractors(imported):
         assert opts[ans] == item["reading"] and opts[ans] in numrules.expected_readings(q["jp"], q["category"])
         assert not ({t for k, t in opts.items() if k != ans} & valid), q["question_id"]
         assert q["jp"] in q["question_text"]
+
+
+def test_number_orthography_distractors(imported):
+    """表記 (ADR-031): the answer is the item's spelling; no other option may be read as the prompt."""
+    conn, _ = imported
+    items = conn.execute("SELECT * FROM numbers WHERE verification_status='verified'").fetchall()
+    readable: dict[str, set[str]] = {}
+    for it in items:
+        readable.setdefault(it["jp"], set()).update(knowledge.number_valid_readings(
+            it["jp"], it["category"], {"reading": it["reading"], **json.loads(it["data_json"])}))
+    rows = conn.execute("SELECT q.*, n.jp, n.reading, n.category AS cat FROM questions q JOIN numbers n "
+                        "ON n.id=json_extract(q.extra_json,'$.target_entity') WHERE q.exam_id='BANK_N5_NUMBERS' "
+                        "AND q.verification_status='verified' AND q.mondai_type='orthography'").fetchall()
+    assert len(rows) >= 250
+    for q in rows:
+        opts = {o["option_id"]: o["text"] for o in json.loads(q["options"])}
+        ans = json.loads(q["correct_answer"])[0]
+        assert len(set(opts.values())) == 4 and opts[ans] == q["jp"], q["question_id"]
+        assert not any(q["reading"] in readable[t] for k, t in opts.items() if k != ans), q["question_id"]
+        assert q["reading"] in q["question_text"] and json.loads(q["extra_json"])["category"] == q["cat"]
 
 
 def test_number_srs_cards_only_for_memorised_forms(imported):

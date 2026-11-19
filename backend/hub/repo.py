@@ -382,7 +382,7 @@ def exam_overview(conn) -> dict:
 
 
 def questions_where(conn, exam_id=None, section=None, mondai_type=None, exam_type=None, ids=None,
-                    grammar_id=None, grammar_lessons=None) -> list[dict]:
+                    grammar_id=None, grammar_lessons=None, categories=None) -> list[dict]:
     sql, args = f"SELECT q.* FROM questions q JOIN exams e ON e.exam_id=q.exam_id WHERE q.{LIVE_Q}", []
     if grammar_lessons:     # (lo, hi); points with no lesson count as 26. Passages excluded: never split a passage
         sql += (" AND q.passage_id IS NULL AND json_extract(q.extra_json,'$.grammar_id') IN "
@@ -393,6 +393,9 @@ def questions_where(conn, exam_id=None, section=None, mondai_type=None, exam_typ
         if val is not None:
             sql += f" AND {col}=?"
             args.append(val)
+    if categories:          # numbers topic groups (ADR-031)
+        sql += f" AND json_extract(q.extra_json,'$.category') IN ({','.join('?' * len(categories))})"
+        args += list(categories)
     if ids is not None:
         sql += f" AND q.question_id IN ({','.join('?' * len(ids)) or 'NULL'})"
         args += list(ids)

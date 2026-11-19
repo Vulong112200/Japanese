@@ -511,7 +511,8 @@ class AttemptStart(BaseModel):
     lesson_from: int | None = Field(None, ge=1, le=26)   # grammar questions of lessons from..to; 26 = N5 bổ sung
     lesson_to: int | None = Field(None, ge=1, le=26)
     topic: Literal["numbers"] | None = None           # numbers/counters/dates reading questions (ADR-029)
-    limit: int = Field(20, ge=1, le=200)             # Mode F
+    number_categories: list[str] | None = Field(None, max_length=50)   # numbers groups to practise (ADR-031)
+    limit: int = Field(20, ge=1, le=500)             # Mode F
     timing: Literal["none", "original", "current", "custom"] = "original"
     time_limit_min: int | None = Field(None, ge=1, le=300)
 
@@ -571,7 +572,7 @@ def start_attempt(body: AttemptStart, conn=Depends(get_conn)):
         ids = repo.mistake_question_ids(conn) if body.mistakes_only else None
         qs = repo.questions_where(conn, exam_id=TOPIC_EXAMS.get(body.topic or ""), section=body.section, mondai_type=body.mondai_type, ids=ids,
                                   exam_type=SOURCE_EXAM_TYPE.get(body.source), grammar_id=body.grammar_id,
-                                  grammar_lessons=lessons)
+                                  grammar_lessons=lessons, categories=body.number_categories or None)
         groups: dict[str, list[dict]] = {}      # a passage's questions are drawn together, never split
         for q in qs:
             groups.setdefault(q["passage_id"] or q["question_id"], []).append(q)
@@ -585,7 +586,8 @@ def start_attempt(body: AttemptStart, conn=Depends(get_conn)):
             q["mondai_no"] or 0, q["exam_id"], q["passage_id"] or "", q["number"] or 0))
         parts = ["Ôn câu sai" if body.mistakes_only else "Luyện tập",
                  "Số đếm & ngày tháng" if body.topic == "numbers" else "",
-                 examlib.SECTION_NAMES.get(body.section or "", ""), body.mondai_type or "",
+                 examlib.SECTION_NAMES.get(body.section or "", ""),
+                 {"kanji_reading": "漢字読み", "orthography": "表記"}.get(body.mondai_type or "", body.mondai_type or ""),
                  (json.loads(qs[0]["extra_json"]).get("grammar_pattern") or body.grammar_id)
                  if body.grammar_id and qs else "",
                  ("Ngữ pháp N5 bổ sung" if lessons[0] == 26 else

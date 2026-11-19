@@ -437,8 +437,9 @@ def import_numbers(conn, path: Path = NUMBERS) -> dict:
 
 
 def import_number_questions(conn) -> dict:
-    """漢字読み questions for verified number items with kanji (BANK_N5_NUMBERS). Distractors are wrong sound-change
-    variants proven outside number_valid_readings. Stable ids; ungenerable questions become 'rejected'."""
+    """漢字読み + 表記 questions for verified number items with kanji (BANK_N5_NUMBERS). 漢字読み distractors are wrong
+    sound-change variants proven outside number_valid_readings; 表記 distractors are other spellings of the topic that
+    can't be read as the prompt (ADR-031). Stable ids; ungenerable questions become 'rejected'."""
     from ..learning import question_gen
     if not ref.available():
         return {"generated": 0, "note": "reference dictionary missing (run build-reference)"}
@@ -451,7 +452,7 @@ def import_number_questions(conn) -> dict:
             irregular.setdefault(it["category"], set()).add(it["reading"])
     conn.execute("INSERT OR REPLACE INTO exams (exam_id, title, level, exam_type, source_type, is_official, "
                  "duration_minutes, data_json, source_ids, verification_status) VALUES (?,?,?,?,?,?,?,?,?,?)",
-                 (NUM_EXAM, "Số đếm & ngày tháng: câu đọc sinh tự động (AI_GENERATED)", "N5", "question_bank",
+                 (NUM_EXAM, "Số đếm & ngày tháng: câu đọc/viết sinh tự động (AI_GENERATED)", "N5", "question_bank",
                   "AI_GENERATED", 0, None, json.dumps({"generator": "hub.learning.question_gen.number_question", "note":
                   "Sinh bằng luật từ chuyên đề số đếm đã verified; không phải câu hỏi JLPT chính thức."},
                   ensure_ascii=False), json.dumps(["SRC_REF_JMDICT"]), "verified"))
@@ -461,12 +462,37 @@ def import_number_questions(conn) -> dict:
         return {o["reading"] for o in items if o["category"] == "number" and o["jp"][-1] == it["jp"][-1]
                 and o["jp"][-1] in "十百千万"}
 
+    # 表記 candidates: every other spelling with its main reading and all accepted readings (union over items)
+    spellings: dict[str, tuple[str, set[str]]] = {}
+    for it in items:
+        if KANJI_RE.search(it["jp"]):
+            full = {**it, **json.loads(it["data_json"])}
+            prev = spellings.get(it["jp"], (it["reading"], set()))
+            spellings[it["jp"]] = (prev[0], prev[1] | number_valid_readings(it["jp"], it["category"], full))
+
+    def save(q, it, mondai_no, mondai_type, target, generator):
+        extra = {"target": target, "target_entity": it["id"], "option_explanations": q["option_explanations"],
+                 "generator": generator, "topic": "numbers", "category": it["category"]}
+        conn.execute(
+            "INSERT OR REPLACE INTO questions (question_id, exam_id, section, section_id, mondai_no, mondai_type, number, "
+            "question_text, instruction, options, correct_answer, answer_type, extra_json, explanation_vi, "
+            "explanation_origin, level, source_ids, extraction_method, verification_status, verified_by) "
+            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            (q["question_id"], NUM_EXAM, "vocabulary", "SEC_01", mondai_no, mondai_type, None, q["question_text"],
+             GEN_INSTRUCTION[mondai_no], json.dumps(q["options"], ensure_ascii=False), json.dumps(q["correct_answer"]),
+             "single_choice", json.dumps(extra, ensure_ascii=False), q["explanation_vi"], "AI_GENERATED", "N5",
+             json.dumps(["SRC_REF_JMDICT"]), "rule_generated", "verified", "generator"))
+        ids.append(q["question_id"])
+
     ids = []
     for it in items:
         cat = it["category"]
         if not KANJI_RE.search(it["jp"]):
             continue
         full = {**it, **json.loads(it["data_json"]), "question_id": number_question_id(it["jp"], cat)}
+        orth = question_gen.number_orthography_question({**full, "question_id": full["question_id"] + "_OR"}, spellings)
+        if orth:
+            save(orth, it, 2, "orthography", it["reading"], "rule:number_orthography")
         # memorised lists (ようか vs よっか): other irregular members are the traps, only for an irregular item
         others = irregular.get(cat, set()) if cat in MEMORISED_SETS and it["irregular"] else set()
         kana = numrules.COUNTERS.get(cat, ("",))[0]
@@ -475,23 +501,11 @@ def import_number_questions(conn) -> dict:
         q = question_gen.number_question(full, number_valid_readings(it["jp"], cat, full),
                                          numrules.naive_readings(it["jp"], cat), others,
                                          fillers(it), swap_at)
-        if not q:
-            continue
-        extra = {"target": it["jp"], "target_entity": it["id"], "option_explanations": q["option_explanations"],
-                 "generator": "rule:number_reading", "topic": "numbers"}
-        conn.execute(
-            "INSERT OR REPLACE INTO questions (question_id, exam_id, section, section_id, mondai_no, mondai_type, number, "
-            "question_text, instruction, options, correct_answer, answer_type, extra_json, explanation_vi, "
-            "explanation_origin, level, source_ids, extraction_method, verification_status, verified_by) "
-            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-            (q["question_id"], NUM_EXAM, "vocabulary", "SEC_01", 1, "kanji_reading", None, q["question_text"],
-             GEN_INSTRUCTION[1], json.dumps(q["options"], ensure_ascii=False), json.dumps(q["correct_answer"]),
-             "single_choice", json.dumps(extra, ensure_ascii=False), q["explanation_vi"], "AI_GENERATED", "N5",
-             json.dumps(["SRC_REF_JMDICT"]), "rule_generated", "verified", "generator"))
-        ids.append(q["question_id"])
+        if q:
+            save(q, it, 1, "kanji_reading", it["jp"], "rule:number_reading")
     conn.execute(f"UPDATE questions SET verification_status='rejected' WHERE exam_id=? "
                  f"AND question_id NOT IN ({','.join('?' * len(ids)) or 'NULL'})", [NUM_EXAM, *ids])
-    return {"generated": len(ids)}
+    return {"generated": len(ids), "orthography": sum(i.endswith("_OR") for i in ids)}
 
 
 def kata_norm(s: str) -> str:

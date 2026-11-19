@@ -294,7 +294,33 @@ def number_question(item: dict, valid: set[str], traps: set[str], others: set[st
             "explanation_vi": f"{item['jp']} đọc là {reading} ({item['meaning_vi']}).{note}"}
 
 
+def number_orthography_question(item: dict, candidates: dict[str, tuple[str, set[str]]]) -> dict | None:
+    """表記: the reading is given, pick the spelling. candidates: other spelling -> (its main reading, every accepted
+    reading). A spelling that may be read as the prompt is never offered; the nearest-sounding 3 are, ties broken
+    toward shared characters (八日 vs 四日, 三本 vs 三杯)."""
+    reading, jp = item["reading"], item["jp"]
+    wrong = [(w, r) for w, (r, valid) in candidates.items() if w != jp and reading not in valid]
+    if len(wrong) < 3:
+        return None
+    qid = item["question_id"]
+    rng = random.Random(qid)
+    wrong.sort(key=lambda wr: (_edit_distance(wr[1], reading), -len(set(wr[0]) & set(jp)), rng.random()))
+    opts, ans, expl = _options(jp, [(w, f"{w} đọc là {r}, không phải {reading}") for w, r in wrong[:3]], rng)
+    ex = item.get("example_jp") or ""
+    return {"question_id": qid, "question_text": ex.replace(jp, reading, 1) if jp in ex else reading,
+            "options": opts, "correct_answer": [ans], "option_explanations": expl,
+            "explanation_vi": f"{reading} viết là {jp} ({item['meaning_vi']})."}
+
+
 if __name__ == "__main__":
+    cands = {"四日": ("よっか", {"よっか"}), "八日": ("ようか", {"ようか"}), "十日": ("とおか", {"とおか"}),
+             "五日": ("いつか", {"いつか"}), "八月": ("はちがつ", {"はちがつ"}), "八": ("はち", {"はち", "や"})}
+    q = number_orthography_question({"question_id": "Q_T", "jp": "八日", "reading": "ようか", "meaning_vi": "ngày 8",
+                                     "example_jp": "八日に 行きます。"}, cands)
+    assert q["question_text"] == "ようかに 行きます。" and len(q["options"]) == 4
+    assert "四日" in {o["text"] for o in q["options"]} and q["options"][int(q["correct_answer"][0]) - 1]["text"] == "八日"
+    assert number_orthography_question({"question_id": "Q_T", "jp": "八日", "reading": "ようか", "meaning_vi": ""},
+                                       {"四日": ("ようか", {"ようか"}), "五日": ("いつか", {"いつか"})}) is None
     q = number_question({"id": "NUM_hon_三本", "jp": "三本", "reading": "さんぼん", "meaning_vi": "3 cây",
                          "example_jp": "えんぴつが 三本 あります。"}, {"さんぼん"}, {"さんほん"}, filler={"にほん"})
     assert q and len(q["options"]) == 4 and "さんほん" in {o["text"] for o in q["options"]}
