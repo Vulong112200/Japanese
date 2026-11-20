@@ -226,10 +226,14 @@ def due_cards(conn, direction: str, new_limit: int = 20, lesson_from: int | None
               lesson_to: int | None = None, limit: int = 1000, entity: str = "vocabulary",
               shuffle: bool = False, intensive: bool = False) -> list[dict]:
     base, la, order = _srs_base(entity, lesson_from, lesson_to)
-    # SRS cấp tốc (ADR-030): a card unseen for INTENSIVE_MAX days is due even if SM-2 booked it later
-    stale = f"OR c.last_studied<='{iso(now() - timedelta(days=srs.INTENSIVE_MAX))}'" if intensive else ""
-    due = rows(conn.execute(base + f"AND c.due_at IS NOT NULL AND (c.due_at<=? {stale}) ORDER BY c.due_at LIMIT ?",
-                            [entity, direction, *la, iso(), limit]))
+    # SRS cấp tốc (ADR-030): due by the compressed ladder (streak -> gap) even if normal SM-2 booked it later
+    t = now()
+    ladder = ("OR c.last_studied<=CASE " + " ".join(
+        f"WHEN c.reps<={r} THEN '{iso(t - timedelta(days=srs.intensive_gap(r)))}'"
+        for r in range(1, len(srs.INTENSIVE_STEPS))) +
+        f" ELSE '{iso(t - timedelta(days=srs.INTENSIVE_MAX))}' END") if intensive else ""
+    due = rows(conn.execute(base + f"AND c.due_at IS NOT NULL AND (c.due_at<=? {ladder}) ORDER BY c.due_at LIMIT ?",
+                            [entity, direction, *la, iso(t), limit]))
     new_today = conn.execute(
         "SELECT COUNT(*) FROM srs_cards WHERE entity_type=? AND direction=? AND first_studied>=?",
         (entity, direction, iso(now().replace(hour=0, minute=0, second=0, microsecond=0)))).fetchone()[0]

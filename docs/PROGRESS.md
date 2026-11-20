@@ -21,6 +21,7 @@ Cập nhật: 2026-11-15, kết thúc phiên 11. Trạng thái dựa trên kết
 | 13b | Sửa lỗi "Từ hay quên" (ADR-027): bấm **Nhớ** ở Ôn tổng hợp ghi `srs_cards.weak_cleared_at` (`POST /api/srs/cards/{id}/recalled`), thẻ rời danh sách đến khi bị Quên lại; lịch SM-2 không đổi. **Nhớ** với thẻ chưa học = lượt ôn `good` thật (trước đây không ghi gì → học ở Ôn tổng hợp "Tất cả" không hiện ở Tổng quan); ghi chú cách ghi nhận ngay dưới bộ lọc | 109 test |
 | 14 | **SRS cấp tốc** (ADR-030): chế độ thứ 3 ở trang Flashcard cho những tuần trước ngày thi. Lịch nén 10 phút → 1 → 2 → 4 → 7 ngày, không hẹn quá ngày trước hôm thi (setting `exam_date`), "thuộc" = nhớ đúng 5 lần liên tiếp; thẻ không gặp 7 ngày tự đến hạn lại (tính khi đọc, không sửa lịch SM-2). Thẻ đến hạn trong 20 phút quay lại ngay trong phiên | 112 test |
 | 15 | **Số đếm: thêm 272 câu 表記 + luyện theo nhóm** (ADR-031): ngân hàng `BANK_N5_NUMBERS` 147 → 419 câu (cho ようか chọn 八日; nhiễu được chứng minh không đọc như đề). Trang Số đếm có panel Luyện trắc nghiệm: chọn nhóm, dạng Đọc/Viết, 10–100 câu hoặc tất cả | 113 test |
+| 15b | Sửa SRS cấp tốc (ADR-030): thẻ đã học theo lịch thường (hẹn 4–8 ngày) giờ đến hạn theo bậc cấp tốc của chuỗi nhớ (`srs.intensive_gap`), không phải đợi 7 ngày; trên dữ liệu người dùng: 187 → 979 thẻ đến hạn | 113 test |
 
 ## Độ phủ kiến thức N5: ĐÃ ĐỦ, không cần thu thập thêm tài liệu
 | Mảng | Độ phủ | Trạng thái xác minh |

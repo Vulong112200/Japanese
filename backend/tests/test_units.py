@@ -124,15 +124,17 @@ def test_intensive_ladder_and_mastery():
     assert c.reps == 0 and c.status == "learning" and (due - t).total_seconds() == 600
 
 
-def test_intensive_caps_before_exam_and_keeps_long_gaps():
-    old = srs.Card(interval_days=15, reps=3, review_count=3, status="reviewing")   # from normal SM-2
+def test_intensive_follows_ladder_and_caps_before_exam():
+    old = srs.Card(interval_days=15, reps=4, review_count=4, status="reviewing")   # booked far out by normal SM-2
     c, due = srs.schedule(old, "good", NOW, intensive=True)
-    assert c.interval_days == 7                                   # capped, not shrunk to the 4-day step
+    assert c.interval_days == 7                                   # the ladder, not the old 15-day gap
     exam = NOW.date().replace(day=19)                             # 5 days away → at most 4 days
     c, due = srs.schedule(old, "good", NOW, intensive=True, exam_date=exam)
     assert c.interval_days == 4 and due.date() < exam
     c, _ = srs.schedule(old, "good", NOW, intensive=True, exam_date=NOW.date())   # exam passed: no cap
     assert c.interval_days == 7
+    # read-time gap for a streak = the gap the ladder gives when that streak was reached
+    assert [srs.intensive_gap(r) for r in (0, 1, 2, 3, 4, 5, 9)] == [10 / 1440, 10 / 1440, 1, 2, 4, 7, 7]
 
 
 def test_again_resets_and_counts_lapse():

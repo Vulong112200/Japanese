@@ -90,13 +90,22 @@ def test_srs_intensive_mode(client, imported):
     cid = client.get("/api/srs/due", params=p).json()[0]["card_id"]
     r = client.post(f"/api/srs/cards/{cid}/answer", params={"intensive": "true"}, json={"rating": "good"}).json()
     assert r["interval_days"] < 0.01 and r["status"] == "reviewing"
-    # pretend SM-2 booked it 20 days out and it was last seen 8 days ago
-    conn.execute("UPDATE srs_cards SET due_at=datetime('now','+20 days'), last_studied=? WHERE card_id=?",
-                 ((api.repo.now() - timedelta(days=8)).isoformat(timespec="seconds"), cid))
-    conn.commit()
+    # normal SM-2 booked it 8 days out after a 2-answer streak; the ladder says 1 day → due after 1 day, not before
+    def seen(days_ago, reps=2):
+        conn.execute("UPDATE srs_cards SET reps=?, due_at=?, last_studied=? WHERE card_id=?",
+                     (reps, (api.repo.now() + timedelta(days=8)).isoformat(timespec="seconds"),
+                      (api.repo.now() - timedelta(days=days_ago)).isoformat(timespec="seconds"), cid))
+        conn.commit()
     p["new_limit"] = 0
-    assert [c["card_id"] for c in client.get("/api/srs/due", params=p).json()] == [cid]
-    assert client.get("/api/srs/due", params={**p, "intensive": "false"}).json() == []
+    due = lambda q: [c["card_id"] for c in client.get("/api/srs/due", params=q).json()]
+    seen(1.1)
+    assert due(p) == [cid] and due({**p, "intensive": "false"}) == []
+    seen(0.5)
+    assert due(p) == []
+    seen(3, reps=4)                                              # streak 4 → 4-day gap
+    assert due(p) == []
+    seen(7.5, reps=9)                                            # long streak → at most 7 days
+    assert due(p) == [cid]
     assert client.put("/api/settings", json={"exam_date": None}).json()["exam_date"] is None
 
 

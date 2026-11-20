@@ -44,13 +44,17 @@ def _intensive_interval(c: Card, rating: str, now: datetime, exam_date: date | N
     last = len(INTENSIVE_STEPS) - 1
     idx = min(last, c.reps + {"hard": -1, "good": 0, "easy": 1}[rating])
     interval = INTENSIVE_STEPS[max(0, idx)]
-    if rating != "hard":   # a card that already survived a long SM-2 gap keeps it (up to the cap)
-        interval = max(interval, min(c.interval_days, INTENSIVE_MAX))
     if exam_date:
         days_left = (exam_date - now.date()).days - 1   # always one more look before exam day
         if days_left >= 1:
             interval = min(interval, days_left)
     return interval
+
+
+def intensive_gap(reps: int) -> float:
+    """Days after the last review at which a card with this streak is due in SRS cấp tốc — also for cards that
+    normal SM-2 booked further out (read-time, repo.due_cards)."""
+    return INTENSIVE_STEPS[min(max(reps, 1), len(INTENSIVE_STEPS)) - 1]
 
 
 def schedule(c: Card, rating: str, now: datetime, intensive: bool = False,
