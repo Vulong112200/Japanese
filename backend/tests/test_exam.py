@@ -165,6 +165,11 @@ def test_autosave_flag_sections_timer_and_submit(client):
     m = c.post("/api/attempts", json={"mistakes_only": True, "mode": "practice"}).json()
     assert v[1] in [q["question_id"] for q in m["questions"]]
     assert c.get("/api/stats/dashboard").json()["exam"]["mistakes_pending"] >= 1
+    # redo from the result page: exactly this attempt's wrong + unanswered questions, nothing from other attempts
+    own = c.post("/api/attempts", json={"mode": "practice", "from_attempt": aid, "limit": 500}).json()
+    assert {q["question_id"] for q in own["questions"]} == {q for q, st in s["per_question"].items() if st != "correct"}
+    assert len(own["questions"]) == 28 and own["title"].startswith("Ôn câu sai · ")
+    assert c.post("/api/attempts", json={"mode": "practice", "from_attempt": "ATT_none"}).status_code == 404
 
 
 def test_practice_mode_gives_immediate_feedback_and_filters(client):

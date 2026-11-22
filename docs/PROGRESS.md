@@ -23,6 +23,7 @@ Cập nhật: 2026-11-15, kết thúc phiên 11. Trạng thái dựa trên kết
 | 15 | **Số đếm: thêm 272 câu 表記 + luyện theo nhóm** (ADR-031): ngân hàng `BANK_N5_NUMBERS` 147 → 419 câu (cho ようか chọn 八日; nhiễu được chứng minh không đọc như đề). Trang Số đếm có panel Luyện trắc nghiệm: chọn nhóm, dạng Đọc/Viết, 10–100 câu hoặc tất cả | 113 test |
 | 15b | Sửa SRS cấp tốc (ADR-030): thẻ đã học theo lịch thường (hẹn 4–8 ngày) giờ đến hạn theo bậc cấp tốc của chuỗi nhớ (`srs.intensive_gap`), không phải đợi 7 ngày; trên dữ liệu người dùng: 187 → 979 thẻ đến hạn | 113 test |
 | 16 | **Romaji + dịch script nghe** (ADR-032): 152/152 câu nghe (6 đề thật + đề mẫu) có romaji và bản dịch tiếng Việt từng dòng, hiện dưới dòng tiếng Nhật trong "Script phần nghe" sau khi trả lời/nộp bài. 4 agent soạn theo đề → luật `check_transcript_gloss` 0 lỗi → vòng 2: 3 agent chia theo 問題 (1 đề xuất nhận) → duyệt cuối đối chiếu ASR Whisper (sửa dịch ジョジ→George, さば屋→quán soba; xác nhận 何課). File `data/normalized/exams/listening_gloss.json` chỉ lưu trên máy | 115 test |
+| 16b | Sửa nút ôn câu sai ở trang kết quả: trước đây lấy mọi câu sai trong toàn bộ lịch sử (trộn câu của lượt luyện tập khác). Nay gửi `from_attempt` (`AttemptStart.from_attempt`), chỉ lấy câu sai + chưa làm của đúng lần đó; nút ở trang Thi/Thống kê vẫn ôn câu sai toàn cục | 115 test |
 
 ## Độ phủ kiến thức N5: ĐÃ ĐỦ, không cần thu thập thêm tài liệu
 | Mảng | Độ phủ | Trạng thái xác minh |

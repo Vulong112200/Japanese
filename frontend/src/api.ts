@@ -279,6 +279,7 @@ export interface AttemptStart {
   mondai_type?: string
   source?: 'all' | 'official' | 'past' | 'generated'
   mistakes_only?: boolean
+  from_attempt?: string   // redo the not-correct questions of this submitted attempt
   grammar_id?: string
   lesson_from?: number   // grammar questions of lessons from..to; 26 = N5 bổ sung
   lesson_to?: number

@@ -440,9 +440,10 @@ function Result({ a }: { a: Attempt }) {
   const [busy, setBusy] = useState(false)
   const rd = r.readiness
   const list = a.questions.filter(q => !onlyWrong || r.per_question[q.question_id] !== 'correct')
+  const notCorrect = Object.values(r.per_question).filter(s => s !== 'correct').length
   const retry = async () => {
     setBusy(true)
-    try { setHashId((await api.startAttempt({ mode: 'practice', mistakes_only: true, limit: 200 })).attempt_id) } finally { setBusy(false) }
+    try { setHashId((await api.startAttempt({ mode: 'practice', from_attempt: a.attempt_id, limit: 500 })).attempt_id) } finally { setBusy(false) }
   }
   const pct = (b: { accuracy: number | null }) => (b.accuracy == null ? '—' : `${b.accuracy}%`)
 
@@ -454,7 +455,7 @@ function Result({ a }: { a: Attempt }) {
           <h1 className="jp text-lg font-semibold">Kết quả · {a.title}</h1>
           <p className="text-xs text-slate-500">Nộp lúc {a.submitted_at!.slice(0, 16).replace('T', ' ')} · {a.mode === 'exam' ? 'Chế độ thi' : 'Luyện tập'}</p>
         </div>
-        <Button kind="primary" disabled={busy} onClick={retry}>Ôn lại các câu sai</Button>
+        <Button kind="primary" disabled={busy || !notCorrect} onClick={retry}>Ôn lại câu sai / chưa làm của lần này ({notCorrect})</Button>
       </div>
 
       <Panel title="Kết quả làm bài (số câu thật)">

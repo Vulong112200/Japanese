@@ -507,6 +507,7 @@ class AttemptStart(BaseModel):
     mondai_type: str | None = Field(None, max_length=50)                              # Mode D
     source: Literal["all", "official", "past", "generated"] = "all"
     mistakes_only: bool = False                      # Mode E
+    from_attempt: str | None = Field(None, pattern=r"^ATT_\w+$")   # redo the not-correct questions of one attempt
     grammar_id: str | None = Field(None, pattern=r"^GRA_\d{6}$")   # questions of one grammar point
     lesson_from: int | None = Field(None, ge=1, le=26)   # grammar questions of lessons from..to; 26 = N5 bổ sung
     lesson_to: int | None = Field(None, ge=1, le=26)
@@ -570,6 +571,14 @@ def start_attempt(body: AttemptStart, conn=Depends(get_conn)):
         title = row["title"] + (f" · {examlib.SECTION_NAMES.get(body.section, body.section)}" if body.section else "")
     else:
         ids = repo.mistake_question_ids(conn) if body.mistakes_only else None
+        src = None
+        if body.from_attempt:
+            src = repo.get_attempt(conn, body.from_attempt)
+            if not src:
+                raise HTTPException(404, "Không có lần làm bài này")
+            if not src["result"]:
+                raise HTTPException(409, "Lần làm bài này chưa nộp")
+            ids = [q for q, s in src["result"]["per_question"].items() if s != "correct"]
         qs = repo.questions_where(conn, exam_id=TOPIC_EXAMS.get(body.topic or ""), section=body.section, mondai_type=body.mondai_type, ids=ids,
                                   exam_type=SOURCE_EXAM_TYPE.get(body.source), grammar_id=body.grammar_id,
                                   grammar_lessons=lessons, categories=body.number_categories or None)
@@ -584,7 +593,7 @@ def start_attempt(body: AttemptStart, conn=Depends(get_conn)):
         qs = sorted(picked, key=lambda q: (
             examlib.SECTION_ORDER.index(q["section"]) if q["section"] in examlib.SECTION_ORDER else 9,
             q["mondai_no"] or 0, q["exam_id"], q["passage_id"] or "", q["number"] or 0))
-        parts = ["Ôn câu sai" if body.mistakes_only else "Luyện tập",
+        parts = ["Ôn câu sai" if body.mistakes_only or src else "Luyện tập", src["title"] if src else "",
                  "Số đếm & ngày tháng" if body.topic == "numbers" else "",
                  examlib.SECTION_NAMES.get(body.section or "", ""),
                  {"kanji_reading": "漢字読み", "orthography": "表記"}.get(body.mondai_type or "", body.mondai_type or ""),
