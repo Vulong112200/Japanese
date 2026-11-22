@@ -493,7 +493,7 @@ def put_settings(body: Settings, conn=Depends(get_conn)):
 PUBLIC_EXTRA = ("target", "star_position", "options_are_glyph_images", "options_are_pictures", "options_audio_only",
                 "has_illustration", "audio_start", "audio_end")
 REVEAL_EXTRA = ("option_explanations", "expected_sequence", "expected_sequence_note", "grammar_id", "grammar_pattern",
-                "passage_translation_vi")
+                "passage_translation_vi", "transcript_gloss")
 
 
 TOPIC_EXAMS = {"numbers": "BANK_N5_NUMBERS"}

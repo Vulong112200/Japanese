@@ -86,6 +86,32 @@ KANA_RE = re.compile(r"^[぀-ゟ゠-ヿー\s　～〜~…・、。？！?!]+$")
 KANJI_RE = re.compile(r"[一-鿿]")
 JAPANESE_RE = re.compile(r"[぀-ヿ一-鿿]")
 
+# Listening-script gloss (ADR-032): one {kana, romaji, vi} per transcript line, speaker label / option number excluded.
+_GLOSS_KANA_RE = re.compile(r"^[぀-ゟ゠-ヿー\s　～〜~…・、。，,？！?!「」『』]+$")
+_LINE_PREFIX_RE = re.compile(r"^(?:[^\s：:。、]{1,4}[：:]|\d+[.．]\s*)")
+
+
+def check_transcript_gloss(transcript: str, lines: list[dict]) -> list[str]:
+    """Pure rule check; returns problems (empty = clean). Original kana must reappear, in order, in the reading,
+    which catches skipped or shifted lines."""
+    src = transcript.split("\n")
+    if len(src) != len(lines):
+        return [f"{len(lines)} dòng gloss / {len(src)} dòng script"]
+    out = []
+    for i, (s, g) in enumerate(zip(src, lines), 1):
+        kana, romaji, vi = g.get("kana", ""), g.get("romaji", ""), g.get("vi", "")
+        if not _GLOSS_KANA_RE.match(kana):
+            out.append(f"dòng {i}: kana có ký tự không phải kana: {kana}")
+            continue
+        if not romaji_matches(kana, romaji):
+            out.append(f"dòng {i}: romaji lệch kana: {kana} / {romaji}")
+        it = iter(kata_to_hira(kana))
+        if not all(c in it for c in kata_to_hira("".join(re.findall(r"[ぁ-ゖァ-ヺー]", _LINE_PREFIX_RE.sub("", s))))):
+            out.append(f"dòng {i}: kana không chứa phần kana của dòng gốc: {s} / {kana}")
+        if not vi.strip():
+            out.append(f"dòng {i}: thiếu bản dịch")
+    return out
+
 
 if __name__ == "__main__":
     assert to_romaji("がっこう") == "gakkou"

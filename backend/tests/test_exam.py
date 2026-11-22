@@ -11,6 +11,7 @@ from hub.ingestion import knowledge
 from hub.learning import exam as examlib
 from hub.learning import question_gen as qg
 from hub.validation import reference as ref
+from hub.validation.kana import check_transcript_gloss
 
 SAMPLE = "EXAM_N5_OFFICIAL_SAMPLE"
 
@@ -498,6 +499,21 @@ def test_listening_timestamps_fit_the_track_and_hide_nothing(client):
     a = c.post("/api/attempts", json={"mode": "exam", "exam_id": exam_id, "section": "listening"}).json()
     q = next(q for q in a["questions"] if "audio_start" in q["extra"])
     assert "transcript" not in q and "correct_answer" not in q
+
+
+def test_listening_gloss_valid_and_revealed_only_after_submit(client):   # ADR-032
+    c, conn = client
+    rows = conn.execute("SELECT question_id, exam_id, transcript, extra_json FROM questions "
+                        "WHERE json_extract(extra_json,'$.transcript_gloss') IS NOT NULL").fetchall()
+    if not rows:
+        pytest.skip("Chưa có data/normalized/exams/listening_gloss.json trên máy (không commit)")
+    for r in rows:
+        assert check_transcript_gloss(r["transcript"], json.loads(r["extra_json"])["transcript_gloss"]) == []
+    a = c.post("/api/attempts", json={"mode": "exam", "exam_id": rows[0]["exam_id"], "section": "listening"}).json()
+    assert all("transcript_gloss" not in q["extra"] for q in a["questions"])
+    q = next(q for q in c.post(f"/api/attempts/{a['attempt_id']}/submit").json()["questions"]
+             if q["question_id"] == rows[0]["question_id"])
+    assert len(q["extra"]["transcript_gloss"]) == len(q["transcript"].split("\n"))
 
 
 def test_numbers_topic_api_srs_and_practice(client):      # ADR-029

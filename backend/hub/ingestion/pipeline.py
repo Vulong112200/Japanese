@@ -13,6 +13,7 @@ from .. import repo
 from ..db import ROOT
 from ..learning import exam as examlib
 from ..validation import reference as ref
+from ..validation.kana import check_transcript_gloss
 from ..validation import vocabulary as vrules
 from . import flashcards_csv as fc
 
@@ -23,6 +24,7 @@ DRIVE_DIR = ROOT / "data" / "raw" / "SRC_LESSON_002"
 ONLINE_SOURCES = ROOT / "data" / "sources_online.json"
 EXAM_JSON = ROOT / "data" / "normalized" / "exams" / "EXAM_N5_OFFICIAL_SAMPLE.json"
 TIMESTAMPS = ROOT / "data" / "normalized" / "exams" / "listening_timestamps.json"   # ADR-025
+GLOSS = ROOT / "data" / "normalized" / "exams" / "listening_gloss.json"             # ADR-032 (local only)
 RAW_DIR = ROOT / "data" / "raw"
 
 TYPE_BY_EXT = {".pdf": "pdf", ".mp3": "audio", ".wav": "audio", ".m4a": "audio", ".csv": "csv", ".json": "json",
@@ -454,6 +456,7 @@ def import_exam(conn, exam_json: Path = EXAM_JSON) -> dict:
     audio = exam_dir / files["audio"]
     audio_sid, audio_id = source_id_for(audio), files["audio_asset_id"]
     stamps = json.loads(TIMESTAMPS.read_text(encoding="utf-8"))["questions"] if TIMESTAMPS.exists() else {}
+    gloss = json.loads(GLOSS.read_text(encoding="utf-8"))["questions"] if GLOSS.exists() else {}
     n_stamped = sum(q["question_id"] in stamps for q in data["questions"])
     conn.execute("INSERT OR REPLACE INTO assets (asset_id, source_id, kind, file_path, mime_type, duration_seconds, "
                  "transcript_status, notes) VALUES (?,?,?,?,?,?,?,?)",
@@ -506,6 +509,10 @@ def import_exam(conn, exam_json: Path = EXAM_JSON) -> dict:
         stamp = stamps.get(q["question_id"]) if listening else None
         if stamp:
             extra.update(audio_start=stamp["start"], audio_end=stamp["end"])
+        g = gloss.get(q["question_id"]) if listening and q.get("transcript") else None
+        gloss_problems = check_transcript_gloss(q["transcript"], g["lines"]) if g else []
+        if g and not gloss_problems:
+            extra["transcript_gloss"] = g["lines"]
         status = examlib.consensus_status(q["seikai"], [a.get("solver_a"), a.get("solver_b")])
         by = "ai" if status == "verified" else None
         if q.get("decided_by") == "user":           # the user settled a disputed key; recorded in the exam JSON
@@ -540,6 +547,9 @@ def import_exam(conn, exam_json: Path = EXAM_JSON) -> dict:
             if data.get("transcript_status") == "asr_whisper":
                 issues.append(("transcript_asr", "info", "Script nghe chép tự động bằng Whisper (không có script gốc).",
                                None))
+        if gloss_problems:
+            issues.append(("transcript_gloss_invalid", "info",
+                           "Romaji/dịch script nghe không qua luật, không hiển thị: " + "; ".join(gloss_problems[:3]), None))
         repo.replace_issues(conn, "question", q["question_id"], issues)
         doubt = []
         if a and a.get("verdict") not in (None, "consistent"):

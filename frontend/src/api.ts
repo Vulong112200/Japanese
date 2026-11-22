@@ -214,6 +214,7 @@ export interface ExamQuestion {
     option_explanations?: Record<string, string>; expected_sequence?: unknown; expected_sequence_note?: string
     grammar_id?: string; grammar_pattern?: string
     audio_start?: number; audio_end?: number; passage_translation_vi?: string
+    transcript_gloss?: { kana: string; romaji: string; vi: string }[]
   }
   // only after submission (exam) or after answering (practice)
   correct_answer?: string[]

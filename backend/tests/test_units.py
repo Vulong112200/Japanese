@@ -7,7 +7,7 @@ from hub import repo
 from hub.ingestion import flashcards_csv as fc
 from hub.learning import srs
 from hub.validation import vocabulary as vr
-from hub.validation.kana import romaji_matches, to_romaji
+from hub.validation.kana import check_transcript_gloss, romaji_matches, to_romaji
 
 
 # ---------- kana / romaji ----------
@@ -17,6 +17,19 @@ from hub.validation.kana import romaji_matches, to_romaji
 ])
 def test_to_romaji(kana, romaji):
     assert to_romaji(kana) == romaji
+
+
+def test_transcript_gloss_rules():                          # ADR-032
+    t = "店で話しています。\n女：コーヒーを2つください。\n1. はい"
+    ok = [{"kana": "みせではなしています。", "romaji": "mise de hanashite imasu.", "vi": "Đang nói chuyện ở cửa hàng."},
+          {"kana": "コーヒーをふたつください。", "romaji": "koohii o futatsu kudasai.", "vi": "Cho tôi 2 cà phê."},
+          {"kana": "はい", "romaji": "hai", "vi": "Vâng"}]
+    assert check_transcript_gloss(t, ok) == []
+    assert check_transcript_gloss(t, ok[:2])                                    # line count
+    assert check_transcript_gloss(t, [ok[0], {**ok[1], "romaji": "koohii o mittsu kudasai."}, ok[2]])  # romaji ≠ kana
+    assert check_transcript_gloss(t, [ok[0], {**ok[1], "kana": "コーヒーを2つください。"}, ok[2]])    # digit in kana
+    assert check_transcript_gloss(t, [ok[1], ok[0], ok[2]])                     # shifted lines: original kana missing
+    assert check_transcript_gloss(t, [ok[0], ok[1], {**ok[2], "vi": " "}])      # no translation
 
 
 def test_romaji_match_tolerates_conventions():

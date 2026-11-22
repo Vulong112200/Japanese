@@ -417,8 +417,16 @@ function QuestionCard({ q, a, pos, onChoose, onFlag, practice, review }: {
             <span className="ml-1 text-xs text-slate-500">(giải thích do AI soạn)</span>}</p>}
           {q.extra.passage_translation_vi && <details><summary className="cursor-pointer text-slate-500">Dịch bài đọc</summary>
             <p className="mt-1 whitespace-pre-wrap">{q.extra.passage_translation_vi}</p></details>}
-          {q.transcript && <details><summary className="cursor-pointer text-slate-500">Script phần nghe</summary>
-            <pre className="jp mt-1 whitespace-pre-wrap">{q.transcript}</pre></details>}
+          {q.transcript && <details><summary className="cursor-pointer text-slate-500">
+            Script phần nghe{q.extra.transcript_gloss && ' (kèm romaji + dịch)'}</summary>
+            {q.extra.transcript_gloss
+              ? <div className="mt-1 space-y-2">{q.transcript.split('\n').map((line, i) => (
+                  <div key={i}>
+                    <p className="jp text-[15px]">{line}</p>
+                    <p className="text-xs italic text-slate-500">{q.extra.transcript_gloss![i]?.romaji}</p>
+                    <p className="text-xs text-slate-700 dark:text-slate-300">{q.extra.transcript_gloss![i]?.vi}</p>
+                  </div>))}</div>
+              : <pre className="jp mt-1 whitespace-pre-wrap">{q.transcript}</pre>}</details>}
         </div>
       )}
     </section>
