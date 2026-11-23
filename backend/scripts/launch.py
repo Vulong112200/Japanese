@@ -34,4 +34,11 @@ if not up():
             break
         time.sleep(0.5)
 
-webbrowser.open(URL)
+for chrome in (r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+               r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+               str(Path.home() / r"AppData\Local\Google\Chrome\Application\chrome.exe")):
+    if Path(chrome).is_file():
+        subprocess.Popen([chrome, URL])
+        break
+else:
+    webbrowser.open(URL)  # không có Chrome thì dùng trình duyệt mặc định
