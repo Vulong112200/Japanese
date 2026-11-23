@@ -311,3 +311,6 @@ def migrate(conn: sqlite3.Connection) -> None:
                           ("srs_cards", "weak_cleared_at TEXT")):   # cram "Nhớ" after the last miss (ADR-027)       # databases created before these columns
         if column.split()[0] not in {r[1] for r in conn.execute(f"PRAGMA table_info({table})")}:
             conn.execute(f"ALTER TABLE {table} ADD COLUMN {column}")
+    # 5 correct in a row = mastered in every mode (ADR-030); fixes cards classified by the mode of their last review
+    conn.execute("UPDATE srs_cards SET status='mastered' WHERE reps>=5 AND status='reviewing'")
+    conn.commit()

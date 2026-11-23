@@ -26,16 +26,15 @@ class Card:
     status: str = "new"
 
 
-def classify(c: Card, intensive: bool = False) -> str:
+def classify(c: Card) -> str:
+    """Mode-independent, so mixing normal and cấp tốc reviews never hides a mastered card."""
     if c.review_count == 0:
         return "new"
     if c.lapses >= ATTENTION_LAPSES and c.reps < MASTERED_REPS:
         return "needs_attention"
     if c.reps == 0:
         return "learning"
-    if intensive:
-        return "mastered" if c.reps >= INTENSIVE_MASTERED_REPS else "reviewing"
-    if c.interval_days >= MASTERED_INTERVAL and c.reps >= MASTERED_REPS:
+    if c.reps >= INTENSIVE_MASTERED_REPS or (c.interval_days >= MASTERED_INTERVAL and c.reps >= MASTERED_REPS):
         return "mastered"
     return "reviewing"
 
@@ -66,7 +65,7 @@ def schedule(c: Card, rating: str, now: datetime, intensive: bool = False,
         c = replace(c, reps=0, lapses=c.lapses + (1 if c.review_count > 1 else 0),
                     ease=max(MIN_EASE, c.ease - 0.2), interval_days=0,
                     incorrect_count=c.incorrect_count + 1)
-        c = replace(c, status=classify(c, intensive))
+        c = replace(c, status=classify(c))
         return c, now + timedelta(minutes=LEARNING_STEP_MIN)
 
     ease = c.ease + {"hard": -0.15, "good": 0.0, "easy": 0.15}[rating]
@@ -81,5 +80,5 @@ def schedule(c: Card, rating: str, now: datetime, intensive: bool = False,
         mult = {"hard": 1.2, "good": ease, "easy": ease * 1.3}[rating]
         interval = max(c.interval_days + 1, round(c.interval_days * mult))
     c = replace(c, ease=ease, interval_days=interval, reps=c.reps + 1, correct_count=c.correct_count + 1)
-    c = replace(c, status=classify(c, intensive))
+    c = replace(c, status=classify(c))
     return c, now + timedelta(days=interval)

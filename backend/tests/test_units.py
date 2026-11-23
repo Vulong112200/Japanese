@@ -137,6 +137,15 @@ def test_intensive_ladder_and_mastery():
     assert c.reps == 0 and c.status == "learning" and (due - t).total_seconds() == 600
 
 
+def test_mastered_after_five_in_a_row_in_any_mode():
+    """Mixing modes: 4 correct in cấp tốc, the 5th in normal SRS -> still mastered."""
+    c, t = srs.Card(), NOW
+    for _ in range(4):
+        c, t = srs.schedule(c, "good", t, intensive=True)
+    c, t = srs.schedule(c, "easy", t)
+    assert c.reps == 5 and c.interval_days < 21 and c.status == "mastered"
+
+
 def test_intensive_follows_ladder_and_caps_before_exam():
     old = srs.Card(interval_days=15, reps=4, review_count=4, status="reviewing")   # booked far out by normal SM-2
     c, due = srs.schedule(old, "good", NOW, intensive=True)

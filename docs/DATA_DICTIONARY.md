@@ -73,7 +73,7 @@ Nhật ký: `ai_correction` (bản sửa đã duyệt, kèm `basis`), approve, r
 - Mỗi từ vựng có 2 thẻ: `jp_vi` và `vi_jp`.
 - Mỗi thẻ có các trường: `ease` (≥ 1.3), `interval_days`, `reps` (số lần nhớ liên tiếp), `lapses`, `review_count`, `correct_count`, `incorrect_count`, `first_studied`, `last_studied`, `due_at`.
 - `status` là một trong: new, learning, reviewing, mastered, needs_attention.
-  - mastered: `interval ≥ 21` ngày và `reps ≥ 3`.
+  - mastered: `reps ≥ 5` (nhớ đúng 5 lần liên tiếp, ở bất kỳ chế độ nào) **hoặc** (`interval ≥ 21` ngày và `reps ≥ 3`).
   - needs_attention: `lapses ≥ 3`.
 
 ### assets
