@@ -67,6 +67,9 @@ cd backend
 # .traineddata (tessdata_best) vào data/reference/tessdata/. hub/ingestion/ocr.py dùng thư mục đó.
 .venv/Scripts/python -m hub import            # nhập/cập nhật toàn bộ, an toàn khi chạy lại
 .venv/Scripts/python -m hub serve             # http://127.0.0.1:8000
+# Shortcut "Japanese N5 Hub" (Desktop + Start Menu, người dùng tự ghim taskbar) chạy
+# .venv/Scripts/pythonw.exe scripts/launch.py: bật server nền nếu chưa chạy (log: data/database/server.log)
+# rồi mở trình duyệt. Server cũ vẫn chạy nền → sau khi sửa backend phải tắt python.exe rồi mở lại.
 .venv/Scripts/python -m hub check-online      # kiểm tra truy cập nguồn online
 .venv/Scripts/python -m hub report            # sinh lại 3 báo cáo trong docs/
 .venv/Scripts/python -m pytest tests -q       # toàn bộ test (cần đã build-reference)
