@@ -1,0 +1,822 @@
+{
+ "exam_id": "SET_N5_GRAMMAR_WEAK_20261124B",
+ "title": "Ôn điểm yếu ngữ pháp (24/11, đợt 2): chia thể ない・普通形 quá khứ phủ định, たい, mục đích に, ことができる, Adj な + N (AI_GENERATED)",
+ "note": "Bộ ôn soạn từ bài ôn điểm yếu 24/11 (43/65): lỗi chia thể ない, quá khứ phủ định thể thông thường, Adj な trước danh từ, V-ます bỏ ます + たい, mục đích に, ことができる. 25 câu 文の文法1/2, cùng quy trình ADR-020: luật check_grammar_question + 2 AI giải mù khớp đáp án. Không phải câu JLPT chính thức.",
+ "entries": [
+  {
+   "question_id": "Q_GQW_C_01",
+   "grammar_id": "GRA_000098",
+   "mondai_type": "grammar_form",
+   "question_text": "A「きのうの 天気、 よかった？」 B「ううん、 あまり （　　）。 雨だったよ。」",
+   "options": [
+    "いいじゃなかった",
+    "よくなかった",
+    "いくなかった",
+    "よくないだった"
+   ],
+   "answer": 2,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: B「ううん、あまり よくなかった。雨だったよ。」 – Không, (thời tiết) không đẹp lắm. Trời mưa đấy. Quy tắc: tính từ い ở thể thông thường quá khứ phủ định: bỏ い → くなかった (いそがしい→いそがしくなかった). いい là bất quy tắc, chia từ gốc よい: いい／よくない／よかった／よくなかった. Mẹo: ない tự nó đã là tính từ い, quá khứ của ない là なかった — không bao giờ có 「ないだった」.",
+   "option_explanations": {
+    "1": "Sai. じゃなかった chỉ dùng cho tính từ な và danh từ (ひまじゃなかった, 雨じゃなかった). いい là tính từ い.",
+    "2": "Đúng. いい → よくなかった (quá khứ phủ định, thể thông thường).",
+    "3": "Sai. いい không chia từ い mà từ よ: ×いくない → よくない, ×いくなかった → よくなかった.",
+    "4": "Sai. Đây là kiểu nhầm của bạn (giống ×いそがしくないだった, ×会わないだった): quá khứ của ない là なかった, không gắn だった sau ない."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_C_02",
+   "grammar_id": "GRA_000098",
+   "mondai_type": "grammar_form",
+   "question_text": "A「きのう、 やまださんは げんきだった？」 B「ううん、 あまり （　　）。 かぜを ひいて いたよ。」",
+   "options": [
+    "げんきくなかった",
+    "げんきないだった",
+    "げんきだなかった",
+    "げんきじゃなかった"
+   ],
+   "answer": 4,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: B「ううん、あまり げんきじゃなかった。かぜを ひいて いたよ。」 – Không, anh ấy không khỏe lắm. Anh ấy bị cảm. Quy tắc: tính từ な và danh từ ở thể thông thường: げんきだ／げんきじゃない／げんきだった／げんきじゃなかった (giống 雨だ／雨じゃない／雨だった／雨じゃなかった). Mẹo: げんき, しずか, ひま, にぎやか, きれい là tính từ な → quá khứ phủ định luôn là ～じゃなかった; chỉ tính từ い mới đổi い→くなかった.",
+   "option_explanations": {
+    "1": "Sai. Kiểu nhầm của bạn (×にぎやかくなかった, ×休みくなかった): くなかった chỉ dành cho tính từ い. げんき là tính từ な.",
+    "2": "Sai. ×ないだった không tồn tại: quá khứ của ない là なかった. Và tính từ な phải có じゃ: げんきじゃなかった.",
+    "3": "Sai. Không có dạng だなかった. Phủ định của だ là じゃない, quá khứ là じゃなかった.",
+    "4": "Đúng. Tính từ な + じゃなかった."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_C_03",
+   "grammar_id": "GRA_000098",
+   "mondai_type": "sentence_composition",
+   "question_text": "A「きのう どうして 学校を 休んだの？」 B「＿＿ ＿＿ ★ ＿＿。」",
+   "options": [
+    "げんき",
+    "じゃなかった",
+    "あまり",
+    "から"
+   ],
+   "answer": 2,
+   "star_position": 3,
+   "expected_sequence": [
+    3,
+    1,
+    2,
+    4
+   ],
+   "explanation_vi": "Câu đúng: B「あまり げんきじゃなかったから。」 – Vì (tớ) không khỏe lắm. Thứ tự: あまり → げんき → じゃなかった → から (3→1→2→4), ★ = じゃなかった. Quy tắc: げんき là tính từ な → quá khứ phủ định thông thường là げんきじゃなかった (×げんきくなかった); nói lý do: 普通形 + から. Mẹo: あまり luôn đi với phủ định và đứng trước tính từ: あまり げんきじゃなかった.",
+   "option_explanations": {
+    "1": "げんき (tính từ な) đứng sau あまり, trước じゃなかった — ô thứ 2.",
+    "2": "Đúng (ô ★). じゃなかった gắn sau tính từ な げんき: げんきじゃなかった (không phải ×げんきくなかった).",
+    "3": "あまり (không… lắm) đứng đầu, bổ nghĩa cho cụm phủ định — ô thứ 1.",
+    "4": "から (vì) đứng cuối, sau 普通形 げんきじゃなかった — ô thứ 4."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_C_04",
+   "grammar_id": "GRA_000083",
+   "mondai_type": "grammar_form",
+   "question_text": "A「あしたも はやく おきる？」 B「ううん、 あしたは 休みだから、 はやく （　　）。」",
+   "options": [
+    "おきらない",
+    "おかない",
+    "おきない",
+    "おきるない"
+   ],
+   "answer": 3,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: B「ううん、あしたは 休みだから、はやく おきない。」 – Không, mai được nghỉ nên tớ không dậy sớm. Quy tắc: おきます là động từ NHÓM 2 (dù âm trước ます là き hàng い) → bỏ ます + ない: おきない. Bảng: nhóm 1 đổi う段→あ段 + ない (かく→かかない, かえる→かえらない, 会う→会わない); nhóm 2 bỏ る + ない (見る→見ない, おきる→おきない, 食べる→食べない); nhóm 3 する→しない, 来る→こない. Mẹo: nhóm 2 có âm hàng い trước ます phải học thuộc: 見ます, おきます, かります, あびます, きます (mặc), います, できます, おります.",
+   "option_explanations": {
+    "1": "Sai. Chia như nhóm 1 đuôi る (かえる→かえらない). おきる là nhóm 2 nên không thêm ら (giống ×見らない).",
+    "2": "Sai. Kiểu nhầm của bạn ×見かない: nhóm 2 không đổi き thành か, chỉ bỏ る rồi thêm ない.",
+    "3": "Đúng. Nhóm 2: おきる → おきない.",
+    "4": "Sai. Kiểu nhầm ×行くない: không gắn ない ngay sau thể từ điển."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_C_05",
+   "grammar_id": "GRA_000083",
+   "mondai_type": "grammar_form",
+   "question_text": "A「おふろに 入る？」 B「ううん、 きょうは つかれたから （　　）。」",
+   "options": [
+    "入らない",
+    "入ない",
+    "入りない",
+    "入るない"
+   ],
+   "answer": 1,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: B「ううん、きょうは つかれたから 入らない。」 – Không, hôm nay mệt nên tớ không tắm. Quy tắc: 入ります (はいります) là NHÓM 1 dù thể từ điển はいる trông giống nhóm 2 → đổi る (hàng う) thành ら (hàng あ) + ない: はいる→はいらない. Cùng kiểu: かえる→かえらない, しる→しらない, はしる→はしらない. Mẹo: thuộc nhóm động từ đuôi る nhưng là nhóm 1 (かえる, はいる, しる, はしる, きる 'cắt'); chúng luôn ra ～らない.",
+   "option_explanations": {
+    "1": "Đúng. Nhóm 1: はいる → はいらない.",
+    "2": "Sai. Đây đúng kiểu nhầm ×かえない của bạn: chia như nhóm 2 (bỏ る). はいる là nhóm 1 nên phải là はいらない.",
+    "3": "Sai. Không giữ âm hàng い (り) của thể ます trước ない; nhóm 1 đổi sang hàng あ (ら).",
+    "4": "Sai. Không gắn ない sau thể từ điển (giống ×行くない)."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_C_06",
+   "grammar_id": "GRA_000083",
+   "mondai_type": "sentence_composition",
+   "question_text": "わたしは ＿＿ ★ ＿＿ ＿＿ ねます。",
+   "options": [
+    "ない",
+    "日は",
+    "しゅくだいが",
+    "はやく"
+   ],
+   "answer": 1,
+   "star_position": 2,
+   "expected_sequence": [
+    3,
+    1,
+    2,
+    4
+   ],
+   "explanation_vi": "Câu đúng: 「わたしは しゅくだいが ない 日は はやく ねます。」 – Những ngày không có bài tập, tôi đi ngủ sớm. Thứ tự: しゅくだいが → ない → 日は → はやく (3→1→2→4), ★ = ない. Quy tắc: あります → thể ない là ない (ngoại lệ, ×あらない). Thể ない (普通形) đứng trước danh từ để bổ nghĩa: [しゅくだいが ない] 日. Mẹo: cụm bổ nghĩa luôn đứng ngay trước danh từ; はやく bổ nghĩa cho ねます nên đứng sát ねます.",
+   "option_explanations": {
+    "1": "Đúng (ô ★). ある → ない (không phải ×あらない), đứng trước 日 để bổ nghĩa.",
+    "2": "日は là danh từ được bổ nghĩa, đứng sau ない — ô thứ 3.",
+    "3": "しゅくだいが là chủ ngữ của ない — ô thứ 1.",
+    "4": "はやく bổ nghĩa cho ねます, đứng ngay trước ねます — ô thứ 4."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_C_07",
+   "grammar_id": "GRA_000090",
+   "mondai_type": "grammar_form",
+   "question_text": "マリアさんは ピアノを （　　） ことが できます。",
+   "options": [
+    "ひいて",
+    "ひきます",
+    "ひいた",
+    "ひく"
+   ],
+   "answer": 4,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「マリアさんは ピアノを ひく ことが できます。」 – Maria biết chơi piano. Quy tắc: V thể TỪ ĐIỂN + ことが できます. ひきます (nhóm 1) → thể từ điển: đổi き (hàng い) thành く (hàng う): ひく. Mẹo: こと là danh từ, trước danh từ dùng thể từ điển (読む こと, およぐ こと, ひく こと), không dùng thể て.",
+   "option_explanations": {
+    "1": "Sai. Đây là kiểu nhầm của bạn (giống ×およいで ことが): thể て không đứng trước こと.",
+    "2": "Sai. Thể ます không đứng trước こと.",
+    "3": "Sai. V た + ことが あります mới là 'đã từng'; với ことが できます phải dùng thể từ điển.",
+    "4": "Đúng. Thể từ điển ひく + ことが できます."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_C_08",
+   "grammar_id": "GRA_000090",
+   "mondai_type": "grammar_form",
+   "question_text": "この としょかんでは 本を 5さつまで （　　） ことが できます。",
+   "options": [
+    "かりる",
+    "かりて",
+    "かります",
+    "かりた"
+   ],
+   "answer": 1,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「この としょかんでは 本を 5さつまで かりる ことが できます。」 – Ở thư viện này có thể mượn tối đa 5 cuốn sách. Quy tắc: かります là NHÓM 2 → thể từ điển: bỏ ます + る: かりる. V thể từ điển + ことが できます còn diễn tả việc 'được phép / có thể' do điều kiện cho phép. Mẹo: nhóm 2 → bỏ ます thêm る (食べます→食べる, 見ます→見る, かります→かりる); nhóm 1 → い段 thành う段 (かきます→かく).",
+   "option_explanations": {
+    "1": "Đúng. Thể từ điển かりる + ことが できます.",
+    "2": "Sai. Kiểu nhầm thể て của bạn (×かりて ことが): trước こと phải là thể từ điển.",
+    "3": "Sai. Thể ます không đứng trước こと.",
+    "4": "Sai. かりた ことが あります mới là 'đã từng mượn'; ことが できます đi với thể từ điển."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_C_09",
+   "grammar_id": "GRA_000090",
+   "mondai_type": "grammar_form",
+   "question_text": "この こうえんでは サッカーを （　　） ことが できません。",
+   "options": [
+    "して",
+    "します",
+    "する",
+    "した"
+   ],
+   "answer": 3,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「この こうえんでは サッカーを する ことが できません。」 – Ở công viên này không được chơi bóng đá. Quy tắc: します (nhóm 3) → thể từ điển する; する ことが できません = không thể / không được làm. Bảng thể từ điển: nhóm 1 い段ます→う段 (およぎます→およぐ), nhóm 2 bỏ ます + る (かります→かりる), nhóm 3 します→する, 来ます→来る (くる). Mẹo: cũng có thể nói N + が できます: サッカーが できません.",
+   "option_explanations": {
+    "1": "Sai. Kiểu nhầm của bạn: thể て (して) không đứng trước こと.",
+    "2": "Sai. Thể ます không đứng trước こと.",
+    "3": "Đúng. Nhóm 3: します → する + ことが できません.",
+    "4": "Sai. した ことが あります là 'đã từng'; không dùng thể た với ことが できます."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_C_10",
+   "grammar_id": "GRA_000090",
+   "mondai_type": "sentence_composition",
+   "question_text": "この へやでは ＿＿ ★ ＿＿ ＿＿。",
+   "options": [
+    "すう",
+    "たばこを",
+    "ことが",
+    "できません"
+   ],
+   "answer": 1,
+   "star_position": 2,
+   "expected_sequence": [
+    2,
+    1,
+    3,
+    4
+   ],
+   "explanation_vi": "Câu đúng: 「この へやでは たばこを すう ことが できません。」 – Trong phòng này không được hút thuốc. Thứ tự: たばこを → すう → ことが → できません (2→1→3→4), ★ = すう. Quy tắc: N を + V thể từ điển + ことが できません. すいます (nhóm 1) → thể từ điển すう. Mẹo: こと đứng ngay sau động từ thể từ điển, tân ngữ を đứng trước động từ.",
+   "option_explanations": {
+    "1": "Đúng (ô ★). Thể từ điển すう đứng trước こと (không phải ×すって こと).",
+    "2": "たばこを là tân ngữ của すう, đứng đầu — ô thứ 1.",
+    "3": "ことが đứng sau động từ thể từ điển: すう ことが — ô thứ 3.",
+    "4": "できません kết thúc câu — ô thứ 4."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_C_11",
+   "grammar_id": "GRA_000099",
+   "mondai_type": "grammar_form",
+   "question_text": "A「いい かばんだね。 新しい（　　）？」 B「うん、 きのう 買った。」",
+   "options": [
+    "なの",
+    "の",
+    "だの",
+    "だ"
+   ],
+   "answer": 2,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: A「いい かばんだね。新しいの？」 – Cặp đẹp nhỉ. Mới à? Quy tắc ～の？ (dạng thân mật của ～んですか): 普通形 + の？. Tính từ い và động từ gắn の trực tiếp: 新しいの？, 行くの？; danh từ / tính từ な thì thêm な: びょうきなの？, ひまなの？. Mẹo: không bao giờ có 「だの」; sau tính từ い cũng không có な hay だ.",
+   "option_explanations": {
+    "1": "Sai. なの chỉ dùng sau danh từ / tính từ な (びょうきなの？). 新しい là tính từ い nên chỉ thêm の.",
+    "2": "Đúng. Tính từ い + の？: 新しいの？",
+    "3": "Sai. Kiểu nhầm của bạn (×びょうきだの): dạng ～だの không có trong câu hỏi ～の？.",
+    "4": "Sai. Tính từ い không đi với だ (×新しいだ). Câu hỏi thân mật của tính từ い chỉ cần 新しい？ hoặc 新しいの？."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_C_12",
+   "grammar_id": "GRA_000099",
+   "mondai_type": "sentence_composition",
+   "question_text": "A「どうして ＿＿ ＿＿ ★ ＿＿？」 B「おなかが いたいから。」",
+   "options": [
+    "ひるごはん",
+    "食べない",
+    "を",
+    "の"
+   ],
+   "answer": 2,
+   "star_position": 3,
+   "expected_sequence": [
+    1,
+    3,
+    2,
+    4
+   ],
+   "explanation_vi": "Câu đúng: A「どうして ひるごはんを 食べないの？」 – Sao (cậu) không ăn trưa? Thứ tự: ひるごはん → を → 食べない → の (1→3→2→4), ★ = 食べない. Quy tắc: hỏi lý do thân mật: どうして + 普通形 + の？. 食べます (nhóm 2) → thể ない: 食べない. Mẹo: の？ đứng cuối câu, ngay sau động từ thể thông thường.",
+   "option_explanations": {
+    "1": "ひるごはん là tân ngữ, đứng đầu — ô thứ 1.",
+    "2": "Đúng (ô ★). 食べない (thể ない nhóm 2) đứng trước の.",
+    "3": "を đánh dấu tân ngữ, đứng sau ひるごはん — ô thứ 2.",
+    "4": "の？ kết thúc câu hỏi thân mật — ô thứ 4."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_C_13",
+   "grammar_id": "GRA_000067",
+   "mondai_type": "grammar_form",
+   "question_text": "日本の なつは とても たのしかったです。 らいねんも また 日本へ （　　）です。",
+   "options": [
+    "きたい",
+    "くるたい",
+    "こたい",
+    "きたく"
+   ],
+   "answer": 1,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「らいねんも また 日本へ きたいです。」 – Năm sau tôi cũng muốn lại đến Nhật. Quy tắc: V thể ます bỏ ます + たいです. 来ます (きます) → き + たい = きたい. Bảng: nhóm 1 行きます→行きたい, nhóm 2 見ます→見たい, nhóm 3 します→したい, 来ます→きたい. Mẹo: たい luôn gắn vào thể ます nên đọc theo きます → きたい (こ chỉ có ở こない).",
+   "option_explanations": {
+    "1": "Đúng. 来ます → きたいです.",
+    "2": "Sai. Kiểu nhầm ×行くたい của bạn: không gắn たい sau thể từ điển.",
+    "3": "Sai. こ chỉ dùng ở thể ない (こない); たい đi với thể ます きます → きたい.",
+    "4": "Sai. きたく là dạng của たい dùng trước ない/なかった (きたくない); không đứng ngay trước です."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_C_14",
+   "grammar_id": "GRA_000067",
+   "mondai_type": "grammar_form",
+   "question_text": "あの えいがは おもしろかったです。 もう 一ど （　　）です。",
+   "options": [
+    "見るたい",
+    "見ったい",
+    "見りたい",
+    "見たい"
+   ],
+   "answer": 4,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「もう 一ど 見たいです。」 – Tôi muốn xem thêm một lần nữa. Quy tắc: 見ます (nhóm 2) bỏ ます + たい: 見たい. Mẹo: không cần biết nhóm, chỉ cần lấy thể ます rồi thay ます bằng たい: 見ます→見たい, 食べます→食べたい, 行きます→行きたい.",
+   "option_explanations": {
+    "1": "Sai. Kiểu nhầm ×行くたい của bạn: たい không gắn sau thể từ điển.",
+    "2": "Sai. Không có âm っ; thể ます là 見ます nên chỉ là 見たい.",
+    "3": "Sai. Chia như nhóm 1 (×見ります không tồn tại, giống lỗi ×見らない). 見る là nhóm 2.",
+    "4": "Đúng. 見ます → 見たいです."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_C_15",
+   "grammar_id": "GRA_000067",
+   "mondai_type": "grammar_form",
+   "question_text": "子どもの とき、 やさいが きらいでしたから、 ぜんぜん 食べ（　　）。",
+   "options": [
+    "たいじゃなかったです",
+    "たくないでした",
+    "たくなかったです",
+    "たかったです"
+   ],
+   "answer": 3,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「子どもの とき、やさいが きらいでしたから、ぜんぜん 食べたくなかったです。」 – Hồi nhỏ tôi ghét rau nên hoàn toàn không muốn ăn. Quy tắc: たい chia như tính từ い: たい → たくない → たかった → たくなかった (giống いそがしい → いそがしくなかった). Thể lịch sự thêm です: たくなかったです. Mẹo: たい là tính từ い → không dùng じゃ, không dùng でした sau ない.",
+   "option_explanations": {
+    "1": "Sai. じゃなかった chỉ dùng cho tính từ な / danh từ; たい là tính từ い.",
+    "2": "Sai. Quá khứ nằm ở ない → なかった; không nói ×ないでした (cùng kiểu nhầm ×ないだった).",
+    "3": "Đúng. たい → たくなかったです.",
+    "4": "Sai. ぜんぜん đi với phủ định, và câu trước nói 'ghét rau' nên không thể là 'đã muốn ăn'."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_C_16",
+   "grammar_id": "GRA_000067",
+   "mondai_type": "sentence_composition",
+   "question_text": "わたしは たんじょうびに ＿＿ ＿＿ ★ ＿＿です。",
+   "options": [
+    "ギターを",
+    "たい",
+    "買い",
+    "あかい"
+   ],
+   "answer": 3,
+   "star_position": 3,
+   "expected_sequence": [
+    4,
+    1,
+    3,
+    2
+   ],
+   "explanation_vi": "Câu đúng: 「わたしは たんじょうびに あかい ギターを 買いたいです。」 – Vào sinh nhật tôi muốn mua cây đàn ghi-ta màu đỏ. Thứ tự: あかい → ギターを → 買い → たい (4→1→3→2), ★ = 買い. Quy tắc: V thể ます bỏ ます (買います→買い) + たい + です. Mẹo: tính từ đứng trước danh từ (あかい ギター); たい gắn sau gốc ます, không sau thể từ điển (×買うたい).",
+   "option_explanations": {
+    "1": "ギターを là tân ngữ, đứng sau あかい — ô thứ 2.",
+    "2": "たい gắn sau 買い, ngay trước です — ô thứ 4.",
+    "3": "Đúng (ô ★). 買い (thể ます bỏ ます) đứng trước たい.",
+    "4": "あかい bổ nghĩa cho ギター, đứng đầu — ô thứ 1."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_C_17",
+   "grammar_id": "GRA_000068",
+   "mondai_type": "grammar_form",
+   "question_text": "こんばん 友だちと レストランへ しょくじ（　　） 行きます。",
+   "options": [
+    "を",
+    "に",
+    "で",
+    "へ"
+   ],
+   "answer": 2,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「こんばん 友だちと レストランへ しょくじに 行きます。」 – Tối nay tôi đi nhà hàng ăn cùng bạn. Quy tắc: N (nơi chốn) へ + danh từ hành động (しょくじ, かいもの, さんぽ, りょこう, べんきょう) + に + 行きます／来ます／かえります. に chỉ mục đích. Mẹo: đi đâu ĐỂ LÀM GÌ → luôn là に; を chỉ dùng khi động từ là します (しょくじを します).",
+   "option_explanations": {
+    "1": "Sai. Kiểu nhầm của bạn (×さんぽを 行きました): を không chỉ mục đích của 行きます.",
+    "2": "Đúng. しょくじに 行きます = đi ăn.",
+    "3": "Sai. で chỉ nơi diễn ra hành động hoặc phương tiện, không chỉ mục đích.",
+    "4": "Sai. へ chỉ hướng/nơi đến (レストランへ), しょくじ không phải nơi chốn."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_C_18",
+   "grammar_id": "GRA_000068",
+   "mondai_type": "grammar_form",
+   "question_text": "あした としょかんへ 本を （　　） 行きます。",
+   "options": [
+    "かりるに",
+    "かりで",
+    "かりを",
+    "かりに"
+   ],
+   "answer": 4,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「あした としょかんへ 本を かりに 行きます。」 – Ngày mai tôi đến thư viện để mượn sách. Quy tắc: V thể ます bỏ ます + に + 行きます. かります (nhóm 2) → かり + に. Mẹo: lấy thể ます, bỏ ます, thêm に: 買います→買いに, 見ます→見に, かります→かりに, します→しに.",
+   "option_explanations": {
+    "1": "Sai. Không dùng thể từ điển trước に mục đích (×かりるに, giống ×買うに).",
+    "2": "Sai. Kiểu nhầm của bạn (×買いで): mục đích dùng に, không dùng で.",
+    "3": "Sai. を không chỉ mục đích; tân ngữ 本を đã có ở trước.",
+    "4": "Đúng. かり + に + 行きます."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_C_19",
+   "grammar_id": "GRA_000068",
+   "mondai_type": "grammar_form",
+   "question_text": "毎日 うちへ ひるごはんを （　　） かえります。",
+   "options": [
+    "食べに",
+    "食べるに",
+    "食べますに",
+    "食べで"
+   ],
+   "answer": 1,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「毎日 うちへ ひるごはんを 食べに かえります。」 – Hằng ngày tôi về nhà để ăn trưa. Quy tắc: V thể ます bỏ ます + に + 行きます／来ます／かえります. 食べます (nhóm 2) → 食べ + に. Mẹo: mẫu mục đích dùng được với cả かえります (về) và 来ます (đến), không chỉ 行きます.",
+   "option_explanations": {
+    "1": "Đúng. 食べ + に + かえります.",
+    "2": "Sai. Không dùng thể từ điển trước に (giống ×買うに).",
+    "3": "Sai. Phải bỏ ます trước khi thêm に.",
+    "4": "Sai. Kiểu nhầm của bạn (×買いで): mục đích là に, không phải で."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_C_20",
+   "grammar_id": "GRA_000068",
+   "mondai_type": "sentence_composition",
+   "question_text": "わたしは きょねん 日本へ ＿＿ ＿＿ ★ ＿＿。",
+   "options": [
+    "べんきょう",
+    "来ました",
+    "日本語の",
+    "に"
+   ],
+   "answer": 4,
+   "star_position": 3,
+   "expected_sequence": [
+    3,
+    1,
+    4,
+    2
+   ],
+   "explanation_vi": "Câu đúng: 「わたしは きょねん 日本へ 日本語の べんきょうに 来ました。」 – Năm ngoái tôi đến Nhật để học tiếng Nhật. Thứ tự: 日本語の → べんきょう → に → 来ました (3→1→4→2), ★ = に. Quy tắc: N (nơi chốn) へ + danh từ hành động + に + 来ます; danh từ hành động có thể có bổ ngữ の: 日本語の べんきょう. Mẹo: mục đích luôn đánh dấu bằng に, không phải を (×べんきょうを 来ました).",
+   "option_explanations": {
+    "1": "べんきょう là danh từ hành động, đứng sau 日本語の — ô thứ 2.",
+    "2": "来ました là động từ di chuyển, đứng cuối — ô thứ 4.",
+    "3": "日本語の bổ nghĩa cho べんきょう, đứng đầu — ô thứ 1.",
+    "4": "Đúng (ô ★). に chỉ mục đích: べんきょうに 来ました."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_C_21",
+   "grammar_id": "GRA_000032",
+   "mondai_type": "grammar_form",
+   "question_text": "A「これは （　　）ですか。」 B「日本の おかしです。」",
+   "options": [
+    "なに",
+    "だれ",
+    "なん",
+    "どこ"
+   ],
+   "answer": 3,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: A「これは なんですか。」 – Cái này là gì? Quy tắc đọc 何: なん khi đứng trước âm hàng た・だ・な (何ですか, 何の, 何で) và trước từ đếm (何時, 何人); なに trong các trường hợp còn lại (何を, 何が, 何も). Ở đây đứng trước です (hàng た/だ) → なん. Mẹo: 何を → なに; 何です → なん.",
+   "option_explanations": {
+    "1": "Sai. なに dùng trước を, が, も (なにを しますか); trước です phải đọc なん.",
+    "2": "Sai. だれ hỏi người; B trả lời là bánh kẹo (おかし) nên hỏi vật.",
+    "3": "Đúng. 何 + です → なんですか.",
+    "4": "Sai. どこ hỏi nơi chốn; B trả lời là một đồ vật."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_C_22",
+   "grammar_id": "GRA_000032",
+   "mondai_type": "grammar_form",
+   "question_text": "A「きのう デパートで （　　） 買いましたか。」 B「シャツを 買いました。」",
+   "options": [
+    "何が",
+    "何を",
+    "何に",
+    "だれを"
+   ],
+   "answer": 2,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: A「きのう デパートで 何を 買いましたか。」 – Hôm qua bạn đã mua gì ở bách hóa? Quy tắc: hỏi tân ngữ của động từ (mua gì, làm gì, ăn gì) → 何（なに）を + động từ: 何を しますか, 何を 買いますか. Mẹo: B trả lời シャツを 買いました → câu hỏi cũng dùng を ở đúng vị trí đó.",
+   "option_explanations": {
+    "1": "Sai. が đánh dấu chủ ngữ; người mua là 'bạn', còn thứ được mua là tân ngữ → を.",
+    "2": "Đúng. 何を 買いましたか.",
+    "3": "Sai. に chỉ nơi đến / thời điểm / mục đích, không chỉ vật được mua.",
+    "4": "Sai. だれ hỏi người; B trả lời là cái áo (シャツ)."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_C_23",
+   "grammar_id": "GRA_000032",
+   "mondai_type": "sentence_composition",
+   "question_text": "A「デパートへ ＿＿ ★ ＿＿ ＿＿か。」 B「くつを 買いに 行きます。」",
+   "options": [
+    "しに",
+    "行きます",
+    "を",
+    "何"
+   ],
+   "answer": 3,
+   "star_position": 2,
+   "expected_sequence": [
+    4,
+    3,
+    1,
+    2
+   ],
+   "explanation_vi": "Câu đúng: A「デパートへ 何を しに 行きますか。」 – Bạn đến bách hóa để làm gì? Thứ tự: 何 → を → しに → 行きます (4→3→1→2), ★ = を. Quy tắc: 何（なに）を します → mục đích: 何を しに 行きますか (đi để làm gì). Mẹo: 何 luôn cần trợ từ を đi ngay sau rồi mới đến động từ: 何を します／何を しに.",
+   "option_explanations": {
+    "1": "しに (します bỏ ます + に) đứng sau 何を — ô thứ 3.",
+    "2": "行きます đứng cuối, trước か — ô thứ 4.",
+    "3": "Đúng (ô ★). を đứng ngay sau 何: 何を.",
+    "4": "何 là từ để hỏi, đứng đầu — ô thứ 1. (Kiểu nhầm của bạn: chọn 何 cho ô ★.)"
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_C_24",
+   "grammar_id": "GRA_000042",
+   "mondai_type": "grammar_form",
+   "question_text": "A「ここは （　　） こうえんですね。」 B「ええ、 花が たくさん ありますから。」",
+   "options": [
+    "きれい",
+    "きれいの",
+    "きれいで",
+    "きれいな"
+   ],
+   "answer": 4,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: A「ここは きれいな こうえんですね。」 – Đây là công viên đẹp nhỉ. Quy tắc: tính từ な + な + N (しずかな まち, きれいな 花); tính từ い giữ nguyên い + N (高い 山). Mẹo: きれい tận cùng bằng い nhưng là tính từ な (cùng với ゆうめい) → きれいな こうえん.",
+   "option_explanations": {
+    "1": "Sai. Tính từ な phải có な trước danh từ; không để trống.",
+    "2": "Sai. の dùng nối danh từ với danh từ (日本の こうえん), không dùng sau tính từ な.",
+    "3": "Sai. Kiểu nhầm của bạn (×しずかで まち): で là dạng nối hai tính từ/câu, không đứng trước danh từ.",
+    "4": "Đúng. きれい + な + こうえん."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_C_25",
+   "grammar_id": "GRA_000042",
+   "mondai_type": "sentence_composition",
+   "question_text": "やまださんは ＿＿ ★ ＿＿ ＿＿ います。",
+   "options": [
+    "ふるくて",
+    "まちに",
+    "すんで",
+    "しずかな"
+   ],
+   "answer": 4,
+   "star_position": 2,
+   "expected_sequence": [
+    1,
+    4,
+    2,
+    3
+   ],
+   "explanation_vi": "Câu đúng: 「やまださんは ふるくて しずかな まちに すんで います。」 – Anh Yamada sống ở một thị trấn cổ và yên tĩnh. Thứ tự: ふるくて → しずかな → まちに → すんで (1→4→2→3), ★ = しずかな. Quy tắc: tính từ な + な + N (しずかな まち); khi có hai tính từ, tính từ い đứng trước dùng dạng くて (ふるくて). Mẹo: ngay trước danh từ phải là dạng な (しずかな), không phải dạng で (×しずかで まち).",
+   "option_explanations": {
+    "1": "ふるくて (dạng nối của ふるい) đứng đầu, nối sang tính từ sau — ô thứ 1.",
+    "2": "まちに là nơi sinh sống (に), đứng sau tính từ bổ nghĩa — ô thứ 3.",
+    "3": "すんで đứng ngay trước います: すんで います — ô thứ 4.",
+    "4": "Đúng (ô ★). しずかな đứng ngay trước danh từ まち."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu 24/11 (đợt 2: bài ôn điểm yếu 43/65, lỗi chia thể ない・普通形 quá khứ phủ định・Adj な・たい・mục đích に・ことができる); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  }
+ ]
+}

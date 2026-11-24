@@ -6221,5 +6221,338 @@
   "alt_b": [],
   "issue_a": null,
   "issue_b": null
+ },
+ "Q_GQW_C_01": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_C_02": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_C_03": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   3,
+   1,
+   2,
+   4
+  ],
+  "seq_b": [
+   3,
+   1,
+   2,
+   4
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_C_04": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_C_05": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_C_06": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   3,
+   1,
+   2,
+   4
+  ],
+  "seq_b": [
+   3,
+   1,
+   2,
+   4
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_C_07": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_C_08": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_C_09": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_C_10": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   2,
+   1,
+   3,
+   4
+  ],
+  "seq_b": [
+   2,
+   1,
+   3,
+   4
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "note": "Solver B đầu tiên sắp đúng thứ tự [2, 1, 3, 4] nhưng chọn nhầm ô ★ (lấy ô 1, ★ ở ô 2 → 2); giải mù lại bằng solver mới: seq và ★ khớp đáp án."
+ },
+ "Q_GQW_C_11": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_C_12": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   1,
+   3,
+   2,
+   4
+  ],
+  "seq_b": [
+   1,
+   3,
+   2,
+   4
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_C_13": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_C_14": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_C_15": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_C_16": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   4,
+   1,
+   3,
+   2
+  ],
+  "seq_b": [
+   4,
+   1,
+   3,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_C_17": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_C_18": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_C_19": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_C_20": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   3,
+   1,
+   4,
+   2
+  ],
+  "seq_b": [
+   3,
+   1,
+   4,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_C_21": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_C_22": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_C_23": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "seq_b": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "note": "Solver B đầu tiên sắp đúng thứ tự [4, 3, 1, 2] nhưng chọn nhầm ô ★ (lấy ô 1, ★ ở ô 2 → 4); giải mù lại bằng solver mới: seq và ★ khớp đáp án."
+ },
+ "Q_GQW_C_24": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_C_25": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   1,
+   4,
+   2,
+   3
+  ],
+  "seq_b": [
+   1,
+   4,
+   2,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "note": "Solver B đầu tiên sắp đúng thứ tự [1, 4, 2, 3] nhưng chọn nhầm ô ★ (lấy ô 1, ★ ở ô 2 → 1); giải mù lại bằng solver mới: seq và ★ khớp đáp án."
  }
 }
