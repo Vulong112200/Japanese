@@ -378,7 +378,7 @@ def exam_overview(conn) -> dict:
     exams = rows(conn.execute(
         f"SELECT e.exam_id, e.title, e.exam_type, e.source_type, e.is_official, e.duration_minutes, e.verification_status, "
         f"(SELECT COUNT(*) FROM questions q WHERE q.exam_id=e.exam_id AND q.{LIVE_Q}) AS question_count "
-        f"FROM exams e WHERE e.exam_type != 'question_bank' ORDER BY e.exam_id"))
+        f"FROM exams e WHERE e.exam_type NOT IN ('question_bank','study_set') ORDER BY e.exam_id"))
     bank = rows(conn.execute(
         f"SELECT q.section, q.mondai_no, q.mondai_type, e.exam_type, COUNT(*) AS n FROM questions q "
         f"JOIN exams e ON e.exam_id=q.exam_id WHERE q.{LIVE_Q} GROUP BY 1,2,3,4 ORDER BY 1,2"))
@@ -413,6 +413,17 @@ def latest_answers(conn) -> dict[str, dict]:
                 "SELECT a.question_id, a.answer, a.is_correct FROM attempt_answers a JOIN exam_attempts t "
                 "USING (attempt_id) WHERE t.submitted_at IS NOT NULL AND a.answer IS NOT NULL "
                 "ORDER BY t.submitted_at, a.answered_at, a.rowid")}   # rowid: same-second ties
+
+
+def grammar_answer_history(conn) -> list[dict]:
+    """Final answers to grammar-point questions, oldest first (ADR-033): submitted attempts, plus practice answers,
+    which are graded and locked as soon as they are given."""
+    return rows(conn.execute(
+        "SELECT json_extract(q.extra_json,'$.grammar_id') AS grammar_id, g.pattern, g.lesson_number, a.question_id, "
+        "a.is_correct AS correct, a.answered_at AS t FROM attempt_answers a JOIN exam_attempts t USING (attempt_id) "
+        "JOIN questions q USING (question_id) LEFT JOIN grammar g ON g.id=json_extract(q.extra_json,'$.grammar_id') "
+        "WHERE a.answer IS NOT NULL AND a.is_correct IS NOT NULL AND (t.submitted_at IS NOT NULL OR t.mode='practice') "
+        "AND json_extract(q.extra_json,'$.grammar_id') IS NOT NULL ORDER BY a.answered_at, a.rowid"))
 
 
 def mistake_question_ids(conn) -> list[str]:

@@ -272,6 +272,15 @@ export interface ExamOverview {
   mistakes: number
 }
 
+export interface WeakPoint {
+  grammar_id: string; pattern: string | null; lesson_number: number | null; wrong: number; total: number
+  streak: number; need: number; status: 'weak' | 'improving' | 'resolved'; fresh: number; available: number
+}
+export interface WeakPoints {
+  points: WeakPoint[]; past_mistakes: number; total: number
+  rule: { half_life_days: number; max_per_point: number; resolved_streak: number }
+}
+
 export interface AttemptStart {
   mode: 'exam' | 'practice'
   exam_id?: string
@@ -285,6 +294,7 @@ export interface AttemptStart {
   lesson_to?: number
   topic?: 'numbers'
   number_categories?: string[]
+  weak_points?: boolean   // recency-aware weak-point drill (ADR-033)
   limit?: number
   timing?: 'none' | 'original' | 'current' | 'custom'
   time_limit_min?: number
@@ -372,6 +382,7 @@ export type Settings = { daily_goal: number; exam_date: string | null }
 export const api = {
   dashboard: () => req<Dashboard>('/stats/dashboard'),
   analytics: () => req<Analytics>('/stats/analytics'),
+  weakPoints: () => req<WeakPoints>('/stats/weak-points'),
   settings: () => req<Settings>('/settings'),
   saveSettings: (s: Partial<Settings>) => req<Settings>('/settings', { method: 'PUT', body: JSON.stringify(s) }),
   vocab: (p: Record<string, string | number | undefined>) => req<{ total: number; items: Vocab[] }>(`/vocabulary?${qs(p)}`),

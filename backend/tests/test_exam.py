@@ -298,11 +298,11 @@ def test_grammar_bank_is_consensus_backed(imported):
     assert e["is_official"] == 0 and e["source_type"] == "AI_GENERATED" and e["exam_type"] == "question_bank"
     review = json.loads(knowledge.GRAMMAR_Q_REVIEW.read_text(encoding="utf-8"))
     verified_grammar = {r[0] for r in conn.execute("SELECT id FROM grammar WHERE verification_status='verified'")}
-    # study sets (weak-point drills) follow the same rules and are listed as their own exam, never official
+    # study sets follow the same rules, are never official, and feed the weak-point drill instead of the exam list
     sets = conn.execute("SELECT * FROM exams WHERE exam_type='study_set'").fetchall()
-    assert all(s["is_official"] == 0 and s["source_type"] == "AI_GENERATED" for s in sets)
+    assert sets and all(s["is_official"] == 0 and s["source_type"] == "AI_GENERATED" for s in sets)
     listed = {e["exam_id"] for e in repo.exam_overview(conn)["exams"]}
-    assert {s["exam_id"] for s in sets} <= listed and knowledge.GQ_EXAM not in listed
+    assert not ({s["exam_id"] for s in sets} | {knowledge.GQ_EXAM}) & listed
     rows = conn.execute("SELECT * FROM questions WHERE (exam_id=? OR exam_id IN (SELECT exam_id FROM exams WHERE "
                         "exam_type='study_set')) AND verification_status='verified'", (knowledge.GQ_EXAM,)).fetchall()
     assert {r["mondai_type"] for r in rows} == {"grammar_form", "sentence_composition"}
@@ -549,3 +549,34 @@ def test_numbers_topic_api_srs_and_practice(client):      # ADR-029
                                       "number_categories": ["nichi", "ji"], "mondai_type": "orthography"}).json()
     assert len(a["questions"]) > 20 and {q["mondai_type"] for q in a["questions"]} == {"orthography"}
     assert all(q["question_id"].startswith(("Q_NUM_NICHI_", "Q_NUM_JI_")) for q in a["questions"])
+
+
+def test_weak_point_drill_follows_recent_answers(client):
+    """ADR-033: a point answered wrong enters the drill; 1 correct answer after it halves it, 2 drop it."""
+    c, conn = client
+    gid, n = conn.execute("SELECT json_extract(extra_json,'$.grammar_id') AS g, COUNT(*) FROM questions WHERE g IS NOT "
+                          "NULL AND verification_status!='rejected' GROUP BY 1 HAVING SUM(passage_id IS NOT NULL)=0 "
+                          "AND COUNT(*)>=4 ORDER BY 1 DESC LIMIT 1").fetchone()
+    point = lambda: next((p for p in c.get("/api/stats/weak-points").json()["points"] if p["grammar_id"] == gid), None)
+
+    def answer(correct: bool, count: int):
+        a = c.post("/api/attempts", json={"mode": "practice", "grammar_id": gid, "limit": count}).json()
+        for q in a["questions"][:count]:
+            key = _correct(conn, q["question_id"])
+            pick = key if correct else [next(o["option_id"] for o in q["options"] if [o["option_id"]] != key)]
+            assert c.put(f"/api/attempts/{a['attempt_id']}/answers/{q['question_id']}", json={"answer": pick}).status_code == 200
+
+    answer(False, 1)                                  # practice answers count at once, no submit needed
+    p = point()
+    assert p["status"] == "weak" and p["need"] >= 2 and p["fresh"] >= 1
+    drill = c.post("/api/attempts", json={"mode": "practice", "weak_points": True}).json()
+    mine = [q for q in drill["questions"] if json.loads(repo.get_question(conn, q["question_id"])["extra_json"]).get("grammar_id") == gid]
+    assert len(mine) == min(p["need"], n) and drill["title"].startswith("Ôn điểm yếu ngữ pháp")
+    answer(True, 1)
+    p2 = point()
+    assert p2["status"] == "improving" and p2["need"] == max(1, p["need"] // 2)
+    answer(True, 1)
+    assert point()["status"] == "resolved" and point()["need"] == 0
+    drill = c.post("/api/attempts", json={"mode": "practice", "weak_points": True})
+    assert drill.status_code == 404 or all(json.loads(repo.get_question(conn, q["question_id"])["extra_json"]).get(
+        "grammar_id") != gid for q in drill.json()["questions"])

@@ -1,11 +1,11 @@
 import sqlite3
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 import pytest
 
 from hub import repo
 from hub.ingestion import flashcards_csv as fc
-from hub.learning import srs
+from hub.learning import analytics, srs
 from hub.validation import vocabulary as vr
 from hub.validation.kana import check_transcript_gloss, romaji_matches, to_romaji
 
@@ -245,3 +245,22 @@ def test_listening_alignment_finds_each_question_after_its_number():
     out = align(qs, segs, 100)
     assert (out["a"]["start"], out["a"]["end"]) == (9.7, 39.7)       # from "1番" to "2番"
     assert (out["b"]["start"], out["b"]["end"]) == (39.7, 70)        # ends where 問題2 starts
+
+
+def test_weak_points_recency_and_recovery():
+    """ADR-033: recent mistakes weigh more; after the last mistake 1 correct halves the drill, 2 in a row drop it."""
+    now = datetime(2026, 11, 24, 12, tzinfo=timezone.utc)
+    t = lambda days: (now - timedelta(days=days)).isoformat()
+    ev = lambda g, ok, days: {"grammar_id": g, "pattern": g, "correct": ok, "t": t(days)}
+    w = {p["grammar_id"]: p for p in analytics.weak_points([
+        ev("A", False, 0), ev("A", False, 0), ev("A", False, 1),       # many fresh mistakes -> capped at 5
+        ev("B", False, 30),                                             # one old mistake -> weighs little
+        ev("C", False, 2), ev("C", True, 1),                            # improving
+        ev("D", False, 3), ev("D", True, 2), ev("D", True, 1),          # resolved
+        ev("E", True, 1)], now)}                                        # never wrong -> not a weak point
+    assert "E" not in w
+    assert w["A"]["need"] == 5 and w["A"]["status"] == "weak"
+    assert w["B"]["need"] == 2 and w["B"]["weight"] < 0.1
+    assert w["C"]["status"] == "improving" and w["C"]["need"] == 1 and w["C"]["streak"] == 1
+    assert w["D"]["status"] == "resolved" and w["D"]["need"] == 0
+    assert [p["grammar_id"] for p in analytics.weak_points([ev("A", False, 0), ev("B", False, 30)], now)] == ["A", "B"]

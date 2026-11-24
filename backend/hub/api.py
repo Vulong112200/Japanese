@@ -513,6 +513,7 @@ class AttemptStart(BaseModel):
     lesson_to: int | None = Field(None, ge=1, le=26)
     topic: Literal["numbers"] | None = None           # numbers/counters/dates reading questions (ADR-029)
     number_categories: list[str] | None = Field(None, max_length=50)   # numbers groups to practise (ADR-031)
+    weak_points: bool = False                        # recency-aware weak-point drill (ADR-033); ignores limit
     limit: int = Field(20, ge=1, le=500)             # Mode F
     timing: Literal["none", "original", "current", "custom"] = "original"
     time_limit_min: int | None = Field(None, ge=1, le=300)
@@ -549,6 +550,40 @@ def _sections_for(questions: list[dict], body: AttemptStart, exam: dict | None) 
     return out
 
 
+PAST_GRAMMAR_MISTAKES_MAX = 10
+
+
+def _weak_drill(conn) -> dict:
+    """Weak grammar points (analytics.weak_points) + the questions to drill (ADR-033). Per point: questions whose last
+    answer was wrong first, then never answered, then the longest ago; passages are never split, so skipped. Past-paper
+    文法 questions whose latest answer is still wrong are added (they carry no grammar point)."""
+    history = repo.grammar_answer_history(conn)
+    last = {h["question_id"]: h for h in history}
+    lesson = {h["grammar_id"]: h["lesson_number"] for h in history}
+    points = analytics.weak_points(history, repo.now())
+    ids: list[str] = []
+    for p in points:
+        cands = [q["question_id"] for q in repo.questions_where(conn, grammar_id=p["grammar_id"]) if not q["passage_id"]]
+        rank = lambda qid: ((0, "") if qid in last and not last[qid]["correct"] else (1, "") if qid not in last
+                            else (2, last[qid]["t"]))
+        cands.sort(key=rank)
+        p.update(lesson_number=lesson.get(p["grammar_id"]), available=len(cands),
+                 fresh=sum(1 for q in cands if q not in last or not last[q]["correct"]))
+        ids += cands[:p["need"]]
+    past = [q["question_id"] for q in repo.questions_where(conn, ids=repo.mistake_question_ids(conn), section="grammar_reading")
+            if q["mondai_type"] in ("grammar_form", "sentence_composition") and q["exam_id"].startswith("EXAM_")]
+    past = past[:PAST_GRAMMAR_MISTAKES_MAX]
+    return {"points": points, "past_mistakes": past, "question_ids": ids + past}
+
+
+@router.get("/stats/weak-points")
+def weak_points_view(conn=Depends(get_conn)):
+    d = _weak_drill(conn)
+    return {"points": d["points"], "past_mistakes": len(d["past_mistakes"]), "total": len(d["question_ids"]),
+            "rule": {"half_life_days": analytics.WEAK_HALF_LIFE_DAYS, "max_per_point": analytics.WEAK_MAX_PER_POINT,
+                     "resolved_streak": analytics.WEAK_RESOLVED_STREAK}}
+
+
 @router.get("/exams")
 def exams(conn=Depends(get_conn)):
     return repo.exam_overview(conn)
@@ -571,6 +606,8 @@ def start_attempt(body: AttemptStart, conn=Depends(get_conn)):
         title = row["title"] + (f" · {examlib.SECTION_NAMES.get(body.section, body.section)}" if body.section else "")
     else:
         ids = repo.mistake_question_ids(conn) if body.mistakes_only else None
+        if body.weak_points:
+            ids = _weak_drill(conn)["question_ids"]
         src = None
         if body.from_attempt:
             src = repo.get_attempt(conn, body.from_attempt)
@@ -587,13 +624,14 @@ def start_attempt(body: AttemptStart, conn=Depends(get_conn)):
             groups.setdefault(q["passage_id"] or q["question_id"], []).append(q)
         picked: list[dict] = []
         for g in random.sample(list(groups.values()), len(groups)):
-            if len(picked) >= body.limit:
+            if len(picked) >= (len(ids) if body.weak_points else body.limit):
                 break
             picked += g
         qs = sorted(picked, key=lambda q: (
             examlib.SECTION_ORDER.index(q["section"]) if q["section"] in examlib.SECTION_ORDER else 9,
             q["mondai_no"] or 0, q["exam_id"], q["passage_id"] or "", q["number"] or 0))
-        parts = ["Ôn câu sai" if body.mistakes_only or src else "Luyện tập", src["title"] if src else "",
+        parts = ["Ôn điểm yếu ngữ pháp" if body.weak_points else "Ôn câu sai" if body.mistakes_only or src
+                 else "Luyện tập", src["title"] if src else "",
                  "Số đếm & ngày tháng" if body.topic == "numbers" else "",
                  examlib.SECTION_NAMES.get(body.section or "", ""),
                  {"kanji_reading": "漢字読み", "orthography": "表記"}.get(body.mondai_type or "", body.mondai_type or ""),

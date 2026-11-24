@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
-import { api, type Attempt, type AttemptStart, type AttemptSummary, type ExamOverview, type ExamQuestion, type GrammarDetail, type Section } from '../api'
+import { api, type Attempt, type AttemptStart, type AttemptSummary, type ExamOverview, type ExamQuestion, type GrammarDetail, type Section, type WeakPoints } from '../api'
 import { Button, ErrorBox, Loading, Panel, Tag } from '../ui'
 
 export const SECTION_LABEL: Record<string, string> = {
@@ -26,6 +26,40 @@ export default function Exam() {
     return () => removeEventListener('hashchange', on)
   }, [])
   return id ? <AttemptPage key={id} id={id} /> : <ExamHome />
+}
+
+// ------------------------------------------------------------------ weak-point drill (ADR-033)
+const WEAK_STATUS = { weak: ['Đang yếu', 'rose'], improving: ['Đang tiến bộ', 'amber'], resolved: ['Đã ổn', 'emerald'] } as const
+
+function WeakPanel({ busy, start }: { busy: boolean; start: (b: AttemptStart) => void }) {
+  const [w, setW] = useState<WeakPoints | null>(null)
+  useEffect(() => { api.weakPoints().then(setW).catch(() => setW(null)) }, [])
+  if (!w) return null
+  const active = w.points.filter(p => p.need > 0)
+  const resolved = w.points.filter(p => p.need === 0)
+  const row = (p: WeakPoints['points'][number]) => (
+    <li key={p.grammar_id} className="flex flex-wrap items-center gap-2">
+      <Tag tone={WEAK_STATUS[p.status][1]}>{WEAK_STATUS[p.status][0]}</Tag>
+      <span className="jp">{p.pattern ?? p.grammar_id}</span>
+      <span className="text-xs text-slate-500">
+        {p.lesson_number ? `Bài ${p.lesson_number} · ` : ''}sai {p.wrong}/{p.total}{p.streak ? ` · đúng ${p.streak} lần liền sau lần sai cuối` : ''}
+        {p.need ? ` · ${p.need} câu` : ''}
+      </span>
+    </li>)
+  return (
+    <Panel title="Ôn điểm yếu ngữ pháp (tự cập nhật)">
+      <p className="mb-3 text-sm text-slate-500">
+        Tính lại mỗi lần mở trang từ các câu bạn đã trả lời. Lỗi sai càng gần đây càng nhiều câu (tối đa {w.rule.max_per_point}/điểm);
+        đúng 1 lần sau lần sai cuối thì giảm một nửa, đúng {w.rule.resolved_streak} lần liền thì bỏ khỏi bài ôn.
+        {w.past_mistakes ? ` Kèm ${w.past_mistakes} câu ngữ pháp đề thật còn sai.` : ''}
+      </p>
+      {active.length ? <ul className="space-y-1.5 text-sm">{active.map(row)}</ul>
+        : <p className="text-sm">Chưa có điểm ngữ pháp nào cần ôn.</p>}
+      {resolved.length > 0 && <details className="mt-3 text-sm"><summary className="cursor-pointer text-slate-500">
+        Đã ổn: {resolved.length} điểm</summary><ul className="mt-2 space-y-1.5">{resolved.map(row)}</ul></details>}
+      <div className="mt-3"><Button kind="primary" disabled={busy || !w.total}
+        onClick={() => start({ mode: 'practice', weak_points: true })}>Làm bài ôn điểm yếu ({w.total} câu)</Button></div>
+    </Panel>)
 }
 
 // ------------------------------------------------------------------ home
@@ -58,6 +92,8 @@ function ExamHome() {
         <p className="text-sm text-slate-500">Chế độ thi ẩn đáp án đến khi nộp bài. Chế độ luyện tập chấm và giải thích ngay sau mỗi câu.</p>
       </div>
       {err != null && <ErrorBox error={err} />}
+
+      <WeakPanel busy={busy} start={start} />
 
       <Panel title="Đề thi">
         {ov.exams.map(e => (

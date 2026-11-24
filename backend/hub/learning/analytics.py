@@ -43,3 +43,31 @@ def recommend(d: dict) -> list[dict]:
                     "href": "#/flashcards"})
     return out
 
+
+
+WEAK_HALF_LIFE_DAYS = 7     # a mistake counts half as much after a week
+WEAK_MAX_PER_POINT = 5      # questions per grammar point in the weak-point drill
+WEAK_RESOLVED_STREAK = 2    # correct answers in a row after the last mistake -> point dropped
+
+
+def weak_points(history: list[dict], now: datetime) -> list[dict]:
+    """Recency-aware grammar weak points (ADR-033). history: [{grammar_id, pattern, correct, t}] (any order).
+    A point stays in the drill while its recent answers are wrong: base = 2 + recency-weighted mistakes (max 5);
+    after the last mistake 1 correct answer halves it ("improving"), 2 in a row drop it ("resolved")."""
+    by: dict[str, list[dict]] = {}
+    for e in sorted(history, key=lambda e: e["t"]):
+        by.setdefault(e["grammar_id"], []).append(e)
+    out = []
+    for gid, ev in by.items():
+        wrong_at = [i for i, e in enumerate(ev) if not e["correct"]]
+        if not wrong_at:
+            continue
+        streak = len(ev) - 1 - wrong_at[-1]
+        weight = sum(0.5 ** ((now - datetime.fromisoformat(ev[i]["t"])).total_seconds() / 86400 / WEAK_HALF_LIFE_DAYS)
+                     for i in wrong_at)
+        base = min(WEAK_MAX_PER_POINT, 2 + round(weight))
+        need = base if streak == 0 else max(1, base // 2) if streak < WEAK_RESOLVED_STREAK else 0
+        out.append({"grammar_id": gid, "pattern": ev[-1].get("pattern"), "wrong": len(wrong_at), "total": len(ev),
+                    "streak": streak, "weight": round(weight, 2), "need": need, "last_wrong_at": ev[wrong_at[-1]]["t"],
+                    "status": "weak" if streak == 0 else "improving" if need else "resolved"})
+    return sorted(out, key=lambda x: (-x["need"], -x["weight"], x["grammar_id"]))
