@@ -51,3 +51,26 @@ Quy tắc trạng thái: `verified` (`verified_by='ai'`) chỉ khi key = A = B (
 | 2012_12 G24–G26 | | | bỏ | Trang lựa chọn bị mất; G25 chỉ khôi phục được từ trang giải thích |
 
 Nguyên tắc người dùng đặt (2026-11-15): khi key cộng đồng và AI lệch nhau, **chọn theo căn cứ chính xác nhất, miễn giải thích được đáp án**; ghi căn cứ vào `review.json` và bảng trên.
+
+## Đề nghe dựng lại từ video YouTube (phiên 17, ADR-034)
+Chỉ có phần 聴解. Người dùng chọn tải để dùng riêng; video, audio, khung hình và bản chép chỉ nằm trên máy (`data/raw/SRC_YT_N5_*`, `EXAM_N5_YT_*` trong `.gitignore`). Năm trong tiêu đề là năm **video ghi**: không có đề gốc để đối chiếu.
+
+| Đề | Video (id) | Câu | Ghi chú nguồn |
+|---|---|---|---|
+| YT_2025_12 | PhsQJE1B9O0 | 23 | Video thiếu 問題2 6番 |
+| YT_2025_07 | st6AmJs_ycg | 24 | ASR có VAD đủ câu; đối chiếu thêm Whisper không VAD |
+| YT_2017_12 | OYXy3OFv01M | 24 | ASR có VAD bỏ sót 問題4 → ghép ASR không VAD cho đoạn ≥ 895 s; khung 2-6 có watermark kênh → làm trắng nền xám |
+| YT_2016_12 | _PKWEfSkdmU | 12 | Thực ra là đề kiểu 4級 cũ (2 mondai, mỗi câu phát 2 lần) |
+| YT_2015_12 | 4mM4qlD7JEY | 24 | Nội dung giống đề luyện (北京, 饅頭 đọc マントウ); audio cắt còn lượt làm bài (0–1136 s); video cắt mất câu dẫn của 問題2 1番 (script bổ sung từ lượt phát lại, câu này không có mốc thời gian) |
+| YT_2015_07 | PIyzrj59l14 (tranh) + njSg3mk_V5A (audio) | 24 | Totoro đăng cùng audio cho "T7" và "T12/2015" (ASR trùng 100%; khớp 92% với video 2015/7 kênh khác) → chỉ dùng 1; audio Totoro cắt mất câu chốt 1-5 nên dùng audio kênh kia (0–1148 s) |
+
+Quy trình: `backend/scripts/youtube_listening.py download|frames|pdf` → `asr/run_asr.py` (`ASR_VAD=0` để tắt VAD) → chép theo `YT_BRIEF.md` (agent chọn `pages`, không khung lộ đáp án; key từ bảng 正解 cuối video vào `keys.json`) → 2 AI giải mù (`SOLVE_BRIEF.md`) → `merge_past_exams.py YT_<id>` → romaji/dịch theo `GLOSS_BRIEF.md` (file riêng `gloss_EXAM_N5_YT_<id>.json`, gộp vào `listening_gloss.json` khi `check_transcript_gloss` sạch) → `listening_timestamps.py` (căn cả theo kana của gloss) → `hub import`.
+
+### Nhật ký quyết định (phiên 17)
+| Câu | Đáp án video | AI A / B | Chốt | Căn cứ |
+|---|---|---|---|---|
+| YT_2016_12 L2_2 | 2 | 4 / 4 | 4 | Tranh: người 2 đeo kính; 長いスカート + めがね？→ ううん ⇒ người 4 |
+| YT_2017_12 L1_1 | 2 | 3 / 3 | 3 | Audio: 「いいえ、父のです」 |
+| YT_2017_12 L2_3 | 1 | 2 / 2 (medium) | 1, **chờ duyệt** | Tranh 1/2 lật gương; 720p không phân biệt quay mặt/quay lưng → không đủ căn cứ để bác key |
+| YT_2025_07 L3_1 | 2 | 1 → 2 / 2 | 2 | A giải lần đầu không mở tranh 問題3 (người mũi tên ngồi ở bàn → お帰りなさい); được yêu cầu mở tranh và giải lại (vẫn mù đáp án) |
+| YT_2015_12 L2_5 | 2 | 4 / 4 | 4 | 「車を洗っているのはお父さん」「お母さんは…洗濯」⇒ mẹ ở máy giặt; script video gán ngược vai (B đo cao độ giọng) |

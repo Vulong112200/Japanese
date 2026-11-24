@@ -88,7 +88,7 @@ JAPANESE_RE = re.compile(r"[぀-ヿ一-鿿]")
 
 # Listening-script gloss (ADR-032): one {kana, romaji, vi} per transcript line, speaker label / option number excluded.
 _GLOSS_KANA_RE = re.compile(r"^[぀-ゟ゠-ヿー\s　～〜~…・、。，,？！?!「」『』]+$")
-_LINE_PREFIX_RE = re.compile(r"^(?:[^\s：:。、]{1,4}[：:]|\d+[.．]\s*)")
+_LINE_PREFIX_RE = re.compile(r"^(?:[^\s：:。、]{1,5}[：:]|\d+[.．]\s*)")
 
 
 def check_transcript_gloss(transcript: str, lines: list[dict]) -> list[str]:

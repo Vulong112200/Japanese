@@ -286,7 +286,7 @@ export interface AttemptStart {
   exam_id?: string
   section?: Section
   mondai_type?: string
-  source?: 'all' | 'official' | 'past' | 'generated'
+  source?: 'all' | 'official' | 'past' | 'generated' | 'video'
   mistakes_only?: boolean
   from_attempt?: string   // redo the not-correct questions of this submitted attempt
   grammar_id?: string

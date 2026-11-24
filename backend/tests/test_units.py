@@ -245,6 +245,11 @@ def test_listening_alignment_finds_each_question_after_its_number():
     out = align(qs, segs, 100)
     assert (out["a"]["start"], out["a"]["end"]) == (9.7, 39.7)       # from "1番" to "2番"
     assert (out["b"]["start"], out["b"]["end"]) == (39.7, 70)        # ends where 問題2 starts
+    kana = [dict(s, text=t) for s, t in zip(segs, ["問題1", "1番", "おとこのひととおんなのひとがはなしています おとこのひとはどこへいきますか",
+                                                 "すみません えきはどこですか", "2番"])]
+    q = dict(qs[0], reading="おとこのひととおんなのひとがはなしています。おとこのひとはどこへいきますか。すみません、えきはどこですか。")
+    plain, read = align(qs[:1], kana, 100).get("a", {}).get("coverage", 0), align([q], kana, 100)["a"]
+    assert read["start"] == 9.7 and read["coverage"] > plain + 0.15                          # ASR in kana
 
 
 def test_weak_points_recency_and_recovery():

@@ -22,6 +22,18 @@ EX = {
     "2013_07": dict(title="JLPT N5 2013年7月 (đề thật, bản 荒木日语)", audio="audio.mp3", timing=OLD),
     "2012_12": dict(title="JLPT N5 2012年12月 (đề thật, bản quét)", audio="audio.m4a", timing=OLD),
 }
+# Listening-only papers rebuilt from YouTube videos (ADR-034): key = answer shown in the video. Titles: YT_TITLES.
+YT = dict(audio="audio.m4a", timing=(30,), exam_type="video_practice", source_type="VIDEO_KEY", key_origin="video_answer",
+          key_note="Đáp án công bố trong video YouTube, đối chiếu 2 AI giải độc lập (ADR-034)")
+YT_TITLES = {   # the year is what the video says; content is not verifiable against an official paper
+    "YT_2025_12": "Đề nghe N5 · video ghi JLPT 2025年12月 (dựng lại từ YouTube)",
+    "YT_2025_07": "Đề nghe N5 · video ghi JLPT 2025年7月 (dựng lại từ YouTube)",
+    "YT_2017_12": "Đề nghe N5 · video ghi JLPT 2017年12月 (dựng lại từ YouTube)",
+    "YT_2016_12": "Đề nghe kiểu 4級 cũ · 12 câu 問題1–2 (video ghi 2016年12月, dựng lại từ YouTube)",
+    "YT_2015_12": "Đề luyện nghe N5 · video ghi 2015年12月, nội dung giống đề luyện (dựng lại từ YouTube)",
+    "YT_2015_07": "Đề nghe N5 · video ghi JLPT 2015年7月 (dựng lại từ YouTube)",
+}
+EX.update({k: dict(YT, title=t, sid=f"SRC_YT_N5_{k[3:]}") for k, t in YT_TITLES.items()})
 # Final reviewer decisions: {qid: {"seikai": n, "note": "...", "patch": {field: value}}}
 REVIEW = json.loads((S / "review.json").read_text(encoding="utf-8")) if (S / "review.json").exists() else {}
 
@@ -46,7 +58,8 @@ def key_for(keys, q):
 
 
 def merge(eid):
-    cfg, sid = EX[eid], f"SRC_DRIVE_EXAM_N5_{eid}"
+    cfg = EX[eid]
+    sid = cfg.get("sid") or f"SRC_DRIVE_EXAM_N5_{eid}"
     d = json.loads((S / f"EXAM_N5_{eid}.json").read_text(encoding="utf-8"))
     A = json.loads((S / f"solve_A_EXAM_N5_{eid}.json").read_text(encoding="utf-8"))
     B = json.loads((S / f"solve_B_EXAM_N5_{eid}.json").read_text(encoding="utf-8"))
@@ -93,7 +106,7 @@ def merge(eid):
         else:
             by_no[sec][int(t[1:])] = seikai
     # answer_key is positional by printed number (importer rebuilds ids from it): gaps (lost pages) stay null
-    pos = lambda m: [m.get(i) for i in range(1, max(m) + 1)]
+    pos = lambda m: [m.get(i) for i in range(1, max(m, default=0) + 1)]
     lists = {"vocabulary": pos(by_no["vocabulary"]), "grammar_reading": pos(by_no["grammar_reading"]),
              "listening": {m: pos(v) for m, v in by_no["listening"].items()}}
     if dropped:
@@ -103,17 +116,18 @@ def merge(eid):
     has_key = n_key > 0
     files = {"dir": f"data/raw/{sid}", "mondai": "mondai.pdf", "audio": cfg["audio"], "audio_asset_id": f"AUD_{eid}_001"}
     files.update({k: cfg[k] for k in ("seikai", "script") if cfg.get(k)})
-    d.update(exam_id=f"EXAM_N5_{eid}", title=cfg["title"], level="N5", exam_type="past_exam",
-             source_type="COMMUNITY_KEY" if has_key else "AI_ANSWERED", is_official=False,
-             key_origin="community" if has_key else "ai_consensus", duration_minutes=sum(cfg["timing"]),
+    d.update(exam_id=f"EXAM_N5_{eid}", title=cfg["title"], level="N5", exam_type=cfg.get("exam_type", "past_exam"),
+             source_type=cfg.get("source_type") or ("COMMUNITY_KEY" if has_key else "AI_ANSWERED"), is_official=False,
+             key_origin=cfg.get("key_origin") or ("community" if has_key else "ai_consensus"), duration_minutes=sum(cfg["timing"]),
              question_id_prefix=f"Q_{eid}", files=files, answer_key={**lists, "source": keys.get("page") or cfg.get("key_note") or "2 AI giải độc lập"},
              source_ids=[sid] + [f"{sid}_KEY"] * bool(cfg.get("seikai")) + [f"{sid}_SCRIPT"] * bool(cfg.get("script")) + [f"{sid}_AUDIO"],
              transcription={"method": "ai_vision_transcription", "note": d.pop("transcription_notes", None),
-                            "key_note": "Đáp án cộng đồng (không phải 正解 chính thức), đối chiếu với 2 AI giải độc lập (ADR-019)."})
+                            "key_note": cfg.get("key_note") if cfg.get("exam_type") else
+                            "Đáp án cộng đồng (không phải 正解 chính thức), đối chiếu với 2 AI giải độc lập (ADR-019)."})
     (OUT / f"EXAM_N5_{eid}.json").write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
     (OUT / f"EXAM_N5_{eid}.ai_review.json").write_text(json.dumps(review, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"{eid}: {len(d['questions'])} câu, có key {n_key}, key=A=B {n_ok}")
 
 
-for eid in sys.argv[1:] or EX:
+for eid in sys.argv[1:] or [e for e in EX if (S / f"EXAM_N5_{e}.json").exists()]:
     merge(eid)

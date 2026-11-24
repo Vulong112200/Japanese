@@ -1,6 +1,6 @@
 # PROGRESS — Japanese N5 Learning Hub
 
-Cập nhật: 2026-11-15, kết thúc phiên 11. Trạng thái dựa trên kết quả kiểm thử: **103/103 test pass**, frontend build sạch.
+Cập nhật: 2026-11-24, kết thúc phiên 17. Trạng thái dựa trên kết quả kiểm thử: **119/119 test pass**, frontend build sạch.
 
 ## Tóm tắt các phiên
 | Phiên | Nội dung | Kết quả |
@@ -27,6 +27,7 @@ Cập nhật: 2026-11-15, kết thúc phiên 11. Trạng thái dựa trên kết
 | 16c | Sửa SRS "Thuộc" (ADR-030): trạng thái trước đây tính theo chế độ của lượt chấm cuối, nên ôn xen kẽ lịch thường/cấp tốc làm thẻ đúng 5 lần liên tiếp vẫn là "đang ôn". Nay `srs.classify` dùng chung: `reps ≥ 5` hoặc (interval ≥ 21 và reps ≥ 3); `db.migrate` cập nhật thẻ đã lưu | 116 test |
 | 16d | **Bộ ôn điểm yếu ngữ pháp** (ADR-020): phân tích bài làm (đề 2024-07 48/67, 2017-07, ngân hàng) → 59 câu mới (trợ từ, nghi vấn từ + か/も, cho–nhận + mệnh đề bổ nghĩa, thể ない, 普通形, thể て, rủ rê) ở `grammar_questions/sets/weak_20261124.json`, đề `SET_N5_GRAMMAR_WEAK_20261124` (`exam_type=study_set`); luật sạch, 2 AI giải mù khớp (2 câu ★ giải lại vì solver chọn nhầm ô). Số đếm: nhóm ～か月 bổ sung 4/5/7/9/11/12 tháng (thiếu 9 か月 làm người học tưởng là きゅうげつ) | 116 test |
 | 16e | **Ôn điểm yếu tự cập nhật** (ADR-033): khung "Ôn điểm yếu ngữ pháp" ở trang Thi thử tính lại từ câu trả lời gần nhất (lỗi càng gần càng nhiều câu; đúng 1 lần sau lần sai cuối thì giảm nửa, đúng 2 lần liền thì bỏ), kèm câu ngữ pháp đề thật còn sai; `GET /api/stats/weak-points`. Skill `/on-diem-yeu` (`.claude/skills/on-diem-yeu/`) báo cáo + soạn thêm câu khi điểm yếu hết câu mới. Trên dữ liệu người dùng: 41 điểm (10 yếu, 18 tiến bộ, 13 đã ổn) → 65 câu | 118 test |
+| 17 | **Tab Luyện nghe + đề nghe từ YouTube** (ADR-034): trang Luyện nghe (luyện theo dạng 課題理解/ポイント理解/発話表現/即時応答 với nguồn tất cả/đề thật/video/đề mẫu, đề nghe đầy đủ 30 phút, ôn câu nghe sai; mẹo từng mondai, bẫy số/ngày giờ, kinh nghiệm phòng thi, lịch luyện; nội dung mẹo qua 1 vòng rà soát độc lập đối chiếu jlpt.jp). Pipeline video: yt-dlp → Whisper → agent chép từ khung hình (không khung lộ đáp án) → đáp án video + 2 AI giải mù → romaji/dịch → mốc thời gian. **6 đề, 131 câu nghe mới** (video ghi 2025-12, 2025-07, 2017-12, 2015-12, 2015-07 + 1 đề kiểu 4級 cũ 12 câu); 130 verified, 1 chờ duyệt (tranh lật gương). 3 lần đáp án video sai được sửa theo căn cứ (nhật ký trong PAST_EXAMS.md). Script mốc thời gian: căn thêm theo kana của gloss + chọn đoạn sớm hơn khi câu dẫn lặp lại (mốc 6 đề cũ không đổi); nhãn vai dài 5 ký tự (おじいさん：) | 
 
 ## Độ phủ kiến thức N5: ĐÃ ĐỦ, không cần thu thập thêm tài liệu
 | Mảng | Độ phủ | Trạng thái xác minh |
@@ -61,7 +62,7 @@ Ký hiệu trạng thái:
 | Grammar §7.3 | ✅ | Tra cứu đủ, đã verified. Bài tập: 399 câu 文の文法1/2 trong Thi thử (nguồn "Sinh tự động", lọc theo mondai); kết quả thi + Dashboard báo điểm ngữ pháp cần ôn. SRS 1 chiều (mẫu → nghĩa). Ôn nhanh gom nhiều bài (ADR-028). |
 | SRS §8 | ✅ | Từ vựng (2 chiều), ngữ pháp + kanji (1 chiều), ADR-021. Lọc khoảng bài, xáo trộn, chế độ Ôn tổng hợp (ADR-027), SRS cấp tốc (ADR-030). Số đếm: 118 thẻ dạng đặc biệt (ADR-029). |
 | Mock Exam §9 | ✅ | Mode A (đề + giờ JLPT 20/40/30), B (đề gốc, giữ cấu trúc/thời gian gốc), C (theo phần), D (theo mondai), E (ôn câu sai), F (tuỳ chỉnh số câu/thời gian/nguồn). Giao diện §9.2 đủ (điều hướng, cờ, trước/sau, tiến độ, đồng hồ, audio, xác nhận nộp). Kết quả §9.3 + ước lượng tách riêng (§4.3). Có 1 đề mẫu chính thức + 6 đề thật các năm (giờ gốc 25/50/30 trước 2020, 20/40/30 từ 2020). Ngân hàng: từ vựng (問題1/2, sinh bằng luật) + ngữ pháp (文の文法1/2, agent soạn) + bài đọc (文章の文法, 短文, 中文, 情報検索; agent soạn, ADR-026). Chưa có câu sinh cho nghe (không tạo audio thay thế). |
-| Listening §10 | ✅ | Chế độ thi: không lộ script/lựa chọn audio-only; luyện tập: tốc độ phát, script sau khi trả lời (kèm romaji + dịch từng dòng, ADR-032); nút nghe đúng đoạn của câu (ADR-025). Nguồn nghe = 7 đề có audio gốc (không tạo audio thay thế). |
+| Listening §10 | ✅ | Chế độ thi: không lộ script/lựa chọn audio-only; luyện tập: tốc độ phát, script sau khi trả lời (kèm romaji + dịch từng dòng, ADR-032); nút nghe đúng đoạn của câu (ADR-025). Nguồn nghe = 7 đề có audio gốc + 6 đề nghe dựng lại từ video YouTube (ADR-034; không tạo audio thay thế). Trang **Luyện nghe**: luyện theo dạng câu, đề nghe đầy đủ, mẹo + kinh nghiệm thi. |
 | Dashboard §13 | ✅ | Cấp độ, mục tiêu ngày, streak, mức độ thuộc 3 loại, thẻ đến hạn, lượt thi gần nhất, ngữ pháp/bài yếu, "Học gì tiếp" (ADR-022). |
 | Kaiwa §7.4 | ✅ | 27 bài, 9 chủ đề, verified (ADR-023). Giọng máy trình duyệt (không có audio gốc). Chưa có màn Duyệt riêng (sửa qua file + `review_log`). |
 | Analytics §14 | ✅ | Trang Thống kê: thời gian học (ước tính), hoạt động 30 ngày, tỉ lệ nhớ SRS theo loại, lịch sử thi theo phần, mondai yếu, điểm ngữ pháp yếu, câu sai lặp lại. Đọc/nghe tính theo phần thi (chưa tách kỹ năng con). |

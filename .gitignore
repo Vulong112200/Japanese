@@ -18,5 +18,6 @@ data/raw/
 data/normalized/exams/EXAM_N5_OFFICIAL_SAMPLE.json
 # Đề thi thật các năm (bản chép + kết quả AI giải): bản quyền JLPT, chỉ lưu trên máy (ADR-019)
 data/normalized/exams/EXAM_N5_20*
+data/normalized/exams/EXAM_N5_YT_*
 # Romaji + dịch script nghe: phái sinh từ script đề, chỉ lưu trên máy (ADR-032)
 data/normalized/exams/listening_gloss.json

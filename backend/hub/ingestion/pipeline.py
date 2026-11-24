@@ -56,7 +56,7 @@ def source_id_for(path: Path) -> str:
         return "SRC_LOCAL_FC_KAIWA"
     if "Số Đếm" in stem or "So Dem" in stem:
         return "SRC_LOCAL_FC_SODEM"
-    if path.parent.parent == RAW_DIR and path.parent.name.startswith("SRC_DRIVE_EXAM_"):   # past paper folder
+    if path.parent.parent == RAW_DIR and path.parent.name.startswith(("SRC_DRIVE_EXAM_", "SRC_YT_")):  # paper folder
         return path.parent.name + {"mondai": "", "seikai": "_KEY", "script": "_SCRIPT", "audio": "_AUDIO"}.get(
             path.stem, "_" + path.stem.upper())
     if path.parent == DRIVE_DIR:                      # PDFs downloaded from the public Drive folder
@@ -121,13 +121,15 @@ def inventory(conn, dirs=(EXAM_DIR, FLASHCARD_DIR, SOURCEDOCS_DIR, DRIVE_DIR)) -
                 existing = repo.get_source(conn, sid)
                 notes = f"Trùng nội dung với {dup}" if dup and dup != sid else None
                 reliability = ("OFFICIAL" if sid in EXAM_PURPOSE else
-                               "SUPPLEMENTARY" if sid.startswith("SRC_DRIVE_EXAM_") else
+                               "SUPPLEMENTARY" if sid.startswith(("SRC_DRIVE_EXAM_", "SRC_YT_")) else
                                "USER_CREATED" if sid.startswith(("SRC_LOCAL_FC_", "SRC_LOCAL_GRAMMAR")) else
                                "EDUCATIONAL" if sid.startswith("SRC_DRIVE_") else "PRIMARY")
                 src = {**entry, "reliability": reliability, "access_status": "local", "level": "N5",
                        "purpose": EXAM_PURPOSE.get(sid) or ("Flashcard do người dùng xuất" if kind == "csv" else
                                                             "Đề JLPT N5 thật (bản cộng đồng, thư mục Drive ĐỀ THI)"
-                                                            if sid.startswith("SRC_DRIVE_EXAM_") else None),
+                                                            if sid.startswith("SRC_DRIVE_EXAM_") else
+                                                            "Phần nghe đề N5 dựng lại từ video YouTube, chỉ dùng trên máy (ADR-034)"
+                                                            if sid.startswith("SRC_YT_") else None),
                        "notes": notes}
                 if sid in EXAM_PURPOSE:
                     src["notes"] = ("Bộ 問題例 N5 (khớp định dạng mẫu trên jlpt.jp) – cần người dùng xác nhận nguồn gốc."

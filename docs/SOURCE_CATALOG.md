@@ -1,6 +1,6 @@
 # SOURCE CATALOG
 
-Tạo tự động lúc 2026-11-15T21:00:45+07:00. Định nghĩa độ tin cậy: OFFICIAL / PRIMARY / EDUCATIONAL / SUPPLEMENTARY / AI_GENERATED / USER_CREATED (spec §3.3).
+Tạo tự động lúc 2026-11-24T15:35:36+07:00. Định nghĩa độ tin cậy: OFFICIAL / PRIMARY / EDUCATIONAL / SUPPLEMENTARY / AI_GENERATED / USER_CREATED (spec §3.3).
 
 Trạng thái truy cập là kết quả **kiểm tra HTTP** (`python -m hub check-online`), không phải trích xuất nội dung.
 `requires_auth` / `manual_export` = cần tài khoản Google hoặc người dùng tải/export tệp về `docs/` để nhập.
@@ -90,3 +90,15 @@ Một số lỗi `unreachable` có thể do mạng/chứng chỉ cục bộ (vd.
 | SRC_REF_JLPT_N5 | JLPT N5 word list (tanos.co.uk via elzup/jlpt-word-list) | csv | EDUCATIONAL | local |  | https://github.com/elzup/jlpt-word-list | Danh sách đo độ phủ từ vựng N5 (dựa trên danh sách JLPT cũ, CC BY) |  |
 | SRC_REF_JMDICT | JMdict (EDRDG) | dictionary | EDUCATIONAL | local |  | https://www.edrdg.org/jmdict/j_jmdict.html | Đối chiếu cách đọc, từ loại, nhóm động từ (CC BY-SA 4.0) |  |
 | SRC_REF_KANJIDIC2 | KANJIDIC2 (EDRDG) | dictionary | EDUCATIONAL | local |  | https://www.edrdg.org/wiki/index.php/KANJIDIC_Project | Âm on/kun, số nét, Hán-Việt, danh sách kanji N5 (CC BY-SA 4.0) |  |
+| SRC_YT_N5_2015_07 | mondai.pdf | pdf | SUPPLEMENTARY | local |  | data/raw/SRC_YT_N5_2015_07/mondai.pdf | Phần nghe đề N5 dựng lại từ video YouTube, chỉ dùng trên máy (ADR-034) |  |
+| SRC_YT_N5_2015_07_AUDIO | audio.m4a | audio | SUPPLEMENTARY | local |  | data/raw/SRC_YT_N5_2015_07/audio.m4a | Phần nghe đề N5 dựng lại từ video YouTube, chỉ dùng trên máy (ADR-034) |  |
+| SRC_YT_N5_2015_12 | mondai.pdf | pdf | SUPPLEMENTARY | local |  | data/raw/SRC_YT_N5_2015_12/mondai.pdf | Phần nghe đề N5 dựng lại từ video YouTube, chỉ dùng trên máy (ADR-034) |  |
+| SRC_YT_N5_2015_12_AUDIO | audio.m4a | audio | SUPPLEMENTARY | local |  | data/raw/SRC_YT_N5_2015_12/audio.m4a | Phần nghe đề N5 dựng lại từ video YouTube, chỉ dùng trên máy (ADR-034) |  |
+| SRC_YT_N5_2016_12 | mondai.pdf | pdf | SUPPLEMENTARY | local |  | data/raw/SRC_YT_N5_2016_12/mondai.pdf | Phần nghe đề N5 dựng lại từ video YouTube, chỉ dùng trên máy (ADR-034) |  |
+| SRC_YT_N5_2016_12_AUDIO | audio.m4a | audio | SUPPLEMENTARY | local |  | data/raw/SRC_YT_N5_2016_12/audio.m4a | Phần nghe đề N5 dựng lại từ video YouTube, chỉ dùng trên máy (ADR-034) |  |
+| SRC_YT_N5_2017_12 | mondai.pdf | pdf | SUPPLEMENTARY | local |  | data/raw/SRC_YT_N5_2017_12/mondai.pdf | Phần nghe đề N5 dựng lại từ video YouTube, chỉ dùng trên máy (ADR-034) |  |
+| SRC_YT_N5_2017_12_AUDIO | audio.m4a | audio | SUPPLEMENTARY | local |  | data/raw/SRC_YT_N5_2017_12/audio.m4a | Phần nghe đề N5 dựng lại từ video YouTube, chỉ dùng trên máy (ADR-034) |  |
+| SRC_YT_N5_2025_07 | mondai.pdf | pdf | SUPPLEMENTARY | local |  | data/raw/SRC_YT_N5_2025_07/mondai.pdf | Phần nghe đề N5 dựng lại từ video YouTube, chỉ dùng trên máy (ADR-034) |  |
+| SRC_YT_N5_2025_07_AUDIO | audio.m4a | audio | SUPPLEMENTARY | local |  | data/raw/SRC_YT_N5_2025_07/audio.m4a | Phần nghe đề N5 dựng lại từ video YouTube, chỉ dùng trên máy (ADR-034) |  |
+| SRC_YT_N5_2025_12 | mondai.pdf | pdf | SUPPLEMENTARY | local |  | data/raw/SRC_YT_N5_2025_12/mondai.pdf | Phần nghe đề N5 dựng lại từ video YouTube, chỉ dùng trên máy (ADR-034) |  |
+| SRC_YT_N5_2025_12_AUDIO | audio.m4a | audio | SUPPLEMENTARY | local |  | data/raw/SRC_YT_N5_2025_12/audio.m4a | Phần nghe đề N5 dựng lại từ video YouTube, chỉ dùng trên máy (ADR-034) |  |

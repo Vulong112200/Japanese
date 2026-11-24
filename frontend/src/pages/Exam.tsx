@@ -14,7 +14,7 @@ export const MONDAI_LABEL: Record<string, string> = {
 }
 
 // ?id=ATT_... in the hash keeps an attempt open across reloads (answers are auto-saved on the server).
-const SOURCE_EXAM_TYPE: Record<string, string> = { official: 'official_sample', past: 'past_exam', generated: 'question_bank' }
+const SOURCE_EXAM_TYPE: Record<string, string> = { official: 'official_sample', past: 'past_exam', generated: 'question_bank', video: 'video_practice' }
 const hashId = () => new URLSearchParams(location.hash.split('?')[1] ?? '').get('id')
 const setHashId = (id: string | null) => { location.hash = id ? `#/exam?id=${id}` : '#/exam' }
 
@@ -101,7 +101,8 @@ function ExamHome() {
             <div className="min-w-0 flex-1">
               <div className="jp font-medium">{e.title}</div>
               <div className="mt-1 flex flex-wrap gap-1.5 text-xs">
-                {e.is_official ? <Tag tone="emerald">OFFICIAL · đáp án theo 正解</Tag>
+                {e.exam_type === 'video_practice' ? <Tag tone="amber">Đề nghe luyện từ video YouTube · đáp án video + 2 AI đối chiếu</Tag>
+                  : e.is_official ? <Tag tone="emerald">OFFICIAL · đáp án theo 正解</Tag>
                   : e.source_type === 'COMMUNITY_KEY' ? <Tag tone="indigo">Đề thật · đáp án cộng đồng + AI đối chiếu</Tag>
                   : e.source_type === 'AI_ANSWERED' ? <Tag tone="indigo">Đề thật · đáp án do 2 AI giải độc lập</Tag>
                   : <Tag tone="amber">AI_GENERATED</Tag>}
@@ -140,6 +141,7 @@ function ExamHome() {
               <option value="official">Chỉ đề mẫu chính thức</option>
               <option value="past">Chỉ đề thi thật các năm</option>
               <option value="generated">Chỉ câu sinh tự động (AI_GENERATED)</option>
+              <option value="video">Chỉ đề nghe từ video YouTube</option>
             </select>
           </Field>
           <Field label={`Số câu (có ${available})`}>

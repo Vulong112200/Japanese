@@ -202,19 +202,19 @@ def test_consensus_status_needs_key_and_both_solvers():
     assert examlib.consensus_status(2, []) == "needs_review"            # official sample: no solvers
 
 
-def _past(conn):
-    rows = conn.execute("SELECT exam_id, is_official, source_type, data_json FROM exams "
-                        "WHERE exam_type='past_exam'").fetchall()
+def _past(conn, types=("past_exam",)):
+    rows = conn.execute(f"SELECT exam_id, is_official, source_type, data_json FROM exams "
+                        f"WHERE exam_type IN ({','.join('?' * len(types))})", types).fetchall()
     if not rows:
-        pytest.skip("Chưa có đề thật trên máy (data/normalized/exams/EXAM_N5_20*.json + data/raw không commit)")
+        pytest.skip("Chưa có đề trên máy (data/normalized/exams/EXAM_N5_*.json + data/raw không commit)")
     return rows
 
 
 def test_past_papers_are_labelled_and_consensus_backed(client):
     _, conn = client
     from hub.ingestion import pipeline
-    for r in _past(conn):
-        assert r["is_official"] == 0 and r["source_type"] in ("COMMUNITY_KEY", "AI_ANSWERED")
+    for r in _past(conn, ("past_exam", "video_practice")):     # video papers (ADR-034): same key = A = B rule
+        assert r["is_official"] == 0 and r["source_type"] in ("COMMUNITY_KEY", "AI_ANSWERED", "VIDEO_KEY")
         src = pipeline.EXAM_JSON.parent / f"{r['exam_id']}.json"
         data = json.loads(src.read_text(encoding="utf-8"))
         review = json.loads(src.with_name(f"{r['exam_id']}.ai_review.json").read_text(encoding="utf-8"))
@@ -251,6 +251,14 @@ def test_past_papers_filter_and_exam_mode_hide_answers(client):
         assert "option_explanations" not in q["extra"] and "expected_sequence" not in q["extra"]
         if q["extra"].get("options_audio_only"):
             assert all(o["text"] == "" for o in q["options"])
+
+
+def test_video_listening_papers_filter_and_hide_script(client):
+    c, conn = client
+    vids = {r["exam_id"] for r in _past(conn, ("video_practice",))}
+    a = c.post("/api/attempts", json={"mode": "exam", "source": "video", "section": "listening", "limit": 50}).json()
+    assert a["questions"] and {q["exam_id"] for q in a["questions"]} <= vids
+    assert all(q["section"] == "listening" and "transcript" not in q for q in a["questions"])
 
 
 # ---------------------------------------------------------------- agent-authored grammar bank (ADR-020)

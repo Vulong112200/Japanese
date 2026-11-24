@@ -497,7 +497,8 @@ REVEAL_EXTRA = ("option_explanations", "expected_sequence", "expected_sequence_n
 
 
 TOPIC_EXAMS = {"numbers": "BANK_N5_NUMBERS"}
-SOURCE_EXAM_TYPE = {"official": "official_sample", "past": "past_exam", "generated": "question_bank"}
+SOURCE_EXAM_TYPE = {"official": "official_sample", "past": "past_exam", "generated": "question_bank",
+                    "video": "video_practice"}   # video: listening papers rebuilt from YouTube (ADR-034)
 
 
 class AttemptStart(BaseModel):
@@ -505,7 +506,7 @@ class AttemptStart(BaseModel):
     exam_id: str | None = None                       # Mode A/B: a stored exam, original order
     section: Literal["vocabulary", "grammar_reading", "listening"] | None = None   # Mode C
     mondai_type: str | None = Field(None, max_length=50)                              # Mode D
-    source: Literal["all", "official", "past", "generated"] = "all"
+    source: Literal["all", "official", "past", "generated", "video"] = "all"
     mistakes_only: bool = False                      # Mode E
     from_attempt: str | None = Field(None, pattern=r"^ATT_\w+$")   # redo the not-correct questions of one attempt
     grammar_id: str | None = Field(None, pattern=r"^GRA_\d{6}$")   # questions of one grammar point
