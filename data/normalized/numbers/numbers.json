@@ -6148,7 +6148,7 @@
   {
    "key": "kagetsu",
    "title_vi": "Số tháng (～か月)",
-   "rule_vi": "Khoảng thời gian bao nhiêu tháng: số + かげつ (viết か月 hoặc ヶ月). Âm か nên 1, 6, 8, 10 có âm ngắt: いっかげつ, ろっかげつ, はっかげつ, じゅっかげつ. Không nhầm với tháng mấy (～月 がつ).",
+   "rule_vi": "Khoảng thời gian bao nhiêu tháng: số + かげつ (viết か月 hoặc ヶ月), luôn là かげつ, không có dạng ～げつ. Âm か nên 1, 6, 8, 10, 11 có âm ngắt: いっかげつ, ろっかげつ, はっかげつ, じゅっかげつ, じゅういっかげつ. 4, 7, 9 đọc よん, なな, きゅう: よんかげつ, ななかげつ, きゅうかげつ — khác tháng 4/7/9 (しがつ, しちがつ, くがつ). Không nhầm với tháng mấy (～月 がつ).",
    "items": [
     {
      "id": "NUM_kagetsu_一か月",
@@ -6220,6 +6220,42 @@
      ]
     },
     {
+     "id": "NUM_kagetsu_四か月",
+     "jp": "四か月",
+     "reading": "よんかげつ",
+     "vi": "4 tháng (khoảng thời gian)",
+     "irregular": true,
+     "note_vi": "4 đọc よん (khác tháng 4 四月 しがつ).",
+     "example_jp": "にほんごを 四か月 べんきょうしました。",
+     "example_vi": "Tôi đã học tiếng Nhật 4 tháng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-24",
+       "by": "ai_review",
+       "note": "Bổ sung theo phản hồi người học: nhóm thiếu 4/5/7/9/11/12 tháng khiến tưởng nhầm 9 tháng là きゅうげつ. Cách đọc khớp luật validation/numbers.py + JMdict"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kagetsu_五か月",
+     "jp": "五か月",
+     "reading": "ごかげつ",
+     "vi": "5 tháng (khoảng thời gian)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "にほんごを 五か月 べんきょうしました。",
+     "example_vi": "Tôi đã học tiếng Nhật 5 tháng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-24",
+       "by": "ai_review",
+       "note": "Bổ sung theo phản hồi người học: nhóm thiếu 4/5/7/9/11/12 tháng khiến tưởng nhầm 9 tháng là きゅうげつ. Cách đọc khớp luật validation/numbers.py + JMdict"
+      }
+     ]
+    },
+    {
      "id": "NUM_kagetsu_六か月",
      "jp": "六か月",
      "reading": "ろっかげつ",
@@ -6239,6 +6275,24 @@
        "date": "2026-11-15",
        "by": "ai_review",
        "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kagetsu_七か月",
+     "jp": "七か月",
+     "reading": "ななかげつ",
+     "vi": "7 tháng (khoảng thời gian)",
+     "irregular": true,
+     "note_vi": "7 đọc なな (khác tháng 7 七月 しちがつ).",
+     "example_jp": "にほんごを 七か月 べんきょうしました。",
+     "example_vi": "Tôi đã học tiếng Nhật 7 tháng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-24",
+       "by": "ai_review",
+       "note": "Bổ sung theo phản hồi người học: nhóm thiếu 4/5/7/9/11/12 tháng khiến tưởng nhầm 9 tháng là きゅうげつ. Cách đọc khớp luật validation/numbers.py + JMdict"
       }
      ]
     },
@@ -6269,6 +6323,24 @@
      ]
     },
     {
+     "id": "NUM_kagetsu_九か月",
+     "jp": "九か月",
+     "reading": "きゅうかげつ",
+     "vi": "9 tháng (khoảng thời gian)",
+     "irregular": true,
+     "note_vi": "9 đọc きゅう + かげつ (khác tháng 9 九月 くがつ; không có きゅうげつ hay くかげつ).",
+     "example_jp": "にほんごを 九か月 べんきょうしました。",
+     "example_vi": "Tôi đã học tiếng Nhật 9 tháng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-24",
+       "by": "ai_review",
+       "note": "Bổ sung theo phản hồi người học: nhóm thiếu 4/5/7/9/11/12 tháng khiến tưởng nhầm 9 tháng là きゅうげつ. Cách đọc khớp luật validation/numbers.py + JMdict"
+      }
+     ]
+    },
+    {
      "id": "NUM_kagetsu_十か月",
      "jp": "十か月",
      "reading": "じゅっかげつ",
@@ -6291,6 +6363,42 @@
        "date": "2026-11-15",
        "by": "ai_review",
        "note": "Qua 2 vòng rà soát độc lập (A: chia theo nhóm, B: chẵn/lẻ) + người duyệt cuối"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kagetsu_十一か月",
+     "jp": "十一か月",
+     "reading": "じゅういっかげつ",
+     "vi": "11 tháng (khoảng thời gian)",
+     "irregular": true,
+     "note_vi": "いち → いっ (như 一か月).",
+     "example_jp": "にほんごを 十一か月 べんきょうしました。",
+     "example_vi": "Tôi đã học tiếng Nhật 11 tháng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-24",
+       "by": "ai_review",
+       "note": "Bổ sung theo phản hồi người học: nhóm thiếu 4/5/7/9/11/12 tháng khiến tưởng nhầm 9 tháng là きゅうげつ. Cách đọc khớp luật validation/numbers.py + JMdict"
+      }
+     ]
+    },
+    {
+     "id": "NUM_kagetsu_十二か月",
+     "jp": "十二か月",
+     "reading": "じゅうにかげつ",
+     "vi": "12 tháng (khoảng thời gian)",
+     "irregular": false,
+     "note_vi": null,
+     "example_jp": "にほんごを 十二か月 べんきょうしました。",
+     "example_vi": "Tôi đã học tiếng Nhật 12 tháng.",
+     "audited": true,
+     "review_log": [
+      {
+       "date": "2026-11-24",
+       "by": "ai_review",
+       "note": "Bổ sung theo phản hồi người học: nhóm thiếu 4/5/7/9/11/12 tháng khiến tưởng nhầm 9 tháng là きゅうげつ. Cách đọc khớp luật validation/numbers.py + JMdict"
       }
      ]
     },

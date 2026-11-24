@@ -575,6 +575,7 @@ def import_generated_questions(conn) -> dict:
 GRAMMAR_Q = NORM / "grammar_questions" / "grammar_questions.json"
 GRAMMAR_Q_REVIEW = NORM / "ai_review" / "grammar_questions_review.json"
 GQ_EXAM = "BANK_N5_GRAMMAR_AI"
+GQ_SETS = NORM / "grammar_questions" / "sets"   # curated study sets: {exam_id, title, note, entries}, listed as exams
 GQ_MONDAI = {   # instructions as on the real N5 paper
     "grammar_form": (1, "（　　）に 何を 入れますか。1・2・3・4から いちばん いい ものを 一つ えらんで ください。"),
     "sentence_composition": (2, "＿★＿に 入る ものは どれですか。1・2・3・4から いちばん いい ものを 一つ えらんで ください。"),
@@ -633,10 +634,10 @@ def check_grammar_question(q: dict, verified_grammar: set[str], n5_kanji: set[st
     return issues
 
 
-def _bank_exam(conn, exam_id: str, title: str, note: str) -> None:
+def _bank_exam(conn, exam_id: str, title: str, note: str, exam_type: str = "question_bank") -> None:
     conn.execute("INSERT OR REPLACE INTO exams (exam_id, title, level, exam_type, source_type, is_official, "
                  "duration_minutes, data_json, source_ids, verification_status) VALUES (?,?,?,?,?,?,?,?,?,?)",
-                 (exam_id, title, "N5", "question_bank", "AI_GENERATED", 0, None,
+                 (exam_id, title, "N5", exam_type, "AI_GENERATED", 0, None,
                   json.dumps({"note": note}, ensure_ascii=False), json.dumps(["SRC_LOCAL_GRAMMAR_DOCX"]), "verified"))
 
 
@@ -682,7 +683,8 @@ def _past_keys(conn, sql: str) -> set[str]:
     return {jp_key(r[0]) for r in conn.execute(sql)}
 
 
-def import_grammar_questions(conn, path: Path = GRAMMAR_Q, review_path: Path = GRAMMAR_Q_REVIEW) -> dict:
+def import_grammar_questions(conn, path: Path = GRAMMAR_Q, review_path: Path = GRAMMAR_Q_REVIEW,
+                             sets_dir: Path | None = GQ_SETS) -> dict:
     """Agent-authored 文の文法1/2 practice questions (ADR-020). Questions that are excluded or gone become 'rejected'
     (attempt history may reference them), never deleted."""
     data = _load(path)
@@ -692,12 +694,23 @@ def import_grammar_questions(conn, path: Path = GRAMMAR_Q, review_path: Path = G
     grammar = {r[0]: r[1] for r in conn.execute("SELECT id, pattern FROM grammar WHERE verification_status='verified'")}
     n5_kanji = {r[0] for r in conn.execute("SELECT kanji FROM kanji WHERE verification_status='verified'")}
     past_keys = _past_keys(conn, "SELECT q.question_text FROM questions q JOIN exams e USING (exam_id) "
-                                 "WHERE e.exam_type!='question_bank' AND q.question_text IS NOT NULL")
+                                 "WHERE e.exam_type IN ('past_exam','official_sample') AND q.question_text IS NOT NULL")
     _bank_exam(conn, GQ_EXAM, "Ngân hàng câu ngữ pháp do AI soạn (AI_GENERATED)",
                "Câu 文の文法1/2 do agent soạn từ các điểm ngữ pháp đã verified; 2 AI giải mù độc lập (ADR-020). "
                "Không phải câu hỏi JLPT chính thức.")
+    stats = _import_gq_entries(conn, GQ_EXAM, data["entries"], review, grammar, n5_kanji, past_keys)
+    for f in sorted(sets_dir.glob("*.json")) if sets_dir else []:   # study sets: same rules, own exam row
+        s = json.loads(f.read_text(encoding="utf-8"))
+        _bank_exam(conn, s["exam_id"], s["title"], s["note"], exam_type="study_set")
+        for k, v in _import_gq_entries(conn, s["exam_id"], s["entries"], review, grammar, n5_kanji, past_keys).items():
+            stats[k] += v
+    return stats
+
+
+def _import_gq_entries(conn, exam_id: str, entries: list, review: dict, grammar: dict, n5_kanji: set,
+                       past_keys: set) -> dict:
     stats, live = {"grammar_questions": 0, "verified": 0, "needs_review": 0}, []
-    for q in data["entries"]:
+    for q in entries:
         if q.get("excluded"):
             continue
         live.append(q["question_id"])
@@ -707,12 +720,12 @@ def import_grammar_questions(conn, path: Path = GRAMMAR_Q, review_path: Path = G
         if q["mondai_type"] == "sentence_composition":
             extra.update(star_position=q.get("star_position"), expected_sequence=q.get("expected_sequence"))
         status = _upsert_bank_question(
-            conn, GQ_EXAM, q, check_grammar_question(q, set(grammar), n5_kanji, past_keys), review,
+            conn, exam_id, q, check_grammar_question(q, set(grammar), n5_kanji, past_keys), review,
             mondai_no=mondai_no, instruction=instruction, extra=extra,
             answer_type="sentence_ordering" if q["mondai_type"] == "sentence_composition" else "single_choice")
         stats["grammar_questions"] += 1
         stats["verified" if status == "verified" else "needs_review"] += 1
-    _reject_gone(conn, GQ_EXAM, live)
+    _reject_gone(conn, exam_id, live)
     return stats
 
 
@@ -775,7 +788,7 @@ def import_reading_questions(conn, path: Path = READING_Q, review_path: Path = R
     grammar = {r[0]: r[1] for r in conn.execute("SELECT id, pattern FROM grammar WHERE verification_status='verified'")}
     n5_kanji = {r[0] for r in conn.execute("SELECT kanji FROM kanji WHERE verification_status='verified'")}
     past_keys = _past_keys(conn, "SELECT p.text FROM passages p JOIN exams e USING (exam_id) "
-                                 "WHERE e.exam_type!='question_bank'")
+                                 "WHERE e.exam_type IN ('past_exam','official_sample')")
     _bank_exam(conn, RQ_EXAM, "Ngân hàng bài đọc do AI soạn (AI_GENERATED)",
                "Bài 文章の文法 và 読解 do agent soạn từ từ vựng/ngữ pháp/kanji N5 đã verified; 2 AI giải mù độc lập "
                "(ADR-026). Không phải câu hỏi JLPT chính thức.")

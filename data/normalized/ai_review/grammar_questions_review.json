@@ -5489,5 +5489,737 @@
   "alt_b": [],
   "issue_a": null,
   "issue_b": null
+ },
+ "Q_GQW_A_01": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_02": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_03": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_04": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_05": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_06": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_07": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_08": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_09": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_10": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_11": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   3,
+   4,
+   1,
+   2
+  ],
+  "seq_b": [
+   3,
+   4,
+   1,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_12": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   3,
+   4,
+   2,
+   1
+  ],
+  "seq_b": [
+   3,
+   4,
+   2,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_13": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_14": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_15": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_16": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_17": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_18": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_19": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   2,
+   1,
+   4,
+   3
+  ],
+  "seq_b": [
+   2,
+   1,
+   4,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_20": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   4,
+   3,
+   2,
+   1
+  ],
+  "seq_b": [
+   4,
+   3,
+   2,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_21": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_22": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_23": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_24": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_25": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_26": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": "〜て もらう (Minna bài 24) thuộc N4, vượt N5; đáp án vẫn duy nhất.",
+  "issue_b": null
+ },
+ "Q_GQW_A_27": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "seq_b": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "note": "Giải mù lại: solver A ban đầu xếp đúng thứ tự (trùng đáp án) nhưng chọn mảnh ô 1 thay vì ô ★; solver mới giải độc lập ra đáp án gốc"
+ },
+ "Q_GQW_A_28": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   2,
+   3,
+   4,
+   1
+  ],
+  "seq_b": [
+   2,
+   3,
+   4,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_A_29": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   3,
+   1,
+   4,
+   2
+  ],
+  "seq_b": [
+   3,
+   1,
+   4,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null,
+  "note": "Giải mù lại: solver A ban đầu xếp đúng thứ tự (trùng đáp án) nhưng chọn mảnh ô 1 thay vì ô ★; solver mới giải độc lập ra đáp án gốc"
+ },
+ "Q_GQW_B_01": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": "と おもう (Minna bài 21) thường xếp ranh giới N5/N4; không ảnh hưởng đáp án.",
+  "issue_b": null
+ },
+ "Q_GQW_B_02": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": "と おもう (Minna bài 21) thường xếp ranh giới N5/N4; không ảnh hưởng đáp án.",
+  "issue_b": null
+ },
+ "Q_GQW_B_03": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_04": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_05": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_06": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_07": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   3,
+   4,
+   1,
+   2
+  ],
+  "seq_b": [
+   3,
+   4,
+   1,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_08": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "seq_b": [
+   2,
+   4,
+   3,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_09": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_10": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_11": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_12": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_13": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": "と おもう (Minna bài 21) thường xếp ranh giới N5/N4; không ảnh hưởng đáp án.",
+  "issue_b": null
+ },
+ "Q_GQW_B_14": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_15": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": [
+   3,
+   4,
+   2,
+   1
+  ],
+  "seq_b": [
+   3,
+   4,
+   2,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_16": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "seq_b": [
+   2,
+   4,
+   1,
+   3
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_17": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_18": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_19": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_20": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_21": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": "〜ても (nhượng bộ, Minna bài 25) thuộc N4; đáp án vẫn duy nhất.",
+  "issue_b": null
+ },
+ "Q_GQW_B_22": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_23": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   4,
+   3,
+   2,
+   1
+  ],
+  "seq_b": [
+   4,
+   3,
+   2,
+   1
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_24": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": [
+   3,
+   4,
+   1,
+   2
+  ],
+  "seq_b": [
+   3,
+   4,
+   1,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_25": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_26": {
+  "solver_a": 2,
+  "solver_b": 2,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_27": {
+  "solver_a": 4,
+  "solver_b": 4,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_28": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_29": {
+  "solver_a": 1,
+  "solver_b": 1,
+  "seq_a": null,
+  "seq_b": null,
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
+ },
+ "Q_GQW_B_30": {
+  "solver_a": 3,
+  "solver_b": 3,
+  "seq_a": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "seq_b": [
+   4,
+   3,
+   1,
+   2
+  ],
+  "alt_a": [],
+  "alt_b": [],
+  "issue_a": null,
+  "issue_b": null
  }
 }

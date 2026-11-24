@@ -1,0 +1,1916 @@
+{
+ "exam_id": "SET_N5_GRAMMAR_WEAK_20261124",
+ "title": "Ôn điểm yếu ngữ pháp (24/11): trợ từ, nghi vấn từ, cho–nhận, thể ない・普通形・て, rủ rê (AI_GENERATED)",
+ "note": "Bộ ôn soạn riêng từ các câu người học làm sai (đề 2024-07, 2017-07, ngân hàng ngữ pháp). 59 câu 文の文法1/2, cùng quy trình ADR-020: luật check_grammar_question + 2 AI giải mù khớp đáp án. Không phải câu JLPT chính thức.",
+ "entries": [
+  {
+   "question_id": "Q_GQW_A_01",
+   "grammar_id": "GRA_000059",
+   "mondai_type": "grammar_form",
+   "question_text": "わたしは 一週間（　　） 2かい スーパーへ かいものに 行きます。",
+   "options": [
+    "を",
+    "に",
+    "が",
+    "へ"
+   ],
+   "answer": 2,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「わたしは 一週間に 2かい スーパーへ かいものに 行きます。」 – Tôi đi siêu thị mua sắm 2 lần một tuần. Công thức tần suất: [khoảng thời gian] + に + [số lần]. Mẹo: に ở đây nghĩa là 'trong (mỗi)': 一週間に 2かい = 2 lần trong 1 tuần.",
+   "option_explanations": {
+    "1": "Sai. Đây là lỗi bạn hay mắc. を chỉ tân ngữ của động từ (かいものを します); 一週間 không phải tân ngữ. Tần suất luôn dùng に.",
+    "2": "Đúng. Khoảng thời gian + に + số lần = tần suất.",
+    "3": "Sai. が đánh dấu chủ ngữ; 一週間 không phải người đi mua sắm.",
+    "4": "Sai. へ chỉ hướng đi đến một nơi (スーパーへ); 一週間 là khoảng thời gian, không phải nơi chốn."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_02",
+   "grammar_id": "GRA_000059",
+   "mondai_type": "grammar_form",
+   "question_text": "この くすりは 一日（　　） 3かい、ごはんを 食べた あとで 飲んで ください。",
+   "options": [
+    "の",
+    "と",
+    "を",
+    "に"
+   ],
+   "answer": 4,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「この くすりは 一日に 3かい、ごはんを 食べた あとで 飲んで ください。」 – Hãy uống thuốc này 3 lần một ngày, sau khi ăn cơm. 一日に 3かい = 3 lần mỗi ngày. Mẹo: hễ có 'số lần' (～かい) đi sau một khoảng thời gian (一日, 一週間, 一か月, 一年) thì chen に vào giữa.",
+   "option_explanations": {
+    "1": "Sai. 一日の 3かい là '3 lần của một ngày', không phải cách nói tần suất.",
+    "2": "Sai. と nghĩa 'và / cùng với'; không nói 'một ngày và 3 lần'.",
+    "3": "Sai. Lỗi hay gặp: tần suất không dùng を. を là tân ngữ (くすりを 飲みます).",
+    "4": "Đúng. 一日に 3かい = 3 lần một ngày."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_03",
+   "grammar_id": "GRA_000047",
+   "mondai_type": "grammar_form",
+   "question_text": "わたしは 日本の うた（　　） すきです。",
+   "options": [
+    "が",
+    "で",
+    "に",
+    "と"
+   ],
+   "answer": 1,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「わたしは 日本の うたが すきです。」 – Tôi thích bài hát Nhật. すき không phải động từ hành động mà chỉ trạng thái, nên đối tượng dùng が. Mẹo: nhóm 'が đặc biệt' gồm すき／きらい／じょうず／へた／わかります／あります／ほしい.",
+   "option_explanations": {
+    "1": "Đúng. N が すきです.",
+    "2": "Sai. で chỉ nơi diễn ra hành động hoặc phương tiện; すき không phải hành động.",
+    "3": "Sai. に chỉ thời điểm, nơi tồn tại, người nhận…; không đánh dấu đối tượng của すき.",
+    "4": "Sai. と nghĩa 'và / cùng với', phải có danh từ thứ hai; không đánh dấu thứ mình thích."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_04",
+   "grammar_id": "GRA_000066",
+   "mondai_type": "grammar_form",
+   "question_text": "わたしは 今、新しい くつ（　　） ほしいです。",
+   "options": [
+    "か",
+    "に",
+    "が",
+    "で"
+   ],
+   "answer": 3,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「わたしは 今、新しい くつが ほしいです。」 – Bây giờ tôi muốn có đôi giày mới. ほしい là tính từ い, nên thứ mình muốn có đi với が (giống すき). Mẹo: N が ほしいです.",
+   "option_explanations": {
+    "1": "Sai. Đây là lỗi bạn từng mắc. か dùng cho câu hỏi hoặc 'A か B' (A hay B); 'くつか ほしい' không có nghĩa. ほしい luôn đi với が.",
+    "2": "Sai. に không đánh dấu thứ mình muốn có.",
+    "3": "Đúng. N が ほしいです.",
+    "4": "Sai. で chỉ nơi chốn hoặc phương tiện."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_05",
+   "grammar_id": "GRA_000047",
+   "mondai_type": "grammar_form",
+   "question_text": "ミンさんは 日本語（　　） 少し わかります。",
+   "options": [
+    "と",
+    "が",
+    "に",
+    "へ"
+   ],
+   "answer": 2,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「ミンさんは 日本語が 少し わかります。」 – Anh Minh hiểu một chút tiếng Nhật. わかります chỉ trạng thái (hiểu), nên thứ được hiểu đi với が, không dùng を.",
+   "option_explanations": {
+    "1": "Sai. 日本語と là 'tiếng Nhật và…', thiếu vế sau; không đánh dấu thứ được hiểu.",
+    "2": "Đúng. N が わかります.",
+    "3": "Sai. に không dùng cho đối tượng của わかります.",
+    "4": "Sai. へ chỉ hướng đi đến một nơi."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_06",
+   "grammar_id": "GRA_000063",
+   "mondai_type": "grammar_form",
+   "question_text": "この かばんは あの かばん（　　） 高いです。",
+   "options": [
+    "から",
+    "と",
+    "まで",
+    "より"
+   ],
+   "answer": 4,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「この かばんは あの かばんより 高いです。」 – Cái túi này đắt hơn cái túi kia. Mẫu so sánh hơn: N1 は N2 より Adj = N1 Adj hơn N2. より đứng sau vật bị đem ra so (cái kém hơn).",
+   "option_explanations": {
+    "1": "Sai. Lỗi bạn từng mắc. から = 'từ' (điểm xuất phát, lý do), không dùng để so sánh. So sánh hơn → より.",
+    "2": "Sai. と chỉ dùng trong câu hỏi 'N1 と N2 と どちらが…', không dùng trong câu khẳng định so sánh.",
+    "3": "Sai. まで = 'đến' (giới hạn thời gian / nơi chốn).",
+    "4": "Đúng. N2 より Adj = Adj hơn N2."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_07",
+   "grammar_id": "GRA_000021",
+   "mondai_type": "grammar_form",
+   "question_text": "あの 先生は 中国（　　） 来ました。中国語の 先生です。",
+   "options": [
+    "で",
+    "を",
+    "から",
+    "と"
+   ],
+   "answer": 3,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「あの 先生は 中国から 来ました。中国語の 先生です。」 – Thầy ấy đến từ Trung Quốc. Là giáo viên tiếng Trung. Nơi xuất phát, nguồn gốc → から (từ). Mẹo: 来ます／入ります／出ます mà nói 'từ đâu' thì dùng から.",
+   "option_explanations": {
+    "1": "Sai. Lỗi bạn từng mắc (chọn で cho まど… 入ります). で chỉ nơi diễn ra hành động, không chỉ điểm xuất phát.",
+    "2": "Sai. を + động từ di chuyển chỉ nơi đi qua hoặc rời khỏi (へやを 出ます); không dùng với 来ます.",
+    "3": "Đúng. N から 来ました = đến từ N.",
+    "4": "Sai. と = 'cùng với' (người); 中国 là nơi chốn."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_08",
+   "grammar_id": "GRA_000124",
+   "mondai_type": "grammar_form",
+   "question_text": "つくえの 上（　　） 本が 三さつ あります。",
+   "options": [
+    "に",
+    "で",
+    "を",
+    "へ"
+   ],
+   "answer": 1,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「つくえの 上に 本が 三さつ あります。」 – Trên bàn có 3 quyển sách. Nơi tồn tại (あります／います／すんで います) dùng に. Mẹo: 'ở đâu đó CÓ cái gì' → に; 'LÀM gì ở đâu' → で.",
+   "option_explanations": {
+    "1": "Đúng. N（nơi）に N が あります.",
+    "2": "Sai. で chỉ nơi diễn ra hành động. あります (tồn tại đồ vật) dùng に; chỉ khi nói sự kiện (パーティーが あります) mới dùng で.",
+    "3": "Sai. を chỉ tân ngữ hoặc nơi đi qua; あります không có tân ngữ.",
+    "4": "Sai. へ chỉ hướng di chuyển; sách không di chuyển."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_09",
+   "grammar_id": "GRA_000124",
+   "mondai_type": "grammar_form",
+   "question_text": "きのう、駅の 前の 店（　　） くつを 買いました。",
+   "options": [
+    "に",
+    "を",
+    "で",
+    "が"
+   ],
+   "answer": 3,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「きのう、駅の 前の 店で くつを 買いました。」 – Hôm qua tôi mua giày ở cửa hàng trước ga. 買います là hành động → nơi diễn ra hành động dùng で.",
+   "option_explanations": {
+    "1": "Sai. に dùng cho nơi tồn tại (あります／います) hoặc điểm đến; 買います là hành động nên dùng で.",
+    "2": "Sai. Câu đã có tân ngữ くつを; 店を 買いました là 'mua cả cửa hàng'.",
+    "3": "Đúng. N（nơi）で V = làm V tại N.",
+    "4": "Sai. が đánh dấu chủ ngữ; cửa hàng không phải người mua."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_10",
+   "grammar_id": "GRA_000113",
+   "mondai_type": "grammar_form",
+   "question_text": "駅へ 行く ときは、この はし（　　） わたって ください。",
+   "options": [
+    "で",
+    "を",
+    "に",
+    "が"
+   ],
+   "answer": 2,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「駅へ 行く ときは、この はしを わたって ください。」 – Khi đi ra ga, hãy đi qua cây cầu này. Nơi mình đi băng qua / đi dọc theo dùng を: はしを わたります, 道を わたります, かどを まがります.",
+   "option_explanations": {
+    "1": "Sai. Dễ nhầm vì nghĩ 'ở cây cầu' nên dùng で. Với わたります (băng qua), nơi bị băng qua luôn dùng を.",
+    "2": "Đúng. N（nơi đi qua）を わたります.",
+    "3": "Sai. に chỉ điểm đến; ta không 'đến' cây cầu mà đi qua nó.",
+    "4": "Sai. が đánh dấu chủ ngữ; cây cầu không tự đi qua."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_11",
+   "grammar_id": "GRA_000059",
+   "mondai_type": "sentence_composition",
+   "question_text": "わたしは ＿＿ ＿＿ ★ ＿＿ プールで およぎます。",
+   "options": [
+    "2かい",
+    "ぐらい",
+    "一か月",
+    "に"
+   ],
+   "answer": 1,
+   "star_position": 3,
+   "expected_sequence": [
+    3,
+    4,
+    1,
+    2
+   ],
+   "explanation_vi": "Câu đúng: 「わたしは 一か月に 2かい ぐらい プールで およぎます。」 – Tôi bơi ở hồ bơi khoảng 2 lần một tháng. Thứ tự: 一か月 → に → 2かい → ぐらい (3→4→1→2), ★ = 2かい. Mẹo: [khoảng thời gian] + に + [số lần] + ぐらい (khoảng).",
+   "option_explanations": {
+    "1": "Đúng (ô ★). Số lần đứng ngay sau 一か月に.",
+    "2": "ぐらい (khoảng) đứng sau số lần: 2かい ぐらい — ô thứ 4.",
+    "3": "一か月 là khoảng thời gian, đứng đầu — ô thứ 1.",
+    "4": "に nối khoảng thời gian với số lần: 一か月に — ô thứ 2."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_12",
+   "grammar_id": "GRA_000124",
+   "mondai_type": "sentence_composition",
+   "question_text": "A「リンさんは どこに いますか。」 B「あそこの ＿＿ ＿＿ ★ ＿＿ いますよ。」",
+   "options": [
+    "すわって",
+    "に",
+    "木の",
+    "下"
+   ],
+   "answer": 2,
+   "star_position": 3,
+   "expected_sequence": [
+    3,
+    4,
+    2,
+    1
+   ],
+   "explanation_vi": "Câu đúng: B「あそこの 木の 下に すわって いますよ。」 – Anh Lin đang ngồi dưới gốc cây đằng kia đấy. Thứ tự: 木の → 下 → に → すわって (3→4→2→1), ★ = に. Mẹo: nơi tồn tại / chỗ ngồi xuống dùng に (木の 下に すわります); làm hành động ở đâu mới dùng で.",
+   "option_explanations": {
+    "1": "すわって đi ngay trước います: すわって います (đang ngồi) — ô thứ 4.",
+    "2": "Đúng (ô ★). に chỉ vị trí: 木の 下に.",
+    "3": "木の bổ nghĩa cho 下: 木の 下 (dưới cái cây) — ô thứ 1.",
+    "4": "下 (dưới) là từ chỉ vị trí, đứng sau 木の — ô thứ 2."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_13",
+   "grammar_id": "GRA_000025",
+   "mondai_type": "grammar_form",
+   "question_text": "A「きょうしつに だれか いますか。」 B「いいえ、（　　） いません。」",
+   "options": [
+    "だれが",
+    "だれか",
+    "だれと",
+    "だれも"
+   ],
+   "answer": 4,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: B「いいえ、だれも いません。」 – Trong lớp có ai không? – Không, không có ai cả. Từ để hỏi + も + phủ định = không … cả: 何も (không gì), だれも (không ai), どこも／どこへも (không đâu).",
+   "option_explanations": {
+    "1": "Sai. だれが là từ để hỏi 'ai?'; câu trả lời này không phải câu hỏi.",
+    "2": "Sai. だれか = 'ai đó', dùng trong câu hỏi hoặc khẳng định (だれか いますか). Trả lời 'không có ai' phải dùng だれも.",
+    "3": "Sai. だれと = 'với ai', là câu hỏi.",
+    "4": "Đúng. だれも + phủ định = không có ai."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_14",
+   "grammar_id": "GRA_000025",
+   "mondai_type": "grammar_form",
+   "question_text": "けさは 時間が なかったので、（　　） 食べませんでした。",
+   "options": [
+    "何も",
+    "何か",
+    "何を",
+    "何が"
+   ],
+   "answer": 1,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「けさは 時間が なかったので、何も 食べませんでした。」 – Sáng nay vì không có thời gian nên tôi không ăn gì cả. 何も + phủ định = không … gì cả. Mẹo: も thay chỗ cho を, nên KHÔNG nói 何をも.",
+   "option_explanations": {
+    "1": "Đúng. 何も ～ませんでした = không làm gì cả.",
+    "2": "Sai. 何か = 'cái gì đó', dùng trong câu hỏi hoặc câu khẳng định (何か 食べましたか). Không dùng để nói 'không ăn gì cả'.",
+    "3": "Sai. Lỗi bạn từng mắc. 何を dùng để hỏi 'cái gì?' (何を 食べましたか). Câu kể phủ định 'không… gì cả' phải dùng 何も.",
+    "4": "Sai. 何が là từ để hỏi làm chủ ngữ; câu này không phải câu hỏi."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_15",
+   "grammar_id": "GRA_000069",
+   "mondai_type": "grammar_form",
+   "question_text": "A「あした、（　　） 行きますか。」 B「ええ、デパートへ 行きます。」",
+   "options": [
+    "どこへ",
+    "どこへも",
+    "どこかへ",
+    "どこが"
+   ],
+   "answer": 3,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: A「あした、どこかへ 行きますか。」 B「ええ、デパートへ 行きます。」 – Mai bạn có đi đâu không? – Có, tôi đi trung tâm thương mại. Mẹo: B trả lời ええ／いいえ → câu hỏi là 'có … không?', nên dùng どこか／何か／だれか.",
+   "option_explanations": {
+    "1": "Sai. どこへ 行きますか hỏi 'đi đâu?' – phải trả lời bằng tên nơi, không mở đầu bằng ええ.",
+    "2": "Sai. どこへも chỉ đi với phủ định (どこへも 行きません).",
+    "3": "Đúng. どこかへ = (đến) nơi nào đó; câu hỏi có/không.",
+    "4": "Sai. どこが là chủ ngữ; nơi đến của 行きます phải dùng へ／に."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_16",
+   "grammar_id": "GRA_000069",
+   "mondai_type": "grammar_form",
+   "question_text": "A「おなかが すきましたね。」 B「ええ。じゃ、あの 店で （　　） 食べましょう。」",
+   "options": [
+    "何も",
+    "何か",
+    "だれか",
+    "何が"
+   ],
+   "answer": 2,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: B「ええ。じゃ、あの 店で 何か 食べましょう。」 – Đói bụng nhỉ. – Ừ. Vậy mình ăn gì đó ở quán kia đi. 何か = cái gì đó (không xác định), dùng được trong câu khẳng định, câu rủ, câu hỏi.",
+   "option_explanations": {
+    "1": "Sai. 何も chỉ đi với phủ định; ～ましょう là câu rủ khẳng định.",
+    "2": "Đúng. 何か 食べましょう = mình ăn gì đó đi.",
+    "3": "Sai. だれか = 'ai đó'; 'ăn ai đó' vô nghĩa.",
+    "4": "Sai. 何が là từ để hỏi làm chủ ngữ; câu rủ ～ましょう không phải câu hỏi."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_17",
+   "grammar_id": "GRA_000048",
+   "mondai_type": "grammar_form",
+   "question_text": "A「（　　） スポーツが すきですか。」 B「サッカーが すきです。」",
+   "options": [
+    "どんな",
+    "どう",
+    "どこ",
+    "どれ"
+   ],
+   "answer": 1,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: A「どんな スポーツが すきですか。」 – Bạn thích môn thể thao nào? – Tôi thích bóng đá. Mẹo: muốn hỏi 'loại N nào / N như thế nào' → どんな + N (đặt thẳng trước danh từ, không có の). Trả lời bằng một thứ cụ thể.",
+   "option_explanations": {
+    "1": "Đúng. どんな + danh từ.",
+    "2": "Sai. どう (thế nào) đứng một mình để hỏi cảm tưởng (日本は どうですか); không đặt trước danh từ.",
+    "3": "Sai. どこ hỏi nơi chốn và không đặt thẳng trước danh từ.",
+    "4": "Sai. どれ (cái nào) đứng một mình; muốn đặt trước danh từ phải đổi thành どの."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_18",
+   "grammar_id": "GRA_000036",
+   "mondai_type": "grammar_form",
+   "question_text": "A「国へ （　　） かえりますか。」 B「ひこうきで かえります。」",
+   "options": [
+    "何に",
+    "何を",
+    "何が",
+    "何で"
+   ],
+   "answer": 4,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: A「国へ 何で かえりますか。」 B「ひこうきで かえります。」 – Bạn về nước bằng gì? – Tôi về bằng máy bay. Phương tiện, dụng cụ dùng で, nên hỏi phương tiện là 何で. Mẹo: B trả lời 'N で' → câu hỏi dùng 何で.",
+   "option_explanations": {
+    "1": "Sai. 何に đi với 乗ります (何に 乗りますか = đi lên xe gì); với かえります phải hỏi phương tiện bằng 何で.",
+    "2": "Sai. を chỉ tân ngữ; かえります không có tân ngữ là phương tiện.",
+    "3": "Sai. 何が là chủ ngữ ('cái gì về nước?'), không hợp nghĩa.",
+    "4": "Đúng. 何で = bằng gì (phương tiện)."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_19",
+   "grammar_id": "GRA_000025",
+   "mondai_type": "sentence_composition",
+   "question_text": "A「きのうは どこかへ 行きましたか。」 B「いいえ、＿＿ ＿＿ ★ ＿＿。うちで ずっと テレビを 見て いました。」",
+   "options": [
+    "へ",
+    "どこ",
+    "行きませんでした",
+    "も"
+   ],
+   "answer": 4,
+   "star_position": 3,
+   "expected_sequence": [
+    2,
+    1,
+    4,
+    3
+   ],
+   "explanation_vi": "Câu đúng: B「いいえ、どこへも 行きませんでした。うちで ずっと テレビを 見て いました。」 – Hôm qua bạn có đi đâu không? – Không, tôi không đi đâu cả. Tôi ở nhà xem tivi suốt. Thứ tự: どこ → へ → も → 行きませんでした (2→1→4→3), ★ = も. Mẹo: どこ + へ + も + phủ định; も luôn đứng sau trợ từ へ.",
+   "option_explanations": {
+    "1": "へ đứng ngay sau どこ: どこへ — ô thứ 2.",
+    "2": "どこ đứng đầu — ô thứ 1.",
+    "3": "行きませんでした (phủ định) đứng cuối — ô thứ 4.",
+    "4": "Đúng (ô ★). も gắn sau どこへ: どこへも + phủ định = không đi đâu cả."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_20",
+   "grammar_id": "GRA_000048",
+   "mondai_type": "sentence_composition",
+   "question_text": "A「休みの 日は ＿＿ ★ ＿＿ ＿＿ か。」 B「アメリカの えいがを よく 見ます。」",
+   "options": [
+    "見ます",
+    "を",
+    "えいが",
+    "どんな"
+   ],
+   "answer": 3,
+   "star_position": 2,
+   "expected_sequence": [
+    4,
+    3,
+    2,
+    1
+   ],
+   "explanation_vi": "Câu đúng: A「休みの 日は どんな えいがを 見ますか。」 – Ngày nghỉ bạn xem loại phim gì? – Tôi hay xem phim Mỹ. Thứ tự: どんな → えいが → を → 見ます (4→3→2→1), ★ = えいが. Mẹo: どんな đứng thẳng trước danh từ (どんな えいが), không chen の.",
+   "option_explanations": {
+    "1": "見ます là động từ, đứng cuối trước か — ô thứ 4.",
+    "2": "を đánh dấu tân ngữ, đứng sau えいが — ô thứ 3.",
+    "3": "Đúng (ô ★). えいが đứng ngay sau どんな.",
+    "4": "どんな đứng đầu, trước danh từ — ô thứ 1."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_21",
+   "grammar_id": "GRA_000038",
+   "mondai_type": "grammar_form",
+   "question_text": "わたしは デパートで ネクタイを 買って、父に（　　）。",
+   "options": [
+    "くれました",
+    "もらいました",
+    "あげました",
+    "かりました"
+   ],
+   "answer": 3,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「わたしは デパートで ネクタイを 買って、父に あげました。」 – Tôi mua cà vạt ở trung tâm thương mại rồi tặng bố. Tôi tự mua rồi đưa cho bố → tôi là người cho. Mẹo: わたしは + người nhận に + あげます.",
+   "option_explanations": {
+    "1": "Sai. くれます dùng khi người khác cho TÔI (hoặc người nhà tôi). Chủ ngữ là わたし thì không dùng くれます.",
+    "2": "Sai. 父に もらいました = nhận từ bố. Nhưng tôi tự mua cà vạt → tôi là người cho.",
+    "3": "Đúng. わたしは 父に あげました = tôi tặng bố.",
+    "4": "Sai. かります = mượn; đã tự mua rồi thì không mượn của bố."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_22",
+   "grammar_id": "GRA_000039",
+   "mondai_type": "grammar_form",
+   "question_text": "わたしは 友だちから 日本の おかしを（　　）。",
+   "options": [
+    "あげました",
+    "もらいました",
+    "くれました",
+    "かしました"
+   ],
+   "answer": 2,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「わたしは 友だちから 日本の おかしを もらいました。」 – Tôi được bạn cho bánh kẹo Nhật. から (từ) chỉ người cho → tôi là người nhận → もらいます. Mẹo: thấy から + người → nhận (もらいます／かります／ならいます).",
+   "option_explanations": {
+    "1": "Sai. あげます đi với người nhận + に; ở đây là から (từ bạn) nên tôi là người nhận.",
+    "2": "Đúng. N から もらいます = nhận từ N.",
+    "3": "Sai. くれます có chủ ngữ là người cho (友だちが くれました); không đi với わたしは … から.",
+    "4": "Sai. かします (cho mượn) đi với người nhận + に, không đi với から."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_23",
+   "grammar_id": "GRA_000039",
+   "mondai_type": "grammar_form",
+   "question_text": "A「すてきな かばんですね。」 B「ありがとう。たんじょう日に あねに（　　）。」",
+   "options": [
+    "あげました",
+    "くれました",
+    "かしました",
+    "もらいました"
+   ],
+   "answer": 4,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: B「ありがとう。たんじょう日に あねに もらいました。」 – Cái túi đẹp nhỉ. – Cảm ơn. Tôi được chị gái tặng vào dịp sinh nhật. B đang có cái túi được khen → B là người nhận. Mẹo: Nに もらいます thì に = 'từ' người cho; ai đang giữ đồ vật thì người đó là người nhận.",
+   "option_explanations": {
+    "1": "Sai. Lỗi bạn từng mắc (chọn あげました). Nếu B tặng chị thì cái túi đã không còn là của B; B đang cầm túi được khen nên B là người nhận.",
+    "2": "Sai. Chủ ngữ bị lược ở đây là わたし (B); くれます không có chủ ngữ là わたし. Muốn dùng くれます phải nói あねが くれました.",
+    "3": "Sai. かします = cho mượn; B cho chị mượn thì B không đang dùng túi, và 'cho mượn nhân dịp sinh nhật' vô lý.",
+    "4": "Đúng. あねに もらいました = được chị tặng."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_24",
+   "grammar_id": "GRA_000114",
+   "mondai_type": "grammar_form",
+   "question_text": "りょこうから かえった さとうさんが、わたしに おみやげを（　　）。",
+   "options": [
+    "くれました",
+    "あげました",
+    "もらいました",
+    "ならいました"
+   ],
+   "answer": 1,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「りょこうから かえった さとうさんが、わたしに おみやげを くれました。」 – Anh Sato đi du lịch về đã cho tôi quà. Người khác cho TÔI → くれます. Mẹo: người cho が + わたしに + くれます.",
+   "option_explanations": {
+    "1": "Đúng. Người khác → tôi: くれます.",
+    "2": "Sai. Người nhận là わたし (tôi). Người khác cho tôi phải dùng くれます, không dùng あげます.",
+    "3": "Sai. さとうさんが … もらいました = anh Sato nhận quà từ tôi. Nhưng người đi du lịch về mới là người mang quà, nên anh Sato là người cho.",
+    "4": "Sai. ならいます = học; không 'học' quà."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_25",
+   "grammar_id": "GRA_000114",
+   "mondai_type": "grammar_form",
+   "question_text": "A「すてきな とけいですね。だれに もらいましたか。」 B「父が（　　）。」",
+   "options": [
+    "もらいました",
+    "かりました",
+    "くれました",
+    "あげました"
+   ],
+   "answer": 3,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: B「父が くれました。」 – Đồng hồ đẹp nhỉ. Bạn được ai cho vậy? – Bố tôi cho. Bố là người cho, tôi là người nhận → 父が くれました (= 父に もらいました). Mẹo: để ý trợ từ: 父に → もらいました; 父が → くれました.",
+   "option_explanations": {
+    "1": "Sai. 父が もらいました = bố nhận. Nhưng A hỏi B nhận từ ai → bố là người cho.",
+    "2": "Sai. 父が かりました = bố mượn; không trả lời câu hỏi 'được ai cho'.",
+    "3": "Đúng. 父が くれました = bố cho tôi.",
+    "4": "Sai. Người nhận là tôi (B), nên không dùng あげます; người khác cho tôi dùng くれます."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_26",
+   "grammar_id": "GRA_000115",
+   "mondai_type": "grammar_form",
+   "question_text": "わたしは 日本語が わからないので、日本人の 友だちに てがみを 読んで（　　）。",
+   "options": [
+    "あげました",
+    "もらいました",
+    "くれました",
+    "かりました"
+   ],
+   "answer": 2,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「わたしは 日本語が わからないので、日本人の 友だちに てがみを 読んで もらいました。」 – Vì tôi không hiểu tiếng Nhật nên đã nhờ người bạn Nhật đọc lá thư cho. わたしは + người làm giúp に + V て もらいます = được ai làm V cho mình.",
+   "option_explanations": {
+    "1": "Sai. 読んで あげました = tôi đọc cho bạn. Nhưng tôi không hiểu tiếng Nhật nên không thể đọc giúp.",
+    "2": "Đúng. 友だちに 読んで もらいました = được bạn đọc cho.",
+    "3": "Sai. Chủ ngữ là わたしは nên không dùng くれます. Muốn dùng くれました phải nói 友だちが 読んで くれました.",
+    "4": "Sai. Không có mẫu 'V て かります'."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_27",
+   "grammar_id": "GRA_000107",
+   "mondai_type": "sentence_composition",
+   "question_text": "わたしは ＿＿ ★ ＿＿ ＿＿ 毎日 つかって います。",
+   "options": [
+    "あかい",
+    "かばんを",
+    "くれた",
+    "あねが"
+   ],
+   "answer": 3,
+   "star_position": 2,
+   "expected_sequence": [
+    4,
+    3,
+    1,
+    2
+   ],
+   "explanation_vi": "Câu đúng: 「わたしは あねが くれた あかい かばんを 毎日 つかって います。」 – Ngày nào tôi cũng dùng cái túi đỏ mà chị gái tặng. Thứ tự: あねが → くれた → あかい → かばんを (4→3→1→2), ★ = くれた. Mẹo: cụm bổ nghĩa đứng trước danh từ: [あねが くれた] + [あかい] + かばんを; chủ ngữ trong cụm bổ nghĩa dùng が.",
+   "option_explanations": {
+    "1": "あかい bổ nghĩa trực tiếp cho かばん, đứng ngay trước nó — ô thứ 3.",
+    "2": "かばんを là tân ngữ của つかって います, đứng cuối — ô thứ 4.",
+    "3": "Đúng (ô ★). くれた (chị cho tôi) đi ngay sau あねが.",
+    "4": "あねが là chủ ngữ của cụm bổ nghĩa, đứng đầu — ô thứ 1."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    },
+    {
+     "date": "2026-11-24",
+     "by": "ai_review",
+     "note": "Giải mù lại: solver A ban đầu xếp đúng thứ tự (trùng đáp án) nhưng chọn mảnh ô 1 thay vì ô ★; solver mới giải độc lập ra đáp án gốc"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_28",
+   "grammar_id": "GRA_000107",
+   "mondai_type": "sentence_composition",
+   "question_text": "おとうとは ＿＿ ＿＿ ★ ＿＿ 毎日 はいて います。",
+   "options": [
+    "くつを",
+    "わたしが",
+    "あげた",
+    "白い"
+   ],
+   "answer": 4,
+   "star_position": 3,
+   "expected_sequence": [
+    2,
+    3,
+    4,
+    1
+   ],
+   "explanation_vi": "Câu đúng: 「おとうとは わたしが あげた 白い くつを 毎日 はいて います。」 – Em trai tôi ngày nào cũng đi đôi giày trắng mà tôi đã tặng. Thứ tự: わたしが → あげた → 白い → くつを (2→3→4→1), ★ = 白い. Mẹo: tôi cho em → あげた; cụm [わたしが あげた] bổ nghĩa cho [白い くつ].",
+   "option_explanations": {
+    "1": "くつを là tân ngữ của はいて います, đứng cuối — ô thứ 4.",
+    "2": "わたしが là chủ ngữ của cụm bổ nghĩa, đứng đầu — ô thứ 1.",
+    "3": "あげた (tôi cho em) đi ngay sau わたしが — ô thứ 2.",
+    "4": "Đúng (ô ★). 白い đứng ngay trước くつ."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_A_29",
+   "grammar_id": "GRA_000002",
+   "mondai_type": "sentence_composition",
+   "question_text": "A「この かさは リンさんのですか。」 B「いいえ、リンさんの ＿＿ ★ ＿＿ ＿＿ です。」",
+   "options": [
+    "なくて",
+    "の",
+    "では",
+    "先生"
+   ],
+   "answer": 1,
+   "star_position": 2,
+   "expected_sequence": [
+    3,
+    1,
+    4,
+    2
+   ],
+   "explanation_vi": "Câu đúng: B「いいえ、リンさんの では なくて 先生の です。」 – Cái ô này là của anh Lin à? – Không, không phải của anh Lin mà là của thầy. Thứ tự: では → なくて → 先生 → の (3→1→4→2), ★ = なくて. Mẹo: N1 では なくて N2 = không phải N1 mà là N2; では luôn đi liền trước なくて.",
+   "option_explanations": {
+    "1": "Đúng (ô ★). なくて đi ngay sau では.",
+    "2": "の đi sau 先生: 先生の (của thầy) — ô thứ 4.",
+    "3": "では đi ngay sau リンさんの — ô thứ 1.",
+    "4": "先生 là N2 đứng sau では なくて — ô thứ 3."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    },
+    {
+     "date": "2026-11-24",
+     "by": "ai_review",
+     "note": "Giải mù lại: solver A ban đầu xếp đúng thứ tự (trùng đáp án) nhưng chọn mảnh ô 1 thay vì ô ★; solver mới giải độc lập ra đáp án gốc"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_01",
+   "grammar_id": "GRA_000083",
+   "mondai_type": "grammar_form",
+   "question_text": "A「きょうは 何時ごろ うちへ かえるの？」 B「しごとが 多いから、9時まで （　　） と おもう。」",
+   "options": [
+    "かえない",
+    "かえりない",
+    "かえらない",
+    "かえるない"
+   ],
+   "answer": 3,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「9時まで かえらないと おもう」 – Việc nhiều nên chắc đến 9 giờ mình mới về (đến 9 giờ không về). かえる (về) trông giống nhóm 2 nhưng là NHÓM 1 (ngoại lệ, như 入る, 走る): đổi -u → -a + ない: かえる → かえらない.",
+   "option_explanations": {
+    "1": "Sai. かえない là chia như nhóm 2 (bỏ る). かえる là nhóm 1 ngoại lệ.",
+    "2": "Sai. Không ghép ない vào thể ます (かえり-). Nhóm 1 dùng cột -a.",
+    "3": "Đúng. かえる (nhóm 1) → かえらない.",
+    "4": "Sai. Không ghép ない thẳng vào thể từ điển."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_02",
+   "grammar_id": "GRA_000083",
+   "mondai_type": "grammar_form",
+   "question_text": "A「やまださんは きょうの パーティーに 来る？」 B「ううん、かぜを ひいたから （　　） と おもう。」",
+   "options": [
+    "きない",
+    "こない",
+    "くない",
+    "くるない"
+   ],
+   "answer": 2,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「かぜを ひいたから こないと おもう」 – Không, cậu ấy bị cảm nên chắc không đến đâu. 来る là nhóm 3 bất quy tắc: くる → こない (ます: きます, て: きて). Nhớ: phủ định của 来る đọc là こ-.",
+   "option_explanations": {
+    "1": "Sai. き- là gốc của きます/きて, không dùng cho ない.",
+    "2": "Đúng. 来る → こない.",
+    "3": "Sai. くない là đuôi phủ định của tính từ い, không phải động từ.",
+    "4": "Sai. Không ghép ない vào thể từ điển."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_03",
+   "grammar_id": "GRA_000084",
+   "mondai_type": "grammar_form",
+   "question_text": "この 水は きたないですから、（　　） ください。",
+   "options": [
+    "飲まないで",
+    "飲んで",
+    "飲まない",
+    "飲まなくて"
+   ],
+   "answer": 1,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「飲まないで ください」 – Nước này bẩn, xin đừng uống. Mẫu xin đừng làm: Vない + で ください. 飲む (nhóm 1) → 飲まない → 飲まないで ください.",
+   "option_explanations": {
+    "1": "Đúng. Vないで ください = xin đừng làm V.",
+    "2": "Sai. 飲んで ください = hãy uống, ngược nghĩa với 'nước bẩn'.",
+    "3": "Sai. Thiếu で: không nói 飲まない ください.",
+    "4": "Sai. Vなくて không đi với ください; mẫu đúng là ～ないで ください."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_04",
+   "grammar_id": "GRA_000085",
+   "mondai_type": "grammar_form",
+   "question_text": "あしたは テストが ありますから、こんばん べんきょう（　　） なりません。",
+   "options": [
+    "しないで",
+    "しなくても",
+    "すれば",
+    "しなければ"
+   ],
+   "answer": 4,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「こんばん べんきょうしなければ なりません」 – Mai có bài kiểm tra nên tối nay phải học. Phải làm V: Vない bỏ い + ければ なりません. する → しない → しなければ なりません. Nhớ: なりません chỉ đi với ～なければ.",
+   "option_explanations": {
+    "1": "Sai. ～ないで đi với ください (xin đừng), không đi với なりません.",
+    "2": "Sai. ～なくても đi với いいです (không cần), không đi với なりません.",
+    "3": "Sai. すれば なりません không có nghĩa; phải là phủ định しなければ.",
+    "4": "Đúng. しなければ なりません = phải làm."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_05",
+   "grammar_id": "GRA_000085",
+   "mondai_type": "grammar_form",
+   "question_text": "あしたは あさ 7時に 駅へ （　　） なりません。",
+   "options": [
+    "行きなければ",
+    "行かなければ",
+    "行くなければ",
+    "行かないで"
+   ],
+   "answer": 2,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「7時に 駅へ 行かなければ なりません」 – Sáng mai 7 giờ tôi phải đến nhà ga. Cách tạo: chia thể ない rồi đổi い → ければ: 行く → 行かない → 行かなければ.",
+   "option_explanations": {
+    "1": "Sai. Không dùng gốc ます (行き-). Nhóm 1 dùng cột -a: 行か-.",
+    "2": "Đúng. 行かない → 行かなければ なりません.",
+    "3": "Sai. Không ghép vào thể từ điển.",
+    "4": "Sai. 行かないで không đi với なりません."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_06",
+   "grammar_id": "GRA_000086",
+   "mondai_type": "grammar_form",
+   "question_text": "A「あしたも 会社へ 来なければ なりませんか。」 B「いいえ、あしたは 休みですから、（　　） いいですよ。」",
+   "options": [
+    "来ない",
+    "来ては",
+    "来なくても",
+    "来なかった"
+   ],
+   "answer": 3,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「来なくても いいですよ」 – Không, mai là ngày nghỉ nên không đến cũng được. Hỏi ～なければ なりませんか, trả lời 'không cần' bằng ～なくても いいです (Vない bỏ い + くても). 来る → こない → こなくても.",
+   "option_explanations": {
+    "1": "Sai. Thiếu くても: không nói 来ない いいです.",
+    "2": "Sai. ～ては đi với いけません (cấm), không đi với いいです.",
+    "3": "Đúng. 来なくても いいです = không đến cũng được.",
+    "4": "Sai. Thể quá khứ không ghép trực tiếp với いいです."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_07",
+   "grammar_id": "GRA_000085",
+   "mondai_type": "sentence_composition",
+   "question_text": "しごとの あとで、＿＿ ＿＿ ★ ＿＿ なりません。",
+   "options": [
+    "買いに",
+    "行かなければ",
+    "母の",
+    "くすりを"
+   ],
+   "answer": 1,
+   "star_position": 3,
+   "expected_sequence": [
+    3,
+    4,
+    1,
+    2
+   ],
+   "explanation_vi": "Câu đúng: 「しごとの あとで、母の くすりを 買いに 行かなければ なりません。」 – Sau giờ làm, tôi phải đi mua thuốc cho mẹ. Thứ tự 3-4-1-2. 母の đứng trước danh từ くすり; 買いに 行く = đi (để) mua; 行かなければ đứng ngay trước なりません. ★ = 買いに.",
+   "option_explanations": {
+    "1": "Đúng (ô ★). Thứ tự: 母の → くすりを → 買いに(★) → 行かなければ.",
+    "2": "Sai. 行かなければ ở ô cuối, ngay trước なりません.",
+    "3": "Sai. 母の ở ô đầu, bổ nghĩa cho くすり.",
+    "4": "Sai. くすりを ở ô thứ 2."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_08",
+   "grammar_id": "GRA_000084",
+   "mondai_type": "sentence_composition",
+   "question_text": "ここは びょういんですから、＿＿ ＿＿ ★ ＿＿ ください。",
+   "options": [
+    "ないで",
+    "大きい",
+    "話さ",
+    "こえで"
+   ],
+   "answer": 3,
+   "star_position": 3,
+   "expected_sequence": [
+    2,
+    4,
+    3,
+    1
+   ],
+   "explanation_vi": "Câu đúng: 「ここは びょういんですから、大きい こえで 話さないで ください。」 – Đây là bệnh viện, xin đừng nói to. Thứ tự 2-4-3-1. 話す (nhóm 1) → 話さない → 話さないで ください. ★ = 話さ.",
+   "option_explanations": {
+    "1": "Sai. ないで ở ô cuối, ngay trước ください.",
+    "2": "Sai. 大きい ở ô đầu, bổ nghĩa cho こえ.",
+    "3": "Đúng (ô ★). 話す → 話さ + ないで.",
+    "4": "Sai. こえで ở ô thứ 2 (nói bằng giọng to)."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_09",
+   "grammar_id": "GRA_000098",
+   "mondai_type": "grammar_form",
+   "question_text": "A「きのうの パーティー、どうだった？」 B「人が 少なくて、あまり （　　）。」",
+   "options": [
+    "にぎやかくなかった",
+    "にぎやかなかった",
+    "にぎやかだなかった",
+    "にぎやかじゃなかった"
+   ],
+   "answer": 4,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「あまり にぎやかじゃなかった」 – Ít người, không náo nhiệt lắm. にぎやか là tính từ な. Thể thông thường quá khứ phủ định của tính từ な/danh từ: ～じゃなかった (giống danh từ). Tính từ い mới dùng ～くなかった.",
+   "option_explanations": {
+    "1": "Sai. ～くなかった chỉ dùng cho tính từ い.",
+    "2": "Sai. Không ghép なかった thẳng vào tính từ な.",
+    "3": "Sai. Không có dạng だなかった.",
+    "4": "Đúng. にぎやか → にぎやかじゃなかった."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_10",
+   "grammar_id": "GRA_000098",
+   "mondai_type": "grammar_form",
+   "question_text": "A「きのう、やまださんに 会った？」 B「ううん、（　　）。」",
+   "options": [
+    "会わなかった",
+    "会いなかった",
+    "会わない",
+    "会わないだった"
+   ],
+   "answer": 1,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「ううん、会わなかった」 – Không, không gặp. Thể thông thường quá khứ phủ định: Vない bỏ い + かった. 会う (đuôi う → わ): 会わない → 会わなかった. Mẹo: đuôi う chia thể ない thành わ, không phải あ.",
+   "option_explanations": {
+    "1": "Đúng. 会わない → 会わなかった.",
+    "2": "Sai. Không dùng gốc ます (会い-) với ない.",
+    "3": "Sai. Hỏi về hôm qua (きのう) nên phải dùng quá khứ.",
+    "4": "Sai. Quá khứ của ない là なかった, không thêm だった."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_11",
+   "grammar_id": "GRA_000098",
+   "mondai_type": "grammar_form",
+   "question_text": "A「きのうは 雨だった？」 B「ううん、雨（　　）。いい 天気だったよ。」",
+   "options": [
+    "くなかった",
+    "だなかった",
+    "じゃないだった",
+    "じゃなかった"
+   ],
+   "answer": 4,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「雨じゃなかった」 – Không, không mưa. Trời đẹp mà. Danh từ ở thể thông thường: 雨だ / 雨じゃない / 雨だった / 雨じゃなかった.",
+   "option_explanations": {
+    "1": "Sai. くなかった dành cho tính từ い, 雨 là danh từ.",
+    "2": "Sai. Không có dạng だなかった.",
+    "3": "Sai. Quá khứ của じゃない là じゃなかった, không thêm だった.",
+    "4": "Đúng. 雨 → 雨じゃなかった."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_12",
+   "grammar_id": "GRA_000099",
+   "mondai_type": "grammar_form",
+   "question_text": "A「もう ひるごはん 食べた？」 B「（　　）、まだ。いっしょに 食べに 行かない？」",
+   "options": [
+    "うん",
+    "ううん",
+    "はい",
+    "ええ"
+   ],
+   "answer": 2,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「ううん、まだ」 – Chưa, mình chưa ăn. Đi ăn cùng không? Trong hội thoại thân mật: うん = có/ừ, ううん = không. Vế sau là まだ (chưa) nên phải trả lời phủ định ううん.",
+   "option_explanations": {
+    "1": "Sai. うん = ừ (đã ăn rồi), mâu thuẫn với まだ.",
+    "2": "Đúng. ううん = không, hợp với まだ.",
+    "3": "Sai. はい = vâng (đã ăn), mâu thuẫn với まだ.",
+    "4": "Sai. ええ = vâng (đã ăn), mâu thuẫn với まだ."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_13",
+   "grammar_id": "GRA_000100",
+   "mondai_type": "grammar_form",
+   "question_text": "やまださんは 今日 しごとが 休みですから、ひま（　　） と おもいます。",
+   "options": [
+    "だ",
+    "な",
+    "です",
+    "の"
+   ],
+   "answer": 1,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「ひまだと おもいます」 – Hôm nay anh Yamada nghỉ làm nên tôi nghĩ anh ấy rảnh. Trước と おもいます dùng thể thông thường. Tính từ な và danh từ phải thêm だ: ひまだ と おもいます.",
+   "option_explanations": {
+    "1": "Đúng. Tính từ な + だ + と おもいます.",
+    "2": "Sai. な chỉ dùng khi đứng trước danh từ (ひまな 人).",
+    "3": "Sai. Trước と おもいます không dùng thể lịch sự です.",
+    "4": "Sai. Không nói ひまの と おもいます."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_14",
+   "grammar_id": "GRA_000101",
+   "mondai_type": "grammar_form",
+   "question_text": "やまださんは きのう どこへも （　　） と 言いました。",
+   "options": [
+    "行きなかった",
+    "行った",
+    "行かないだった",
+    "行かなかった"
+   ],
+   "answer": 4,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「どこへも 行かなかったと 言いました」 – Anh Yamada nói hôm qua anh ấy không đi đâu cả. Tường thuật gián tiếp: thể thông thường + と 言いました. どこへも luôn đi với phủ định; quá khứ phủ định: 行かない → 行かなかった.",
+   "option_explanations": {
+    "1": "Sai. Không dùng gốc ます (行き-) với ない.",
+    "2": "Sai. どこへも (không đâu cả) bắt buộc đi với động từ phủ định.",
+    "3": "Sai. Quá khứ của ない là なかった, không thêm だった.",
+    "4": "Đúng. 行かなかった + と 言いました."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_15",
+   "grammar_id": "GRA_000101",
+   "mondai_type": "sentence_composition",
+   "question_text": "先生は ＿＿ ＿＿ ★ ＿＿ と 言いました。",
+   "options": [
+    "ない",
+    "むずかしく",
+    "あしたの",
+    "テストは"
+   ],
+   "answer": 2,
+   "star_position": 3,
+   "expected_sequence": [
+    3,
+    4,
+    2,
+    1
+   ],
+   "explanation_vi": "Câu đúng: 「先生は あしたの テストは むずかしく ないと 言いました。」 – Thầy nói bài kiểm tra ngày mai không khó. Thứ tự 3-4-2-1. Phủ định thể thông thường của tính từ い: むずかしい → むずかしく ない. ★ = むずかしく.",
+   "option_explanations": {
+    "1": "Sai. ない ở ô cuối, ngay trước と 言いました.",
+    "2": "Đúng (ô ★). むずかしい → むずかしく + ない.",
+    "3": "Sai. あしたの ở ô đầu, bổ nghĩa cho テスト.",
+    "4": "Sai. テストは ở ô thứ 2."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_16",
+   "grammar_id": "GRA_000098",
+   "mondai_type": "sentence_composition",
+   "question_text": "きのうは ＿＿ ★ ＿＿ ＿＿ 行かなかった。",
+   "options": [
+    "から",
+    "雨",
+    "どこへも",
+    "だった"
+   ],
+   "answer": 4,
+   "star_position": 2,
+   "expected_sequence": [
+    2,
+    4,
+    1,
+    3
+   ],
+   "explanation_vi": "Câu đúng: 「きのうは 雨 だった から どこへも 行かなかった。」 – Hôm qua trời mưa nên mình không đi đâu cả. Thứ tự 2-4-1-3. Danh từ quá khứ thể thông thường: 雨だった; から (vì) đứng ngay sau vế lý do; どこへも đứng trước động từ phủ định 行かなかった. ★ = だった.",
+   "option_explanations": {
+    "1": "Sai. から ở ô thứ 3, ngay sau 雨だった.",
+    "2": "Sai. 雨 ở ô đầu.",
+    "3": "Sai. どこへも ở ô cuối, ngay trước 行かなかった.",
+    "4": "Đúng (ô ★). 雨 + だった (danh từ quá khứ thể thông thường)."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_17",
+   "grammar_id": "GRA_000073",
+   "mondai_type": "grammar_form",
+   "question_text": "A「たなかさんは どこですか。」 B「今 あそこで やまださんと （　　）。」",
+   "options": [
+    "話します",
+    "話して ください",
+    "話して います",
+    "話しませんか"
+   ],
+   "answer": 3,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「今 あそこで やまださんと 話して います」 – Bây giờ anh ấy đang nói chuyện với anh Yamada ở đằng kia. Hành động đang diễn ra lúc nói (có 今): Vて います.",
+   "option_explanations": {
+    "1": "Sai. 話します là thói quen/tương lai, không diễn tả 'đang' nói lúc này.",
+    "2": "Sai. 話して ください là nhờ người nghe nói, không trả lời câu hỏi 'ở đâu'.",
+    "3": "Đúng. Vて います = đang làm.",
+    "4": "Sai. 話しませんか là lời rủ, không hợp ngữ cảnh."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_18",
+   "grammar_id": "GRA_000076",
+   "mondai_type": "grammar_form",
+   "question_text": "テストの ときは、本を （　　） いけません。",
+   "options": [
+    "見ないで",
+    "見ては",
+    "見なくては",
+    "見て"
+   ],
+   "answer": 2,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「本を 見ては いけません」 – Lúc làm bài kiểm tra không được xem sách. Cấm đoán: Vて + は いけません. Nhớ cặp: ～ても いいです (được phép) ↔ ～ては いけません (cấm).",
+   "option_explanations": {
+    "1": "Sai. ～ないで đi với ください, không đi với いけません.",
+    "2": "Đúng. 見ては いけません = không được xem.",
+    "3": "Sai. 見なくては いけません = phải xem sách, ngược nghĩa với giờ kiểm tra.",
+    "4": "Sai. Thiếu は: không nói 見て いけません."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_19",
+   "grammar_id": "GRA_000075",
+   "mondai_type": "grammar_form",
+   "question_text": "A「すみません、この ペンを （　　） いいですか。」 B「ええ、どうぞ。」",
+   "options": [
+    "つかいても",
+    "つかっては",
+    "つかうても",
+    "つかっても"
+   ],
+   "answer": 4,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「この ペンを つかっても いいですか」 – Tôi dùng cây bút này được không? Xin phép: Vて + も いいですか. つかう (đuôi う, nhóm 1) → つかって (う/つ/る → って).",
+   "option_explanations": {
+    "1": "Sai. Thể て của つかう là つかって, không phải つかいて.",
+    "2": "Sai. ～ては đi với いけません, không đi với いいですか.",
+    "3": "Sai. Không ghép ても vào thể từ điển.",
+    "4": "Đúng. つかって + も いいですか."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_20",
+   "grammar_id": "GRA_000080",
+   "mondai_type": "grammar_form",
+   "question_text": "まいばん おふろに （　　）、ねます。",
+   "options": [
+    "入ってから",
+    "入りてから",
+    "入るてから",
+    "入ってまえに"
+   ],
+   "answer": 1,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「まいばん おふろに 入ってから、ねます」 – Tối nào tôi cũng tắm xong rồi mới ngủ. Sau khi V1 rồi V2: V1て から, V2. 入る là nhóm 1 ngoại lệ (đuôi る → って): 入る → 入って.",
+   "option_explanations": {
+    "1": "Đúng. 入って + から = sau khi tắm.",
+    "2": "Sai. 入る là nhóm 1, thể て là 入って, không phải 入りて.",
+    "3": "Sai. Không ghép て vào thể từ điển.",
+    "4": "Sai. まえに đi với thể từ điển: 入る まえに, không phải 入って まえに."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_21",
+   "grammar_id": "GRA_000119",
+   "mondai_type": "grammar_form",
+   "question_text": "たなかさんは 山が 大すきです。天気が （　　）、山へ 行きます。",
+   "options": [
+    "わるいから",
+    "わるいでも",
+    "わるかったら",
+    "わるくても"
+   ],
+   "answer": 4,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「天気が わるくても、山へ 行きます」 – Anh Tanaka rất thích núi. Dù thời tiết xấu anh ấy vẫn lên núi. Dù ~ vẫn ~: tính từ い bỏ い + くても; động từ Vて + も; tính từ な/danh từ + でも.",
+   "option_explanations": {
+    "1": "Sai. 'Vì thời tiết xấu nên đi núi' không hợp lý.",
+    "2": "Sai. Tính từ い dùng くても; でも chỉ đi với tính từ な/danh từ.",
+    "3": "Sai. 'Nếu thời tiết xấu thì đi núi' không hợp lý.",
+    "4": "Đúng. わるい → わるくても = dù xấu."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_22",
+   "grammar_id": "GRA_000071",
+   "mondai_type": "grammar_form",
+   "question_text": "すみません、ちょっと （　　） ください。",
+   "options": [
+    "まちて",
+    "まって",
+    "まいて",
+    "まんで"
+   ],
+   "answer": 2,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「ちょっと まって ください」 – Xin chờ một chút. まつ (đuôi つ, nhóm 1) → まって. Quy tắc nhóm 1: う/つ/る → って; む/ぶ/ぬ → んで; く → いて; ぐ → いで; す → して; ngoại lệ 行く → 行って.",
+   "option_explanations": {
+    "1": "Sai. Không dùng gốc ます (まち-) + て với nhóm 1.",
+    "2": "Đúng. まつ → まって.",
+    "3": "Sai. いて dành cho đuôi く (かく → かいて).",
+    "4": "Sai. んで dành cho đuôi む/ぶ/ぬ."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_23",
+   "grammar_id": "GRA_000080",
+   "mondai_type": "sentence_composition",
+   "question_text": "ごはんを ＿＿ ★ ＿＿ ＿＿ ください。",
+   "options": [
+    "飲んで",
+    "この くすりを",
+    "から",
+    "食べて"
+   ],
+   "answer": 3,
+   "star_position": 2,
+   "expected_sequence": [
+    4,
+    3,
+    2,
+    1
+   ],
+   "explanation_vi": "Câu đúng: 「ごはんを 食べて から この くすりを 飲んで ください。」 – Hãy uống thuốc này sau khi ăn cơm. Thứ tự 4-3-2-1. ごはんを đi với 食べて; から đứng ngay sau thể て; 飲んで đứng trước ください. ★ = から.",
+   "option_explanations": {
+    "1": "Sai. 飲んで ở ô cuối, ngay trước ください.",
+    "2": "Sai. この くすりを ở ô thứ 3, là tân ngữ của 飲んで.",
+    "3": "Đúng (ô ★). 食べて + から = sau khi ăn.",
+    "4": "Sai. 食べて ở ô đầu, đi với ごはんを."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_24",
+   "grammar_id": "GRA_000075",
+   "mondai_type": "sentence_composition",
+   "question_text": "この へやで ＿＿ ＿＿ ★ ＿＿ か。",
+   "options": [
+    "も",
+    "いいです",
+    "しゃしんを",
+    "とって"
+   ],
+   "answer": 1,
+   "star_position": 3,
+   "expected_sequence": [
+    3,
+    4,
+    1,
+    2
+   ],
+   "explanation_vi": "Câu đúng: 「この へやで しゃしんを とって も いいです か。」 – Tôi chụp ảnh trong phòng này được không? Thứ tự 3-4-1-2. Xin phép: Vて + も いいですか. ★ = も.",
+   "option_explanations": {
+    "1": "Đúng (ô ★). とって + も いいですか.",
+    "2": "Sai. いいです ở ô cuối, trước か.",
+    "3": "Sai. しゃしんを ở ô đầu.",
+    "4": "Sai. とって ở ô thứ 2."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_25",
+   "grammar_id": "GRA_000034",
+   "mondai_type": "grammar_form",
+   "question_text": "A「あしたは ひまですか。」 B「ええ。」 A「じゃ、いっしょに テニスを （　　）。」 B「いいですね。」",
+   "options": [
+    "しましたか",
+    "しませんでしたか",
+    "しませんか",
+    "しましたね"
+   ],
+   "answer": 3,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「いっしょに テニスを しませんか」 – Vậy ngày mai cùng chơi tennis không? Rủ ai làm gì (việc sắp tới): Vませんか. Mẹo: thấy あした/いっしょに + lời đáp いいですね → lời mời ～ませんか; ～ましたか là hỏi chuyện đã xảy ra.",
+   "option_explanations": {
+    "1": "Sai. しましたか hỏi việc đã làm, không hợp với あした.",
+    "2": "Sai. しませんでしたか hỏi quá khứ, không phải lời mời.",
+    "3": "Đúng. しませんか = cùng chơi không?",
+    "4": "Sai. しましたね là quá khứ, không hợp với あした."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_26",
+   "grammar_id": "GRA_000035",
+   "mondai_type": "grammar_form",
+   "question_text": "A「たくさん あるきましたね。ちょっと （　　）。」 B「ええ、そう しましょう。」",
+   "options": [
+    "休んで いました",
+    "休みましょう",
+    "休みました",
+    "休みませんでした"
+   ],
+   "answer": 2,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「ちょっと 休みましょう」 – Đi bộ nhiều rồi nhỉ. Mình nghỉ chút đi. Đề nghị cùng làm: Vましょう. B đáp そう しましょう (cứ làm vậy đi) nên A phải đưa ra đề nghị.",
+   "option_explanations": {
+    "1": "Sai. 休んで いました (đã đang nghỉ) không phải đề nghị.",
+    "2": "Đúng. 休みましょう = mình nghỉ đi.",
+    "3": "Sai. 休みました là quá khứ, không hợp với そう しましょう.",
+    "4": "Sai. 休みませんでした là quá khứ phủ định, không phải đề nghị."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_27",
+   "grammar_id": "GRA_000105",
+   "mondai_type": "grammar_form",
+   "question_text": "A「まだ 時間が ありますね。あの 店で おちゃ（　　） 飲みませんか。」 B「ええ、そう しましょう。」",
+   "options": [
+    "では",
+    "にも",
+    "と",
+    "でも"
+   ],
+   "answer": 4,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「おちゃでも 飲みませんか」 – Còn thời gian nhỉ. Vào quán kia uống trà hay gì đó không? N でも V ませんか: でも đưa N ra làm ví dụ, lời mời nhẹ nhàng (thay cho を).",
+   "option_explanations": {
+    "1": "Sai. では không dùng để gợi ý trong lời mời.",
+    "2": "Sai. おちゃにも 飲む không đúng ngữ pháp (飲む cần を/でも).",
+    "3": "Sai. おちゃと 飲む không có nghĩa (と = cùng với).",
+    "4": "Đúng. おちゃでも = trà hay gì đó."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_28",
+   "grammar_id": "GRA_000105",
+   "mondai_type": "grammar_form",
+   "question_text": "こんどの 休みに、いっしょに 山へでも （　　）。",
+   "options": [
+    "行きませんか",
+    "行きましたか",
+    "行きませんでしたか",
+    "行って いましたか"
+   ],
+   "answer": 1,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「山へでも 行きませんか」 – Kỳ nghỉ tới cùng đi núi hay đâu đó không? こんどの 休み là việc sắp tới, có いっしょに và でも → lời mời ～ませんか. Đừng nhầm với ～ましたか (hỏi chuyện đã qua).",
+   "option_explanations": {
+    "1": "Đúng. 行きませんか = cùng đi không?",
+    "2": "Sai. 行きましたか hỏi việc đã xảy ra, không hợp với こんどの 休み (sắp tới).",
+    "3": "Sai. Quá khứ phủ định, không phải lời mời.",
+    "4": "Sai. Quá khứ tiếp diễn, không hợp với tương lai."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_29",
+   "grammar_id": "GRA_000074",
+   "mondai_type": "grammar_form",
+   "question_text": "A「にもつが 多いですね。一つ （　　）。」 B「ありがとう ございます。じゃ、おねがいします。」",
+   "options": [
+    "もちましょうか",
+    "もちませんか",
+    "もって いますか",
+    "もちましたか"
+   ],
+   "answer": 1,
+   "star_position": null,
+   "expected_sequence": null,
+   "explanation_vi": "Câu đúng: 「一つ もちましょうか」 – Hành lý nhiều nhỉ. Để tôi xách giúp một cái nhé? Đề nghị tự mình làm giúp người kia: Vましょうか. B cảm ơn và nói おねがいします → A đã đề nghị giúp.",
+   "option_explanations": {
+    "1": "Đúng. もちましょうか = để tôi xách giúp nhé?",
+    "2": "Sai. もちませんか là rủ người nghe xách, không hợp với lời cảm ơn của B.",
+    "3": "Sai. もって いますか là hỏi 'bạn có đang cầm không', không phải đề nghị.",
+    "4": "Sai. もちましたか hỏi việc đã qua."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  },
+  {
+   "question_id": "Q_GQW_B_30",
+   "grammar_id": "GRA_000105",
+   "mondai_type": "sentence_composition",
+   "question_text": "A「あしたは 休みですね。いっしょに ＿＿ ★ ＿＿ ＿＿。」 B「ええ、いいですね。」",
+   "options": [
+    "見",
+    "ませんか",
+    "でも",
+    "えいが"
+   ],
+   "answer": 3,
+   "star_position": 2,
+   "expected_sequence": [
+    4,
+    3,
+    1,
+    2
+   ],
+   "explanation_vi": "Câu đúng: 「いっしょに えいが でも 見 ませんか。」 – Mai được nghỉ nhỉ. Cùng đi xem phim hay gì đó không? Thứ tự 4-3-1-2. N でも V ませんか: でも đứng ngay sau danh từ えいが. ★ = でも.",
+   "option_explanations": {
+    "1": "Sai. 見 ở ô thứ 3, ghép với ませんか.",
+    "2": "Sai. ませんか ở ô cuối.",
+    "3": "Đúng (ô ★). えいが + でも.",
+    "4": "Sai. えいが ở ô đầu."
+   },
+   "audited": true,
+   "excluded": false,
+   "review_log": [
+    {
+     "date": "2026-11-24",
+     "by": "author",
+     "note": "Soạn cho bộ ôn điểm yếu (phân tích bài làm của người học: đề 2024-07, 2017-07, ngân hàng ngữ pháp); luật check_grammar_question sạch; 2 AI giải mù khớp đáp án"
+    }
+   ]
+  }
+ ]
+}

@@ -46,9 +46,10 @@ data/
   normalized/grammar/grammar.json                      nội dung 135 điểm (origin handbook/handbook+ai/ai)
   normalized/kanji/kanji_n5.json                       103 kanji N5
   normalized/grammar_questions/grammar_questions.json  399 câu 文の文法1/2 do agent soạn (ADR-020)
+  normalized/grammar_questions/sets/*.json             bộ ôn điểm yếu (mỗi file = 1 đề exam_type=study_set, cùng quy trình ADR-020)
   normalized/kaiwa/kaiwa.json                           27 hội thoại Kaiwa §7.4, 9 chủ đề (ADR-023)
   normalized/reading_questions/reading_questions.json   68 bài / 142 câu 文章の文法 + 読解 do agent soạn (ADR-026)
-  normalized/numbers/numbers.json                       273 mục số đếm & ngày tháng, 23 nhóm (ADR-029)
+  normalized/numbers/numbers.json                       279 mục số đếm & ngày tháng, 23 nhóm (ADR-029)
   normalized/exams/listening_timestamps.json            mốc giây từng câu nghe (chỉ số, được commit; ADR-025)
   normalized/ai_review/     kết quả rà soát AI (bằng chứng; grammar_questions_review.json / reading_questions_review.json = 2 AI giải mù; kaiwa_review.json = 2 vòng rà soát hội thoại)
   normalized/exams/         đề mẫu đã chép (bản chép không commit, xem .gitignore) + AI đối chiếu đáp án

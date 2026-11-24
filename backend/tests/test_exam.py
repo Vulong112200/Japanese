@@ -298,8 +298,13 @@ def test_grammar_bank_is_consensus_backed(imported):
     assert e["is_official"] == 0 and e["source_type"] == "AI_GENERATED" and e["exam_type"] == "question_bank"
     review = json.loads(knowledge.GRAMMAR_Q_REVIEW.read_text(encoding="utf-8"))
     verified_grammar = {r[0] for r in conn.execute("SELECT id FROM grammar WHERE verification_status='verified'")}
-    rows = conn.execute("SELECT * FROM questions WHERE exam_id=? AND verification_status='verified'",
-                        (knowledge.GQ_EXAM,)).fetchall()
+    # study sets (weak-point drills) follow the same rules and are listed as their own exam, never official
+    sets = conn.execute("SELECT * FROM exams WHERE exam_type='study_set'").fetchall()
+    assert all(s["is_official"] == 0 and s["source_type"] == "AI_GENERATED" for s in sets)
+    listed = {e["exam_id"] for e in repo.exam_overview(conn)["exams"]}
+    assert {s["exam_id"] for s in sets} <= listed and knowledge.GQ_EXAM not in listed
+    rows = conn.execute("SELECT * FROM questions WHERE (exam_id=? OR exam_id IN (SELECT exam_id FROM exams WHERE "
+                        "exam_type='study_set')) AND verification_status='verified'", (knowledge.GQ_EXAM,)).fetchall()
     assert {r["mondai_type"] for r in rows} == {"grammar_form", "sentence_composition"}
     for q in rows:
         extra, ans = json.loads(q["extra_json"]), int(json.loads(q["correct_answer"])[0])
@@ -371,21 +376,23 @@ def test_settings_daily_goal(client):
 
 def test_practice_by_grammar_point_and_activity_analytics(client):
     c, conn = client
-    gid = conn.execute("SELECT json_extract(extra_json,'$.grammar_id') FROM questions WHERE exam_id='BANK_N5_GRAMMAR_AI' "
-                       "AND verification_status='verified' GROUP BY 1 HAVING COUNT(*)=2 LIMIT 1").fetchone()[0]
+    # practice by point draws from every exam (bank + study sets), so count over all of them
+    gid, n = conn.execute("SELECT json_extract(extra_json,'$.grammar_id') AS g, COUNT(*) FROM questions WHERE g IS NOT "
+                          "NULL AND verification_status!='rejected' GROUP BY 1 HAVING SUM(passage_id IS NOT NULL)=0 ORDER BY 2 LIMIT 1"
+                          ).fetchone()
     assert c.post("/api/attempts", json={"mode": "practice", "grammar_id": "x"}).status_code == 422
     before = c.get("/api/stats/dashboard").json()["done_today"]
     for _ in range(2):                                    # same point answered wrong twice → repeated mistakes
-        a = c.post("/api/attempts", json={"mode": "practice", "grammar_id": gid, "limit": 2}).json()
+        a = c.post("/api/attempts", json={"mode": "practice", "grammar_id": gid, "limit": n}).json()
         qids = [q["question_id"] for q in a["questions"]]
-        assert len(qids) == 2 and {json.loads(repo.get_question(conn, q)["extra_json"])["grammar_id"] for q in qids} == {gid}
+        assert len(qids) == n and {json.loads(repo.get_question(conn, q)["extra_json"])["grammar_id"] for q in qids} == {gid}
         for q in a["questions"]:
             wrong = next(o["option_id"] for o in q["options"] if [o["option_id"]] != _correct(conn, q["question_id"]))
             c.put(f"/api/attempts/{a['attempt_id']}/answers/{q['question_id']}", json={"answer": [wrong]})
         c.post(f"/api/attempts/{a['attempt_id']}/submit")
 
     d = c.get("/api/stats/dashboard").json()
-    assert d["done_today"] == before + 4 and d["streak_days"] >= 1     # exam-only day counts for the streak
+    assert d["done_today"] == before + 2 * n and d["streak_days"] >= 1     # exam-only day counts for the streak
     kinds = {r["kind"]: r for r in d["recommendations"]}
     assert "mistakes" in kinds and "exam" not in kinds                # just submitted → no "take an exam" nudge
     assert any(w["grammar_id"] == gid for w in d["weak_grammar_points"])
@@ -393,7 +400,9 @@ def test_practice_by_grammar_point_and_activity_analytics(client):
     an = c.get("/api/stats/analytics").json()
     assert len(an["daily"]) == 30 and an["daily"][-1]["reviews"] + an["daily"][-1]["answers"] == d["done_today"]
     assert an["attempts"][-1]["attempt_id"] == a["attempt_id"] and "grammar_reading" in an["attempts"][-1]["by_section"]
-    assert set(qids) <= {m["question_id"] for m in an["repeated_mistakes"] if m["wrong"] >= 2}
+    # analytics shows the top 20; earlier tests in this module may fill it, so check the full list too
+    assert an["repeated_mistakes"] and all(m["wrong"] >= 2 for m in an["repeated_mistakes"])
+    assert set(qids) <= {m["question_id"] for m in repo.repeated_mistakes(conn, limit=10_000)}
     assert c.get("/api/stats/analytics", params={"days": 3}).status_code == 422
 
 
